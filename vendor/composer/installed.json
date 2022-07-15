@@ -1,0 +1,117 @@
+{
+    "packages": [
+        {
+            "name": "tgmpa/tgm-plugin-activation",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
+                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
+                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "time": "2016-05-19T15:46:51+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "class-tgm-plugin-activation.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Griffin",
+                    "homepage": "http://thomasgriffinmedia.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Gary Jones",
+                    "homepage": "https://github.com/GaryJones",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Juliette Reinders Folmer",
+                    "homepage": "https://github.com/jrfnl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "TGM Plugin Activation is a PHP library that allows you to easily require or recommend plugins for your WordPress themes (and plugins).",
+            "homepage": "http://tgmpluginactivation.com",
+            "keywords": [
+                "activation",
+                "library",
+                "plugins",
+                "theme",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/TGMPA/TGM-Plugin-Activation/issues",
+                "source": "https://github.com/TGMPA/TGM-Plugin-Activation"
+            },
+            "install-path": "../tgmpa/tgm-plugin-activation"
+        },
+        {
+            "name": "wptt/webfont-loader",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WPTT/webfont-loader.git",
+                "reference": "780e564bf0554c419ef447c2b5b768b497ecee40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WPTT/webfont-loader/zipball/780e564bf0554c419ef447c2b5b768b497ecee40",
+                "reference": "780e564bf0554c419ef447c2b5b768b497ecee40",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "composer/installers": "~1.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "wptrt/wpthemereview": "^0.2.1"
+            },
+            "time": "2022-06-17T10:41:00+00:00",
+            "default-branch": true,
+            "type": "package",
+            "installation-source": "dist",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/WPTT/font-loader/graphs/contributors"
+                }
+            ],
+            "description": "Locally host webfonts.",
+            "homepage": "https://github.com/WPTT/font-loader",
+            "keywords": [
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/WPTT/font-loader/issues",
+                "source": "https://github.com/WPTT/font-loader"
+            },
+            "install-path": "../wptt/webfont-loader"
+        }
+    ],
+    "dev": false,
+    "dev-package-names": []
+}

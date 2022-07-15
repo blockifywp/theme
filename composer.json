@@ -3,7 +3,21 @@
   "authors": [
     {
       "name": "Blockify",
-      "email": "blockifywp@gmail.com"
+      "email": "info@blockify.com"
     }
-  ]
+  ],
+  "type": "wordpress-theme",
+  "scripts": {
+    "install:force": "rm -Rf ./composer.lock && composer install --no-dev"
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "composer/installers": true
+    }
+  },
+  "require": {
+    "tgmpa/tgm-plugin-activation": "dev-master"
+  }
 }
