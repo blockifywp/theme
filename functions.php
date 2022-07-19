@@ -6,24 +6,33 @@ namespace Blockify\Theme;
 
 use const DIRECTORY_SEPARATOR;
 use function add_action;
-use function get_file_data;
+use function add_theme_support;
+use function array_map;
+use function basename;
+use function dirname;
+use function get_page_by_path;
 use function get_post;
 use function glob;
-use function is_plugin_active;
+use function home_url;
+use function is_null;
 use function ob_get_clean;
 use function ob_start;
-use function register_block_pattern;
-use function register_block_pattern_category;
+use function str_contains;
 use function str_replace;
+use function strtolower;
 use function tgmpa;
-use function ucwords;
+use function wp_add_inline_style;
 use function wp_insert_post;
+use stdClass;
+use WP_Post;
 
 const FILE = __FILE__;
 const DIR  = __DIR__ . DIRECTORY_SEPARATOR;
 const NS   = __NAMESPACE__ . '\\';
 
 require_once DIR . 'vendor/autoload.php';
+
+add_theme_support( 'blockify' );
 
 add_action( 'after_setup_theme', NS . 'register_required_plugins' );
 /**
@@ -53,81 +62,132 @@ function register_required_plugins(): void {
 	);
 }
 
-add_action( 'after_setup_theme', NS . 'create_default_nav_menu' );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
 /**
- * Attempts to create a default navigation menu for pattern content.
+ * Enqueues main stylesheet.
+ *
+ * @since 0.0.1
+ *
+ * @return void
+ */
+function enqueue_styles(): void {
+	wp_add_inline_style(
+		'global-styles',
+		'html { -webkit-font-smoothing: antialiased }'
+	);
+}
+
+add_action( 'after_switch_theme', NS . 'activate' );
+/**
+ * Sets up site. (For demonstration purposes only).
  *
  * @since 0.0.5
  *
  * @return void
  */
-function create_default_nav_menu(): void {
+function activate(): void {
 	if ( ! get_post( 999 ) ) {
+		$home_url = home_url();
+
 		wp_insert_post( [
 			'import_id'    => 999,
 			'post_title'   => __( 'Default', 'blockify' ),
 			'post_type'    => 'wp_navigation',
 			'post_status'  => 'publish',
-			'post_content' => '<!-- wp:navigation-link {"label":"Home","type":"custom","url":"#","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"About","url":"#","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Pricing","url":"#","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Blog","url":"#","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Contact","url":"#","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Log In","url":"#","kind":"custom","isTopLevelLink":true} /-->',
+			'post_content' => <<<HTML
+<!-- wp:navigation-link {"label":"Home","type":"custom","url":"$home_url/page-landing-1","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"About","url":"$home_url/page-about-1","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"Pricing","url":"$home_url/page-pricing-1","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"Blog","url":"$home_url/page-blog-1","kind":"custom","isTopLevelLink":true} /-->
+<!-- wp:navigation-link {"label":"Contact","url":"$home_url/page-contact-1","kind":"custom","isTopLevelLink":true} /-->
+HTML,
 		] );
 	}
 }
 
-add_action( 'after_setup_theme', NS . 'register_default_patterns' );
+add_filter( 'the_posts', NS . 'generate_pattern_preview', -10 );
 /**
- * Registers patterns on front end to support pattern block.
+ * Allows patterns to be previewed on front end without creating posts in the database.
  *
- * @since 0.0.5
+ * For demonstration purposes only.
  *
- * @return void
+ * @since 0.0.9
+ *
+ * @param array $posts Original posts object.
+ *
+ * @return array
  */
-function register_default_patterns() {
-	if ( is_plugin_active( 'blockify/blockify.php' ) ) {
-		return;
+function generate_pattern_preview( array $posts ): array {
+	global $wp, $wp_query;
+	static $static = null;
+
+	if ( ! is_null( $static ) ) {
+		return $posts;
 	}
 
-	$categories = [];
-	$patterns   = [];
+	$pages = array_map( fn( $file ) => str_replace(
+		dirname( $file ) . DIRECTORY_SEPARATOR,
+		'',
+		basename( $file, '.php' )
+	), glob( DIR . 'patterns/*.php' ) );
 
-	foreach ( glob( DIR . 'patterns/default/*.php' ) as $file ) {
-		$headers = get_file_data( $file, [
-			'categories'  => 'Categories',
-			'title'       => 'Title',
-			'slug'        => 'Slug',
-			'block_types' => 'Block Types',
-		] );
-
-		$category = str_replace( 'blockify/', '', $headers['categories'] );
-
-		ob_start();
-		include $file;
-		$content = ob_get_clean();
-
-		$patterns[ $headers['slug'] ] = [
-			'title'      => $headers['title'],
-			'categories' => [ $category ],
-			'content'    => $content,
-		];
-
-		if ( $headers['block_types'] ) {
-			$patterns[ $headers['slug'] ]['blockTypes'] = $headers['block_types'];
+	foreach ( $pages as $page ) {
+		if ( strtolower( $wp->request ) !== $page ) {
+			continue;
 		}
 
-		$categories[ $category ] = [
-			'label' => ucwords( $category ),
-		];
+		if ( get_page_by_path( $page, OBJECT, [ 'post', 'page', 'block_pattern' ] ) ) {
+			continue;
+		}
+
+		$static  = true;
+		$is_page = str_contains( $page, 'page-' );
+
+		preg_match_all( '!\d+!', $page, $matches );
+
+		ob_start();
+
+		if ( $is_page ) {
+			include DIR . 'patterns/header-' . ( $matches[0][0] ?? 1 ) . '.php';
+		}
+
+		include DIR . 'patterns/' . $page . '.php';
+
+		if ( $is_page ) {
+			include DIR . 'patterns/footer-' . ( $matches[0][0] ?? 1 ) . '.php';
+		}
+
+		$content = ob_get_clean();
+
+		/**
+		 * @var $post WP_Post
+		 */
+		$post                          = new stdClass;
+		$post->post_author             = 1;
+		$post->post_name               = $page;
+		$post->guid                    = home_url() . '/' . $page;
+		$post->post_title              = ucwords( str_replace( '-', ' ', $page ) );
+		$post->post_content            = $content;
+		$post->ID                      = -999;
+		$post->post_type               = 'block_pattern';
+		$post->post_status             = 'private';
+		$post->comment_status          = 'closed';
+		$post->ping_status             = 'closed';
+		$post->comment_count           = 0;
+		$post->post_date               = current_time( 'mysql' );
+		$post->post_date_gmt           = current_time( 'mysql', 1 );
+		$posts                         = null;
+		$posts[]                       = $post;
+		$wp_query->is_page             = true;
+		$wp_query->is_singular         = true;
+		$wp_query->is_home             = false;
+		$wp_query->is_archive          = false;
+		$wp_query->is_category         = false;
+		$wp_query->query_vars['error'] = '';
+		$wp_query->is_404              = false;
+		unset( $wp_query->query['error'] );
+		$static = true;
 	}
 
-	foreach ( $categories as $category_name => $args ) {
-		register_block_pattern_category( $category_name, $args );
-	}
-
-	foreach ( $patterns as $pattern_name => $args ) {
-		register_block_pattern( $pattern_name, $args );
-	}
+	return $posts;
 }

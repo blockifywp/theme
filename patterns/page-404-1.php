@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Blockify Default Page 404 1
- * Slug: blockify/default/page-404-1
- * Categories: blockify/page
+ * Title: Blockify Page 404 1
+ * Slug: blockify/page-404-1
+ * Categories: page
  * Block Types: core/post-content
  */
 ?><!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":false,"contentSize":"720px"}} -->

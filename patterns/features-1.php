@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Blockify Default Features 1
- * Slug: blockify/default/features-1
- * Categories: blockify/features
+ * Title: Blockify Features 1
+ * Slug: blockify/features-1
+ * Categories: features
  * 
  */
 ?><!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"2em"}}},"fontSize":"16"} -->
@@ -72,7 +72,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="has-text-align-center aligncenter aligncenter">Startify provides all of the essential page templates for you to quickly get started building and customizing</p>
+<p class="has-text-align-center aligncenter aligncenter">Blockify provides all of the essential page templates for you to quickly get started building and customizing</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

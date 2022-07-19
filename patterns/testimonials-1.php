@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Blockify Default Testimonials 1
- * Slug: blockify/default/testimonials-1
- * Categories: blockify/testimonials
+ * Title: Blockify Testimonials 1
+ * Slug: blockify/testimonials-1
+ * Categories: testimonials
  * 
  */
 ?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}}} -->

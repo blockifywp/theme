@@ -3,15 +3,13 @@ Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
 Requires PHP: 7.4
-Stable tag: 0.0.8
+Stable tag: 0.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Blockify is the perfect starting point for any Full Site Editing project. Choose from one of Blockifys many pre-built style variations, each with their own unique selection of block patterns!
-
-Please note: This theme is intended to be used in combination with the free Blockify plugin.
+Blockify is a simple full site editing block starter theme. Use it to create almost any kind of design! Insanely lightweight, 100% theme.json based (Loads Zero CSS and JS). Multiple style variations, 100+ block patterns, Google Fonts and more. Install the free Blockify plugin to enable even more control over your theme design.
 
 == Installation ==
 
@@ -28,9 +26,14 @@ Please note: This theme is intended to be used in combination with the free Bloc
 == Copyright ==
 
 This theme, like WordPress, is licensed under the GPL.
+
 Use it as your springboard to building a site with ***Blockify***.
 
 == Changelog ==
+
+= 0.0.9 - July 17, 2022 =
+* Add: Pattern previews
+* Update: Block pattern directory
 
 = 0.0.8 - July 15, 2022 =
 * Fix: RSS feed error
@@ -59,3 +62,4 @@ Use it as your springboard to building a site with ***Blockify***.
 
 = 0.0.1 - March 23, 2022 =
 * Initial release
+
