@@ -3,7 +3,7 @@ Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
 Requires PHP: 7.4
-Stable tag: 0.0.9
+Stable tag: 0.0.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,10 @@ Use it as your springboard to building a site with ***Blockify***.
 
 == Changelog ==
 
-= 0.0.9 - July 17, 2022 =
+= 0.0.1- - July 19, 2022 =
+* Add: Nofollow link on pattern previews
+
+= 0.0.9 - July 19, 2022 =
 * Add: Pattern previews
 * Update: Block pattern directory
 

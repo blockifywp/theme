@@ -1,2 +1,7 @@
 node_modules
 vendor/bin
+vendor/dealerdirect
+vendor/squizlabs
+vendor/phpcsstandards
+vendor/wp-coding-standards
+*.zip

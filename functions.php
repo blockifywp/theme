@@ -145,6 +145,8 @@ function generate_pattern_preview( array $posts ): array {
 
 		preg_match_all( '!\d+!', $page, $matches );
 
+		add_action( 'wp_head', fn() => print '<meta name="robots" content="noindex,nofollow">' );
+
 		ob_start();
 
 		if ( $is_page ) {
