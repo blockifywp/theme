@@ -24,7 +24,7 @@
 <!-- wp:columns {"isStackedOnMobile":false,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
 <div class="wp-block-columns is-not-stacked-on-mobile" style="margin-top:1em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:blockify/counter {"end":"300","tag":"h6","suffix":"+","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="300" data-duration="3" data-delay="0" data-suffix="+" tagname="h6" value="0">300</h6>
+<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="300" data-duration="2" data-delay="0" data-suffix="+" tagname="h6" value="0">300</h6>
 <!-- /wp:blockify/counter -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
@@ -34,7 +34,7 @@
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:blockify/counter {"tag":"h6","suffix":"%","style":{"spacing":{"blockGap":"0px","margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px" data-start="0" data-end="100" data-duration="3" data-delay="0" data-suffix="%" tagname="h6" value="0">100</h6>
+<h6 class="wp-block-blockify-counter has-72-font-size" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px" data-start="0" data-end="100" data-duration="2" data-delay="0" data-suffix="%" tagname="h6" value="0">100</h6>
 <!-- /wp:blockify/counter -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
@@ -46,7 +46,7 @@
 <!-- wp:columns {"isStackedOnMobile":false} -->
 <div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:blockify/counter {"end":"12","tag":"h6","suffix":"+","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="12" data-duration="3" data-delay="0" data-suffix="+" tagname="h6" value="0">12</h6>
+<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="12" data-duration="2" data-delay="0" data-suffix="+" tagname="h6" value="0">12</h6>
 <!-- /wp:blockify/counter -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
@@ -56,7 +56,7 @@
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:blockify/counter {"tag":"h6","suffix":"k","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="100" data-duration="3" data-delay="0" data-suffix="k" tagname="h6" value="0">100</h6>
+<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="100" data-duration="2" data-delay="0" data-suffix="k" tagname="h6" value="0">100</h6>
 <!-- /wp:blockify/counter -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
