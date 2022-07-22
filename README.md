@@ -1,6 +1,6 @@
 # Blockify Theme
 
-Experimental full site editing starter theme.
+Experimental full site editing starter theme. 100% theme.json (no CSS).
 
 Power up the Blockify starter theme with the free Blockify plugin
 - [https://wordpress.org/plugins/blockify](https://wordpress.org/plugins/blockify)
@@ -9,7 +9,7 @@ Power up the Blockify starter theme with the free Blockify plugin
 
 ## Features
 
-*Please note most features require the free Blockify plugin.*
+Install the free Blockify plugin to enable full control:
 
 ### Block extensions
 
@@ -44,8 +44,7 @@ theme.json, including font weights!
 
 ### Template Parts
 
-Easily control the display of template parts on a per page level. This reduces the amount of templates required by
-themes.
+Select which template parts are visible on a per page level. This reduces the amount of templates required by themes.
 
 ### Extras
 
@@ -60,6 +59,10 @@ themes.
 1. Download and install Blockify theme from WordPress.org
 2. Download and install Blockify plugin from WordPress.org
 3. Navigate to Appearance > Editor to begin editing
+
+## Child themes
+
+Child themes fully supported and recommended. Documentation and starter child theme coming soon.
 
 ## Support
 

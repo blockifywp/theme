@@ -3,7 +3,7 @@
   "version": 2,
   "customTemplates": [
     {
-      "name": "blank",
+      "name": "Blank",
       "postTypes": [
         "page"
       ],
@@ -376,31 +376,6 @@
       "lineHeight": "var(--wp--custom--line-height--regular)"
     },
     "elements": {
-      "button": {
-        "border": {
-          "color": "var(--wp--preset--color--primary-600)",
-          "radius": "var(--wp--custom--border--radius)",
-          "style": "solid",
-          "width": "2px"
-        },
-        "color": {
-          "background": "var(--wp--preset--color--primary-600)",
-          "text": "#ffffff"
-        },
-        "spacing": {
-          "padding": {
-            "top": "0.8em",
-            "right": "1.2em",
-            "bottom": "0.8em",
-            "left": "1.2em"
-          }
-        },
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--18)",
-          "fontWeight": "var(--wp--custom--font-weight--semi-bold)",
-          "lineHeight": "1"
-        }
-      },
       "h1": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--60)"
@@ -451,6 +426,31 @@
       }
     },
     "blocks": {
+      "core/button": {
+        "border": {
+          "color": "var(--wp--preset--color--primary-600)",
+          "radius": "var(--wp--custom--border--radius)",
+          "style": "solid",
+          "width": "2px"
+        },
+        "color": {
+          "background": "var(--wp--preset--color--primary-600)",
+          "text": "#ffffff !important"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.8em",
+            "right": "1.2em",
+            "bottom": "0.8em",
+            "left": "1.2em"
+          }
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--18)",
+          "fontWeight": "var(--wp--custom--font-weight--semi-bold)",
+          "lineHeight": "1"
+        }
+      },
       "core/code": {
         "border": {
           "width": "0px",
@@ -527,7 +527,13 @@
         },
         "typography": {
           "fontSize": "var(--wp--preset--font-size--16)",
-          "fontWeight": "500"
+          "fontWeight": "var(--wp--custom--font-weight--medium)"
+        }
+      },
+      "core/navigation-link": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--16)",
+          "fontWeight": "var(--wp--custom--font-weight--medium)"
         }
       },
       "core/paragraph": {

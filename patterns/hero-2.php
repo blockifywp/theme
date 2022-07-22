@@ -6,10 +6,10 @@
  * 
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"5em","bottom":"5em"}}},"layout":{"inherit":true}} -->
-<div class="wp-block-group alignfull alignfull" style="padding-top:5em;padding-bottom:5em"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":"2em"}}} -->
+<div class="wp-block-group alignfull alignfull" style="padding-top:5em;padding-bottom:5em"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":"4em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide"><!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":1,"fontSize":"72"} -->
-<h1 class="has-72-font-size">Next generation WordPress themes and blocks.</h1>
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":1} -->
+<h1>Next generation WordPress themes and blocks.</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
