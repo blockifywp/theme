@@ -148,12 +148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHPCSExtra.git",
-                "reference": "96bac0f9fed1e4fa4cf63052fac5740422da6c25"
+                "reference": "0abedcc8810806562a0d4f2b78ba3bd350ac22d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHPCSExtra/zipball/96bac0f9fed1e4fa4cf63052fac5740422da6c25",
-                "reference": "96bac0f9fed1e4fa4cf63052fac5740422da6c25",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHPCSExtra/zipball/0abedcc8810806562a0d4f2b78ba3bd350ac22d0",
+                "reference": "0abedcc8810806562a0d4f2b78ba3bd350ac22d0",
                 "shasum": ""
             },
             "require": {
@@ -203,7 +203,7 @@
                 "issues": "https://github.com/PHPCSStandards/PHPCSExtra/issues",
                 "source": "https://github.com/PHPCSStandards/PHPCSExtra"
             },
-            "time": "2022-07-01T12:25:56+00:00"
+            "time": "2022-07-22T21:40:27+00:00"
         },
         {
             "name": "phpcsstandards/phpcsutils",

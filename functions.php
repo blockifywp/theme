@@ -5,13 +5,20 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use const DIRECTORY_SEPARATOR;
+use function add_editor_style;
+use function add_filter;
+use function defined;
+use function in_array;
+use function register_block_pattern_category;
+use function register_block_style;
 use function add_action;
 use function add_theme_support;
 use function array_map;
 use function basename;
 use function dirname;
+use function filemtime;
 use function get_page_by_path;
-use function get_post;
+use function get_template_directory_uri;
 use function glob;
 use function home_url;
 use function is_null;
@@ -21,10 +28,11 @@ use function str_contains;
 use function str_replace;
 use function strtolower;
 use function tgmpa;
-use function wp_add_inline_style;
-use function wp_insert_post;
+use function wp_enqueue_style;
 use stdClass;
 use WP_Post;
+use WP_Block_Pattern_Categories_Registry;
+use WP_Block_Patterns_Registry;
 
 const FILE = __FILE__;
 const DIR  = __DIR__ . DIRECTORY_SEPARATOR;
@@ -48,18 +56,37 @@ function register_required_plugins(): void {
 			[
 				'name'     => 'Blockify',
 				'slug'     => 'blockify',
-				'required' => true,
+				'required' => false,
 			],
 			[
 				'name'     => 'Gutenberg',
 				'slug'     => 'gutenberg',
-				'required' => true,
+				'required' => false,
 			],
 		],
 		[
 			'is_automatic' => true,
 		]
 	);
+}
+
+add_action( 'after_setup_theme', NS . 'block_styles' );
+/**
+ * Registers block styles.
+ *
+ * @since 0.0.13
+ *
+ * @return void
+ */
+function block_styles(): void {
+	if ( defined( 'Blockify\\SLUG' ) ) {
+		return;
+	}
+
+	register_block_style( 'core/button', [
+		'name'  => 'transparent',
+		'label' => __( 'Transparent', 'blockify' ),
+	] );
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
@@ -71,37 +98,84 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
  * @return void
  */
 function enqueue_styles(): void {
-	wp_add_inline_style(
-		'global-styles',
-		'html { -webkit-font-smoothing: antialiased }'
+	if ( defined( 'Blockify\\SLUG' ) ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'blockify-theme',
+		get_template_directory_uri() . '/style.css',
+		[],
+		filemtime( DIR . 'style.css' ),
 	);
 }
 
-add_action( 'after_switch_theme', NS . 'activate' );
+add_action( 'after_setup_theme', NS . 'editor_styles' );
 /**
- * Sets up site. (For demonstration purposes only).
+ * Adds editor styles.
  *
- * @since 0.0.5
+ * @since 0.0.13
  *
  * @return void
  */
-function activate(): void {
-	if ( ! get_post( 999 ) ) {
-		$home_url = home_url();
+function editor_styles(): void {
+	add_editor_style( 'style.css' );
+}
 
-		wp_insert_post( [
-			'import_id'    => 999,
-			'post_title'   => __( 'Default', 'blockify' ),
-			'post_type'    => 'wp_navigation',
-			'post_status'  => 'publish',
-			'post_content' => <<<HTML
-<!-- wp:navigation-link {"label":"Home","type":"custom","url":"$home_url/page-landing-1","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"About","url":"$home_url/page-about-1","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Pricing","url":"$home_url/page-pricing-1","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Blog","url":"$home_url/page-blog-1","kind":"custom","isTopLevelLink":true} /-->
-<!-- wp:navigation-link {"label":"Contact","url":"$home_url/page-contact-1","kind":"custom","isTopLevelLink":true} /-->
-HTML,
-		] );
+
+add_action( 'after_setup_theme', NS . 'theme_supports' );
+/**
+ * Handles theme supports.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function theme_supports(): void {
+	remove_theme_support( 'core-block-patterns' );
+}
+
+add_action( 'after_setup_theme', NS . 'post_type_supports' );
+/**
+ * Handles post type supports.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function post_type_supports(): void {
+	add_post_type_support( 'page', 'excerpt' );
+	add_post_type_support( 'block_pattern', 'excerpt' );
+	add_post_type_support( 'page', 'custom-fields' );
+}
+
+add_action( 'init', NS . 'register_root_level_pattern_categories', 11 );
+/**
+ * Generates categories for patterns automatically registered by core.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function register_root_level_pattern_categories(): void {
+	$block_patterns = WP_Block_Patterns_Registry::get_instance()->get_all_registered();
+
+	foreach ( $block_patterns as $block_pattern ) {
+		if ( ! isset( $block_pattern['categories'] ) ) {
+			continue;
+		}
+
+		foreach ( $block_pattern['categories'] as $category ) {
+			$categories = wp_list_pluck( WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered(), 'name' );
+
+			if ( in_array( $category, $categories ) ) {
+				continue;
+			}
+
+			register_block_pattern_category( $category, [
+				'label' => ucfirst( $category ),
+			] );
+		}
 	}
 }
 
@@ -192,4 +266,84 @@ function generate_pattern_preview( array $posts ): array {
 	}
 
 	return $posts;
+}
+
+add_filter( 'blockify', NS . 'add_config' );
+/**
+ * Adds theme config.
+ *
+ * @since 0.0.13
+ *
+ * @param array $defaults
+ *
+ * @return array
+ */
+function add_config( array $defaults ): array {
+
+	$defaults['blockStyles']['unregister'] = [
+		[
+			'type' => 'core/button',
+			'name' => [ 'fill', 'outline' ],
+		],
+		[
+			'type' => 'core/separator',
+			'name' => [ 'wide', 'dots' ],
+		],
+	];
+
+	$defaults['blockStyles']['register'] = [
+		[
+			'type'      => 'core/button',
+			'name'      => 'primary',
+			'label'     => __( 'Primary', 'blockify' ),
+			'isDefault' => true,
+		],
+		[
+			'type'  => 'core/button',
+			'name'  => 'secondary',
+			'label' => __( 'Secondary', 'blockify' ),
+		],
+		[
+			'type'  => 'core/button',
+			'name'  => 'outline',
+			'label' => __( 'Outline', 'blockify' ),
+		],
+		[
+			'type'  => 'core/button',
+			'name'  => 'transparent',
+			'label' => __( 'Transparent', 'blockify' ),
+		],
+		[
+			'type'  => 'core/list',
+			'name'  => 'numbered',
+			'label' => __( 'Numbered', 'blockify' ),
+		],
+		[
+			'type'  => 'core/list',
+			'name'  => 'checklist',
+			'label' => __( 'Checklist', 'blockify' ),
+		],
+		[
+			'type'  => 'core/list',
+			'name'  => 'square',
+			'label' => __( 'Square', 'blockify' ),
+		],
+	];
+
+	$defaults['darkMode'] = [
+		'neutral-900' => 'neutral-100',
+		'neutral-800' => 'neutral-200',
+		'neutral-700' => 'neutral-200',
+		'neutral-600' => 'neutral-300',
+		'neutral-500' => 'neutral-300',
+		'neutral-400' => 'neutral-400',
+		'neutral-300' => 'neutral-500',
+		'neutral-200' => 'neutral-500',
+		'neutral-100' => 'neutral-600',
+		'neutral-50'  => 'neutral-700',
+		'neutral-25'  => 'neutral-800',
+		'white'       => 'neutral-900',
+	];
+
+	return $defaults;
 }

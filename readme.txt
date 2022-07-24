@@ -3,8 +3,8 @@ Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
 Requires PHP: 7.4
-Stable tag: 0.0.12
-License: GPLv2 or later
+Stable tag: 0.0.13
+License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
@@ -25,13 +25,44 @@ Blockify is a minimal full site editing block starter theme. Use it to create an
 
 == Copyright ==
 
-This theme, like WordPress, is licensed under the GPL.
+Blockify 2022, Blockify.
 
-Use it as your springboard to building a site with ***Blockify***.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
 
-© Copyright 2022 BlockifyWP.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+TGMPA
+License: GPL-2.0-or-later
+License URL: https://github.com/TGMPA/TGM-Plugin-Activation/blob/develop/LICENSE.md
+
+Composer
+License: MIT
+License URL: https://github.com/composer/composer/blob/main/LICENSE
+
+Icons
+License: GPL-2.0-or-later
+License URL: https://github.com/WordPress/WordPress/blob/master/license.txt
+
+Logos
+License: Fair Use License
+License URL: https://logoipsum.com/license/
 
 == Changelog ==
+
+= 0.0.13 - 24 July, 2022 =
+* Update: Recommend plugins instead of require
+* Fix: Block validation errors (remove plugin blocks)
+* Update: Screenshot image text
+* Remove: Auto insert nav menu
+* Add: License information
+* Remove: System generated files (__MACOSX)
+* Add: Link underline styling
 
 = 0.0.12 - 22 July, 2022 =
 * Add: FAQ 2 pattern

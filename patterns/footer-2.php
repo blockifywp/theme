@@ -18,15 +18,15 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:blockify/newsletter {"layout":{"type":"flex","justifyContent":"space-between","orientation":"horizontal"}} -->
-<form class="wp-block-blockify-newsletter"><!-- wp:blockify/email {"style":{"border":{"radius":"var(\u002d\u002dwp\u002d\u002dcustom\u002d\u002dborder\u002d\u002dradius)","width":"var(\u002d\u002dwp\u002d\u002dcustom\u002d\u002dborder\u002d\u002dwidth)"},"typography":{"lineHeight":1.5}}} -->
-<div class="blockify-form-field"><input class="blockify-form-input wp-block-blockify-email" style="border-width:var(--wp--custom--border--width);border-radius:var(--wp--custom--border--radius);line-height:1.5" data-showlabel="false" data-required="false" data-placeholder="Email address" type="email" name="user_email" placeholder="Email address"/></div>
-<!-- /wp:blockify/email -->
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-transparent"} -->
+<div class="wp-block-button is-style-transparent"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
+<!-- /wp:button -->
 
-<!-- wp:blockify/submit {"style":{"spacing":{"padding":{"top":"1em","right":"2em","bottom":"1em","left":"2em"}},"typography":{"lineHeight":"1"},"border":{"width":"0"}}} -->
-<button class="wp-block-blockify-submit wp-block-button__link wp-element-button" style="border-width:0;padding-top:1em;padding-right:2em;padding-bottom:1em;padding-left:2em;line-height:1;width:auto">Subscribe</button>
-<!-- /wp:blockify/submit --></form>
-<!-- /wp:blockify/newsletter --></div>
+<!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Sign up</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 

@@ -7,9 +7,50 @@
  * Requires at least: 6.0
  * Tested up to: 6.0
  * Requires PHP: 7.4
- * Version: 0.0.12
+ * Version: 0.0.13
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: blockify
  * Tags: full-site-editing, block-patterns, block-styles, custom-logo, editor-style, featured-images, sticky-post, wide-blocks, translation-ready, grid-layout, one-column, two-columns, three-columns, four-columns, e-commerce, news, portfolio
 */
+
+html {
+	-webkit-font-smoothing: antialiased
+}
+
+a:not(.wp-element-button,.wp-block-button__link,.wp-block-navigation-item__content,[rel="home"],[role="textbox"]) {
+	box-shadow: 0 0.05em 0 currentColor
+}
+
+.wp-block-image {
+	display: block;
+	flex: 0;
+	margin: 0;
+	width: 100%;
+}
+
+.wp-block-button {
+	position: relative;
+}
+
+.is-style-transparent .wp-block-button__link {
+	background: transparent;
+	border-color: transparent;
+	background-clip: padding-box !important;
+}
+
+.is-style-transparent .wp-block-button__link:before {
+	background: currentColor;
+	border-radius: inherit;
+	content: '';
+	opacity: 0.15;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+.is-style-transparent .wp-block-button__link:not(.has-text-color) {
+	color: var(--wp--preset--color--primary-600, currentColor) !important;
+}

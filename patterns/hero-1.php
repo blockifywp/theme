@@ -5,18 +5,18 @@
  * Categories: hero
  * 
  */
-?><!-- wp:group {"align":"wide","layout":{"contentSize":"960px"}} -->
+?><!-- wp:group {"align":"wide","layout":{"contentSize":"768px"}} -->
 <div class="wp-block-group alignwide alignwide"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"0.8em"}}},"fontSize":"72"} -->
-<h1 class="has-text-align-center has-72-font-size" style="margin-top:0.8em">WordPress full site editing theme framework</h1>
-<!-- /wp:heading --></div>
+<h1 class="has-text-align-center has-72-font-size" style="margin-top:0.8em">Build the design you want without the code</h1>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"style":{"spacing":{"padding":{"right":"1em","left":"1em"}}},"className":"has-text-align-center"} -->
+<p class="has-text-align-center" style="padding-right:1em;padding-left:1em">Streamline your web design workflow with blocks and full site editing to create virtually any type of website you can imagine.</p>
+<!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:paragraph {"className":"has-text-align-center"} -->
-<p class="has-text-align-center">Blockify enhances the full site editing experience with a suite of design tools to make creating with WordPress blocks more enjoyable</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"bottom":"3em"}}}} -->
-<div class="wp-block-buttons" style="margin-bottom:3em"><!-- wp:button -->
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"bottom":"3em","top":"1.5em"}}}} -->
+<div class="wp-block-buttons" style="margin-top:1.5em;margin-bottom:3em"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Get started</a></div>
 <!-- /wp:button -->
 

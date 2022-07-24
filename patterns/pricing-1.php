@@ -5,16 +5,16 @@
  * Categories: pricing
  * 
  */
-?><!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter">Pricing Plans</p>
+?><!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"top":"3em"}}},"fontSize":"16"} -->
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter" style="margin-top:3em">Pricing Plans</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center"} -->
-<h2 class="has-text-align-center">Simple pricing plans</h2>
+<!-- wp:heading {"textAlign":"center","fontSize":"60"} -->
+<h2 class="has-text-align-center has-60-font-size">Simple pricing plans</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
-<p class="has-text-align-center aligncenter">Choose the pricing plan that best suits you.</p>
+<p class="aligncenter has-text-align-center aligncenter">Choose the pricing plan that best suits you.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"1em","bottom":"2em"},"blockGap":"2em"}}} -->
@@ -23,16 +23,16 @@
 <h5 class="has-text-align-center">Personal</h5>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","textColor":"neutral-300","fontSize":"16"} -->
-<p class="has-text-align-center has-neutral-300-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$97.00</s></p>
+<!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$97.00</s></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center","level":6,"style":{"typography":{"fontSize":"60px"}}} -->
-<h6 class="has-text-align-center" style="font-size:60px"><sup>$</sup>47</h6>
+<!-- wp:heading {"textAlign":"center","level":6,"fontSize":"60"} -->
+<h6 class="has-text-align-center has-60-font-size"><sup>$</sup>47</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter">Best for personal blogs and </p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Best for personal blogs and </p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18"} -->
@@ -46,7 +46,7 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -55,16 +55,16 @@
 <h5 class="has-text-align-center">Business</h5>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","textColor":"neutral-300","fontSize":"16"} -->
-<p class="has-text-align-center has-neutral-300-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$197.00</s></p>
+<!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$197.00</s></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center","level":6,"style":{"typography":{"fontSize":"60px"}}} -->
-<h6 class="has-text-align-center" style="font-size:60px"><sup>$</sup>97</h6>
+<!-- wp:heading {"textAlign":"center","level":6,"fontSize":"60"} -->
+<h6 class="has-text-align-center has-60-font-size"><sup>$</sup>97</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter">Everything in free plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in free plus:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em","right":"1em","bottom":"1em","left":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical"}} -->
@@ -78,7 +78,7 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -87,16 +87,16 @@
 <h5 class="has-text-align-center">Agency</h5>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","textColor":"neutral-300","fontSize":"16"} -->
-<p class="has-text-align-center has-neutral-300-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$397.00</s></p>
+<!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$397.00</s></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center","level":6,"style":{"typography":{"fontSize":"60px"}}} -->
-<h6 class="has-text-align-center" style="font-size:60px"><sup>$</sup>197</h6>
+<!-- wp:heading {"textAlign":"center","level":6,"fontSize":"60"} -->
+<h6 class="has-text-align-center has-60-font-size"><sup>$</sup>197</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter">Everything in basic plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in basic plus:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18"} -->
@@ -110,7 +110,7 @@
 <!-- /wp:buttons -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter"><a href="#">Learn more</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

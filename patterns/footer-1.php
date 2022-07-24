@@ -8,8 +8,10 @@
 ?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"5em","bottom":"3em"}}},"layout":{"inherit":true},"fontSize":"16"} -->
 <div class="wp-block-group alignwide has-16-font-size alignwide" style="padding-top:5em;padding-bottom:3em"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"3em"}}}} -->
 <div class="wp-block-columns alignwide alignwide" style="padding-bottom:3em"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0.5em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:site-logo {"width":30} /-->
+<div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0.3em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:image {"id":127,"width":30,"height":30,"sizeSlug":"large","linkDestination":"none"} -->
+<figure class="wp-block-image size-large is-resized"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/svg/icon.svg" alt="" class="wp-image-127" width="30" height="30"/></figure>
+<!-- /wp:image -->
 
 <!-- wp:site-title {"level":5} /--></div>
 <!-- /wp:group -->

@@ -17,50 +17,50 @@
 <p class="has-18-font-size">Metrics</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"fontSize":"xxx-large"} -->
-<h2 class="has-xxx-large-font-size">Helping smart businesses succeed online</h2>
+<!-- wp:heading -->
+<h2>Helping smart businesses succeed online</h2>
 <!-- /wp:heading -->
 
-<!-- wp:columns {"isStackedOnMobile":false,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
-<div class="wp-block-columns is-not-stacked-on-mobile" style="margin-top:1em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-column"><!-- wp:blockify/counter {"end":"300","tag":"h6","suffix":"+","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="300" data-duration="2" data-delay="0" data-suffix="+" tagname="h6" value="0">300</h6>
-<!-- /wp:blockify/counter -->
+<!-- wp:columns {"align":"wide"} -->
+<div class="wp-block-columns alignwide alignwide"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
+<div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
+<h6 class="has-text-align-left has-72-font-size">100m</h6>
+<!-- /wp:heading -->
 
-<!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Projects complete</p>
+<!-- wp:paragraph {"align":"left","fontSize":"18"} -->
+<p class="alignleft has-text-align-left has-18-font-size alignleft">Cups of coffee</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-column"><!-- wp:blockify/counter {"tag":"h6","suffix":"%","style":{"spacing":{"blockGap":"0px","margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px" data-start="0" data-end="100" data-duration="2" data-delay="0" data-suffix="%" tagname="h6" value="0">100</h6>
-<!-- /wp:blockify/counter -->
+<div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
+<h6 class="has-text-align-left has-72-font-size">25+</h6>
+<!-- /wp:heading -->
 
-<!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Happy customers</p>
+<!-- wp:paragraph {"align":"left","fontSize":"18"} -->
+<p class="alignleft has-text-align-left has-18-font-size alignleft">Hours a day</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:columns {"isStackedOnMobile":false} -->
-<div class="wp-block-columns is-not-stacked-on-mobile"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-column"><!-- wp:blockify/counter {"end":"12","tag":"h6","suffix":"+","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="12" data-duration="2" data-delay="0" data-suffix="+" tagname="h6" value="0">12</h6>
-<!-- /wp:blockify/counter -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"2em"}}}} -->
+<div class="wp-block-columns alignwide alignwide" style="padding-bottom:2em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
+<div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
+<h6 class="has-text-align-left has-72-font-size">33k</h6>
+<!-- /wp:heading -->
 
-<!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Custom blocks</p>
+<!-- wp:paragraph {"align":"left","fontSize":"18"} -->
+<p class="alignleft has-text-align-left has-18-font-size alignleft">Happy customers</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
-<div class="wp-block-column"><!-- wp:blockify/counter {"tag":"h6","suffix":"k","style":{"spacing":{"blockGap":"0px"}},"fontSize":"72"} -->
-<h6 class="wp-block-blockify-counter has-72-font-size" data-start="0" data-end="100" data-duration="2" data-delay="0" data-suffix="k" tagname="h6" value="0">100</h6>
-<!-- /wp:blockify/counter -->
+<div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
+<h6 class="has-text-align-left has-72-font-size">900</h6>
+<!-- /wp:heading -->
 
-<!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Happy Customers</p>
+<!-- wp:paragraph {"align":"left","fontSize":"18"} -->
+<p class="alignleft has-text-align-left has-18-font-size alignleft">Hours coding </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
