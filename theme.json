@@ -379,31 +379,49 @@
       "h1": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--60)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "h2": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--48)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "h3": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--36)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "h4": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--30)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "h5": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--24)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "h6": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--20)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--neutral-900)"
         }
       },
       "link": {
@@ -492,9 +510,6 @@
         }
       },
       "core/heading": {
-        "color": {
-          "text": "var(--wp--preset--color--neutral-900)"
-        },
         "typography": {
           "fontWeight": "var(--wp--custom--font-weight--semi-bold)",
           "lineHeight": "var(--wp--custom--line-height--heading)",
@@ -526,14 +541,22 @@
           }
         },
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--16)",
+          "fontSize": "var(--wp--preset--font-size--18)",
           "fontWeight": "var(--wp--custom--font-weight--medium)"
         }
       },
       "core/navigation-link": {
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--16)",
+
           "fontWeight": "var(--wp--custom--font-weight--medium)"
+        },
+        "spacing": {
+          "padding": {
+            "top": "var(--wp--style--block-gap,1em)",
+            "right": "var(--wp--style--block-gap,1em)",
+            "bottom": "var(--wp--style--block-gap,1em)",
+            "left": "var(--wp--style--block-gap,1em)"
+          }
         }
       },
       "core/paragraph": {

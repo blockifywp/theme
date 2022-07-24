@@ -7,7 +7,7 @@
  * Requires at least: 6.0
  * Tested up to: 6.0
  * Requires PHP: 7.4
- * Version: 0.0.13
+ * Version: 0.0.14
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: blockify
@@ -24,9 +24,8 @@ a:not(.wp-element-button,.wp-block-button__link,.wp-block-navigation-item__conte
 
 .wp-block-image {
 	display: block;
-	flex: 0;
 	margin: 0;
-	width: 100%;
+	width: auto;
 }
 
 .wp-block-button {
@@ -53,4 +52,14 @@ a:not(.wp-element-button,.wp-block-button__link,.wp-block-navigation-item__conte
 
 .is-style-transparent .wp-block-button__link:not(.has-text-color) {
 	color: var(--wp--preset--color--primary-600, currentColor) !important;
+}
+
+@media (max-width: 781px) {
+	.is-reverse-on-mobile {
+		flex-direction: column-reverse;
+	}
+
+	.is-nowrap.is-reverse-on-mobile {
+		flex-direction: row-reverse;
+	}
 }

@@ -15,8 +15,8 @@
 <!-- wp:site-title {"level":5} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"ref":999} /-->
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"},"reverseMobile":true} -->
+<div class="wp-block-group is-reverse-on-mobile"><!-- wp:navigation {"ref":999} /-->
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-transparent","fontSize":"16"} -->

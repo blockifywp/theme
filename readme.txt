@@ -3,7 +3,7 @@ Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
 Requires PHP: 7.4
-Stable tag: 0.0.13
+Stable tag: 0.0.14
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,12 @@ License: Fair Use License
 License URL: https://logoipsum.com/license/
 
 == Changelog ==
+
+= 0.0.14 - 25 July, 2022 =
+* Add: Final page patterns
+* Fix: Reverse on mobile
+* Fix: Navigation block font size
+* Fix: Image block CSS
 
 = 0.0.13 - 24 July, 2022 =
 * Update: Recommend plugins instead of require
