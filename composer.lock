@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< Updated upstream
     "content-hash": "43e2e66b34088c145aca0f50a948daf9",
+=======
+    "content-hash": "80ee69fefb49062d7dab6d2a3df00f9e",
+>>>>>>> Stashed changes
     "packages": [
         {
             "name": "tgmpa/tgm-plugin-activation",
@@ -396,6 +400,10 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "tgmpa/tgm-plugin-activation": 20,
+<<<<<<< Updated upstream
+=======
+        "wptt/webfont-loader": 20,
+>>>>>>> Stashed changes
         "wp-coding-standards/wpcs": 20
     },
     "prefer-stable": false,
