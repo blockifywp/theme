@@ -22,24 +22,17 @@
     }
   },
   "require": {
-<<<<<<< Updated upstream
-    "tgmpa/tgm-plugin-activation": "dev-master"
-=======
     "tgmpa/tgm-plugin-activation": "dev-master",
     "wptt/webfont-loader": "dev-master"
->>>>>>> Stashed changes
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
     "squizlabs/php_codesniffer": "^3.7.0",
     "wp-coding-standards/wpcs": "dev-develop"
-<<<<<<< Updated upstream
-=======
   },
   "autoload": {
     "files": [
       "vendor/wptt/webfont-loader/wptt-webfont-loader.php"
     ]
->>>>>>> Stashed changes
   }
 }

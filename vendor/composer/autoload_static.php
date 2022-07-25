@@ -8,10 +8,7 @@ class ComposerStaticInit4e4ecc6685e2b29ba0f6da1dec88ceaa
 {
     public static $files = array (
         'a5f882d89ab791a139cd2d37e50cdd80' => __DIR__ . '/..' . '/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php',
-<<<<<<< Updated upstream
-=======
         '4c83f7814cd656ef1ee9bcc9185eab52' => __DIR__ . '/..' . '/wptt/webfont-loader/wptt-webfont-loader.php',
->>>>>>> Stashed changes
     );
 
     public static $classMap = array (

@@ -3,13 +3,8 @@
         'name' => 'blockify/theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-<<<<<<< Updated upstream
-        'reference' => 'f3cc249d538c80508cf98592c840b630e5dcbd0d',
+        'reference' => '9b1b32163fea567d3a29698f34eeb8c8d4405fdc',
         'type' => 'wordpress-theme',
-=======
-        'reference' => '8d355ff4ff08b2936ba2e5df536ac96d9294cc13',
-        'type' => 'package',
->>>>>>> Stashed changes
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => false,
@@ -18,13 +13,8 @@
         'blockify/theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-<<<<<<< Updated upstream
-            'reference' => 'f3cc249d538c80508cf98592c840b630e5dcbd0d',
+            'reference' => '9b1b32163fea567d3a29698f34eeb8c8d4405fdc',
             'type' => 'wordpress-theme',
-=======
-            'reference' => '8d355ff4ff08b2936ba2e5df536ac96d9294cc13',
-            'type' => 'package',
->>>>>>> Stashed changes
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
@@ -36,6 +26,17 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../tgmpa/tgm-plugin-activation',
             'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wptt/webfont-loader' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '780e564bf0554c419ef447c2b5b768b497ecee40',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../wptt/webfont-loader',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
             'dev_requirement' => false,
         ),
     ),
