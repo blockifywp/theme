@@ -17,7 +17,7 @@
 <!-- /wp:group -->
 
 <!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p>Next generation web design and development tools for innovative creatives</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

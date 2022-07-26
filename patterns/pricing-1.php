@@ -32,11 +32,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Best for personal blogs and </p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Best for personal blogs or single eCommerce stores</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18"} -->
-<ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><li>1 active site license</li><li>Pro Style Variations</li><li>Pro Pattern Library</li><li>Pro Block Extensions</li><li>Pro Icon Library</li><li>WooCommerce support</li><li>Dark mode </li></ul>
+<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
+<ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><li>Pricing feature one</li><li>Pricing feature two</li><li>Pricing feature three</li><li>Pricing feature four</li><li>Pricing feature five</li></ul>
 <!-- /wp:list -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2em"}}}} -->
@@ -64,11 +64,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in free plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in Personal plan plus:</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em","right":"1em","bottom":"1em","left":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical"}} -->
-<ul class="is-style-checklist has-18-font-size" style="margin-top:1em;margin-right:1em;margin-bottom:1em;margin-left:1em"><li>Up to 5 active sites</li><li>Pro Style Variations</li><li>Pro Pattern Library</li><li>Pro Block Extensions</li><li>Pro Icon Library</li><li>WooCommerce support</li><li>Dark mode </li></ul>
+<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
+<ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><li>Pricing feature one</li><li>Pricing feature two</li><li>Pricing feature three</li><li>Pricing feature four</li><li>Pricing feature five</li><li>Pricing feature five</li></ul>
 <!-- /wp:list -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2em"}}}} -->
@@ -96,11 +96,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in basic plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Everything in Business plan plus:</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18"} -->
-<ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><li>Unlimited active sites</li><li>Pro Style Variations</li><li>Pro Pattern Library</li><li>Pro Block Extensions</li><li>Pro Icon Library</li><li>WooCommerce support</li><li>Dark mode</li></ul>
+<!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"center"}} -->
+<ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><li>Pricing feature one</li><li>Pricing feature two</li><li>Pricing feature three</li><li>Pricing feature four</li><li>Pricing feature five</li></ul>
 <!-- /wp:list -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2em"}}}} -->

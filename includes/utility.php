@@ -15,6 +15,7 @@ use function defined;
 use function dirname;
 use function explode;
 use function file_exists;
+use function file_get_contents;
 use function filemtime;
 use function get_template_directory_uri;
 use function get_theme_support;
@@ -32,6 +33,9 @@ use function str_replace;
 use function trim;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
+use function wp_register_script;
+use function wp_register_style;
+use function wp_should_load_separate_core_block_assets;
 use const DIRECTORY_SEPARATOR;
 
 const CAMEL_CASE    = 'camel';
@@ -383,16 +387,14 @@ function enqueue_asset( string $base, array $args = [] ): void {
 	];
 
 	if ( $type === 'css' ) {
-		wp_enqueue_style( ...array_values( $args ) );
-
-		$inline = apply_filters( "blockify_{$name}_inline", '' );
-
-		if ( $inline ) {
-			wp_add_inline_style( "blockify-$name", $inline );
-		}
+		wp_register_style( ...array_values( $args ) );
+		wp_enqueue_style( $args['handle'] );
 
 	} else if ( $type === 'js' ) {
-		wp_enqueue_script( ...array_values( $args ) );
+		$args['in_footer'] = $args['in_footer'] ?? true;
+
+		wp_register_script( ...array_values( $args ) );
+		wp_enqueue_script( $args['handle'] );
 	}
 }
 
@@ -429,7 +431,7 @@ function get_asset_file( string $name ): array {
 		];
 	}
 
-	return $files[ $name ];
+	return $files[ $name ] ?? [];
 }
 
 /**
@@ -438,11 +440,12 @@ function get_asset_file( string $name ): array {
  * @since 0.0.9
  *
  * @param string $name
+ * @param array  $defaults
  *
  * @return array
  */
-function get_asset_deps( string $name ): array {
-	return get_asset_file( $name )['dependencies'];
+function get_asset_deps( string $name, array $defaults = [] ): array {
+	return get_asset_file( $name )['dependencies'] ?? $defaults;
 }
 
 /**
@@ -455,11 +458,11 @@ function get_asset_deps( string $name ): array {
  * @return string
  */
 function get_asset_version( string $name ): string {
-	return get_asset_file( $name )['version'];
+	return get_asset_file( $name )['version'] ?? '';
 }
 
 /**
- * Parses and registers PHP from file.
+ * Parses and registers block pattern from PHP file with header comment.
  *
  * @since 0.0.8
  *
@@ -502,6 +505,8 @@ function register_block_pattern_from_file( string $file ): void {
 
 /**
  * Detects the current operating system.
+ *
+ * Used for determining scrollbar width without JS.
  *
  * @since 0.0.9
  *

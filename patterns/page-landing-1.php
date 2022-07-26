@@ -7,7 +7,6 @@
  */
 
 include __DIR__ . '/hero-1.php';
-include __DIR__ . '/logos-1.php';
 include __DIR__ . '/features-1.php';
 include __DIR__ . '/features-2.php';
 include __DIR__ . '/pricing-1.php';

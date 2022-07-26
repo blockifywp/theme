@@ -6,7 +6,6 @@ namespace Blockify;
 
 use const DIRECTORY_SEPARATOR;
 use const PHP_VERSION;
-use function add_action;
 use function array_map;
 use function glob;
 use function version_compare;
@@ -21,23 +20,13 @@ if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
 	return;
 }
 
-add_action( 'after_setup_theme', NS . 'setup' );
-/**
- * Loads includes.
- *
- * @since 0.0.14
- *
- * @return void
- */
-function setup(): void {
-	require_once DIR . 'vendor/autoload.php';
-	require_once DIR . 'includes/utility.php';
-	require_once DIR . 'includes/settings.php';
-	require_once DIR . 'includes/patterns.php';
-	require_once DIR . 'includes/assets.php';
+require_once DIR . 'vendor/autoload.php';
+require_once DIR . 'includes/utility.php';
+require_once DIR . 'includes/settings.php';
+require_once DIR . 'includes/patterns.php';
+require_once DIR . 'includes/assets.php';
 
-	array_map(
-		fn( $file ) => require_once $file,
-		glob( DIR . 'includes/blocks/*.php' )
-	);
-}
+array_map(
+	fn( $file ) => require_once $file,
+	glob( DIR . 'includes/blocks/*.php' )
+);

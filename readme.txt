@@ -57,10 +57,6 @@ Dashicons
 License: GPL-2.0-or-later
 License URL: http://www.gnu.org/licenses/gpl-2.0.html
 
-Logos
-License: Fair Use License
-License URL: https://logoipsum.com/license/
-
 All other custom made assets are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
@@ -69,8 +65,11 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.0.14 - 25 July, 2022 =
 * Remove: Plugin dependency
+* Remove: Logo Ipsum logos
 * Add: Theme settings
 * Add: Page patterns
+* Update: Theme URI
+* Fix: Pattern dummy content
 * Fix: Reverse on mobile
 * Fix: Navigation block font size
 * Fix: Image block CSS
@@ -81,7 +80,6 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 * Update: Screenshot image text
 * Remove: Auto insert nav menu
 * Add: License information
-* Remove: System generated files (__MACOSX)
 * Add: Link underline styling
 
 = 0.0.12 - 22 July, 2022 =

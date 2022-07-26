@@ -23,21 +23,26 @@ function render_list_block( string $content, array $block ): string {
 		return $content;
 	}
 
-	if ( isset( $block['attrs']['style']['spacing']['blockGap'] ) ) {
-		$dom = dom( $content );
+	$block_gap       = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+	$justify_content = $block['attrs']['layout']['justifyContent'] ?? '';
 
-		/**
-		 * @var $ul DOMElement
-		 */
-		$ul = $dom->firstChild;
+	$dom = dom( $content );
 
-		$ul->setAttribute(
-			'style',
-			$ul->getAttribute( 'style' ) . ';--wp--style--block-gap:' . $block['attrs']['style']['spacing']['blockGap'] . ';'
-		);
+	/**
+	 * @var $ul DOMElement
+	 */
+	$ul    = $dom->firstChild;
+	$style = $ul->getAttribute( 'style' );
 
-		$content = $dom->saveHTML();
+	if ( $block_gap ) {
+		$style .= ';--wp--style--block-gap:' . $block_gap . ';';
 	}
 
-	return $content;
+	if ( $justify_content ) {
+		$style .= ';display:flex;flex-wrap:wrap;justify-content:' . $justify_content . ';';
+	}
+
+	$ul->setAttribute( 'style', $style );
+
+	return $dom->saveHTML();
 }

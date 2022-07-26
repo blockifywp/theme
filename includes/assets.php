@@ -4,15 +4,13 @@ declare( strict_types=1 );
 
 namespace Blockify;
 
-use function array_map;
-use function wp_list_pluck;
-use const DIRECTORY_SEPARATOR;
+use WP_Screen;
 use const WP_CONTENT_DIR;
 use function add_action;
 use function add_editor_style;
 use function apply_filters;
 use function array_flip;
-use function basename;
+use function array_map;
 use function current_theme_supports;
 use function end;
 use function explode;
@@ -20,7 +18,6 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function function_exists;
-use function glob;
 use function in_array;
 use function is_a;
 use function plugin_dir_url;
@@ -33,51 +30,24 @@ use function wp_enqueue_style;
 use function wp_get_global_styles;
 use function wp_get_global_settings;
 
+add_action( 'enqueue_block_editor_assets', NS . 'enqueue_editor_assets' );
+/**
+ * Enqueues editor assets.
+ *
+ * @since 0.0.14
+ *
+ * @return void
+ */
 function enqueue_editor_assets(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
 	wp_add_inline_style( 'global-styles', get_inline_css() );
 
 	enqueue_asset( 'editor.css' );
 	enqueue_asset( 'index.js', [
-		'deps' => [ 'wp-edit-site' ], // Needed for block styles API.
+		'deps' => [ 'wp-edit-site' ], // Needed for block styles.
 	] );
 
 	wp_localize_script( 'blockify-index', 'blockify', get_script_data() );
-}
-
-add_action( 'enqueue_block_editor_assets', NS . 'enqueue_editor_scripts_styles' );
-/**
- * Enqueues editor assets.
- *
- * @since 0.0.2
- *
- * @return void
- */
-function enqueue_editor_scripts_styles(): void {
-	$current_screen = get_current_screen();
-
-	$site_editor = $current_screen->base === 'appearance_page_gutenberg-edit-site' || $current_screen->base === 'site-editor';
-
-	if ( ! $site_editor ) {
-		enqueue_editor_assets();
-	}
-}
-
-add_action( 'admin_enqueue_scripts', NS . 'admin_scripts_styles' );
-/**
- * Conditionally enqueues site editor scripts and styles.
- *
- * @since 0.0.2
- *
- * @return void
- */
-function admin_scripts_styles() {
-	$current_screen = get_current_screen();
-	$site_editor    = $current_screen->base === 'appearance_page_gutenberg-edit-site' || $current_screen->base === 'site-editor';
-
-	if ( $site_editor ) {
-		enqueue_editor_assets();
-	}
 }
 
 add_action( 'after_setup_theme', NS . 'add_editor_styles' );
@@ -89,15 +59,7 @@ add_action( 'after_setup_theme', NS . 'add_editor_styles' );
  * @return void
  */
 function add_editor_styles(): void {
-	$plugin_dir = '../../plugins/' . basename( DIR ) . DIRECTORY_SEPARATOR;
-
-	add_editor_style( $plugin_dir . 'build/style.css' );
-
-	foreach ( glob( DIR . 'build/blocks/**/style-style.css' ) as $file ) {
-		add_editor_style( $plugin_dir . 'build/blocks/' . basename( dirname( $file ) ) . '/style-style.css' );
-	}
-
-	add_editor_style( 'style.css' );
+	add_editor_style( 'build/style.css' );
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts_styles' );
