@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more. Blockify is the go-to for every kind of website project.
+A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more.
 
 == Installation ==
 
