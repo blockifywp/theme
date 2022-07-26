@@ -2,7 +2,7 @@
 
 A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more.
 
-<img alt="Blockify starter theme screenshot" src="https://user-images.githubusercontent.com/24793388/179800159-904b8e4e-63e6-470f-afd7-581d74cd4a92.png" width="450" />
+![screenshot](https://user-images.githubusercontent.com/24793388/181021587-6476bc7a-9400-4213-9af7-2b8e2687c921.png)
 
 ## Installation
 
@@ -12,17 +12,9 @@ A lightweight yet powerful full site editing block starter theme. Use it to crea
 4. Navigate to Appearance > Customize in your admin panel and customize to your needs.
 5. A notice box may appear, recommending you to install the Blockify plugin. You can either use it or any other block toolkit.
 4. Navigate to Appearance > Editor.
-7. Once the Site Editor is launched, click on the inserter icon, pick one of the many ready-made blocks or patterns then click to insert.
-8. Edit the page content as you wish, you can add, remove and manipulate any of the blocks.
+7. With the Site Editor open, click the inserter icon, pick one of the many ready-made blocks or patterns then click to insert.
+8. Edit the page content as you wish, you can add, remove and customize any of the blocks.
 9. Enjoy :)
-
-## Child themes
-
-Child themes fully supported and recommended. Documentation and starter child theme coming soon.
-
-## Support
-
-Visit [https://blockifywp.com/support](https://blockifywp.com/support)
 
 ## Features
 
@@ -36,10 +28,22 @@ Visit [https://blockifywp.com/support](https://blockifywp.com/support)
 - **Responsive Settings:** Reverse on mobile, hide on mobile and more.
 - **Dark Mode (Pro):** Automatically enables dark mode for any supported theme.
 
+## Child themes
+
+Child themes fully supported and recommended. Documentation and starter child theme coming soon.
+
+## Support
+
+Visit [https://blockifywp.com/support](https://blockifywp.com/support)
+
 ## Requirements
 
 - WordPress ^6.0
 - PHP ^7.4
+
+## Contributing
+
+All contributions and questions are welcome. Please feel free to submit Github issues.
 
 ## Theme Developers
 
@@ -115,7 +119,15 @@ function blockify_config( array $defaults ) : array {
 }
 ```
 
-## Contributing
+## Screenshots
 
-All contributions and questions are welcome. Please feel free to submit Github issues.
+![blocks](https://ps.w.org/blockify/assets/screenshot-1.png?rev=2758576)
+*Block library*
+![shadows](https://ps.w.org/blockify/assets/screenshot-2.png?rev=2758576)
+*Box shadow settings*
+![gradients](https://ps.w.org/blockify/assets/screenshot-3.png?rev=2758576)
+*Text gradients*
+![darkmode](https://ps.w.org/blockify/assets/screenshot-4.gif?rev=2759153)
+*Map block in dark mode*
 
+More coming soon!
