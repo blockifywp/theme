@@ -121,13 +121,13 @@ function blockify_config( array $defaults ) : array {
 
 ## Screenshots
 
-![blocks](https://ps.w.org/blockify/assets/screenshot-1.png?rev=2758576)
+![blocks](https://ps.w.org/blockify/assets/screenshot-1.png)
 *Block library*
-![shadows](https://ps.w.org/blockify/assets/screenshot-2.png?rev=2758576)
+
+![shadows](https://ps.w.org/blockify/assets/screenshot-2.png)
 *Box shadow settings*
-![gradients](https://ps.w.org/blockify/assets/screenshot-3.png?rev=2758576)
+
+![gradients](https://ps.w.org/blockify/assets/screenshot-3.png)
 *Text gradients*
-![darkmode](https://ps.w.org/blockify/assets/screenshot-4.gif?rev=2759153)
-*Map block in dark mode*
 
 More coming soon!
