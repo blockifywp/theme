@@ -8,15 +8,15 @@
 ?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"4em","bottom":"2em"},"blockGap":"3em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:4em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">FSE Theme Framework</p>
+<p class="has-16-font-size">Design</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2>The perfect starting point for WordPress sites</h2>
+<h2>Lightweight, fully customizable, one click websites</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+<p>Smart wireframe starting point design to begin creating your own website, without code.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -36,15 +36,15 @@
 
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">Style Variations &amp; Patterns</p>
+<p class="has-16-font-size">Development</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2>Style variations &amp; block pattern library</h2>
+<h2>Smart and powerful web design tools for the future</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+<p>Enhance your web design and development workflow with intelligent add ons</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -52,15 +52,15 @@
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"bottom":"4em","top":"2em"},"blockGap":"3em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:2em;padding-bottom:4em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"fontSize":"16"} -->
-<p class="has-16-font-size">Block Library &amp; Toolkit</p>
+<p class="has-16-font-size">Courses</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2>Next level full site editing theme framework</h2>
+<h2>Level up your design and development with free courses </h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+<p>Stay up to date with a library of free resources, tutorials and the latest in everything web related</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

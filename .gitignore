@@ -4,4 +4,6 @@ vendor/dealerdirect
 vendor/squizlabs
 vendor/phpcsstandards
 vendor/wp-coding-standards
+vendor/tgmpa/tgm-plugin-activation/plugins
+src
 *.zip

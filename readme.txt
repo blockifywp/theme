@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Blockify is a minimal full site editing block starter theme. Use it to create any design you can imagine! Insanely lightweight, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to help get you started quickly. Install the free Blockify plugin to enable even more control over your theme design, including Google Font loading, box shadows, text gradients, extra spacing controls, responsive settings and more!
+A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more.
 
 == Installation ==
 
@@ -41,22 +41,35 @@ TGMPA
 License: GPL-2.0-or-later
 License URL: https://github.com/TGMPA/TGM-Plugin-Activation/blob/develop/LICENSE.md
 
+WPTT Webfont Loader
+License: MIT
+License URL: https://opensource.org/licenses/MIT
+
 Composer
 License: MIT
 License URL: https://github.com/composer/composer/blob/main/LICENSE
 
-Icons
+WordPress & Social Icons
 License: GPL-2.0-or-later
 License URL: https://github.com/WordPress/WordPress/blob/master/license.txt
 
-Logos
-License: Fair Use License
-License URL: https://logoipsum.com/license/
+Dashicons
+License: GPL-2.0-or-later
+License URL: http://www.gnu.org/licenses/gpl-2.0.html
+
+All other custom made assets are licensed under GPL-2.0-or-later.
+
+© Copyright Blockify 2022, Blockify.
 
 == Changelog ==
 
 = 0.0.14 - 25 July, 2022 =
-* Add: Final page patterns
+* Remove: Plugin dependency
+* Remove: Logo Ipsum logos
+* Add: Theme settings
+* Add: Page patterns
+* Update: Theme URI
+* Fix: Pattern dummy content
 * Fix: Reverse on mobile
 * Fix: Navigation block font size
 * Fix: Image block CSS
@@ -67,7 +80,6 @@ License URL: https://logoipsum.com/license/
 * Update: Screenshot image text
 * Remove: Auto insert nav menu
 * Add: License information
-* Remove: System generated files (__MACOSX)
 * Add: Link underline styling
 
 = 0.0.12 - 22 July, 2022 =

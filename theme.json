@@ -547,15 +547,12 @@
       },
       "core/navigation-link": {
         "typography": {
-
           "fontWeight": "var(--wp--custom--font-weight--medium)"
         },
         "spacing": {
           "padding": {
             "top": "var(--wp--style--block-gap,1em)",
-            "right": "var(--wp--style--block-gap,1em)",
-            "bottom": "var(--wp--style--block-gap,1em)",
-            "left": "var(--wp--style--block-gap,1em)"
+            "bottom": "var(--wp--style--block-gap,1em)"
           }
         }
       },

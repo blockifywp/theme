@@ -12,11 +12,11 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"},"color":{"text":"#ffcb30"}},"className":"aligncenter"} -->
-<p class="has-text-align-center aligncenter has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
+<p class="aligncenter has-text-align-center has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p><cite><small><strong>Diana Spencer</strong></small></cite></blockquote>
+<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>Nice work on this product. You've saved our business! If you aren't sure, always go for this product. Believe me, you won't regret it.</p><cite><small><strong>Diana S</strong></small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
@@ -26,11 +26,11 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"},"color":{"text":"#ffcb30"}},"className":"aligncenter"} -->
-<p class="has-text-align-center aligncenter has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
+<p class="aligncenter has-text-align-center has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p><cite><small><strong>Steve Jobs</strong></small></cite></blockquote>
+<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>Really good. This product is by far the most valuable business resource we have EVER purchased. Thanks guys, keep up the good work!</p><cite><small><strong>Steve J</strong></small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
@@ -40,11 +40,11 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"},"color":{"text":"#ffcb30"}},"className":"aligncenter"} -->
-<p class="has-text-align-center aligncenter has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
+<p class="aligncenter has-text-align-center has-text-color aligncenter" style="color:#ffcb30;letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p><cite><small><strong>Dolores O'Riordan</strong></small></cite></blockquote>
+<blockquote class="wp-block-quote has-text-align-center has-18-font-size"><p>I don't know what else to say. I don't always clop, but when I do, it's because of this product. This is simply unbelievable!</p><cite><small><strong>Dolores O</strong></small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

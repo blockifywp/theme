@@ -9,4 +9,3 @@
 include __DIR__ . '/pricing-1.php';
 include __DIR__ . '/testimonials-1.php';
 include __DIR__ . '/faq-1.php';
-include __DIR__ . '/cta-2.php';
