@@ -5,9 +5,8 @@
  * Categories: cta
  * 
  */
-?><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"3em","bottom":"3em"},"padding":{"top":"2em","bottom":"2em"}}}} -->
-<div class="wp-block-group alignwide alignwide" style="margin-top:3em;margin-bottom:3em;padding-top:2em;padding-bottom:2em"><!-- wp:columns {"verticalAlignment":"center"} -->
-<div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
+?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}}} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":3} -->
 <h3>Start your next project.</h3>
 <!-- /wp:heading -->
@@ -23,10 +22,9 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Start now</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"className":"is-style-transparent"} -->
-<div class="wp-block-button is-style-transparent"><a class="wp-block-button__link wp-element-button">Read more</a></div>
+<!-- wp:button {"className":"is-style-transparent is-style-secondary"} -->
+<div class="wp-block-button is-style-transparent is-style-secondary"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns --></div>
-<!-- /wp:group -->
+<!-- /wp:columns -->

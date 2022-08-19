@@ -7,39 +7,36 @@ namespace Blockify;
 use DOMElement;
 use function add_filter;
 
-add_filter( 'render_block', NS . 'render_group_block', 10, 2 );
+add_filter( 'render_block', NS . 'render_block_layout', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
- * @since 0.0.2
+ * @since 0.0.20
  *
  * @param string $content
  * @param array  $block
  *
  * @return string
  */
-function render_group_block( string $content, array $block ): string {
+function render_block_layout( string $content, array $block ): string {
+
 	if ( 'core/group' !== $block['blockName'] ) {
 		return $content;
 	}
 
-	if ( isset( $block['attrs']['style']['spacing']['blockGap'] ) ) {
+	$dom = dom( $content );
 
-		$dom = dom( $content );
+	/**
+	 * @var $first DOMElement
+	 */
+	$first = $dom->firstChild;
 
-		/**
-		 * @var $first DOMElement
-		 */
-		$first = $dom->childNodes && isset( $dom->childNodes[0] ) ? $dom->childNodes[0] : false;
-
-		if ( $first ) {
-			$style = $first->getAttribute( 'style' );
-			$style .= ';--wp--style--block-gap:' . $block['attrs']['style']['spacing']['blockGap'];
-			$first->setAttribute( 'style', $style );
-
-			$content = $dom->saveHTML();
-		}
+	if ( $first->tagName === 'main' ) {
+		$first->setAttribute(
+			'class',
+			'wp-site-main ' . $first->getAttribute( 'class' )
+		);
 	}
 
-	return $content;
+	return $dom->saveHTML();
 }

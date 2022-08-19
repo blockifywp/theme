@@ -12,4 +12,3 @@ include __DIR__ . '/features-2.php';
 include __DIR__ . '/pricing-1.php';
 include __DIR__ . '/testimonials-1.php';
 include __DIR__ . '/cta-1.php';
-

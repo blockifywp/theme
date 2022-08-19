@@ -1,0 +1,11 @@
+.wp-block-heading:not(.has-text-color) {
+
+	&[class*="-gradient-background"],
+	&[style*="-gradient"] {
+		padding: 0;
+		-webkit-background-clip: text !important;
+		-webkit-text-fill-color: transparent;
+		-webkit-box-decoration-break: clone;
+		box-decoration-break: clone;
+	}
+}

@@ -5,28 +5,26 @@
  * Categories: hero
  * 
  */
-?><!-- wp:group {"align":"wide","layout":{"contentSize":"768px"}} -->
-<div class="wp-block-group alignwide alignwide"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"0.8em"}}},"fontSize":"72"} -->
-<h1 class="has-text-align-center has-72-font-size" style="margin-top:0.8em">Build the design you want without the code</h1>
+?><!-- wp:cover {"overlayColor":"white","minHeight":100,"minHeightUnit":"vh","isDark":false,"align":"full"} -->
+<div class="wp-block-cover alignfull is-light" style="min-height:100vh"><span aria-hidden="true" class="wp-block-cover__background has-white-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"inherit":true}} -->
+<div class="wp-block-group"><!-- wp:group {"layout":{"contentSize":"600px"}} -->
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":1,"align":"full","textColor":"neutral-900","fontSize":"72"} -->
+<h1 class="alignfull has-text-align-center has-neutral-900-color has-text-color has-72-font-size alignfull">Design your website with easy to use blocks</h1>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"style":{"spacing":{"padding":{"right":"1em","left":"1em"}}},"className":"has-text-align-center"} -->
-<p class="has-text-align-center" style="padding-right:1em;padding-left:1em">Streamline your web design workflow with blocks and full site editing to create virtually any type of website you can imagine.</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
+<!-- wp:paragraph {"textColor":"neutral-600","className":"has-text-align-center"} -->
+<p class="has-text-align-center has-neutral-600-color has-text-color">Lightweight full site editing starter theme plus a powerful design toolkit for building modern WordPress sites with blocks.</p>
+<!-- /wp:paragraph -->
 
-<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"bottom":"3em","top":"1.5em"}}}} -->
-<div class="wp-block-buttons" style="margin-top:1.5em;margin-bottom:3em"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Get started</a></div>
+<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"1.5em"}}}} -->
+<div class="wp-block-buttons" style="margin-top:1.5em"><!-- wp:button -->
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#pricing">Get started</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"className":"is-style-transparent"} -->
-<div class="wp-block-button is-style-transparent"><a class="wp-block-button__link wp-element-button" href="#video">Learn more</a></div>
+<!-- wp:button {"className":"is-style-transparent is-style-secondary"} -->
+<div class="wp-block-button is-style-transparent is-style-secondary"><a class="wp-block-button__link wp-element-button" href="#features">Learn more</a></div>
 <!-- /wp:button --></div>
-<!-- /wp:buttons -->
-
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"9em","bottom":"9em"}},"border":{"radius":"6px"}},"backgroundColor":"neutral-100"} -->
-<div class="wp-block-group has-neutral-100-background-color has-background" style="border-radius:6px;padding-top:9em;padding-bottom:9em"><!-- wp:image {"align":"center","id":1480,"width":70,"height":70,"sizeSlug":"large","linkDestination":"none"} -->
-<figure class="wp-block-image aligncenter size-large is-resized aligncenter"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/svg/play.svg" alt="" class="wp-image-1480" width="70" height="70"/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group -->
+<!-- /wp:buttons --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div></div>
+<!-- /wp:cover -->

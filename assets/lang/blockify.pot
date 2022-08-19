@@ -1,0 +1,574 @@
+# Copyright (C) 2022 Blockify
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Blockify 0.0.23\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-14T11:51:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: blockify\n"
+
+#. Theme Name of the theme
+#. Author of the theme
+msgid "Blockify"
+msgstr ""
+
+#. Description of the theme
+msgid "Lightweight yet powerful full site editing block starter theme. Use it as a starting point to create almost any design. 100% theme.json, loads minimal CSS and JS. Style variations, block patterns, SVG icons, Google Fonts box shadows, text gradients, responsive settings and more."
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://blockifywp.com/"
+msgstr ""
+
+#: includes/blocks/archive-title.php:39
+msgid "Search results"
+msgstr ""
+
+#: includes/blocks/query.php:70
+msgid "Latest Posts"
+msgstr ""
+
+#: includes/config.php:327
+msgid "Primary"
+msgstr ""
+
+#: includes/config.php:333
+msgid "Secondary"
+msgstr ""
+
+#: includes/config.php:338
+msgid "SVG Icon"
+msgstr ""
+
+#: includes/config.php:343
+msgid "Icon"
+msgstr ""
+
+#: includes/config.php:348
+msgid "Numbered"
+msgstr ""
+
+#: includes/config.php:353
+msgid "Checklist"
+msgstr ""
+
+#: includes/config.php:358
+msgid "Square"
+msgstr ""
+
+#: includes/config.php:363
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/config.php:368
+msgid "Toggle"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Title"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hide "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " title"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Box Shadow"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Use default box shadow?"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Inherit custom properties defined in the theme.json file"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Blur"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Spread"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Color"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Box Shadow Color"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Box shadow z index"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Filter"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Brightness"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Contrast"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Grayscale"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hue Rotate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Invert"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Opacity"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Saturate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Sepia"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon Settings"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Select Icon Set"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Select Icon"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon size"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Default"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Relative"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Absolute"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Sticky"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Fixed"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Static"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Position"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Top"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Right"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Bottom"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Left"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Z Index"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Reverse on mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Transform"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Translate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Z"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale Z"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Rotate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "RotateX"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "RotateY"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "RotateZ"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Skew X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Skew Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Formatting"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Small"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Big"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Gradient"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Underline"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "72px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "60px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "48px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "36px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "30px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "24px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "20px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "18px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "16px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Sans Serif"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Serif"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monospace"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Archivo"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Crimson Pro"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Epilogue"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Inter"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Jost"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Lexen"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Manrope"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Playfair Display"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Plus Jakarta Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Public Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Readex Pro"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Roboto"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Space Grotesk"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Urbanist"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 700"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 600"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 500"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 400"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 300"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 100"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 900"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 800"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 700"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 600"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 500"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 400"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 300"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 200"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 100"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 50"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 25"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary 700/500"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary 600/300"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary 300/100"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Neutral 900/600"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Neutral 600/300"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Neutral 100/50"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""

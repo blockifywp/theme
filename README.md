@@ -1,6 +1,6 @@
 # Blockify Theme
 
-A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more.
+Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or web font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify extends core WordPress blocks allowing finer design control. Smart customization features including dark mode support, Google Fonts, SVG icons, box shadows, text gradients, block positioning, responsive settings and more. Please note Gutenberg is still experimental and updates can cause breaking changes.
 
 ![screenshot](https://user-images.githubusercontent.com/24793388/181021587-6476bc7a-9400-4213-9af7-2b8e2687c921.png)
 
@@ -18,23 +18,25 @@ A lightweight yet powerful full site editing block starter theme. Use it to crea
 
 ## Features
 
-- **Block Supports API:** Easy to use PHP API for modifying core block supports. This allows for conditional block supports, or extra settings for core blocks.
-- **Block Styles API:** Easy to use PHP API for modifying core block styles that usually require JS. Conditional registration supported - for example, only register a "Secondary" block style if a secondary color is set in the theme or editor.
-- **Block Library:** Unbranded, fully customizable, commonly needed UI components. Configurable through theme.json.
-- **Block Extensions**: Additional appearance controls for all blocks. For example, box shadows, absolute positioning.
-- **Full Site Editing:** CSS framework. Extra page, post and template part settings.
+- **Block Supports API:** Easy to use PHP API for modifying core block supports. This allows for conditional block supports, or extra settings for core blocks. By default, Blockify enables extra block supports where possible.
+- **Block Styles API:** Easy to use PHP API for modifying core block styles that usually require JS. Conditional registration supported - for example, only register a "Secondary" block style if a secondary color is defined in the theme or editor.
+- **Block Extensions:** Additional appearance controls for all blocks including box shadows, absolute positioning, CSS transforms, CSS filters and more.
+- **Full Site Editing:** Additional page, post and template part settings provided to make customizing individual pages easier.
+- **SVG Icons:** Inline SVG icons can be created with the image block or as inline text. Default icons included are WordPress, Dashicons and Social Icons. Also supports custom SVGs.
+- **CSS Framework:** Minimal base FSE CSS framework. All CSS files have are split and are conditionally loaded only when required by a page.
 - **Google Fonts:** Automatically downloads and locally serves selected editor fonts.
-- **Text Formats:** Additional text formats including gradients, font size and more.
+- **Gradients:** Gradient rich text formats and text block gradient settings.
+- **Text Formats** Additional text formats including clear formatting, underline, gradients, font sizes and more.
 - **Responsive Settings:** Reverse on mobile, hide on mobile and more.
-- **Dark Mode (Pro):** Automatically enables dark mode for any supported theme.
+- **Header Styles:** Support for absolute, transparent and sticky headers.
+- **Mega Menu:** Create simple, multi-column dropdown menus.
+- **Search Toggle:** Full screen, CSS-only, search form toggle.
+- **Dark Mode:** Automatically enables dark mode for any supported theme.
 
-## Child themes
+*Pro features*
 
-Child themes fully supported and recommended. Documentation and starter child theme coming soon.
-
-## Support
-
-Visit [https://blockifywp.com/support](https://blockifywp.com/support)
+- **Block Library:** Unbranded, customizable, commonly needed UI components, fully configurable through theme.json.
+- **WooCommerce:** Additional support and styling for WooCommerce blocks.
 
 ## Requirements
 
@@ -45,9 +47,15 @@ Visit [https://blockifywp.com/support](https://blockifywp.com/support)
 
 All contributions and questions are welcome. Please feel free to submit Github issues.
 
+## Support
+
+Visit [https://blockifywp.com/support](https://blockifywp.com/support)
+
 ## Theme Developers
 
-Blockify was built for you! It should work out of the box with any standard FSE theme. There is also a free starter theme available for use as an example base
+Blockify was built for you! It should work out of the box with any standard FSE theme. There is also a free starter theme available for use as an example base.
+
+Child themes fully supported and recommended. Documentation and starter child theme coming soon.
 
 To add theme support, copy and paste the code snippet below into your parent theme, child theme or custom plugin to begin configuring your settings:
 
@@ -129,5 +137,3 @@ function blockify_config( array $defaults ) : array {
 
 ![gradients](https://ps.w.org/blockify/assets/screenshot-3.png)
 *Text gradients*
-
-More coming soon!

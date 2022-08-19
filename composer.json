@@ -22,8 +22,8 @@
     }
   },
   "require": {
-    "tgmpa/tgm-plugin-activation": "dev-master",
-    "wptt/webfont-loader": "dev-master"
+    "wptt/webfont-loader": "dev-master",
+    "tgmpa/tgm-plugin-activation": "dev-master"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",

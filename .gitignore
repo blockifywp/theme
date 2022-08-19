@@ -5,5 +5,13 @@ vendor/squizlabs
 vendor/phpcsstandards
 vendor/wp-coding-standards
 vendor/tgmpa/tgm-plugin-activation/plugins
-src
+vendor/tgmpa/tgm-plugin-activation/.editorconfig
+vendor/tgmpa/tgm-plugin-activation/*.md
+vendor/tgmpa/tgm-plugin-activation/*.yml
+vendor/tgmpa/tgm-plugin-activation/*.xml
+vendor/tgmpa/tgm-plugin-activation/example.php
+assets/tsx
+bun.lockb
 *.zip
+*.lock
+*lock.json

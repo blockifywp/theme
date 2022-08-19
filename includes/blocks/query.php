@@ -47,7 +47,7 @@ function render_query_block( string $content, array $block ): string {
 	return $content;
 }
 
-add_filter( 'render_block', NS . 'query_block_filters', 10, 2 );
+add_filter( 'render_block', NS . 'render_query_blocks', 10, 2 );
 /**
  * Description of expected behavior.
  *
@@ -58,14 +58,40 @@ add_filter( 'render_block', NS . 'query_block_filters', 10, 2 );
  *
  * @return string
  */
-function query_block_filters( string $content, array $block ): string {
-
+function render_query_blocks( string $content, array $block ): string {
 	if ( 'core/post-title' === $block['blockName'] ) {
-
 		if ( is_home() && str_contains( $content, '<h1' ) ) {
 			$text           = strip_tags( $content );
 			$page_for_posts = get_post( get_option( 'page_for_posts' ) );
-			$content        = str_replace( $text, $page_for_posts->post_title, $content );
+
+			if ( $page_for_posts->post_type === 'page' ) {
+				$title = $page_for_posts->post_title;
+			} else {
+				$title = __( 'Latest Posts', 'blockify' );
+			}
+
+			$content = str_replace( $text, $title, $content );
+		}
+
+		if ( $padding = $block['attrs']['style']['spacing']['padding'] ?? false ) {
+			$styles = [];
+			foreach ( $padding as $key => $value ) {
+				$styles[ 'padding-' . $key ] = $value;
+			}
+
+			$dom = dom( $content );
+
+			/**
+			 * @var $first \DOMElement
+			 */
+			$first = $dom->firstChild;
+
+			$first->setAttribute(
+				'style',
+				css_array_to_string( $styles ) . ';' . $first->getAttribute( 'style' )
+			);
+
+			$content = $dom->saveHTML();
 		}
 	}
 

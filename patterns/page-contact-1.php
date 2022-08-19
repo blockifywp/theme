@@ -6,6 +6,6 @@
  * Block Types: core/post-content
  */
 
-
 include __DIR__ . '/contact-1.php';
-include __DIR__ . '/faq-1.php';
+include __DIR__ . '/contact-2.php';
+include __DIR__ . '/cta-2.php';

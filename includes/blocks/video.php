@@ -11,7 +11,7 @@ use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
 
-add_filter( 'render_block', NS . 'render_video_block', 10, 2 );
+//add_filter( 'render_block', NS . 'render_video_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -51,21 +51,22 @@ function render_video_block( string $content, array $block ): string {
  * @return void
  */
 function video_scripts_styles(): void {
+	$js = <<<JS
+		const videoBlocks = document.getElementsByTagName( 'video' );
+		
+		[ ...videoBlocks ].forEach( function( videoBlock ) {
+			new MediaElementPlayer( videoBlock, {
+			    videoWidth: '100%',
+			    videoHeight: '100%',
+			    enableAutosize: true
+			 } );
+			
+			videoBlock.style.width = '100%';
+			videoBlock.style.height = '100%'; 
+		} );
+	JS;
+
 	wp_enqueue_script( 'wp-mediaelement' );
 	wp_enqueue_style( 'wp-mediaelement' );
-
-	wp_add_inline_script( 'wp-mediaelement', '
-		const videoBlocks = document.getElementsByTagName("video");
-		
-		[...videoBlocks].forEach(function(videoBlock) {
-			const video = new MediaElementPlayer( videoBlock, {
-			    videoWidth: "100%",
-			    videoHeight: "100%",
-			    enableAutosize: true,
-			 });
-			
-			videoBlock.style.width = "100%";
-			videoBlock.style.height = "100%"; 
-		} );
-	' );
+	wp_add_inline_script( 'wp-mediaelement', $js );
 }

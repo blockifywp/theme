@@ -1,14 +1,14 @@
 <!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":true}} -->
-<div class="wp-block-group" style="padding-top:3em;padding-bottom:3em">
-	<!-- wp:post-title {"textAlign":"center","level":1} /-->
-	<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"3em"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
-	<div class="wp-block-group" style="padding-bottom:3em"><!-- wp:post-date /-->
+<!-- wp:group {"layout":{"inherit":true},"tagName":"main"} -->
+<main class="wp-block-group">
+	<!-- wp:post-title {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} /-->
+	<!-- wp:group {"style":{"spacing":{"padding":{"bottom":"1em"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
+	<div class="wp-block-group" style="padding-bottom:1em"><!-- wp:post-date /-->
 		<!-- wp:post-terms {"term":"category"} /--></div>
 	<!-- /wp:group -->
 	<!-- wp:post-content /-->
-</div>
+</main>
 <!-- /wp:group -->
 
 <!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

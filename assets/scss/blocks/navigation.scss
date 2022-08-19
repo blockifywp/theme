@@ -1,0 +1,157 @@
+.wp-block-navigation {
+
+	// 782px hardcoded in core.
+	@media (max-width: 782px) {
+		font-size: 1em;
+	}
+}
+
+.wp-block-navigation:not(.is-responsive) {
+	margin: auto;
+}
+
+.wp-block-navigation__submenu-container {
+	background: var(--wp--custom--submenu--background, inherit);
+	color: var(--wp--custom--submenu--color, inherit);
+	border: none;
+
+	// 782px hardcoded in core.
+	@media (max-width: 783px) {
+		gap: var(--wp--custom--submenu--gap) !important;
+		padding: var(--wp--custom--submenu--gap) 0 0 !important;
+	}
+
+	// 782px hardcoded in core.
+	@media (min-width: 783px) {
+		padding: var(--wp--custom--submenu--padding);
+	}
+}
+
+.wp-block-navigation__container {
+	display: flex;
+	gap: 0;
+}
+
+// Editor specificity.
+.wp-block-navigation .wp-block-navigation-submenu {
+	background: transparent !important;
+	padding: 0 !important;
+}
+
+.wp-block-navigation-submenu__toggle {
+	font-weight: inherit;
+}
+
+.wp-block-navigation :where(.wp-block-navigation__submenu-container) .wp-block-navigation-item__content {
+	padding: 0.5em 1em;
+}
+
+.wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
+	color: inherit;
+}
+
+.wp-block-navigation .wp-block-page-list {
+	gap: 0;
+}
+
+.is-vertical .has-child :where(.wp-block-navigation__submenu-container) {
+	position: relative;
+	height: auto;
+	opacity: 1;
+	visibility: visible;
+	width: 100%;
+	background-color: transparent !important;
+}
+
+.is-vertical .wp-block-navigation__submenu-icon {
+	display: none;
+}
+
+.wp-block-navigation .wp-block-navigation__submenu-icon {
+	margin-left: -.3em;
+	margin-right: .6em;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open {
+	padding: 1.5em;
+}
+
+.wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open {
+	background-color: var(--wp--preset--color--white, #fff);
+	color: currentColor; // #000 hardcoded in core.
+}
+
+// TODO: Remove when merged into core or Gutenberg active.
+.has-modal-open .admin-bar .wp-block-navigation__responsive-dialog {
+	margin-top: 46px;
+}
+
+// Link.
+.wp-block-navigation-item {
+	margin-bottom: 0;
+	flex-wrap: wrap;
+}
+
+.wp-block-navigation-item .wp-block-navigation-item__content {
+	padding: calc(var(--wp--style--block-gap, 1em) / 2);
+}
+
+.is-vertical .wp-block-navigation-item__content {
+	padding: .5em 0;
+}
+
+.is-style-mega-menu {
+	--wp--custom--submenu--columns: 2;
+}
+
+.is-style-mega-menu .wp-block-navigation__submenu-container {
+	display: block;
+	columns: var(--wp--custom--submenu--columns);
+}
+
+.wp-block-navigation-item[class*="is-style-columns-"]:not(.is-style-columns-1) {
+	position: static;
+}
+
+// Reset needed as default is too low (600px).
+@media (min-width: 600px) {
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) .wp-block-navigation__responsive-container-close {
+		display: flex;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+		width: initial;
+		position: initial;
+		z-index: auto;
+		background-color: inherit;
+	}
+}
+
+// Use same breakpoint as columns block for consistency.
+// TODO: Allow custom breakpoint.
+@media (min-width: 781px) {
+	.wp-block-navigation {
+		font-size: smaller; // Theme.json not working.
+	}
+
+	.wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: none;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) .wp-block-navigation__responsive-container-close {
+		display: none;
+	}
+
+	.wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: block;
+		width: 100%;
+		position: relative;
+		z-index: auto;
+		background-color: inherit;
+	}
+}

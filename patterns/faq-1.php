@@ -5,7 +5,8 @@
  * Categories: faq
  * 
  */
-?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em","bottom":"1em"}}}} -->
+?><!-- wp:group {"layout":{"inherit":true}} -->
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em","bottom":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:1em;margin-bottom:1em">Frequently asked questions</h2>
 <!-- /wp:heading -->
 
@@ -39,4 +40,5 @@
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"bottom":"3em"}}}} -->
 <p style="margin-bottom:3em">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-<!-- /wp:paragraph -->
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

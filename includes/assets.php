@@ -4,13 +4,17 @@ declare( strict_types=1 );
 
 namespace Blockify;
 
-use WP_Screen;
 use const WP_CONTENT_DIR;
+use function add_filter;
+use function array_merge_recursive;
 use function add_action;
 use function add_editor_style;
 use function apply_filters;
+use function array_diff;
 use function array_flip;
+use function array_key_exists;
 use function array_map;
+use function basename;
 use function current_theme_supports;
 use function end;
 use function explode;
@@ -18,19 +22,29 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function function_exists;
+use function get_body_class;
+use function get_template_directory_uri;
+use function glob;
 use function in_array;
 use function is_a;
-use function plugin_dir_url;
+use function is_admin;
+use function is_string;
+use function remove_action;
+use function remove_filter;
 use function sprintf;
 use function str_contains;
 use function str_replace;
+use function trim;
 use function ucwords;
 use function wp_add_inline_style;
+use function wp_add_inline_script;
+use function wp_enqueue_script;
+use function wp_register_script;
 use function wp_enqueue_style;
 use function wp_get_global_styles;
 use function wp_get_global_settings;
+use WP_Screen;
 
-add_action( 'enqueue_block_editor_assets', NS . 'enqueue_editor_assets' );
 /**
  * Enqueues editor assets.
  *
@@ -39,15 +53,60 @@ add_action( 'enqueue_block_editor_assets', NS . 'enqueue_editor_assets' );
  * @return void
  */
 function enqueue_editor_assets(): void {
-	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_add_inline_style( 'global-styles', get_inline_css() );
+	wp_enqueue_style(
+		'blockify-editor',
+		get_template_directory_uri() . '/assets/css/editor.css',
+		[],
+		filemtime( DIR . 'assets/css/editor.css' )
+	);
 
-	enqueue_asset( 'editor.css' );
-	enqueue_asset( 'index.js', [
-		'deps' => [ 'wp-edit-site' ], // Needed for block styles.
-	] );
+	// Needed for server generated custom properties.
+	wp_add_inline_style(
+		'blockify-editor',
+		apply_filters(
+			'blockify_css',
+			'' // Added by add_editor_style
+		)
+	);
 
-	wp_localize_script( 'blockify-index', 'blockify', get_script_data() );
+	$asset = require DIR . 'assets/js/editor.asset.php';
+	$deps  = $asset['dependencies'];
+
+	wp_register_script(
+		'blockify-editor',
+		get_template_directory_uri() . '/assets/js/editor.js',
+		$deps,
+		filemtime( DIR . 'assets/js/editor.js' ),
+		true
+	);
+
+	wp_enqueue_script( 'blockify-editor' );
+
+	wp_localize_script(
+		'blockify-editor',
+		'blockify',
+		array_merge_recursive( [
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'nonce'   => wp_create_nonce( 'blockify' ),
+		], get_config() )
+	);
+}
+
+add_action( 'current_screen', NS . 'maybe_load_editor_assets' );
+/**
+ * Conditionally changes which action hook editor assets are enqueued.
+ *
+ * @since 0.0.19
+ *
+ * @param WP_Screen $screen
+ *
+ * @return void
+ */
+function maybe_load_editor_assets( WP_Screen $screen ): void {
+	$site_editor = $screen->base === 'appearance_page_gutenberg-edit-site' || $screen->base === 'site-editor';
+	$hook_name   = $site_editor ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets';
+
+	add_action( $hook_name, NS . 'enqueue_editor_assets' );
 }
 
 add_action( 'after_setup_theme', NS . 'add_editor_styles' );
@@ -59,7 +118,11 @@ add_action( 'after_setup_theme', NS . 'add_editor_styles' );
  * @return void
  */
 function add_editor_styles(): void {
-	add_editor_style( 'build/style.css' );
+	add_editor_style( 'assets/css/style.css' );
+
+	foreach ( glob( DIR . 'assets/css/blocks/*.css' ) as $file ) {
+		add_editor_style( 'assets/css/blocks/' . basename( $file ) );
+	}
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts_styles' );
@@ -73,19 +136,15 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts_styles' );
 function enqueue_scripts_styles(): void {
 	global $wp_styles;
 
-	$inline = apply_filters( 'blockify_load_inline_css', true );
-
 	wp_dequeue_style( 'wp-block-library-theme' );
-	wp_add_inline_style( 'global-styles', get_inline_css() );
 
-	if ( $inline ) {
-		wp_add_inline_style(
-			'global-styles',
-			file_get_contents( DIR . 'build/style.css' )
-		);
-	} else {
-		enqueue_asset( 'style.css' );
-	}
+	wp_add_inline_style(
+		'global-styles',
+		apply_filters(
+			'blockify_css',
+			file_get_contents( DIR . 'assets/css/style.css' )
+		)
+	);
 
 	if ( ! is_a( $wp_styles, 'WP_Styles' ) ) {
 		return;
@@ -97,32 +156,13 @@ function enqueue_scripts_styles(): void {
 		}
 
 		$slug = str_replace( 'wp-block-', '', $handle );
-		$file = DIR . 'build/blocks/' . $slug . '/style-style.css';
+		$file = DIR . 'assets/css/blocks/' . $slug . '.css';
 
 		if ( file_exists( $file ) ) {
-			if ( $inline ) {
-				wp_add_inline_style(
-					$handle,
-					file_get_contents( $file )
-				);
-			} else {
-				wp_enqueue_style(
-					'blockify-core-' . $slug,
-					plugin_dir_url( FILE ) . 'build/blocks/' . $slug . '/style-style.css',
-					[
-						$handle,
-						...get_asset_deps( "core/$slug/style" ),
-					],
-					get_asset_version( "core/$slug/style" ),
-				);
-				enqueue_asset( "core/$slug/script.js" );
-			}
-		}
-
-		if ( file_exists( DIR . 'build/blocks/' . $slug . '/script.js' ) ) {
-			enqueue_asset( "core/$slug/script.js", [
-				'deps' => [],
-			] );
+			wp_add_inline_style(
+				$handle,
+				file_get_contents( $file )
+			);
 		}
 	}
 }
@@ -135,8 +175,6 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_google_fonts' );
  * @since 0.0.2
  *
  * @return void
- * @todo  Switch to wp_enqueue_webfont function.
- *
  */
 function enqueue_google_fonts(): void {
 	if ( ! function_exists( 'wptt_get_webfont_url' ) ) {
@@ -212,41 +250,128 @@ function enqueue_google_fonts(): void {
 	}
 }
 
-/**
- * Returns default plugin script data.
- *
- * @since 0.0.1
- *
- * @return array
- */
-function get_script_data(): array {
-	return array_merge_recursive( [
-		'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-		'nonce'   => wp_create_nonce( 'blockify' ),
-	], get_config() );
-}
-
+add_filter( 'blockify_css', NS . 'add_dynamic_custom_properties', 10, 1 );
 /**
  * Adds custom properties.
  *
- * @since 0.0.2
+ * @since 0.0.19
+ *
+ * @param string $css Default CSS string.
+ *
+ * @return string
+ */
+function add_dynamic_custom_properties( string $css ): string {
+	$settings        = wp_get_global_settings();
+	$element         = is_admin() ? '.editor-styles-wrapper' : 'body';
+	$scrollbar_width = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
+	$content_size    = $settings['layout']['contentSize'] ?? '800px';
+	$wide_size       = $settings['layout']['wideSize'] ?? '1200px';
+	$border_width    = $settings['custom']['border']['width'] ?? '1px';
+	$border_style    = $settings['custom']['border']['style'] ?? 'solid';
+	$border_color    = $settings['custom']['border']['color'] ?? '#ddd';
+
+	$custom_properties = <<<CSS
+	$element {
+		--wp--custom--scrollbar--width: $scrollbar_width;
+		--wp--custom--layout--content-size: $content_size;
+		--wp--custom--layout--wide-size: $wide_size;
+		--wp--custom--border: $border_width $border_style $border_color;
+	}
+CSS;
+
+	return minify_css( $custom_properties ) . $css;
+}
+
+add_filter( 'blockify_css', NS . 'add_dark_mode_custom_properties', 10, 1 );
+/**
+ * Adds dark mode custom properties.
+ *
+ * @since 0.0.24
  *
  * @param string $css
  *
  * @return string
  */
-function get_inline_css( string $css = '' ): string {
-	$settings        = wp_get_global_settings();
-	$scrollbar_width = get_os() === 'windows' ? '12px' : '15px';
-	$content_size    = $settings['layout']['contentSize'] ?? '768px';
-	$wide_size       = $settings['layout']['wideSize'] ?? '1280px';
-	$css             = $css . <<<CSS
-	body {
-		--scrollbar--width: $scrollbar_width;
-		--wp--custom--layout--content-size: $content_size;
-		--wp--custom--layout--wide-size: $wide_size;
-	}
-CSS;
+function add_dark_mode_custom_properties( string $css ): string {
+	$global_styles = wp_get_global_settings();
 
-	return minify_css( apply_filters( 'blockify_inline_css', $css ) );
+	if ( ! isset( $global_styles['color']['palette']['theme'] ) ) {
+		return $css;
+	}
+
+	$config = get_sub_config( 'darkMode' );
+	$colors = [];
+
+	foreach ( $global_styles['color']['palette']['theme'] as $color ) {
+		$colors[ $color['slug'] ] = $color['color'];
+	}
+
+	$original   = [];
+	$properties = [];
+
+	foreach ( $colors as $slug => $color ) {
+		if ( ! isset( $config[ $slug ] ) || ! is_string( $config[ $slug ] ) ) {
+			continue;
+		}
+
+		if ( ! array_key_exists( $config[ $slug ], $colors ) ) {
+			continue;
+		}
+
+		$original[ '--wp--preset--color--' . $slug ]   = $color;
+		$properties[ '--wp--preset--color--' . $slug ] = $colors[ $config[ $slug ] ];
+	}
+
+	$element = is_admin() ? 'body.editor-styles-wrapper,div.editor-styles-wrapper' : 'body';
+	$new_css = '@media(prefers-color-scheme:dark){' . $element . '{';
+
+	foreach ( $properties as $property => $value ) {
+		$new_css .= "$property:$value;";
+	}
+
+	$new_css .= '}}.dark-mode{';
+
+	foreach ( $properties as $property => $value ) {
+		$new_css .= "$property:$value;";
+	}
+
+	$new_css .= '}.light-mode{';
+
+	foreach ( $original as $property => $value ) {
+		$new_css .= "$property:$value;";
+	}
+
+	$new_css .= '}';
+
+	return $css . minify_css( $new_css );
+}
+
+add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );
+/**
+ * Removes unused emoji scripts.
+ *
+ * @since 0.0.21
+ *
+ * @return void
+ */
+function remove_emoji_scripts(): void {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+	add_filter( 'emoji_svg_url', '__return_false' );
+	add_filter( 'tiny_mce_plugins', fn( array $plugins = [] ) => array_diff(
+		$plugins,
+		[ 'wpemoji' ]
+	) );
+	add_filter( 'wp_resource_hints', function ( array $urls, string $relation_type ): array {
+		if ( 'dns-prefetch' === $relation_type ) {
+			$urls = array_diff( $urls, [ apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' ) ] );
+		}
+
+		return $urls;
+	}, 10, 2 );
 }

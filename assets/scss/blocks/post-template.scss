@@ -1,0 +1,54 @@
+.wp-block-post-template {
+	gap: var(--wp--style--block-gap, 1em);
+}
+
+// Breakpoint overrides, also needed for block gap to work.
+@media (min-width: 600px) {
+	ul.wp-block-post-template.is-flex-container {
+
+		&.columns-1 > .wp-block-post {
+			width: 100%;
+		}
+
+		&.columns-2,
+		&.columns-3,
+		&.columns-4,
+		&.columns-5,
+		&.columns-6 {
+			> .wp-block-post {
+				width: calc(50% - (var(--wp--style--block-gap, 1em) / 2));
+			}
+		}
+	}
+}
+
+// Editor width with panel open.
+@media (min-width: 960px) {
+
+	ul.wp-block-post-template.is-flex-container {
+
+		&.columns-1 > .wp-block-post {
+			width: 100%;
+		}
+
+		&.columns-2 > .wp-block-post {
+			width: calc((100% - var(--wp--style--block-gap, 1em)) / 2);
+		}
+
+		&.columns-3 > .wp-block-post {
+			width: calc((100% - (var(--wp--style--block-gap, 1em) * 2)) / 3);
+		}
+
+		&.columns-4 > .wp-block-post {
+			width: calc((100% - (var(--wp--style--block-gap, 1em) * 3)) / 4);
+		}
+
+		&.columns-5 > .wp-block-post {
+			width: calc((100% - (var(--wp--style--block-gap, 1em) * 4)) / 5);
+		}
+
+		&.columns-6 > .wp-block-post {
+			width: calc((100% - (var(--wp--style--block-gap, 1em) * 5)) / 6);
+		}
+	}
+}

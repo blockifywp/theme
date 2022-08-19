@@ -4,39 +4,24 @@ declare( strict_types=1 );
 
 namespace Blockify;
 
-use DOMDocument;
-use DOMElement;
+use const PHP_INT_MAX;
+use function add_action;
 use function apply_filters;
-use function array_key_exists;
 use function array_merge_recursive;
-use function array_values;
-use function basename;
 use function defined;
-use function dirname;
 use function explode;
-use function file_exists;
-use function file_get_contents;
-use function filemtime;
-use function get_template_directory_uri;
 use function get_theme_support;
 use function in_array;
 use function implode;
-use function json_encode;
+use function is_array;
 use function libxml_clear_errors;
 use function libxml_use_internal_errors;
 use function mb_convert_encoding;
-use function php_uname;
-use function plugin_dir_url;
-use function preg_match;
 use function preg_replace;
 use function str_replace;
 use function trim;
-use function wp_enqueue_script;
-use function wp_enqueue_style;
-use function wp_register_script;
-use function wp_register_style;
-use function wp_should_load_separate_core_block_assets;
-use const DIRECTORY_SEPARATOR;
+use DOMDocument;
+use DOMElement;
 
 const CAMEL_CASE    = 'camel';
 const PASCAL_CASE   = 'pascal';
@@ -105,79 +90,6 @@ function convert_case( string $string, string $case ): string {
 }
 
 /**
- * Returns part of string between two strings.
- *
- * @since 0.0.2
- *
- * @param string $start
- * @param string $end
- * @param string $string
- * @param bool   $omit
- *
- * @return string
- */
-function str_between( string $start, string $end, string $string, bool $omit = false ): string {
-	$string = ' ' . $string;
-	$ini    = strpos( $string, $start );
-
-	if ( $ini == 0 ) {
-		return '';
-	}
-
-	$ini    += strlen( $start );
-	$len    = strpos( $string, $end, $ini ) - $ini;
-	$string = $start . substr( $string, $ini, $len ) . $end;
-
-	if ( $omit ) {
-		$string = str_replace( [ $start, $end ], '', $string );
-	}
-
-	return $string;
-}
-
-/**
- * Replaces first occurrence of a string within a string.
- *
- * @since 0.0.2
- *
- * @param string $haystack
- * @param string $needle
- * @param string $replace
- *
- * @return string
- */
-function str_replace_first( string $haystack, string $needle, string $replace ): string {
-	$pos = strpos( $haystack, $needle );
-
-	if ( $pos !== false ) {
-		$haystack = substr_replace( $haystack, $replace, $pos, strlen( $needle ) );
-	}
-
-	return $haystack;
-}
-
-/**
- * Replaces last occurrence of a string within a string.
- *
- * @since 0.0.2
- *
- * @param string $haystack
- * @param string $needle
- * @param string $replace
- *
- * @return string
- */
-function str_replace_last( string $haystack, string $needle, string $replace ): string {
-	$pos = strrpos( $haystack, $needle );
-
-	if ( $pos !== false ) {
-		$haystack = substr_replace( $haystack, $replace, $pos, strlen( $needle ) );
-	}
-
-	return $haystack;
-}
-
-/**
  * Returns a formatted DOMDocument object from a given string.
  *
  * @since 0.0.2
@@ -243,66 +155,39 @@ function minify_css( string $css ): string {
 }
 
 /**
- * Converts string of CSS rules to an array.
+ * Returns the final merged config.
  *
- * @since 0.0.2
- *
- * @param string $css
+ * @since 0.0.9
  *
  * @return array
  */
-function css_rules_to_array( string $css ): array {
-	$array    = [];
-	$elements = explode( ';', $css );
+function get_config(): array {
+	$defaults = require __DIR__ . '/config.php';
+	$theme    = get_theme_support( SLUG )[0] ?? [];
 
-	foreach ( $elements as $element ) {
-		$parts = explode( ':', $element, 2 );
-
-		if ( isset( $parts[1] ) ) {
-			$property = $parts[0];
-			$value    = $parts[1];
-
-			$array[ $property ] = $value;
-		}
-	}
-
-	return $array;
+	return apply_filters( SLUG, array_merge_recursive( $defaults, $theme ) );
 }
 
 /**
- * Returns an attribute value from a HTML element string, with fallback.
+ * Returns sub config.
  *
- * @since 0.0.2
+ * @since 0.0.14
  *
- * @param string $name
- * @param string $html
- * @param string $default
+ * @param string $sub_config
+ * @param array  $default
  *
- * @return string
+ * @return array
  */
-function get_attr( string $name, string $html, string $default = '' ): string {
-	preg_match( '/' . $name . '="(.+?)"/', $html, $matches );
+function get_sub_config( string $sub_config, $default = [] ): array {
+	$config = get_config();
 
-	return $matches[1] ?? $default;
+	return isset( $config[ $sub_config ] ) && is_array( $config[ $sub_config ] ) ? $config[ $sub_config ] : $default;
 }
 
 /**
- * Removes HTML comments from string.
+ * Returns an HTML element with a replaced tag.
  *
- * @since 0.0.2
- *
- * @param string $content
- *
- * @return string
- */
-function remove_html_comments( string $content = '' ): string {
-	return preg_replace( '/<!--(.|\s)*?-->/', '', $content );
-}
-
-/**
- * Replaces a HTML elements tag.
- *
- * @since 0.0.2
+ * @since 0.0.20
  *
  * @param DOMElement $node
  * @param string     $name
@@ -336,19 +221,6 @@ function change_tag_name( DOMElement $node, string $name ): DOMElement {
 }
 
 /**
- * Returns a random hex code.
- *
- * @since 0.0.2
- *
- * @param bool $hashtag
- *
- * @return string
- */
-function random_hex( bool $hashtag = true ): string {
-	return ( $hashtag ? '#' : '' ) . str_pad( dechex( mt_rand( 0, 0xFFFFFF ) ), 6, '0', STR_PAD_LEFT );
-}
-
-/**
  * Attempts to log WordPress PHP data to console.
  *
  * @since    0.0.2
@@ -357,217 +229,28 @@ function random_hex( bool $hashtag = true ): string {
  *
  * @return void
  */
-function console_log( $data ): void {
+function log( $data ): void {
 	$data   = json_encode( $data );
 	$script = "<script class='console-log'>console.log($data);</script>";
 
-	print $script;
+	add_action( 'wp_footer', fn() => print $script, PHP_INT_MAX - 1 );
 }
 
 /**
- * Enqueues a compiled asset from build directory.
+ * Converts array of CSS rules to string.
  *
- * @since 0.0.2
+ * @since 0.0.22
  *
- * @param string $base File basename relative to build directory. E.g style.css.
- * @param array  $args Default args to merge.
- *
- * @return void
- */
-function enqueue_asset( string $base, array $args = [] ): void {
-	$explode = explode( '.', $base );
-	$name    = str_replace( '/', '-', $explode[0] );
-	$type    = str_replace( '.', '', $explode[1] ) ?? '';
-
-	$args = [
-		'handle'  => 'blockify-' . $name,
-		'src'     => get_asset_url() . 'build/' . $base,
-		'deps'    => [ ...( $args['deps'] ?? [] ), ...get_asset_deps( $name ) ],
-		'version' => $args['version'] ?? get_asset_version( $name ),
-	];
-
-	if ( $type === 'css' ) {
-		wp_register_style( ...array_values( $args ) );
-		wp_enqueue_style( $args['handle'] );
-
-	} else if ( $type === 'js' ) {
-		$args['in_footer'] = $args['in_footer'] ?? true;
-
-		wp_register_script( ...array_values( $args ) );
-		wp_enqueue_script( $args['handle'] );
-	}
-}
-
-/**
- * Returns either a theme or plugin asset URL.
- *
- * @since 1.0.0
+ * @param array $styles
  *
  * @return string
  */
-function get_asset_url(): string {
-	$is_plugin = basename( dirname( DIR ) ) === 'plugins';
+function css_array_to_string( array $styles ): string {
+	$css = '';
 
-	return $is_plugin ? plugin_dir_url( FILE ) : get_template_directory_uri() . DS;
-}
-
-/**
- * Returns PHP asset file.
- *
- * @since 0.0.9
- *
- * @param string $name
- *
- * @return array
- */
-function get_asset_file( string $name ): array {
-	static $files = [];
-
-	if ( ! array_key_exists( $name, $files ) ) {
-		$file           = DIR . 'build/' . $name . '.asset.php';
-		$files[ $name ] = file_exists( $file ) ? require $file : [
-			'dependencies' => [],
-			'version'      => (string) filemtime( DIR ),
-		];
+	foreach ($styles as $property => $value) {
+		$css .= $value ? "$property:$value;" : '';
 	}
 
-	return $files[ $name ] ?? [];
-}
-
-/**
- * Returns asset dependencies.
- *
- * @since 0.0.9
- *
- * @param string $name
- * @param array  $defaults
- *
- * @return array
- */
-function get_asset_deps( string $name, array $defaults = [] ): array {
-	return get_asset_file( $name )['dependencies'] ?? $defaults;
-}
-
-/**
- * Returns asset version.
- *
- * @since 0.0.9
- *
- * @param string $name
- *
- * @return string
- */
-function get_asset_version( string $name ): string {
-	return get_asset_file( $name )['version'] ?? '';
-}
-
-/**
- * Parses and registers block pattern from PHP file with header comment.
- *
- * @since 0.0.8
- *
- * @param string $file
- *
- * @return void
- */
-function register_block_pattern_from_file( string $file ): void {
-	$headers = get_file_data( $file, [
-		'categories'  => 'Categories',
-		'title'       => 'Title',
-		'slug'        => 'Slug',
-		'block_types' => 'Block Types',
-	] );
-
-	$categories = explode( ',', $headers['categories'] );
-
-	ob_start();
-	include $file;
-	$content = ob_get_clean();
-
-	$pattern = [
-		'title'      => $headers['title'],
-		'content'    => $content,
-		'categories' => [ ...$categories ],
-	];
-
-	if ( $headers['block_types'] ) {
-		$pattern['blockTypes'] = $headers['block_types'];
-	}
-
-	foreach ( $categories as $category ) {
-		register_block_pattern_category( $category, [
-			'label' => ucwords( $category ),
-		] );
-	}
-
-	register_block_pattern( $headers['slug'], $pattern );
-}
-
-/**
- * Detects the current operating system.
- *
- * Used for determining scrollbar width without JS.
- *
- * @since 0.0.9
- *
- * @return string
- */
-function get_os(): string {
-	$user_agent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-
-	if ( ! $user_agent ) {
-		return php_uname( 's' );
-	}
-
-	if ( preg_match( '/linux/i', $user_agent ) ) {
-		$os = 'linux';
-	} elseif ( preg_match( '/macintosh|mac os x|mac_powerpc/i', $user_agent ) ) {
-		$os = 'mac';
-	} elseif ( preg_match( '/windows|win32|win98|win95|win16/i', $user_agent ) ) {
-		$os = 'windows';
-	} elseif ( preg_match( '/ubuntu/i', $user_agent ) ) {
-		$os = 'ubuntu';
-	} elseif ( preg_match( '/iphone/i', $user_agent ) ) {
-		$os = 'iphone';
-	} elseif ( preg_match( '/ipod/i', $user_agent ) ) {
-		$os = 'ipod';
-	} elseif ( preg_match( '/ipad/i', $user_agent ) ) {
-		$os = 'ipad';
-	} elseif ( preg_match( '/android/i', $user_agent ) ) {
-		$os = 'android';
-	} elseif ( preg_match( '/blackberry/i', $user_agent ) ) {
-		$os = 'blackberry';
-	} elseif ( preg_match( '/webos/i', $user_agent ) ) {
-		$os = 'mobile';
-	}
-
-	return $os ?? '';
-}
-
-/**
- * Returns the final merged config.
- *
- * @since 0.0.9
- *
- * @return array
- */
-function get_config(): array {
-	$defaults = require __DIR__ . '/config.php';
-	$theme    = get_theme_support( SLUG )[0] ?? [];
-
-	return apply_filters( SLUG, array_merge_recursive( $defaults, $theme ) );
-}
-
-/**
- * Returns sub config.
- *
- * @since 0.0.14
- *
- * @param string $sub_config
- * @param null   $default
- *
- * @return array
- */
-function get_sub_config( string $sub_config, $default = null ): array {
-	return get_config()[ $sub_config ] ?? $default;
+	return $css;
 }

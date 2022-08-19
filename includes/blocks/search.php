@@ -25,50 +25,88 @@ function render_search_block( string $content, array $block ): string {
 	}
 
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
+	$dom     = dom( $content );
 
-	if ( $padding ) {
+	/**
+	 * @var $form DOMElement
+	 */
+	$form = $dom->firstChild;
+	$divs = $form->getElementsByTagName( 'div' );
+
+	if ( $divs->item( 0 ) ) {
+
+		/**
+		 * @var $div DOMElement;
+		 */
+		$div     = $divs->item( 0 );
+		$buttons = $div->getElementsByTagName( 'button' );
+
+		if ( $buttons->item( 0 ) ) {
+
+			/**
+			 * @var $button DOMElement
+			 */
+			$button = $buttons->item( 0 );
+
+			$button->setAttribute( 'class', implode( ' ', [
+				$button->getAttribute( 'class' ),
+				'wp-block-button__link',
+			] ) );
+		}
+
+		$inputs = $div->getElementsByTagName( 'input' );
+
+		if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $inputs->item( 0 ) ) {
+
+			/**
+			 * @var $input DOMElement;
+			 */
+			$input = $inputs->item( 0 );
+
+			$input->setAttribute( 'style', implode( ';', [
+				'padding-top:' . ( $padding['top'] ?? '' ),
+				'padding-right:' . ( $padding['right'] ?? '' ),
+				'padding-bottom:' . ( $padding['bottom'] ?? '' ),
+				'padding-left:' . ( $padding['left'] ?? '' ),
+			] ) );
+		}
+	}
+
+	$content = $dom->saveHTML();
+
+	if ( isset( $block['attrs']['className'] ) && \str_contains( $block['attrs']['className'], 'is-style-toggle' ) ) {
 		$dom = dom( $content );
 
 		/**
-		 * @var $form DOMElement
+		 * @var $form   DOMElement
+		 * @var $label  DOMElement
+		 * @var $wrap   DOMElement
+		 * @var $input  DOMElement
+		 * @var $button DOMElement
 		 */
-		$form = $dom->firstChild;
+		$form     = $dom->firstChild;
+		$label    = $form->getElementsByTagName( 'label' )->item( 0 );
+		$wrap     = $form->getElementsByTagName( 'div' )->item( 0 );
+		$input    = $wrap->getElementsByTagName( 'input' )->item( 0 );
+		$button   = $wrap->getElementsByTagName( 'button' )->item( 0 );
+		$checkbox = $dom->createElement( 'input' );
+		$button   = change_tag_name( $button, 'label' );
 
-		$divs = $form->getElementsByTagName( 'div' );
+		$checkbox->setAttribute( 'class', 'wp-block-search__checkbox screen-reader-text' );
+		$checkbox->setAttribute( 'type', 'checkbox' );
+		$checkbox->setAttribute( 'id', $label->getAttribute( 'for' ) . '-checkbox' );
+		$button->setAttribute( 'for', $checkbox->getAttribute( 'id' ) );
 
-
-		if ( $divs->item( 0 ) ) {
-
-			/**
-			 * @var $div DOMElement;
-			 */
-			$div = $divs->item( 0 );
-
-			$inputs = $div->getElementsByTagName( 'input' );
-
-			if ( $inputs->item( 0 ) ) {
-
-				/**
-				 * @var $input DOMElement;
-				 */
-				$input = $inputs->item( 0 );
-
-				$input->setAttribute( 'style', implode( ';', [
-					'padding-top:' . $padding['top'],
-					'padding-right:' . $padding['right'],
-					'padding-bottom:' . $padding['bottom'],
-					'padding-left:' . $padding['left'],
-				] ) );
-			}
-		}
+		$wrap->appendChild( $input );
+		$form->removeChild( $label );
+		$form->removeChild( $wrap );
+		$form->appendChild( $wrap );
+		$form->insertBefore( $checkbox, $wrap );
+		$form->insertBefore( $button, $wrap );
 
 		$content = $dom->saveHTML();
 	}
 
-	return str_replace(
-		'wp-block-search__button ',
-		'wp-block-search__button wp-block-button__link ',
-		$content
-	);
+	return $content;
 }
 

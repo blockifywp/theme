@@ -2,26 +2,22 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Requires PHP: 7.4
-Stable tag: 0.0.14
+Stable tag: 0.0.24
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-A lightweight yet powerful full site editing block starter theme. Use it to create any design you can imagine! Insanely fast, 100% theme.json based - loads zero CSS and JS by default. Multiple style variations, block patterns, and templates to get started quickly. Smart features including automatic Google Font loading, box shadows, text gradients, spacing controls, responsive settings and more.
+Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or web font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify extends core WordPress blocks allowing finer design control. Smart customization features including dark mode support, Google Fonts, SVG icons, box shadows, text gradients, block positioning, responsive settings and more. Please note Gutenberg is still experimental and updates can cause breaking changes.
 
 == Installation ==
 
 1. In your site's admin panel, go to Appearance > Themes and click `Add New`.
 2. Type "Blockify" in the search field.
 3. Click `Install` and then `Activate` to start using the theme.
-4. Navigate to Appearance > Customize in your admin panel and customize to your needs.
-5. A notice box may appear, recommending you to install the Blockify plugin. You can either use it or any other block toolkit.
 4. Navigate to Appearance > Editor.
-7. Once the Site Editor is launched, click on the inserter icon, pick one of the many ready-made blocks or patterns then click to insert.
-8. Edit the page content as you wish, you can add, remove and manipulate any of the blocks.
-9. Enjoy :)
+5. Edit the page content as you wish, you can add, remove or customize any of the blocks.
+6. Enjoy :)
 
 == Copyright ==
 
@@ -39,7 +35,7 @@ GNU General Public License for more details.
 
 TGMPA
 License: GPL-2.0-or-later
-License URL: https://github.com/TGMPA/TGM-Plugin-Activation/blob/develop/LICENSE.md
+License URL: https://www.opensource.org/licenses/GPL-2.0
 
 WPTT Webfont Loader
 License: MIT
@@ -55,7 +51,7 @@ License URL: https://github.com/WordPress/WordPress/blob/master/license.txt
 
 Dashicons
 License: GPL-2.0-or-later
-License URL: http://www.gnu.org/licenses/gpl-2.0.html
+License URL: https://www.gnu.org/licenses/gpl-2.0.html
 
 All other custom made assets are licensed under GPL-2.0-or-later.
 
@@ -63,7 +59,57 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.0.14 - 25 July, 2022 =
+= 0.0.24 - 11 August, 2022 =
+* Add: Dark mode
+* Add: Page title settings
+* Add: Absolute & sticky header support
+* Add: Multi column sub menus
+* Fix: Blog patterns
+* Update: Smooth scroll media query
+* Remove: Template part settings
+
+= 0.0.23 - 2 August, 2022 =
+* Fix: Navigation blocks in patterns
+
+= 0.0.22 - 2 August, 2022 =
+* Fix: Patterns for release
+* Add: TGMPA for Gutenberg
+* Update: Screenshot
+
+= 0.0.21 - 2 August, 2022 =
+* Remove: Theme URI
+* Remove: Emoji scripts
+* Add: SVG image icons
+* Fix: Filter and transform settings
+* Update: Move languages
+* Update: Move scripts to assets dir
+
+= 0.0.20 - 27 July, 2022 =
+* Fix: Box shadow bug
+
+= 0.0.19 - 27 July, 2022 =
+* Fix: Site editor assets
+* Add: Border custom property
+* Remove: Unused functions
+
+= 0.0.18 - 27 July, 2022 =
+* Fix: Missing block editor styles
+* Fix: Layout defaults
+
+= 0.0.17 - 26 July, 2022 =
+* Fix: Button errors in patterns
+* Fix: Responsive styles
+* Remove: Unused style.css
+
+= 0.0.16 - 26 July, 2022 =
+* Remove: _MACOSX folder
+
+= 0.0.15 - 26 July, 2022 =
+* Remove: TGMPA
+* Remove: Gutenberg as dependency
+* Fix: Patterns
+
+= 0.0.14 - 26 July, 2022 =
 * Remove: Plugin dependency
 * Remove: Logo Ipsum logos
 * Add: Theme settings

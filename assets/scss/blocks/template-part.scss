@@ -1,0 +1,19 @@
+.wp-block-template-part {
+	width: 100%;
+	margin: 0 !important;
+}
+
+.wp-site-header {
+	z-index: 2;
+}
+
+.wp-site-footer {
+	display: flex;
+	align-items: flex-end;
+}
+
+@media (min-width: 600px) {
+	.wp-block-post-template.is-flex-container.is-flex-container.columns-2 > li {
+		width: calc(50% - (var(--wp--custom--spacing--gap) * .5));
+	}
+}

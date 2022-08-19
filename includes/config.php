@@ -67,8 +67,18 @@ $defaults['blockSupports'] = [
 		'reverseMobile' => true,
 	],
 	'core/embed'               => [
-		'spacing' => [
+		'spacing'              => [
 			'margin' => true,
+		],
+		'__experimentalBorder' => [
+			'radius'                        => true,
+			'width'                         => true,
+			'color'                         => true,
+			'style'                         => true,
+			'__experimentalDefaultControls' => [
+				'width' => true,
+				'color' => true,
+			],
 		],
 	],
 	'core/gallery'             => [
@@ -78,8 +88,21 @@ $defaults['blockSupports'] = [
 	],
 	'core/group'               => [
 		'boxShadow' => true,
+		'position'  => true,
+		'spacing'   => true,
 	],
 	'core/heading'             => [
+		'align'                => [
+			'full',
+			'wide',
+			'none',
+		],
+		'alignWide'            => true,
+		'color'   => [
+			'gradients'  => true,
+			'background' => true,
+			'text'       => true, // For SVG currentColor.
+		],
 		'spacing' => [
 			'margin'  => true,
 			'padding' => true,
@@ -99,6 +122,9 @@ $defaults['blockSupports'] = [
 			'margin'  => true,
 			'padding' => true,
 		],
+		'transform'            => true,
+		'filter'               => true,
+		'position'             => true,
 	],
 	'core/list'                => [
 		'__experimentalLayout' => [
@@ -130,6 +156,19 @@ $defaults['blockSupports'] = [
 			'blockGap' => true,
 		],
 	],
+	'core/navigation-submenu'  => [
+		'spacing' => [
+			'margin'   => true,
+			'padding'  => true,
+			'blockGap' => true,
+		],
+		'color'   => [
+			'background' => true,
+			'gradient'   => true, // Doesn't work.
+			'link'       => true,
+			'text'       => true,
+		],
+	],
 	'core/paragraph'           => [
 		'align'                => [
 			'full',
@@ -140,6 +179,12 @@ $defaults['blockSupports'] = [
 			'none',
 		],
 		'alignWide'            => true,
+		'color'   => [
+			'background' => true,
+			'gradient'   => true, // Doesn't work.
+			'link'       => true,
+			'text'       => true,
+		],
 		'__experimentalBorder' => [
 			'radius'                        => true,
 			'width'                         => true,
@@ -186,11 +231,20 @@ $defaults['blockSupports'] = [
 		],
 		'alignWide' => true,
 	],
+	'core/post-title'          => [
+		'spacing' => [
+			'padding' => true,
+			'margin'  => true,
+		],
+	],
 	'core/query'               => [
 		'spacing' => [
 			'padding'  => true,
 			'blockGap' => true,
 		],
+	],
+	'core/row'                 => [
+		'boxShadow' => true,
 	],
 	'core/search'              => [
 		'boxShadow' => true,
@@ -224,8 +278,13 @@ $defaults['blockSupports'] = [
 			'padding' => false,
 		],
 	],
-	'core/row'                 => [
-		'boxShadow' => true,
+	'core/site-logo'           => [
+		'color' => [
+			'background' => true,
+			'gradient'   => true, // Doesn't work.
+			'link'       => true,
+			'text'       => true,
+		],
 	],
 	'core/spacer'              => [
 		'boxShadow' => true,
@@ -237,6 +296,16 @@ $defaults['blockSupports'] = [
 		'spacing'   => [
 			'margin' => true,
 		],
+	],
+	'core/template-part'       => [
+		'boxShadow' => true,
+		'color'   => [
+			'background' => true,
+			'gradient'   => true, // Doesn't work.
+			'link'       => true,
+			'text'       => true,
+		],
+		'position' => true,
 	],
 	'core/video'               => [
 		'boxShadow' => true,
@@ -264,14 +333,14 @@ $defaults['blockStyles']['register'] = [
 		'label' => __( 'Secondary', 'blockify' ),
 	],
 	[
-		'type'  => 'core/button',
-		'name'  => 'outline',
-		'label' => __( 'Outline', 'blockify' ),
+		'type'  => 'core/image',
+		'name'  => 'icon',
+		'label' => __( 'SVG Icon', 'blockify' ),
 	],
 	[
-		'type'  => 'core/button',
-		'name'  => 'transparent',
-		'label' => __( 'Transparent', 'blockify' ),
+		'type'  => 'core/site-logo',
+		'name'  => 'icon',
+		'label' => __( 'Icon', 'blockify' ),
 	],
 	[
 		'type'  => 'core/list',
@@ -288,12 +357,30 @@ $defaults['blockStyles']['register'] = [
 		'name'  => 'square',
 		'label' => __( 'Square', 'blockify' ),
 	],
+	[
+		'type'  => 'core/navigation-submenu',
+		'name'  => 'mega-menu',
+		'label' => __( 'Mega Menu', 'blockify' ),
+	],
+	[
+		'type'  => 'core/search',
+		'name'  => 'toggle',
+		'label' => __( 'Toggle', 'blockify' ),
+	],
 ];
 
 $defaults['blockStyles']['unregister'] = [
 	[
 		'type' => 'core/button',
 		'name' => [ 'fill', 'outline' ],
+	],
+	[
+		'type' => 'core/image',
+		'name' => [ 'rounded' ],
+	],
+	[
+		'type' => 'core/site-logo',
+		'name' => [ 'rounded' ],
 	],
 	[
 		'type' => 'core/separator',
@@ -312,15 +399,10 @@ $defaults['icons'] = [
 	'social'    => DIR . 'assets/svg/social',
 ];
 
-$defaults['recommendedPlugins'] = [
-	[
-		'name'     => 'Gutenberg',
-		'slug'     => 'gutenberg',
-		'required' => false,
-	],
-];
-
 $defaults['themeSupports'] = [
+	'add'    => [
+		'responsive-embeds',
+	],
 	'remove' => [
 		'core-block-patterns',
 	],
@@ -333,7 +415,6 @@ $defaults['postTypeSupports'] = [
 	],
 ];
 
-// Dark mode (pro).
 $defaults['darkMode'] = [
 	'neutral-900' => 'neutral-100',
 	'neutral-800' => 'neutral-200',
@@ -349,17 +430,12 @@ $defaults['darkMode'] = [
 	'white'       => 'neutral-900',
 ];
 
-// Theme blocks (pro).
-$defaults['blocks'] = [
-	'accordion',
-	'breadcrumbs',
-	'counter',
-	'divider',
-	'google-map',
-	'icon',
-	'newsletter',
-	'slider',
-	'tabs',
+$defaults['recommendedPlugins'] = [
+	[
+		'name'     => 'Gutenberg',
+		'slug'     => 'gutenberg',
+		'required' => false,
+	],
 ];
 
 return $defaults;

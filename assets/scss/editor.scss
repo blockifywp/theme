@@ -1,0 +1,265 @@
+.editor-styles-wrapper {
+	width: auto !important;
+
+	.is-root-container {
+		z-index: 1; // Required for box shadows.
+
+		// TODO: Custom properties.
+		.alignfull {
+			max-width: 100%;
+			width: 100% !important;
+		}
+
+		.alignwide {
+			max-width: var(--wp--custom--layout--wide-size, 1200px);
+			width: calc(100% - var(--wp--style--block-gap, 5vw) * 2);
+		}
+	}
+
+	// TODO: Is this needed?
+	.wp-block-image {
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+
+		img {
+			max-width: 100% !important;
+		}
+	}
+
+	[src*=".svg"] {
+		width: 100%;
+	}
+
+	// Needed for additional border support.
+	.wp-block-button {
+		border: 0 !important;
+	}
+}
+
+/**
+ * Settings.
+ */
+
+// Always hide title.
+.hide-title .edit-post-visual-editor__post-title-wrapper {
+	display: none;
+}
+
+.is-cover-template .edit-post-visual-editor__post-title-wrapper {
+	margin-top: 0;
+	padding-top: 4rem;
+	padding-bottom: var(--wp--style--block-gap);
+	background-color: red;
+}
+
+// Page title field.
+.edit-post-post-schedule ~ .components-panel__row {
+	flex-wrap: wrap;
+
+	.components-base-control {
+		width: 100%;
+		margin: 0.5em 0;
+	}
+}
+
+.blockify-page-title-setting {
+	width: 100%;
+}
+
+// Style variation.
+.editor-styles-wrapper.wp-embed-responsive {
+
+	> div,
+	> iframe {
+		pointer-events: all !important;
+	}
+
+}
+
+// Template parts.
+.blockify-template-parts {
+	.components-base-control {
+		width: 100%;
+	}
+}
+
+/**
+ * Extensions.
+ */
+
+.blockify-controls {
+
+	.components-panel__row,
+	.components-base-control {
+		width: 100%;
+	}
+
+	&.is-opened .components-panel__body-title {
+		margin-bottom: 1em;
+	}
+
+	// Box shadow color picker.
+	.block-editor-panel-color-gradient-settings {
+		padding: 1em 0;
+	}
+}
+
+.blockify-reverse-mobile {
+	font-size: 16px;
+	margin: 0 16px 0;
+}
+
+
+/**
+ * Formats.
+ */
+
+.blockify-gradient-text-control {
+
+	.components-popover__content {
+		padding: 0.5em;
+	}
+}
+
+.blockify-icon-popover > div > div {
+	padding: 16px;
+	width: 260px;
+}
+
+.blockify-icon-color.is-opened {
+	padding: 0;
+	border: 0;
+
+	.components-panel__body-title {
+		margin: 0;
+
+		button {
+			padding: 0 0 10px;
+		}
+
+		svg {
+			display: none;
+		}
+	}
+}
+
+.editor-styles-wrapper div .is-style-icon {
+	background: transparent !important;
+	float: none !important;
+	padding: 0 !important;
+
+	img,
+	figcaption {
+		display: none !important;
+	}
+
+	> div:first-of-type {
+		display: inline-block;
+		position: relative;
+		padding: var(--wp--custom--icon--padding, 0);
+		margin-left: auto;
+		margin-right: auto;
+		border-radius: inherit;
+		width: auto !important;
+		height: auto !important;
+		background: var(--wp--custom--icon--background, transparent);
+
+		&:after {
+			content: '';
+			display: inline-block;
+			position: relative;
+			background: var(--wp--custom--icon--color, currentColor);
+			width: var(--wp--custom--icon--size, 30px);
+			height: var(--wp--custom--icon--size, 30px);
+			vertical-align: text-bottom;
+			-webkit-mask-image: var(--wp--custom--icon--url);
+			-webkit-mask-position: center;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-size: cover !important;
+		}
+	}
+}
+
+.blockify-icon-settings {
+	order: -1;
+}
+
+.blockify-icon-setting {
+
+	.components-input-control__container {
+		width: 100%;
+	}
+}
+
+.blockify-icon-setting {
+
+	svg {
+		width: 2em;
+		height: 2em;
+	}
+
+	.components-custom-select-control__button {
+		width: 100%;
+	}
+
+	.components-custom-select-control__menu[aria-hidden="false"] {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.components-custom-select-control__item-icon {
+		display: none;
+	}
+}
+
+.blockify-icon-preview {
+	margin-top: 29px;
+	position: absolute;
+	width: 220px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	text-transform: capitalize;
+	z-index: 9;
+	pointer-events: none;
+
+	svg {
+		width: 24px;
+		margin: 0 8px;
+	}
+}
+
+.blockify-icon-settings {
+	select {
+		text-transform: capitalize;
+	}
+}
+
+.block-editor-block-inspector {
+
+	> div:not([class*=""]) {
+		display: flex;
+		flex-wrap: wrap;
+
+		> * {
+			width: 100%;
+		}
+	}
+}
+
+.is-style-toggle input {
+	display: none;
+}
+
+.editor-styles-wrapper .is-style-toggle .wp-block-search__inside-wrapper {
+	background: transparent !important;
+	min-width: 0 !important;
+}
+
+header.wp-block-template-part {
+	z-index: 3;
+}
+
+.is-transparent-header {
+	position: absolute;
+}

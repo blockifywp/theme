@@ -16,6 +16,28 @@ add_filter( 'render_block', NS . 'render_columns_block', 10, 2 );
  * @return string
  */
 function render_columns_block( string $content, array $block ): string {
+
+	if ( isset( $block['attrs']['boxShadow']['zIndex'] ) ) {
+		$dom = dom( $content );
+
+		/**
+		 * Fixes box shadow z index issue.
+		 *
+		 * @todo Fix px value added by editor.
+		 *
+		 * @var $first_child \DOMElement
+		 */
+		$first_child = $dom->firstChild;
+		$style       = $first_child->getAttribute( 'style' );
+		$styles      = \explode( ';', $style );
+
+		$styles[] = '--wp--custom--box-shadow--z-index:' . $block['attrs']['boxShadow']['zIndex'];
+
+		$first_child->setAttribute( 'style', \implode( ';', $styles ) );
+
+		$content = $dom->saveHTML();
+	}
+
 	if ( 'core/columns' !== $block['blockName'] ) {
 		return $content;
 	}

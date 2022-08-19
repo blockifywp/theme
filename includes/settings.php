@@ -7,25 +7,19 @@ namespace Blockify;
 use function add_action;
 use function add_post_type_support;
 use function add_theme_support;
+use function array_keys;
+use function basename;
+use function file_get_contents;
 use function get_post;
-use function register_post_meta;
+use function glob;
+use function preg_replace;
 use function register_rest_field;
 use function remove_post_type_support;
+use function str_replace;
+use function trim;
 use function wp_update_post;
-
-add_action( 'after_setup_theme', NS . 'add_recommended_plugins' );
-/**
- * Adds recommended plugins.
- *
- * @since 0.0.15
- *
- * @return void
- */
-function add_recommended_plugins(): void {
-	tgmpa( get_sub_config( 'recommendedPlugins' ) ?? [], [
-		'is_automatic' => true,
-	] );
-}
+use WP_REST_Request;
+use WP_REST_Server;
 
 add_action( 'after_setup_theme', NS . 'theme_supports' );
 /**
@@ -75,15 +69,29 @@ function add_post_type_supports(): void {
 	}
 }
 
-add_action( 'init', NS . 'rest_fields' );
+add_action( 'after_setup_theme', NS . 'add_recommended_plugins' );
 /**
- * Registers rest fields.
+ * Adds recommended plugins to TGMPA from theme config.
+ *
+ * @since 0.0.15
+ *
+ * @return void
+ */
+function add_recommended_plugins(): void {
+	tgmpa( get_sub_config( 'recommendedPlugins' ) ?? [], [
+		'is_automatic' => true,
+	] );
+}
+
+add_action( 'init', NS . 'register_page_title_rest_field' );
+/**
+ * Registers page title rest field.
  *
  * @since 0.0.2
  *
  * @return void
  */
-function rest_fields(): void {
+function register_page_title_rest_field(): void {
 	register_rest_field(
 		'blockify-page-title',
 		'title',
@@ -104,16 +112,89 @@ function rest_fields(): void {
 			},
 		]
 	);
+}
 
-	register_post_meta( 'page', 'template_part_header', [
-		'show_in_rest' => true,
-		'single'       => true,
-		'type'         => 'boolean',
-	] );
+add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
+/**
+ * Fetches icon data from endpoint.
+ *
+ * @since 0.0.1
+ *
+ * @return void
+ */
+function register_icons_rest_route(): void {
+	register_rest_route( 'blockify/v1', '/icons/', [
+		'permission_callback' => '__return_true',
+		'methods'             => WP_REST_Server::READABLE,
+		[
+			'args' => [
+				'sets' => [
+					'required' => false,
+					'type'     => 'string',
+				],
+				'set'  => [
+					'required' => false,
+					'type'     => 'string',
+				],
+			],
+		],
+		'callback'            => function ( $request ) {
+			$icon_data = get_icon_data();
 
-	register_post_meta( 'page', 'template_part_footer', [
-		'show_in_rest' => true,
-		'single'       => true,
-		'type'         => 'string',
+			/**
+			 * @var WP_REST_Request $request
+			 */
+			if ( $request->get_param( 'set' ) ) {
+				$set = $request->get_param( 'set' );
+
+				if ( $request->get_param( 'icon' ) ) {
+					return $icon_data[ $set ][ $request->get_param( 'icon' ) ];
+				}
+
+				return $icon_data[ $set ];
+			}
+
+			if ( $request->get_param( 'sets' ) ) {
+				return array_keys( $icon_data );
+			}
+
+			return $icon_data;
+		},
 	] );
+}
+
+/**
+ * Rest endpoint callback.
+ *
+ * @since 0.0.1
+ *
+ * @return array
+ */
+function get_icon_data(): array {
+	$icon_data = [];
+	$icon_sets = get_sub_config( 'icons' );
+
+	foreach ( $icon_sets as $icon_set => $set_dir ) {
+		$icons = glob( $set_dir . '/*.svg' );
+
+		foreach ( $icons as $icon ) {
+			$name = basename( $icon, '.svg' );
+			$icon = file_get_contents( $icon );
+
+			if ( $icon_set === 'wordpress' ) {
+				$icon = str_replace(
+					[ '<svg ', 'fill="none"' ],
+					[ '<svg fill="currentColor" ', '' ],
+					$icon
+				);
+			}
+
+			// Remove comments.
+			$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
+
+			$icon_data[ $icon_set ][ $name ] = trim( $icon );
+		}
+	}
+
+	return $icon_data;
 }
