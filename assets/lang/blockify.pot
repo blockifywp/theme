@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-19T12:54:12+00:00\n"
+"POT-Creation-Date: 2022-08-19T13:50:35+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -63,28 +63,12 @@ msgstr ""
 msgid "Toggle"
 msgstr ""
 
-#: includes/settings.php:132
+#: includes/settings.php:130
 msgid "Could not verify nonce."
 msgstr ""
 
-#: includes/settings.php:149
+#: includes/settings.php:147
 msgid "Set dark mode to "
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid " Settings"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Title"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Hide "
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid " title"
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -97,6 +81,22 @@ msgstr ""
 
 #: assets/js/editor.js:1
 msgid "Preview dark mode"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Post Type"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " Settings"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " title"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hide "
 msgstr ""
 
 #: assets/js/editor.js:1
