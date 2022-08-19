@@ -1,5 +1,6 @@
 {
   "name": "blockify/theme",
+  "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Blockify",
@@ -22,17 +23,7 @@
     }
   },
   "require": {
-    "wptt/webfont-loader": "dev-master",
-    "tgmpa/tgm-plugin-activation": "dev-master"
-  },
-  "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "squizlabs/php_codesniffer": "^3.7.0",
-    "wp-coding-standards/wpcs": "dev-develop"
-  },
-  "autoload": {
-    "files": [
-      "vendor/wptt/webfont-loader/wptt-webfont-loader.php"
-    ]
+    "tgmpa/tgm-plugin-activation": "dev-master",
+    "wptt/webfont-loader": "dev-master"
   }
 }

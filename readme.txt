@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.0.24
+Stable tag: 0.0.26
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,7 +59,16 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.0.24 - 11 August, 2022 =
+= 0.0.26 - 19 August 2022 =
+* Add: Dark mode editor settings
+* Add: Outline button style
+* Remove: Secondary button style
+
+= 0.0.25 - 14 August 2022 =
+* Fix: WordPress update issue
+* Update: Screenshot and changelog
+
+= 0.0.24 - 14 August, 2022 =
 * Add: Dark mode
 * Add: Page title settings
 * Add: Absolute & sticky header support

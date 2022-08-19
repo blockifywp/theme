@@ -37,8 +37,8 @@
 <!-- /wp:list -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2em"}}}} -->
-<div class="wp-block-buttons" style="margin-top:2em"><!-- wp:button {"className":"is-style-transparent is-style-secondary"} -->
-<div class="wp-block-button is-style-transparent is-style-secondary"><a class="wp-block-button__link wp-element-button" href="#">Choose plan</a></div>
+<div class="wp-block-buttons" style="margin-top:2em"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Choose plan</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 
@@ -101,8 +101,8 @@
 <!-- /wp:list -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2em"}}}} -->
-<div class="wp-block-buttons" style="margin-top:2em"><!-- wp:button {"className":"is-style-transparent is-style-secondary"} -->
-<div class="wp-block-button is-style-transparent is-style-secondary"><a class="wp-block-button__link wp-element-button" href="#">Choose plan</a></div>
+<div class="wp-block-buttons" style="margin-top:2em"><!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#">Choose plan</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons -->
 

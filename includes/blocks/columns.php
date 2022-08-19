@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 add_filter( 'render_block', NS . 'render_columns_block', 10, 2 );
 /**

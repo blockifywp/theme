@@ -22,8 +22,8 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Start now</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"className":"is-style-transparent is-style-secondary"} -->
-<div class="wp-block-button is-style-transparent is-style-secondary"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

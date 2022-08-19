@@ -9,7 +9,6 @@ module.exports = {
 	},
 
 	entry: {
-		...defaultConfig.entry,
 		editor: './assets/tsx/index.tsx'
 	},
 

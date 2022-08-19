@@ -2,9 +2,13 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 use const PHP_INT_MAX;
+use function dirname;
+use function get_template_directory_uri;
+use function plugin_dir_url;
+use function trailingslashit;
 use function add_action;
 use function apply_filters;
 use function array_merge_recursive;
@@ -36,6 +40,17 @@ const UPPER_CASE    = 'upper';
 const TITLE_CASE    = 'title';
 const SENTENCE_CASE = 'sentence';
 const DOT_CASE      = 'dot';
+
+/**
+ * Returns the URL for the theme or plugin.
+ *
+ * @since 0.0.13
+ *
+ * @return string
+ */
+function get_url(): string {
+	return trailingslashit( get_template_directory_uri() );
+}
 
 /**
  * Convert string case.
@@ -248,9 +263,36 @@ function log( $data ): void {
 function css_array_to_string( array $styles ): string {
 	$css = '';
 
-	foreach ($styles as $property => $value) {
+	foreach ( $styles as $property => $value ) {
 		$css .= $value ? "$property:$value;" : '';
 	}
 
 	return $css;
+}
+
+/**
+ * Converts string of CSS rules to an array.
+ *
+ * @since 0.0.2
+ *
+ * @param string $css
+ *
+ * @return array
+ */
+function css_string_to_array( string $css ): array {
+	$array    = [];
+	$elements = explode( ';', $css );
+
+	foreach ( $elements as $element ) {
+		$parts = explode( ':', $element, 2 );
+
+		if ( isset( $parts[1] ) ) {
+			$property = $parts[0];
+			$value    = $parts[1];
+
+			$array[ $property ] = $value;
+		}
+	}
+
+	return $array;
 }

@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;

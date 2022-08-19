@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 $defaults = [];
 
@@ -92,18 +92,18 @@ $defaults['blockSupports'] = [
 		'spacing'   => true,
 	],
 	'core/heading'             => [
-		'align'                => [
+		'align'     => [
 			'full',
 			'wide',
 			'none',
 		],
-		'alignWide'            => true,
-		'color'   => [
+		'alignWide' => true,
+		'color'     => [
 			'gradients'  => true,
 			'background' => true,
 			'text'       => true, // For SVG currentColor.
 		],
-		'spacing' => [
+		'spacing'   => [
 			'margin'  => true,
 			'padding' => true,
 		],
@@ -179,7 +179,7 @@ $defaults['blockSupports'] = [
 			'none',
 		],
 		'alignWide'            => true,
-		'color'   => [
+		'color'                => [
 			'background' => true,
 			'gradient'   => true, // Doesn't work.
 			'link'       => true,
@@ -207,6 +207,11 @@ $defaults['blockSupports'] = [
 			'default'         => [
 				'type' => 'flex',
 			],
+		],
+	],
+	'core/post-date'           => [
+		'spacing' => [
+			'margin' => true,
 		],
 	],
 	'core/post-featured-image' => [
@@ -299,13 +304,13 @@ $defaults['blockSupports'] = [
 	],
 	'core/template-part'       => [
 		'boxShadow' => true,
-		'color'   => [
+		'color'     => [
 			'background' => true,
 			'gradient'   => true, // Doesn't work.
 			'link'       => true,
 			'text'       => true,
 		],
-		'position' => true,
+		'position'  => true,
 	],
 	'core/video'               => [
 		'boxShadow' => true,
@@ -321,17 +326,6 @@ $defaults['blockSupports'] = [
 ];
 
 $defaults['blockStyles']['register'] = [
-	[
-		'type'      => 'core/button',
-		'name'      => 'primary',
-		'label'     => __( 'Primary', 'blockify' ),
-		'isDefault' => true,
-	],
-	[
-		'type'  => 'core/button',
-		'name'  => 'secondary',
-		'label' => __( 'Secondary', 'blockify' ),
-	],
 	[
 		'type'  => 'core/image',
 		'name'  => 'icon',
@@ -370,10 +364,6 @@ $defaults['blockStyles']['register'] = [
 ];
 
 $defaults['blockStyles']['unregister'] = [
-	[
-		'type' => 'core/button',
-		'name' => [ 'fill', 'outline' ],
-	],
 	[
 		'type' => 'core/image',
 		'name' => [ 'rounded' ],
@@ -431,6 +421,11 @@ $defaults['darkMode'] = [
 ];
 
 $defaults['recommendedPlugins'] = [
+	[
+		'name'     => 'Blockify',
+		'slug'     => 'blockify',
+		'required' => false,
+	],
 	[
 		'name'     => 'Gutenberg',
 		'slug'     => 'gutenberg',

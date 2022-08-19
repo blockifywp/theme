@@ -180,6 +180,75 @@ th, td {
 	margin-right: auto;
 }
 
+/**
+ * Elements.
+ */
+
+.wp-element-button {
+	position: relative;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	white-space: pre;
+	width: var(--wp--custom--button--width, auto);
+	transition: var(--wp--custom--transition, inherit);
+	background-clip: padding-box !important; // Semi transparent borders.
+
+	br + span {
+		width: 100%;
+		margin-top: .5em;
+	}
+
+	&:not(.has-text-color) {
+		color: #fff !important; // Core override.
+	}
+
+	.is-style-secondary &:not(.has-background) {
+		background: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));
+		border-color: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));
+	}
+
+	.is-style-secondary &:not(.has-text-color) {
+		color: var(--wp--preset--color--secondary-100, var(--wp--preset--color--primary-600)) !important;
+	}
+
+	.is-style-outline & {
+		border-width: var(--wp--custom--button-outline--border-width, 2px);
+		border-color: currentColor;
+		line-height: calc(1em - (var(--wp--custom--button-outline--border-width, 2px) * 2));
+	}
+
+	.is-style-outline &:not(.has-text-color) {
+		color: var(--wp--preset--color--primary-600, currentColor) !important;
+	}
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: var(--wp--preset--color--white, #fff);
+		opacity: 0;
+		border-radius: inherit;
+		transition: var(--wp--custom--transition);
+		pointer-events: none;
+	}
+
+	&:active,
+	&:hover,
+	&:focus {
+
+		&:before {
+			opacity: 0.2;
+		}
+	}
+}
+
 // Allows primary color to be gradient.
 .has-primary-background-color {
 	background: var(--wp--preset--color--primary);

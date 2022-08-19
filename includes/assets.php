@@ -2,8 +2,9 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
+use function get_option;
 use const WP_CONTENT_DIR;
 use function add_filter;
 use function array_merge_recursive;
@@ -22,8 +23,6 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function function_exists;
-use function get_body_class;
-use function get_template_directory_uri;
 use function glob;
 use function in_array;
 use function is_a;
@@ -34,10 +33,8 @@ use function remove_filter;
 use function sprintf;
 use function str_contains;
 use function str_replace;
-use function trim;
 use function ucwords;
 use function wp_add_inline_style;
-use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_register_script;
 use function wp_enqueue_style;
@@ -55,7 +52,7 @@ use WP_Screen;
 function enqueue_editor_assets(): void {
 	wp_enqueue_style(
 		'blockify-editor',
-		get_template_directory_uri() . '/assets/css/editor.css',
+		get_url() . 'assets/css/editor.css',
 		[],
 		filemtime( DIR . 'assets/css/editor.css' )
 	);
@@ -74,7 +71,7 @@ function enqueue_editor_assets(): void {
 
 	wp_register_script(
 		'blockify-editor',
-		get_template_directory_uri() . '/assets/js/editor.js',
+		get_url() . 'assets/js/editor.js',
 		$deps,
 		filemtime( DIR . 'assets/js/editor.js' ),
 		true
@@ -86,8 +83,10 @@ function enqueue_editor_assets(): void {
 		'blockify-editor',
 		'blockify',
 		array_merge_recursive( [
-			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-			'nonce'   => wp_create_nonce( 'blockify' ),
+			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'blockify' ),
+			'icon'     => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
+			'darkMode' => get_option( 'blockify' )['darkMode'] ?? false,
 		], get_config() )
 	);
 }
@@ -293,6 +292,12 @@ add_filter( 'blockify_css', NS . 'add_dark_mode_custom_properties', 10, 1 );
  * @return string
  */
 function add_dark_mode_custom_properties( string $css ): string {
+	$dark_mode = get_option( 'blockify', [] )['darkMode'] ?? true;
+
+	if ( ! $dark_mode ) {
+		return $css;
+	}
+
 	$global_styles = wp_get_global_settings();
 
 	if ( ! isset( $global_styles['color']['palette']['theme'] ) ) {
@@ -322,20 +327,21 @@ function add_dark_mode_custom_properties( string $css ): string {
 		$properties[ '--wp--preset--color--' . $slug ] = $colors[ $config[ $slug ] ];
 	}
 
-	$element = is_admin() ? 'body.editor-styles-wrapper,div.editor-styles-wrapper' : 'body';
-	$new_css = '@media(prefers-color-scheme:dark){' . $element . '{';
+	$body    = is_admin() ? '' : 'body';
+	$element = is_admin() ? 'html ' : '';
+	$new_css = '@media(prefers-color-scheme:dark){' . $body . '{';
 
 	foreach ( $properties as $property => $value ) {
 		$new_css .= "$property:$value;";
 	}
 
-	$new_css .= '}}.dark-mode{';
+	$new_css .= '}}' . $element . '.dark-mode{';
 
 	foreach ( $properties as $property => $value ) {
 		$new_css .= "$property:$value;";
 	}
 
-	$new_css .= '}.light-mode{';
+	$new_css .= '}' . $element . '.light-mode{';
 
 	foreach ( $original as $property => $value ) {
 		$new_css .= "$property:$value;";

@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 use function date;
 use function str_replace;

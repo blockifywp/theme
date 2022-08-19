@@ -11,7 +11,9 @@ vendor/tgmpa/tgm-plugin-activation/*.yml
 vendor/tgmpa/tgm-plugin-activation/*.xml
 vendor/tgmpa/tgm-plugin-activation/example.php
 assets/tsx
-bun.lockb
+src
 *.zip
 *.lock
-*lock.json
+package-lock.json
+composer.lock
+bun.lockb

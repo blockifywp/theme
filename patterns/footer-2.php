@@ -21,11 +21,11 @@
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
 <div class="wp-block-buttons"><!-- wp:button {"className":"is-style-transparent"} -->
-<div class="wp-block-button is-style-transparent"><a class="wp-block-button__link">Learn more</a></div>
+<div class="wp-block-button is-style-transparent"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"className":"is-style-secondary"} -->
-<div class="wp-block-button is-style-secondary"><a class="wp-block-button__link">Sign up</a></div>
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Sign up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

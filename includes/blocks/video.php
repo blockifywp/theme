@@ -2,7 +2,7 @@
 
 declare( strict_types=1 );
 
-namespace Blockify;
+namespace Blockify\Theme;
 
 use function add_action;
 use function add_filter;

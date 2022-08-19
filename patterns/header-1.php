@@ -14,11 +14,11 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"},"reverseMobile":true} -->
-<div class="wp-block-group is-reverse-on-mobile"><!-- wp:navigation /-->
+<div class="wp-block-group is-reverse-on-mobile"><!-- wp:navigation  /-->
 
 <!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-transparent is-style-secondary","fontSize":"16"} -->
-<div class="wp-block-button has-custom-font-size is-style-transparent is-style-secondary has-16-font-size"><a class="wp-block-button__link wp-element-button">Sign Up</a></div>
+<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline","fontSize":"16"} -->
+<div class="wp-block-button has-custom-font-size is-style-outline has-16-font-size"><a class="wp-block-button__link wp-element-button">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>
