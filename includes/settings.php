@@ -12,7 +12,6 @@ use function basename;
 use function file_get_contents;
 use function get_option;
 use function get_post;
-use function gettype;
 use function glob;
 use function preg_replace;
 use function register_rest_field;
@@ -20,7 +19,6 @@ use function remove_post_type_support;
 use function str_replace;
 use function tgmpa;
 use function update_option;
-use function wp_send_json;
 use function wp_send_json_error;
 use function wp_update_post;
 use WP_REST_Request;
@@ -208,7 +206,7 @@ function register_icons_rest_route(): void {
  */
 function get_icon_data(): array {
 	$icon_data = [];
-	$icon_sets = get_config( 'icons' );
+	$icon_sets = get_sub_config( 'icons' );
 
 	foreach ( $icon_sets as $icon_set => $set_dir ) {
 		$icons = glob( $set_dir . '/*.svg' );
