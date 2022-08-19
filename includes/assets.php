@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function get_option;
 use const WP_CONTENT_DIR;
 use function add_filter;
 use function array_merge_recursive;
@@ -23,6 +22,7 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function function_exists;
+use function get_option;
 use function glob;
 use function in_array;
 use function is_a;
