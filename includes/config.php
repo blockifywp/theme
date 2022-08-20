@@ -303,7 +303,7 @@ $defaults['blockSupports'] = [
 		'color'     => [
 			'gradients'  => true,
 			'background' => true,
-			'text'       => false,
+			'text'       => true,
 		],
 		'spacing'   => [
 			'margin' => true,
@@ -367,6 +367,31 @@ $defaults['blockStyles']['register'] = [
 		'type'  => 'core/search',
 		'name'  => 'toggle',
 		'label' => __( 'Toggle', 'blockify' ),
+	],
+	[
+		'type'  => 'core/spacer',
+		'name'  => 'angle',
+		'label' => __( 'Angle', 'blockify' ),
+	],
+	[
+		'type'  => 'core/spacer',
+		'name'  => 'curve',
+		'label' => __( 'Curve', 'blockify' ),
+	],
+	[
+		'type'  => 'core/spacer',
+		'name'  => 'round',
+		'label' => __( 'Round', 'blockify' ),
+	],
+	[
+		'type'  => 'core/spacer',
+		'name'  => 'wave',
+		'label' => __( 'Wave', 'blockify' ),
+	],
+	[
+		'type'  => 'core/spacer',
+		'name'  => 'fade',
+		'label' => __( 'Fade', 'blockify' ),
 	],
 ];
 

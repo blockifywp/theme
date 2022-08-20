@@ -61,6 +61,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.0.27 - 20 August 2022 =
 * Add: Support for image borders
+* Add: Spacer block styles
 * Update: CSS loading improvements
 * Update: Theme description
 

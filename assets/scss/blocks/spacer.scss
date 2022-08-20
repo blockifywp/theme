@@ -1,3 +1,37 @@
 .wp-block-spacer {
 	width: 100%;
+	position: relative;
 }
+
+.wp-block-spacer:before {
+	content: '';
+	display: block;
+	position: absolute;
+	background: currentColor;
+	width: 100%;
+	height: calc(100% + 1px);
+	mask: var(--wp--custom--spacer--mask);
+	-webkit-mask: var(--wp--custom--spacer--mask);
+}
+
+.is-style-angle {
+	--wp--custom--spacer--mask: url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M1000 120H0L1000 0v120z"/></svg>');
+}
+
+.is-style-curve {
+	--wp--custom--spacer--mask: url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M1000 120H0c533.3 0 866.7-40 1000-120v120z"/></svg>');
+}
+
+.is-style-round {
+	--wp--custom--spacer--mask: url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0q500 239 1000 0v120H0Z"/></svg>');
+}
+
+.is-style-wave {
+	--wp--custom--spacer--mask: url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 80q200 80 500-20 270-100 500-20v80H0Z"/></svg>');
+}
+
+.is-style-fade:before {
+	mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+	-webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
