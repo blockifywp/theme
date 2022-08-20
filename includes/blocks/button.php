@@ -30,14 +30,10 @@ function render_button_block( string $content, array $block ): string {
 		$global_settings = \wp_get_global_settings();
 		$dom = dom( $content );
 
-		/**
-		 * @var $button DOMElement Fixes button link border inheritance.
-		 */
+		/** @var DOMElement $button */
 		$button = $dom->firstChild;
 
-		/**
-		 * @var $link DOMElement
-		 */
+		/** @var DOMElement $link */
 		$link        = $button->getElementsByTagName( 'a' )->item( 0 );
 		$classes     = explode( ' ', $button->getAttribute( 'class' ) );
 		$styles      = explode( ';', $button->getAttribute( 'style' ) );

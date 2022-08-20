@@ -3,13 +3,18 @@
 	margin: 0 !important;
 }
 
-.wp-site-header {
+header.wp-block-template-part {
 	z-index: 2;
 }
 
-.wp-site-footer {
+footer.wp-block-template-part {
 	display: flex;
 	align-items: flex-end;
+	justify-content: center;
+
+	> div {
+		width: 100%;
+	}
 }
 
 @media (min-width: 600px) {

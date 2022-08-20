@@ -29,9 +29,7 @@ function render_site_logo_block( string $content, array $block ): string {
 
 		$dom = dom( $content );
 
-		/**
-		 * @var $svg DOMElement
-		 */
+		/** @var DOMElement $svg */
 		$svg = $dom->firstChild;
 
 		$svg->setAttribute( 'class', 'blockify-icon' );
@@ -43,9 +41,7 @@ function render_site_logo_block( string $content, array $block ): string {
 
 		if ( $paths->item( 0 ) ) {
 
-			/**
-			 * @var $path DOMElement
-			 */
+			/** @var DOMElement $path */
 			$path = $paths->item( 0 );
 
 			$path->setAttribute( 'fill', 'var(--wp--preset--color--primary-600, currentColor)' );

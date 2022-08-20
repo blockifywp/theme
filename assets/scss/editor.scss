@@ -7,7 +7,6 @@
 		// TODO: Custom properties.
 		.alignfull {
 			max-width: 100%;
-			width: 100% !important;
 		}
 
 		.alignwide {
@@ -155,7 +154,7 @@
 	}
 
 	> div:first-of-type {
-		display: inline-block;
+		display: inline-flex;
 		position: relative;
 		padding: var(--wp--custom--icon--padding, 0);
 		margin-left: auto;
@@ -266,4 +265,8 @@ header.wp-block-template-part {
 
 .is-transparent-header {
 	position: absolute;
+}
+
+.editor-styles-wrapper .is-layout-flow > p {
+	margin-top: var(--wp--style--block-gap, 1em);
 }

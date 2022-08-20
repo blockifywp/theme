@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMElement;
 use function add_filter;
 use function get_option;
 use function get_post;
@@ -32,9 +33,7 @@ function render_query_block( string $content, array $block ): string {
 
 		$dom = dom( $content );
 
-		/**
-		 * @var $div \DOMElement
-		 */
+		/** @var DOMElement $div */
 		$div = $dom->firstChild;
 
 		$style = $div->getAttribute( 'style' ) ? $div->getAttribute( 'style' ) . ';' : '';
@@ -82,7 +81,7 @@ function render_query_blocks( string $content, array $block ): string {
 			$dom = dom( $content );
 
 			/**
-			 * @var $first \DOMElement
+			 * @var $first DOMElement
 			 */
 			$first = $dom->firstChild;
 

@@ -35,17 +35,13 @@ function render_search_block( string $content, array $block ): string {
 
 	if ( $divs->item( 0 ) ) {
 
-		/**
-		 * @var $div DOMElement;
-		 */
+		/** @var DOMElement $div */
 		$div     = $divs->item( 0 );
 		$buttons = $div->getElementsByTagName( 'button' );
 
 		if ( $buttons->item( 0 ) ) {
 
-			/**
-			 * @var $button DOMElement
-			 */
+			/** @var DOMElement $button */
 			$button = $buttons->item( 0 );
 
 			$button->setAttribute( 'class', implode( ' ', [
@@ -58,9 +54,7 @@ function render_search_block( string $content, array $block ): string {
 
 		if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $inputs->item( 0 ) ) {
 
-			/**
-			 * @var $input DOMElement;
-			 */
+			/** @var DOMElement $input */
 			$input = $inputs->item( 0 );
 
 			$input->setAttribute( 'style', implode( ';', [

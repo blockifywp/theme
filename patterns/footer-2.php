@@ -5,8 +5,7 @@
  * Categories: footer
  * Block Types: core/template-part/footer
  */
-?><!-- wp:group {"align":"full","backgroundColor":"neutral-50"} -->
-<div class="wp-block-group alignfull has-neutral-50-background-color has-background alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":false}} -->
+?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":true}} -->
 <div class="wp-block-group alignwide alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:columns {"verticalAlignment":"center","align":"wide"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":4} -->
@@ -220,5 +219,4 @@
 <!-- /wp:group --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
-<!-- /wp:group --></div>
 <!-- /wp:group -->

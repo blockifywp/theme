@@ -57,15 +57,6 @@ function enqueue_editor_assets(): void {
 		filemtime( DIR . 'assets/css/editor.css' )
 	);
 
-	// Needed for server generated custom properties.
-	wp_add_inline_style(
-		'blockify-editor',
-		apply_filters(
-			'blockify_css',
-			'' // Added by add_editor_style
-		)
-	);
-
 	$asset = require DIR . 'assets/js/editor.asset.php';
 	$deps  = $asset['dependencies'];
 
@@ -106,6 +97,8 @@ function maybe_load_editor_assets( WP_Screen $screen ): void {
 	$hook_name   = $site_editor ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets';
 
 	add_action( $hook_name, NS . 'enqueue_editor_assets' );
+	add_action( $hook_name, NS . 'add_dynamic_custom_properties' );
+	add_action( $hook_name, NS . 'add_split_styles', 11 );
 }
 
 add_action( 'after_setup_theme', NS . 'add_editor_styles' );
@@ -187,13 +180,16 @@ function enqueue_google_fonts(): void {
 	$font_family_slugs = array_map( fn( $font_family ) => $font_family['slug'], $global_settings['typography']['fontFamilies']['theme'] ?? [ null ] );
 	$default_weight    = 'var(--wp--custom--font-weight--regular)';
 	$google_fonts      = [];
+	$heading_family            = $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null;
 
-	if ( isset( $global_styles['blocks']['core/heading']['typography']['fontFamily'] ) ) {
-		$google_fonts[ $global_styles['blocks']['core/heading']['typography']['fontFamily'] ] = $global_styles['blocks']['core/heading']['typography']['fontWeight'] ?? $default_weight;
+	if ( $heading_family ) {
+		$google_fonts[ $heading_family ] = $global_styles['blocks']['core/heading']['typography']['fontWeight'] ?? $default_weight;
 	}
 
-	if ( isset( $global_styles['typography']['fontFamily'] ) ) {
-		$google_fonts[ $global_styles['typography']['fontFamily'] ] = $global_styles['typography']['fontWeight'] ?? $default_weight;
+	$body_family = $global_styles['typography']['fontFamily'] ?? null;
+
+	if ( $body_family ) {
+		$google_fonts[ $body_family ] = $global_styles['typography']['fontWeight'] ?? $default_weight;
 	}
 
 	foreach ( $google_fonts as $google_font => $font_weight ) {
@@ -275,7 +271,7 @@ function add_dynamic_custom_properties(): void {
 CSS;
 
 	wp_add_inline_style(
-		'global-styles',
+		is_admin() ? 'blockify-editor' : 'global-styles',
 		minify_css( $custom_properties )
 	);
 }

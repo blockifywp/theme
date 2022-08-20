@@ -226,7 +226,7 @@ function get_icon_data(): array {
 			// Remove comments.
 			$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
 
-			$icon_data[ $icon_set ][ $name ] = $icon;
+			$icon_data[ $icon_set ][ $name ] = trim( $icon );
 		}
 	}
 
