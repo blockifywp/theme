@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.0.26
+Stable tag: 0.0.27
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,11 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.0.27 - 20 August 2022 =
+* Add: Support for image borders
+* Update: CSS loading improvements
+* Update: Theme description
 
 = 0.0.26 - 19 August 2022 =
 * Add: Dark mode editor settings

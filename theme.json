@@ -67,7 +67,7 @@
         "zIndex": -1
       },
       "checklist": {
-        "color": "var(--wp--preset--color--primary-600)"
+        "background": "var(--wp--preset--color--primary-600)"
       },
       "transition": "all 0.2s ease"
     },
@@ -437,12 +437,12 @@
         },
         ":hover": {
           "color": {
-            "text": "var(--wp--preset--color--primary-600)"
+            "text": "var(--wp--preset--color--primary-600) !important"
           }
         },
         ":focus": {
           "color": {
-            "text": "var(--wp--preset--color--primary-600)"
+            "text": "var(--wp--preset--color--primary-600) !important"
           }
         }
       }

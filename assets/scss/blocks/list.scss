@@ -23,7 +23,7 @@
 		width: 1.5em;
 		height: 1.5em;
 		display: inline-block !important;
-		background: var(--wp--preset--color--primary-600, currentColor);
+		background: var(--wp--custom--checklist--background,var(--wp--preset--color--primary-600, currentColor));
 		position: absolute;
 	}
 }

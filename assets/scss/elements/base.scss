@@ -5,7 +5,7 @@
 }
 
 html {
-	max-width: calc(100vw - var(--wp--custom--scrollbar-width));
+	max-width: calc(100vw - var(--wp--custom--scrollbar--width));
 	padding: 0 !important;
 	box-sizing: border-box;
 	-moz-osx-font-smoothing: grayscale;
@@ -31,4 +31,31 @@ html {
 body {
 	margin: 0;
 	padding: 0 !important;
+}
+
+mark {
+	border-radius: inherit;
+	padding: 0.1em;
+}
+
+sup,
+sub {
+	font-size: var(--sup--font-size, .5em);
+}
+
+sub {
+	vertical-align: var(--sub--vertical-align, baseline);
+}
+
+big {
+	font-size: large;
+}
+
+small {
+	font-size: small;
+}
+
+blockquote {
+	margin-left: 0;
+	margin-right: 0;
 }

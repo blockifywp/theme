@@ -34,8 +34,10 @@
 	display: block;
 	background: var(--wp--custom--icon--background, transparent);
 	border-radius: inherit;
+	border-color: var(--wp--custom--icon--color, currentColor);
 	margin-left: auto;
 	margin-right: auto;
+	line-height: 1;
 
 	&:after {
 		content: '';

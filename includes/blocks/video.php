@@ -33,7 +33,7 @@ function render_video_block( string $content, array $block ): string {
 			'style="background-color:',
 		],
 		[
-			'style="--video--background:',
+			'style="--wp--custom--video--background:',
 		],
 		$content
 	);

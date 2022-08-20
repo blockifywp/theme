@@ -147,6 +147,7 @@
 	background: transparent !important;
 	float: none !important;
 	padding: 0 !important;
+	border: 0 !important;
 
 	img,
 	figcaption {
@@ -160,6 +161,9 @@
 		margin-left: auto;
 		margin-right: auto;
 		border-radius: inherit;
+		border-width: var(--wp--custom--icon--border-width, 0);
+		border-style: var(--wp--custom--icon--border-style, solid);
+		border-color: var(--wp--custom--icon--border-color, currentColor);
 		width: auto !important;
 		height: auto !important;
 		background: var(--wp--custom--icon--background, transparent);

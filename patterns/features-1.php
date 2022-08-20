@@ -21,16 +21,16 @@
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"width":40,"className":"is-style-icon","textColor":"primary-600","icon":"symbol","svgString":"\u003csvg fill=\u0022currentColor\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022m21.3 10.8-5.6-5.6c-.7-.7-1.8-.7-2.5 0l-5.6 5.6c-.7.7-.7 1.8 0 2.5l5.6 5.6c.3.3.8.5 1.2.5s.9-.2 1.2-.5l5.6-5.6c.8-.7.8-1.9.1-2.5zm-1 1.4-5.6 5.6c-.1.1-.3.1-.4 0l-5.6-5.6c-.1-.1-.1-.3 0-.4l5.6-5.6s.1-.1.2-.1.1 0 .2.1l5.6 5.6c.1.1.1.3 0 .4zm-16.6-.4L10 5.5l-1-1-6.3 6.3c-.7.7-.7 1.8 0 2.5L9 19.5l1.1-1.1-6.3-6.3c-.2 0-.2-.2-.1-.3z\u0022/\u003e\u003c/svg\u003e"} -->
+<div class="wp-block-column"><!-- wp:image {"width":40,"className":"is-style-icon","textColor":"primary-600","svgString":"\u003csvg fill=\u0022currentColor\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill-rule=\u0022evenodd\u0022 clip-rule=\u0022evenodd\u0022 d=\u0022M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z\u0022/\u003e\u003c/svg\u003e"} -->
 <figure class="wp-block-image is-resized is-style-icon has-primary-600-color has-text-color"><img src="#" alt="" width="40"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Pattern Library</h6>
+<h6 class="has-text-align-center">SVG Icons</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">A pre-built collection of commonly used UI patterns using only core blocks, no third party block library required </p>
+<p class="aligncenter has-text-align-center aligncenter">Choose from over 300+ included SVG icons, or place your own custom SVG directly into your pages with the core Image block</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -44,7 +44,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Customize almost every aspect of your theme globally right from the editor. One place to make changes to your entire site</p>
+<p class="aligncenter has-text-align-center aligncenter">Globally change the colors, fonts, spacing and more right from the editor. One easy place to make changes to your entire site</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -60,21 +60,21 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Supercharge the block editor with additional block supports, block extensions and extra text formats for greater design control</p>
+<p class="aligncenter has-text-align-center aligncenter">Supercharges the block editor with additional block supports, block extensions and custom text formats for greater design control</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"width":40,"className":"is-style-icon","textColor":"primary-600","svgString":"\u003csvg fill=\u0022currentColor\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill-rule=\u0022evenodd\u0022 clip-rule=\u0022evenodd\u0022 d=\u0022M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z\u0022/\u003e\u003c/svg\u003e"} -->
+<div class="wp-block-column"><!-- wp:image {"width":40,"className":"is-style-icon","textColor":"primary-600","icon":"mobile","svgString":"\u003csvg fill=\u0022currentColor\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z\u0022/\u003e\u003c/svg\u003e"} -->
 <figure class="wp-block-image is-resized is-style-icon has-primary-600-color has-text-color"><img src="#" alt="" width="40"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">SVG Icons</h6>
+<h6 class="has-text-align-center">Responsive Settings</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Choose from over 300+ included SVG icons, or place your own custom SVG directly into your pages with the core Image block</p>
+<p class="aligncenter has-text-align-center aligncenter">Change the appearance of blocks depending on the device width and screen size. Reversible columns, fonts, spacing and more</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -88,7 +88,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Wide range of variable Google Fonts included by default. Automatically loads selected fonts without any custom code needed</p>
+<p class="aligncenter has-text-align-center aligncenter">Wide range of variable Google Fonts to choose from. Fonts are automatically loaded from theme.json and selected editor settings</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

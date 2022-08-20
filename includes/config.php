@@ -111,7 +111,14 @@ $defaults['blockSupports'] = [
 	'core/image'               => [
 		'boxShadow'            => true,
 		'__experimentalBorder' => [
-			'radius' => true,
+			'radius'                        => true,
+			'width'                         => true,
+			'color'                         => true,
+			'style'                         => true,
+			'__experimentalDefaultControls' => [
+				'width' => true,
+				'color' => true,
+			],
 		],
 		'color'                => [
 			'gradients'  => true,
