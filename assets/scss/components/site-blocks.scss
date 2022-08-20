@@ -1,0 +1,9 @@
+.wp-site-blocks {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: var(--wp-site-blocks--min-height, 100vh);
+}
+
+.wp-site-blocks > * + * {
+	margin-top: 0 !important;
+}

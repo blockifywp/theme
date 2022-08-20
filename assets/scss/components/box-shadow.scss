@@ -1,0 +1,9 @@
+@import "../abstracts/mixins";
+
+.has-box-shadow {
+	position: relative;
+
+	&:before {
+		@include box-shadow;
+	}
+}

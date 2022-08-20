@@ -11,7 +11,7 @@
     "start:css": "node-sass assets/scss -output-style compressed --recursive -wo assets/css",
     "build": "npm run build:js && npm run build:css",
     "build:js": "wp-scripts build --webpack-src-dir=assets/tsx --output-path=assets/js",
-    "build:css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss",
+    "build:css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss && rm -Rf assets/css/abstracts",
     "build:svg": "node node_modules/oslllo-svg-fixer/src/cli.js -s assets/svg/icon.svg -d assets/svg/optimized",
     "build:zip": "zip -r ../blockify.zip assets/css/ assets/js/ assets/lang/ assets/svg/ includes/ parts/ patterns/ templates/ vendor/composer vendor/autoload.php vendor/wptt/webfont-loader/wptt-webfont-loader.php vendor/tgmpa/tgm-plugin-activation/languages vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php index.php readme.txt screenshot.png style.css theme.json",
     "build:pot": "wp i18n make-pot ./ assets/lang/blockify.pot"

@@ -1,0 +1,51 @@
+a {
+	transition: var(--wp--custom--transition, inherit);
+}
+
+a:not(.wp-element-button,.wp-block-button__link,.wp-block-navigation-item__content,[rel="home"],[role="textbox"],[target="_self"]) {
+	box-shadow: 0 0.05em 0 currentColor
+}
+
+mark {
+	border-radius: inherit;
+	padding: 0.1em;
+}
+
+ol, ul {
+	padding-left: 1em;
+}
+
+li {
+	margin-bottom: var(--wp--style--block-gap, 1em);
+}
+
+sup,
+sub {
+	font-size: var(--sup--font-size, .5em);
+}
+
+sub {
+	vertical-align: var(--sub--vertical-align, baseline);
+}
+
+pre,
+code {
+	font-family: var(--wp--preset--font-family--monospace);
+
+	p {
+		white-space: normal;
+	}
+}
+
+blockquote {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+big {
+	font-size: large;
+}
+
+small {
+	font-size: small;
+}

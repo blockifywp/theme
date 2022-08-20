@@ -117,14 +117,20 @@ add_action( 'after_setup_theme', NS . 'add_editor_styles' );
  * @return void
  */
 function add_editor_styles(): void {
-	add_editor_style( 'assets/css/style.css' );
-
 	foreach ( glob( DIR . 'assets/css/blocks/*.css' ) as $file ) {
 		add_editor_style( 'assets/css/blocks/' . basename( $file ) );
 	}
+
+	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
+		add_editor_style( 'assets/css/components/' . basename( $file ) );
+	}
+
+	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
+		add_editor_style( 'assets/css/elements/' . basename( $file ) );
+	}
 }
 
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts_styles' );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_block_styles' );
 /**
  * Enqueues front end scripts.
  *
@@ -132,18 +138,10 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts_styles' );
  *
  * @return void
  */
-function enqueue_scripts_styles(): void {
+function enqueue_block_styles(): void {
 	global $wp_styles;
 
 	wp_dequeue_style( 'wp-block-library-theme' );
-
-	wp_add_inline_style(
-		'global-styles',
-		apply_filters(
-			'blockify_css',
-			file_get_contents( DIR . 'assets/css/style.css' )
-		)
-	);
 
 	if ( ! is_a( $wp_styles, 'WP_Styles' ) ) {
 		return;
@@ -249,17 +247,15 @@ function enqueue_google_fonts(): void {
 	}
 }
 
-add_filter( 'blockify_css', NS . 'add_dynamic_custom_properties', 10, 1 );
+add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
 /**
  * Adds custom properties.
  *
  * @since 0.0.19
  *
- * @param string $css Default CSS string.
- *
- * @return string
+ * @return void
  */
-function add_dynamic_custom_properties( string $css ): string {
+function add_dynamic_custom_properties(): void {
 	$settings        = wp_get_global_settings();
 	$element         = is_admin() ? '.editor-styles-wrapper' : 'body';
 	$scrollbar_width = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
@@ -278,30 +274,31 @@ function add_dynamic_custom_properties( string $css ): string {
 	}
 CSS;
 
-	return minify_css( $custom_properties ) . $css;
+	wp_add_inline_style(
+		'global-styles',
+		minify_css( $custom_properties )
+	);
 }
 
-add_filter( 'blockify_css', NS . 'add_dark_mode_custom_properties', 10, 1 );
+add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties' );
 /**
  * Adds dark mode custom properties.
  *
  * @since 0.0.24
  *
- * @param string $css
- *
- * @return string
+ * @return void
  */
-function add_dark_mode_custom_properties( string $css ): string {
+function add_dark_mode_custom_properties(): void {
 	$dark_mode = get_option( 'blockify', [] )['darkMode'] ?? true;
 
 	if ( ! $dark_mode ) {
-		return $css;
+		return;
 	}
 
 	$global_styles = wp_get_global_settings();
 
 	if ( ! isset( $global_styles['color']['palette']['theme'] ) ) {
-		return $css;
+		return;
 	}
 
 	$config = get_sub_config( 'darkMode' );
@@ -349,7 +346,35 @@ function add_dark_mode_custom_properties( string $css ): string {
 
 	$new_css .= '}';
 
-	return $css . minify_css( $new_css );
+	wp_add_inline_style(
+		'global-styles',
+		minify_css( $new_css )
+	);
+}
+
+add_action( 'wp_enqueue_scripts', NS . 'add_split_styles', 11 );
+/**
+ * Adds split styles.
+ *
+ * @since 0.0.27
+ *
+ * @return void
+ */
+function add_split_styles(): void {
+	$css = '';
+
+	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
+		$css .= trim( file_get_contents( $file ) );
+	}
+
+	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
+		$css .= trim( file_get_contents( $file ) );
+	}
+
+	wp_add_inline_style(
+		'global-styles',
+		minify_css( $css )
+	);
 }
 
 add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );

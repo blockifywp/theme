@@ -1,0 +1,1 @@
+.has-inline-icon:before{content:'';background:var(--wp--custom--icon--color, currentColor);display:inline-block;width:1em;height:1em;vertical-align:text-bottom;-webkit-mask-image:var(--wp--custom--icon--url);-webkit-mask-position:center;-webkit-mask-repeat:no-repeat;-webkit-mask-size:cover !important}
