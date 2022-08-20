@@ -64,6 +64,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 * Add: Spacer block styles
 * Update: CSS loading improvements
 * Update: Theme description
+* Fix: Broken image urls in patterns
 
 = 0.0.26 - 19 August 2022 =
 * Add: Dark mode editor settings
