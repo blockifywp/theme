@@ -8,8 +8,6 @@ use DOMElement;
 use function add_filter;
 use function explode;
 use function implode;
-use function in_array;
-use function str_replace;
 use function trim;
 
 add_filter( 'render_block', NS . 'render_template_part_block', 10, 2 );

@@ -5,9 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use const PHP_INT_MAX;
-use function dirname;
 use function get_template_directory_uri;
-use function plugin_dir_url;
 use function trailingslashit;
 use function add_action;
 use function apply_filters;

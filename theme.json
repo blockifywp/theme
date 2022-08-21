@@ -9,6 +9,14 @@
         "page",
         "post"
       ]
+    },
+    {
+      "title": "Full Width",
+      "name": "full-width",
+      "postTypes": [
+        "page",
+        "post"
+      ]
     }
   ],
   "templateParts": [

@@ -15,7 +15,6 @@ use function array_flip;
 use function array_key_exists;
 use function array_map;
 use function basename;
-use function current_theme_supports;
 use function end;
 use function explode;
 use function file_exists;
@@ -372,20 +371,30 @@ add_action( 'wp_enqueue_scripts', NS . 'add_split_styles', 11 );
  * @return void
  */
 function add_split_styles(): void {
-	$css = '';
+	$css   = '';
+	$files = [];
 
 	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
-		$css .= trim( file_get_contents( $file ) );
+		$css     .= trim( file_get_contents( $file ) );
+		$files[] = str_replace( DIR, '', $file );
 	}
 
 	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
-		$css .= trim( file_get_contents( $file ) );
+		$css     .= trim( file_get_contents( $file ) );
+		$files[] = str_replace( DIR, '', $file );
 	}
 
-	wp_add_inline_style(
-		is_admin() ? 'blockify-editor' : 'global-styles',
-		minify_css( $css )
-	);
+	if ( is_admin() ) {
+		foreach ( $files as $file ) {
+			add_editor_style( $file );
+		}
+
+	} else {
+		wp_add_inline_style(
+			'global-styles',
+			minify_css( $css )
+		);
+	}
 }
 
 add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );
