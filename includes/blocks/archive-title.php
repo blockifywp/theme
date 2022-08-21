@@ -20,7 +20,7 @@ add_filter( 'render_block', NS . 'render_archive_title_block', 10, 2 );
  *
  * @return string
  */
-function render_archive_title_block( $content, $block ) {
+function render_archive_title_block( string $content, array $block ): string {
 	if ( 'core/query-title' !== $block['blockName'] ) {
 		return $content;
 	}

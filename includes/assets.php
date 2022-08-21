@@ -180,7 +180,7 @@ function enqueue_google_fonts(): void {
 	$font_family_slugs = array_map( fn( $font_family ) => $font_family['slug'], $global_settings['typography']['fontFamilies']['theme'] ?? [ null ] );
 	$default_weight    = 'var(--wp--custom--font-weight--regular)';
 	$google_fonts      = [];
-	$heading_family            = $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null;
+	$heading_family    = $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null;
 
 	if ( $heading_family ) {
 		$google_fonts[ $heading_family ] = $global_styles['blocks']['core/heading']['typography']['fontWeight'] ?? $default_weight;
@@ -253,6 +253,7 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
  */
 function add_dynamic_custom_properties(): void {
 	$settings        = wp_get_global_settings();
+	$global_styles   = wp_get_global_styles();
 	$element         = is_admin() ? '.editor-styles-wrapper' : 'body';
 	$scrollbar_width = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
 	$content_size    = $settings['layout']['contentSize'] ?? '800px';
@@ -260,19 +261,26 @@ function add_dynamic_custom_properties(): void {
 	$border_width    = $settings['custom']['border']['width'] ?? '1px';
 	$border_style    = $settings['custom']['border']['style'] ?? 'solid';
 	$border_color    = $settings['custom']['border']['color'] ?? '#ddd';
+	$body_background = $global_styles['color']['background'] ?? null;
+	$body_color      = $global_styles['color']['text'] ?? null;
 
-	$custom_properties = <<<CSS
-	$element {
-		--wp--custom--scrollbar--width: $scrollbar_width;
-		--wp--custom--layout--content-size: $content_size;
-		--wp--custom--layout--wide-size: $wide_size;
-		--wp--custom--border: $border_width $border_style $border_color;
-	}
-CSS;
+	$custom_properties = [
+		'--wp--custom--scrollbar--width'     => $scrollbar_width,
+		'--wp--custom--layout--content-size' => $content_size,
+		'--wp--custom--layout--wide-size'    => $wide_size,
+		'--wp--custom--border--width'        => $border_width,
+		'--wp--custom--border--style'        => $border_style,
+		'--wp--custom--border--color'        => $border_color,
+		'--wp--custom--border'               => "$border_width $border_style $border_color",
+		'--wp--custom--body--background'     => $body_background,
+		'--wp--custom--body--color'          => $body_color,
+	];
+
+	$css = $element . '{' . css_array_to_string( $custom_properties ) . '}';
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
-		minify_css( $custom_properties )
+		minify_css( $css )
 	);
 }
 

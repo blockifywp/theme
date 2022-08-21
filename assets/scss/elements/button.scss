@@ -15,10 +15,6 @@
 		margin-top: .5em;
 	}
 
-	&:not(.has-text-color) {
-		color: #fff !important; // Core override.
-	}
-
 	.is-style-secondary &:not(.has-background) {
 		background: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));
 		border-color: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));

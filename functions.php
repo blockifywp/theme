@@ -23,6 +23,7 @@ const FILE = __FILE__;
 
 require_once DIR . 'vendor/autoload.php';
 require_once DIR . 'includes/utility.php';
+require_once DIR . 'includes/blocks.php';
 require_once DIR . 'includes/patterns.php';
 require_once DIR . 'includes/settings.php';
 require_once DIR . 'includes/assets.php';

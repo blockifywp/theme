@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use DOMElement;
+use ParagonIE\Sodium\Core\Curve25519\Ge\P1p1;
 use function add_filter;
 
 add_filter( 'render_block', NS . 'render_block_layout', 10, 2 );
@@ -19,7 +20,6 @@ add_filter( 'render_block', NS . 'render_block_layout', 10, 2 );
  * @return string
  */
 function render_block_layout( string $content, array $block ): string {
-
 	if ( 'core/group' !== $block['blockName'] ) {
 		return $content;
 	}
@@ -35,6 +35,13 @@ function render_block_layout( string $content, array $block ): string {
 		$first->setAttribute(
 			'class',
 			'wp-site-main ' . $first->getAttribute( 'class' )
+		);
+	}
+
+	if ( $block['attrs']['minHeight'] ?? null ) {
+		$first->setAttribute(
+			'style',
+			$first->getAttribute( 'style' ) . 'min-height:' . $block['attrs']['minHeight']
 		);
 	}
 

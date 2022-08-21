@@ -2,7 +2,6 @@ figure.wp-block-image {
 	text-align: center;
 	margin-left: 0;
 	margin-right: 0;
-	border: 0 !important;
 
 	&.aligncenter {
 		display: block !important;
@@ -15,13 +14,46 @@ figure.wp-block-image {
 		margin-left: auto;
 		margin-right: auto;
 	}
+}
 
-	&.is-style-icon {
+.wp-block-image:not(.is-style-icon,.is-style-placeholder) {
+	border: 0 !important;
+}
 
-		img {
-			display: none;
-		}
+.is-style-icon {
+	border: 0 !important;
+
+	img,
+	figcaption {
+		display: none !important;
 	}
 }
 
+.is-style-placeholder {
+	border: var(--wp--custom--border, 1px solid #ddd);
+	border-radius: var(--wp--custom--border--radius, 0);
+	max-width: 100%;
+	position: relative;
+	aspect-ratio: var(--wp--custom--placeholder--aspect-ratio, 1/1);
+	overflow: hidden;
+	padding: 0 !important;
+
+	&:not([style*="border-width"]) {
+		border-width: var(--wp--custom--border--width, 1px) !important;
+	}
+
+	img,
+	figcaption {
+		display: none !important;
+	}
+
+	&:after {
+		$borderWidth: calc(var(--wp--custom--border--width, 1px) / 2);
+
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom right, transparent, transparent calc(50% - #{$borderWidth}), var(--wp--custom--border--color) calc(50% - #{$borderWidth}), var(--wp--custom--border--color) calc(50% + #{$borderWidth}), transparent calc(50% + #{$borderWidth}), transparent);
+	}
+}
 

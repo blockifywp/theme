@@ -6,6 +6,9 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
+use function array_diff;
+use function explode;
+use function str_contains;
 use function str_replace;
 
 add_filter( 'render_block', NS . 'render_search_block', 10, 2 );
@@ -44,10 +47,11 @@ function render_search_block( string $content, array $block ): string {
 			/** @var DOMElement $button */
 			$button = $buttons->item( 0 );
 
-			$button->setAttribute( 'class', implode( ' ', [
-				$button->getAttribute( 'class' ),
-				'wp-block-button__link',
-			] ) );
+			$classes = explode( ' ', $button->getAttribute( 'class' ) );
+
+			$classes = array_diff( $classes, [ 'wp-element-button' ] );
+
+			$button->setAttribute( 'class', implode( ' ', $classes ) );
 		}
 
 		$inputs = $div->getElementsByTagName( 'input' );
@@ -68,7 +72,7 @@ function render_search_block( string $content, array $block ): string {
 
 	$content = $dom->saveHTML();
 
-	if ( isset( $block['attrs']['className'] ) && \str_contains( $block['attrs']['className'], 'is-style-toggle' ) ) {
+	if ( isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-toggle' ) ) {
 		$dom = dom( $content );
 
 		/**
@@ -86,6 +90,7 @@ function render_search_block( string $content, array $block ): string {
 		$checkbox = $dom->createElement( 'input' );
 		$button   = change_tag_name( $button, 'label' );
 
+
 		$checkbox->setAttribute( 'class', 'wp-block-search__checkbox screen-reader-text' );
 		$checkbox->setAttribute( 'type', 'checkbox' );
 		$checkbox->setAttribute( 'id', $label->getAttribute( 'for' ) . '-checkbox' );
@@ -97,6 +102,18 @@ function render_search_block( string $content, array $block ): string {
 		$form->appendChild( $wrap );
 		$form->insertBefore( $checkbox, $wrap );
 		$form->insertBefore( $button, $wrap );
+
+		$close = $dom->createElement( 'svg' );
+		$close->setAttribute( 'xmlns', 'http://www.w3.org/2000/svg' );
+		$close->setAttribute( 'viewBox', '0 0 24 24' );
+		$close->setAttribute( 'class', 'close-icon' );
+
+		$close_path = $dom->createElement( 'path' );
+		$close_path->setAttribute( 'd', 'm13 11.8 6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z' );
+		$close_path->setAttribute( 'fill', 'currentColor' );
+
+		$close->appendChild( $close_path );
+		$button->appendChild( $close );
 
 		$content = $dom->saveHTML();
 	}

@@ -1,1 +1,1 @@
-.wp-block-group{max-width:100vw}
+.wp-block-group{max-width:100vw}.wp-block-group[style*="min-height"]{display:flex;flex-direction:column;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center}

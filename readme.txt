@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.0.28
+Stable tag: 0.0.29
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,16 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.0.29 - 21 August 2022 =
+* Add: Placeholder image style
+* Add: Group min height setting
+* Update: Rename patterns
+* Update: Search toggle improvements
+* Remove: Page patterns
+* Fix: Cover image defaults
+* Fix: Remove duplicate classes in blocks
+* Fix: Sub menu styling
 
 = 0.0.28 - 20 August 2022 =
 * Add: Featured post placeholder divs

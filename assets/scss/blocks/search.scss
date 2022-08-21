@@ -35,14 +35,21 @@
 .is-style-toggle {
 
 	.wp-block-search__button {
-		z-index: 10;
+		z-index: 10; // Core inside wrapper hardcoded.
+	}
+
+	.wp-block-search__button:not(.has-background) {
+		padding: 0;
+		color: currentColor !important;
+		background: inherit;
 	}
 
 	.wp-block-search__inside-wrapper {
 		position: fixed;
 		inset: 0;
 		max-width: none;
-		background: #fff;
+		background: var(--wp--custom--body--background);
+		color: var(--wp--custom--body--color);
 		z-index: 9;
 		align-items: center;
 		align-content: center;
@@ -68,23 +75,28 @@
 	}
 }
 
+.close-icon {
+	display: none;
+}
+
 .wp-block-search__checkbox:checked {
 
 	~ .wp-block-search__button {
-		position: fixed;
-		top: 2em;
-		right: 2em;
 		z-index: 10;
+		position: fixed;
+		top: 5vh;
+		right: 5vw;
 
-		svg {
+		.search-icon {
 			display: none;
 		}
 
-		&:after {
-			content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13 11.8 6.1-6.3-1-1-6.1 6.2-6.1-6.2-1 1 6.1 6.3-6.5 6.7 1 1 6.5-6.6 6.5 6.6 1-1z"/></svg>');
-			height: 1.5em;
-			width: 1.5em;
+		.close-icon {
 			display: block;
+			pointer-events: none;
+			z-index: 11;
+			height: 1em;
+			width: 1em;
 		}
 	}
 }

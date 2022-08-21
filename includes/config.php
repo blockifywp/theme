@@ -66,6 +66,9 @@ $defaults['blockSupports'] = [
 		],
 		'reverseMobile' => true,
 	],
+	'core/cover'               => [
+
+	],
 	'core/embed'               => [
 		'spacing'              => [
 			'margin' => true,
@@ -90,6 +93,7 @@ $defaults['blockSupports'] = [
 		'boxShadow' => true,
 		'position'  => true,
 		'spacing'   => true,
+		'minHeight' => true,
 	],
 	'core/heading'             => [
 		'align'     => [
@@ -337,6 +341,11 @@ $defaults['blockStyles']['register'] = [
 		'type'  => 'core/image',
 		'name'  => 'icon',
 		'label' => __( 'SVG Icon', 'blockify' ),
+	],
+	[
+		'type'  => 'core/image',
+		'name'  => 'placeholder',
+		'label' => __( 'Placeholder', 'blockify' ),
 	],
 	[
 		'type'  => 'core/site-logo',

@@ -183,10 +183,6 @@
 	}
 }
 
-.blockify-icon-settings {
-	order: -1;
-}
-
 .blockify-icon-setting {
 
 	.components-input-control__container {
@@ -232,7 +228,8 @@
 	}
 }
 
-.blockify-icon-settings {
+.blockify-image-settings {
+	order: -1;
 	select {
 		text-transform: capitalize;
 	}
@@ -269,4 +266,8 @@ header.wp-block-template-part {
 
 .editor-styles-wrapper .is-layout-flow > p {
 	margin-top: var(--wp--style--block-gap, 1em);
+}
+
+.blockify-min-height-control {
+	border-top: 0 !important;
 }

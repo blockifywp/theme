@@ -32,6 +32,7 @@
       "width": true
     },
     "custom": {
+      "aspectRatio": "1/1",
       "border": {
         "width": "1px",
         "style": "solid",
@@ -453,6 +454,7 @@
           "radius": "var(--wp--custom--border--radius)"
         },
         "color": {
+          "text": "#fff",
           "background": "var(--wp--preset--color--primary-600)"
         },
         "spacing": {
@@ -532,9 +534,9 @@
           }
         },
         "border": {
-          "width": "0px",
-          "style": "solid",
-          "color": "var(--wp--preset--color--primary-600)",
+          "width": "var(--wp--custom--border--width)",
+          "style": "var(--wp--custom--border--style)",
+          "color": "var(--wp--custom--border--color)",
           "radius": "var(--wp--custom--border--radius)"
         }
       },
