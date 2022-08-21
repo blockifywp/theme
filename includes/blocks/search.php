@@ -49,8 +49,6 @@ function render_search_block( string $content, array $block ): string {
 
 			$classes = explode( ' ', $button->getAttribute( 'class' ) );
 
-			$classes = array_diff( $classes, [ 'wp-element-button' ] );
-
 			$button->setAttribute( 'class', implode( ' ', $classes ) );
 		}
 
@@ -72,7 +70,9 @@ function render_search_block( string $content, array $block ): string {
 
 	$content = $dom->saveHTML();
 
-	if ( isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-toggle' ) ) {
+	$class_name = $block['attrs']['className'] ?? '';
+
+	if ( $class_name && str_contains( $class_name, 'is-style-toggle' ) ) {
 		$dom = dom( $content );
 
 		/**
@@ -89,7 +89,6 @@ function render_search_block( string $content, array $block ): string {
 		$button   = $wrap->getElementsByTagName( 'button' )->item( 0 );
 		$checkbox = $dom->createElement( 'input' );
 		$button   = change_tag_name( $button, 'label' );
-
 
 		$checkbox->setAttribute( 'class', 'wp-block-search__checkbox screen-reader-text' );
 		$checkbox->setAttribute( 'type', 'checkbox' );

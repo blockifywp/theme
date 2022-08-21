@@ -257,17 +257,19 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
  * @return void
  */
 function add_dynamic_custom_properties(): void {
-	$settings        = wp_get_global_settings();
-	$global_styles   = wp_get_global_styles();
-	$element         = is_admin() ? '.editor-styles-wrapper' : 'body';
-	$scrollbar_width = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
-	$content_size    = $settings['layout']['contentSize'] ?? '800px';
-	$wide_size       = $settings['layout']['wideSize'] ?? '1200px';
-	$border_width    = $settings['custom']['border']['width'] ?? '1px';
-	$border_style    = $settings['custom']['border']['style'] ?? 'solid';
-	$border_color    = $settings['custom']['border']['color'] ?? '#ddd';
-	$body_background = $global_styles['color']['background'] ?? null;
-	$body_color      = $global_styles['color']['text'] ?? null;
+	$settings          = wp_get_global_settings();
+	$global_styles     = wp_get_global_styles();
+	$element           = is_admin() ? '.editor-styles-wrapper' : 'body';
+	$scrollbar_width   = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
+	$content_size      = $settings['layout']['contentSize'] ?? '800px';
+	$wide_size         = $settings['layout']['wideSize'] ?? '1200px';
+	$border_width      = $settings['custom']['border']['width'] ?? '1px';
+	$border_style      = $settings['custom']['border']['style'] ?? 'solid';
+	$border_color      = $settings['custom']['border']['color'] ?? '#ddd';
+	$body_background   = $global_styles['color']['background'] ?? null;
+	$body_color        = $global_styles['color']['text'] ?? null;
+	$button_background = $global_styles['blocks']['core/button']['color']['background'] ?? null;
+	$button_text       = $global_styles['blocks']['core/button']['color']['text'] ?? null;
 
 	$custom_properties = [
 		'--wp--custom--scrollbar--width'     => $scrollbar_width,
@@ -276,6 +278,8 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--border'               => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'     => $body_background,
 		'--wp--custom--body--color'          => $body_color,
+		'--wp--custom--button--background'   => $button_background,
+		'--wp--custom--button--color'        => $button_text,
 	];
 
 	$css = $element . '{' . css_array_to_string( $custom_properties ) . '}';

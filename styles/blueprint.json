@@ -1,36 +1,7 @@
 {
   "title": "Blueprint",
   "version": 2,
-  "customTemplates": [
-    {
-      "title": "Blank",
-      "name": "blank",
-      "postTypes": [
-        "page",
-        "post"
-      ]
-    }
-  ],
-  "templateParts": [
-    {
-      "area": "header",
-      "name": "header",
-      "title": "Header"
-    },
-    {
-      "area": "footer",
-      "name": "footer",
-      "title": "Footer"
-    }
-  ],
   "settings": {
-    "appearanceTools": true,
-    "border": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true
-    },
     "custom": {
       "border": {
         "width": "1px",
@@ -70,24 +41,6 @@
         "background": "var(--wp--preset--color--neutral-600)"
       },
       "transition": "all 0.2s ease"
-    },
-    "layout": {
-      "contentSize": "min(calc(100vw - var(--wp--custom--scrollbar--width) - var(--wp--style--block-gap)*2), 768px)",
-      "wideSize": "min(calc(100vw - var(--wp--custom--scrollbar--width) - var(--wp--style--block-gap)*2), 1156px)"
-    },
-    "spacing": {
-      "blockGap": true,
-      "margin": true,
-      "padding": true,
-      "units": [
-        "%",
-        "em",
-        "px",
-        "rem",
-        "vh",
-        "vw"
-      ],
-      "customSpacingSize": true
     },
     "color": {
       "customDuotone": true,
@@ -187,98 +140,6 @@
           "color": "#ffffff",
           "name": "White",
           "slug": "white"
-        }
-      ],
-      "fontFamilies": [
-        {
-          "fontFamily": "var(--wp--custom--font-stack--sans-serif, -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif)",
-          "name": "Sans Serif",
-          "slug": "sans-serif"
-        },
-        {
-          "fontFamily": "var(--wp--custom--font-stack--serif, serif)",
-          "name": "Serif",
-          "slug": "serif"
-        },
-        {
-          "fontFamily": "var(--wp--custom--font-stack--monospace, monospace)",
-          "name": "Monospace",
-          "slug": "monospace"
-        },
-        {
-          "fontFamily": "Archivo, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Archivo",
-          "slug": "archivo"
-        },
-        {
-          "fontFamily": "Crimson Pro, var(--wp--custom--font-stack--serif)",
-          "name": "Crimson Pro",
-          "slug": "crimson-pro"
-        },
-        {
-          "fontFamily": "Epilogue, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Epilogue",
-          "slug": "epilogue"
-        },
-        {
-          "fontFamily": "Inter, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Inter",
-          "slug": "inter"
-        },
-        {
-          "fontFamily": "Jost, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Jost",
-          "slug": "jost"
-        },
-        {
-          "fontFamily": "Lexen, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Lexen",
-          "slug": "lexen"
-        },
-        {
-          "fontFamily": "Manrope, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Manrope",
-          "slug": "manrope"
-        },
-        {
-          "fontFamily": "Outfit, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Outfit",
-          "slug": "outfit"
-        },
-        {
-          "fontFamily": "Playfair Display, var(--wp--custom--font-stack--serif)",
-          "name": "Playfair Display",
-          "slug": "playfair-display"
-        },
-        {
-          "fontFamily": "Plus Jakarta Sans, var(--wp--custom--font-stack--serif)",
-          "name": "Plus Jakarta Sans",
-          "slug": "plus-jakarta-sans"
-        },
-        {
-          "fontFamily": "Public Sans, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Public Sans",
-          "slug": "public-sans"
-        },
-        {
-          "fontFamily": "Readex Pro, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Readex Pro",
-          "slug": "readex-pro"
-        },
-        {
-          "fontFamily": "Roboto, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Roboto",
-          "slug": "roboto"
-        },
-        {
-          "fontFamily": "Space Grotesk, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Space Grotesk",
-          "slug": "space-grotesk"
-        },
-        {
-          "fontFamily": "Urbanist, var(--wp--custom--font-stack--sans-serif)",
-          "name": "Urbanist",
-          "slug": "urbanist"
         }
       ]
     }

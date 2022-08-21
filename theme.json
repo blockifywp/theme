@@ -293,14 +293,29 @@
           "slug": "archivo"
         },
         {
+          "fontFamily": "Alegreya, var(--wp--custom--font-stack--serif)",
+          "name": "Alegreya",
+          "slug": "alegreya"
+        },
+        {
           "fontFamily": "Crimson Pro, var(--wp--custom--font-stack--serif)",
           "name": "Crimson Pro",
           "slug": "crimson-pro"
         },
         {
+          "fontFamily": "Dancing Script, var(--wp--custom--font-stack--serif)",
+          "name": "Dancing Script",
+          "slug": "dancing-script"
+        },
+        {
           "fontFamily": "Epilogue, var(--wp--custom--font-stack--sans-serif)",
           "name": "Epilogue",
           "slug": "epilogue"
+        },
+        {
+          "fontFamily": "Figtree, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Figtree",
+          "slug": "figtree"
         },
         {
           "fontFamily": "Inter, var(--wp--custom--font-stack--sans-serif)",
@@ -318,14 +333,34 @@
           "slug": "lexen"
         },
         {
+          "fontFamily": "Lora, var(--wp--custom--font-stack--serif)",
+          "name": "Lora",
+          "slug": "lora"
+        },
+        {
           "fontFamily": "Manrope, var(--wp--custom--font-stack--sans-serif)",
           "name": "Manrope",
           "slug": "manrope"
         },
         {
+          "fontFamily": "Mulish, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Mulish",
+          "slug": "mulish"
+        },
+        {
           "fontFamily": "Outfit, var(--wp--custom--font-stack--sans-serif)",
           "name": "Outfit",
           "slug": "outfit"
+        },
+        {
+          "fontFamily": "Open Sans, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Open Sans",
+          "slug": "open-sans"
+        },
+        {
+          "fontFamily": "Oswald, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Oswald",
+          "slug": "oswald"
         },
         {
           "fontFamily": "Playfair Display, var(--wp--custom--font-stack--serif)",
@@ -343,6 +378,11 @@
           "slug": "public-sans"
         },
         {
+          "fontFamily": "Quicksand, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Quicksand",
+          "slug": "quicksand"
+        },
+        {
           "fontFamily": "Readex Pro, var(--wp--custom--font-stack--sans-serif)",
           "name": "Readex Pro",
           "slug": "readex-pro"
@@ -353,6 +393,11 @@
           "slug": "roboto"
         },
         {
+          "fontFamily": "Rubik, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Rubik",
+          "slug": "rubik"
+        },
+        {
           "fontFamily": "Space Grotesk, var(--wp--custom--font-stack--sans-serif)",
           "name": "Space Grotesk",
           "slug": "space-grotesk"
@@ -361,6 +406,11 @@
           "fontFamily": "Urbanist, var(--wp--custom--font-stack--sans-serif)",
           "name": "Urbanist",
           "slug": "urbanist"
+        },
+        {
+          "fontFamily": "Work Sans, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Work Sans",
+          "slug": "work-sans"
         }
       ]
     }

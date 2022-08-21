@@ -9,6 +9,8 @@
 	width: var(--wp--custom--button--width, auto);
 	transition: var(--wp--custom--transition, inherit);
 	background-clip: padding-box !important; // Semi transparent borders.
+	color: var(--wp--custom--button--color, inherit);
+	background: var(--wp--custom--button--background, inherit);
 
 	br + span {
 		width: 100%;
