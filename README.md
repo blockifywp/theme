@@ -53,8 +53,7 @@ Free, lightweight collection of fully customizable, commonly needed blocks, full
 
 - **Pro Blocks:** Dark mode toggle, cookie consent, mailchimp integration and more.
 - **Pro Extensions:** React front-end, animations, additional icons, text-effects, click-to-copy code block and more. 
-- **Pro Patterns:** Additional block patterns for use in the editor.
-- **Pro Styles:** Pro theme style variations.
+- **Pro Patterns:** 100+ additional block patterns for use in the editor.
 
 ## Requirements
 
