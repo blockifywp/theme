@@ -99,6 +99,7 @@ function maybe_load_editor_assets( WP_Screen $screen ): void {
 	add_action( $hook_name, NS . 'enqueue_editor_assets' );
 	add_action( $hook_name, NS . 'add_dynamic_custom_properties' );
 	add_action( $hook_name, NS . 'add_split_styles', 11 );
+	add_action( $hook_name, NS . 'add_dark_mode_custom_properties' );
 }
 
 add_action( 'after_setup_theme', NS . 'add_editor_styles' );
@@ -334,21 +335,21 @@ function add_dark_mode_custom_properties(): void {
 		$properties[ '--wp--preset--color--' . $slug ] = $colors[ $config[ $slug ] ];
 	}
 
-	$body    = is_admin() ? '' : 'body';
-	$element = is_admin() ? 'html ' : '';
-	$new_css = '@media(prefers-color-scheme:dark){' . $body . '{';
+	$body_element = is_admin() ? '' : 'body';
+	$html_element = is_admin() ? 'html ' : '';
+	$new_css      = '@media(prefers-color-scheme:dark){' . $body_element . '{';
 
 	foreach ( $properties as $property => $value ) {
 		$new_css .= "$property:$value;";
 	}
 
-	$new_css .= '}}' . $element . '.dark-mode{';
+	$new_css .= '}}' . $html_element . '.dark-mode{';
 
 	foreach ( $properties as $property => $value ) {
 		$new_css .= "$property:$value;";
 	}
 
-	$new_css .= '}' . $element . '.light-mode{';
+	$new_css .= '}' . $html_element . '.light-mode{';
 
 	foreach ( $original as $property => $value ) {
 		$new_css .= "$property:$value;";
@@ -357,7 +358,7 @@ function add_dark_mode_custom_properties(): void {
 	$new_css .= '}';
 
 	wp_add_inline_style(
-		'global-styles',
+		is_admin() ? 'blockify-editor' : 'global-styles',
 		minify_css( $new_css )
 	);
 }
@@ -382,7 +383,7 @@ function add_split_styles(): void {
 	}
 
 	wp_add_inline_style(
-		'global-styles',
+		is_admin() ? 'blockify-editor' : 'global-styles',
 		minify_css( $css )
 	);
 }
