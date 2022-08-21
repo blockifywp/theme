@@ -3,7 +3,7 @@
  * Title: Blockify Contact Icons
  * Slug: blockify/contact-icons
  * Categories: contacts
- *
+ * 
  */
 ?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"5em"}}}} -->
 <div class="wp-block-columns alignwide alignwide" style="padding-top:2em;padding-bottom:5em"><!-- wp:column -->
@@ -56,7 +56,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"align":"center","textColor":"primary-600"} -->
-<p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter"><a href="#"></a><a href="https://blockify.local/default/page-contact-1/#">5th Ave, New York, NY, USA</a></p>
+<p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter"><a href="#"></a><a href="<?php echo esc_url( get_home_url() ); ?>/default/page-contact-1/#">5th Ave, New York, NY, USA</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

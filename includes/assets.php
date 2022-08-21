@@ -157,7 +157,7 @@ function enqueue_block_styles(): void {
 	}
 }
 
-add_action( 'enqueue_block_editor_assets', NS . 'enqueue_google_fonts' );
+add_action( 'admin_init', NS . 'enqueue_google_fonts' );
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_google_fonts' );
 /**
  * Enqueues google fonts.
@@ -171,13 +171,12 @@ function enqueue_google_fonts(): void {
 		return;
 	}
 
-	if ( ! current_theme_supports( SLUG ) ) {
-		return;
-	}
-
 	$global_styles     = wp_get_global_styles();
 	$global_settings   = wp_get_global_settings();
-	$font_family_slugs = array_map( fn( $font_family ) => $font_family['slug'], $global_settings['typography']['fontFamilies']['theme'] ?? [ null ] );
+	$font_family_slugs = array_map(
+		fn( $font_family ) => $font_family['slug'],
+		$global_settings['typography']['fontFamilies']['theme'] ?? [ null ]
+	);
 	$default_weight    = 'var(--wp--custom--font-weight--regular)';
 	$google_fonts      = [];
 	$heading_family    = $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null;
@@ -230,16 +229,22 @@ function enqueue_google_fonts(): void {
 
 		$name = str_replace( ' ', '+', ucwords( str_replace( [ '-', '' ], ' ', $slug ) ) );
 
-		wp_enqueue_style(
-			'blockify-font-' . $slug,
-			wptt_get_webfont_url( sprintf(
-				'https://fonts.googleapis.com/css2?family=%s:wght@%s&display=swap',
-				$name,
-				$font_weights[ $weight ] ?? 400
-			) ),
-			[ 'global-styles' ],
-			filemtime( WP_CONTENT_DIR . '/fonts' )
-		);
+		$url = wptt_get_webfont_url( sprintf(
+			'https://fonts.googleapis.com/css2?family=%s:wght@%s&display=swap',
+			$name,
+			$font_weights[ $weight ] ?? 400
+		) );
+
+		if ( ! is_admin() ) {
+			wp_enqueue_style(
+				'blockify-font-' . $slug,
+				$url,
+				[ 'global-styles' ],
+				filemtime( WP_CONTENT_DIR . '/fonts' )
+			);
+		} else {
+			add_editor_style( '../../fonts/' . basename( $url ) );
+		}
 	}
 }
 
@@ -268,9 +273,6 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--scrollbar--width'     => $scrollbar_width,
 		'--wp--custom--layout--content-size' => $content_size,
 		'--wp--custom--layout--wide-size'    => $wide_size,
-		'--wp--custom--border--width'        => $border_width,
-		'--wp--custom--border--style'        => $border_style,
-		'--wp--custom--border--color'        => $border_color,
 		'--wp--custom--border'               => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'     => $body_background,
 		'--wp--custom--body--color'          => $body_color,

@@ -25,3 +25,4 @@ function remove_duplicate_classes( string $content, array $block ): string {
 		$content
 	);
 }
+

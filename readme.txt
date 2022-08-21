@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.0.29
+Stable tag: 0.0.30
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,12 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.0.30 - 21 August 2022 =
+* Add: Blueprint style variation
+* Add: Dark style variation
+* Add: Wireframe style variation
+* Fix: Google fonts in editor
 
 = 0.0.29 - 21 August 2022 =
 * Add: Placeholder image style
