@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.0.30\n"
+"Project-Id-Version: Blockify 0.0.31\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-21T13:46:55+00:00\n"
+"POT-Creation-Date: 2022-08-21T15:54:50+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -422,12 +422,27 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Alegreya"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Crimson Pro"
 msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Dancing Script"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Epilogue"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Figtree"
 msgstr ""
 
 #: theme.json
@@ -447,12 +462,32 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Lora"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Manrope"
 msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Mulish"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Open Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Oswald"
 msgstr ""
 
 #: theme.json
@@ -472,6 +507,11 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Quicksand"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Readex Pro"
 msgstr ""
 
@@ -482,12 +522,22 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
+msgid "Rubik"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
 msgid "Space Grotesk"
 msgstr ""
 
 #: theme.json
 msgctxt "Font family name"
 msgid "Urbanist"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Work Sans"
 msgstr ""
 
 #: theme.json
