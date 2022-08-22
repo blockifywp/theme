@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.0.33\n"
+"Project-Id-Version: Blockify 0.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-21T17:58:47+00:00\n"
+"POT-Creation-Date: 2022-08-22T04:21:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -31,59 +31,59 @@ msgstr ""
 msgid "Search results"
 msgstr ""
 
-#: includes/blocks/query.php:69
+#: includes/blocks/post-title.php:36
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/config.php:343
+#: includes/config.php:349
 msgid "SVG Icon"
 msgstr ""
 
-#: includes/config.php:348
+#: includes/config.php:354
 msgid "Placeholder"
 msgstr ""
 
-#: includes/config.php:353
+#: includes/config.php:359
 msgid "Icon"
 msgstr ""
 
-#: includes/config.php:358
+#: includes/config.php:364
 msgid "Numbered"
 msgstr ""
 
-#: includes/config.php:363
+#: includes/config.php:369
 msgid "Checklist"
 msgstr ""
 
-#: includes/config.php:368
+#: includes/config.php:374
 msgid "Square"
 msgstr ""
 
-#: includes/config.php:373
+#: includes/config.php:379
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config.php:378
+#: includes/config.php:384
 msgid "Toggle"
 msgstr ""
 
-#: includes/config.php:383
+#: includes/config.php:389
 msgid "Angle"
 msgstr ""
 
-#: includes/config.php:388
+#: includes/config.php:394
 msgid "Curve"
 msgstr ""
 
-#: includes/config.php:393
+#: includes/config.php:399
 msgid "Round"
 msgstr ""
 
-#: includes/config.php:398
+#: includes/config.php:404
 msgid "Wave"
 msgstr ""
 
-#: includes/config.php:403
+#: includes/config.php:409
 msgid "Fade"
 msgstr ""
 
@@ -668,6 +668,11 @@ msgstr ""
 #: theme.json
 msgctxt "Custom template name"
 msgid "Full Width"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single Block Pattern"
 msgstr ""
 
 #: theme.json

@@ -142,6 +142,9 @@ function blockify_config( array $defaults ) : array {
 
 ## Screenshots
 
+![style variations](https://user-images.githubusercontent.com/24793388/185838708-af499ccc-78e9-4b4f-8075-239b47c71f9d.gif)
+*Style variations*
+
 ![shadows](https://ps.w.org/blockify/assets/screenshot-2.png)
 *Box shadow settings*
 
