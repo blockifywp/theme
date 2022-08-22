@@ -1,5 +1,11 @@
 a {
 	transition: var(--wp--custom--transition, inherit);
+
+	&:hover,
+	&:focus,
+	&:active {
+		--wp--custom--link--box-shadow: 0 var(--wp--custom--border--width, 0.05em) 0 currentColor;
+	}
 }
 
 a:not(
@@ -10,5 +16,5 @@ a:not(
 	[role="textbox"],
 	[target="_self"]
 	) {
-	box-shadow: var(--wp--custom--link--box-shadow, 0 0.05em 0 currentColor)
+	box-shadow: var(--wp--custom--link--box-shadow, none);
 }

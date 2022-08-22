@@ -5,9 +5,9 @@
  * Categories: testimonials
  * 
  */
-?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"1.5em","bottom":"1.5em"}}}} -->
-<div class="wp-block-columns alignwide alignwide" style="padding-top:1.5em;padding-bottom:1.5em"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1.5em","top":"1.5em"}}}} -->
-<div class="wp-block-column" style="padding-top:1.5em;padding-bottom:1.5em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
+?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"1em","bottom":"1em"}}}} -->
+<div class="wp-block-columns alignwide alignwide" style="padding-top:1em;padding-bottom:1em"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
+<div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
 <p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter" style="letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 
@@ -18,8 +18,8 @@
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1.5em","top":"1.5em"}}}} -->
-<div class="wp-block-column" style="padding-top:1.5em;padding-bottom:1.5em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
+<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
+<div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
 <p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter" style="letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 
@@ -30,8 +30,8 @@
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1.5em","top":"1.5em"}}}} -->
-<div class="wp-block-column" style="padding-top:1.5em;padding-bottom:1.5em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
+<!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
+<div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
 <p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter" style="letter-spacing:5px">★★★★★</p>
 <!-- /wp:paragraph -->
 

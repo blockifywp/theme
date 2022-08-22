@@ -13,7 +13,7 @@
 
 <!-- wp:post-date {"style":{"spacing":{"margin":{"bottom":"1em"}}}} /-->
 
-<!-- wp:post-excerpt {"moreText":""} /-->
+<!-- wp:post-excerpt {"moreText":"Read more"} /-->
 <!-- /wp:post-template -->
 
 <!-- wp:query-pagination -->

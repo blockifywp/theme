@@ -17,7 +17,7 @@
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"3em"},"blockGap":"2em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:2em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"width":"1px"}},"layout":{"contentSize":"240px"}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="border-width:1px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em"><!-- wp:heading {"textAlign":"center","level":5} -->
-<h5 class="has-text-align-center">Personal</h5>
+<h5 class="has-text-align-center">Single</h5>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
@@ -29,7 +29,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Single live site license plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Single active site</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
@@ -49,11 +49,11 @@
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"width":"1px"}},"borderColor":"primary-600","layout":{"contentSize":"240px"}} -->
 <div class="wp-block-column is-vertically-aligned-center has-border-color has-primary-600-border-color" style="border-width:1px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em"><!-- wp:heading {"textAlign":"center","level":5} -->
-<h5 class="has-text-align-center">Business</h5>
+<h5 class="has-text-align-center">Multiple</h5>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$197.00</s></p>
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$297.00</s></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":6,"fontSize":"60"} -->
@@ -61,7 +61,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Up to 10 live sites plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Up to 10 active sites</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
@@ -81,11 +81,11 @@
 
 <!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"width":"1px"}},"layout":{"contentSize":"240px"}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="border-width:1px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em"><!-- wp:heading {"textAlign":"center","level":5} -->
-<h5 class="has-text-align-center">Enterprise</h5>
+<h5 class="has-text-align-center">Unlimited</h5>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$397.00</s></p>
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-16-font-size aligncenter">Save 50% - <s>$497.00</s></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":6,"fontSize":"60"} -->
@@ -93,7 +93,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Unlimited live sites plus:</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">Unlimited active sites</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->

@@ -244,3 +244,4 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.0.1 - March 23, 2022 =
 * Initial release
+

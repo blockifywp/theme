@@ -16,11 +16,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":6} -->
-<h6>Jane Smith</h6>
+<h6>Jess Brown</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Founder</p>
+<p class="has-18-font-size">Co-founder &amp; CEO</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"neutral-500","iconColorValue":"#5d6b98","size":"has-small-icon-size","className":"is-style-logos-only"} -->
@@ -40,11 +40,11 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"level":6} -->
-<h6>John Smith</h6>
+<h6>Mark Smith</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Co-founder, Developer</p>
+<p class="has-18-font-size">Co-founder &amp; designer</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"neutral-500","iconColorValue":"#5d6b98","size":"has-small-icon-size","className":"is-style-logos-only"} -->
@@ -68,7 +68,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"18"} -->
-<p class="has-18-font-size">Designer</p>
+<p class="has-18-font-size">Developer</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"neutral-500","iconColorValue":"#5d6b98","size":"has-small-icon-size","className":"is-style-logos-only"} -->

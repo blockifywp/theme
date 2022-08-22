@@ -2,7 +2,7 @@
 	display: block;
 	aspect-ratio: var(--wp--custom--placeholder--aspect-ratio, 2/1);
 	border: var(--wp--custom--border, 1px solid currentColor);
-	margin-bottom: var(--wp--style--block-gap, 1em);
+	margin-bottom: calc(var(--wp--style--block-gap, 1em) / 2);
 	position: relative;
 
 	&:after {
