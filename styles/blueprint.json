@@ -9,34 +9,6 @@
         "color": "var(--wp--preset--color--neutral-200)",
         "radius": "5px"
       },
-      "fontWeight": {
-        "black": 900,
-        "extraBold": 800,
-        "bold": 700,
-        "semiBold": 600,
-        "medium": 500,
-        "regular": 400,
-        "light": 300,
-        "extraLight": 200,
-        "thin": 100
-      },
-      "letterSpacing": {
-        "text": "normal",
-        "heading": "-0.01em"
-      },
-      "lineHeight": {
-        "text": 1.5,
-        "heading": 1.2
-      },
-      "boxShadow": {
-        "x": "0px",
-        "y": "3px",
-        "blur": "10px",
-        "spread": "0px",
-        "color": "var(--wp--preset--color--neutral-100)",
-        "radius": "0px",
-        "zIndex": -1
-      },
       "checklist": {
         "background": "var(--wp--preset--color--neutral-600)"
       },

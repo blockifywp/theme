@@ -9,25 +9,6 @@
         "color": "var(--wp--preset--color--neutral-600)",
         "radius": "5px"
       },
-      "fontWeight": {
-        "black": 900,
-        "extraBold": 800,
-        "bold": 700,
-        "semiBold": 600,
-        "medium": 500,
-        "regular": 400,
-        "light": 300,
-        "extraLight": 200,
-        "thin": 100
-      },
-      "letterSpacing": {
-        "text": "normal",
-        "heading": "-0.01em"
-      },
-      "lineHeight": {
-        "text": 1.5,
-        "heading": 1.2
-      },
       "boxShadow": {
         "x": "0px",
         "y": "3px",
@@ -39,8 +20,7 @@
       },
       "checklist": {
         "background": "var(--wp--preset--color--primary-600)"
-      },
-      "transition": "all 0.2s ease"
+      }
     },
     "color": {
       "customDuotone": true,
@@ -82,17 +62,17 @@
       "link": true,
       "palette": [
         {
-          "color": "#3538cd",
+          "color": "#213fd4",
           "name": "Primary 700",
           "slug": "primary-700"
         },
         {
-          "color": "#444ce7",
+          "color": "#3858e9",
           "name": "Primary 600",
           "slug": "primary-600"
         },
         {
-          "color": "#6172f3",
+          "color": "#4c69eb",
           "name": "Primary 500",
           "slug": "primary-500"
         },
@@ -102,67 +82,67 @@
           "slug": "primary-400"
         },
         {
-          "color": "#a4bcfd",
+          "color": "#c3cdf8",
           "name": "Primary 300",
           "slug": "primary-300"
         },
         {
-          "color": "#e0eaff",
+          "color": "#ebeefd",
           "name": "Primary 100",
           "slug": "primary-100"
         },
         {
-          "color": "#111322",
+          "color": "#151929",
           "name": "Neutral 900",
           "slug": "neutral-900"
         },
         {
-          "color": "#30374f",
+          "color": "#313b61",
           "name": "Neutral 800",
           "slug": "neutral-800"
         },
         {
-          "color": "#404968",
+          "color": "#3f4c7c",
           "name": "Neutral 700",
           "slug": "neutral-700"
         },
         {
-          "color": "#4a5578",
+          "color": "#46548a",
           "name": "Neutral 600",
           "slug": "neutral-600"
         },
         {
-          "color": "#5d6b98",
+          "color": "#6b76a1",
           "name": "Neutral 500",
           "slug": "neutral-500"
         },
         {
-          "color": "#7d89b0",
+          "color": "#7e87ad",
           "name": "Neutral 400",
           "slug": "neutral-400"
         },
         {
-          "color": "#b9c0d4",
+          "color": "#b5bbd0",
           "name": "Neutral 300",
           "slug": "neutral-300"
         },
         {
-          "color": "#dcdfea",
+          "color": "#dadde8",
           "name": "Neutral 200",
           "slug": "neutral-200"
         },
         {
-          "color": "#eff1f5",
+          "color": "#edeef3",
           "name": "Neutral 100",
           "slug": "neutral-100"
         },
         {
-          "color": "#f9f9fb",
+          "color": "#f6f6f9",
           "name": "Neutral 50",
           "slug": "neutral-50"
         },
         {
-          "color": "#fcfcfd",
+          "color": "#fafafc",
           "name": "Neutral 25",
           "slug": "neutral-25"
         },
@@ -398,14 +378,9 @@
           }
         }
       },
-      "core/site-tile": {
-        "spacing": {
-          "margin": {
-            "bottom": "0"
-          }
-        },
-        "typography": {
-          "textDecoration": "none"
+      "core/site-title": {
+        "color": {
+          "text": "var(--wp--preset--color--white)"
         }
       },
       "core/site-logo": {

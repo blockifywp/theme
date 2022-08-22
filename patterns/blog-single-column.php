@@ -9,7 +9,7 @@
 <div class="wp-block-query"><!-- wp:post-template -->
 <!-- wp:post-featured-image /-->
 
-<!-- wp:post-title /-->
+<!-- wp:post-title {"level":3} /-->
 
 <!-- wp:post-date {"style":{"spacing":{"margin":{"bottom":"1em"}}}} /-->
 

@@ -11,7 +11,7 @@
 
 <!-- wp:post-date {"style":{"spacing":{"margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}}} /-->
 
-<!-- wp:post-title {"fontSize":"36"} /-->
+<!-- wp:post-title {"level":4,"style":{"spacing":{"margin":{"top":"0.5em","right":"0em","bottom":"0.5em","left":"0em"}}}} /-->
 
 <!-- wp:post-excerpt {"moreText":"Read more"} /-->
 <!-- /wp:post-template -->
