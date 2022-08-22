@@ -6,9 +6,10 @@ $spread: var(--wp--custom--box-shadow--spread, 0);
 	width: var(--wp--custom--icon--width, calc(100% + #{$spread}));
 	z-index: var(--wp--custom--box-shadow--z-index, -1);
 	position: absolute;
-	left: calc(var(--wp--custom--box-shadow--x, 0) - (#{$spread} / 2));
-	top: calc(var(--wp--custom--box-shadow--y, 1px) - (#{$spread} / 2));
+	left: calc(var(--wp--custom--box-shadow--x, 0) -  (#{$spread} / 2));
+	top: calc(var(--wp--custom--box-shadow--y, 0) -  (#{$spread} / 2));
 	filter: blur(var(--wp--custom--box-shadow--blur, 2px));
 	background: var(--wp--custom--box-shadow--color);
 	border-radius: inherit;
+	margin: auto;
 }

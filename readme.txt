@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.1.3
+Stable tag: 0.1.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,13 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.1.4 - 22 August 2022 =
+* Add: Color fallbacks in theme.json
+* Update: Clean up style variation json
+* Fix: Box shadows
+* Remove: PHP CSS minification utility
+* Remove: Footer social links
 
 = 0.1.3 - 22 August 2022 =
 * Update: Link styling improvements

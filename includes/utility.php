@@ -142,32 +142,6 @@ function dom( string $html ): DOMDocument {
 }
 
 /**
- * Quick and dirty way to mostly minify CSS.
- *
- * @author Gary Jones
- *
- * @since  0.0.2
- *
- * @param string $css CSS to minify
- *
- * @return string
- */
-function minify_css( string $css ): string {
-	$css = preg_replace( '/\s+/', ' ', $css );
-	$css = preg_replace( '/(\s+)(\/\*(.*?)\*\/)(\s+)/', '$2', $css );
-	$css = preg_replace( '~/\*(?![!|*])(.*?)\*/~', '', $css );
-	$css = preg_replace( '/;(?=\s*})/', '', $css );
-	$css = preg_replace( '/(,|:|;|\{|}|\*\/|>) /', '$1', $css );
-	$css = preg_replace( '/ (,|;|\{|}|\(|\)|>)/', '$1', $css );
-	$css = preg_replace( '/(:| )0\.([0-9]+)(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}.${2}${3}', $css );
-	$css = preg_replace( '/(:| )(\.?)0(%|em|ex|px|in|cm|mm|pt|pc)/i', '${1}0', $css );
-	$css = preg_replace( '/0 0 0 0/', '0', $css );
-	$css = preg_replace( '/#([a-f0-9])\\1([a-f0-9])\\2([a-f0-9])\\3/i', '#\1\2\3', $css );
-
-	return trim( $css );
-}
-
-/**
  * Returns the final merged config.
  *
  * @since 0.0.9

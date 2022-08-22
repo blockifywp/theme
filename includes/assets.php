@@ -100,7 +100,7 @@ function maybe_load_editor_assets( WP_Screen $screen ): void {
 
 	add_action( $hook_name, NS . 'enqueue_editor_assets' );
 	add_action( $hook_name, NS . 'add_dynamic_custom_properties' );
-	add_action( $hook_name, NS . 'add_split_styles', 11 );
+	add_action( $hook_name, NS . 'add_conditional_styles', 11 );
 	add_action( $hook_name, NS . 'add_dark_mode_custom_properties' );
 }
 
@@ -293,7 +293,7 @@ function add_dynamic_custom_properties(): void {
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
-		minify_css( $css )
+		$css
 	);
 }
 
@@ -365,11 +365,11 @@ function add_dark_mode_custom_properties(): void {
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
-		minify_css( $new_css )
+		$new_css
 	);
 }
 
-add_action( 'wp_enqueue_scripts', NS . 'add_split_styles', 11 );
+add_action( 'wp_enqueue_scripts', NS . 'add_conditional_styles', 11 );
 /**
  * Adds split styles.
  *
@@ -377,7 +377,7 @@ add_action( 'wp_enqueue_scripts', NS . 'add_split_styles', 11 );
  *
  * @return void
  */
-function add_split_styles(): void {
+function add_conditional_styles(): void {
 	$css        = '';
 	$files      = [];
 	$conditions = [
@@ -392,7 +392,8 @@ function add_split_styles(): void {
 			continue;
 		}
 
-		$css     .= trim( file_get_contents( $file ) );
+		$css .= trim( file_get_contents( $file ) );
+
 		$files[] = str_replace( DIR, '', $file );
 	}
 
@@ -403,7 +404,8 @@ function add_split_styles(): void {
 			continue;
 		}
 
-		$css     .= trim( file_get_contents( $file ) );
+		$css .= trim( file_get_contents( $file ) );
+
 		$files[] = str_replace( DIR, '', $file );
 	}
 
@@ -415,7 +417,7 @@ function add_split_styles(): void {
 	} else {
 		wp_add_inline_style(
 			'global-styles',
-			minify_css( $css )
+			$css
 		);
 	}
 }

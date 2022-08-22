@@ -16,15 +16,7 @@
 
 <!-- wp:paragraph -->
 <p>Next generation web design and development tools for innovative creatives</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:social-links {"iconColor":"neutral-300","iconColorValue":"#b9c0d4","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-logos-only","layout":{"type":"flex"},"style":{"spacing":{"margin":{"bottom":"3em"}}}} -->
-<ul class="wp-block-social-links has-small-icon-size has-icon-color is-style-logos-only" style="margin-bottom:3em"><!-- wp:social-link {"url":"https://facebook.com/blockify","service":"facebook"} /-->
-
-<!-- wp:social-link {"url":"https://twitter.com/blockifywp","service":"twitter"} /-->
-
-<!-- wp:social-link {"url":"https://youtube.com/blockifywp","service":"youtube"} /--></ul>
-<!-- /wp:social-links --></div>
+<!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em"}}}} -->
