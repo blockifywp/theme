@@ -27,16 +27,44 @@ function render_image_block( string $content, array $block ): string {
 		return $content;
 	}
 
-	if ( isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-icon' ) ) {
+	$class_name = $block['attrs']['className'] ?? null;
 
-		/** @var DOMElement $dom */
+	if ( $class_name && str_contains( $class_name, 'is-style-placeholder' ) ) {
+		$border_color = $block['attrs']['style']['border']['color'] ?? null;
+
+		if ( isset( $block['attrs']['borderColor'] ) ) {
+			$border_color = 'var(--wp--preset--color--' . $block['attrs']['borderColor'] . ')';
+		}
+
 		$dom = dom( $content );
 
 		if ( ! $dom->firstChild ) {
 			return $content;
 		}
 
-		$div  = change_tag_name( $dom->firstChild, 'div' );
+		/** @var DOMElement $first_child */
+		$first_child = $dom->firstChild;
+
+		$original = $first_child->getAttribute( 'style' );
+
+		if ( $border_color ) {
+			$first_child->setAttribute( 'style', $original . ( $original ? ';' : '' ) . '--wp--custom--border--color:' . $border_color );
+		}
+
+		return $dom->saveHTML();
+	}
+
+	if ( $class_name && str_contains( $class_name, 'is-style-icon' ) ) {
+		$dom = dom( $content );
+
+		if ( ! $dom->firstChild ) {
+			return $content;
+		}
+
+		/** @var DOMElement $first_child */
+		$first_child = $dom->firstChild;
+
+		$div  = change_tag_name( $first_child, 'div' );
 		$span = change_tag_name( $div->firstChild, 'span' );
 
 		$allowed_classes = [

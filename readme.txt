@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.0.33
+Stable tag: 0.1.0
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,9 +59,21 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
+= 0.1.0 - 22 August 2022 =
+* Add: Spacing controls to post content block
+* Add: Single columns testimonial pattern
+* Add: Conditional loading for admin bar styles
+* Add: Custom property support for cite element
+* Update: Single block pattern improvements
+* Update: Refactor query block files
+* Update: Only set scrollbar width on desktop
+* Fix: Heading styles to pages without heading block
+* Fix: Post content layout inheritance
+* Fix: Improve wp.org pattern display
+
 = 0.0.33 - 22 August 2022 =
 * Add: Full width template
-* Add: .org pattern temporary css
+* Add: WP.org pattern temporary css
 
 = 0.0.32 - 22 August 2022 =
 * Fix: Custom properties not showing in admin

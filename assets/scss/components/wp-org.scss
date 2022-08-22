@@ -8,4 +8,10 @@
 	main > h1 {
 		display: none;
 	}
+
+	.wp-block-post-content {
+		max-width: var(--wp--custom--layout--wide-size, 1200px);
+	}
 }
+
+

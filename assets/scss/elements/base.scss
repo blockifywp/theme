@@ -59,3 +59,7 @@ blockquote {
 	margin-left: 0;
 	margin-right: 0;
 }
+
+cite {
+	font-style: var(--wp--custom--cite--font-style, italic);
+}

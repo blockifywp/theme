@@ -211,6 +211,12 @@ $defaults['blockSupports'] = [
 			'padding' => true,
 		],
 	],
+	'core/post-content'        => [
+		'spacing' => [
+			'margin'  => true,
+			'padding' => true,
+		],
+	],
 	'core/post-excerpt'        => [
 		'__experimentalLayout' => [
 			'allowSwitching'  => false,

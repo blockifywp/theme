@@ -32,7 +32,6 @@ figure.wp-block-image {
 .is-style-placeholder {
 	border: var(--wp--custom--border, 1px solid #ddd);
 	border-radius: var(--wp--custom--border--radius, 0);
-	max-width: 100%;
 	position: relative;
 	aspect-ratio: var(--wp--custom--placeholder--aspect-ratio, 1/1);
 	overflow: hidden;
@@ -40,6 +39,10 @@ figure.wp-block-image {
 
 	&:not([style*="border-width"]) {
 		border-width: var(--wp--custom--border--width, 1px) !important;
+	}
+
+	&:not(.alignwide) {
+		max-width: 100%;
 	}
 
 	img,

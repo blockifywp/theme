@@ -8,6 +8,7 @@ use DOMElement;
 use function add_filter;
 use function explode;
 use function implode;
+use function method_exists;
 use function trim;
 
 add_filter( 'render_block', NS . 'render_template_part_block', 10, 2 );
@@ -33,15 +34,19 @@ function render_template_part_block( string $content, array $block ): string {
 	 */
 	$first = $dom->firstChild;
 
-	$styles             = explode( ';', $first->getAttribute( 'style' ) );
+	if ( ! method_exists( $first, 'getAttribute' ) ) {
+		return $content;
+	}
+
+	$css = $first->getAttribute( 'style' );
+
+	$styles             = explode( ';', $css );
 	$styles['position'] = $block['attrs']['position'] ?? null;
 	$styles['top']      = $block['attrs']['inset']['top'] ?? null;
 	$styles['right']    = $block['attrs']['inset']['right'] ?? null;
 	$styles['bottom']   = $block['attrs']['inset']['bottom'] ?? null;
 	$styles['left']     = $block['attrs']['inset']['left'] ?? null;
 	$styles['z-index']  = $block['attrs']['zIndex'] ?? null;
-
-	$css = $first->getAttribute( 'style' );
 
 	foreach ( $styles as $property => $value ) {
 		$css .= $value ? "$property:$value;" : '';

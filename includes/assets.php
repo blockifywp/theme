@@ -22,10 +22,13 @@ use function file_get_contents;
 use function filemtime;
 use function function_exists;
 use function get_option;
+use function get_post_meta;
+use function get_the_ID;
 use function glob;
 use function in_array;
 use function is_a;
 use function is_admin;
+use function is_admin_bar_showing;
 use function is_string;
 use function remove_action;
 use function remove_filter;
@@ -271,8 +274,7 @@ function add_dynamic_custom_properties(): void {
 	$button_background = $global_styles['blocks']['core/button']['color']['background'] ?? null;
 	$button_text       = $global_styles['blocks']['core/button']['color']['text'] ?? null;
 
-	$custom_properties = [
-		'--wp--custom--scrollbar--width'     => $scrollbar_width,
+	$all = [
 		'--wp--custom--layout--content-size' => $content_size,
 		'--wp--custom--layout--wide-size'    => $wide_size,
 		'--wp--custom--border'               => "$border_width $border_style $border_color",
@@ -282,7 +284,12 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--button--color'        => $button_text,
 	];
 
-	$css = $element . '{' . css_array_to_string( $custom_properties ) . '}';
+	$desktop = [
+		'--wp--custom--scrollbar--width' => $scrollbar_width,
+	];
+
+	$css = $element . '{' . css_array_to_string( $all ) . '}';
+	$css .= '@media (min-width:781px){' . $element . '{' . css_array_to_string( $desktop ) . '}}';
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
@@ -371,15 +378,31 @@ add_action( 'wp_enqueue_scripts', NS . 'add_split_styles', 11 );
  * @return void
  */
 function add_split_styles(): void {
-	$css   = '';
-	$files = [];
+	$css        = '';
+	$files      = [];
+	$conditions = [
+		'admin-bar' => is_admin_bar_showing(),
+		'wp-org'    => get_post_meta( get_the_ID(), '_wp_page_template', true ) === 'page-full',
+	];
 
 	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
+		$condition = $conditions[ basename( $file, '.css' ) ] ?? true;
+
+		if ( ! $condition ) {
+			continue;
+		}
+
 		$css     .= trim( file_get_contents( $file ) );
 		$files[] = str_replace( DIR, '', $file );
 	}
 
 	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
+		$condition = $conditions[ basename( $file, '.css' ) ] ?? true;
+
+		if ( ! $condition ) {
+			continue;
+		}
+
 		$css     .= trim( file_get_contents( $file ) );
 		$files[] = str_replace( DIR, '', $file );
 	}

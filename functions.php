@@ -15,6 +15,8 @@ if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
 	return;
 }
 
+//return;
+
 const SLUG = 'blockify';
 const NS   = __NAMESPACE__ . '\\';
 const DS   = DIRECTORY_SEPARATOR;
