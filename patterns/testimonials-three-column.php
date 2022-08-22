@@ -14,7 +14,7 @@
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
 <blockquote class="wp-block-quote has-text-align-center has-18-font-size"><!-- wp:paragraph -->
 <p>Nice work on this product. You've saved our business! If you aren't sure, always go for this product. Believe me, you won't regret it.</p>
-<!-- /wp:paragraph --><cite><small><strong>Marla Singer</strong></small></cite></blockquote>
+<!-- /wp:paragraph --><cite><small><strong>Jess Brown</strong> </small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
@@ -26,7 +26,7 @@
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
 <blockquote class="wp-block-quote has-text-align-center has-18-font-size"><!-- wp:paragraph -->
 <p>Really good. This product is by far the most valuable business resource we have EVER purchased. Thanks guys, keep up the good work!</p>
-<!-- /wp:paragraph --><cite><small><strong>Robert Paulson</strong></small></cite></blockquote>
+<!-- /wp:paragraph --><cite><small><strong>Mark Smith</strong></small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
 
@@ -38,7 +38,7 @@
 <!-- wp:quote {"align":"center","fontSize":"18"} -->
 <blockquote class="wp-block-quote has-text-align-center has-18-font-size"><!-- wp:paragraph -->
 <p>I don't know what else to say. I don't always clop, but when I do, it's because of this product. This is simply unbelievable!</p>
-<!-- /wp:paragraph --><cite><small><strong>Tyler Durden</strong></small></cite></blockquote>
+<!-- /wp:paragraph --><cite><small><strong>Alice Jones </strong></small></cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
