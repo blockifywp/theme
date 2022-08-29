@@ -78,9 +78,8 @@ function enqueue_editor_assets(): void {
 			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
 			'nonce'              => wp_create_nonce( 'blockify' ),
 			'icon'               => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
-			'darkMode'           => get_option( 'blockify' )['darkMode'] ?? false,
-			'darkModePreview'    => get_option( 'blockify' )['darkModePreview'] ?? false,
-			'removeEmojiScripts' => get_option( 'blockify' )['removeEmojiScripts'] ?? false,
+			'darkMode'           => ( get_option( 'blockify' )['darkMode'] ?? null ) === 'true',
+			'removeEmojiScripts' => ( get_option( 'blockify' )['removeEmojiScripts'] ?? null ) === 'true',
 		], get_config() )
 	);
 }
@@ -303,11 +302,14 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties' );
  * @return void
  */
 function add_dark_mode_custom_properties(): void {
+	$options = get_option( SLUG );
+	$enabled = true;
 
-	// Check if dark mode setting is deactivated.
-	$dark_mode = get_option( 'blockify', [] )['darkMode'] ?? true;
+	if ( isset( $options['darkMode'] ) ) {
+		$enabled = $options['darkMode'] === 'true';
+	}
 
-	if ( ! $dark_mode ) {
+	if ( ! $enabled && ! is_admin() ) {
 		return;
 	}
 
@@ -441,6 +443,17 @@ function remove_emoji_scripts(): void {
 
 	// Defaults to true for theme previews.
 	if ( ! ( get_option( 'blockify', [] )['removeEmojiScripts'] ?? true ) ) {
+		return;
+	}
+
+	$options = get_option( SLUG );
+	$enabled = true;
+
+	if ( isset( $options['removeEmojiScripts'] ) ) {
+		$enabled = $options['removeEmojiScripts'] === 'true';
+	}
+
+	if ( ! $enabled ) {
 		return;
 	}
 

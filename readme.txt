@@ -1,8 +1,8 @@
 === Blockify ===
 Contributors: blockify
 Requires at least: 6.0
-Tested up to: 6.0
-Stable tag: 0.2.0
+Tested up to: 6.0.1
+Stable tag: 0.2.1
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,7 +59,10 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.2.0 = 26 August 2022 =
+= 0.2.1 - 29 August 2022
+* Remove: Dark mode preview setting
+
+= 0.2.0 - 29 August 2022 =
 * Add: Style guide pattern
 * Add: Post featured image border radius
 * Add: IBM Plex Sans & Mono, DM Sans, Source Serif Pro
@@ -273,4 +276,3 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.0.1 - March 23, 2022 =
 * Initial release
-
