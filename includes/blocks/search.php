@@ -6,12 +6,10 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
-use function array_diff;
 use function explode;
 use function str_contains;
-use function str_replace;
 
-add_filter( 'render_block', NS . 'render_search_block', 10, 2 );
+add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -23,10 +21,6 @@ add_filter( 'render_block', NS . 'render_search_block', 10, 2 );
  * @return string
  */
 function render_search_block( string $content, array $block ): string {
-	if ( 'core/search' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 	$dom     = dom( $content );
 

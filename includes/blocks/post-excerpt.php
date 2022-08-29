@@ -5,10 +5,12 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function get_option;
 use function has_excerpt;
 use function is_page;
+use function str_replace;
 
-add_filter( 'render_block', NS . 'render_excerpt_block', 10, 2 );
+add_filter( 'render_block_core/post-excerpt', NS . 'render_excerpt_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -20,10 +22,6 @@ add_filter( 'render_block', NS . 'render_excerpt_block', 10, 2 );
  * @return string
  */
 function render_excerpt_block( string $content, array $block ): string {
-	if ( 'core/post-excerpt' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	if ( is_page() && ! has_excerpt() ) {
 		$content = '';
 	}
@@ -35,14 +33,12 @@ add_filter( 'excerpt_length', NS . 'excerpt_length', 99 );
 /**
  * Filters the excerpt length for posts.
  *
- * @since 0.0.1
- *
- * @param int $length
+ * @since 0.2.0
  *
  * @return int
  */
-function excerpt_length( int $length ): int {
-	return 30;
+function excerpt_length(): int {
+	return get_option( SLUG )['excerpt_length'] ?? 33;
 }
 
 add_filter( 'excerpt_more', NS . 'excerpt_more' );

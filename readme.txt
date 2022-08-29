@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0
-Stable tag: 0.1.4
+Stable tag: 0.2.0
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,24 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.2.0 = 26 August 2022 =
+* Add: Style guide pattern
+* Add: Post featured image border radius
+* Add: IBM Plex Sans & Mono, DM Sans, Source Serif Pro
+* Add: Global API key settings
+* Add: Page list block spacing support
+* Update: All settings to use Rest API
+* Update: Front page template blog pattern
+* Update: CSS loading optimizations
+* Update: Switch to dynamic render block filters
+* Update: Alignment improvements
+* Update: Move all settings to rest api
+* Remove: Single block pattern template
+* Remove: Link box shadow hover effect
+* Fix: Full width template footer template part
+* Fix: Default border color contrast
+* Fix: Icon even/odd fill rules
 
 = 0.1.4 - 22 August 2022 =
 * Add: Color fallbacks in theme.json

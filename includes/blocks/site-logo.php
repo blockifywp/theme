@@ -8,7 +8,7 @@ use DOMElement;
 use function add_filter;
 use function file_get_contents;
 
-add_filter( 'render_block', NS . 'render_site_logo_block', 10, 2 );
+add_filter( 'render_block_core/site-logo', NS . 'render_site_logo_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -20,10 +20,6 @@ add_filter( 'render_block', NS . 'render_site_logo_block', 10, 2 );
  * @return string
  */
 function render_site_logo_block( string $content, array $block ): string {
-	if ( 'core/site-logo' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	if ( ! $content ) {
 		$content = file_get_contents( DIR . 'assets/svg/social/blockify.svg' );
 

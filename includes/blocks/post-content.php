@@ -9,9 +9,8 @@ use function add_filter;
 use function explode;
 use function implode;
 use function is_a;
-use function str_replace;
 
-add_filter( 'render_block', NS . 'render_post_content_block', 10, 2 );
+add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -23,10 +22,6 @@ add_filter( 'render_block', NS . 'render_post_content_block', 10, 2 );
  * @return string
  */
 function render_post_content_block( string $content, array $block ): string {
-	if ( 'core/post-content' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	$margin  = $block['attrs']['style']['spacing']['margin'] ?? [];
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 

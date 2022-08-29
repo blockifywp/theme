@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function str_replace;
 
-add_filter( 'render_block', NS . 'render_post_author_block', 10, 2 );
+add_filter( 'render_block_core/post-author', NS . 'render_post_author_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -19,15 +19,10 @@ add_filter( 'render_block', NS . 'render_post_author_block', 10, 2 );
  * @return string
  */
 function render_post_author_block( string $content, array $block ): string {
-
-	if ( 'core/post-author' === $block['blockName'] ) {
-		$content = str_replace(
-			[ '<p ', '</p>' ],
-			[ '<span ', '</span>' ],
-			$content
-		);
-	}
-
-	return $content;
+	return str_replace(
+		[ '<p ', '</p>' ],
+		[ '<span ', '</span>' ],
+		$content
+	);
 }
 

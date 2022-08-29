@@ -5,12 +5,12 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use DOMElement;
+use function add_filter;
 use function explode;
 use function implode;
 use function str_contains;
-use function add_filter;
 
-add_filter( 'render_block', NS . 'render_button_block', 10, 2 );
+add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -22,10 +22,6 @@ add_filter( 'render_block', NS . 'render_button_block', 10, 2 );
  * @return string
  */
 function render_button_block( string $content, array $block ): string {
-	if ( 'core/button' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	if ( str_contains( $content, '-border-' ) ) {
 		$global_settings = \wp_get_global_settings();
 		$dom = dom( $content );

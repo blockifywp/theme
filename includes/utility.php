@@ -4,6 +4,14 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function basename;
+use function file_get_contents;
+use function get_stylesheet_directory;
+use function glob;
+use function json_decode;
+use function site_url;
+use function str_contains;
+use function wp_get_global_settings;
 use const PHP_INT_MAX;
 use function get_template_directory_uri;
 use function trailingslashit;
@@ -267,4 +275,53 @@ function css_string_to_array( string $css ): array {
 	}
 
 	return $array;
+}
+
+/**
+ * Checks if we're on a wp.org pattern preview.
+ *
+ * @since 0.2.0
+ *
+ * @param int $post_id Not always the current post.
+ *
+ * @return bool
+ */
+function is_pattern_preview( int $post_id ): bool {
+	return get_post_meta( $post_id, '_wp_page_template', true ) === 'page-full' && $post_id === 2;
+}
+
+/**
+ * Attempts to detect the active style variation.
+ *
+ * Requires a color palette and a background color set in theme.json.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function get_style_variation(): string {
+	$style_variation  = 'default';
+	$global_settings  = wp_get_global_settings();
+	$global_styles    = \wp_get_global_styles();
+	$palette_settings = $global_settings['color']['palette']['theme'] ?? [];
+	$style_json_files = glob( get_stylesheet_directory() . '/styles/*.json' );
+
+	foreach ( $style_json_files as $style_json_file ) {
+		$json    = json_decode( file_get_contents( $style_json_file ), true );
+		$matches = true;
+
+		if ( ( $json['settings']['color']['palette'] ?? [] ) !== $palette_settings ) {
+			$matches = false;
+		}
+
+		$background = $json['styles']['color']['background'] ?? null;
+
+		if ( $background && $background !== $global_styles['color']['background'] ) {
+			$matches = false;
+		}
+
+		$style_variation = $matches ? basename( $style_json_file, '.json' ) : $style_variation;
+	}
+
+	return $style_variation;
 }

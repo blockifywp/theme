@@ -4,7 +4,15 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-$defaults = [];
+$defaults = [
+	'apiKeys' => [
+		'adobeFonts'  => '',
+		'blockify'    => '',
+		'fontAwesome' => '',
+		'googleMaps'  => '',
+		'mailChimp'   => '',
+	],
+];
 
 $defaults['blockSupports'] = [
 	'blockify/accordion'       => [
@@ -212,6 +220,15 @@ $defaults['blockSupports'] = [
 		],
 	],
 	'core/post-content'        => [
+		'align'     => [
+			'full',
+			'wide',
+			'left',
+			'center',
+			'right',
+			'none',
+		],
+		'alignWide' => true,
 		'spacing' => [
 			'margin'  => true,
 			'padding' => true,
@@ -309,6 +326,15 @@ $defaults['blockSupports'] = [
 		],
 	],
 	'core/spacer'              => [
+		'align'                => [
+			'full',
+			'wide',
+			'left',
+			'center',
+			'right',
+			'none',
+		],
+		'alignWide'            => true,
 		'boxShadow' => true,
 		'color'     => [
 			'gradients'  => true,
@@ -410,6 +436,8 @@ $defaults['blockStyles']['register'] = [
 	],
 ];
 
+// TODO: Add secondary button style if color found in palette.
+
 $defaults['blockStyles']['unregister'] = [
 	[
 		'type' => 'core/image',
@@ -452,7 +480,7 @@ $defaults['postTypeSupports'] = [
 	],
 ];
 
-$defaults['darkMode'] = [
+$defaults['darkModeColorPalette'] = [
 	'neutral-900' => 'neutral-100',
 	'neutral-800' => 'neutral-200',
 	'neutral-700' => 'neutral-200',

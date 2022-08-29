@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function str_replace;
 
-add_filter( 'render_block', NS . 'render_post_terms_block', 10, 2 );
+add_filter( 'render_block_core/post-terms', NS . 'render_post_terms_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -19,7 +19,7 @@ add_filter( 'render_block', NS . 'render_post_terms_block', 10, 2 );
  * @return string
  */
 function render_post_terms_block( string $content, array $block ): string {
-	if ( 'core/post-terms' === $block['blockName'] && isset( $block['attrs']['align'] ) ) {
+	if ( $block['attrs']['align'] ?? null ) {
 		$content = str_replace(
 			[
 				'wp-block-post-terms',

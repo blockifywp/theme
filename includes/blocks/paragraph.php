@@ -4,10 +4,11 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function add_filter;
 use function date;
 use function str_replace;
 
-add_filter( 'render_block', NS . 'render_paragraph_block', 10, 2 );
+add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -19,10 +20,6 @@ add_filter( 'render_block', NS . 'render_paragraph_block', 10, 2 );
  * @return string
  */
 function render_paragraph_block( string $content, array $block ): string {
-	if ( $block['blockName'] !== 'core/paragraph' ) {
-		return $content;
-	}
-
 	$shortcodes = [
 		'[year]' => date( 'Y' ),
 	];

@@ -4,11 +4,13 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use WP_REST_Response;
 use function add_action;
 use function add_post_type_support;
 use function add_theme_support;
 use function array_keys;
 use function basename;
+use function current_user_can;
 use function file_get_contents;
 use function get_option;
 use function get_post;
@@ -117,40 +119,51 @@ function register_page_title_rest_field(): void {
 	);
 }
 
-add_action( 'wp_ajax_blockify_toggle_dark_mode', NS . 'toggle_dark_mode' );
+add_action( 'rest_api_init', NS . 'register_options_rest_route' );
 /**
- * Handles export pattern AJAX request.
+ * Registers theme options endpoint.
  *
- * @since 0.0.1
+ * @since 0.2.0
  *
  * @return void
  */
-function toggle_dark_mode(): void {
-	if ( ! wp_verify_nonce( $_POST['nonce'], 'blockify' ) ) {
-		wp_send_json_error( __( 'Could not verify nonce.', 'blockify' ) );
+function register_options_rest_route(): void {
+	register_rest_route( SLUG . '/v1', '/options/', [
+		[
+			'permission_callback' => fn() => true,
+			'methods'             => WP_REST_Server::ALLMETHODS,
+			[
+				'args' => [
+					'name'  => [
+						'required' => false,
+						'type'     => 'string',
+					],
+					'value' => [
+						'required' => false,
+						'type'     => 'string',
+					],
+				],
+			],
+			'callback'            => function ( WP_REST_Request $request ): array {
+				$options = get_option( SLUG ) ?? [];
+				$name    = $request->get_param( 'name' ) ?? null;
+				$value   = $request->get_param( 'value' ) ?? null;
 
-		die;
-	}
+				if ( $name && $value && $request->get_method() === WP_REST_Server::CREATABLE ) {
+					$options[ (string) $name ] = (string) $value;
 
-	$options = get_option( 'blockify', [] ) ?? [];
+					update_option( SLUG, $options );
+				}
 
-	$dark_mode = true;
-
-	if ( isset( $_POST['darkMode'] ) && $_POST['darkMode'] === 'false' ) {
-		$dark_mode = false;
-	}
-
-	$options['darkMode'] = $dark_mode;
-
-	update_option( 'blockify', $options );
-
-	wp_send_json_success( __( 'Set dark mode to ', 'blockify' ) . $options['darkMode'] );
-	die;
+				return $options;
+			},
+		],
+	] );
 }
 
 add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
 /**
- * Fetches icon data from endpoint.
+ * Registers endpoint for icon data.
  *
  * @since 0.0.1
  *
@@ -158,7 +171,7 @@ add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
  */
 function register_icons_rest_route(): void {
 	register_rest_route( SLUG . '/v1', '/icons/', [
-		'permission_callback' => '__return_true',
+		'permission_callback' => fn() => current_user_can( 'edit_posts' ),
 		'methods'             => WP_REST_Server::READABLE,
 		[
 			'args' => [
@@ -172,12 +185,32 @@ function register_icons_rest_route(): void {
 				],
 			],
 		],
-		'callback'            => function ( $request ) {
-			$icon_data = get_icon_data();
+		'callback'            => function ( WP_REST_Request $request ): array {
+			$icon_data = [];
+			$icon_sets = get_sub_config( 'icons' );
 
-			/**
-			 * @var WP_REST_Request $request
-			 */
+			foreach ( $icon_sets as $icon_set => $set_dir ) {
+				$icons = glob( $set_dir . '/*.svg' );
+
+				foreach ( $icons as $icon ) {
+					$name = basename( $icon, '.svg' );
+					$icon = file_get_contents( $icon );
+
+					if ( $icon_set === 'wordpress' ) {
+						$icon = str_replace(
+							[ 'fill="none"' ],
+							[ 'fill="currentColor"' ],
+							$icon
+						);
+					}
+
+					// Remove comments.
+					$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
+
+					$icon_data[ $icon_set ][ $name ] = trim( $icon );
+				}
+			}
+
 			if ( $request->get_param( 'set' ) ) {
 				$set = $request->get_param( 'set' );
 
@@ -195,40 +228,4 @@ function register_icons_rest_route(): void {
 			return $icon_data;
 		},
 	] );
-}
-
-/**
- * Rest endpoint callback.
- *
- * @since 0.0.1
- *
- * @return array
- */
-function get_icon_data(): array {
-	$icon_data = [];
-	$icon_sets = get_sub_config( 'icons' );
-
-	foreach ( $icon_sets as $icon_set => $set_dir ) {
-		$icons = glob( $set_dir . '/*.svg' );
-
-		foreach ( $icons as $icon ) {
-			$name = basename( $icon, '.svg' );
-			$icon = file_get_contents( $icon );
-
-			if ( $icon_set === 'wordpress' ) {
-				$icon = str_replace(
-					[ '<svg ', 'fill="none"' ],
-					[ '<svg fill="currentColor" ', '' ],
-					$icon
-				);
-			}
-
-			// Remove comments.
-			$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
-
-			$icon_data[ $icon_set ][ $name ] = trim( $icon );
-		}
-	}
-
-	return $icon_data;
 }

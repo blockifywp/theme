@@ -15,8 +15,6 @@ if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
 	return;
 }
 
-//return;
-
 const SLUG = 'blockify';
 const NS   = __NAMESPACE__ . '\\';
 const DS   = DIRECTORY_SEPARATOR;
@@ -33,6 +31,11 @@ require_once DIR . 'includes/assets.php';
 array_map(
 	fn( $file ) => require_once $file,
 	glob( DIR . 'includes/blocks/*.php' )
+);
+
+array_map(
+	fn( $file ) => require_once $file,
+	glob( DIR . 'includes/extensions/*.php' )
 );
 
 if ( ! function_exists( 'wptt_get_webfont_url' ) ) {

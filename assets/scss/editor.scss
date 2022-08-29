@@ -1,18 +1,18 @@
-.editor-styles-wrapper {
+html .editor-styles-wrapper {
 	width: auto !important;
 
 	.is-root-container {
 		z-index: 1; // Required for box shadows.
+	}
 
-		// TODO: Custom properties.
-		.alignfull {
-			max-width: 100%;
-		}
+	.alignfull {
+		width: 100% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
 
-		.alignwide {
-			max-width: var(--wp--custom--layout--wide-size, 1200px);
-			width: calc(100% - var(--wp--style--block-gap, 5vw) * 2);
-		}
+	.alignwide {
+		max-width: Min(calc(100% - 40px), 1200px) !important;
 	}
 
 	// TODO: Is this needed?
@@ -230,6 +230,7 @@
 
 .blockify-image-settings {
 	order: -1;
+
 	select {
 		text-transform: capitalize;
 	}
@@ -270,4 +271,19 @@ header.wp-block-template-part {
 
 .blockify-min-height-control {
 	border-top: 0 !important;
+}
+
+.is-style-placeholder {
+
+	img {
+		display: none !important;
+	}
+}
+
+.block-editor-block-preview__live-content .components-placeholder {
+	display: flex !important;
+}
+
+.blockify-settings .components-base-control__help {
+	margin-top: 8px;
 }

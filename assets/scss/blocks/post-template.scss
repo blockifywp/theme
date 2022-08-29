@@ -1,5 +1,20 @@
 .wp-block-post-template {
 	gap: var(--wp--style--block-gap, 1em);
+
+	&.is-flex-container {
+		gap: var(--wp--style--block-gap, 1em);
+	}
+
+	&.is-flex-container {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	// For core/post-featured-image block.
+	&[class*='columns'] {
+		--wp--custom--placeholder--aspect-ratio: 3/2;
+		--wp--custom--placeholder--transform: skewX(-56.4deg);
+	}
 }
 
 // Breakpoint overrides, also needed for block gap to work.

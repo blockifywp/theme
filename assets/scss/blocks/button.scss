@@ -29,7 +29,7 @@
 	}
 
 	.is-style-outline &:not(.has-text-color) {
-		color: var(--wp--preset--color--primary-600, currentColor) !important;
+		color: var(--wp--custom--button--background, inherit) !important;
 	}
 }
 

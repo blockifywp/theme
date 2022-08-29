@@ -21,8 +21,8 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","layout":{"inherit":false}} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"style":{"aspectRatio":"3/2"},"className":"is-style-placeholder has-aspect-ratio-5-4"} -->
-<figure class="wp-block-image is-style-placeholder has-aspect-ratio-5-4" style="aspect-ratio:3/2;--wp--custom--placeholder-line--color:var(--wp--custom--border--color)"><img src="#" alt=""/></figure>
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"style":{"aspectRatio":"3/2"},"className":"has-aspect-ratio-5-4 is-style-placeholder"} -->
+<figure class="wp-block-image has-aspect-ratio-5-4 is-style-placeholder" style="aspect-ratio:3/2;--wp--custom--placeholder-line--color:var(--wp--custom--border--color)"><img src="#" alt=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
@@ -65,8 +65,8 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center"} -->
-<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"style":{"aspectRatio":"3/2"},"className":"is-style-placeholder has-aspect-ratio-5-4"} -->
-<figure class="wp-block-image is-style-placeholder has-aspect-ratio-5-4" style="aspect-ratio:3/2;--wp--custom--placeholder-line--color:var(--wp--custom--border--color)"><img src="#" alt=""/></figure>
+<div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"style":{"aspectRatio":"3/2"},"className":"has-aspect-ratio-5-4 is-style-placeholder"} -->
+<figure class="wp-block-image has-aspect-ratio-5-4 is-style-placeholder" style="aspect-ratio:3/2;--wp--custom--placeholder-line--color:var(--wp--custom--border--color)"><img src="#" alt=""/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->

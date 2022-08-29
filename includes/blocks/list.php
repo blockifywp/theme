@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 use DOMElement;
 use function add_filter;
 
-add_filter( 'render_block', NS . 'render_list_block', 10, 2 );
+add_filter( 'render_block_core/list', NS . 'render_list_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -19,10 +19,6 @@ add_filter( 'render_block', NS . 'render_list_block', 10, 2 );
  * @return string
  */
 function render_list_block( string $content, array $block ): string {
-	if ( 'core/list' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	$block_gap       = $block['attrs']['style']['spacing']['blockGap'] ?? null;
 	$justify_content = $block['attrs']['layout']['justifyContent'] ?? '';
 

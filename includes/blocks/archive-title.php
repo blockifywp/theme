@@ -9,7 +9,7 @@ use function apply_filters;
 use function is_search;
 use function sprintf;
 
-add_filter( 'render_block', NS . 'render_archive_title_block', 10, 2 );
+add_filter( 'render_block_core/query-title', NS . 'render_archive_title_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -21,10 +21,6 @@ add_filter( 'render_block', NS . 'render_archive_title_block', 10, 2 );
  * @return string
  */
 function render_archive_title_block( string $content, array $block ): string {
-	if ( 'core/query-title' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	if ( is_search() ) {
 		$style = '';
 

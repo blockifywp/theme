@@ -87,8 +87,8 @@
       "transition": "all 0.2s ease"
     },
     "layout": {
-      "contentSize": "min(calc(100vw - var(--wp--custom--scrollbar--width,0px) - var(--wp--style--block-gap)*2), 800px)",
-      "wideSize": "min(calc(100vw - var(--wp--custom--scrollbar--width,0px) - var(--wp--style--block-gap)*2), 1200px)"
+      "contentSize": "min(calc(100vw - 40px), 800px)",
+      "wideSize": "min(calc(100vw - 40px), 1200px)"
     },
     "spacing": {
       "blockGap": true,
@@ -243,7 +243,7 @@
       "fontSizes": [
         {
           "name": "72px",
-          "size": "clamp(48px, 6vw, 72px)",
+          "size": "clamp(48px, 6.6vw, 72px)",
           "slug": "72",
           "fluid": {
             "min": "48px",
@@ -360,6 +360,11 @@
           "slug": "dancing-script"
         },
         {
+          "fontFamily": "DM Sans, var(--wp--custom--font-stack--sans-serif)",
+          "name": "DM Sans",
+          "slug": "dm-sans"
+        },
+        {
           "fontFamily": "Epilogue, var(--wp--custom--font-stack--sans-serif)",
           "name": "Epilogue",
           "slug": "epilogue"
@@ -368,6 +373,16 @@
           "fontFamily": "Figtree, var(--wp--custom--font-stack--sans-serif)",
           "name": "Figtree",
           "slug": "figtree"
+        },
+        {
+          "fontFamily": "IBM Plex Sans, var(--wp--custom--font-stack--sans-serif)",
+          "name": "IBM Plex Sans",
+          "slug": "ibm-plex-sans"
+        },
+        {
+          "fontFamily": "IBM Plex Mono, var(--wp--custom--font-stack--mono)",
+          "name": "IBM Plex Mono",
+          "slug": "ibm-plex-mono"
         },
         {
           "fontFamily": "Inter, var(--wp--custom--font-stack--sans-serif)",
@@ -450,6 +465,11 @@
           "slug": "rubik"
         },
         {
+          "fontFamily": "Source Serif Pro, var(--wp--custom--font-stack--sans-serif)",
+          "name": "Source Serif Pro",
+          "slug": "source-serif-pro"
+        },
+        {
           "fontFamily": "Space Grotesk, var(--wp--custom--font-stack--sans-serif)",
           "name": "Space Grotesk",
           "slug": "space-grotesk"
@@ -473,7 +493,7 @@
       "text": "var(--wp--preset--color--neutral-600)"
     },
     "spacing": {
-      "blockGap": "var(--wp--preset--font-size--20)"
+      "blockGap": "1em"
     },
     "typography": {
       "fontFamily": "var(--wp--preset--font-family--sans-serif)",
@@ -696,6 +716,16 @@
           "fontSize": "var(--wp--preset--font-size--16)"
         }
       },
+      "core/post-featured-image": {
+        "border": {
+          "radius": "var(--wp--custom--border--radius)"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "var(--wp--style--block-gap, 1em)"
+          }
+        }
+      },
       "core/search": {
         "spacing": {
           "padding": {
@@ -706,16 +736,6 @@
           }
         }
       },
-      "core/site-tile": {
-        "spacing": {
-          "margin": {
-            "bottom": "0"
-          }
-        },
-        "typography": {
-          "textDecoration": "none"
-        }
-      },
       "core/site-logo": {
         "color": {
           "text": "var(--wp--preset--color--neutral-900)"
@@ -724,6 +744,15 @@
       "core/site-title": {
         "color": {
           "text": "var(--wp--preset--color--neutral-900)"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "0"
+          }
+        },
+        "typography": {
+          "textDecoration": "none",
+          "fontWeight": "var(--wp--custom--font-weight--semi-bold)"
         }
       },
       "core/social-links": {

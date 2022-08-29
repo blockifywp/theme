@@ -3,15 +3,22 @@
 	position: relative;
 }
 
-.wp-block-spacer:before {
-	content: '';
-	display: block;
-	position: absolute;
-	background: currentColor;
-	width: 100%;
-	height: calc(100% + 1px);
-	mask: var(--wp--custom--spacer--mask);
-	-webkit-mask: var(--wp--custom--spacer--mask);
+.is-style-angle,
+.is-style-curve,
+.is-style-round,
+.is-style-wave,
+.is-style-fade {
+
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		background: currentColor;
+		width: 100%;
+		height: calc(100% + 1px);
+		mask: var(--wp--custom--spacer--mask);
+		-webkit-mask: var(--wp--custom--spacer--mask);
+	}
 }
 
 .is-style-angle {

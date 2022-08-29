@@ -1,0 +1,36 @@
+$spread: var(--wp--custom--box-shadow--spread, 0);
+
+@mixin box-shadow {
+	content: " ";
+	height: var(--wp--custom--icon--height, calc(100% + #{$spread}));
+	width: var(--wp--custom--icon--width, calc(100% + #{$spread}));
+	z-index: var(--wp--custom--box-shadow--z-index, -1);
+	position: absolute;
+	left: calc(var(--wp--custom--box-shadow--x, 0) -  (#{$spread} / 2));
+	top: calc(var(--wp--custom--box-shadow--y, 0) -  (#{$spread} / 2));
+	filter: blur(var(--wp--custom--box-shadow--blur, 2px));
+	background: var(--wp--custom--box-shadow--color);
+	border-radius: inherit;
+	margin: auto;
+}
+
+.has-box-shadow {
+	position: relative;
+
+	&:before {
+		@include box-shadow;
+	}
+}
+
+.is-style-icon.has-box-shadow {
+
+	&:before {
+		display: none;
+	}
+
+	> div:before {
+		@include box-shadow;
+		width: 100%;
+		height: 100%;
+	}
+}

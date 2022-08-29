@@ -11,7 +11,7 @@ use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
 
-//add_filter( 'render_block', NS . 'render_video_block', 10, 2 );
+add_filter( 'render_block_core/video', NS . 'render_video_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -23,10 +23,6 @@ use function wp_enqueue_style;
  * @return string
  */
 function render_video_block( string $content, array $block ): string {
-	if ( 'core/video' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	$content = str_replace(
 		[
 			'style="background:',
@@ -38,7 +34,7 @@ function render_video_block( string $content, array $block ): string {
 		$content
 	);
 
-	add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
+	 add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
 
 	return $content;
 }

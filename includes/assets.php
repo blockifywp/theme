@@ -15,6 +15,7 @@ use function array_flip;
 use function array_key_exists;
 use function array_map;
 use function basename;
+use function dirname;
 use function end;
 use function explode;
 use function file_exists;
@@ -22,8 +23,6 @@ use function file_get_contents;
 use function filemtime;
 use function function_exists;
 use function get_option;
-use function get_post_meta;
-use function get_the_ID;
 use function glob;
 use function in_array;
 use function is_a;
@@ -76,10 +75,12 @@ function enqueue_editor_assets(): void {
 		'blockify-editor',
 		'blockify',
 		array_merge_recursive( [
-			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-			'nonce'    => wp_create_nonce( 'blockify' ),
-			'icon'     => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
-			'darkMode' => get_option( 'blockify' )['darkMode'] ?? false,
+			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
+			'nonce'              => wp_create_nonce( 'blockify' ),
+			'icon'               => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
+			'darkMode'           => get_option( 'blockify' )['darkMode'] ?? false,
+			'darkModePreview'    => get_option( 'blockify' )['darkModePreview'] ?? false,
+			'removeEmojiScripts' => get_option( 'blockify' )['removeEmojiScripts'] ?? false,
 		], get_config() )
 	);
 }
@@ -99,31 +100,10 @@ function maybe_load_editor_assets( WP_Screen $screen ): void {
 	$hook_name   = $site_editor ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets';
 
 	add_action( $hook_name, NS . 'enqueue_editor_assets' );
+	add_action( $hook_name, NS . 'add_root_level_custom_properties' );
 	add_action( $hook_name, NS . 'add_dynamic_custom_properties' );
-	add_action( $hook_name, NS . 'add_conditional_styles', 11 );
 	add_action( $hook_name, NS . 'add_dark_mode_custom_properties' );
-}
-
-add_action( 'after_setup_theme', NS . 'add_editor_styles' );
-/**
- * Adds editor styles.
- *
- * @since 0.0.2
- *
- * @return void
- */
-function add_editor_styles(): void {
-	foreach ( glob( DIR . 'assets/css/blocks/*.css' ) as $file ) {
-		add_editor_style( 'assets/css/blocks/' . basename( $file ) );
-	}
-
-	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
-		add_editor_style( 'assets/css/components/' . basename( $file ) );
-	}
-
-	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
-		add_editor_style( 'assets/css/elements/' . basename( $file ) );
-	}
+	add_action( $hook_name, NS . 'add_conditional_styles', 11 );
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_block_styles' );
@@ -251,6 +231,29 @@ function enqueue_google_fonts(): void {
 	}
 }
 
+add_action( 'wp_enqueue_scripts', NS . 'add_root_level_custom_properties' );
+/**
+ * Adds top level CSS custom properties to front and back end.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function add_root_level_custom_properties(): void {
+	$css = <<<CSS
+:root {
+	--wp--custom--font-stack--sans-serif: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+	--wp--custom--font-stack--serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+	--wp--custom--font-stack--monospace: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace;
+}
+CSS;
+
+	wp_add_inline_style(
+		is_admin() ? 'blockify-editor' : 'global-styles',
+		$css
+	);
+}
+
 add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
 /**
  * Adds custom properties.
@@ -263,7 +266,6 @@ function add_dynamic_custom_properties(): void {
 	$settings          = wp_get_global_settings();
 	$global_styles     = wp_get_global_styles();
 	$element           = is_admin() ? '.editor-styles-wrapper' : 'body';
-	$scrollbar_width   = str_contains( $_SERVER['HTTP_USER_AGENT'], 'Edge' ) ? '12px' : '15px';
 	$content_size      = $settings['layout']['contentSize'] ?? '800px';
 	$wide_size         = $settings['layout']['wideSize'] ?? '1200px';
 	$border_width      = $settings['custom']['border']['width'] ?? '1px';
@@ -284,12 +286,7 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--button--color'        => $button_text,
 	];
 
-	$desktop = [
-		'--wp--custom--scrollbar--width' => $scrollbar_width,
-	];
-
 	$css = $element . '{' . css_array_to_string( $all ) . '}';
-	$css .= '@media (min-width:781px){' . $element . '{' . css_array_to_string( $desktop ) . '}}';
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
@@ -306,27 +303,35 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties' );
  * @return void
  */
 function add_dark_mode_custom_properties(): void {
+
+	// Check if dark mode setting is deactivated.
 	$dark_mode = get_option( 'blockify', [] )['darkMode'] ?? true;
 
 	if ( ! $dark_mode ) {
 		return;
 	}
 
-	$global_styles = wp_get_global_settings();
+	$global_settings = wp_get_global_settings();
 
-	if ( ! isset( $global_styles['color']['palette']['theme'] ) ) {
+	if ( ! isset( $global_settings['color']['palette']['theme'] ) ) {
 		return;
 	}
 
-	$config = get_sub_config( 'darkMode' );
 	$colors = [];
 
-	foreach ( $global_styles['color']['palette']['theme'] as $color ) {
+	foreach ( $global_settings['color']['palette']['theme'] as $color ) {
 		$colors[ $color['slug'] ] = $color['color'];
 	}
 
 	$original   = [];
 	$properties = [];
+
+	// Allows colors to be filtered with PHP, or removed in child theme json.
+	$config = get_sub_config( 'darkModeColorPalette', null );
+
+	if ( ! $config ) {
+		return;
+	}
 
 	foreach ( $colors as $slug => $color ) {
 		if ( ! isset( $config[ $slug ] ) || ! is_string( $config[ $slug ] ) ) {
@@ -369,7 +374,28 @@ function add_dark_mode_custom_properties(): void {
 	);
 }
 
-add_action( 'wp_enqueue_scripts', NS . 'add_conditional_styles', 11 );
+add_action( 'after_setup_theme', NS . 'add_editor_styles' );
+/**
+ * Always load all styles in editor.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function add_editor_styles(): void {
+	$files = [
+		...glob( DIR . 'assets/css/blocks/*.css' ),
+		...glob( DIR . 'assets/css/elements/*.css' ),
+		...glob( DIR . 'assets/css/components/*.css' ),
+		...glob( DIR . 'assets/css/extensions/*.css' ),
+	];
+
+	foreach ( $files as $file ) {
+		add_editor_style( 'assets/css/' . basename( dirname( $file ) ) . DS . basename( $file ) );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', NS . 'add_conditional_styles' );
 /**
  * Adds split styles.
  *
@@ -378,48 +404,29 @@ add_action( 'wp_enqueue_scripts', NS . 'add_conditional_styles', 11 );
  * @return void
  */
 function add_conditional_styles(): void {
-	$css        = '';
-	$files      = [];
-	$conditions = [
-		'admin-bar' => is_admin_bar_showing(),
-		'wp-org'    => get_post_meta( get_the_ID(), '_wp_page_template', true ) === 'page-full',
+	$styles = '';
+
+	$stylesheets = [
+		...glob( DIR . 'assets/css/elements/*.css' ),
+		...glob( DIR . 'assets/css/components/*.css' ),
+		...glob( DIR . 'assets/css/extensions/*.css' ),
 	];
 
-	foreach ( glob( DIR . 'assets/css/elements/*.css' ) as $file ) {
-		$condition = $conditions[ basename( $file, '.css' ) ] ?? true;
+	$conditions = [
+		'admin-bar'    => is_admin_bar_showing(),
+		'align-center' => true,
+	];
 
-		if ( ! $condition ) {
-			continue;
+	foreach ( $stylesheets as $stylesheet ) {
+		if ( $conditions[ basename( $stylesheet, '.css' ) ] ?? true ) {
+			$styles .= trim( file_get_contents( $stylesheet ) );
 		}
-
-		$css .= trim( file_get_contents( $file ) );
-
-		$files[] = str_replace( DIR, '', $file );
 	}
 
-	foreach ( glob( DIR . 'assets/css/components/*.css' ) as $file ) {
-		$condition = $conditions[ basename( $file, '.css' ) ] ?? true;
-
-		if ( ! $condition ) {
-			continue;
-		}
-
-		$css .= trim( file_get_contents( $file ) );
-
-		$files[] = str_replace( DIR, '', $file );
-	}
-
-	if ( is_admin() ) {
-		foreach ( $files as $file ) {
-			add_editor_style( $file );
-		}
-
-	} else {
-		wp_add_inline_style(
-			'global-styles',
-			$css
-		);
-	}
+	wp_add_inline_style(
+		is_admin() ? 'blockify-editor' : 'global-styles',
+		$styles
+	);
 }
 
 add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );
@@ -431,6 +438,12 @@ add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );
  * @return void
  */
 function remove_emoji_scripts(): void {
+
+	// Defaults to true for theme previews.
+	if ( ! ( get_option( 'blockify', [] )['removeEmojiScripts'] ?? true ) ) {
+		return;
+	}
+
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );

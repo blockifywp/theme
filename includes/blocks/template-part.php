@@ -7,11 +7,12 @@ namespace Blockify\Theme;
 use DOMElement;
 use function add_filter;
 use function explode;
+use function get_the_ID;
 use function implode;
 use function method_exists;
 use function trim;
 
-add_filter( 'render_block', NS . 'render_template_part_block', 10, 2 );
+add_filter( 'render_block_core/template-part', NS . 'render_template_part_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -23,8 +24,12 @@ add_filter( 'render_block', NS . 'render_template_part_block', 10, 2 );
  * @return string
  */
 function render_template_part_block( string $content, array $block ): string {
-	if ( $block['blockName'] !== 'core/template-part' ) {
-		return $content;
+	$slug    = $block['attrs']['slug'] ?? '';
+	$post_id = get_the_ID();
+
+	// Hides header and footer for pattern previews on wp.org.
+	if ( $post_id && is_pattern_preview( $post_id ) && ( $slug === 'header' || $slug === 'footer' ) ) {
+		return '';
 	}
 
 	$dom = dom( $content );

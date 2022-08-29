@@ -6,15 +6,15 @@
  * 
  */
 ?><!-- wp:group {"align":"wide","layout":{"inherit":true}} -->
-<div class="wp-block-group alignwide alignwide" id="pricing"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}},"fontSize":"60"} -->
-<h2 class="has-text-align-center has-60-font-size" style="margin-top:1em">Simple pricing plans</h2>
+<div class="wp-block-group alignwide alignwide" id="pricing"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}}} -->
+<h2 class="has-text-align-center" style="margin-top:1em">Simple pricing plans</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
 <p class="aligncenter has-text-align-center aligncenter">Save 50% on all pricing plans for a limited time only.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"3em"},"blockGap":"2em"}}} -->
+<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"3em"},"blockGap":"1.5em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:2em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"}},"border":{"width":"1px"}},"layout":{"contentSize":"240px"}} -->
 <div class="wp-block-column is-vertically-aligned-center" style="border-width:1px;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em"><!-- wp:heading {"textAlign":"center","level":5} -->
 <h5 class="has-text-align-center">Single</h5>

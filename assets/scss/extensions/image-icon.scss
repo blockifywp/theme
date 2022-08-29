@@ -1,0 +1,40 @@
+.is-nowrap {
+	--wp--custom--icon-container--width: auto;
+}
+
+.is-style-icon {
+	display: flex;
+	width: var(--wp--custom--icon-container--width, 100%);
+
+	&.aligncenter {
+		justify-content: center;
+	}
+
+	&.alignright {
+		justify-content: flex-end;
+	}
+}
+
+.blockify-icon {
+	display: block;
+	background: var(--wp--custom--icon--background, transparent);
+	border-radius: inherit;
+	border-color: var(--wp--custom--icon--color, currentColor);
+	margin-left: auto;
+	margin-right: auto;
+	line-height: 1;
+
+	&:after {
+		content: '';
+		display: inline-block;
+		position: relative;
+		background: var(--wp--custom--icon--color, currentColor);
+		height: var(--wp--custom--icon--size, 30px);
+		width: var(--wp--custom--icon--size, 30px);
+		vertical-align: text-bottom;
+		-webkit-mask-image: var(--wp--custom--icon--url);
+		-webkit-mask-position: center;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: cover !important;
+	}
+}

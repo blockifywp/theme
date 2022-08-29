@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 use DOMElement;
 use function add_filter;
 
-add_filter( 'render_block', NS . 'render_heading_block', 10, 2 );
+add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
@@ -19,10 +19,6 @@ add_filter( 'render_block', NS . 'render_heading_block', 10, 2 );
  * @return string
  */
 function render_heading_block( string $content, array $block ): string {
-	if ( 'core/heading' !== $block['blockName'] ) {
-		return $content;
-	}
-
 	$dom = dom( $content );
 
 	/**
