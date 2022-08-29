@@ -14,6 +14,7 @@ textarea {
 	font: inherit;
 	transition: var(--wp--custom--transition, inherit);
 	border: var(--wp--custom--border, 0);
+	background: var(--wp--custom--input--background, transparent);
 }
 
 input:not([type=checkbox], [type=submit]) {
@@ -30,10 +31,9 @@ input[type=submit] {
 }
 
 ::placeholder {
-	color: inherit;
+	color: var(--wp--custom--placeholder--color, var(--wp--preset--color--neutral-300, inherit));
 }
 
 ::-webkit-input-placeholder {
-	color: inherit;
-	opacity: 0.5;
+	color: var(--wp--custom--placeholder--color, var(--wp--preset--color--neutral-300, inherit));
 }

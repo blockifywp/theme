@@ -1,5 +1,6 @@
 html .editor-styles-wrapper {
 	width: auto !important;
+	overflow-x: initial;
 
 	.is-root-container {
 		z-index: 1; // Required for box shadows.

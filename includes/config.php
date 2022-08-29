@@ -36,6 +36,9 @@ $defaults['blockSupports'] = [
 	'blockify/tabs'            => [
 		'boxShadow' => true,
 	],
+	'blockify/text-area'       => [
+		'minHeight' => '6em',
+	],
 	'core/buttons'             => [],
 	'core/button'              => [
 		'boxShadow'            => true,
@@ -229,7 +232,7 @@ $defaults['blockSupports'] = [
 			'none',
 		],
 		'alignWide' => true,
-		'spacing' => [
+		'spacing'   => [
 			'margin'  => true,
 			'padding' => true,
 		],
@@ -326,7 +329,7 @@ $defaults['blockSupports'] = [
 		],
 	],
 	'core/spacer'              => [
-		'align'                => [
+		'align'     => [
 			'full',
 			'wide',
 			'left',
@@ -334,7 +337,7 @@ $defaults['blockSupports'] = [
 			'right',
 			'none',
 		],
-		'alignWide'            => true,
+		'alignWide' => true,
 		'boxShadow' => true,
 		'color'     => [
 			'gradients'  => true,

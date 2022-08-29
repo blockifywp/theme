@@ -2,8 +2,7 @@ html {
 	max-width: 100vw;
 	padding: 0 !important;
 	box-sizing: border-box;
-	overflow-y: overlay; // Absolute positioned scrollbar.
-	overflow-y: -webkit-paged-y; // Safari.
+	overflow-x: hidden;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	-webkit-animation: fade-in var(--wp--custom--transition);
