@@ -12,6 +12,7 @@ use function json_decode;
 use function site_url;
 use function str_contains;
 use function wp_get_global_settings;
+use function wp_get_global_styles;
 use const PHP_INT_MAX;
 use function get_template_directory_uri;
 use function trailingslashit;
@@ -302,7 +303,7 @@ function is_pattern_preview( int $post_id ): bool {
 function get_style_variation(): string {
 	$style_variation  = 'default';
 	$global_settings  = wp_get_global_settings();
-	$global_styles    = \wp_get_global_styles();
+	$global_styles    = wp_get_global_styles();
 	$palette_settings = $global_settings['color']['palette']['theme'] ?? [];
 	$style_json_files = glob( get_stylesheet_directory() . '/styles/*.json' );
 

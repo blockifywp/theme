@@ -21,7 +21,7 @@ add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
  * @return string
  */
 function render_box_shadow( string $content, array $block ): string {
-	if ( isset( $block['attrs']['boxShadow']['zIndex'] ) ) {
+	if ( $block['attrs']['boxShadow']['zIndex'] ?? null ) {
 		$dom = dom( $content );
 
 		/**
