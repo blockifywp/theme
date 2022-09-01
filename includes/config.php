@@ -68,6 +68,7 @@ $defaults['blockSupports'] = [
 				'color' => true,
 			],
 		],
+		'position'             => true,
 	],
 	'core/columns'             => [
 		'boxShadow'     => true,
@@ -76,9 +77,10 @@ $defaults['blockSupports'] = [
 			'fontWeight' => true,
 		],
 		'reverseMobile' => true,
+		'position'      => true,
 	],
 	'core/cover'               => [
-
+		'position' => true,
 	],
 	'core/embed'               => [
 		'spacing'              => [
@@ -186,7 +188,7 @@ $defaults['blockSupports'] = [
 		],
 		'color'   => [
 			'background' => true,
-			'gradient'   => true, // Doesn't work.
+			'gradients'  => true,
 			'link'       => true,
 			'text'       => true,
 		],
@@ -203,7 +205,7 @@ $defaults['blockSupports'] = [
 		'alignWide'            => true,
 		'color'                => [
 			'background' => true,
-			'gradient'   => true, // Doesn't work.
+			'gradients'  => true,
 			'link'       => true,
 			'text'       => true,
 		],
@@ -235,6 +237,19 @@ $defaults['blockSupports'] = [
 		'spacing'   => [
 			'margin'  => true,
 			'padding' => true,
+		],
+	],
+	'core/post-author'         => [
+		// Border applied to avatar.
+		'__experimentalBorder' => [
+			'radius'                        => true,
+			'width'                         => true,
+			'color'                         => false,
+			'style'                         => true,
+			'__experimentalDefaultControls' => [
+				'width' => true,
+				'color' => true,
+			],
 		],
 	],
 	'core/post-excerpt'        => [
@@ -272,6 +287,10 @@ $defaults['blockSupports'] = [
 			'none',
 		],
 		'alignWide' => true,
+		'spacing'   => [
+			'padding' => true,
+			'margin'  => true,
+		],
 	],
 	'core/post-title'          => [
 		'spacing' => [
@@ -283,6 +302,18 @@ $defaults['blockSupports'] = [
 		'spacing' => [
 			'padding'  => true,
 			'blockGap' => true,
+		],
+	],
+	'core/quote'               => [
+		'__experimentalBorder' => [
+			'radius'                        => true,
+			'width'                         => true,
+			'color'                         => true,
+			'style'                         => true,
+			'__experimentalDefaultControls' => [
+				'width' => true,
+				'color' => true,
+			],
 		],
 	],
 	'core/row'                 => [
@@ -323,7 +354,7 @@ $defaults['blockSupports'] = [
 	'core/site-logo'           => [
 		'color' => [
 			'background' => true,
-			'gradient'   => true, // Doesn't work.
+			'gradients'  => true,
 			'link'       => true,
 			'text'       => true,
 		],
@@ -352,7 +383,7 @@ $defaults['blockSupports'] = [
 		'boxShadow' => true,
 		'color'     => [
 			'background' => true,
-			'gradient'   => true, // Doesn't work.
+			'gradients'  => true,
 			'link'       => true,
 			'text'       => true,
 		],

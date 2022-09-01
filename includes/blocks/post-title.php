@@ -27,19 +27,6 @@ add_filter( 'render_block_core/post-title', NS . 'render_post_title_block', 10, 
  * @return string
  */
 function render_post_title_block( string $content, array $block ): string {
-
-	// Only run once.
-	static $post_id = null;
-
-	if ( is_null( $post_id ) ) {
-		$post_id = get_the_ID();
-	}
-
-	// Hides page title for pattern previews on wp.org.
-	if ( $post_id && is_pattern_preview( $post_id ) && $block['attrs']['level'] === 1 ) {
-		return '';
-	}
-
 	if ( is_home() && str_contains( $content, '<h1' ) ) {
 		$text           = strip_tags( $content );
 		$page_for_posts = get_post( get_option( 'page_for_posts' ) );

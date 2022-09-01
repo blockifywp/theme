@@ -7,9 +7,9 @@
  */
 ?><!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"layout":{"inherit":true}} -->
 <div class="wp-block-query"><!-- wp:post-template -->
-<!-- wp:post-featured-image /-->
+<!-- wp:post-featured-image {"height":"200px"} /-->
 
-<!-- wp:post-title {"level":3} /-->
+<!-- wp:post-title {"level":3,"isLink":true} /-->
 
 <!-- wp:post-date {"style":{"spacing":{"margin":{"bottom":"1em"}}}} /-->
 

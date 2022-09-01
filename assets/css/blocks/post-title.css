@@ -1,1 +1,1 @@
-.wp-block-post-title a{text-decoration:none}
+.wp-block-post-title a{text-decoration:var(--wp--custom--post-title-link--text-decoration, none)}.wp-block-post-title a:not(:hover,:focus,:active){color:var(--wp--custom--post-title-link--color, inherit)}

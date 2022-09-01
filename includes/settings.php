@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use WP_REST_Response;
 use function add_action;
 use function add_post_type_support;
 use function add_theme_support;
@@ -21,7 +20,6 @@ use function remove_post_type_support;
 use function str_replace;
 use function tgmpa;
 use function update_option;
-use function wp_send_json_error;
 use function wp_update_post;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -130,7 +128,7 @@ add_action( 'rest_api_init', NS . 'register_options_rest_route' );
 function register_options_rest_route(): void {
 	register_rest_route( SLUG . '/v1', '/options/', [
 		[
-			'permission_callback' => fn() => current_user_can( 'manage_options' ),
+			'permission_callback' => current_user_can( 'manage_options' ),
 			'methods'             => WP_REST_Server::ALLMETHODS,
 			[
 				'args' => [

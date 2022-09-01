@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0.1
-Stable tag: 0.2.1
+Stable tag: 0.3.0
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,24 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.3.0 - 1 September 2022 =
+* Add: Spacing scale
+* Add: Gradient support for submenu, paragraph, site-logo and template part
+* Add: Editor page title text alignment
+* Add: Custom property filters where possible
+* Add: Quote block and post author avatar border radius support
+* Add: Basic CSS for elements without block classes
+* Add: Position support to columns
+* Add: Blog features post pattern
+* Update: Post template layout
+* Update: Post title hover effects
+* Remove: Page title settings
+* Fix: Post block CSS file not loaded
+* Fix: Legend/fieldset border-box issue
+* Fix: Placeholder image sizes
+* Fix: Gradient support not working from incorrect key name
+* Fix: Gutenberg 14.0.1 outline button padding issue
 
 = 0.2.1 - 29 August 2022
 * Remove: Dark mode preview setting

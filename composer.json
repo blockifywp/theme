@@ -12,18 +12,21 @@
     "install:force": "rm -Rf ./composer.lock && composer install --no-dev",
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
     "phpcs": "phpcs",
-    "test-unit": "composer dump && \"vendor/bin/phpunit\" --testsuite unit --color=always",
-    "test-integration": "composer dump && \"vendor/bin/phpunit\" --testsuite integration --configuration tests/phpunit/integration/phpunit.xml.dist --color=always"
+    "pest": "vendor/bin/pest"
   },
   "minimum-stability": "dev",
   "config": {
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true,
-      "composer/installers": true
+      "composer/installers": true,
+      "pestphp/pest-plugin": true
     }
   },
   "require": {
     "tgmpa/tgm-plugin-activation": "dev-master",
     "wptt/webfont-loader": "dev-master"
+  },
+  "require-dev": {
+    "dingo-d/wp-pest-integration-test-setup": "dev-main"
   }
 }

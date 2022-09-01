@@ -1,1 +1,1 @@
-.wp-block-post-content{max-width:var(--wp--custom--layout--wide-size, 1200px);margin-left:auto;margin-right:auto}.wp-block-post-content>*{width:var(--wp--custom--layout--content-size, 800px);margin-left:auto;margin-right:auto}
+.wp-block-post-content{width:var(--wp--custom--layout--wide-size, 1200px);margin-left:auto;margin-right:auto}.wp-block-post-content>*{width:var(--wp--custom--layout--wide-size, 1200px)}.wp-block-post-content>*{width:var(--wp--custom--layout--content-size, 800px);margin-left:auto;margin-right:auto}

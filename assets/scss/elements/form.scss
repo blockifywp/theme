@@ -15,6 +15,7 @@ textarea {
 	transition: var(--wp--custom--transition, inherit);
 	border: var(--wp--custom--border, 0);
 	background: var(--wp--custom--input--background, transparent);
+	width: var(--wp--custom--input--width, 100%);
 }
 
 input:not([type=checkbox], [type=submit]) {

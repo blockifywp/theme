@@ -19,10 +19,29 @@ add_filter( 'render_block_core/post-author', NS . 'render_post_author_block', 10
  * @return string
  */
 function render_post_author_block( string $content, array $block ): string {
+	$dom    = dom( $content );
+	$styles = [];
+
+	/* @var $first \DOMElement */
+	$first = $dom->firstChild;
+	$style = $first->getAttribute( 'style' );
+
+	if ( $block['attrs']['style']['border'] ?? null ) {
+		$styles['border-width']  = $block['attrs']['style']['border']['width'] ?? null;
+		$styles['border-style']  = $block['attrs']['style']['border']['style'] ?? null;
+		$styles['border-color']  = $block['attrs']['style']['border']['color'] ?? null;
+		$styles['border-radius'] = $block['attrs']['style']['border']['radius'] ?? null;
+	}
+
+	$first->setAttribute(
+		'style',
+		( $style ? $style . ';' : '') . css_array_to_string( $styles )
+	);
+
 	return str_replace(
 		[ '<p ', '</p>' ],
 		[ '<span ', '</span>' ],
-		$content
+		$dom->saveHTML()
 	);
 }
 

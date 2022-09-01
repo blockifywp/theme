@@ -2,6 +2,10 @@
 	list-style: decimal;
 }
 
+.is-style-square {
+	list-style-type: square;
+}
+
 .is-style-checklist {
 	list-style: none;
 	padding-left: var(--wp--style--block-gap, 1em);
@@ -26,8 +30,4 @@
 		background: var(--wp--custom--checklist--background,var(--wp--preset--color--primary-600, currentColor));
 		position: absolute;
 	}
-}
-
-.is-style-square {
-	list-style-type: square;
 }

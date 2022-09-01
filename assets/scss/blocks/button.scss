@@ -1,7 +1,5 @@
 // TODO: Remove when wp-element-button state available.
 .wp-block-button {
-	border: 0 !important;
-	border-radius: var(--wp--custom--border--radius, inherit);
 	transition: var(--wp--custom--transition);
 
 	&:active,
@@ -21,11 +19,16 @@
 		color: var(--wp--preset--color--secondary-100, var(--wp--preset--color--primary-600)) !important;
 	}
 
-	.is-style-outline & {
+	// .wp-block-button required for border width in editor.
+	.wp-block-button.is-style-outline & {
 		border-width: var(--wp--custom--button-outline--border-width, 2px);
 		border-color: currentColor;
 		line-height: calc(1em - 4px);
 		background: none;
+
+		&.wp-element-button {
+			padding: var(--wp--custom--button--padding, 0.9em 1.2em);
+		}
 	}
 
 	.is-style-outline &:not(.has-text-color) {

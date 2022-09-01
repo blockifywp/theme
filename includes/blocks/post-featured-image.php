@@ -43,6 +43,10 @@ function render_featured_image_block( string $content, array $block ): string {
 			$css .= 'margin-bottom:' . $attrs['style']['spacing']['margin']['bottom'] . ';';
 		}
 
+		if ( $attrs['height'] ?? null ) {
+			$css .= 'height:' . $attrs['height'] . ';';
+		}
+
 		$span->setAttribute( 'class', implode( ' ', $classes ) );
 
 		foreach ( $styles as $property => $value ) {

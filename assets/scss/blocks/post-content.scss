@@ -1,9 +1,13 @@
 .wp-block-post-content {
-	max-width: var(--wp--custom--layout--wide-size, 1200px);
+	width: var(--wp--custom--layout--wide-size, 1200px);
 	margin-left: auto;
 	margin-right: auto;
 
-	> *:not(.alignfull,.aligncenter) {
+	> * {
+		width: var(--wp--custom--layout--wide-size, 1200px);
+	}
+
+	> *:not(.alignfull,.aligncenter,) {
 		width: var(--wp--custom--layout--content-size, 800px);
 		margin-left: auto;
 		margin-right: auto;

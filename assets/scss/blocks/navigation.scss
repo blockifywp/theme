@@ -62,10 +62,6 @@
 	color: inherit;
 }
 
-.wp-block-navigation .wp-block-page-list {
-	gap: 0;
-}
-
 .is-vertical .has-child :where(.wp-block-navigation__submenu-container) {
 	position: relative;
 	height: auto;
@@ -165,5 +161,9 @@
 		position: relative;
 		z-index: auto;
 		background-color: inherit;
+	}
+
+	.wp-block-navigation .wp-block-page-list {
+		gap: 0;
 	}
 }

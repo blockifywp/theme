@@ -24,6 +24,7 @@ use function filemtime;
 use function function_exists;
 use function get_option;
 use function glob;
+use function implode;
 use function in_array;
 use function is_a;
 use function is_admin;
@@ -274,6 +275,10 @@ function add_dynamic_custom_properties(): void {
 	$body_color        = $global_styles['color']['text'] ?? null;
 	$button_background = $global_styles['blocks']['core/button']['color']['background'] ?? null;
 	$button_text       = $global_styles['blocks']['core/button']['color']['text'] ?? null;
+	$button_padding    = $global_styles['blocks']['core/button']['spacing']['padding'] ?? null;
+	$button_padding    = implode( '', array_map( function ( string $value ): string {
+		return $value ? $value . ' ' : '0 ';
+	}, $button_padding ?? [] ) );
 
 	$all = [
 		'--wp--custom--layout--content-size' => $content_size,
@@ -283,6 +288,7 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--body--color'          => $body_color,
 		'--wp--custom--button--background'   => $button_background,
 		'--wp--custom--button--color'        => $button_text,
+		'--wp--custom--button--padding'      => $button_padding,
 	];
 
 	$css = $element . '{' . css_array_to_string( $all ) . '}';
@@ -415,8 +421,8 @@ function add_conditional_styles(): void {
 	];
 
 	$conditions = [
-		'admin-bar'    => is_admin_bar_showing(),
-		'align-center' => true,
+		'admin-bar' => is_admin_bar_showing(),
+		'wp-org'    => is_pattern_preview(),
 	];
 
 	foreach ( $stylesheets as $stylesheet ) {

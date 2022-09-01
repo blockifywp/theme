@@ -11,8 +11,8 @@
 <p class="has-16-font-size">Design</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>Lightweight, fully customizable, one click websites</h2>
+<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30","right":"0","bottom":"0","left":"0"}}}} -->
+<h2 style="margin-top:var(--wp--preset--spacing--30);margin-right:0;margin-bottom:0;margin-left:0">Lightweight, fully customizable, one click websites</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -39,8 +39,8 @@
 <p class="has-16-font-size">Development</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>Smart and powerful web design tools for the future</h2>
+<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<h2 style="margin-top:var(--wp--preset--spacing--30)">Smart and powerful web design tools for the future</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
@@ -55,8 +55,8 @@
 <p class="has-16-font-size">Courses</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading -->
-<h2>Level up your design and development with free courses </h2>
+<!-- wp:heading {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<h2 style="margin-top:var(--wp--preset--spacing--30)">Level up your design and development with free courses </h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->

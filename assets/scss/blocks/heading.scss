@@ -1,5 +1,6 @@
 .wp-block-heading:not(.has-text-color) {
 
+	// Gradient heading support.
 	&[class*="-gradient-background"],
 	&[style*="-gradient"] {
 		padding: 0;

@@ -31,14 +31,18 @@ html .editor-styles-wrapper {
 	}
 
 	// Needed for additional border support.
-	.wp-block-button {
+	.wp-block-button:not(.is-style-outline) {
 		border: 0 !important;
 	}
 }
 
 /**
- * Settings.
+ * Title.
  */
+
+.edit-post-visual-editor__post-title-wrapper {
+	text-align: center;
+}
 
 // Always hide title.
 .hide-title .edit-post-visual-editor__post-title-wrapper {
@@ -287,4 +291,14 @@ header.wp-block-template-part {
 
 .blockify-settings .components-base-control__help {
 	margin-top: 8px;
+}
+
+// Hide site logo placeholder when icon is set.
+.is-style-icon .components-placeholder__illustration {
+	display: none !important;
+}
+
+.is-style-icon.wp-block-site-logo .components-placeholder {
+	min-width: 0;
+	min-height: 0;
 }
