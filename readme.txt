@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0.1
-Stable tag: 0.3.3
+Stable tag: 0.3.2
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,7 +59,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.3.3 - 3 September 2022 =
+= 0.3.2 - 3 September 2022 =
 * Add: Excerpt length setting to editor
 * Add: Hide on mobile settings to supported blocks
 * Add: Center on mobile to supported blocks
@@ -74,8 +74,6 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 * Fix: Input heights to match buttons
 * Fix: Rest options permissions callback
 * Fix: Remove theme slug from single post template for child theme support
-
-= 0.3.2 - 2 September 2022 =
 * Fix: Permissions callback for rest options
 
 = 0.3.1 = 2 September 2022 =
