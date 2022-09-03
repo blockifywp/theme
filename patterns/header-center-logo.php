@@ -15,6 +15,6 @@
 <!-- wp:site-title {"level":6} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:navigation {"overlayMenu":"always","layout":{"type":"flex","justifyContent":"right"},"style":{"spacing":{"margin":{"right":"0px","left":"0px"}}}} /--></div>
+<!-- wp:navigation {"overlayMenu":"always","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"right":"0px","left":"0px"}}}} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
