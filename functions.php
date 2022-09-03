@@ -24,10 +24,12 @@ const FILE = __FILE__;
 require_once DIR . 'vendor/autoload.php';
 require_once DIR . 'includes/utility.php';
 require_once DIR . 'includes/helpers.php';
-require_once DIR . 'includes/blocks.php';
 require_once DIR . 'includes/patterns.php';
 require_once DIR . 'includes/settings.php';
-require_once DIR . 'includes/assets.php';
+require_once DIR . 'includes/styles.php';
+require_once DIR . 'includes/scripts.php';
+require_once DIR . 'includes/webfonts.php';
+require_once DIR . 'includes/optimizations.php';
 
 array_map(
 	fn( $file ) => require_once $file,

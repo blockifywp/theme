@@ -1,6 +1,11 @@
 .page-template-page-full.page-id-2 {
 	.wp-site-header,
-	.wp-site-footer {
+	.wp-site-footer,
+	.wp-site-main > .wp-block-post-title {
 		display: none;
 	}
+}
+
+#wporg-pattern-preview {
+	width: 100%;
 }

@@ -305,6 +305,11 @@ $defaults['blockSupports'] = [
 		],
 	],
 	'core/quote'               => [
+		'spacing'              => [
+			'margin'   => true,
+			'padding'  => true,
+			'blockGap' => true,
+		],
 		'__experimentalBorder' => [
 			'radius'                        => true,
 			'width'                         => true,
@@ -377,6 +382,12 @@ $defaults['blockSupports'] = [
 		],
 		'spacing'   => [
 			'margin' => true,
+		],
+	],
+	'core/tag-cloud'           => [
+		'typography'           => [
+			'textTransform' => true, // Doesn't work
+			'letterSpacing' => true, // Doesn't work
 		],
 	],
 	'core/template-part'       => [

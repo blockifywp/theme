@@ -27,11 +27,7 @@
     "wptt/webfont-loader": "dev-master"
   },
   "require-dev": {
-    "dingo-d/wp-pest-integration-test-setup": "dev-main"
+    "dingo-d/wp-pest-integration-test-setup": "dev-main",
+    "brain/monkey": "2.*"
   }
 }
-
-
-svn remove 0.3.0/assets/css/blocks/blockquote.css && svn remove 0.3.0/assets/css/blocks/column.css && svn remove 0.3.0/assets/css/blocks/page-list.css && svn remove 0.3.0/assets/css/blocks/post-terms.css && svn remove 0.3.0/assets/css/blocks/post.css && svn remove 0.3.0/vendor/composer/tmp-41b6262f88ef4b85c6a228624eafcd6b
-
-svn add 0.3.0/assets/css/blocks/quote.css && svn add 0.3.0/assets/css/elements/all.css && svn add 0.3.0/assets/css/elements/hr.css && svn add 0.3.0/assets/css/extensions/wp-org.css && svn add 0.3.0/includes/helpers.php && svn add 0.3.0/patterns/blog-featured-post.php Z

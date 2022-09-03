@@ -128,7 +128,7 @@ add_action( 'rest_api_init', NS . 'register_options_rest_route' );
 function register_options_rest_route(): void {
 	register_rest_route( SLUG . '/v1', '/options/', [
 		[
-			'permission_callback' => current_user_can( 'manage_options' ),
+			'permission_callback' => fn() => current_user_can( 'manage_options' ),
 			'methods'             => WP_REST_Server::ALLMETHODS,
 			[
 				'args' => [

@@ -1,1 +1,1 @@
-.wp-block-post-author__byline{font-size:1em}.wp-block-post-author__byline:after{content:' '}.wp-block-post-author__avatar,.wp-block-post-author__avatar img{border-radius:inherit}
+.wp-block-post-author__byline{font-size:var(--wp--custom--byline--font-size, 1em)}.wp-block-post-author__byline:after{content:' '}.wp-block-post-author__avatar,.wp-block-post-author__avatar img{border-radius:var(--wp--custom--avatar--border-radius, inherit)}

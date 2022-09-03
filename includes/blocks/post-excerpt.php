@@ -29,7 +29,7 @@ function render_excerpt_block( string $content, array $block ): string {
 	return $content;
 }
 
-add_filter( 'excerpt_length', NS . 'excerpt_length', 99 );
+add_filter( 'excerpt_length', NS . 'set_excerpt_length', 99 );
 /**
  * Filters the excerpt length for posts.
  *
@@ -37,13 +37,13 @@ add_filter( 'excerpt_length', NS . 'excerpt_length', 99 );
  *
  * @return int
  */
-function excerpt_length(): int {
-	return get_option( SLUG )['excerpt_length'] ?? 33;
+function set_excerpt_length(): int {
+	return (int) ( get_option( SLUG )['excerptLength'] ?? 33);
 }
 
-add_filter( 'excerpt_more', NS . 'excerpt_more' );
+add_filter( 'excerpt_more', NS . 'remove_brackets_from_excerpt' );
 /**
- * Filters the excerpt more text.
+ * Removes brackets from excerpt more string.
  *
  * @since 0.0.1
  *
@@ -51,6 +51,6 @@ add_filter( 'excerpt_more', NS . 'excerpt_more' );
  *
  * @return string
  */
-function excerpt_more( string $more ): string {
+function remove_brackets_from_excerpt( string $more ): string {
 	return str_replace( [ '[', ']' ], '', $more );
 }

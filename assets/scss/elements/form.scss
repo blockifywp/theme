@@ -16,19 +16,25 @@ textarea {
 	border: var(--wp--custom--border, 0);
 	background: var(--wp--custom--input--background, transparent);
 	width: var(--wp--custom--input--width, 100%);
+	outline: none;
+
+	&:focus {
+		border-color: var(--wp--custom--input-focus--border-color, var(--wp--preset--color--primary-600, currentColor));
+	}
 }
 
+// Match .wp-element-button workaround. Line height doens't work.
 input:not([type=checkbox], [type=submit]) {
-	padding: 1em;
-	width: 100%;
-	background-color: transparent;
-	border: var(--wp--custom--border, initial);
-	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
+	border-radius: var(--wp--custom--button--border-radius, inherit);
+	font-size: var(--wp--custom--button--font-size);
+	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
 }
 
-input[type=submit] {
-	border: 0;
-	width: 100%;
+textarea {
+	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
+	border-radius: var(--wp--custom--button--border-radius, inherit);
+	font-size: var(--wp--custom--button--font-size);
 }
 
 ::placeholder {

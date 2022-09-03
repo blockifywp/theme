@@ -6,7 +6,7 @@
  * 
  */
 ?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"2em"},"blockGap":"2em"}},"reverseMobile":true} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide is-reverse-on-mobile" style="padding-top:2em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide is-reverse-mobile" style="padding-top:2em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"fontSize":"16"} -->
 <p class="has-16-font-size">Design</p>
 <!-- /wp:paragraph -->
@@ -50,7 +50,7 @@
 <!-- /wp:columns -->
 
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"bottom":"2em","top":"2em"},"blockGap":"2em"}},"reverseMobile":true} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide is-reverse-on-mobile" style="padding-top:2em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide is-reverse-mobile" style="padding-top:2em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"fontSize":"16"} -->
 <p class="has-16-font-size">Courses</p>
 <!-- /wp:paragraph -->

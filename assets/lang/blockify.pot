@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.3.1\n"
+"Project-Id-Version: Blockify 0.3.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-01T17:08:58+00:00\n"
+"POT-Creation-Date: 2022-09-03T14:23:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -35,55 +35,55 @@ msgstr ""
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/config.php:409
+#: includes/config.php:420
 msgid "SVG Icon"
 msgstr ""
 
-#: includes/config.php:414
+#: includes/config.php:425
 msgid "Placeholder"
 msgstr ""
 
-#: includes/config.php:419
+#: includes/config.php:430
 msgid "Icon"
 msgstr ""
 
-#: includes/config.php:424
+#: includes/config.php:435
 msgid "Numbered"
 msgstr ""
 
-#: includes/config.php:429
+#: includes/config.php:440
 msgid "Checklist"
 msgstr ""
 
-#: includes/config.php:434
+#: includes/config.php:445
 msgid "Square"
 msgstr ""
 
-#: includes/config.php:439
+#: includes/config.php:450
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config.php:444
+#: includes/config.php:455
 msgid "Toggle"
 msgstr ""
 
-#: includes/config.php:449
+#: includes/config.php:460
 msgid "Angle"
 msgstr ""
 
-#: includes/config.php:454
+#: includes/config.php:465
 msgid "Curve"
 msgstr ""
 
-#: includes/config.php:459
+#: includes/config.php:470
 msgid "Round"
 msgstr ""
 
-#: includes/config.php:464
+#: includes/config.php:475
 msgid "Wave"
 msgstr ""
 
-#: includes/config.php:469
+#: includes/config.php:480
 msgid "Fade"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgid "Enable dark mode"
 msgstr ""
 
 #: assets/js/editor.js:1
-msgid "Automatically displays a dark variation of your site to visitors."
+msgid "Automatically displays a dark version of your site to visitors with display settings set to dark mode."
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -108,7 +108,15 @@ msgid "Remove emoji scripts"
 msgstr ""
 
 #: assets/js/editor.js:1
-msgid "Removes the default emoji scripts that are output by WordPress. Removing these scripts can improve performance."
+msgid "Removes unnecessary emoji scripts that are loaded by WordPress. Removing these scripts improves performance, and regular emojis are still supported."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Excerpt length"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Global Settings"
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -265,6 +273,14 @@ msgstr ""
 
 #: assets/js/editor.js:1
 msgid "Reverse on mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Center on mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hide on mobile"
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -676,11 +692,6 @@ msgstr ""
 #: theme.json
 msgctxt "Custom template name"
 msgid "Full Width"
-msgstr ""
-
-#: theme.json
-msgctxt "Custom template name"
-msgid "Single Block Pattern"
 msgstr ""
 
 #: theme.json

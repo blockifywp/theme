@@ -11,5 +11,5 @@
 
 
 .wp-block-table td, .wp-block-table th {
-	padding: 1em;
+	padding: var(--wp--custom--table-cell--padding, 1em);
 }

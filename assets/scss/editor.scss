@@ -108,7 +108,7 @@ html .editor-styles-wrapper {
 	}
 }
 
-.blockify-reverse-mobile {
+.blockify-mobile-toggle-setting {
 	font-size: 16px;
 	margin: 0 16px 0;
 }
@@ -301,4 +301,8 @@ header.wp-block-template-part {
 .is-style-icon.wp-block-site-logo .components-placeholder {
 	min-width: 0;
 	min-height: 0;
+}
+
+.wp-block-buttons {
+	width: 100% !important;
 }
