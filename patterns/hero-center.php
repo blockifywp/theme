@@ -5,13 +5,13 @@
  * Categories: hero
  * 
  */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}},"layout":{"inherit":true},"minHeight":""} -->
+?><!-- wp:group {"layout":{"inherit":true,"type":"constrained"},"align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}},"minHeight":""} -->
 <div class="wp-block-group alignfull alignfull" style="padding-top:11em;padding-bottom:9em"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"72"} -->
 <h1 class="has-text-align-center has-72-font-size">Create your website with easy to use blocks</h1>
 <!-- /wp:heading -->
 
-<!-- wp:group {"layout":{"contentSize":"600px"}} -->
-<div class="wp-block-group"><!-- wp:paragraph {"className":"has-text-align-center"} -->
+<!-- wp:group {"layout":{"contentSize":"600px","type":"constrained"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
+<div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"className":"has-text-align-center"} -->
 <p class="has-text-align-center">Lightweight full site editing theme with a powerful design framework for building modern WordPress sites with blocks.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
