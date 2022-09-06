@@ -32,3 +32,23 @@
 		opacity: var(--wp--custom--button--hover-opacity, .82);
 	}
 }
+
+// Commonly used class. (wp.org, woocommerce, etc.)
+.button {
+	width: var(--wp--custom--button--width, auto); // Not generated.
+	color: var(--wp--custom--button--color, inherit);
+	background: var(--wp--custom--button--background, inherit);
+	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
+	border-radius: var(--wp--custom--button--border-radius, inherit);
+	border-width: var(--wp--custom--button--border-width);
+	font-size: var(--wp--custom--button--font-size);
+	font-weight: var(--wp--custom--button--font-weight);
+	line-height: var(--wp--custom--button--line-height);
+
+	&[type=reset] {
+		background: var(--wp--preset--color--neutral-50);
+		color: inherit;
+		margin-bottom: 1em;
+		width: auto;
+	}
+}

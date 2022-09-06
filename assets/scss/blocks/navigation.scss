@@ -80,11 +80,6 @@ nav .wp-block-navigation-item__label,
 	display: none;
 }
 
-.wp-block-navigation .wp-block-navigation__submenu-icon {
-	margin-left: -.3em;
-	margin-right: .6em;
-}
-
 .wp-block-navigation__responsive-container.is-menu-open {
 	padding: 1.5em;
 }
@@ -102,7 +97,6 @@ nav .wp-block-navigation-item__label,
 // Link.
 .wp-block-navigation-item {
 	margin-bottom: 0; // Theme.json doesn't work.
-	flex-wrap: wrap;
 }
 
 .is-vertical .wp-block-navigation-item__content {

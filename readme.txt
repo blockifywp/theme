@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0.1
-Stable tag: 0.3.5
+Stable tag: 0.3.8
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,16 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.3.8 - 6 September 2022 =
+* Update: Clean up patterns
+* Fix: Navigation links for wp.org
+
+= 0.3.7 - 6 September 2022 =
+* Fix: Remove pattern functionality
+
+= 0.3.6 - 6 September 2022 =
+* Fix: Add missing vendor packages!
 
 = 0.3.5 - 6 September 2022 =
 * Fix: Add missing vendor packages

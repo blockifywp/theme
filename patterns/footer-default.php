@@ -19,13 +19,13 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"size":"has-small-icon-size","className":"is-style-logos-only"} -->
-<ul class="wp-block-social-links has-small-icon-size is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook","textColor":"neutral-200"} /-->
+<ul class="wp-block-social-links has-small-icon-size is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook","textColor":"neutral-300"} /-->
 
-<!-- wp:social-link {"url":"#","service":"instagram","textColor":"neutral-200"} /-->
+<!-- wp:social-link {"url":"#","service":"instagram","textColor":"neutral-300"} /-->
 
-<!-- wp:social-link {"url":"#","service":"twitter","textColor":"neutral-200"} /-->
+<!-- wp:social-link {"url":"#","service":"twitter","textColor":"neutral-300"} /-->
 
-<!-- wp:social-link {"url":"#","service":"linkedin","textColor":"neutral-200"} /--></ul>
+<!-- wp:social-link {"url":"#","service":"linkedin","textColor":"neutral-300"} /--></ul>
 <!-- /wp:social-links --></div>
 <!-- /wp:column -->
 

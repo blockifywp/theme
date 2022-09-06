@@ -1,6 +1,6 @@
 {
   "name": "blockify-theme",
-  "version": "0.3.5",
+  "version": "0.3.8",
   "description": "Blockify theme.",
   "author": "Blockify",
   "license": "GPL-2.0-or-later",
@@ -15,7 +15,7 @@
     "build:css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss && rm -Rf assets/css/abstracts",
     "build:blocks": "cd ../../plugins/blockify-pro && npm run build:pro && cd ../../themes/blockify",
     "build:svg": "node node_modules/oslllo-svg-fixer/src/cli.js -s assets/svg/icon.svg -d assets/svg/optimized",
-    "build:zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/css/ assets/js/ assets/lang/ assets/svg/ includes/ parts/ patterns/ styles/ templates/ vendor/composer vendor/autoload.php vendor/wptt/webfont-loader/wptt-webfont-loader.php vendor/tgmpa/tgm-plugin-activation/languages vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php index.php readme.txt screenshot.png style.css theme.json",
+    "build:zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/css/ assets/js/ assets/lang/ assets/svg/ includes/ parts/ patterns/ styles/ templates/ vendor/composer vendor/autoload.php vendor/wptt/webfont-loader/wptt-webfont-loader.php vendor/tgmpa/tgm-plugin-activation/languages vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php vendor/wptrt/admin-notices/src functions.php index.php readme.txt screenshot.png style.css theme.json",
     "build:tag": "npm run build:zip && cd ../../blockify-svn && rm -Rf `ls -td -- */ | head -n 1`* && unzip ../blockify.zip -d `ls -td -- */ | head -n 1`",
     "build:pot": "wp i18n make-pot ./ assets/lang/blockify.pot --exclude='wp,wp-content,vendor,tests'"
   },

@@ -16,8 +16,8 @@
 <!-- wp:group {"className":"is-reverse-on-mobile","layout":{"type":"flex","flexWrap":"nowrap"},"reverseMobile":true} -->
 <div class="wp-block-group is-reverse-on-mobile is-reverse-mobile"><!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"0px"}}} /-->
 
-<!-- wp:buttons -->
-<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline","fontSize":"16"} -->
+<!-- wp:buttons {"hideMobile":true} -->
+<div class="wp-block-buttons is-hide-mobile"><!-- wp:button {"className":"is-style-outline","fontSize":"16"} -->
 <div class="wp-block-button has-custom-font-size is-style-outline has-16-font-size"><a class="wp-block-button__link">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>

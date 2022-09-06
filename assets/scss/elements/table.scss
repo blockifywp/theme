@@ -1,6 +1,10 @@
 table {
 	width: 100%;
 	border: var(--wp--custom--border);
+
+	@media (max-width: 768px) {
+		font-size: var(--wp--preset--font-size--16, smaller);
+	}
 }
 
 tr {

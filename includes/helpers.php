@@ -8,6 +8,7 @@ use function basename;
 use function file_get_contents;
 use function get_stylesheet_directory;
 use function get_the_ID;
+use function get_the_title;
 use function glob;
 use function get_template_directory_uri;
 use function json_decode;
@@ -40,7 +41,9 @@ function is_pattern_preview( int $post_id = 0 ): bool {
 		$post_id = get_the_ID();
 	}
 
-	return get_post_meta( $post_id, '_wp_page_template', true ) === 'page-full' && $post_id === 2;
+	$title = get_the_title( $post_id );
+
+	return get_post_meta( $post_id, '_wp_page_template', true ) === 'page-full' && $post_id === 2 && ( $title !== 'About' );
 }
 
 /**
