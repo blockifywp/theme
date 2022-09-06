@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0.1
-Stable tag: 0.3.8
+Stable tag: 0.3.11
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,19 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.3.11 - 7 September 2022 =
+* Remove: Admin notice for Gutenberg plugin
+* Update: Version bump for wp.org
+
+= 0.3.10 - 6 September 2022 =
+* Fix: Resize screenshot
+
+= 0.3.9 - 6 September 2022 =
+* Add: 14px font size
+* Update: Adjust colors
+* Remove: Style variations
+* Remove: Pro patterns
 
 = 0.3.8 - 6 September 2022 =
 * Update: Clean up patterns

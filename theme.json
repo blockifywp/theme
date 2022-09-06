@@ -43,7 +43,7 @@
       "border": {
         "width": "1px",
         "style": "solid",
-        "color": "var(--wp--preset--color--neutral-300)",
+        "color": "var(--wp--preset--color--primary-300)",
         "radius": "5px"
       },
       "fontWeight": {
@@ -320,6 +320,15 @@
           "fluid": {
             "min": "14px",
             "max": "16px"
+          }
+        },
+        {
+          "name": "14px",
+          "size": "clamp(13px, 1.4vw, 14px)",
+          "slug": "14",
+          "fluid": {
+            "min": "13px",
+            "max": "14px"
           }
         }
       ],
@@ -678,7 +687,8 @@
             "right": "auto",
             "bottom": "0px",
             "left": "auto"
-          }
+          },
+          "blockGap": "var(--wp--style--block-gap)"
         },
         "typography": {
           "fontSize": "var(--wp--preset--font-size--16)",
@@ -688,14 +698,6 @@
       "core/navigation-link": {
         "typography": {
           "fontWeight": "var(--wp--custom--font-weight--medium)"
-        },
-        "spacing": {
-            "padding": {
-                "top": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
-                "right": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
-                "bottom": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
-                "left": "calc(var(--wp--style--block-gap, 1em) / 2) !important"
-            }
         }
       },
       "core/page-list": {

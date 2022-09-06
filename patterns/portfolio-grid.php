@@ -5,7 +5,11 @@
  * Categories: portfolio
  * Block Types: 
  */
-?><!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"2em","bottom":"2em"}}}} -->
+?><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
+<h1 class="has-text-align-center" style="margin-top:1em">Portfolio</h1>
+<!-- /wp:heading -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"2em","bottom":"2em"}}}} -->
 <div class="wp-block-group alignwide alignwide" style="padding-top:2em;padding-bottom:2em"><!-- wp:columns {"style":{"spacing":{"blockGap":"2em"}}} -->
 <div class="wp-block-columns"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"className":"is-style-placeholder"} -->

@@ -24,8 +24,7 @@
     }
   },
   "require": {
-    "wptt/webfont-loader": "dev-master",
-    "wptrt/admin-notices": "dev-master"
+    "wptt/webfont-loader": "dev-master"
   },
   "require-dev": {
     "dingo-d/wp-pest-integration-test-setup": "dev-main"

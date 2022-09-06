@@ -5,8 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use DOMElement;
-use function implode;
-use function wp_parse_args;
+use function add_filter;
 
 add_filter( 'render_block', NS . 'render_block_position', 10, 2 );
 /**

@@ -3,10 +3,10 @@
  * Title: Blockify Blog Three Column
  * Slug: blockify/blog-three-column
  * Categories: blog
- * 
+ * Block Types: 
  */
-?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"1em","top":"2em"}}}} -->
-<h2 class="has-text-align-center" style="margin-top:2em;margin-bottom:1em">Latest posts</h2>
+?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"1em","top":"1em"}}}} -->
+<h2 class="has-text-align-center" style="margin-top:1em;margin-bottom:1em">Latest posts</h2>
 <!-- /wp:heading -->
 
 <!-- wp:query {"queryId":0,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"displayLayout":{"type":"flex","columns":3},"align":"wide","style":{"spacing":{"padding":{"bottom":"3em"},"blockGap":"1.5em"}},"layout":{"inherit":false}} -->

@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.3.8\n"
+"Project-Id-Version: Blockify 0.3.11\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-06T13:33:39+00:00\n"
+"POT-Creation-Date: 2022-09-06T17:38:24+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -27,14 +27,6 @@ msgstr ""
 msgid "https://blockifywp.com/"
 msgstr ""
 
-#: includes/admin.php:25
-msgid "Please deactivate Gutenberg"
-msgstr ""
-
-#: includes/admin.php:26
-msgid "Hi there! Thank you for using Blockify. To ensure correct styling, please deactivate Gutenberg. This notice can be dismissed for developers requiring Gutenberg for testing."
-msgstr ""
-
 #: includes/blocks/archive-title.php:35
 msgid "Search results"
 msgstr ""
@@ -47,63 +39,63 @@ msgstr ""
 msgid "Search this website"
 msgstr ""
 
-#: includes/config.php:463
+#: includes/config.php:473
 msgid "SVG Icon"
 msgstr ""
 
-#: includes/config.php:468
+#: includes/config.php:478
 msgid "Placeholder"
 msgstr ""
 
-#: includes/config.php:473
+#: includes/config.php:483
 msgid "Icon"
 msgstr ""
 
-#: includes/config.php:478
+#: includes/config.php:488
 msgid "Numbered"
 msgstr ""
 
-#: includes/config.php:483
+#: includes/config.php:493
 msgid "Checklist"
 msgstr ""
 
-#: includes/config.php:488
+#: includes/config.php:498
 msgid "Check Circle"
 msgstr ""
 
-#: includes/config.php:493
+#: includes/config.php:503
 msgid "Square"
 msgstr ""
 
-#: includes/config.php:498
+#: includes/config.php:508
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config.php:503
+#: includes/config.php:513
 msgid "Toggle"
 msgstr ""
 
-#: includes/config.php:508
+#: includes/config.php:518
 msgid "Angle"
 msgstr ""
 
-#: includes/config.php:513
+#: includes/config.php:523
 msgid "Curve"
 msgstr ""
 
-#: includes/config.php:518
+#: includes/config.php:528
 msgid "Round"
 msgstr ""
 
-#: includes/config.php:523
+#: includes/config.php:533
 msgid "Wave"
 msgstr ""
 
-#: includes/config.php:528
+#: includes/config.php:538
 msgid "Fade"
 msgstr ""
 
-#: includes/config.php:537
+#: includes/config.php:547
 msgid "Secondary"
 msgstr ""
 
@@ -422,6 +414,11 @@ msgstr ""
 #: theme.json
 msgctxt "Font size name"
 msgid "16px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "14px"
 msgstr ""
 
 #: theme.json

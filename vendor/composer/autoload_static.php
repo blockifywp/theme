@@ -6,20 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit77eced5a5de1b0103bc3b4787340f79e
 {
-    public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
-            'WPTRT\\AdminNotices\\' => 19,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'WPTRT\\AdminNotices\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/wptrt/admin-notices/src',
-        ),
-    );
-
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -27,8 +13,6 @@ class ComposerStaticInit77eced5a5de1b0103bc3b4787340f79e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit77eced5a5de1b0103bc3b4787340f79e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit77eced5a5de1b0103bc3b4787340f79e::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit77eced5a5de1b0103bc3b4787340f79e::$classMap;
 
         }, null, ClassLoader::class);

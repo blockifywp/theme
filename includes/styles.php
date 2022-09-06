@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function has_block;
 use const WP_CONTENT_DIR;
 use function add_action;
 use function add_editor_style;

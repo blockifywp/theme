@@ -10,7 +10,6 @@ use function array_map;
 use function file_exists;
 use function function_exists;
 use function glob;
-use function str_replace;
 use function version_compare;
 
 if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
@@ -43,16 +42,6 @@ array_map(
 	fn( $file ) => require_once $file,
 	glob( DIR . 'includes/extensions/*.php' )
 );
-
-foreach ( glob( DIR . 'build/blocks/**/*.php' ) as $build ) {
-	$src = str_replace( '/build/', '/src/', $build );
-
-	if ( file_exists( $src ) ) {
-		require_once $src;
-	} else {
-		require_once $build;
-	}
-}
 
 if ( ! function_exists( 'wptt_get_webfont_url' ) ) {
 	require_once DIR . 'vendor/wptt/webfont-loader/wptt-webfont-loader.php';

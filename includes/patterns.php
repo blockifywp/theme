@@ -7,21 +7,10 @@ namespace Blockify\Theme;
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;
 use function add_action;
-use function file_exists;
-use function glob;
-use function html_entity_decode;
 use function in_array;
-use function is_string;
-use function ob_get_clean;
-use function ob_start;
-use function register_block_pattern;
 use function register_block_pattern_category;
-use function str_contains;
-use function str_replace;
 use function ucfirst;
-use function ucwords;
 use function wp_list_pluck;
-use function wp_remote_get;
 
 add_action( 'init', NS . 'register_root_level_pattern_categories', 11 );
 /**

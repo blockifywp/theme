@@ -1,62 +1,6 @@
 {
     "packages": [
         {
-            "name": "wptrt/admin-notices",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/WPTT/admin-notices.git",
-                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/42101e8cf841b17342fcef984a06caf63990c6f2",
-                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.6"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
-                "php": "~7.1",
-                "szepeviktor/phpstan-wordpress": "^0.6.0",
-                "wp-coding-standards/wpcs": "^2.3"
-            },
-            "time": "2020-06-07T10:36:24+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "WPTRT\\AdminNotices\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "WordPress.org Theme Review Team",
-                    "email": "themes@wordpress.org",
-                    "homepage": "https://make.wordpress.org/themes",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A class to create admin-notices for the WordPress dashboard.",
-            "homepage": "https://github.com/WPTRT/admin-notices",
-            "keywords": [
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/WPTRT/admin-notices/issues",
-                "source": "https://github.com/WPTT/admin-notices/tree/master"
-            },
-            "install-path": "../wptrt/admin-notices"
-        },
-        {
             "name": "wptt/webfont-loader",
             "version": "dev-master",
             "version_normalized": "dev-master",

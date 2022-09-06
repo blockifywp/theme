@@ -41,9 +41,7 @@ function is_pattern_preview( int $post_id = 0 ): bool {
 		$post_id = get_the_ID();
 	}
 
-	$title = get_the_title( $post_id );
-
-	return get_post_meta( $post_id, '_wp_page_template', true ) === 'page-full' && $post_id === 2 && ( $title !== 'About' );
+	return get_post_meta( $post_id, '_wp_page_template', true ) === 'page-full' && $post_id === 2 && get_the_title( $post_id ) !== 'About';
 }
 
 /**

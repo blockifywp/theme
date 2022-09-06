@@ -426,6 +426,16 @@ function get_config( string $sub_config = '' ) {
 				'margin' => true,
 			],
 			'position'  => true,
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width' => true,
+					'color' => true,
+				],
+			],
 		],
 		'core/tag-cloud'           => [
 			'typography' => [
