@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.0.1
-Stable tag: 0.3.2
+Stable tag: 0.3.3
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,7 +59,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.4.0 - 4 September 2022 =
+= 0.3.3 - 6 September 2022 =
 * Add: Light and dark patterns
 * Remove: Gutenberg and Blockify plugin dependencies
 * Remove: Editor settings panel
