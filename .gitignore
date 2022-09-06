@@ -1,5 +1,6 @@
 node_modules
 vendor/bin
+vendor/composer/LICENSE
 vendor/dealerdirect
 vendor/squizlabs
 vendor/phpcsstandards
@@ -15,11 +16,11 @@ vendor/wptt/webfont-loader/README.md
 vendor/wptt/webfont-loader/LICENSE
 vendor/wptrt/admin-notices/LICENSE
 vendor/wptrt/admin-notices/readme.md
-wp
+wp/
 wp-content
 templates/single-block_pattern.html
 assets/tsx
-src
+./src
 tests
 *.zip
 *.lock
