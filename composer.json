@@ -9,7 +9,8 @@
   ],
   "type": "wordpress-theme",
   "scripts": {
-    "install:force": "rm -Rf ./composer.lock && composer install --no-dev",
+    "install:dev": "rm -Rf ./composer.lock && composer install",
+    "install:prod": "rm -Rf ./composer.lock && composer install --no-dev",
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
     "phpcs": "phpcs",
     "pest": "vendor/bin/pest"
@@ -23,11 +24,10 @@
     }
   },
   "require": {
-    "tgmpa/tgm-plugin-activation": "dev-master",
-    "wptt/webfont-loader": "dev-master"
+    "wptt/webfont-loader": "dev-master",
+    "wptrt/admin-notices": "dev-master"
   },
   "require-dev": {
-    "dingo-d/wp-pest-integration-test-setup": "dev-main",
-    "brain/monkey": "2.*"
+    "dingo-d/wp-pest-integration-test-setup": "dev-main"
   }
 }

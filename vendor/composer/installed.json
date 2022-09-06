@@ -1,66 +1,60 @@
 {
     "packages": [
         {
-            "name": "tgmpa/tgm-plugin-activation",
+            "name": "wptrt/admin-notices",
             "version": "dev-master",
             "version_normalized": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac"
+                "url": "https://github.com/WPTT/admin-notices.git",
+                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
+                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/42101e8cf841b17342fcef984a06caf63990c6f2",
+                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": ">=5.6"
             },
-            "time": "2016-05-19T15:46:51+00:00",
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
+                "php": "~7.1",
+                "szepeviktor/phpstan-wordpress": "^0.6.0",
+                "wp-coding-standards/wpcs": "^2.3"
+            },
+            "time": "2020-06-07T10:36:24+00:00",
+            "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {
-                "files": [
-                    "class-tgm-plugin-activation.php"
-                ]
+                "psr-4": {
+                    "WPTRT\\AdminNotices\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
-                    "name": "Thomas Griffin",
-                    "homepage": "http://thomasgriffinmedia.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Gary Jones",
-                    "homepage": "https://github.com/GaryJones",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
+                    "name": "WordPress.org Theme Review Team",
+                    "email": "themes@wordpress.org",
+                    "homepage": "https://make.wordpress.org/themes",
                     "role": "Developer"
                 }
             ],
-            "description": "TGM Plugin Activation is a PHP library that allows you to easily require or recommend plugins for your WordPress themes (and plugins).",
-            "homepage": "http://tgmpluginactivation.com",
+            "description": "A class to create admin-notices for the WordPress dashboard.",
+            "homepage": "https://github.com/WPTRT/admin-notices",
             "keywords": [
-                "activation",
-                "library",
-                "plugins",
-                "theme",
                 "wordpress"
             ],
             "support": {
-                "issues": "https://github.com/TGMPA/TGM-Plugin-Activation/issues",
-                "source": "https://github.com/TGMPA/TGM-Plugin-Activation"
+                "issues": "https://github.com/WPTRT/admin-notices/issues",
+                "source": "https://github.com/WPTT/admin-notices/tree/master"
             },
-            "install-path": "../tgmpa/tgm-plugin-activation"
+            "install-path": "../wptrt/admin-notices"
         },
         {
             "name": "wptt/webfont-loader",

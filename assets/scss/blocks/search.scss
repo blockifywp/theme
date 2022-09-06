@@ -1,8 +1,22 @@
 .wp-block-search__button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
-	border: 0;
 	margin: 0;
-	border-radius: var(--wp--custom--border--radius);
+
+	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
+	min-width: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
+
+	// Gutenberg .wp-element-button workaround. Also used by input.
+	color: var(--wp--custom--button--color, inherit);
+	background: var(--wp--custom--button--background, inherit);
+	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
+	border-radius: var(--wp--custom--button--border-radius, inherit);
+	border-width: var(--wp--custom--button--border-width);
+	font-size: var(--wp--custom--button--font-size);
+	font-weight: var(--wp--custom--button--font-weight);
+	line-height: var(--wp--custom--button--line-height);
 }
 
 .wp-block-search.wp-block-search__button-inside .wp-block-search__inside-wrapper {
@@ -46,6 +60,7 @@
 	}
 
 	.wp-block-search__input {
+		color: inherit;
 		max-width: var(--wp--custom--layout--content-size);
 		margin-left: auto;
 		margin-right: auto;

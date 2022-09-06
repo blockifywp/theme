@@ -8,6 +8,7 @@
 	white-space: pre;
 	transition: var(--wp--custom--transition, inherit);
 	background-clip: padding-box !important; // Semi transparent borders.
+	cursor: pointer;
 
 	// Gutenberg .wp-element-button workaround. Also used by input.
 	width: var(--wp--custom--button--width, auto); // Not generated.

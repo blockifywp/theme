@@ -17,3 +17,10 @@
 		display: none !important; // !important is needed for rows etc.
 	}
 }
+
+@media (min-width: 782px) {
+
+	.is-hide-desktop {
+		display: none !important; // !important is needed for rows etc.
+	}
+}

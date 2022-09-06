@@ -22,9 +22,26 @@ add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
  * @return string
  */
 function render_button_block( string $content, array $block ): string {
+	if ( str_contains( $content, 'is-style-outline' ) ) {
+		$dom = dom( $content );
+
+		/** @var DOMElement $button */
+		$button = $dom->firstChild;
+
+		/** @var DOMElement $link */
+		$link    = $button->getElementsByTagName( 'a' )->item( 0 );
+		$classes = explode( ' ', $link->getAttribute( 'class' ) );
+		$link->setAttribute( 'class', implode( ' ', [
+			...$classes,
+			'wp-element-button',
+		] ) );
+
+		$content = $dom->saveHTML();
+	}
+
 	if ( str_contains( $content, '-border-' ) ) {
 		$global_settings = \wp_get_global_settings();
-		$dom = dom( $content );
+		$dom             = dom( $content );
 
 		/** @var DOMElement $button */
 		$button = $dom->firstChild;

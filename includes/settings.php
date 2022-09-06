@@ -18,7 +18,6 @@ use function preg_replace;
 use function register_rest_field;
 use function remove_post_type_support;
 use function str_replace;
-use function tgmpa;
 use function update_option;
 use function wp_update_post;
 use WP_REST_Request;
@@ -33,7 +32,7 @@ add_action( 'after_setup_theme', NS . 'theme_supports' );
  * @return void
  */
 function theme_supports(): void {
-	$theme_supports = get_sub_config( 'themeSupports' );
+	$theme_supports = get_config( 'themeSupports' ) ?? [];
 	$add            = $theme_supports['add'] ?? [];
 	$remove         = $theme_supports['remove'] ?? [];
 
@@ -55,7 +54,7 @@ add_action( 'after_setup_theme', NS . 'add_post_type_supports' );
  * @return void
  */
 function add_post_type_supports(): void {
-	$post_supports = get_sub_config( 'postTypeSupports' );
+	$post_supports = get_config( 'postTypeSupports' );
 	$add           = $post_supports['add'] ?? [];
 	$remove        = $post_supports['remove'] ?? [];
 
@@ -70,20 +69,6 @@ function add_post_type_supports(): void {
 			remove_post_type_support( $post_type, $feature );
 		}
 	}
-}
-
-add_action( 'after_setup_theme', NS . 'add_recommended_plugins' );
-/**
- * Adds recommended plugins to TGMPA from theme config.
- *
- * @since 0.0.15
- *
- * @return void
- */
-function add_recommended_plugins(): void {
-	tgmpa( get_sub_config( 'recommendedPlugins' ) ?? [], [
-		'is_automatic' => true,
-	] );
 }
 
 add_action( 'init', NS . 'register_page_title_rest_field' );
@@ -185,7 +170,7 @@ function register_icons_rest_route(): void {
 		],
 		'callback'            => function ( WP_REST_Request $request ): array {
 			$icon_data = [];
-			$icon_sets = get_sub_config( 'icons' );
+			$icon_sets = get_config( 'icons' );
 
 			foreach ( $icon_sets as $icon_set => $set_dir ) {
 				$icons = glob( $set_dir . '/*.svg' );

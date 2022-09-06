@@ -2,7 +2,6 @@
 /**
  * Title: Blockify Error 404
  * Slug: blockify/error-404
- * Categories: page
  * Block Types: core/post-content
  */
 ?><!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":false,"contentSize":"720px"}} -->

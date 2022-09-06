@@ -1,12 +1,12 @@
 <?php
 /**
- * Title: Blockify Call to Action Right
- * Slug: blockify/call-to-action-right
+ * Title: Blockify CTA Horizontal Light
+ * Slug: blockify/cta-horizontal-light
  * Categories: cta
- * 
+ * Block Types: 
  */
-?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->
+?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"},"margin":{"top":"3em","bottom":"3em"}}},"backgroundColor":"neutral-50"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center has-neutral-50-background-color has-background alignwide" style="margin-top:3em;margin-bottom:3em;padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":3} -->
 <h3>Start your next project.</h3>
 <!-- /wp:heading -->
@@ -19,11 +19,11 @@
 <!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right"}} -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button">Start now</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link">Start now</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button">Learn more</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link">Learn more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column --></div>

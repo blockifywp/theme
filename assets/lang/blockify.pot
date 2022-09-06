@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.3.2\n"
+"Project-Id-Version: Blockify 0.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-09-03T14:36:36+00:00\n"
+"POT-Creation-Date: 2022-09-06T11:50:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -27,6 +27,14 @@ msgstr ""
 msgid "https://blockifywp.com/"
 msgstr ""
 
+#: functions.php:64
+msgid "Please deactivate Gutenberg"
+msgstr ""
+
+#: functions.php:65
+msgid "Hi there! Thank you for using Blockify. To ensure correct styling, please deactivate Gutenberg. This notice can be dismissed for developers requiring Gutenberg for testing."
+msgstr ""
+
 #: includes/blocks/archive-title.php:35
 msgid "Search results"
 msgstr ""
@@ -35,88 +43,68 @@ msgstr ""
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/config.php:420
+#: includes/blocks/search.php:82
+msgid "Search this website"
+msgstr ""
+
+#: includes/config.php:463
 msgid "SVG Icon"
 msgstr ""
 
-#: includes/config.php:425
+#: includes/config.php:468
 msgid "Placeholder"
 msgstr ""
 
-#: includes/config.php:430
+#: includes/config.php:473
 msgid "Icon"
 msgstr ""
 
-#: includes/config.php:435
+#: includes/config.php:478
 msgid "Numbered"
 msgstr ""
 
-#: includes/config.php:440
+#: includes/config.php:483
 msgid "Checklist"
 msgstr ""
 
-#: includes/config.php:445
+#: includes/config.php:488
+msgid "Check Circle"
+msgstr ""
+
+#: includes/config.php:493
 msgid "Square"
 msgstr ""
 
-#: includes/config.php:450
+#: includes/config.php:498
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config.php:455
+#: includes/config.php:503
 msgid "Toggle"
 msgstr ""
 
-#: includes/config.php:460
+#: includes/config.php:508
 msgid "Angle"
 msgstr ""
 
-#: includes/config.php:465
+#: includes/config.php:513
 msgid "Curve"
 msgstr ""
 
-#: includes/config.php:470
+#: includes/config.php:518
 msgid "Round"
 msgstr ""
 
-#: includes/config.php:475
+#: includes/config.php:523
 msgid "Wave"
 msgstr ""
 
-#: includes/config.php:480
+#: includes/config.php:528
 msgid "Fade"
 msgstr ""
 
-#: assets/js/editor.js:1
-msgid "Dark Mode"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Enable dark mode"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Automatically displays a dark version of your site to visitors with display settings set to dark mode."
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Optimization"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Remove emoji scripts"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Removes unnecessary emoji scripts that are loaded by WordPress. Removing these scripts improves performance, and regular emojis are still supported."
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Excerpt length"
-msgstr ""
-
-#: assets/js/editor.js:1
-msgid "Global Settings"
+#: includes/config.php:537
+msgid "Secondary"
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -200,6 +188,14 @@ msgid "Icon Settings"
 msgstr ""
 
 #: assets/js/editor.js:1
+msgid "More icons available with the Blockify Pro add-on! "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Learn more ↗"
+msgstr ""
+
+#: assets/js/editor.js:1
 msgid "Select Icon Set"
 msgstr ""
 
@@ -209,6 +205,26 @@ msgstr ""
 
 #: assets/js/editor.js:1
 msgid "Icon size"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "None"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "728 x 90"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "468 x 60"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "120 x 600"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "160 x 600"
 msgstr ""
 
 #: assets/js/editor.js:1
@@ -281,6 +297,10 @@ msgstr ""
 
 #: assets/js/editor.js:1
 msgid "Hide on mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hide on desktop"
 msgstr ""
 
 #: assets/js/editor.js:1

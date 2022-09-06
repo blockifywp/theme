@@ -43,7 +43,7 @@
       "border": {
         "width": "1px",
         "style": "solid",
-        "color": "var(--wp--preset--color--neutral-200)",
+        "color": "var(--wp--preset--color--neutral-300)",
         "radius": "5px"
       },
       "fontWeight": {
@@ -80,8 +80,8 @@
       "transition": "all 0.2s ease"
     },
     "layout": {
-      "contentSize": "min(calc(100vw - 40px), 800px)",
-      "wideSize": "min(calc(100vw - 40px), 1200px)"
+      "contentSize": "800px",
+      "wideSize": "1200px"
     },
     "spacing": {
       "blockGap": true,
@@ -179,7 +179,7 @@
           "slug": "neutral-900"
         },
         {
-          "color": "#313b61",
+          "color": "#1d243c",
           "name": "Neutral 800",
           "slug": "neutral-800"
         },
@@ -209,7 +209,7 @@
           "slug": "neutral-300"
         },
         {
-          "color": "#dadde8",
+          "color": "#d0d4e3",
           "name": "Neutral 200",
           "slug": "neutral-200"
         },
@@ -664,12 +664,6 @@
             "bottom": "0",
             "left": "0"
           }
-        },
-        "border": {
-          "width": "var(--wp--custom--border--width)",
-          "style": "var(--wp--custom--border--style)",
-          "color": "var(--wp--custom--border--color)",
-          "radius": "var(--wp--custom--border--radius)"
         }
       },
       "core/list": {
@@ -694,6 +688,14 @@
       "core/navigation-link": {
         "typography": {
           "fontWeight": "var(--wp--custom--font-weight--medium)"
+        },
+        "spacing": {
+            "padding": {
+                "top": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
+                "right": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
+                "bottom": "calc(var(--wp--style--block-gap, 1em) / 2) !important",
+                "left": "calc(var(--wp--style--block-gap, 1em) / 2) !important"
+            }
         }
       },
       "core/page-list": {
@@ -803,9 +805,7 @@
       },
       "core/separator": {
         "border": {
-          "bottom": {
-            "width": "0"
-          }
+          "color": "currentColor !important"
         }
       },
       "core/site-logo": {

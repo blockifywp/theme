@@ -8,6 +8,11 @@
 	}
 }
 
+nav .wp-block-navigation-item__label,
+.wp-block-navigation-link__placeholder-text{
+	white-space: nowrap;
+}
+
 .wp-block-navigation:not(.is-responsive) {
 	margin: auto;
 }
@@ -98,10 +103,6 @@
 .wp-block-navigation-item {
 	margin-bottom: 0; // Theme.json doesn't work.
 	flex-wrap: wrap;
-}
-
-.wp-block-navigation-item .wp-block-navigation-item__content {
-	padding: calc(var(--wp--style--block-gap, 1em) / 2);
 }
 
 .is-vertical .wp-block-navigation-item__content {

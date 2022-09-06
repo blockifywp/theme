@@ -6,7 +6,8 @@
 	list-style-type: square;
 }
 
-.is-style-checklist {
+.is-style-checklist,
+.is-style-check-circle, {
 	list-style: none;
 	padding-left: var(--wp--style--block-gap, 1em);
 
@@ -29,5 +30,13 @@
 		display: inline-block !important;
 		background: var(--wp--custom--checklist--background,var(--wp--preset--color--primary-600, currentColor));
 		position: absolute;
+	}
+}
+
+.is-style-check-circle {
+
+	li:before {
+		mask: url("data:image/svg+xml;utf8,<svg fill='currentColor' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='m16.7 7.1-6.3 8.5-3.3-2.5-.9 1.2 4.5 3.4L17.9 8z'/></svg>");
+		-webkit-mask: url("data:image/svg+xml;utf8,<svg fill='currentColor' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='m16.7 7.1-6.3 8.5-3.3-2.5-.9 1.2 4.5 3.4L17.9 8z'/></svg>");
 	}
 }

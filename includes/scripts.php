@@ -60,7 +60,7 @@ function enqueue_editor_scripts(): void {
 			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
 			'nonce'              => wp_create_nonce( SLUG ),
 			'icon'               => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
-			'darkMode'           => ( get_option( SLUG )['darkMode'] ?? null ) === 'true',
+			'darkMode'           => ( get_option( SLUG )['darkMode'] ?? false ) === 'true',
 			'removeEmojiScripts' => ( get_option( SLUG )['removeEmojiScripts'] ?? null ) === 'true',
 			'excerptLength'      => get_option( SLUG )['excerptLength'] ?? 33,
 		], get_config() )

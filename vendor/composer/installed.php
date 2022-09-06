@@ -3,7 +3,7 @@
         'name' => 'blockify/theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '82ca22e65321bacdb7e79c779c5eaf1e3510ea4a',
+        'reference' => '97a67a3fcd27100053cbebe6115c917ff97517da',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,19 +13,21 @@
         'blockify/theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '82ca22e65321bacdb7e79c779c5eaf1e3510ea4a',
+            'reference' => '97a67a3fcd27100053cbebe6115c917ff97517da',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'tgmpa/tgm-plugin-activation' => array(
+        'wptrt/admin-notices' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'c626d0d91fc8ef24916e809c7b79eeafab1c1cac',
+            'reference' => '42101e8cf841b17342fcef984a06caf63990c6f2',
             'type' => 'library',
-            'install_path' => __DIR__ . '/../tgmpa/tgm-plugin-activation',
-            'aliases' => array(),
+            'install_path' => __DIR__ . '/../wptrt/admin-notices',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
             'dev_requirement' => false,
         ),
         'wptt/webfont-loader' => array(

@@ -19,19 +19,21 @@ use function trim;
 use DOMDocument;
 use DOMElement;
 
-const CAMEL_CASE    = 'camel';
-const PASCAL_CASE   = 'pascal';
-const SNAKE_CASE    = 'snake';
-const ADA_CASE      = 'ada';
-const MACRO_CASE    = 'macro';
-const KEBAB_CASE    = 'kebab';
-const TRAIN_CASE    = 'train';
-const COBOL_CASE    = 'cobol';
-const LOWER_CASE    = 'lower';
-const UPPER_CASE    = 'upper';
-const TITLE_CASE    = 'title';
-const SENTENCE_CASE = 'sentence';
-const DOT_CASE      = 'dot';
+const STRING_CASE = [
+	'camel'    => true,
+	'pascal'   => true,
+	'snake'    => true,
+	'ada'      => true,
+	'macro'    => true,
+	'kebab'    => true,
+	'train'    => true,
+	'cobol'    => true,
+	'lower'    => true,
+	'upper'    => true,
+	'title'    => true,
+	'sentence' => true,
+	'dot'      => true,
+];
 
 /**
  * Convert string case.
@@ -52,31 +54,31 @@ const DOT_CASE      = 'dot';
  *
  * @since 0.0.2
  *
- * @param string $string
- * @param string $case
+ * @param string $string The string to convert.
+ * @param string $case   Defaults to title.
  *
  * @return string
  */
-function convert_case( string $string, string $case ): string {
+function convert_case( string $string, string $case = STRING_CASE['title'] ): string {
 	$delimiters = 'sentence' === $case ? [ ' ', '-', '_' ] : [ ' ', '-', '_', '.' ];
 	$lower      = trim( str_replace( $delimiters, $delimiters[0], strtolower( $string ) ), $delimiters[0] );
 	$upper      = trim( ucwords( $lower ), $delimiters[0] );
 	$pieces     = explode( $delimiters[0], $lower );
 
 	$cases = [
-		CAMEL_CASE    => lcfirst( str_replace( ' ', '', $upper ) ),
-		PASCAL_CASE   => str_replace( ' ', '', $upper ),
-		SNAKE_CASE    => strtolower( implode( '_', $pieces ) ),
-		ADA_CASE      => str_replace( ' ', '_', $upper ),
-		MACRO_CASE    => strtoupper( implode( '_', $pieces ) ),
-		KEBAB_CASE    => strtolower( implode( '-', $pieces ) ),
-		TRAIN_CASE    => lcfirst( str_replace( ' ', '-', $upper ) ),
-		COBOL_CASE    => strtoupper( implode( '-', $pieces ) ),
-		LOWER_CASE    => strtolower( $string ),
-		UPPER_CASE    => strtoupper( $string ),
-		TITLE_CASE    => $upper,
-		SENTENCE_CASE => ucfirst( $lower ),
-		DOT_CASE      => strtolower( implode( '.', $pieces ) ),
+		STRING_CASE['camel']    => lcfirst( str_replace( ' ', '', $upper ) ),
+		STRING_CASE['pascal']   => str_replace( ' ', '', $upper ),
+		STRING_CASE['snake']    => strtolower( implode( '_', $pieces ) ),
+		STRING_CASE['ada']      => str_replace( ' ', '_', $upper ),
+		STRING_CASE['macro']    => strtoupper( implode( '_', $pieces ) ),
+		STRING_CASE['kebab']    => strtolower( implode( '-', $pieces ) ),
+		STRING_CASE['train']    => lcfirst( str_replace( ' ', '-', $upper ) ),
+		STRING_CASE['cobol']    => strtoupper( implode( '-', $pieces ) ),
+		STRING_CASE['lower']    => strtolower( $string ),
+		STRING_CASE['upper']    => strtoupper( $string ),
+		STRING_CASE['title']    => $upper,
+		STRING_CASE['sentence'] => ucfirst( $lower ),
+		STRING_CASE['dot']      => strtolower( implode( '.', $pieces ) ),
 	];
 
 	$string = $cases[ $case ] ?? $string;
@@ -161,6 +163,37 @@ function change_tag_name( DOMElement $node, string $name ): DOMElement {
 }
 
 /**
+ * Returns part of string between two strings.
+ *
+ * @since 0.0.2
+ *
+ * @param string $start
+ * @param string $end
+ * @param string $string
+ * @param bool   $omit
+ *
+ * @return string
+ */
+function str_between( string $start, string $end, string $string, bool $omit = false ): string {
+	$string = ' ' . $string;
+	$ini    = strpos( $string, $start );
+
+	if ( $ini == 0 ) {
+		return '';
+	}
+
+	$ini    += strlen( $start );
+	$len    = strpos( $string, $end, $ini ) - $ini;
+	$string = $start . substr( $string, $ini, $len ) . $end;
+
+	if ( $omit ) {
+		$string = str_replace( [ $start, $end ], '', $string );
+	}
+
+	return $string;
+}
+
+/**
  * Attempts to log WordPress PHP data to console.
  *
  * @since    0.0.2
@@ -189,7 +222,11 @@ function css_array_to_string( array $styles ): string {
 	$css = '';
 
 	foreach ( $styles as $property => $value ) {
-		$css .= $value ? "$property:$value;" : '';
+		if ( ! $value ) {
+			continue;
+		}
+
+		$css .= "$property:$value;";
 	}
 
 	return $css;

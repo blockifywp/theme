@@ -14,9 +14,19 @@
 <!-- wp:site-title {"level":5} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:paragraph -->
-<p>Next generation web design and development tools for innovative creatives</p>
-<!-- /wp:paragraph --></div>
+<!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"1em","bottom":"2em"}}}} -->
+<p style="margin-top:1em;margin-bottom:2em">Free full site editing block theme for WordPress.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:social-links {"size":"has-small-icon-size","className":"is-style-logos-only"} -->
+<ul class="wp-block-social-links has-small-icon-size is-style-logos-only"><!-- wp:social-link {"url":"#","service":"facebook","textColor":"neutral-200"} /-->
+
+<!-- wp:social-link {"url":"#","service":"instagram","textColor":"neutral-200"} /-->
+
+<!-- wp:social-link {"url":"#","service":"twitter","textColor":"neutral-200"} /-->
+
+<!-- wp:social-link {"url":"#","service":"linkedin","textColor":"neutral-200"} /--></ul>
+<!-- /wp:social-links --></div>
 <!-- /wp:column -->
 
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em"}}}} -->

@@ -13,6 +13,8 @@ vendor/tgmpa/tgm-plugin-activation/example.php
 vendor/wptt/webfont-loader/.gitattributes
 vendor/wptt/webfont-loader/README.md
 vendor/wptt/webfont-loader/LICENSE
+vendor/wptrt/admin-notices/LICENSE
+vendor/wptrt/admin-notices/readme.md
 wp
 wp-content
 templates/single-block_pattern.html

@@ -1,4 +1,9 @@
 html .editor-styles-wrapper {
+	--wp--custom--alignfull--width: 100% !important;
+	--wp--custom--alignfull--margin-left: auto;
+	--wp--custom--alignfull--margin-right: auto;
+	--wp--custom--alignfull-inner--width: 94%;
+
 	width: auto !important;
 	overflow-x: initial;
 
@@ -18,8 +23,6 @@ html .editor-styles-wrapper {
 
 	// TODO: Is this needed?
 	.wp-block-image {
-		margin-left: 0 !important;
-		margin-right: 0 !important;
 
 		img {
 			max-width: 100% !important;
@@ -305,4 +308,70 @@ header.wp-block-template-part {
 
 .wp-block-buttons {
 	width: 100% !important;
+}
+
+.block-editor-block-patterns-list__list-item[aria-label*=" (Pro)"] {
+	position: relative;
+	pointer-events: none;
+
+	> div {
+		opacity: 0.5;
+	}
+
+	&:after {
+		content: "PRO";
+		font-size: 10px;
+		position: absolute;
+		top: 6%;
+		right: 6%;
+		background: var(--wp-admin-theme-color, blue);
+		color: #fff;
+		padding: 0 4px;
+		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		z-index: 3;
+	}
+}
+
+.edit-site-global-styles-variations_items {
+
+	&:not([aria-label*="Wireframe"]):not([aria-label*="Default"]):not([aria-label*="Blueprint"]):not([aria-label*="Shogun"]) {
+		opacity: 0.75;
+		order: 2;
+		padding: 2px;
+		border: 1px solid #ddd;
+
+		> div {
+			pointer-events: none;
+			background-image: url(https://blockifywp.com/wp-content/uploads/2022/08/Screen-Shot-2022-08-31-at-9.08.57-am-1024x768.png);
+			background-position: top center;
+			background-size: cover;
+			height: 100%;
+			min-height: 68px;
+			border: 0;
+			border-radius: 0;
+
+			iframe {
+				display: none;
+			}
+		}
+	}
+
+
+}
+
+
+div.edit-site-global-styles-variations_item[aria-label="launch"] > div {
+	background-image: url(https://blockifywp.com/wp-content/uploads/2022/08/Screen-Shot-2022-08-31-at-9.03.37-am.png) !important;
+}
+
+div.edit-site-global-styles-variations_item[aria-label="pink"] > div {
+	background-image: url(https://blockifywp.com/wp-content/uploads/2022/08/Screen-Shot-2022-08-31-at-9.04.26-am.png) !important;
+}
+
+span.wp-block-cover__background.has-background-dim {
+	width: 100% !important;
+	max-width: 100% !important;
 }

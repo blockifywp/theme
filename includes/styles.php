@@ -4,21 +4,31 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function has_block;
+use const WP_CONTENT_DIR;
 use function add_action;
 use function add_editor_style;
 use function array_flip;
 use function array_key_exists;
+use function array_map;
 use function basename;
 use function dirname;
+use function end;
+use function explode;
 use function file_get_contents;
 use function filemtime;
+use function function_exists;
 use function get_option;
 use function glob;
+use function in_array;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_string;
+use function sprintf;
+use function str_contains;
 use function str_replace;
+use function ucwords;
 use function wp_add_inline_style;
 use function wp_dequeue_style;
 use function wp_enqueue_style;
@@ -103,6 +113,7 @@ function add_dynamic_custom_properties(): void {
 	$element              = is_admin() ? '.editor-styles-wrapper' : 'body';
 	$content_size         = $settings['layout']['contentSize'] ?? '800px';
 	$wide_size            = $settings['layout']['wideSize'] ?? '1200px';
+	$layout_unit          = is_admin() ? '%' : 'vw';
 	$border_width         = $settings['custom']['border']['width'] ?? '1px';
 	$border_style         = $settings['custom']['border']['style'] ?? 'solid';
 	$border_color         = $settings['custom']['border']['color'] ?? '#ddd';
@@ -117,10 +128,12 @@ function add_dynamic_custom_properties(): void {
 	$button_font_weight   = $button['typography']['fontWeight'] ?? null;
 	$button_line_height   = $button['typography']['lineHeight'] ?? null;
 	$button_padding       = $button['spacing']['padding'] ?? null;
+	$block_gap            = $global_styles['spacing']['blockGap'] ?? null;
 
 	$all = [
-		'--wp--custom--layout--content-size'   => $content_size,
-		'--wp--custom--layout--wide-size'      => $wide_size,
+		// var(--wp--style--block-gap) doesn't work here.
+		'--wp--custom--layout--content-size'   => "min(calc(100{$layout_unit} - 40px),{$content_size})",
+		'--wp--custom--layout--wide-size'      => "min(calc(100{$layout_unit} - 40px),{$wide_size})",
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'       => $body_background,
 		'--wp--custom--body--color'            => $body_color,
@@ -183,7 +196,6 @@ function enqueue_block_styles(): void {
 	}
 }
 
-add_action( 'blockify_editor_scripts', NS . 'add_conditional_styles', 11 );
 add_action( 'wp_enqueue_scripts', NS . 'add_conditional_styles' );
 /**
  * Adds split styles.
@@ -255,7 +267,7 @@ function add_dark_mode_custom_properties(): void {
 	$properties = [];
 
 	// Allows colors to be filtered with PHP, or removed in child theme json.
-	$config = get_sub_config( 'darkModeColorPalette', null );
+	$config = get_config( 'darkModeColorPalette' ) ?? null;
 
 	if ( ! $config ) {
 		return;
@@ -281,7 +293,9 @@ function add_dark_mode_custom_properties(): void {
 		$new_css .= "$property:$value;";
 	}
 
-	$new_css .= '}}.dark-mode{';
+	$new_css .= '}}';
+
+	$new_css = '.dark-mode{';
 
 	foreach ( $properties as $property => $value ) {
 		$new_css .= "$property:$value;";
@@ -299,4 +313,95 @@ function add_dark_mode_custom_properties(): void {
 		is_admin() ? 'blockify-editor' : 'global-styles',
 		$new_css
 	);
+}
+
+add_action( 'admin_init', NS . 'enqueue_google_fonts' );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_google_fonts' );
+/**
+ * Enqueues google fonts.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function enqueue_google_fonts(): void {
+	if ( ! function_exists( 'wptt_get_webfont_url' ) ) {
+		return;
+	}
+
+	$global_styles     = wp_get_global_styles();
+	$global_settings   = wp_get_global_settings();
+	$font_family_slugs = array_map(
+		fn( $font_family ) => $font_family['slug'],
+		$global_settings['typography']['fontFamilies']['theme'] ?? [ null ]
+	);
+	$default_weight    = 'var(--wp--custom--font-weight--regular)';
+	$google_fonts      = [];
+	$heading_family    = $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null;
+
+	if ( $heading_family ) {
+		$google_fonts[ $heading_family ] = $global_styles['blocks']['core/heading']['typography']['fontWeight'] ?? $default_weight;
+	}
+
+	$body_family = $global_styles['typography']['fontFamily'] ?? null;
+
+	if ( $body_family ) {
+		$google_fonts[ $body_family ] = $global_styles['typography']['fontWeight'] ?? $default_weight;
+	}
+
+	foreach ( $google_fonts as $google_font => $font_weight ) {
+		if ( str_contains( $google_font, 'var(--' ) ) {
+			$explode_font = explode( '--', str_replace( ')', '', $google_font ) );
+		} else {
+			$explode_font = explode( '|', $google_font );
+		}
+
+		if ( str_contains( $font_weight, 'var(--' ) ) {
+			$explode_weight = explode( '--', str_replace( ')', '', $font_weight ) );
+		} else {
+			$explode_weight = explode( '|', $font_weight );
+		}
+
+		$slug   = end( $explode_font );
+		$weight = end( $explode_weight );
+
+		if ( in_array( $slug, [ 'sans-serif', 'serif', 'monospace' ] ) ) {
+			return;
+		}
+
+		if ( ! in_array( $slug, $font_family_slugs ) ) {
+			return;
+		}
+
+		$font_weights = [
+			'thin'        => 100,
+			'extra-light' => 200,
+			'light'       => 300,
+			'regular'     => 400,
+			'medium'      => 500,
+			'semi-bold'   => 600,
+			'bold'        => 700,
+			'extra-bold'  => 800,
+			'black'       => 900,
+		];
+
+		$name = str_replace( ' ', '+', ucwords( str_replace( [ '-', '' ], ' ', $slug ) ) );
+
+		$url = wptt_get_webfont_url( sprintf(
+			'https://fonts.googleapis.com/css2?family=%s:wght@%s&display=swap',
+			$name,
+			$font_weights[ $weight ] ?? 400
+		) );
+
+		if ( ! is_admin() ) {
+			wp_enqueue_style(
+				'blockify-font-' . $slug,
+				$url,
+				[ 'global-styles' ],
+				filemtime( WP_CONTENT_DIR . '/fonts' )
+			);
+		} else {
+			add_editor_style( '../../fonts/' . basename( $url ) );
+		}
+	}
 }

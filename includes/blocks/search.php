@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
+use function apply_filters;
 use function explode;
 use function str_contains;
 
@@ -34,17 +35,6 @@ function render_search_block( string $content, array $block ): string {
 
 		/** @var DOMElement $div */
 		$div     = $divs->item( 0 );
-		$buttons = $div->getElementsByTagName( 'button' );
-
-		if ( $buttons->item( 0 ) ) {
-
-			/** @var DOMElement $button */
-			$button = $buttons->item( 0 );
-
-			$classes = explode( ' ', $button->getAttribute( 'class' ) );
-
-			$button->setAttribute( 'class', implode( ' ', $classes ) );
-		}
 
 		$inputs = $div->getElementsByTagName( 'input' );
 
@@ -84,10 +74,36 @@ function render_search_block( string $content, array $block ): string {
 		$checkbox = $dom->createElement( 'input' );
 		$button   = change_tag_name( $button, 'label' );
 
+		$placeholder = $input->getAttribute( 'placeholder' );
+
+		if ( ! $placeholder ) {
+			$input->setAttribute(
+				'placeholder',
+				apply_filters( 'blockify_search_placeholder', __( 'Search this website', 'blockify' ) )
+			);
+		}
+
 		$checkbox->setAttribute( 'class', 'wp-block-search__checkbox screen-reader-text' );
 		$checkbox->setAttribute( 'type', 'checkbox' );
 		$checkbox->setAttribute( 'id', $label->getAttribute( 'for' ) . '-checkbox' );
 		$button->setAttribute( 'for', $checkbox->getAttribute( 'id' ) );
+
+		$wrap->setAttribute( 'class', \str_replace(
+			[ 'wp-block-search__button', 'has-icon' ],
+			'',
+			$button->getAttribute( 'class' ) . ' ' . $wrap->getAttribute( 'class' )
+		) );
+
+		$button_classes = explode( ' ', $button->getAttribute( 'class' ) );
+		$button_class   = '';
+
+		foreach ( $button_classes as $class ) {
+			if ( ! str_contains( $class, '-background' ) ) {
+				$button_class .= $class . ' ';
+			}
+		}
+
+		$button->setAttribute( 'class', $button_class );
 
 		$wrap->appendChild( $input );
 		$form->removeChild( $label );

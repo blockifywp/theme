@@ -59,6 +59,12 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
+= 0.4.0 - 4 September 2022 =
+* Add: Light and dark patterns
+* Remove: Gutenberg and Blockify plugin dependencies
+* Remove: Editor settings panel
+* Remove: Automatic dark mode feature
+
 = 0.3.2 - 3 September 2022 =
 * Add: Excerpt length setting to editor
 * Add: Hide on mobile settings to supported blocks

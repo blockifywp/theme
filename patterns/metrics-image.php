@@ -3,9 +3,10 @@
  * Title: Blockify Metrics Image
  * Slug: blockify/metrics-image
  * Categories: metrics
- * 
+ * Block Types: 
  */
-?><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"3em","bottom":"3em"}}}} -->
+?><!-- wp:group {"align":"full","layout":{"inherit":true}} -->
+<div class="wp-block-group alignfull alignfull"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"3em","bottom":"3em"}}}} -->
 <div class="wp-block-columns alignwide alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image {"style":{"aspectRatio":"1/1"},"className":"is-style-placeholder"} -->
 <figure class="wp-block-image is-style-placeholder" style="aspect-ratio:1/1;--wp--custom--placeholder-line--color:var(--wp--custom--border--color)"><img src="#" alt=""/></figure>
@@ -21,8 +22,8 @@
 <h2>Helping your business succeed online</h2>
 <!-- /wp:heading -->
 
-<!-- wp:columns {"align":"wide"} -->
-<div class="wp-block-columns alignwide alignwide"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
 <h6 class="has-text-align-left has-72-font-size">300</h6>
 <!-- /wp:heading -->
@@ -43,8 +44,8 @@
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"2em"}}}} -->
-<div class="wp-block-columns alignwide alignwide" style="padding-bottom:2em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
+<!-- wp:columns {"style":{"spacing":{"padding":{"bottom":"2em"}}}} -->
+<div class="wp-block-columns" style="padding-bottom:2em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"72"} -->
 <h6 class="has-text-align-left has-72-font-size">333</h6>
 <!-- /wp:heading -->
@@ -65,4 +66,5 @@
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
 <!-- /wp:column --></div>
-<!-- /wp:columns -->
+<!-- /wp:columns --></div>
+<!-- /wp:group -->

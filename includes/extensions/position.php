@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-
 use DOMElement;
 use function implode;
 use function wp_parse_args;
@@ -32,32 +31,57 @@ function render_block_position( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var DOMElement $first_child */
-		$first_child = $dom->firstChild;
+		/** @var DOMElement $first */
+		$first = $dom->firstChild;
 
-		$first_child->setAttribute( 'style', 'position:' . $position . ';' . $first_child->getAttribute( 'style' ) );
+		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
+
+		if ( ! ( $styles['position'] ?? null ) ) {
+			$styles['position'] = $position;
+		}
+
+		$first->setAttribute( 'style', css_array_to_string( $styles ) );
+
+		$content = $dom->saveHTML();
+	}
+
+	if ( $zIndex ) {
+		$dom = dom( $content );
+
+
+		if ( ! $dom->firstChild ) {
+			return $content;
+		}
+
+		/** @var DOMElement $first */
+		$first = $dom->firstChild;
+
+		$styles            = css_string_to_array( $first->getAttribute( 'style' ) );
+		$styles['z-index'] = $zIndex;
+
+		$first->setAttribute( 'style', css_array_to_string( $styles ) );
 
 		$content = $dom->saveHTML();
 	}
 
 	if ( $inset ) {
-		$inset = wp_parse_args( $inset, [
-			'top'    => 'auto',
-			'right'  => 'auto',
-			'bottom' => 'auto',
-			'left'   => 'auto',
-		] );
-
 		$dom = dom( $content );
 
 		if ( ! $dom->firstChild ) {
 			return $content;
 		}
 
-		/** @var DOMElement $first_child */
-		$first_child = $dom->firstChild;
+		/** @var DOMElement $first */
+		$first = $dom->firstChild;
 
-		$first_child->setAttribute( 'style', 'inset:' . implode( ' ', $inset ) . ';' . $first_child->getAttribute( 'style' ) );
+		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
+
+		$styles['top']    = $inset['top'] ?? null;
+		$styles['right']  = $inset['right'] ?? null;
+		$styles['bottom'] = $inset['bottom'] ?? null;
+		$styles['left']   = $inset['left'] ?? null;
+
+		$first->setAttribute( 'style', css_array_to_string( $styles ) );
 
 		$content = $dom->saveHTML();
 	}

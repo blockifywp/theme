@@ -4,50 +4,16 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function apply_filters;
-use function array_merge_recursive;
 use function basename;
 use function file_get_contents;
 use function get_stylesheet_directory;
 use function get_the_ID;
 use function glob;
 use function get_template_directory_uri;
-use function get_theme_support;
-use function is_array;
 use function json_decode;
 use function trailingslashit;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
-
-/**
- * Returns the final merged config.
- *
- * @since 0.0.9
- *
- * @return array
- */
-function get_config(): array {
-	$defaults = require __DIR__ . '/config.php';
-	$theme    = get_theme_support( SLUG )[0] ?? [];
-
-	return apply_filters( SLUG, array_merge_recursive( $defaults, $theme ) );
-}
-
-/**
- * Returns sub config.
- *
- * @since 0.0.14
- *
- * @param string $sub_config
- * @param mixed  $default
- *
- * @return array
- */
-function get_sub_config( string $sub_config, $default = [] ): array {
-	$config = get_config();
-
-	return isset( $config[ $sub_config ] ) && is_array( $config[ $sub_config ] ) ? $config[ $sub_config ] : $default;
-}
 
 /**
  * Returns the URL for the theme or plugin.
