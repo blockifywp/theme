@@ -130,7 +130,6 @@ function unregister_unused_patterns(): void {
 	}
 }
 
-
 /**
  * Parses and registers block pattern from PHP file with header comment.
  *

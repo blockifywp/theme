@@ -135,7 +135,7 @@ function render_image_icon( string $content, array $block ): string {
 		}
 
 		if ( isset( $block['attrs']['icon'] ) ) {
-			$span->setAttribute( 'title', convert_case( $block['attrs']['icon'], STRING_CASE['sentence'] ) );
+			$span->setAttribute( 'title', convert_case( $block['attrs']['icon'], SENTENCE_CASE ) );
 		}
 
 		$content = $dom->saveHTML();
