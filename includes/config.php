@@ -4,10 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function file_get_contents;
-use function json_decode;
-use function str_contains;
-
 /**
  * Returns the final merged config.
  *
@@ -18,26 +14,6 @@ use function str_contains;
  * @return mixed
  */
 function get_config( string $sub_config = '' ) {
-	$theme_json    = json_decode( file_get_contents( DIR . '/theme.json' ), true );
-	$colors        = $theme_json['settings']['color']['palette'] ?? [];
-	$has_secondary = false;
-
-	foreach ( $colors as $color ) {
-		if ( str_contains( $color['slug'], 'secondary' ) ) {
-			$has_secondary = true;
-		}
-	}
-
-	$defaults = [
-		'apiKeys' => [
-			'adobeFonts'  => '',
-			'blockify'    => '',
-			'fontAwesome' => '',
-			'googleMaps'  => '',
-			'mailChimp'   => '',
-		],
-	];
-
 	$defaults['blockSupports'] = [
 		'blockify/accordion'       => [
 			'boxShadow' => true,
@@ -407,7 +383,7 @@ function get_config( string $sub_config = '' ) {
 			],
 		],
 		'core/spacer'              => [
-			'align'     => [
+			'align'                => [
 				'full',
 				'wide',
 				'left',
@@ -415,17 +391,17 @@ function get_config( string $sub_config = '' ) {
 				'right',
 				'none',
 			],
-			'alignWide' => true,
-			'boxShadow' => true,
-			'color'     => [
+			'alignWide'            => true,
+			'boxShadow'            => true,
+			'color'                => [
 				'gradients'  => true,
 				'background' => true,
 				'text'       => true,
 			],
-			'spacing'   => [
+			'spacing'              => [
 				'margin' => true,
 			],
-			'position'  => true,
+			'position'             => true,
 			'__experimentalBorder' => [
 				'radius'                        => true,
 				'width'                         => true,
@@ -539,16 +515,6 @@ function get_config( string $sub_config = '' ) {
 		],
 	];
 
-	if ( $has_secondary ) {
-		$defaults['blockStyles']['register'] = [
-			[
-				'type'  => 'core/button',
-				'name'  => 'secondary',
-				'label' => __( 'Secondary', 'blockify' ),
-			],
-		];
-	}
-
 	$defaults['blockStyles']['unregister'] = [
 		[
 			'type' => 'core/image',
@@ -562,11 +528,6 @@ function get_config( string $sub_config = '' ) {
 			'type' => 'core/separator',
 			'name' => [ 'wide', 'dots' ],
 		],
-	];
-
-	$defaults['extensions'] = [
-		// 'templateParts',
-		'pageTitle',
 	];
 
 	$defaults['icons'] = [

@@ -331,7 +331,7 @@ function enqueue_google_fonts(): void {
 	$global_styles     = wp_get_global_styles();
 	$global_settings   = wp_get_global_settings();
 	$font_family_slugs = array_map(
-		fn( $font_family ) => $font_family['slug'],
+		fn( $font_family ) => $font_family['slug'] ?? null,
 		$global_settings['typography']['fontFamilies']['theme'] ?? [ null ]
 	);
 	$default_weight    = 'var(--wp--custom--font-weight--regular)';
