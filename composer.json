@@ -9,11 +9,11 @@
   ],
   "type": "wordpress-theme",
   "scripts": {
-    "install:dev": "rm -Rf ./composer.lock && composer install",
-    "install:prod": "rm -Rf ./composer.lock && composer install --no-dev",
+    "install:dev": "@composer update",
+    "install:prod": "@composer update --no-dev",
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
     "phpcs": "phpcs",
-    "pest": "vendor/bin/pest"
+    "pest": "pest"
   },
   "minimum-stability": "dev",
   "config": {
@@ -24,6 +24,7 @@
     }
   },
   "require": {
+    "php": "^7.4 || ^8.0",
     "wptt/webfont-loader": "dev-master"
   },
   "require-dev": {
