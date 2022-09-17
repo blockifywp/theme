@@ -195,6 +195,6 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"bottom":"3em"}}},"fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter" style="margin-bottom:3em">© Copyright [year] Blockify. All rights reserved. </p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter" style="margin-bottom:3em">&copy; Copyright [year] Blockify. All rights reserved. </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
