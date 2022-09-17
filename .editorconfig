@@ -27,6 +27,3 @@ trim_trailing_whitespace = false
 # @FIXME SVG final newlines are a mess.
 [assets/svg/**]
 insert_final_newline = unset
-
-[wp-content/**]
-indent_style = unset

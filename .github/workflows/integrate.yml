@@ -49,7 +49,7 @@ jobs:
           dependency-versions: "highest"
 
       - name: "Check source code for syntax errors"
-        run: "composer exec -- parallel-lint functions.php includes/ patterns/ wp-content/"
+        run: "composer exec -- parallel-lint functions.php includes/ patterns/"
 
   unit_tests:
     name: "2️⃣ Unit and functional tests"
@@ -154,7 +154,6 @@ jobs:
           dependency-versions: "highest"
 
       - name: "Check coding style"
-        # @FIXME wp-content/* files do not follow WPCS
         run: "composer exec -- phpcs --standard=WordPress-Core -s functions.php includes/ patterns/"
 
   exported_files:

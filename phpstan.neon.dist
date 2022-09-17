@@ -6,8 +6,4 @@ parameters:
 		- functions.php
 		- includes/
 		- patterns/
-		- wp-content/
-	excludePaths:
-		# @FIXME This file is a type-disaster.
-		- wp-content/wp-sqlite-db/src/db.php
 	#ignoreErrors:
