@@ -92,7 +92,7 @@ function convert_case( string $string, string $case = TITLE_CASE ): string {
  *
  * @param string $html
  *
- * @return string
+ * @return \DOMDocument
  */
 function dom( string $html ): DOMDocument {
 	$dom = new DOMDocument();

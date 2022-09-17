@@ -49,7 +49,7 @@ function render_post_title_block( string $content, array $block ): string {
 		$dom = dom( $content );
 
 		/**
-		 * @var $first DOMElement
+		 * @var \DOMElement $first
 		 */
 		$first = $dom->firstChild;
 

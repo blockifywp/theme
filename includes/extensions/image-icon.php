@@ -32,7 +32,7 @@ function render_image_icon( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var DOMElement $first_child */
+		/** @var \DOMElement $first_child */
 		$first_child = $dom->firstChild;
 
 		$div  = change_tag_name( $first_child, 'div' );

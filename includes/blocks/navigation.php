@@ -25,7 +25,7 @@ function render_navigation_block( string $content, array $block ): string {
 	$dom     = dom( $content );
 
 	/**
-	 * @var $nav DOMElement
+	 * @var \DOMElement|null $nav
 	 */
 	$nav = $dom->firstChild;
 
@@ -34,7 +34,7 @@ function render_navigation_block( string $content, array $block ): string {
 	}
 
 	/**
-	 * @var $button DOMElement
+	 * @var \DOMElement|null $button
 	 */
 	$button = $nav->getElementsByTagName( 'button' )->item( 0 );
 
@@ -48,14 +48,14 @@ function render_navigation_block( string $content, array $block ): string {
 	$button->appendChild( $fragment );
 
 	/**
-	 * @var $label DOMElement
+	 * @var \DOMElement $label
 	 */
 	$label = $button->getElementsByTagName( 'span' )->item( 0 );
 
 	$label->setAttribute( 'class', 'screen-reader-text' );
 
 	/**
-	 * @var $svg DOMElement
+	 * @var \DOMElement $svg
 	 */
 	$svg = $button->getElementsByTagName( 'svg' )->item( 0 );
 

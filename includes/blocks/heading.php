@@ -22,7 +22,7 @@ function render_heading_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
 	/**
-	 * @var $heading DOMElement
+	 * @var \DOMElement $heading
 	 */
 	$heading = $dom->firstChild;
 

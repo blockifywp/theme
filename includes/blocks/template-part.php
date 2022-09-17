@@ -28,7 +28,7 @@ function render_template_part_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
 	/**
-	 * @var $first DOMElement
+	 * @var \DOMElement $first
 	 */
 	$first = $dom->firstChild;
 

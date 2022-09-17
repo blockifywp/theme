@@ -12,8 +12,8 @@ add_filter( 'render_block_core/post-date', NS . 'render_post_date', 10, 2 );
  *
  * @since 0.0.1
  *
- * @param string $block_content The block content.
- * @param array  $block         The block.
+ * @param string $content The block content.
+ * @param array  $block   The block.
  *
  * @return string
  */

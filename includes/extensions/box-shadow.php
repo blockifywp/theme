@@ -29,7 +29,7 @@ function render_box_shadow( string $content, array $block ): string {
 		 *
 		 * @todo Fix px value added by editor.
 		 *
-		 * @var $first_child DOMElement
+		 * @var \DOMElement $first_child
 		 */
 		$first_child = $dom->firstChild;
 		$style       = $first_child->getAttribute( 'style' );
