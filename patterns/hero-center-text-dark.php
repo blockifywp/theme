@@ -3,7 +3,7 @@
  * Title: Blockify Hero Center Text Dark
  * Slug: blockify/hero-center-text-dark
  * Categories: hero
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:cover {"overlayColor":"neutral-900","align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}}} -->
 <div class="wp-block-cover alignfull alignfull" style="padding-top:11em;padding-bottom:9em"><span aria-hidden="true" class="wp-block-cover__background has-neutral-900-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"layout":{"inherit":true}} -->

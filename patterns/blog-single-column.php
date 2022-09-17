@@ -3,7 +3,7 @@
  * Title: Blockify Blog Single Column
  * Slug: blockify/blog-single-column
  * Categories: blog
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"2em"}}}} -->
 <h1 class="has-text-align-center" style="margin-top:2em">Latest Posts</h1>

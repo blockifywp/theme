@@ -3,7 +3,7 @@
  * Title: Blockify Hero Center
  * Slug: blockify/hero-center
  * Categories: hero
- * 
+ *
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}},"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull alignfull" style="padding-top:11em;padding-bottom:9em"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"72"} -->

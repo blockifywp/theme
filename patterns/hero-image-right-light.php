@@ -3,7 +3,7 @@
  * Title: Blockify Hero Image Right Light
  * Slug: blockify/hero-image-right-light
  * Categories: hero
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"7em","bottom":"7em"},"margin":{"top":"0px","bottom":"0px"}}},"backgroundColor":"primary-100","layout":{"inherit":true}} -->
 <div class="wp-block-group alignfull has-primary-100-background-color has-background alignfull" style="margin-top:0px;margin-bottom:0px;padding-top:7em;padding-bottom:7em"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":"4em"}}} -->

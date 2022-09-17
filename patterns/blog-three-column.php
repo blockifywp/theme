@@ -3,7 +3,7 @@
  * Title: Blockify Blog Three Column
  * Slug: blockify/blog-three-column
  * Categories: blog
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"1em","top":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:1em;margin-bottom:1em">Latest posts</h2>

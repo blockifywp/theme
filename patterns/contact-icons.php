@@ -3,7 +3,7 @@
  * Title: Blockify Contact Icons
  * Slug: blockify/contact-icons
  * Categories: contact
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"2em","bottom":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:2em;margin-bottom:1em">Get in touch</h2>

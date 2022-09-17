@@ -3,7 +3,7 @@
  * Title: Blockify Feature Icons
  * Slug: blockify/feature-icons
  * Categories: features
- * 
+ *
  */
 ?><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"3em"}}} -->
 <div class="wp-block-columns alignwide alignwide" id="features"><!-- wp:column -->

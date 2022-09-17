@@ -3,7 +3,7 @@
  * Title: Blockify Blog Posts Columns Dark
  * Slug: blockify/blog-posts-columns-dark
  * Categories: blog
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"1em","bottom":"2em","left":"1em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-100","layout":{"contentSize":"1100px"}} -->
 <div class="wp-block-group alignwide has-neutral-100-color has-neutral-900-background-color has-text-color has-background alignwide" style="border-radius:5px;margin-top:3em;margin-bottom:3em;padding-top:3em;padding-right:1em;padding-bottom:2em;padding-left:1em"><!-- wp:heading {"textAlign":"center","textColor":"white"} -->

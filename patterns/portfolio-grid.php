@@ -3,7 +3,7 @@
  * Title: Blockify Portfolio Grid
  * Slug: blockify/portfolio-grid
  * Categories: portfolio
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
 <h1 class="has-text-align-center" style="margin-top:1em">Portfolio</h1>

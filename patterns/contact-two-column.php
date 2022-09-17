@@ -3,7 +3,7 @@
  * Title: Blockify Contact Two Column
  * Slug: blockify/contact-two-column
  * Categories: contact
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:columns {"style":{"spacing":{"padding":{"top":"5em","bottom":"5em"},"blockGap":"5em"}}} -->
 <div class="wp-block-columns" style="padding-top:5em;padding-bottom:5em"><!-- wp:column -->

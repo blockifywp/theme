@@ -3,7 +3,7 @@
  * Title: Blockify Metrics Image
  * Slug: blockify/metrics-image
  * Categories: metrics
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full","layout":{"inherit":true}} -->
 <div class="wp-block-group alignfull alignfull"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"3em","bottom":"3em"}}}} -->

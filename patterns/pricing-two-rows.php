@@ -3,7 +3,7 @@
  * Title: Blockify Pricing Two Rows
  * Slug: blockify/pricing-two-rows
  * Categories: pricing
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"style":{"spacing":{"margin":{"top":"5em","bottom":"2em"}}},"layout":{"contentSize":"600px"}} -->
 <div class="wp-block-group" style="margin-top:5em;margin-bottom:2em"><!-- wp:heading {"textAlign":"center"} -->

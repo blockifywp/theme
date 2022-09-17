@@ -76,10 +76,10 @@ To customize the default Blockify config, copy and paste the code snippet below 
 // Filter Blockify config.
 add_theme_support( 'blockify', [
 
-    // Register custom icon set with icon block.
-    'icons' => [
-        'fontawesome' => get_stylesheet_directory() . '/assets/svg/fontawesome',
-    ],
+	// Register custom icon set with icon block.
+	'icons' => [
+		'fontawesome' => get_stylesheet_directory() . '/assets/svg/fontawesome',
+	],
 
 	// Modify default block supports.
 	'blockSupports' => [
@@ -106,7 +106,7 @@ add_theme_support( 'blockify', [
 	],
 
 	// Colors to swap (requires pro).
-	'darkMode'      => [
+	'darkMode'	  => [
 		'black' => 'white',
 		'white' => 'black',
 	],
@@ -125,18 +125,18 @@ add_filter( 'blockify', __NAMESPACE__ . '\\blockify_config' );
  * @since 1.0.0
  *
  * @param array $defaults Default Blockify config.
- *                       
+ *
  * @return array Custom config.
  */
 function blockify_config( array $defaults ) : array {
-    return [
-        ...$defaults,
-        'blockSupports' => [
-            'core/paragraph' => [
-                'alignWide' => true,
-            ],
-        ],
-    ];
+	return [
+		...$defaults,
+		'blockSupports' => [
+			'core/paragraph' => [
+				'alignWide' => true,
+			],
+		],
+	];
 }
 ```
 

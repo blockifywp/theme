@@ -3,7 +3,7 @@
  * Title: Blockify CTA Horizontal Light
  * Slug: blockify/cta-horizontal-light
  * Categories: cta
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"},"margin":{"top":"3em","bottom":"3em"}}},"backgroundColor":"primary-100"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center has-primary-100-background-color has-background alignwide" style="margin-top:3em;margin-bottom:3em;padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->

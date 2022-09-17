@@ -3,7 +3,7 @@
  * Title: Blockify Hero Center Image Light
  * Slug: blockify/hero-center-image-light
  * Categories: hero
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"3em","top":"7em"}}},"backgroundColor":"primary-100","layout":{"inherit":true,"type":"constrained"},"position":"relative","zIndex":1} -->
 <div class="wp-block-group alignfull has-primary-100-background-color has-background alignfull" style="padding-top:7em;padding-bottom:3em"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"72"} -->

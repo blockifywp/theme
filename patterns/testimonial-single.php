@@ -3,7 +3,7 @@
  * Title: Blockify Testimonial Single
  * Slug: blockify/testimonial-single
  * Categories: testimonials
- * 
+ *
  */
 ?><!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"center","textColor":"primary-600"} -->
