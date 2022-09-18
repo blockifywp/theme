@@ -3,7 +3,7 @@
  * Title: Blockify CTA Right Dark
  * Slug: blockify/cta-right-dark
  * Categories: cta
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"},"margin":{"top":"3em","bottom":"3em"}}},"backgroundColor":"neutral-900","textColor":"neutral-100"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center has-neutral-100-color has-neutral-900-background-color has-text-color has-background alignwide" style="margin-top:3em;margin-bottom:3em;padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->

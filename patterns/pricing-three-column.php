@@ -3,7 +3,7 @@
  * Title: Blockify Pricing Three Column
  * Slug: blockify/pricing-three-column
  * Categories: pricing
- * 
+ *
  */
 ?><!-- wp:group {"align":"wide","layout":{"inherit":true}} -->
 <div class="wp-block-group alignwide alignwide" id="pricing"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}}} -->

@@ -3,7 +3,7 @@
  * Title: Blockify Style Guide Dark
  * Slug: blockify/style-guide-dark
  * Categories: misc
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"},"padding":{"top":"5em","bottom":"5em"}}},"backgroundColor":"white","textColor":"neutral-600","className":"dark-mode"} -->
 <div class="wp-block-group alignfull dark-mode has-neutral-600-color has-white-background-color has-text-color has-background alignfull" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:5em;padding-bottom:5em"><!-- wp:group {"layout":{"inherit":true}} -->

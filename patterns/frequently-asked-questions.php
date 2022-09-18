@@ -3,7 +3,7 @@
  * Title: Blockify Frequently Asked Questions
  * Slug: blockify/frequently-asked-questions
  * Categories: faq
- * 
+ *
  */
 ?><!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em","bottom":"1em"}}}} -->

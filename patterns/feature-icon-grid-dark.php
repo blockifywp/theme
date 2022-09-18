@@ -3,7 +3,7 @@
  * Title: Blockify Feature Icon Grid Dark
  * Slug: blockify/feature-icon-grid-dark
  * Categories: features
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3em","bottom":"5em","left":"3em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-200","layout":{"contentSize":"1100px"}} -->
 <div class="wp-block-group alignwide has-neutral-200-color has-neutral-900-background-color has-text-color has-background alignwide" style="border-radius:5px;margin-top:3em;margin-bottom:3em;padding-top:3em;padding-right:3em;padding-bottom:5em;padding-left:3em"><!-- wp:group {"layout":{"contentSize":"600px"}} -->

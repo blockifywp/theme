@@ -3,7 +3,7 @@
  * Title: Blockify CTA Box Light
  * Slug: blockify/cta-box-light
  * Categories: cta
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full","layout":{"inherit":true}} -->
 <div class="wp-block-group alignfull alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3vw","bottom":"3em","left":"3vw"},"margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}},"border":{"radius":"5px"}},"backgroundColor":"primary-100","layout":{"contentSize":"700px"}} -->

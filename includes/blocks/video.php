@@ -34,7 +34,7 @@ function render_video_block( string $content, array $block ): string {
 		$content
 	);
 
-	 add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
+	add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
 
 	return $content;
 }
@@ -49,16 +49,16 @@ function render_video_block( string $content, array $block ): string {
 function video_scripts_styles(): void {
 	$js = <<<JS
 		const videoBlocks = document.getElementsByTagName( 'video' );
-		
+
 		[ ...videoBlocks ].forEach( function( videoBlock ) {
 			new MediaElementPlayer( videoBlock, {
-			    videoWidth: '100%',
-			    videoHeight: '100%',
-			    enableAutosize: true
-			 } );
-			
+				videoWidth: '100%',
+				videoHeight: '100%',
+				enableAutosize: true
+			} );
+
 			videoBlock.style.width = '100%';
-			videoBlock.style.height = '100%'; 
+			videoBlock.style.height = '100%';
 		} );
 	JS;
 

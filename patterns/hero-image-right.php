@@ -3,7 +3,7 @@
  * Title: Blockify Hero Image Right
  * Slug: blockify/hero-image-right
  * Categories: hero
- * 
+ *
  */
 ?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"15vw","bottom":"10vw"},"margin":{"top":"0px","bottom":"0px"}}},"layout":{"inherit":true}} -->
 <div class="wp-block-group alignfull alignfull" style="margin-top:0px;margin-bottom:0px;padding-top:15vw;padding-bottom:10vw"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":"4em"}}} -->

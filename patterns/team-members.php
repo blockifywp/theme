@@ -3,7 +3,7 @@
  * Title: Blockify Team Members
  * Slug: blockify/team-members
  * Categories: team
- * 
+ *
  */
 ?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:1em">Meet the team</h2>

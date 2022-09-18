@@ -24,7 +24,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","orientation":"horizontal"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"right","fontSize":"16"} -->
-<p class="alignright has-text-align-right has-16-font-size alignright">© Copyright [year] Blockify. All rights reserved. </p>
+<p class="alignright has-text-align-right has-16-font-size alignright">&copy; Copyright [year] Blockify. All rights reserved. </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

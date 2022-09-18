@@ -3,7 +3,7 @@
  * Title: Blockify Hero Center Image
  * Slug: blockify/hero-center-image
  * Categories: hero
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:group {"align":"full"} -->
 <div class="wp-block-group alignfull alignfull"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"2em"}}},"fontSize":"72"} -->

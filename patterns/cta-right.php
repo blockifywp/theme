@@ -3,7 +3,7 @@
  * Title: Blockify CTA Right
  * Slug: blockify/cta-right
  * Categories: cta
- * Block Types: 
+ * Block Types:
  */
 ?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:column {"verticalAlignment":"center"} -->

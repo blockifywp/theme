@@ -3,7 +3,7 @@
  * Title: Blockify Contact Form
  * Slug: blockify/contact-form
  * Categories: contact
- * 
+ *
  */
 ?><!-- wp:group {"layout":{"type":"default","contentSize":"600px"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em","bottom":"0.5em"}}}} -->
