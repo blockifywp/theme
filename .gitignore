@@ -5,12 +5,6 @@ vendor/dealerdirect
 vendor/squizlabs
 vendor/phpcsstandards
 vendor/wp-coding-standards
-vendor/tgmpa/tgm-plugin-activation/plugins
-vendor/tgmpa/tgm-plugin-activation/.editorconfig
-vendor/tgmpa/tgm-plugin-activation/*.md
-vendor/tgmpa/tgm-plugin-activation/*.yml
-vendor/tgmpa/tgm-plugin-activation/*.xml
-vendor/tgmpa/tgm-plugin-activation/example.php
 vendor/wptt/webfont-loader/.gitattributes
 vendor/wptt/webfont-loader/README.md
 vendor/wptt/webfont-loader/LICENSE

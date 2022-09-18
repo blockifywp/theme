@@ -33,10 +33,6 @@ but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-TGMPA
-License: GPL-2.0-or-later
-License URL: https://www.opensource.org/licenses/GPL-2.0
-
 WPTT Webfont Loader
 License: MIT
 License URL: https://opensource.org/licenses/MIT
