@@ -26,7 +26,7 @@ function render_search_block( string $content, array $block ): string {
 	$dom     = dom( $content );
 
 	/**
-	 * @var $form DOMElement
+	 * @var \DOMElement $form
 	 */
 	$form = $dom->firstChild;
 	$divs = $form->getElementsByTagName( 'div' );
@@ -59,17 +59,15 @@ function render_search_block( string $content, array $block ): string {
 	if ( $class_name && str_contains( $class_name, 'is-style-toggle' ) ) {
 		$dom = dom( $content );
 
-		/**
-		 * @var $form   DOMElement
-		 * @var $label  DOMElement
-		 * @var $wrap   DOMElement
-		 * @var $input  DOMElement
-		 * @var $button DOMElement
-		 */
+		/** @var \DOMElement $form */
 		$form     = $dom->firstChild;
+		/** @var \DOMElement $label */
 		$label    = $form->getElementsByTagName( 'label' )->item( 0 );
+		/** @var \DOMElement $wrap */
 		$wrap     = $form->getElementsByTagName( 'div' )->item( 0 );
+		/** @var \DOMElement $input */
 		$input    = $wrap->getElementsByTagName( 'input' )->item( 0 );
+		/** @var \DOMElement $button */
 		$button   = $wrap->getElementsByTagName( 'button' )->item( 0 );
 		$checkbox = $dom->createElement( 'input' );
 		$button   = change_tag_name( $button, 'label' );

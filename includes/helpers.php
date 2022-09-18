@@ -51,7 +51,7 @@ function is_pattern_preview( int $post_id = 0 ): bool {
  *
  * @since 0.2.0
  *
- * @return void
+ * @return string
  */
 function get_style_variation(): string {
 	$style_variation  = 'default';

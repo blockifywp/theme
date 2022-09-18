@@ -176,7 +176,7 @@ function enqueue_block_styles(): void {
 		return;
 	}
 
-	$handles = array_flip( $wp_styles->queue ) ?? [];
+	$handles = array_flip( $wp_styles->queue );
 
 	foreach ( $wp_styles->registered as $handle => $style ) {
 		if ( ! isset( $handles[ $handle ] ) ) {

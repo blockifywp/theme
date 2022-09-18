@@ -22,7 +22,7 @@ function render_block_layout( string $content, array $block ): string {
 	$dom = dom( $content );
 
 	/**
-	 * @var $first DOMElement
+	 * @var \DOMElement $first
 	 */
 	$first = $dom->firstChild;
 

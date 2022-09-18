@@ -61,7 +61,7 @@ function render_navigation_submenu_block( string $content, array $block ): strin
 	$styles['--wp--custom--submenu--gap'] = $spacing['blockGap'] ?? 'var(--wp--style--block-gap)';
 
 	/**
-	 * @var $submenu DOMElement
+	 * @var \DOMElement $submenu
 	 */
 	$submenu       = $dom->firstChild;
 	$submenu_style = $submenu->getAttribute( 'style' );

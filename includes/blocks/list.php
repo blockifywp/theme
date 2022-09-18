@@ -25,7 +25,7 @@ function render_list_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
 	/**
-	 * @var $ul DOMElement
+	 * @var \DOMElement $ul
 	 */
 	$ul    = $dom->firstChild;
 	$style = $ul->getAttribute( 'style' );
