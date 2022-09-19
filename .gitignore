@@ -21,7 +21,6 @@ wp-content
 templates/single-block_pattern.html
 assets/tsx
 ./src
-tests
 *.zip
 *.lock
 *cache
