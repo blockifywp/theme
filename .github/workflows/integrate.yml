@@ -156,20 +156,20 @@ jobs:
       - name: "Check coding style"
         run: "composer exec -- phpcs --standard=./phpcs.xml -s functions.php includes/"
 
-  exported_files:
-    name: "5️⃣ Exported files"
-    needs:
-      - "byte_level"
-      - "syntax_errors"
-    runs-on: "ubuntu-20.04"
-    steps:
-      - name: "Checkout code"
-        uses: "actions/checkout@v3"
-
-      - name: "Check exported files"
-        run: |
-          EXPECTED="LICENSE,composer.json,functions.php,index.php,package.json,readme.txt,screenshot.png,style.css,theme.json"
-          CURRENT="$(git archive HEAD | tar --list --exclude="includes" --exclude="includes/*" --exclude="assets" --exclude="assets/*" --exclude="patterns" --exclude="patterns/*" --exclude="templates" --exclude="templates/*" --exclude="parts" --exclude="parts/*" | paste --serial --delimiters=",")"
-          echo "CURRENT =${CURRENT}"
-          echo "EXPECTED=${EXPECTED}"
-          test "${CURRENT}" = "${EXPECTED}"
+#  exported_files:
+#    name: "5️⃣ Exported files"
+#    needs:
+#      - "byte_level"
+#      - "syntax_errors"
+#    runs-on: "ubuntu-20.04"
+#    steps:
+#      - name: "Checkout code"
+#        uses: "actions/checkout@v3"
+#
+#      - name: "Check exported files"
+#        run: |
+#          EXPECTED="LICENSE,composer.json,functions.php,index.php,package.json,readme.txt,screenshot.png,style.css,theme.json"
+#          CURRENT="$(git archive HEAD | tar --list --exclude="includes" --exclude="includes/*" --exclude="assets" --exclude="assets/*" --exclude="patterns" --exclude="patterns/*" --exclude="templates" --exclude="templates/*" --exclude="parts" --exclude="parts/*" | paste --serial --delimiters=",")"
+#          echo "CURRENT =${CURRENT}"
+#          echo "EXPECTED=${EXPECTED}"
+#          test "${CURRENT}" = "${EXPECTED}"
