@@ -168,7 +168,7 @@ function register_icons_rest_route(): void {
 				],
 			],
 		],
-		'callback'            => function ( WP_REST_Request $request ): array {
+		'callback'            => function ( WP_REST_Request $request ) {
 			$icon_data = [];
 			$icon_sets = get_config( 'icons' );
 
