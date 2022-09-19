@@ -161,22 +161,6 @@ function change_tag_name( DOMElement $node, string $name ): DOMElement {
 }
 
 /**
- * Attempts to log WordPress PHP data to console.
- *
- * @since    0.0.2
- *
- * @param mixed $data
- *
- * @return void
- */
-function log( $data ): void {
-	$data   = json_encode( $data );
-	$script = "<script class='console-log'>console.log($data);</script>";
-
-	add_action( 'wp_footer', fn() => print $script, PHP_INT_MAX - 1 );
-}
-
-/**
  * Converts array of CSS rules to string.
  *
  * @since 0.0.22
