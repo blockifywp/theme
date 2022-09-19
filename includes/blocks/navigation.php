@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function str_replace;
 
 add_filter( 'render_block_core/navigation', NS . 'render_navigation_block', 10, 2 );
@@ -54,10 +53,10 @@ function render_navigation_block( string $content, array $block ): string {
 	$svg = $button->getElementsByTagName( 'svg' )->item( 0 );
 
 	/* @var \DOMElement $first_child */
-	$first_child = $svg->getElementsByTagName( 'path' )->item( 0 );
+	$first_child = $svg->getElementsByTagName( 'rect' )->item( 0 );
 
 	/* @var \DOMElement $last_child */
-	$last_child = $svg->getElementsByTagName( 'path' )->item( 1 );
+	$last_child = $svg->getElementsByTagName( 'rect' )->item( 1 );
 
 	$first_child->setAttribute( 'y', '6' );
 
