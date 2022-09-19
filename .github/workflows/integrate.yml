@@ -82,8 +82,8 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
-      - name: "Execute unit tests"
-        run: "composer run pest -- --ci"
+#      - name: "Execute unit tests"
+#        run: "composer run pest -- --ci"
 
 #      - name: "Send coverage to Coveralls"
 #        env:
