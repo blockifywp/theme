@@ -3,7 +3,6 @@
  * Title: Blockify Blog Featured Post
  * Slug: blockify/blog-featured-post
  * Categories: blog
- *
  */
 ?><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"2em","padding":{"top":"3em","bottom":"3em"}}}} -->
 <div class="wp-block-columns alignwide alignwide" style="padding-top:3em;padding-bottom:3em"><!-- wp:column -->
