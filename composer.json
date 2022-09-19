@@ -33,5 +33,10 @@
     "szepeviktor/phpstan-wordpress": "^1.1",
     "wp-coding-standards/wpcs": "^2.3",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7"
+  },
+  "extra": {
+    "installer-disable": [
+      "wordpress"
+    ]
   }
 }
