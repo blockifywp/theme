@@ -13,8 +13,8 @@
     "install:dev": "@composer update",
     "install:prod": "@composer update --no-dev",
     "install-codestandards": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
-    "phpcs": "vendor/bin/phpcs functions.php includes --standard=./phpcs.xml -p -s",
-    "phpstan": "vendor/bin/phpstan analyse includes functions.php",
+    "phpcs": "phpcs -p -s",
+    "phpstan": "phpstan",
     "pest": "pest"
   },
   "minimum-stability": "dev",
@@ -30,7 +30,6 @@
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-    "friendsofphp/php-cs-fixer": "dev-master",
     "php-parallel-lint/php-parallel-lint": "^1.3",
     "szepeviktor/phpstan-wordpress": "^1.1",
     "wp-coding-standards/wpcs": "^2.3",
