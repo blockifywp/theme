@@ -82,6 +82,9 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
+      - name: "Setup wp pest"
+        run: "composer run pest:setup:ci"
+
       - name: "Execute unit tests"
         run: "composer run pest -- --ci"
 
