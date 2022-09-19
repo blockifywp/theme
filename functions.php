@@ -7,8 +7,6 @@ namespace Blockify\Theme;
 use const DIRECTORY_SEPARATOR;
 use const PHP_VERSION;
 use function array_map;
-use function file_exists;
-use function function_exists;
 use function glob;
 use function version_compare;
 
@@ -22,27 +20,11 @@ const DS   = DIRECTORY_SEPARATOR;
 const DIR  = __DIR__ . DS;
 const FILE = __FILE__;
 
-if ( ! file_exists( DIR . 'vendor/autoload.php' ) ) {
-	return;
-}
-
-require_once DIR . 'vendor/autoload.php';
-
 array_map(
 	fn( $file ) => require_once $file,
-	glob( DIR . 'includes/*.php' )
+	[
+		...glob( DIR . 'includes/*.php' ),
+		...glob( DIR . 'includes/blocks/*.php' ),
+		...glob( DIR . 'includes/extensions/*.php' ),
+	]
 );
-
-array_map(
-	fn( $file ) => require_once $file,
-	glob( DIR . 'includes/blocks/*.php' )
-);
-
-array_map(
-	fn( $file ) => require_once $file,
-	glob( DIR . 'includes/extensions/*.php' )
-);
-
-if ( ! function_exists( 'wptt_get_webfont_url' ) ) {
-	require_once DIR . 'vendor/wptt/webfont-loader/wptt-webfont-loader.php';
-}
