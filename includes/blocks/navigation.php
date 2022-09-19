@@ -27,15 +27,13 @@ function render_navigation_block( string $content, array $block ): string {
 	/**
 	 * @var \DOMElement|null $nav
 	 */
-	$nav = $dom->firstChild;
+	$nav = $dom->getElementsByTagName( 'nav' )->item( 0 );
 
 	if ( ! $nav ) {
 		return $content;
 	}
 
-	/**
-	 * @var \DOMElement|null $button
-	 */
+	/* @var \DOMElement|null $button */
 	$button = $nav->getElementsByTagName( 'button' )->item( 0 );
 
 	if ( ! $button ) {
@@ -47,23 +45,31 @@ function render_navigation_block( string $content, array $block ): string {
 	$fragment->appendXML( '<span>Menu</span>' );
 	$button->appendChild( $fragment );
 
-	/**
-	 * @var \DOMElement $label
-	 */
+	/* @var \DOMElement $label */
 	$label = $button->getElementsByTagName( 'span' )->item( 0 );
 
 	$label->setAttribute( 'class', 'screen-reader-text' );
 
-	/**
-	 * @var \DOMElement $svg
-	 */
+	/* @var \DOMElement $svg */
 	$svg = $button->getElementsByTagName( 'svg' )->item( 0 );
 
-	$svg->firstChild->setAttribute( 'y', '6' );
-	$svg->lastChild->setAttribute( 'y', '12' );
+	/* @var \DOMElement $first_child */
+	$first_child = $svg->getElementsByTagName( 'path' )->item( 0 );
 
-	$clone = $svg->lastChild->cloneNode( true );
-	$clone->setAttribute( 'y', '18' );
+	/* @var \DOMElement $last_child */
+	$last_child = $svg->getElementsByTagName( 'path' )->item( 1 );
+
+	$first_child->setAttribute( 'y', '6' );
+
+	// Workaround to avoid setting attribute on DOMNode.
+	// Set last child value to 18 for clone.
+	$last_child->setAttribute( 'y', '18' );
+
+	/* @var \DOMElement $clone */
+	$clone = $last_child->cloneNode( true );
+
+	// Set last child value back to 12.
+	$last_child->setAttribute( 'y', '12' );
 
 	$svg->appendChild( $clone );
 

@@ -33,10 +33,16 @@ function render_image_icon( string $content, array $block ): string {
 		}
 
 		/** @var \DOMElement $first_child */
-		$first_child = $dom->firstChild;
+		$first_child = $dom->getElementsByTagName( 'figure' )->item( 0 );
 
-		$div  = change_tag_name( $first_child, 'div' );
-		$span = change_tag_name( $div->firstChild, 'span' );
+		/** @var \DOMElement $img */
+		$img         = $first_child->getElementsByTagName( 'img' )->item( 0 );
+
+		// Change from figure to div.
+		$div = change_tag_name( $first_child, 'div' );
+
+		// Change img to span.
+		$span = change_tag_name( $img, 'span' );
 
 		$allowed_classes = [
 			'wp-block-image',

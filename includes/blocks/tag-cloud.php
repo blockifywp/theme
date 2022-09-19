@@ -4,6 +4,8 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function implode;
+
 \add_filter( 'render_block_core/tag-cloud', NS . 'render_tag_cloud_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
@@ -20,12 +22,12 @@ function render_tag_cloud_block( string $content, array $block ): string {
 	$largest  = $block['attrs']['largestFontSize'] ?? '1em';
 	$dom      = dom( $content );
 
-	/* @var \DOMElement $first */
-	$first = $dom->firstChild;
+	/* @var \DOMElement $first_child */
+	$first_child = $dom->getElementsByTagName( 'p' )->item( 0 );
 
-	$first->setAttribute( 'style', \implode( ';', [
+	$first_child->setAttribute( 'style', implode( ';', [
 		'font-size:max(' . $smallest . ',' . $largest . ')',
-		$first->getAttribute( 'style' ),
+		$first_child->getAttribute( 'style' ),
 	] ) );
 
 

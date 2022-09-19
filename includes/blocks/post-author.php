@@ -22,9 +22,9 @@ function render_post_author_block( string $content, array $block ): string {
 	$dom    = dom( $content );
 	$styles = [];
 
-	/* @var $first \DOMElement */
-	$first = $dom->firstChild;
-	$style = $first->getAttribute( 'style' );
+	/* @var $first_child \DOMElement */
+	$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
+	$style       = $first_child->getAttribute( 'style' );
 
 	if ( $block['attrs']['style']['border'] ?? null ) {
 		$styles['border-width']  = $block['attrs']['style']['border']['width'] ?? null;
@@ -33,9 +33,9 @@ function render_post_author_block( string $content, array $block ): string {
 		$styles['border-radius'] = $block['attrs']['style']['border']['radius'] ?? null;
 	}
 
-	$first->setAttribute(
+	$first_child->setAttribute(
 		'style',
-		( $style ? $style . ';' : '') . css_array_to_string( $styles )
+		( $style ? $style . ';' : '' ) . css_array_to_string( $styles )
 	);
 
 	return str_replace(

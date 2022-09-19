@@ -23,8 +23,8 @@ function render_post_date( string $content, array $block ): string {
 	if ( $margin ) {
 		$dom = dom( $content );
 
-		/* @var \DOMElement $first */
-		$first = $dom->firstChild;
+		/* @var \DOMElement $first_child */
+		$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 		$styles = [
 			'margin-top'    => $margin['top'] ?? null,
@@ -33,7 +33,7 @@ function render_post_date( string $content, array $block ): string {
 			'margin-left'   => $margin['left'] ?? null,
 		];
 
-		$first->setAttribute( 'style', css_array_to_string( $styles ) . $first->getAttribute( 'style' ) );
+		$first_child->setAttribute( 'style', css_array_to_string( $styles ) . $first_child->getAttribute( 'style' ) );
 
 		$content = $dom->saveHTML();
 	}
