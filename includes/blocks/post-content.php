@@ -16,8 +16,8 @@ add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 
  *
  * @since 0.0.1
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -28,8 +28,8 @@ function render_post_content_block( string $content, array $block ): string {
 	if ( ! empty( $margin ) || ! empty( $padding ) ) {
 		$dom = dom( $content );
 
-		/** @var DOMElement $first_child */
-		$first_child = $dom->firstChild;
+		/* @var DOMElement $first_child Post content. */
+		$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 		if ( ! is_a( $first_child, DOMElement::class ) ) {
 			return $content;

@@ -111,37 +111,41 @@ add_action( 'rest_api_init', NS . 'register_options_rest_route' );
  * @return void
  */
 function register_options_rest_route(): void {
-	register_rest_route( SLUG . '/v1', '/options/', [
+	register_rest_route(
+		SLUG . '/v1',
+		'/options/',
 		[
-			'permission_callback' => fn() => current_user_can( 'manage_options' ),
-			'methods'             => WP_REST_Server::ALLMETHODS,
 			[
-				'args' => [
-					'name'  => [
-						'required' => false,
-						'type'     => 'string',
-					],
-					'value' => [
-						'required' => false,
-						'type'     => 'string',
+				'permission_callback' => fn() => current_user_can( 'manage_options' ),
+				'methods'             => WP_REST_Server::ALLMETHODS,
+				[
+					'args' => [
+						'name'  => [
+							'required' => false,
+							'type'     => 'string',
+						],
+						'value' => [
+							'required' => false,
+							'type'     => 'string',
+						],
 					],
 				],
+				'callback'            => function ( WP_REST_Request $request ): array {
+					$options = get_option( SLUG ) ?? [];
+					$name    = $request->get_param( 'name' ) ?? null;
+					$value   = $request->get_param( 'value' ) ?? null;
+
+					if ( $name && $value && $request->get_method() === WP_REST_Server::CREATABLE ) {
+						$options[ (string) $name ] = (string) $value;
+
+						update_option( SLUG, $options );
+					}
+
+					return $options;
+				},
 			],
-			'callback'            => function ( WP_REST_Request $request ): array {
-				$options = get_option( SLUG ) ?? [];
-				$name    = $request->get_param( 'name' ) ?? null;
-				$value   = $request->get_param( 'value' ) ?? null;
-
-				if ( $name && $value && $request->get_method() === WP_REST_Server::CREATABLE ) {
-					$options[ (string) $name ] = (string) $value;
-
-					update_option( SLUG, $options );
-				}
-
-				return $options;
-			},
-		],
-	] );
+		]
+	);
 }
 
 add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
@@ -153,62 +157,69 @@ add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
  * @return void
  */
 function register_icons_rest_route(): void {
-	register_rest_route( SLUG . '/v1', '/icons/', [
-		'permission_callback' => fn() => current_user_can( 'edit_posts' ),
-		'methods'             => WP_REST_Server::READABLE,
+	register_rest_route(
+		SLUG . '/v1',
+		'/icons/',
 		[
-			'args' => [
-				'sets' => [
-					'required' => false,
-					'type'     => 'string',
-				],
-				'set'  => [
-					'required' => false,
-					'type'     => 'string',
+			'permission_callback' => fn() => current_user_can( 'edit_posts' ),
+			'methods'             => WP_REST_Server::READABLE,
+			[
+				'args' => [
+					'sets' => [
+						'required' => false,
+						'type'     => 'string',
+					],
+					'set'  => [
+						'required' => false,
+						'type'     => 'string',
+					],
 				],
 			],
-		],
-		'callback'            => function ( WP_REST_Request $request ) {
-			$icon_data = [];
-			$icon_sets = get_config( 'icons' );
+			// TODO: Add return type.
+			'callback'            => function ( WP_REST_Request $request ) {
+				$icon_data = [];
+				$icon_sets = get_config( 'icons' );
 
-			foreach ( $icon_sets as $icon_set => $set_dir ) {
-				$icons = glob( $set_dir . '/*.svg' );
+				foreach ( $icon_sets as $icon_set => $set_dir ) {
+					$icons = glob( $set_dir . '/*.svg' );
 
-				foreach ( $icons as $icon ) {
-					$name = basename( $icon, '.svg' );
-					$icon = file_get_contents( $icon );
+					foreach ( $icons as $icon ) {
+						$name = basename( $icon, '.svg' );
+						$icon = file_get_contents( $icon );
 
-					if ( $icon_set === 'wordpress' ) {
-						$icon = str_replace(
-							[ 'fill="none"' ],
-							[ 'fill="currentColor"' ],
-							$icon
-						);
+						if ( $icon_set === 'wordpress' ) {
+							$icon = str_replace(
+								[ 'fill="none"' ],
+								[ 'fill="currentColor"' ],
+								$icon
+							);
+						}
+
+						// Remove comments.
+						$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
+
+						$icon_data[ $icon_set ][ $name ] = trim( $icon );
+					}
+				}
+
+				if ( $request->get_param( 'set' ) ) {
+					$set = $request->get_param( 'set' );
+
+					if ( $request->get_param( 'icon' ) ) {
+
+						// TODO: Is string being used anywhere?
+						return $icon_data[ $set ][ $request->get_param( 'icon' ) ];
 					}
 
-					// Remove comments.
-					$icon = preg_replace( '/<!--(.|\s)*?-->/', '', $icon );
-
-					$icon_data[ $icon_set ][ $name ] = trim( $icon );
-				}
-			}
-
-			if ( $request->get_param( 'set' ) ) {
-				$set = $request->get_param( 'set' );
-
-				if ( $request->get_param( 'icon' ) ) {
-					return $icon_data[ $set ][ $request->get_param( 'icon' ) ];
+					return $icon_data[ $set ];
 				}
 
-				return $icon_data[ $set ];
-			}
+				if ( $request->get_param( 'sets' ) ) {
+					return array_keys( $icon_data );
+				}
 
-			if ( $request->get_param( 'sets' ) ) {
-				return array_keys( $icon_data );
-			}
-
-			return $icon_data;
-		},
-	] );
+				return $icon_data;
+			},
+		]
+	);
 }

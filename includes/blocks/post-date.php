@@ -23,7 +23,7 @@ function render_post_date( string $content, array $block ): string {
 	if ( $margin ) {
 		$dom = dom( $content );
 
-		/* @var \DOMElement $first_child */
+		/* @var \DOMElement $first_child Post date block. */
 		$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 		$styles = [

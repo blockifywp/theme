@@ -4,8 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use const PHP_INT_MAX;
-use function add_action;
 use function apply_filters;
 use function defined;
 use function explode;
@@ -36,19 +34,19 @@ const DOT_CASE      = 'dot';
 /**
  * Convert string case.
  *
- * camel    myNameIsBond
- * pascal   MyNameIsBond
- * snake    my_name_is_bond
- * ada      My_Name_Is_Bond
- * macro    MY_NAME_IS_BOND
- * kebab    my-name-is-bond
- * train    My-Name-Is-Bond
- * cobol    MY-NAME-IS-BOND
- * lower    my name is bond
- * upper    MY NAME IS BOND
- * title    My Name Is Bond
- * sentence My name is bond
- * dot      my.name.is.bond
+ * Camel:    myNameIsBond
+ * Pascal:   MyNameIsBond
+ * Snake:    my_name_is_bond
+ * Ada:      My_Name_Is_Bond
+ * Macro:    MY_NAME_IS_BOND
+ * Kebab:    my-name-is-bond
+ * Train:    My-Name-Is-Bond
+ * Cobol:    MY-NAME-IS-BOND
+ * Lower:    my name is bond
+ * Upper:    MY NAME IS BOND
+ * Title:    My Name Is Bond
+ * Sentence: My name is bond
+ * Dot:      my.name.is.bond
  *
  * @since 0.0.2
  *
@@ -58,7 +56,7 @@ const DOT_CASE      = 'dot';
  * @return string
  */
 function convert_case( string $string, string $case = TITLE_CASE ): string {
-	$delimiters = 'sentence' === $case ? [ ' ', '-', '_' ] : [ ' ', '-', '_', '.' ];
+	$delimiters = $case === SENTENCE_CASE ? [ ' ', '-', '_' ] : [ ' ', '-', '_', '.' ];
 	$lower      = trim( str_replace( $delimiters, $delimiters[0], strtolower( $string ) ), $delimiters[0] );
 	$upper      = trim( ucwords( $lower ), $delimiters[0] );
 	$pieces     = explode( $delimiters[0], $lower );
@@ -80,7 +78,7 @@ function convert_case( string $string, string $case = TITLE_CASE ): string {
 	];
 
 	$string = $cases[ $case ] ?? $string;
-	$string = in_array( $string, [ 'Wordpress' ] ) ? 'WordPress' : $string;
+	$string = in_array( $string, [ 'Wordpress' ], true ) ? 'WordPress' : $string;
 
 	return apply_filters( 'blockify_convert_case', $string );
 }
@@ -90,7 +88,7 @@ function convert_case( string $string, string $case = TITLE_CASE ): string {
  *
  * @since 0.0.2
  *
- * @param string $html
+ * @param string $html HTML string to convert to DOM.
  *
  * @return \DOMDocument
  */
@@ -101,14 +99,15 @@ function dom( string $html ): DOMDocument {
 		return $dom;
 	}
 
-	$libxml_previous_state   = libxml_use_internal_errors( true );
+	$libxml_previous_state = libxml_use_internal_errors( true );
+
 	$dom->preserveWhiteSpace = true;
 
 	if ( defined( 'LIBXML_HTML_NOIMPLIED' ) && defined( 'LIBXML_HTML_NODEFDTD' ) ) {
 		$options = LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD;
-	} else if ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
+	} elseif ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
 		$options = LIBXML_HTML_NOIMPLIED;
-	} else if ( defined( 'LIBXML_HTML_NODEFDTD' ) ) {
+	} elseif ( defined( 'LIBXML_HTML_NODEFDTD' ) ) {
 		$options = LIBXML_HTML_NODEFDTD;
 	} else {
 		$options = 0;
@@ -129,35 +128,36 @@ function dom( string $html ): DOMDocument {
  *
  * @since 0.0.20
  *
- * @param DOMElement $node
- * @param string     $name
+ * @param DOMElement $element DOM Element to change.
+ * @param string     $name    Tag name, e.g: 'div'.
  *
  * @return DOMElement
  */
-function change_tag_name( DOMElement $node, string $name ): DOMElement {
+function change_tag_name( DOMElement $element, string $name ): DOMElement {
 	$child_nodes = [];
 
-	foreach ( $node->childNodes as $child ) {
+	foreach ( $element->childNodes as $child ) {
 		$child_nodes[] = $child;
 	}
 
-	$new_node = $node->ownerDocument->createElement( $name );
+	$new_element = $element->ownerDocument->createElement( $name );
 
 	foreach ( $child_nodes as $child ) {
-		$child2 = $node->ownerDocument->importNode( $child, true );
-		$new_node->appendChild( $child2 );
+
+		$child2 = $element->ownerDocument->importNode( $child, true );
+		$new_element->appendChild( $child2 );
 	}
 
-	foreach ( $node->attributes as $attr_node ) {
+	foreach ( $element->attributes as $attr_node ) {
 		$attr_name  = $attr_node->nodeName;
 		$attr_value = $attr_node->nodeValue;
 
-		$new_node->setAttribute( $attr_name, $attr_value );
+		$new_element->setAttribute( $attr_name, $attr_value );
 	}
 
-	$node->parentNode->replaceChild( $new_node, $node );
+	$element->parentNode->replaceChild( $new_element, $element );
 
-	return $new_node;
+	return $new_element;
 }
 
 /**
@@ -165,7 +165,7 @@ function change_tag_name( DOMElement $node, string $name ): DOMElement {
  *
  * @since 0.0.22
  *
- * @param array $styles
+ * @param array $styles [ 'color' => 'red', 'background-color' => 'blue' ].
  *
  * @return string
  */
@@ -188,7 +188,7 @@ function css_array_to_string( array $styles ): string {
  *
  * @since 0.0.2
  *
- * @param string $css
+ * @param string $css 'color:red;background-color:blue'.
  *
  * @return array
  */

@@ -15,8 +15,8 @@ add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */

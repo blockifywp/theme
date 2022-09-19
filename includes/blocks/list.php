@@ -13,8 +13,8 @@ add_filter( 'render_block_core/list', NS . 'render_list_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -24,10 +24,8 @@ function render_list_block( string $content, array $block ): string {
 
 	$dom = dom( $content );
 
-	/**
-	 * @var \DOMElement $ul
-	 */
-	$ul    = $dom->firstChild;
+	/* @var \DOMElement $ul Unordered list element. */
+	$ul    = $dom->getElementsByTagName( 'ul' )->item( 0 );
 	$style = $ul->getAttribute( 'style' );
 
 	if ( $block_gap ) {

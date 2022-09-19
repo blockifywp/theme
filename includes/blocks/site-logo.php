@@ -14,8 +14,8 @@ add_filter( 'render_block_core/site-logo', NS . 'render_site_logo_block', 10, 2 
  *
  * @since 0.0.24
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -25,8 +25,8 @@ function render_site_logo_block( string $content, array $block ): string {
 
 		$dom = dom( $content );
 
-		/** @var DOMElement $svg */
-		$svg = $dom->firstChild;
+		/* @var DOMElement $svg SVG element. */
+		$svg = $dom->getElementsByTagName( 'svg' )->item( 0 );
 
 		$svg->setAttribute( 'class', 'blockify-icon' );
 		$svg->setAttribute( 'width', '30' );
@@ -37,7 +37,7 @@ function render_site_logo_block( string $content, array $block ): string {
 
 		if ( $paths->item( 0 ) ) {
 
-			/** @var DOMElement $path */
+			/* @var DOMElement $path SVG path element. */
 			$path = $paths->item( 0 );
 
 			$path->setAttribute( 'fill', 'var(--wp--preset--color--primary-600, currentColor)' );

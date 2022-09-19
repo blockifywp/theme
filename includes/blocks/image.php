@@ -14,8 +14,8 @@ add_filter( 'render_block_core/image', NS . 'render_image_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -35,8 +35,8 @@ function render_image_block( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var DOMElement $first_child */
-		$first_child = $dom->firstChild;
+		/* @var DOMElement $first_child Image element. */
+		$first_child = $dom->getElementsByTagName( 'figure' )->item( 0 );
 
 		$original = $first_child->getAttribute( 'style' );
 

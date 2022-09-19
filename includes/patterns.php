@@ -31,13 +31,16 @@ function register_root_level_pattern_categories(): void {
 		foreach ( $block_pattern['categories'] as $category ) {
 			$categories = wp_list_pluck( WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered(), 'name' );
 
-			if ( in_array( $category, $categories ) ) {
+			if ( in_array( $category, $categories, true ) ) {
 				continue;
 			}
 
-			register_block_pattern_category( $category, [
-				'label' => ucfirst( $category ),
-			] );
+			register_block_pattern_category(
+				$category,
+				[
+					'label' => ucfirst( $category ),
+				]
+			);
 		}
 	}
 }

@@ -21,8 +21,8 @@ add_filter( 'render_block', NS . 'remove_duplicate_classes', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -69,15 +69,23 @@ function remove_emoji_scripts(): void {
 	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
 	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 	add_filter( 'emoji_svg_url', '__return_false' );
-	add_filter( 'tiny_mce_plugins', fn( array $plugins = [] ) => array_diff(
-		$plugins,
-		[ 'wpemoji' ]
-	) );
-	add_filter( 'wp_resource_hints', function ( array $urls, string $relation_type ): array {
-		if ( 'dns-prefetch' === $relation_type ) {
-			$urls = array_diff( $urls, [ apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' ) ] );
-		}
+	add_filter(
+		'tiny_mce_plugins',
+		fn( array $plugins = [] ) => array_diff(
+			$plugins,
+			[ 'wpemoji' ]
+		)
+	);
+	add_filter(
+		'wp_resource_hints',
+		function ( array $urls, string $relation_type ): array {
+			if ( $relation_type === 'dns-prefetch' ) {
+				$urls = array_diff( $urls, [ apply_filters( 'emoji_svg_url', 'https://s.w.org/images/core/emoji/2/svg/' ) ] );
+			}
 
-		return $urls;
-	}, 10, 2 );
+			return $urls;
+		},
+		10,
+		2
+	);
 }

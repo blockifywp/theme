@@ -13,8 +13,8 @@ add_filter( 'render_block_core/social-link', NS . 'render_social_link_block', 10
  *
  * @since 0.0.24
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -24,7 +24,7 @@ function render_social_link_block( string $content, array $block ): string {
 	if ( $textColor ) {
 		$dom = dom( $content );
 
-		/* @var $first_child \DOMElement */
+		/* @var $first_child \DOMElement Link element. */
 		$first_child = $dom->getElementsByTagName( 'li' )->item( 0 );
 
 		if ( ! $first_child ) {

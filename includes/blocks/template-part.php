@@ -4,11 +4,8 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 use function explode;
-use function get_post;
-use function get_the_ID;
 use function implode;
 use function method_exists;
 use function trim;
@@ -19,24 +16,26 @@ add_filter( 'render_block_core/template-part', NS . 'render_template_part_block'
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
 function render_template_part_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
-	/**
-	 * @var \DOMElement $first
-	 */
-	$first = $dom->firstChild;
+	/* @var \DOMElement $header Header element. */
+	$header = $dom->getElementsByTagName( 'header' )->item( 0 );
 
-	if ( ! method_exists( $first, 'getAttribute' ) ) {
+	if ( ! $header ) {
 		return $content;
 	}
 
-	$css = $first->getAttribute( 'style' );
+	if ( ! method_exists( $header, 'getAttribute' ) ) {
+		return $content;
+	}
+
+	$css = $header->getAttribute( 'style' );
 
 	$styles             = explode( ';', $css );
 	$styles['position'] = $block['attrs']['position'] ?? null;
@@ -51,7 +50,7 @@ function render_template_part_block( string $content, array $block ): string {
 	}
 
 	if ( ! $css ) {
-		$first->removeAttribute( 'style' );
+		$header->removeAttribute( 'style' );
 	}
 
 	$box_shadow = $block['attrs']['boxShadow'] ?? null;
@@ -100,19 +99,22 @@ function render_template_part_block( string $content, array $block ): string {
 		$styles['color'] = 'var(--wp--preset--color--' . $attrs['textColor'] . ')';
 	}
 
-	$classes[] = 'wp-site-' . $first->tagName;
+	$classes[] = 'wp-site-' . $header->tagName;
 	$classes[] = isset( $attrs['boxShadow']['useDefault'] ) && $attrs['boxShadow']['useDefault'] ? 'has-box-shadow' : '';
 
-	$classes = implode( ' ', [
-		...explode( ' ', $first->getAttribute( 'class' ) ),
-		...$classes,
-	] );
+	$classes = implode(
+		' ',
+		[
+			...explode( ' ', $header->getAttribute( 'class' ) ),
+			...$classes,
+		]
+	);
 
-	$first->setAttribute( 'class', trim( $classes ) );
-	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	$header->setAttribute( 'class', trim( $classes ) );
+	$header->setAttribute( 'style', css_array_to_string( $styles ) );
 
-	if ( ! $first->getAttribute( 'style' ) ) {
-		$first->removeAttribute( 'style' );
+	if ( ! $header->getAttribute( 'style' ) ) {
+		$header->removeAttribute( 'style' );
 	}
 
 	return $dom->saveHTML();

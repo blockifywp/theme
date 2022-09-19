@@ -7,26 +7,15 @@ namespace Blockify\Theme;
 use function add_action;
 use function add_editor_style;
 use function array_flip;
-use function array_key_exists;
-use function array_map;
 use function basename;
 use function dirname;
-use function end;
-use function explode;
 use function file_get_contents;
 use function filemtime;
-use function function_exists;
-use function get_option;
 use function glob;
-use function in_array;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
-use function is_string;
-use function sprintf;
-use function str_contains;
 use function str_replace;
-use function ucwords;
 use function wp_add_inline_style;
 use function wp_dequeue_style;
 use function wp_enqueue_style;
@@ -107,17 +96,17 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
  */
 function add_dynamic_custom_properties(): void {
 	$settings             = wp_get_global_settings();
-	$global_styles        = wp_get_global_styles();
+	$globalStyles         = wp_get_global_styles();
 	$element              = is_admin() ? '.editor-styles-wrapper' : 'body';
-	$content_size         = $settings['layout']['contentSize'] ?? '800px';
+	$contentSize          = $settings['layout']['contentSize'] ?? '800px';
 	$wide_size            = $settings['layout']['wideSize'] ?? '1200px';
-	$layout_unit          = is_admin() ? '%' : 'vw';
+	$layoutUnit           = is_admin() ? '%' : 'vw';
 	$border_width         = $settings['custom']['border']['width'] ?? '1px';
 	$border_style         = $settings['custom']['border']['style'] ?? 'solid';
 	$border_color         = $settings['custom']['border']['color'] ?? '#ddd';
-	$body_background      = $global_styles['color']['background'] ?? null;
-	$body_color           = $global_styles['color']['text'] ?? null;
-	$button               = $global_styles['blocks']['core/button'] ?? [];
+	$bodyBackground       = $globalStyles['color']['background'] ?? null;
+	$body_color           = $globalStyles['color']['text'] ?? null;
+	$button               = $globalStyles['blocks']['core/button'] ?? [];
 	$button_text          = $button['color']['text'] ?? null;
 	$button_background    = $button['color']['background'] ?? null;
 	$button_border_radius = $button['border']['radius'] ?? null;
@@ -126,14 +115,14 @@ function add_dynamic_custom_properties(): void {
 	$button_font_weight   = $button['typography']['fontWeight'] ?? null;
 	$button_line_height   = $button['typography']['lineHeight'] ?? null;
 	$button_padding       = $button['spacing']['padding'] ?? null;
-	$block_gap            = $global_styles['spacing']['blockGap'] ?? null;
+	$block_gap            = $globalStyles['spacing']['blockGap'] ?? null;
 
 	$all = [
 		// var(--wp--style--block-gap) doesn't work here.
-		'--wp--custom--layout--content-size'   => "min(calc(100{$layout_unit} - 40px),{$content_size})",
-		'--wp--custom--layout--wide-size'      => "min(calc(100{$layout_unit} - 40px),{$wide_size})",
+		'--wp--custom--layout--content-size'   => "min(calc(100{$layoutUnit} - 40px),{$contentSize})",
+		'--wp--custom--layout--wide-size'      => "min(calc(100{$layoutUnit} - 40px),{$wide_size})",
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
-		'--wp--custom--body--background'       => $body_background,
+		'--wp--custom--body--background'       => $bodyBackground,
 		'--wp--custom--body--color'            => $body_color,
 
 		// Gutenberg .wp-element-button issue workaround. Also used by input.
@@ -218,6 +207,8 @@ function add_conditional_styles(): void {
 
 	foreach ( $stylesheets as $stylesheet ) {
 		if ( $conditions[ basename( $stylesheet, '.css' ) ] ?? true ) {
+
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 			$styles .= trim( file_get_contents( $stylesheet ) );
 		}
 	}
@@ -225,90 +216,5 @@ function add_conditional_styles(): void {
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
 		$styles
-	);
-}
-
-add_action( 'blockify_editor_scripts', NS . 'add_dark_mode_custom_properties' );
-add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties' );
-/**
- * Adds dark mode custom properties.
- *
- * @since 0.0.24
- *
- * @return void
- */
-function add_dark_mode_custom_properties(): void {
-	$options = get_option( SLUG );
-	$enabled = true;
-
-	if ( isset( $options['darkMode'] ) ) {
-		$enabled = $options['darkMode'] === 'true';
-	}
-
-	if ( ! $enabled && ! is_admin() ) {
-		return;
-	}
-
-	$global_settings = wp_get_global_settings();
-
-	if ( ! isset( $global_settings['color']['palette']['theme'] ) ) {
-		return;
-	}
-
-	$colors = [];
-
-	foreach ( $global_settings['color']['palette']['theme'] as $color ) {
-		$colors[ $color['slug'] ] = $color['color'];
-	}
-
-	$original   = [];
-	$properties = [];
-
-	// Allows colors to be filtered with PHP, or removed in child theme json.
-	$config = get_config( 'darkModeColorPalette' ) ?? null;
-
-	if ( ! $config ) {
-		return;
-	}
-
-	foreach ( $colors as $slug => $color ) {
-		if ( ! isset( $config[ $slug ] ) || ! is_string( $config[ $slug ] ) ) {
-			continue;
-		}
-
-		if ( ! array_key_exists( $config[ $slug ], $colors ) ) {
-			continue;
-		}
-
-		$original[ '--wp--preset--color--' . $slug ]   = $color;
-		$properties[ '--wp--preset--color--' . $slug ] = $colors[ $config[ $slug ] ];
-	}
-
-	$body_element = is_admin() ? 'body .has-dark-mode' : 'body';
-	$new_css      = '@media(prefers-color-scheme:dark){' . $body_element . '{';
-
-	foreach ( $properties as $property => $value ) {
-		$new_css .= "$property:$value;";
-	}
-
-	$new_css .= '}}';
-
-	$new_css = '.dark-mode{';
-
-	foreach ( $properties as $property => $value ) {
-		$new_css .= "$property:$value;";
-	}
-
-	$new_css .= '}.light-mode{';
-
-	foreach ( $original as $property => $value ) {
-		$new_css .= "$property:$value;";
-	}
-
-	$new_css .= '}';
-
-	wp_add_inline_style(
-		is_admin() ? 'blockify-editor' : 'global-styles',
-		$new_css
 	);
 }

@@ -20,15 +20,15 @@ add_action( 'current_screen', NS . 'maybe_load_editor_assets' );
  *
  * @since 0.0.19
  *
- * @param WP_Screen $screen
+ * @param WP_Screen $screen Current screen.
  *
  * @return void
  */
 function maybe_load_editor_assets( WP_Screen $screen ): void {
-	$site_editor = $screen->base === 'appearance_page_gutenberg-edit-site' || $screen->base === 'site-editor';
-	$hook_name   = $site_editor ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets';
+	$siteEditor = $screen->base === 'appearance_page_gutenberg-edit-site' || $screen->base === 'site-editor';
+	$hookName   = $siteEditor ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets';
 
-	add_action( $hook_name, fn() => do_action( 'blockify_editor_scripts' ) );
+	add_action( $hookName, fn() => do_action( 'blockify_editor_scripts' ) );
 }
 
 add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_scripts' );
@@ -53,16 +53,22 @@ function enqueue_editor_scripts(): void {
 
 	wp_enqueue_script( 'blockify-editor' );
 
+	$svg = trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) );
+
+	$remove_emojis = get_option( SLUG )['removeEmojiScripts'] ?? null;
+
 	wp_localize_script(
 		'blockify-editor',
 		SLUG,
-		array_merge_recursive( [
-			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
-			'nonce'              => wp_create_nonce( SLUG ),
-			'icon'               => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
-			'darkMode'           => ( get_option( SLUG )['darkMode'] ?? false ) === 'true',
-			'removeEmojiScripts' => ( get_option( SLUG )['removeEmojiScripts'] ?? null ) === 'true',
-			'excerptLength'      => get_option( SLUG )['excerptLength'] ?? 33,
-		], get_config() )
+		array_merge_recursive(
+			[
+				'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
+				'nonce'              => wp_create_nonce( SLUG ),
+				'icon'               => $svg,
+				'removeEmojiScripts' => $remove_emojis === 'true',
+				'excerptLength'      => get_option( SLUG )['excerptLength'] ?? 33,
+			],
+			get_config()
+		)
 	);
 }

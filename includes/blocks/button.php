@@ -16,8 +16,8 @@ add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -25,16 +25,22 @@ function render_button_block( string $content, array $block ): string {
 	if ( str_contains( $content, 'is-style-outline' ) ) {
 		$dom = dom( $content );
 
-		/** @var DOMElement $button */
+		/* @var DOMElement $button Button element. */
 		$button = $dom->firstChild;
 
-		/** @var DOMElement $link */
+		/* @var DOMElement $link Link element. */
 		$link    = $button->getElementsByTagName( 'a' )->item( 0 );
 		$classes = explode( ' ', $link->getAttribute( 'class' ) );
-		$link->setAttribute( 'class', implode( ' ', [
-			...$classes,
-			'wp-element-button',
-		] ) );
+		$link->setAttribute(
+			'class',
+			implode(
+				' ',
+				[
+					...$classes,
+					'wp-element-button',
+				]
+			)
+		);
 
 		$content = $dom->saveHTML();
 	}
@@ -43,10 +49,10 @@ function render_button_block( string $content, array $block ): string {
 		$global_settings = \wp_get_global_settings();
 		$dom             = dom( $content );
 
-		/** @var DOMElement $button */
+		/* @var DOMElement $button Button element. */
 		$button = $dom->firstChild;
 
-		/** @var DOMElement $link */
+		/* @var DOMElement $link Link element. */
 		$link        = $button->getElementsByTagName( 'a' )->item( 0 );
 		$classes     = explode( ' ', $button->getAttribute( 'class' ) );
 		$styles      = explode( ';', $button->getAttribute( 'style' ) );

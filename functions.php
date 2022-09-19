@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use const DIRECTORY_SEPARATOR;
 use const PHP_VERSION;
+
 use function array_map;
 use function glob;
 use function version_compare;
@@ -21,7 +22,7 @@ const DIR  = __DIR__ . DS;
 const FILE = __FILE__;
 
 array_map(
-	fn( $file ) => require_once $file,
+	static fn( $file ) => require_once $file,
 	[
 		...glob( DIR . 'includes/*.php' ),
 		...glob( DIR . 'includes/blocks/*.php' ),

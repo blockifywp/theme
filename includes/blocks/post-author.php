@@ -13,8 +13,8 @@ add_filter( 'render_block_core/post-author', NS . 'render_post_author_block', 10
  *
  * @since 0.0.1
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -22,7 +22,7 @@ function render_post_author_block( string $content, array $block ): string {
 	$dom    = dom( $content );
 	$styles = [];
 
-	/* @var $first_child \DOMElement */
+	/* @var $first_child \DOMElement Post author. */
 	$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
 	$style       = $first_child->getAttribute( 'style' );
 

@@ -4,39 +4,5 @@
   "description": "Blockify theme.",
   "author": "Blockify",
   "license": "GPL-2.0-or-later",
-  "main": "assets/js/editor.js",
-  "scripts": {
-    "start": "npm run start:js",
-    "start:js": "wp-scripts start --webpack-src-dir=assets/tsx --output-path=assets/js",
-    "start:css": "node-sass assets/scss -output-style compressed --recursive -wo assets/css",
-    "build": "npm run build:js && npm run build:css",
-    "build:prod": "npm run build && npm run:build:pot && npm run build:zip",
-    "build:js": "wp-scripts build assets/tsx/index.tsx --webpack-src-dir=assets/tsx --output-path=assets/js --webpack-copy-php && rm -Rf assets/js/blocks",
-    "build:css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss && rm -Rf assets/css/abstracts",
-    "build:blocks": "cd ../../plugins/blockify-pro && npm run build:pro && cd ../../themes/blockify",
-    "build:svg": "node node_modules/oslllo-svg-fixer/src/cli.js -s assets/svg/icon.svg -d assets/svg/optimized",
-    "build:zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/css/ assets/js/ assets/lang/ assets/svg/ includes/ parts/ patterns/ styles/ templates/ vendor/composer vendor/autoload.php vendor/wptt/webfont-loader/wptt-webfont-loader.php vendor/tgmpa/tgm-plugin-activation/languages vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php vendor/wptrt/admin-notices/src functions.php index.php readme.txt screenshot.png style.css theme.json",
-    "build:tag": "npm run build:zip && cd ../../blockify-svn && rm -Rf `ls -td -- */ | head -n 1`* && unzip ../blockify.zip -d `ls -td -- */ | head -n 1`",
-    "build:pot": "wp i18n make-pot ./ assets/lang/blockify.pot --exclude='wp,wp-content,vendor,tests'"
-  },
-  "devDependencies": {
-    "@wordpress/api-fetch": "^6.3.0",
-    "@wordpress/block-editor": "^8.0.13",
-    "@wordpress/blocks": "^11.1.5",
-    "@wordpress/components": "^19.2.0",
-    "@wordpress/compose": "^5.0.7",
-    "@wordpress/data": "^6.3.0",
-    "@wordpress/dom-ready": "^3.6.0",
-    "@wordpress/edit-post": "^6.3.0",
-    "@wordpress/editor": "^12.5.1",
-    "@wordpress/element": "^4.0.4",
-    "@wordpress/hooks": "^3.6.0",
-    "@wordpress/i18n": "^4.2.4",
-    "@wordpress/icons": "^6.1.1",
-    "@wordpress/plugins": "^4.4.0",
-    "@wordpress/scripts": "^21.0.1",
-    "browser-sync-webpack-plugin": "^2.3.0",
-    "html-react-parser": "^1.4.5",
-    "node-sass": "^7.0.1"
-  }
+  "main": "assets/js/editor.js"
 }

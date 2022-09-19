@@ -17,8 +17,8 @@ add_filter( 'render_block', NS . 'render_image_icon', 10, 2 );
  *
  * @since 0.2.0
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -32,11 +32,11 @@ function render_image_icon( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var \DOMElement $first_child */
+		/* @var \DOMElement $first_child First element. */
 		$first_child = $dom->getElementsByTagName( 'figure' )->item( 0 );
 
-		/** @var \DOMElement $img */
-		$img         = $first_child->getElementsByTagName( 'img' )->item( 0 );
+		/* @var \DOMElement $img Image element. */
+		$img = $first_child->getElementsByTagName( 'img' )->item( 0 );
 
 		// Change from figure to div.
 		$div = change_tag_name( $first_child, 'div' );
@@ -60,7 +60,7 @@ function render_image_icon( string $content, array $block ): string {
 		$span_classes = 'blockify-icon';
 
 		foreach ( $all_classes as $class ) {
-			if ( in_array( $class, $allowed_classes ) ) {
+			if ( in_array( $class, $allowed_classes, true ) ) {
 				$div_classes .= ' ' . $class;
 			}
 		}
@@ -99,10 +99,6 @@ function render_image_icon( string $content, array $block ): string {
 
 		if ( isset( $block['attrs']['style']['color']['gradient'] ) && ! isset( $block['attrs']['textColor'] ) ) {
 			$span_styles['--wp--custom--icon--color'] = $block['attrs']['style']['color']['gradient'];
-		}
-
-		if ( isset( $block['attrs']['style']['transform'] ) ) {
-			// TODO.
 		}
 
 		foreach ( explode( ';', $div->getAttribute( 'style' ) ) as $rule ) {

@@ -13,8 +13,8 @@ add_filter( 'render_block_core/post-terms', NS . 'render_post_terms_block', 10, 
  *
  * @since 0.0.1
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */

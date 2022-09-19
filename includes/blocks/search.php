@@ -16,8 +16,8 @@ add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -25,30 +25,34 @@ function render_search_block( string $content, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 	$dom     = dom( $content );
 
-	/**
-	 * @var \DOMElement $form
-	 */
+	/* @var \DOMElement $form Form element. */
 	$form = $dom->firstChild;
 	$divs = $form->getElementsByTagName( 'div' );
 
 	if ( $divs->item( 0 ) ) {
 
-		/** @var DOMElement $div */
-		$div     = $divs->item( 0 );
+		/* @var DOMElement $div Div element. */
+		$div = $divs->item( 0 );
 
 		$inputs = $div->getElementsByTagName( 'input' );
 
 		if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $inputs->item( 0 ) ) {
 
-			/** @var DOMElement $input */
+			/* @var DOMElement $input Input element. */
 			$input = $inputs->item( 0 );
 
-			$input->setAttribute( 'style', implode( ';', [
-				'padding-top:' . ( $padding['top'] ?? '' ),
-				'padding-right:' . ( $padding['right'] ?? '' ),
-				'padding-bottom:' . ( $padding['bottom'] ?? '' ),
-				'padding-left:' . ( $padding['left'] ?? '' ),
-			] ) );
+			$input->setAttribute(
+				'style',
+				implode(
+					';',
+					[
+						'padding-top:' . ( $padding['top'] ?? '' ),
+						'padding-right:' . ( $padding['right'] ?? '' ),
+						'padding-bottom:' . ( $padding['bottom'] ?? '' ),
+						'padding-left:' . ( $padding['left'] ?? '' ),
+					]
+				)
+			);
 		}
 	}
 
@@ -59,15 +63,19 @@ function render_search_block( string $content, array $block ): string {
 	if ( $class_name && str_contains( $class_name, 'is-style-toggle' ) ) {
 		$dom = dom( $content );
 
-		/** @var \DOMElement $form */
-		$form     = $dom->firstChild;
-		/** @var \DOMElement $label */
-		$label    = $form->getElementsByTagName( 'label' )->item( 0 );
-		/** @var \DOMElement $wrap */
-		$wrap     = $form->getElementsByTagName( 'div' )->item( 0 );
-		/** @var \DOMElement $input */
-		$input    = $wrap->getElementsByTagName( 'input' )->item( 0 );
-		/** @var \DOMElement $button */
+		/* @var \DOMElement $form Form element. */
+		$form = $dom->firstChild;
+
+		/* @var \DOMElement $label Label element. */
+		$label = $form->getElementsByTagName( 'label' )->item( 0 );
+
+		/* @var \DOMElement $wrap Wrap element. */
+		$wrap = $form->getElementsByTagName( 'div' )->item( 0 );
+
+		/* @var \DOMElement $input Input element. */
+		$input = $wrap->getElementsByTagName( 'input' )->item( 0 );
+
+		/* @var \DOMElement $button Button element. */
 		$button   = $wrap->getElementsByTagName( 'button' )->item( 0 );
 		$checkbox = $dom->createElement( 'input' );
 		$button   = change_tag_name( $button, 'label' );
@@ -86,11 +94,14 @@ function render_search_block( string $content, array $block ): string {
 		$checkbox->setAttribute( 'id', $label->getAttribute( 'for' ) . '-checkbox' );
 		$button->setAttribute( 'for', $checkbox->getAttribute( 'id' ) );
 
-		$wrap->setAttribute( 'class', \str_replace(
-			[ 'wp-block-search__button', 'has-icon' ],
-			'',
-			$button->getAttribute( 'class' ) . ' ' . $wrap->getAttribute( 'class' )
-		) );
+		$wrap->setAttribute(
+			'class',
+			\str_replace(
+				[ 'wp-block-search__button', 'has-icon' ],
+				'',
+				$button->getAttribute( 'class' ) . ' ' . $wrap->getAttribute( 'class' )
+			)
+		);
 
 		$button_classes = explode( ' ', $button->getAttribute( 'class' ) );
 		$button_class   = '';

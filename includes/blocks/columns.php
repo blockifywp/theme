@@ -13,8 +13,8 @@ add_filter( 'render_block_core/columns', NS . 'render_columns_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -25,7 +25,7 @@ function render_columns_block( string $content, array $block ): string {
 		$class = 'is-not-stacked-on-mobile';
 	}
 
-	if ( 'is-stacked-on-mobile' === $class ) {
+	if ( $class === 'is-stacked-on-mobile' ) {
 		$content = str_replace( 'wp-block-columns', 'wp-block-columns is-stacked-on-mobile', $content );
 	}
 

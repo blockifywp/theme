@@ -15,8 +15,8 @@ add_filter( 'render_block_core/post-featured-image', NS . 'render_featured_image
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -26,7 +26,7 @@ function render_featured_image_block( string $content, array $block ): string {
 		$attrs = $block['attrs'] ?? [];
 		$dom   = dom( '<span></span>' );
 
-		/** @var DOMElement $span */
+		/* @var DOMElement $span Created span element. */
 		$span    = $dom->getElementsByTagName( 'span' )->item( 0 );
 		$classes = explode( ' ', $span->getAttribute( 'class' ) );
 		$styles  = explode( ';', $span->getAttribute( 'style' ) );

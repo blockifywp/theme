@@ -15,8 +15,8 @@ add_filter( 'render_block_core/query-title', NS . 'render_archive_title_block', 
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */

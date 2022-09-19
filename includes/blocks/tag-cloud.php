@@ -12,8 +12,8 @@ use function implode;
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -22,14 +22,19 @@ function render_tag_cloud_block( string $content, array $block ): string {
 	$largest  = $block['attrs']['largestFontSize'] ?? '1em';
 	$dom      = dom( $content );
 
-	/* @var \DOMElement $first_child */
+	/* @var \DOMElement $first_child Tag cloud. */
 	$first_child = $dom->getElementsByTagName( 'p' )->item( 0 );
 
-	$first_child->setAttribute( 'style', implode( ';', [
-		'font-size:max(' . $smallest . ',' . $largest . ')',
-		$first_child->getAttribute( 'style' ),
-	] ) );
-
+	$first_child->setAttribute(
+		'style',
+		implode(
+			';',
+			[
+				'font-size:max(' . $smallest . ',' . $largest . ')',
+				$first_child->getAttribute( 'style' ),
+			]
+		)
+	);
 
 	return $dom->saveHTML();
 }

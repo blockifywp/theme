@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 
 add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
@@ -13,18 +12,16 @@ add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
  *
  * @since 0.0.20
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
 function render_block_layout( string $content, array $block ): string {
 	$dom = dom( $content );
 
-	/**
-	 * @var \DOMElement $first
-	 */
-	$first = $dom->firstChild;
+	/* @var \DOMElement $first Group block */
+	$first = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 	if ( $first->tagName === 'main' ) {
 		$first->setAttribute(

@@ -61,8 +61,9 @@ function get_style_variation(): string {
 	$style_json_files = glob( get_stylesheet_directory() . '/styles/*.json' );
 
 	foreach ( $style_json_files as $style_json_file ) {
-		$json    = json_decode( file_get_contents( $style_json_file ), true );
-		$matches = true;
+		$contents = file_get_contents( $style_json_file );
+		$json     = json_decode( $contents, true );
+		$matches  = true;
 
 		if ( ( $json['settings']['color']['palette'] ?? [] ) !== $palette_settings ) {
 			$matches = false;

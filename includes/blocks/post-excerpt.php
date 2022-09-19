@@ -16,8 +16,8 @@ add_filter( 'render_block_core/post-excerpt', NS . 'render_excerpt_block', 10, 2
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -38,7 +38,7 @@ add_filter( 'excerpt_length', NS . 'set_excerpt_length', 99 );
  * @return int
  */
 function set_excerpt_length(): int {
-	return (int) ( get_option( SLUG )['excerptLength'] ?? 33);
+	return (int) ( get_option( SLUG )['excerptLength'] ?? 33 );
 }
 
 add_filter( 'excerpt_more', NS . 'remove_brackets_from_excerpt' );
@@ -47,7 +47,7 @@ add_filter( 'excerpt_more', NS . 'remove_brackets_from_excerpt' );
  *
  * @since 0.0.1
  *
- * @param string $more
+ * @param string $more Read more text.
  *
  * @return string
  */

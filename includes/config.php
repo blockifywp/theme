@@ -415,8 +415,8 @@ function get_config( string $sub_config = '' ) {
 		],
 		'core/tag-cloud'           => [
 			'typography' => [
-				'textTransform' => true, // Doesn't work
-				'letterSpacing' => true, // Doesn't work
+				'textTransform' => true, // Doesn't work.
+				'letterSpacing' => true, // Doesn't work.
 			],
 		],
 		'core/template-part'       => [

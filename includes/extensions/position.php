@@ -13,8 +13,8 @@ add_filter( 'render_block', NS . 'render_block_position', 10, 2 );
  *
  * @since 0.2.0
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -30,7 +30,7 @@ function render_block_position( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var DOMElement $first */
+		/* @var \DOMElement $first First element. */
 		$first = $dom->firstChild;
 
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
@@ -47,12 +47,11 @@ function render_block_position( string $content, array $block ): string {
 	if ( $zIndex ) {
 		$dom = dom( $content );
 
-
 		if ( ! $dom->firstChild ) {
 			return $content;
 		}
 
-		/** @var DOMElement $first */
+		/* @var DOMElement $first First element. */
 		$first = $dom->firstChild;
 
 		$styles            = css_string_to_array( $first->getAttribute( 'style' ) );
@@ -70,7 +69,7 @@ function render_block_position( string $content, array $block ): string {
 			return $content;
 		}
 
-		/** @var DOMElement $first */
+		/* @var DOMElement $first First element. */
 		$first = $dom->firstChild;
 
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );

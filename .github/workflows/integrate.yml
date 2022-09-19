@@ -154,7 +154,7 @@ jobs:
           dependency-versions: "highest"
 
       - name: "Check coding style"
-        run: "composer exec -- phpcs --standard=WordPress-Core -s functions.php includes/ patterns/"
+        run: "composer exec -- phpcs --standard=./phpcs.xml -s functions.php includes/"
 
   exported_files:
     name: "5️⃣ Exported files"

@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function date;
+use function gmdate;
 use function str_replace;
 
 add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 10, 2 );
@@ -14,14 +14,14 @@ add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 10, 2 
  *
  * @since 0.0.2
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
  *
  * @return string
  */
 function render_paragraph_block( string $content, array $block ): string {
 	$shortcodes = [
-		'[year]' => date( 'Y' ),
+		'[year]' => gmdate( 'Y' ),
 	];
 
 	foreach ( $shortcodes as $shortcode => $value ) {
