@@ -26,7 +26,7 @@ function render_search_block( string $content, array $block ): string {
 	$dom     = dom( $content );
 
 	/* @var \DOMElement $form Form element. */
-	$form = $dom->firstChild;
+	$form = $dom->getElementsByTagName( 'form' )->item( 0 );
 	$divs = $form->getElementsByTagName( 'div' );
 
 	if ( $divs->item( 0 ) ) {
@@ -64,7 +64,7 @@ function render_search_block( string $content, array $block ): string {
 		$dom = dom( $content );
 
 		/* @var \DOMElement $form Form element. */
-		$form = $dom->firstChild;
+		$form = $dom->getElementsByTagName( 'form' )->item( 0 );
 
 		/* @var \DOMElement $label Label element. */
 		$label = $form->getElementsByTagName( 'label' )->item( 0 );

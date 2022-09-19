@@ -21,10 +21,21 @@ add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
 function render_heading_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
-	/* @var \DOMElement $heading Heading block. */
-	$heading = $dom->firstChild;
+	// No way of knowing tag.
+	$h1 = $dom->getElementsByTagName( 'h1' )->item( 0 );
+	$h2 = $dom->getElementsByTagName( 'h2' )->item( 0 );
+	$h3 = $dom->getElementsByTagName( 'h3' )->item( 0 );
+	$h4 = $dom->getElementsByTagName( 'h4' )->item( 0 );
+	$h5 = $dom->getElementsByTagName( 'h5' )->item( 0 );
+	$h6 = $dom->getElementsByTagName( 'h6' )->item( 0 );
 
-	$heading->setAttribute( 'class', 'wp-block-heading ' . $heading->getAttribute( 'class' ) );
+	/* @var \DOMElement $heading Heading element. */
+	$heading = $h1 ?? $h2 ?? $h3 ?? $h4 ?? $h5 ?? $h6;
+
+	$heading->setAttribute(
+		'class',
+		'wp-block-heading ' . $heading->getAttribute( 'class' )
+	);
 
 	return $dom->saveHTML();
 }

@@ -26,10 +26,11 @@ function render_button_block( string $content, array $block ): string {
 		$dom = dom( $content );
 
 		/* @var DOMElement $button Button element. */
-		$button = $dom->firstChild;
+		$button = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 		/* @var DOMElement $link Link element. */
-		$link    = $button->getElementsByTagName( 'a' )->item( 0 );
+		$link = $button->getElementsByTagName( 'a' )->item( 0 );
+
 		$classes = explode( ' ', $link->getAttribute( 'class' ) );
 		$link->setAttribute(
 			'class',
@@ -50,7 +51,7 @@ function render_button_block( string $content, array $block ): string {
 		$dom             = dom( $content );
 
 		/* @var DOMElement $button Button element. */
-		$button = $dom->firstChild;
+		$button = $dom->getElementsByTagName( 'div' )->item( 0 );
 
 		/* @var DOMElement $link Link element. */
 		$link        = $button->getElementsByTagName( 'a' )->item( 0 );

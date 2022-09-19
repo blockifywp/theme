@@ -26,12 +26,12 @@ function render_block_position( string $content, array $block ): string {
 	if ( $position ) {
 		$dom = dom( $content );
 
-		if ( ! $dom->firstChild ) {
+		/* @var \DOMElement $first First element. */
+		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
+
+		if ( ! $first ) {
 			return $content;
 		}
-
-		/* @var \DOMElement $first First element. */
-		$first = $dom->firstChild;
 
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 
@@ -52,7 +52,11 @@ function render_block_position( string $content, array $block ): string {
 		}
 
 		/* @var DOMElement $first First element. */
-		$first = $dom->firstChild;
+		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
+
+		if ( ! $first ) {
+			return $content;
+		}
 
 		$styles            = css_string_to_array( $first->getAttribute( 'style' ) );
 		$styles['z-index'] = $zIndex;
@@ -65,12 +69,12 @@ function render_block_position( string $content, array $block ): string {
 	if ( $inset ) {
 		$dom = dom( $content );
 
-		if ( ! $dom->firstChild ) {
+		/* @var DOMElement $first First element. */
+		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
+
+		if ( ! $first ) {
 			return $content;
 		}
-
-		/* @var DOMElement $first First element. */
-		$first = $dom->firstChild;
 
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 
