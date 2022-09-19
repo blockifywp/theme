@@ -1,5 +1,5 @@
 node_modules
-
+vendor
 wp/
 wp-content
 templates/single-block_pattern.html
