@@ -3,7 +3,6 @@
  * Title: Blockify Pricing Two Column
  * Slug: blockify/pricing-two-column
  * Categories: pricing
- *
  */
 ?><!-- wp:group {"align":"wide","layout":{"inherit":false,"contentSize":"900px"}} -->
 <div class="wp-block-group alignwide alignwide"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}},"fontSize":"60"} -->

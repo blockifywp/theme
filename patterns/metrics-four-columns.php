@@ -3,7 +3,6 @@
  * Title: Blockify Metrics Four Columns
  * Slug: blockify/metrics-four-columns
  * Categories: metrics
- *
  */
 ?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"2em","bottom":"2em"}}}} -->
 <div class="wp-block-columns alignwide alignwide" style="padding-top:2em;padding-bottom:2em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->

@@ -3,7 +3,6 @@
  * Title: Blockify Style Guide
  * Slug: blockify/style-guide
  * Categories: utility
- *
  */
 ?><!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"6px","width":"1px"}},"backgroundColor":"gray-50"} -->

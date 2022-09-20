@@ -3,7 +3,6 @@
  * Title: Blockify Testimonial Two Column
  * Slug: blockify/testimonial-two-column
  * Categories: testimonials
- *
  */
 ?><!-- wp:columns {"align":"wide"} -->
 <div class="wp-block-columns alignwide alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
