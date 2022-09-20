@@ -1,5 +1,7 @@
 # Blockify Theme
 
+![Build Status](https://github.com/blockifywp/theme/actions/workflows/integrate.yml/badge.svg)
+
 Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimal settings which extend core WordPress blocks in a natural way, allowing for a greater level of design control. Dark mode, Google Fonts, SVG icons, box shadows, text gradients, absolute positioning and responsive settings are some of the smart customization features included. Please note Gutenberg is an experimental plugin and updates may cause breaking changes that require block recovery.
 
 ![screenshot](https://raw.githubusercontent.com/blockifywp/theme/aaf0f14b2db28b37e69a8ee52a8d7d565e691355/screenshot.png)
