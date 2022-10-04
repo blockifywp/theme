@@ -22,16 +22,16 @@ use function substr;
  * @return string
  */
 function str_between( string $start, string $end, string $string, bool $omit = false ): string {
-	$string = ' ' . $string;
-	$ini    = strpos( $string, $start );
+	$string  = ' ' . $string;
+	$initial = strpos( $string, $start );
 
-	if ( $ini === 0 ) {
+	if ( $initial === 0 ) {
 		return '';
 	}
 
-	$ini    += strlen( $start );
-	$len    = strpos( $string, $end, $ini ) - $ini;
-	$string = $start . substr( $string, $ini, $len ) . $end;
+	$initial += strlen( $start );
+	$len     = strpos( $string, $end, $initial ) - $initial;
+	$string  = $start . substr( $string, $initial, $len ) . $end;
 
 	if ( $omit ) {
 		$string = str_replace( [ $start, $end ], '', $string );

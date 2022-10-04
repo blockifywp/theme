@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Error 404
- * Slug: error-404
- * Block Types: core/post-content
+ * Title: 404
+ * Slug: 404
+ * Categories: template
  */
 ?><!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":false,"contentSize":"720px"}} -->
 <div class="wp-block-group" style="padding-top:3em;padding-bottom:3em"><!-- wp:heading {"textAlign":"center","level":1} -->

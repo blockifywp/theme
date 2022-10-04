@@ -50,14 +50,16 @@ add_action( 'init', NS . 'register_block_patterns' );
  * @return void
  */
 function register_block_patterns(): void {
-	$files         = glob( get_stylesheet_directory() . '/patterns/**/*.php' );
+	$files         = [
+		...glob( get_stylesheet_directory() . '/patterns/**/*.php' ),
+		...glob( get_stylesheet_directory() . '/patterns/**/*.php' ),
+	];
 	$pattern_slugs = [];
 
 	foreach ( $files as $file ) {
 		if ( ! in_array( $file, $pattern_slugs, true ) ) {
 			$pattern_slugs[] = basename( $file, '.php' );
 
-			register_block_pattern_from_file( $file );
 		}
 	}
 }

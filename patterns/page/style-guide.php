@@ -2,8 +2,9 @@
 /**
  * Title: Style Guide
  * Slug: style-guide
- * Categories: utility
- * Block Types: 
+ * Categories: template
+ * Block Types: core/post-content
+ * Post Types: page
  */
 ?><!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"6px","width":"1px"}},"backgroundColor":"gray-50"} -->
