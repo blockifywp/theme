@@ -42,35 +42,4 @@ function setup(): void {
 			...glob( DIR . 'includes/extensions/*.php' ),
 		]
 	);
-
-	$dirs = glob( DIR . 'patterns/*', GLOB_ONLYDIR );
-
-	$cleaned = [];
-
-	foreach ( $dirs as $dir ) {
-
-		$category_slug = \basename( $dir );
-
-		$files = glob( $dir . '/*.php' );
-
-		foreach ( $files as $file ) {
-			$pattern_slug = \basename( $file, '.php' );
-			$content      = file_get_contents( $file );
-
-			$clean = \str_replace(
-				str_between( "<?php\n", '?>', $content ),
-				'',
-				$content
-			);
-
-			\file_put_contents( $file, $clean );
-
-
-			$cleaned[] = $clean;
-
-		}
-	}
-
-	d( $cleaned );
-
 }

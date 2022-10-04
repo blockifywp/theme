@@ -20,7 +20,6 @@ add_filter( 'render_block_core/post-featured-image', NS . 'render_featured_image
  * @return string
  */
 function render_featured_image_block( string $content, array $block ): string {
-
 	if ( ! $content ) {
 		$content = get_image_placeholder( $content, $block['attrs'] );
 	}

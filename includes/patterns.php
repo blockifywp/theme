@@ -7,6 +7,8 @@ namespace Blockify\Theme;
 use WP_Post;
 use function add_action;
 use function add_filter;
+use function apply_filters;
+use function basename;
 use function current_time;
 use function explode;
 use function file_exists;
@@ -19,6 +21,7 @@ use function is_null;
 use function is_post_type_archive;
 use function locate_block_template;
 use function ob_start;
+use function register_block_pattern;
 use function register_block_pattern_category;
 use function remove_theme_support;
 use function str_replace;
@@ -50,17 +53,56 @@ add_action( 'init', NS . 'register_block_patterns' );
  * @return void
  */
 function register_block_patterns(): void {
-	$files         = [
-		...glob( get_stylesheet_directory() . '/patterns/**/*.php' ),
-		...glob( get_stylesheet_directory() . '/patterns/**/*.php' ),
+	$patterns = [];
+	$dirs     = [
+		...glob( get_template_directory() . '/patterns/*', GLOB_ONLYDIR ),
+		...glob( get_stylesheet_directory() . '/patterns/*', GLOB_ONLYDIR ),
 	];
-	$pattern_slugs = [];
 
-	foreach ( $files as $file ) {
-		if ( ! in_array( $file, $pattern_slugs, true ) ) {
-			$pattern_slugs[] = basename( $file, '.php' );
+	foreach ( $dirs as $dir ) {
+		$files          = glob( $dir . '/*.php' );
+		$category_slug  = basename( $dir );
+		$category_title = ucwords( str_replace( '-', ' ', $category_slug ) );
 
+		foreach ( $files as $file ) {
+			if ( in_array( $file, $patterns, true ) ) {
+				continue;
+			}
+
+			$pattern_base  = basename( $file, '.php' );
+			$pattern_slug  = $category_slug . '-' . $pattern_base;
+			$pattern_title = $category_title . ' ' . ucwords( str_replace( '-', ' ', $pattern_base ) );
+
+			$pattern = [
+				'title'      => $pattern_title,
+				'content'    => file_get_contents( $file ),
+				'categories' => [ $category_slug ],
+			];
+
+			if ( $category_slug === 'page' ) {
+				$pattern['blockTypes'] = [ 'core/post-content' ];
+				$pattern['postTypes']  = [ 'page' ];
+			}
+
+			if ( in_array( $category_slug, [ 'header', 'footer' ] ) ) {
+				$pattern['blockTypes'] = [ 'core/template-part/' . $category_slug ];
+			}
+
+			if ( $category_slug === 'template' ) {
+				$pattern['inserter'] = [ 'false' ];
+			}
+
+			$patterns[ $pattern_slug ] = $pattern;
 		}
+	}
+
+	$patterns = apply_filters( 'blockify_patterns', $patterns );
+
+	foreach ( $patterns as $pattern => $args ) {
+		register_block_pattern(
+			$pattern,
+			$args
+		);
 	}
 }
 
@@ -132,17 +174,16 @@ add_filter( 'template_include', NS . 'single_block_pattern_template' );
 function single_block_pattern_template( string $template ): string {
 	global $wp;
 
-	$post_type = 'block_pattern';
 	$request   = explode( DS, ( $wp->request ?? '' ) );
 
-	if ( ! isset( $request[0] ) || $request[0] !== $post_type ) {
+	if ( ! isset( $request[0] ) || $request[0] !== 'pattern' ) {
 		return $template;
 	}
 
 	return locate_block_template( get_template_directory() . '/templates/blank.html', 'blank', [] );
 }
 
-add_filter( 'the_posts', NS . 'block_pattern_preview', -10 );
+add_filter( 'the_posts', NS . 'block_pattern_preview', -99 );
 /**
  * Generates dynamic block pattern previews without registering a CPT.
  *
@@ -155,9 +196,8 @@ add_filter( 'the_posts', NS . 'block_pattern_preview', -10 );
 function block_pattern_preview( array $posts ): array {
 	global $wp, $wp_query;
 
-	$post_type = 'block_pattern';
-
-	$request = explode( DS, ( $wp->request ?? '' ) );
+	$post_type = 'pattern';
+	$request   = explode( DS, ( $wp->request ?? '' ) );
 
 	if ( ! isset( $request[0] ) || $request[0] !== $post_type ) {
 		return $posts;
@@ -170,28 +210,23 @@ function block_pattern_preview( array $posts ): array {
 		return $posts;
 	}
 
-	$cache = true;
-	$name  = $request[1] ?? '';
+	$cache    = true;
+	$category = $request[1] ?? '';
+	$name     = $request[2] ?? '';
 
-	if ( ! $name ) {
+	if ( ! $category || ! $name ) {
 		return $posts;
 	}
 
-	$category = explode( '-', $name )[0] ?? 'default';
-	$file     = get_stylesheet_directory() . "/patterns/{$category}/{$name}.php";
+	$parent = get_template_directory() . "/patterns/{$category}/{$name}.php";
+	$child  = get_stylesheet_directory() . "/patterns/{$category}/{$name}.php";
 
-	if ( ! file_exists( $file ) ) {
+	if ( ! file_exists( $child ) && ! file_exists( $parent ) ) {
 		return $posts;
 	}
 
+	$file    = file_exists( $child ) ? $child : $parent;
 	$pattern = file_get_contents( $file );
-
-	// Remove multiline PHP blocks.
-	$pattern = str_replace(
-		str_between( "<?php\n", '?>', $pattern ),
-		'',
-		$pattern
-	);
 
 	ob_start();
 	echo $pattern;

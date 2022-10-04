@@ -65,21 +65,25 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.4.0 - 22 September 2022 =
+= 0.4.0 - 4 September 2022 =
 
+* Add: Icon block variation
 * Add: Conic gradient support
 * Add: Negative margin support
-* Add: Icon block variation
 * Add: Underline, brush stroke, circle text formats
 * Add: Gradient text format
 * Add: CI workflow, phpstan, coding standards props @szepeviktor
 * Add: Local web font files
 * Add: Sub heading paragraph block style
 * Add: Home page block pattern
-* Add: Gutenberg dependency
+* Add: Gutenberg 14.2 support
 * Add: Tested up to PHP 8.2 support
+* Add: Scroll animation
+* Add: Spacing scale
 * Update: Rename first_child variables to match element
 * Update: Separate utility functions
+* Update: Move all templates to patterns
+* Update: Patterns from units to spacing scale
 * Fix: Navigation block styling
 * Remove: Image block icon and placeholder styles
 * Remove: Slugs from patterns

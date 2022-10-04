@@ -1,8 +1,10 @@
 @import "../abstracts/box-shadow";
 
+// .has-box-shadow
 [style*='--wp--custom--box-shadow--'] {
 	position: relative;
 	overflow: visible;
+	z-index: 1;
 
 	&:not(.wp-block-button):before {
 		@include box-shadow;

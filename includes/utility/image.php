@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 function get_image_placeholder( string $html, array $attributes = [] ): string {
-	$html        = ! $html ? '<figure><img src="" alt=""/></figure>' : $html;
+	$html        = ! $html ? '<figure class="wp-block-image"><img src="" alt=""/></figure>' : $html;
 	$dom         = dom( $html );
 	$figure      = get_dom_element( 'figure', $dom );
 	$styles      = css_array_to_string( add_block_support_color( [], $attributes ) );
@@ -24,8 +24,18 @@ function get_image_placeholder( string $html, array $attributes = [] ): string {
 	}
 
 	if ( $figure ) {
-
 		$figure->setAttribute( 'class', $figure->getAttribute( 'class' ) . ' is-placeholder' );
+
+		$css = css_array_to_string( [
+				'width'         => $attributes['width'] ?? '',
+				'height'        => $attributes['height'] ?? '',
+				'margin-top'    => $attributes['style']['spacing']['margin']['top'] ?? '',
+				'margin-right'  => $attributes['style']['spacing']['margin']['right'] ?? '',
+				'margin-bottom' => $attributes['style']['spacing']['margin']['bottom'] ?? '',
+				'margin-left'   => $attributes['style']['spacing']['margin']['left'] ?? '',
+			] ) . ';';
+
+		$figure->setAttribute( 'style', $css . $figure->getAttribute( 'style' ) );
 	}
 
 	return $dom->saveHTML();

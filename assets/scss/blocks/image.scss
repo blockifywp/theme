@@ -22,17 +22,3 @@ figure.wp-block-image {
 		margin-right: auto;
 	}
 }
-
-.wp-block-image__placeholder {
-	display: block;
-	clear: both;
-	stroke: var(--wp--custom--border--color, currentColor);
-	stroke-dasharray: 3;
-	box-sizing: initial;
-	height: 100%;
-	left: 50%;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%,-50%);
-	width: 100%;
-}

@@ -53,7 +53,7 @@ nav .wp-block-navigation-item__label,
 
 .wp-block-navigation__container {
 	display: flex;
-	gap: var(--wp--custom--navigation--gap, var(--wp--style--block-gap, 1em)) !important;
+	gap: 0;
 }
 
 @media (min-width: 781px) {
@@ -103,7 +103,7 @@ nav .wp-block-navigation-item__label,
 }
 
 .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open {
-	background-color: var(--wp--custom--body--background, #fff);
+	background: var(--wp--custom--body--background, #fff);
 	color: currentColor; // #000 hardcoded in core.
 }
 
@@ -143,6 +143,8 @@ nav .wp-block-navigation-item__label,
 .wp-block-navigation.items-justified-right .wp-block-navigation__submenu-container {
 	right: auto !important;
 }
+
+
 
 // Reset needed as default is too low (600px).
 @media (min-width: 600px) {
@@ -184,5 +186,15 @@ nav .wp-block-navigation-item__label,
 		position: relative;
 		z-index: auto;
 		background-color: inherit;
+	}
+
+	.wp-block-navigation-link:after {
+		display: block;
+		content: var(--wp--custom--navigation-separator--content, '');
+		margin: var(--wp--custom--navigation-separator--margin, 0 0 0 1em);
+	}
+
+	.wp-block-navigation-link:last-of-type:after {
+		display: none
 	}
 }
