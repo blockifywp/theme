@@ -26,9 +26,7 @@ add_filter( 'theme_json_theme', NS . 'filter_theme_json' );
  * @return WP_Theme_JSON_Data_Gutenberg
  */
 function filter_theme_json( WP_Theme_JSON_Data_Gutenberg $theme_json ): WP_Theme_JSON_Data_Gutenberg {
-
-	$default = $theme_json->get_data();
-
+	$default     = $theme_json->get_data();
 	$layout_unit = is_admin() ? '%' : 'vw';
 
 	$custom = [

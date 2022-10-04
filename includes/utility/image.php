@@ -19,11 +19,8 @@ function get_image_placeholder( string $html, array $attributes = [] ): string {
 		$figure->removeChild( $img );
 	}
 
-	if ( $figure && $result ) {
-		$figure->appendChild( $result );
-	}
-
 	if ( $figure ) {
+		$figure->appendChild( $result );
 		$figure->setAttribute( 'class', $figure->getAttribute( 'class' ) . ' is-placeholder' );
 
 		$css = css_array_to_string( [

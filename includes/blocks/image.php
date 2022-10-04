@@ -27,18 +27,5 @@ function render_image_block( string $content, array $block ): string {
 		$content = get_image_placeholder( $content, $block['attrs'] );
 	}
 
-	$url = \wp_get_attachment_image_src( $id, 'full' )[0] ?? '';
-
-
-	// SVG.
-	if ( \str_contains( $url, '.svg' ) ) {
-
-		$path = \str_replace( \content_url(), \WP_CONTENT_DIR, $url );
-		$dom  = dom( \file_get_contents( $path ) );
-
-
-	}
-
-
 	return $content;
 }

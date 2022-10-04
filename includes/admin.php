@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use const WP_PLUGIN_DIR;
 use function add_action;
 use function add_filter;
 use function admin_url;
@@ -14,6 +13,7 @@ use function esc_attr;
 use function file_exists;
 use function get_template;
 use function is_multisite;
+use function plugin_dir_path;
 use WPTRT\AdminNotices\Notices;
 
 add_action( 'admin_init', NS . 'add_plugin_notice', 99 );
@@ -33,7 +33,7 @@ function add_plugin_notice(): void {
 
 	$notice       = new Notices();
 	$plugins_page = $pagenow === 'plugins.php';
-	$installed    = file_exists( WP_PLUGIN_DIR . '/gutenberg' );
+	$installed    = file_exists( plugin_dir_path( 'gutenberg/gutenberg' ) );
 	$multisite    = is_multisite();
 
 	$url = 'plugin-install.php?s=gutenberg&tab=search&type=term';
@@ -62,7 +62,7 @@ function add_plugin_notice(): void {
 
 	$notice->add(
 		'blockify-gutenberg',
-		__( 'Please install and activate the Gutenberg plugin', 'blockify' ),
+		__( 'Please install and activate Gutenberg', 'blockify' ),
 		$message,
 	);
 
@@ -93,7 +93,7 @@ function add_setup_notice(): void {
 	$notice->add(
 		'blockify-setup',
 		__( 'Blockify theme successfully installed', 'blockify' ),
-		__( 'You are ready to begin customizing your site. Please visit the Site Editor to get started.', 'blockify' ) . ' <a href="' . esc_attr( admin_url( 'site-editor.php' ) ) . '">' . __( 'Go to Site Editor →', 'blockify' ) . '</a>'
+		__( 'You are ready to begin customizing your site. Please visit the Site Editor to get started.', 'blockify' ) . ' <a href="' . esc_attr( admin_url( 'site-editor.php' ) ) . '">' . __( 'Go to Site Editor', 'blockify' ) . '</a>'
 	);
 
 	$notice->boot();

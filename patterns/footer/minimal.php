@@ -8,7 +8,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right","orientation":"horizontal"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"right","fontSize":"16"} -->
-<p class="alignright has-text-align-right has-16-font-size alignright">© Copyright [year] Blockify. All rights reserved. </p>
+<p class="alignright has-text-align-right has-16-font-size alignright">Copyright [year] Blockify. All rights reserved. </p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"neutral-300","iconColorValue":"#b9c0d4","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-logos-only","layout":{"type":"flex"}} -->

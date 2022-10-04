@@ -134,10 +134,11 @@ function render_image_icon( string $content, array $block ): string {
 		];
 
 		$styles['--wp--custom--icon--color'] = $styles['--wp--custom--icon--color'] ?? 'currentColor';
+		$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : $block['attrs']['icon'] ?? __( 'SVG Icon', 'blockify' );
 
 		$span->setAttribute( 'class', implode( ' ', $classes ) );
 		$span->setAttribute( 'style', css_array_to_string( $styles ) );
-		$span->setAttribute( 'aria-label', ( $img->getAttribute( 'alt' ) ) ?? $block['attrs']['icon'] ?? __( 'SVG Icon', 'blockify' ) );
+		$span->setAttribute( 'aria-label', $aria_label );
 
 		$span->removeAttribute( 'src' );
 		$span->removeAttribute( 'alt' );
