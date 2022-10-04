@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Feature Icon Grid Dark
- * Slug: feature-icon-grid-dark
- * Categories: features
- * Block Types: 
- */
-?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3em","bottom":"5em","left":"3em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-200","layout":{"contentSize":"1100px","type":"constrained"}} -->
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3em","bottom":"5em","left":"3em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-200","layout":{"contentSize":"1100px","type":"constrained"}} -->
 <div class="wp-block-group alignwide has-neutral-200-color has-neutral-900-background-color has-text-color has-background" style="border-radius:5px;margin-top:3em;margin-bottom:3em;padding-top:3em;padding-right:3em;padding-bottom:5em;padding-left:3em"><!-- wp:group {"layout":{"contentSize":"600px","type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"bottom":"2em"}}},"textColor":"white"} -->
 <h2 class="has-text-align-center has-white-color has-text-color" style="margin-bottom:2em">Reasons why people love our products and services</h2>

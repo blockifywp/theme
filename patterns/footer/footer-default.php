@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Footer Default
- * Slug: footer-default
- * Categories: footer
- * Block Types: core/template-part/footer
- */
-?><!-- wp:group {"align":"wide","layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"wide","layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignwide"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"3em","top":"5em"},"margin":{"top":"0px","bottom":"0px"}}},"fontSize":"16"} -->
 <div class="wp-block-columns alignwide has-16-font-size" style="margin-top:0px;margin-bottom:0px;padding-top:5em;padding-bottom:3em"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0.3em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->

@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Hero Center Text Dark
- * Slug: hero-center-text-dark
- * Categories: hero
- * Block Types: 
- */
-?><!-- wp:cover {"overlayColor":"neutral-900","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|lg"}}}} -->
+<!-- wp:cover {"overlayColor":"neutral-900","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|lg"}}}} -->
 <div class="wp-block-cover alignfull" style="padding-top:var(--wp--preset--spacing--lg);padding-bottom:var(--wp--preset--spacing--lg)"><span aria-hidden="true" class="wp-block-cover__background has-neutral-900-background-color has-background-dim-100 has-background-dim"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|sm"}}},"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"72"} -->
 <h1 class="has-text-align-center has-72-font-size">Create your website with easy to use blocks</h1>

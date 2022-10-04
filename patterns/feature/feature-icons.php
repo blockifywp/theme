@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Feature Icons
- * Slug: feature-icons
- * Categories: features
- * Block Types: 
- */
-?><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|sm","left":"var:preset|spacing|sm"},"padding":{"top":"0","right":"0","bottom":"0","left":"0"}}}} -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|sm","left":"var:preset|spacing|sm"},"padding":{"top":"0","right":"0","bottom":"0","left":"0"}}}} -->
 <div class="wp-block-columns alignwide" id="features" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"width":40,"height":40,"className":"is-style-icon","textColor":"primary-600","iconName":"styles","iconSvgString":"\u003csvg viewBox=\u00220 0 24 24\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022\u003e\u003cpath d=\u0022M12 4c-4.4 0-8 3.6-8 8v.1c0 4.1 3.2 7.5 7.2 7.9h.8c4.4 0 8-3.6 8-8s-3.6-8-8-8zm0 15V5c3.9 0 7 3.1 7 7s-3.1 7-7 7z\u0022/\u003e\u003c/svg\u003e"} -->
 <figure class="wp-block-image is-resized is-style-icon has-primary-600-color has-text-color" style="--wp--custom--icon--background:var(--wp--custom--conic-gradient, transparent);--wp--custom--icon--color:;--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;M12 4c-4.4 0-8 3.6-8 8v.1c0 4.1 3.2 7.5 7.2 7.9h.8c4.4 0 8-3.6 8-8s-3.6-8-8-8zm0 15V5c3.9 0 7 3.1 7 7s-3.1 7-7 7z&quot;/&gt;</svg&gt;')"><img src="" alt="" width="40" height="40"/></figure>

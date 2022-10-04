@@ -1,10 +1,4 @@
-<?php
-/**
- * Title: Front Page
- * Slug: template/front-page
- * Categories: template
- */
-?>
+
 <!-- wp:group {"tagName":"main","align":"full","layout":{"inherit":true}} -->
 <main class="wp-block-group alignfull">
 	<!-- wp:pattern {"slug":"hero-center-image-light"} /-->

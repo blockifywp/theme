@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Pricing Two Column
- * Slug: pricing-two-column
- * Categories: pricing
- * Block Types: 
- */
-?><!-- wp:group {"align":"wide","layout":{"inherit":false,"contentSize":"900px"}} -->
+<!-- wp:group {"align":"wide","layout":{"inherit":false,"contentSize":"900px"}} -->
 <div class="wp-block-group alignwide alignwide"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}},"fontSize":"60"} -->
 <h2 class="has-text-align-center has-60-font-size" style="margin-top:1em">Choose your plan</h2>
 <!-- /wp:heading -->

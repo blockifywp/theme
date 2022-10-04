@@ -1,12 +1,4 @@
-<?php
-/**
- * Title: Style Guide
- * Slug: style-guide
- * Categories: template
- * Block Types: core/post-content
- * Post Types: page
- */
-?><!-- wp:group {"layout":{"inherit":true}} -->
+<!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:group {"style":{"spacing":{"padding":{"top":"2em","right":"2em","bottom":"2em","left":"2em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"6px","width":"1px"}},"backgroundColor":"gray-50"} -->
 <div class="wp-block-group has-gray-50-background-color has-background" style="border-radius:6px;border-width:1px;margin-top:3em;margin-bottom:3em;padding-top:2em;padding-right:2em;padding-bottom:2em;padding-left:2em"><!-- wp:heading -->
 <h2>Color palette</h2>

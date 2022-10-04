@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Hero Center
- * Slug: hero-center
- * Categories: hero
- * Block Types: 
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}},"layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"11em","bottom":"9em"}}},"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull alignfull" style="padding-top:11em;padding-bottom:9em"><!-- wp:heading {"textAlign":"center","level":1,"fontSize":"72"} -->
 <h1 class="has-text-align-center has-72-font-size">Create your website with easy to use blocks</h1>
 <!-- /wp:heading -->

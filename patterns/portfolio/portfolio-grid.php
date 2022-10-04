@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Portfolio Grid
- * Slug: portfolio-grid
- * Categories: portfolio
- * Block Types: 
- */
-?><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
+<!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} -->
 <h1 class="has-text-align-center" style="margin-top:1em">Portfolio</h1>
 <!-- /wp:heading -->
 

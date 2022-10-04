@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Contact Two Column
- * Slug: contact-two-column
- * Categories: contact
- * Block Types: 
- */
-?><!-- wp:columns {"style":{"spacing":{"padding":{"top":"5em","bottom":"5em"},"blockGap":"5em"}}} -->
+<!-- wp:columns {"style":{"spacing":{"padding":{"top":"5em","bottom":"5em"},"blockGap":"5em"}}} -->
 <div class="wp-block-columns" style="padding-top:5em;padding-bottom:5em"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:heading -->
 <h2>Contact us</h2>

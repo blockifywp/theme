@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Pricing Two Rows
- * Slug: pricing-two-rows
- * Categories: pricing
- * Block Types: 
- */
-?><!-- wp:group {"style":{"spacing":{"margin":{"top":"5em","bottom":"2em"}}},"layout":{"contentSize":"600px","type":"constrained"}} -->
+<!-- wp:group {"style":{"spacing":{"margin":{"top":"5em","bottom":"2em"}}},"layout":{"contentSize":"600px","type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:5em;margin-bottom:2em"><!-- wp:heading {"textAlign":"center"} -->
 <h2 class="has-text-align-center">Pricing packages and plans for every team size</h2>
 <!-- /wp:heading -->

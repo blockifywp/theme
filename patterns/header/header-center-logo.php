@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Header Center Logo
- * Slug: header-center-logo
- * Categories: header
- * Block Types: core/template-part/header
- */
-?><!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"1em","bottom":"1em"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
 <div class="wp-block-group alignwide" style="padding-top:1em;padding-bottom:1em"><!-- wp:search {"label":"Search","showLabel":false,"placeholder":"Search this website","buttonText":"Search","buttonUseIcon":true,"style":{"spacing":{"margin":{"left":"0px"}}},"className":"is-style-toggle"} /-->
 

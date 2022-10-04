@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Hero Image Right
- * Slug: hero-image-right
- * Categories: hero
- * Block Types: 
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"15vw","bottom":"10vw"},"margin":{"top":"0px","bottom":"0px"}}},"layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"15vw","bottom":"10vw"},"margin":{"top":"0px","bottom":"0px"}}},"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0px;margin-bottom:0px;padding-top:15vw;padding-bottom:10vw"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":"4em"}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":1} -->

@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Frequently Asked Questions
- * Slug: frequently-asked-questions
- * Categories: faq
- * Block Types: 
- */
-?><!-- wp:group {"layout":{"inherit":true}} -->
+<!-- wp:group {"layout":{"inherit":true}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em","bottom":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:1em;margin-bottom:1em">Frequently asked questions</h2>
 <!-- /wp:heading -->

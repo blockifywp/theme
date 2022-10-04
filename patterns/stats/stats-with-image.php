@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Metrics Image
- * Slug: metrics-image
- * Categories: metrics
- * Block Types: 
- */
-?><!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|sm","left":"var:preset|spacing|sm"},"padding":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}}}} -->
 <div class="wp-block-columns alignwide" style="padding-top:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:image -->

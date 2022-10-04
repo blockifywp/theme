@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Feature Images
- * Slug: feature-images
- * Categories: features
- * Block Types: 
- */
-?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"1em","bottom":"2em"},"blockGap":"2em"}},"className":"is-reverse-on-mobile","reverseMobile":true} -->
+<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"1em","bottom":"2em"},"blockGap":"2em"}},"className":"is-reverse-on-mobile","reverseMobile":true} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center is-reverse-on-mobile is-reverse-mobile" style="padding-top:1em;padding-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:paragraph {"className":"is-style-default","fontSize":"16"} -->
 <p class="is-style-default has-16-font-size">Design</p>

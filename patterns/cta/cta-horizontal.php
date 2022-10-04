@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: CTA Horizontal Light
- * Slug: cta-horizontal-light
- * Categories: cta
- * Block Types: 
- */
-?><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"},"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}}},"backgroundColor":"primary-100"} -->
+<!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"},"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}}},"backgroundColor":"primary-100"} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center has-primary-100-background-color has-background" style="margin-top:var(--wp--preset--spacing--sm);margin-bottom:var(--wp--preset--spacing--sm);padding-top:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":3} -->
 <h3>Start your next project.</h3>

@@ -1,10 +1,4 @@
-<?php
-/**
- * Title: Search
- * Slug: search
- * Categories: template
- */
-?>
+
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":true}} -->
 <div class="wp-block-group" style="padding-top:3em;padding-bottom:3em"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"bottom":"1em"}}}} -->
 	<h1 class="has-text-align-center" style="margin-bottom:1em">Search results</h1>

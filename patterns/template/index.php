@@ -1,10 +1,4 @@
-<?php
-/**
- * Title: Index
- * Slug: index
- * Categories: template
- */
-?>
+
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"3em","bottom":"3em"}}},"layout":{"inherit":true}} -->
 <div class="wp-block-group" style="padding-top:3em;padding-bottom:3em">
 	<!-- wp:query {"queryId":17,"query":{"perPage":3,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"displayLayout":{"type":"flex","columns":3},"align":"wide","style":{"spacing":{"padding":{"top":"0.02em","right":"0.02em","bottom":"0.02em","left":"0.02em"}}}} -->

@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Footer Default Light
- * Slug: footer-default-light
- * Categories: footer
- * Block Types: core/template-part/footer
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"1em"},"margin":{"top":"3em"}}},"backgroundColor":"neutral-50","layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"1em"},"margin":{"top":"3em"}}},"backgroundColor":"neutral-50","layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull has-neutral-50-background-color has-background" style="margin-top:3em;padding-bottom:1em"><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"bottom":"3em","top":"5em"}}},"fontSize":"16"} -->
 <div class="wp-block-columns alignwide has-16-font-size" style="padding-top:5em;padding-bottom:3em"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:group {"style":{"spacing":{"blockGap":"0.3em"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->

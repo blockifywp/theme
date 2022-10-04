@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Blog Single Column
- * Slug: blog-single-column
- * Categories: blog
- * Block Types: 
- */
-?><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"2em"}}}} -->
+<!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"2em"}}}} -->
 <h1 class="has-text-align-center" style="margin-top:2em">Latest Posts</h1>
 <!-- /wp:heading -->
 

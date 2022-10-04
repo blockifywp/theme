@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Metrics Four Columns
- * Slug: metrics-four-columns
- * Categories: metrics
- * Block Types: 
- */
-?><!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|xs","bottom":"var:preset|spacing|xs"}}}} -->
+<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|xs","bottom":"var:preset|spacing|xs"}}}} -->
 <div class="wp-block-columns alignwide" style="padding-top:var(--wp--preset--spacing--xs);padding-bottom:var(--wp--preset--spacing--xs)"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"center","level":6,"fontSize":"72"} -->
 <h6 class="has-text-align-center has-72-font-size">30k</h6>

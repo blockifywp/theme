@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Blog Posts Columns Dark
- * Slug: blog-posts-columns-dark
- * Categories: blog
- * Block Types: 
- */
-?><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","right":"var:preset|spacing|xs","bottom":"var:preset|spacing|md","left":"var:preset|spacing|xs"},"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-100","layout":{"contentSize":"1100px","type":"constrained"}} -->
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","right":"var:preset|spacing|xs","bottom":"var:preset|spacing|md","left":"var:preset|spacing|xs"},"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-900","textColor":"neutral-100","layout":{"contentSize":"1100px","type":"constrained"}} -->
 <div class="wp-block-group alignwide has-neutral-100-color has-neutral-900-background-color has-text-color has-background" style="border-radius:5px;margin-top:var(--wp--preset--spacing--sm);margin-bottom:var(--wp--preset--spacing--sm);padding-top:var(--wp--preset--spacing--md);padding-right:var(--wp--preset--spacing--xs);padding-bottom:var(--wp--preset--spacing--md);padding-left:var(--wp--preset--spacing--xs)"><!-- wp:heading {"textAlign":"center","textColor":"white"} -->
 <h2 class="has-text-align-center has-white-color has-text-color">Latest Posts</h2>
 <!-- /wp:heading -->

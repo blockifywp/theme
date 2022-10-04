@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Team Members
- * Slug: team-members
- * Categories: team
- * Block Types: 
- */
-?><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}}}} -->
+<!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:var(--wp--preset--spacing--sm);margin-bottom:var(--wp--preset--spacing--sm)">Meet the team</h2>
 <!-- /wp:heading -->
 

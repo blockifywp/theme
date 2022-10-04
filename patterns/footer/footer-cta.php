@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Footer CTA Dark
- * Slug: footer-cta-dark
- * Categories: footer
- * Block Types: core/template-part/footer
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"},"margin":{"top":"3em"}}},"backgroundColor":"neutral-900","textColor":"neutral-200","layout":{"inherit":true}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"3em","bottom":"3em"},"margin":{"top":"3em"}}},"backgroundColor":"neutral-900","textColor":"neutral-200","layout":{"inherit":true}} -->
 <div class="wp-block-group alignfull has-neutral-200-color has-neutral-900-background-color has-text-color has-background alignfull" style="margin-top:3em;padding-top:3em;padding-bottom:3em"><!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"margin":{"bottom":"2em"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center alignwide" style="margin-bottom:2em"><!-- wp:column {"verticalAlignment":"center"} -->
 <div class="wp-block-column is-vertically-aligned-center"><!-- wp:heading {"level":4,"textColor":"neutral-25"} -->

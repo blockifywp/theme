@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: CTA Box Light
- * Slug: cta-box-light
- * Categories: cta
- * Block Types: 
- */
-?><!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","right":"var:preset|spacing|md","bottom":"var:preset|spacing|md","left":"var:preset|spacing|md"},"margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}},"border":{"radius":"5px"}},"backgroundColor":"primary-100","layout":{"contentSize":"700px","type":"constrained"}} -->
 <div class="wp-block-group alignwide has-primary-100-background-color has-background" style="border-radius:5px;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:var(--wp--preset--spacing--md);padding-right:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md);padding-left:var(--wp--preset--spacing--md)"><!-- wp:heading {"textAlign":"center"} -->
 <h2 class="has-text-align-center">Ready to get started?</h2>

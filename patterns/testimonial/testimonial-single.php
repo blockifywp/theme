@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Testimonial Single
- * Slug: testimonial-single
- * Categories: testimonials
- * Block Types: 
- */
-?><!-- wp:group {"layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"center","textColor":"primary-600"} -->
 <p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter">★ ★ ★ ★ ★</p>
 <!-- /wp:paragraph -->

@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Header Banner Light
- * Slug: header-banner-light
- * Categories: header
- * Block Types: core/template-part/header
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"layout":{"inherit":true,"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}},"layout":{"inherit":true,"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="margin-top:0px;margin-bottom:0px"><!-- wp:group {"align":"full","style":{"typography":{"fontStyle":"normal","fontWeight":"500"},"elements":{"link":{"color":{"text":"var:preset|color|primary-100"}}}},"backgroundColor":"primary-600","textColor":"white"} -->
 <div class="wp-block-group alignfull has-white-color has-primary-600-background-color has-text-color has-background has-link-color" style="font-style:normal;font-weight:500"><!-- wp:paragraph {"align":"center","style":{"spacing":{"padding":{"top":"0.4em","right":"0.4em","bottom":"0.4em","left":"0.4em"},"margin":{"top":"0px","right":"0px","bottom":"0px","left":"0px"}}},"fontSize":"16"} -->
 <p class="aligncenter has-text-align-center has-16-font-size aligncenter" style="margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;padding-top:0.4em;padding-right:0.4em;padding-bottom:0.4em;padding-left:0.4em">Save 50% on all purchases for a limited time only. <a href="#">Learn more →</a></p>

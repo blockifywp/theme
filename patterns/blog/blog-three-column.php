@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Blog Three Column
- * Slug: blog-three-column
- * Categories: blog
- * Block Types: 
- */
-?><!-- wp:heading {"textAlign":"center","level":3,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|sm","top":"var:preset|spacing|md"}}}} -->
+<!-- wp:heading {"textAlign":"center","level":3,"style":{"spacing":{"margin":{"bottom":"var:preset|spacing|sm","top":"var:preset|spacing|md"}}}} -->
 <h3 class="has-text-align-center" style="margin-top:var(--wp--preset--spacing--md);margin-bottom:var(--wp--preset--spacing--sm)">Latest posts</h3>
 <!-- /wp:heading -->
 

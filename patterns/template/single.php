@@ -1,10 +1,4 @@
-<?php
-/**
- * Title: Single Post
- * Slug: single-post
- * Categories: template
- */
-?>
+
 <!-- wp:group {"tagName":"main"} -->
 <main class="wp-block-group"><!-- wp:post-title {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em"}}}} /-->
 

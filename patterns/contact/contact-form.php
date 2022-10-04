@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Contact Form
- * Slug: contact-form
- * Categories: contact
- * Block Types: 
- */
-?><!-- wp:group {"layout":{"type":"default","contentSize":"600px"}} -->
+<!-- wp:group {"layout":{"type":"default","contentSize":"600px"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"1em","bottom":"0.5em"}}}} -->
 <h1 class="has-text-align-center" style="margin-top:1em;margin-bottom:0.5em">Contact Form</h1>
 <!-- /wp:heading -->

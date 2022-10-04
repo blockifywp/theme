@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Testimonial Three Column
- * Slug: testimonial-three-column
- * Categories: testimonials
- * Block Types: 
- */
-?><!-- wp:columns {"align":"wide"} -->
+<!-- wp:columns {"align":"wide"} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:paragraph {"align":"center","style":{"typography":{"letterSpacing":"5px"}},"textColor":"primary-600","className":"aligncenter"} -->
 <p class="aligncenter has-text-align-center has-primary-600-color has-text-color aligncenter" style="letter-spacing:5px">★★★★★</p>

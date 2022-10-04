@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Pricing Three Column
- * Slug: pricing-three-column
- * Categories: pricing
- * Block Types: 
- */
-?><!-- wp:group {"align":"wide","layout":{"inherit":true}} -->
+<!-- wp:group {"align":"wide","layout":{"inherit":true}} -->
 <div class="wp-block-group alignwide alignwide" id="pricing"><!-- wp:heading {"textAlign":"center","style":{"spacing":{"margin":{"top":"1em"}}}} -->
 <h2 class="has-text-align-center" style="margin-top:1em">Simple pricing plans</h2>
 <!-- /wp:heading -->

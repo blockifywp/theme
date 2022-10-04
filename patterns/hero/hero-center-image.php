@@ -1,11 +1,4 @@
-<?php
-/**
- * Title: Hero Center Image Light
- * Slug: hero-center-image-light
- * Categories: hero
- * Block Types: 
- */
-?><!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","left":"0","bottom":"0"},"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}},"backgroundColor":"primary-100","layout":{"type":"constrained"},"position":"relative","zIndex":2} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","left":"0","bottom":"0"},"margin":{"top":"0","right":"0","bottom":"0","left":"0"}}},"backgroundColor":"primary-100","layout":{"type":"constrained"},"position":"relative","zIndex":2} -->
 <div class="wp-block-group alignfull has-primary-100-background-color has-background" style="margin-top:0;margin-right:0;margin-bottom:0;margin-left:0;padding-top:var(--wp--preset--spacing--lg);padding-bottom:0;padding-left:0"><!-- wp:heading {"textAlign":"center","level":1,"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|xs"}}},"fontSize":"72"} -->
 <h1 class="alignwide has-text-align-center has-72-font-size alignwide" style="margin-top:var(--wp--preset--spacing--xs)">Create amazing websites<br>with WordPress</h1>
 <!-- /wp:heading -->
