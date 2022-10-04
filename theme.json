@@ -80,7 +80,10 @@
         "textTransform": "uppercase",
         "letterSpacing": "0.5em"
       },
-      "transition": "all 0.2s ease"
+      "transition": "all 0.2s ease",
+      "buttonOutline": {
+        "color": "var(--wp--preset--color--primary-600)"
+      }
     },
     "spacing": {
       "blockGap": true,
