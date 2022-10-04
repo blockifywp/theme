@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 
 add_filter( 'render_block', NS . 'render_block_position', 10, 2 );
@@ -22,71 +21,44 @@ function render_block_position( string $content, array $block ): string {
 	$position = $block['attrs']['position'] ?? null;
 	$inset    = $block['attrs']['inset'] ?? null;
 	$zIndex   = $block['attrs']['zIndex'] ?? null;
+	$overflow = $block['attrs']['overflow'] ?? null;
 
-	if ( $position ) {
-		$dom = dom( $content );
+	$has_attributes = $position || $inset || $zIndex || $overflow;
 
-		/* @var \DOMElement $first First element. */
-		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
-
-		if ( ! $first ) {
-			return $content;
-		}
-
-		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
-
-		if ( ! ( $styles['position'] ?? null ) ) {
-			$styles['position'] = $position;
-		}
-
-		$first->setAttribute( 'style', css_array_to_string( $styles ) );
-
-		$content = $dom->saveHTML();
+	if ( ! $has_attributes ) {
+		return $content;
 	}
 
-	if ( $zIndex ) {
-		$dom = dom( $content );
+	$dom   = dom( $content );
+	$first = get_dom_element( '*', $dom );
 
-		if ( ! $dom->firstChild ) {
-			return $content;
-		}
+	if ( ! $first ) {
+		return $content;
+	}
 
-		/* @var DOMElement $first First element. */
-		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
+	$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 
-		if ( ! $first ) {
-			return $content;
-		}
-
-		$styles            = css_string_to_array( $first->getAttribute( 'style' ) );
-		$styles['z-index'] = $zIndex;
-
-		$first->setAttribute( 'style', css_array_to_string( $styles ) );
-
-		$content = $dom->saveHTML();
+	if ( $position ) {
+		$styles['position'] = $position;
 	}
 
 	if ( $inset ) {
-		$dom = dom( $content );
-
-		/* @var DOMElement $first First element. */
-		$first = $dom->getElementsByTagName( 'div' )->item( 0 );
-
-		if ( ! $first ) {
-			return $content;
-		}
-
-		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
-
 		$styles['top']    = $inset['top'] ?? null;
 		$styles['right']  = $inset['right'] ?? null;
 		$styles['bottom'] = $inset['bottom'] ?? null;
 		$styles['left']   = $inset['left'] ?? null;
-
-		$first->setAttribute( 'style', css_array_to_string( $styles ) );
-
-		$content = $dom->saveHTML();
 	}
 
-	return $content;
+	if ( $zIndex ) {
+		$styles['z-index'] = $zIndex;
+	}
+
+	if ( $overflow ) {
+		$styles['overflow-x'] = $overflow['x'] ?? null;
+		$styles['overflow-y'] = $overflow['y'] ?? null;
+	}
+
+	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+
+	return $dom->saveHTML();
 }

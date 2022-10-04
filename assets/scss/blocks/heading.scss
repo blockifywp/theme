@@ -1,3 +1,11 @@
+.wp-block-heading {
+
+	// Overwrite core/Gutenberg.
+	&.has-background {
+		padding: 0;
+	}
+}
+
 .wp-block-heading:not(.has-text-color) {
 
 	// Gradient heading support.

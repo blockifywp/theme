@@ -2,6 +2,7 @@
 	display: grid;
 	grid-template-rows: auto 1fr auto;
 	min-height: var(--wp--custom--site-blocks--min-height, 100vh);
+	overflow-x: hidden;
 }
 
 .wp-site-blocks > * + * {

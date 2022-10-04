@@ -18,20 +18,18 @@ use function implode;
  * @return string
  */
 function render_tag_cloud_block( string $content, array $block ): string {
-	$smallest = $block['attrs']['smallestFontSize'] ?? '1em';
-	$largest  = $block['attrs']['largestFontSize'] ?? '1em';
-	$dom      = dom( $content );
+	$smallest  = $block['attrs']['smallestFontSize'] ?? '1em';
+	$largest   = $block['attrs']['largestFontSize'] ?? '1em';
+	$dom       = dom( $content );
+	$paragraph = get_dom_element( 'p', $dom );
 
-	/* @var \DOMElement $first_child Tag cloud. */
-	$first_child = $dom->getElementsByTagName( 'p' )->item( 0 );
-
-	$first_child->setAttribute(
+	$paragraph->setAttribute(
 		'style',
 		implode(
 			';',
 			[
 				'font-size:max(' . $smallest . ',' . $largest . ')',
-				$first_child->getAttribute( 'style' ),
+				$paragraph->getAttribute( 'style' ),
 			]
 		)
 	);

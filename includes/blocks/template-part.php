@@ -22,10 +22,8 @@ add_filter( 'render_block_core/template-part', NS . 'render_template_part_block'
  * @return string
  */
 function render_template_part_block( string $content, array $block ): string {
-	$dom = dom( $content );
-
-	/* @var \DOMElement $header Header element. */
-	$header = $dom->getElementsByTagName( 'header' )->item( 0 );
+	$dom    = dom( $content );
+	$header = get_dom_element( 'header', $dom );
 
 	if ( ! $header ) {
 		return $content;
@@ -35,8 +33,7 @@ function render_template_part_block( string $content, array $block ): string {
 		return $content;
 	}
 
-	$css = $header->getAttribute( 'style' );
-
+	$css                = $header->getAttribute( 'style' );
 	$styles             = explode( ';', $css );
 	$styles['position'] = $block['attrs']['position'] ?? null;
 	$styles['top']      = $block['attrs']['inset']['top'] ?? null;
@@ -47,6 +44,10 @@ function render_template_part_block( string $content, array $block ): string {
 
 	foreach ( $styles as $property => $value ) {
 		$css .= $value ? "$property:$value;" : '';
+	}
+
+	if ( ! $header->getAttribute( 'class' ) ) {
+		return $content;
 	}
 
 	if ( ! $css ) {
@@ -80,25 +81,8 @@ function render_template_part_block( string $content, array $block ): string {
 
 	$styles['--wp--custom--box-shadow--z-index'] = $box_shadow['zIndex'] ?? null;
 
-	$attrs = $block['attrs'];
-	$color = $attrs['style']['color'] ?? [];
-
-	if ( isset( $color['background'] ) ) {
-		$styles['background'] = $color['background'];
-	}
-
-	if ( isset( $attrs['backgroundColor'] ) ) {
-		$styles['background'] = 'var(--wp--preset--color--' . $attrs['backgroundColor'] . ')';
-	}
-
-	if ( isset( $color['text'] ) ) {
-		$styles['color'] = $color['text'];
-	}
-
-	if ( isset( $attrs['textColor'] ) ) {
-		$styles['color'] = 'var(--wp--preset--color--' . $attrs['textColor'] . ')';
-	}
-
+	$attrs     = $block['attrs'];
+	$styles    = add_block_support_color( $styles, $attrs );
 	$classes[] = 'wp-site-' . $header->tagName;
 	$classes[] = isset( $attrs['boxShadow']['useDefault'] ) && $attrs['boxShadow']['useDefault'] ? 'has-box-shadow' : '';
 

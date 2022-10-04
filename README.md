@@ -3,10 +3,11 @@
 [![Packagist](https://img.shields.io/packagist/v/blockify/theme.svg?color=239922&style=popout)](https://packagist.org/packages/blockify/theme)
 [![CI Status](https://github.com/blockifywp/theme/actions/workflows/integrate.yml/badge.svg)](https://github.com/blockifywp/theme/actions)
 [![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://github.com/blockifywp/theme/blob/main/LICENSE)
+[![WordPress.org](https://img.shields.io/wordpress/theme/installs/blockify?label=WordPress.org)](https://img.shields.io/wordpress/theme/installs/blockify?label=WordPress.org)
 
-Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimal settings which extend core WordPress blocks in a natural way, allowing for a greater level of design control. Dark mode, Google Fonts, SVG icons, box shadows, text gradients, absolute positioning and responsive settings are some of the smart customization features included. Please note Gutenberg is an experimental plugin and updates may cause breaking changes that require block recovery.
+Lightweight yet powerful full site editing block theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
 
-![screenshot](https://raw.githubusercontent.com/blockifywp/theme/aaf0f14b2db28b37e69a8ee52a8d7d565e691355/screenshot.png)
+<img width="600" alt="Blockify full site editing theme screenshot" src="https://user-images.githubusercontent.com/24793388/191764447-00fd54f3-7eae-417a-93fe-4e12a688300f.png">
 
 ## Installation
 
@@ -66,7 +67,7 @@ Free, lightweight collection of fully customizable, commonly needed blocks, full
 
 ## Contributing
 
-All contributions and questions are welcome. Please feel free to submit Github issues.
+All contributions and questions are welcome. Please feel free to submit GitHub issues and pull request. All feature requests will be considered.
 
 ## Support
 
@@ -146,14 +147,18 @@ function blockify_config( array $defaults ) : array {
 
 ## Screenshots
 
-![style variations](https://user-images.githubusercontent.com/24793388/185838708-af499ccc-78e9-4b4f-8075-239b47c71f9d.gif)
-*Style variations*
+###### Style variations
 
-![shadows](https://ps.w.org/blockify/assets/screenshot-2.png)
-*Box shadow settings*
+<img width="600" alt="Theme preset style variations" src="https://user-images.githubusercontent.com/24793388/185838708-af499ccc-78e9-4b4f-8075-239b47c71f9d.gif"/>
 
-![gradients](https://ps.w.org/blockify/assets/screenshot-3.png)
-*Text gradients*
+###### Box shadow controls
 
-![blocks](https://ps.w.org/blockify/assets/screenshot-1.png)
-*Block library (in blockify plugin)*
+<img width="600" alt="Box shadow block extension" src="https://ps.w.org/blockify/assets/screenshot-2.png"/>
+
+###### Gradient text format
+
+<img width="600" alt="Gradient text format" src="https://ps.w.org/blockify/assets/screenshot-3.png"/>
+
+###### Free block plugins (separate to theme)
+
+<img width="600" alt="Separate block plugins" src="https://ps.w.org/blockify/assets/screenshot-1.png"/>

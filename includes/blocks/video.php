@@ -6,10 +6,23 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function add_filter;
+use function add_theme_support;
 use function str_replace;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
+
+add_action( 'after_setup_theme', NS . 'theme_supports' );
+/**
+ * Handles theme supports.
+ *
+ * @since 0.0.2
+ *
+ * @return void
+ */
+function theme_supports(): void {
+	add_theme_support( 'responsive-embeds' );
+}
 
 add_filter( 'render_block_core/video', NS . 'render_video_block', 10, 2 );
 /**
@@ -23,6 +36,7 @@ add_filter( 'render_block_core/video', NS . 'render_video_block', 10, 2 );
  * @return string
  */
 function render_video_block( string $content, array $block ): string {
+
 	$content = str_replace(
 		[
 			'style="background:',

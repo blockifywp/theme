@@ -1,28 +1,43 @@
-$spread: var(--wp--custom--box-shadow--spread, 0);
+@import "../abstracts/box-shadow";
 
-@mixin box-shadow {
-	content: " ";
-	height: var(--wp--custom--icon--height, calc(100% + #{$spread}));
-	width: var(--wp--custom--icon--width, calc(100% + #{$spread}));
-	z-index: var(--wp--custom--box-shadow--z-index, -1);
-	position: absolute;
-	left: calc(var(--wp--custom--box-shadow--x, 0) -  (#{$spread} / 2));
-	top: calc(var(--wp--custom--box-shadow--y, 0) -  (#{$spread} / 2));
-	filter: blur(var(--wp--custom--box-shadow--blur, 2px));
-	background: var(--wp--custom--box-shadow--color);
-	border-radius: inherit;
-	margin: auto;
-}
-
-.has-box-shadow {
+[style*='--wp--custom--box-shadow--'] {
 	position: relative;
+	overflow: visible;
 
-	&:before {
+	&:not(.wp-block-button):before {
 		@include box-shadow;
+	}
+
+	&:not(.is-style-icon):after {
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		background: inherit;
+		border-radius: inherit !important;
+		z-index: -1 !important;
+		pointer-events: none;
+	}
+
+	&.wp-block-button {
+		opacity: 0.999 !important;
+	}
+
+	> .wp-block-button__link {
+		position: relative;
+		overflow: visible;
+
+		&:before {
+			@include box-shadow;
+		}
+	}
+
+	.components-placeholder {
+		overflow: visible;
 	}
 }
 
-.is-style-icon.has-box-shadow {
+.is-style-icon[style*='--wp--custom--box-shadow--'] {
 
 	&:before {
 		display: none;
@@ -30,7 +45,5 @@ $spread: var(--wp--custom--box-shadow--spread, 0);
 
 	> div:before {
 		@include box-shadow;
-		width: 100%;
-		height: 100%;
 	}
 }

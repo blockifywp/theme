@@ -1,5 +1,9 @@
-.wp-block-quote__citation {
-	line-height: var(--wp--custom--line-height--text, 1.5);
+.wp-block-quote {
+	width: 100%;
+
+	&__citation {
+		line-height: var(--wp--custom--line-height--text, 1.5);
+	}
 }
 
 .is-style-plain {

@@ -19,3 +19,8 @@
 .wp-block-cover.is-light .wp-block-cover__inner-container {
 	color: var(--wp--preset--color--neutral-900, #000);
 }
+
+.wp-block-cover__image-background, .wp-block-cover__video-background {
+	width: 100% !important;
+	max-width: 100% !important;
+}

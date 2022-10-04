@@ -5,10 +5,16 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true
   },
+  "include": [
+    "assets/tsx"
+  ],
   "exclude": [
+    "assets/js",
     "build",
-    "node_modules"
+    "node_modules",
+    "vendor"
   ]
 }

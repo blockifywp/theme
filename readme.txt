@@ -1,14 +1,15 @@
 === Blockify ===
 Contributors: blockify
 Requires at least: 6.0
-Tested up to: 6.0.1
-Stable tag: 0.3.12
+Tested up to: 6.0.2
+Stable tag: 0.4.0
+Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimal settings which extend core WordPress blocks in a natural way, allowing for a greater level of design control. Dark mode, Google Fonts, SVG icons, box shadows, text gradients, absolute positioning and responsive settings are some of the smart customization features included.
+Lightweight yet powerful full site editing block theme framework for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
 
 == Installation ==
 
@@ -53,11 +54,37 @@ Dashicons
 License: GPL-2.0-or-later
 License URL: https://www.gnu.org/licenses/gpl-2.0.html
 
+Google Fonts
+License: SIL Open Font License, 1.1
+License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+
+
 All other custom made assets are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.4.0 - 22 September 2022 =
+
+* Add: Conic gradient support
+* Add: Negative margin support
+* Add: Icon block variation
+* Add: Underline, brush stroke, circle text formats
+* Add: Gradient text format
+* Add: CI workflow, phpstan, coding standards props @szepeviktor
+* Add: Local web font files
+* Add: Sub heading paragraph block style
+* Add: Home page block pattern
+* Add: Gutenberg dependency
+* Add: Tested up to PHP 8.2 support
+* Update: Rename first_child variables to match element
+* Update: Separate utility functions
+* Fix: Navigation block styling
+* Remove: Image block icon and placeholder styles
+* Remove: Slugs from patterns
+* Remove: Web font downloader
+* Remove: Dashicons
 
 = 0.3.12 - 7 September 2022 =
 * Fix: No dark mode config

@@ -4,11 +4,9 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 use function explode;
 use function implode;
-use function is_a;
 
 add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 10, 2 );
 /**
@@ -26,17 +24,10 @@ function render_post_content_block( string $content, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 
 	if ( ! empty( $margin ) || ! empty( $padding ) ) {
-		$dom = dom( $content );
-
-		/* @var DOMElement $first_child Post content. */
-		$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
-
-		if ( ! is_a( $first_child, DOMElement::class ) ) {
-			return $content;
-		}
-
+		$dom      = dom( $content );
+		$div      = get_dom_element( 'div', $dom );
 		$styles   = [];
-		$original = $first_child->getAttribute( 'style' );
+		$original = $div->getAttribute( 'style' );
 
 		if ( $original ) {
 			foreach ( explode( ';', $original ) as $rule ) {
@@ -52,10 +43,9 @@ function render_post_content_block( string $content, array $block ): string {
 			$styles[] = "padding-$key:$value";
 		}
 
-		$first_child->setAttribute( 'style', implode( ';', $styles ) );
+		$div->setAttribute( 'style', implode( ';', $styles ) );
 
 		$content = $dom->saveHTML();
-
 	}
 
 	return $content;

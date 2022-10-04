@@ -4,11 +4,11 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 use function explode;
 use function implode;
 use function str_contains;
+use function wp_get_global_settings;
 
 add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
 /**
@@ -23,13 +23,9 @@ add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
  */
 function render_button_block( string $content, array $block ): string {
 	if ( str_contains( $content, 'is-style-outline' ) ) {
-		$dom = dom( $content );
-
-		/* @var DOMElement $button Button element. */
-		$button = $dom->getElementsByTagName( 'div' )->item( 0 );
-
-		/* @var DOMElement $link Link element. */
-		$link = $button->getElementsByTagName( 'a' )->item( 0 );
+		$dom    = dom( $content );
+		$button = get_dom_element( 'div', $dom );
+		$link   = get_dom_element( 'a', $button );
 
 		$classes = explode( ' ', $link->getAttribute( 'class' ) );
 		$link->setAttribute(
@@ -47,18 +43,14 @@ function render_button_block( string $content, array $block ): string {
 	}
 
 	if ( str_contains( $content, '-border-' ) ) {
-		$global_settings = \wp_get_global_settings();
+		$global_settings = wp_get_global_settings();
 		$dom             = dom( $content );
-
-		/* @var DOMElement $button Button element. */
-		$button = $dom->getElementsByTagName( 'div' )->item( 0 );
-
-		/* @var DOMElement $link Link element. */
-		$link        = $button->getElementsByTagName( 'a' )->item( 0 );
-		$classes     = explode( ' ', $button->getAttribute( 'class' ) );
-		$styles      = explode( ';', $button->getAttribute( 'style' ) );
-		$new_classes = [];
-		$new_styles  = [];
+		$button          = get_dom_element( 'div', $dom );
+		$link            = get_dom_element( 'a', $dom );
+		$classes         = explode( ' ', $button->getAttribute( 'class' ) );
+		$styles          = explode( ';', $button->getAttribute( 'style' ) );
+		$new_classes     = [];
+		$new_styles      = [];
 
 		foreach ( $classes as $class ) {
 			if ( ! str_contains( $class, '-border-' ) ) {

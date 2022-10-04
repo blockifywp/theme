@@ -1,3 +1,5 @@
+$navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
+
 .wp-block-navigation {
 
 	// 782px hardcoded in core.
@@ -11,7 +13,7 @@
 nav .wp-block-navigation-item__label,
 .wp-block-navigation-item__content,
 .wp-block-navigation-link__placeholder-text {
-	white-space: nowrap;
+	white-space: nowrap !important;
 }
 
 .wp-block-navigation:not(.is-responsive) {
@@ -21,15 +23,19 @@ nav .wp-block-navigation-item__label,
 .wp-block-navigation__submenu-container {
 	border: none;
 
+	.wp-block-navigation-item:last-of-type {
+		padding-bottom: 0;
+	}
+
 	// 782px hardcoded in core.
 	@media (max-width: 783px) {
 		gap: var(--wp--custom--submenu--gap) !important;
-		padding: var(--wp--custom--submenu--gap) 0 0 !important;
+		padding: $navigation_padding 0 0 !important;
 	}
 
 	// 782px hardcoded in core.
 	@media (min-width: 783px) {
-		padding: var(--wp--custom--submenu--padding);
+		padding: $navigation_padding var(--wp--style--block-gap) !important;
 	}
 }
 
@@ -50,7 +56,7 @@ nav .wp-block-navigation-item__label,
 	gap: var(--wp--custom--navigation--gap, var(--wp--style--block-gap, 1em)) !important;
 }
 
-@media ( min-width: 781px ) {
+@media (min-width: 781px) {
 	.wp-block-page-list {
 		gap: 0;
 	}
@@ -66,8 +72,13 @@ nav .wp-block-navigation-item__label,
 	font-weight: inherit;
 }
 
-.wp-block-navigation :where(.wp-block-navigation__submenu-container) .wp-block-navigation-item__content {
-	padding: calc(var(--wp--style--block-gap) / 2);
+.wp-block-navigation .wp-block-navigation__submenu-container {
+	padding-top: calc(var(--wp--style--block-gap) / 2);
+	padding-bottom: calc(var(--wp--style--block-gap) / 2);
+
+	.wp-block-navigation-item__content {
+		padding: 0;
+	}
 }
 
 .wp-block-navigation:not(.has-background) .wp-block-navigation__submenu-container {
@@ -101,9 +112,15 @@ nav .wp-block-navigation-item__label,
 	margin-top: 46px;
 }
 
-// Link.
-.wp-block-navigation-item {
-	margin-bottom: 0; // Theme.json doesn't work.
+// Theme.json doesn't work.
+.wp-block-navigation ul li.wp-block-navigation-item {
+	margin-bottom: 0;
+	padding: $navigation_padding; // Override core 0px.
+
+	.wp-block-navigation-item {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 
 .is-vertical .wp-block-navigation-item__content {
@@ -121,6 +138,10 @@ nav .wp-block-navigation-item__label,
 
 .wp-block-navigation-item[class*="is-style-columns-"]:not(.is-style-columns-1) {
 	position: static;
+}
+
+.wp-block-navigation.items-justified-right .wp-block-navigation__submenu-container {
+	right: auto !important;
 }
 
 // Reset needed as default is too low (600px).

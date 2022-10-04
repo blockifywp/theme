@@ -1,0 +1,11 @@
+.is-placeholder {
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: block;
+	min-width: 100px;
+	min-height: 200px;
+	border: 1px dashed var(--wp--custom--border--color, currentColor);
+	border-radius: var(--wp--custom--border--radius);
+	aspect-ratio: 16/9;
+}

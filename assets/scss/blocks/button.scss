@@ -9,7 +9,13 @@
 	}
 }
 
+// Theme.json background gradient support.
+.wp-block-button:not(.is-style-outline) .wp-block-button__link:not(.has-background) {
+	background: var(--wp--custom--button--background);
+}
+
 .wp-block-button__link {
+
 	.is-style-secondary &:not(.has-background) {
 		background: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));
 		border-color: var(--wp--preset--color--secondary-600, var(--wp--preset--color--primary-100));
@@ -20,11 +26,11 @@
 	}
 
 	// .wp-block-button required for border width in editor.
-	.wp-block-button.is-style-outline & {
-		border-width: var(--wp--custom--button-outline--border-width, 2px);
+	.is-style-outline & {
+		border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
 		border-color: currentColor;
 		line-height: calc(1em - 4px);
-		background: none;
+		background: transparent;
 
 		&.wp-element-button {
 			padding: var(--wp--custom--button--padding, 0.9em 1.2em);
@@ -32,23 +38,6 @@
 	}
 
 	.is-style-outline &:not(.has-text-color) {
-		color: var(--wp--custom--button--background, inherit) !important;
+		color: var(--wp--custom--button-outline--color, inherit) !important;
 	}
 }
-
-.wp-block-button__width-25 {
-	--wp--custom--button--width: 25%;
-}
-
-.wp-block-button__width-50 {
-	--wp--custom--button--width: 50%;
-}
-
-.wp-block-button__width-75 {
-	--wp--custom--button--width: 75%;
-}
-
-.wp-block-button__width-100 {
-	--wp--custom--button--width: 100%;
-}
-

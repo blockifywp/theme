@@ -26,7 +26,8 @@
     }
   },
   "require": {
-    "php": "^7.4 || ^8.0"
+    "php": "^7.4 || ^8.0",
+    "wptrt/admin-notices": "dev-master"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",

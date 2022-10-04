@@ -2,14 +2,15 @@
  * Theme Name: Blockify
  * Author: Blockify
  * Author URI: https://blockifywp.com/
- * Description: Lightweight yet powerful full site editing starter theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimal settings which extend core WordPress blocks in a natural way, allowing for a greater level of design control. Dark mode, Google Fonts, SVG icons, box shadows, text gradients, absolute positioning and responsive settings are some of the smart customization features included. Please note Gutenberg is an experimental plugin and updates may cause breaking changes that require block recovery.
+ * Description: Lightweight yet powerful full site editing block theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
  * Requires at least: 6.0
- * Tested up to: 6.0
+ * Tested up to: 6.0.2
  * Requires PHP: 7.4
- * Version: 0.3.12
+ * Tested up to PHP: 8.19
+ * Version: 0.4.0
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: blockify
- * Domain Path: /assets/lang
+ * Domain Path: /languages
  * Tags: full-site-editing, block-patterns, block-styles, custom-logo, editor-style, featured-images, sticky-post, wide-blocks, translation-ready, grid-layout, one-column, two-columns, three-columns, four-columns, e-commerce, news, portfolio
 */

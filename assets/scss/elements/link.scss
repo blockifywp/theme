@@ -1,11 +1,5 @@
 a {
 	transition: var(--wp--custom--transition, inherit);
-
-	&:hover,
-	&:focus,
-	&:active {
-
-	}
 }
 
 a:not(

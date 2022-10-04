@@ -22,9 +22,8 @@ function render_post_author_block( string $content, array $block ): string {
 	$dom    = dom( $content );
 	$styles = [];
 
-	/* @var $first_child \DOMElement Post author. */
-	$first_child = $dom->getElementsByTagName( 'div' )->item( 0 );
-	$style       = $first_child->getAttribute( 'style' );
+	$div   = get_dom_element( 'div', $dom );
+	$style = $div->getAttribute( 'style' );
 
 	if ( $block['attrs']['style']['border'] ?? null ) {
 		$styles['border-width']  = $block['attrs']['style']['border']['width'] ?? null;
@@ -33,7 +32,7 @@ function render_post_author_block( string $content, array $block ): string {
 		$styles['border-radius'] = $block['attrs']['style']['border']['radius'] ?? null;
 	}
 
-	$first_child->setAttribute(
+	$div->setAttribute(
 		'style',
 		( $style ? $style . ';' : '' ) . css_array_to_string( $styles )
 	);

@@ -13,7 +13,6 @@
 	// Gutenberg .wp-element-button workaround. Also used by input.
 	width: var(--wp--custom--button--width, auto); // Not generated.
 	color: var(--wp--custom--button--color, inherit);
-	background: var(--wp--custom--button--background, inherit);
 	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
 	border-radius: var(--wp--custom--button--border-radius, inherit);
 	border-width: var(--wp--custom--button--border-width);
@@ -33,17 +32,17 @@
 	}
 }
 
-// Commonly used class. (wp.org, woocommerce, etc.)
+// Commonly used class. (wp.org, woocommerce, etc.). !important for EDD.
 .button {
 	width: var(--wp--custom--button--width, auto); // Not generated.
-	color: var(--wp--custom--button--color, inherit);
-	background: var(--wp--custom--button--background, inherit);
-	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
-	border-radius: var(--wp--custom--button--border-radius, inherit);
-	border-width: var(--wp--custom--button--border-width);
-	font-size: var(--wp--custom--button--font-size);
-	font-weight: var(--wp--custom--button--font-weight);
-	line-height: var(--wp--custom--button--line-height);
+	color: var(--wp--custom--button--color, inherit) !important;
+	background: var(--wp--custom--button--background, inherit) !important;
+	padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em) !important;
+	border-radius: var(--wp--custom--button--border-radius, inherit) !important;
+	border-width: var(--wp--custom--button--border-width) !important;
+	font-size: var(--wp--custom--button--font-size) !important;
+	font-weight: var(--wp--custom--button--font-weight) !important;
+	line-height: var(--wp--custom--button--line-height) !important;
 
 	&[type=reset] {
 		background: var(--wp--preset--color--neutral-50);

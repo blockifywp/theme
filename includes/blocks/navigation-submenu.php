@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 use function implode;
 
@@ -66,8 +65,7 @@ function render_navigation_submenu_block( string $content, array $block ): strin
 
 	$styles['--wp--custom--submenu--gap'] = $spacing['blockGap'] ?? 'var(--wp--style--block-gap)';
 
-	/* @var \DOMElement $submenu Submenu element. */
-	$submenu       = $dom->getElementsByTagName( 'ul' )->item( 0 );
+	$submenu       = get_dom_element( 'ul', $dom );
 	$submenu_style = $submenu->getAttribute( 'style' );
 	$css           = $submenu_style ? $submenu_style . ';' : '';
 

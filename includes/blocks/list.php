@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 
 add_filter( 'render_block_core/list', NS . 'render_list_block', 10, 2 );
@@ -24,8 +23,7 @@ function render_list_block( string $content, array $block ): string {
 
 	$dom = dom( $content );
 
-	/* @var \DOMElement $ul Unordered list element. */
-	$ul    = $dom->getElementsByTagName( 'ul' )->item( 0 );
+	$ul    = get_dom_element( 'ul', $dom );
 	$style = $ul->getAttribute( 'style' );
 
 	if ( $block_gap ) {

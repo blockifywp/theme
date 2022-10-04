@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 
 add_filter( 'render_block_core/social-link', NS . 'render_social_link_block', 10, 2 );
@@ -22,25 +21,23 @@ function render_social_link_block( string $content, array $block ): string {
 	$textColor = $block['attrs']['textColor'] ?? null;
 
 	if ( $textColor ) {
-		$dom = dom( $content );
+		$dom       = dom( $content );
+		$list_item = get_dom_element( 'li', $dom );
 
-		/* @var $first_child \DOMElement Link element. */
-		$first_child = $dom->getElementsByTagName( 'li' )->item( 0 );
-
-		if ( ! $first_child ) {
+		if ( ! $list_item ) {
 			return $content;
 		}
 
-		$styles          = css_string_to_array( $first_child->getAttribute( 'style' ) );
+		$styles          = css_string_to_array( $list_item->getAttribute( 'style' ) );
 		$styles['color'] = "var(--wp--preset--color--$textColor)";
 
-		$first_child->setAttribute( 'style', css_array_to_string( $styles ) );
+		$list_item->setAttribute( 'style', css_array_to_string( $styles ) );
 
-		$classes = explode( ' ', $first_child->getAttribute( 'class' ) );
+		$classes = explode( ' ', $list_item->getAttribute( 'class' ) );
 
 		$classes[] = 'has-text-color';
 
-		$first_child->setAttribute( 'class', implode( ' ', $classes ) );
+		$list_item->setAttribute( 'class', implode( ' ', $classes ) );
 
 		$content = $dom->saveHTML();
 	}

@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use DOMElement;
 use function add_filter;
 use function apply_filters;
 use function explode;
@@ -24,22 +23,15 @@ add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
 function render_search_block( string $content, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 	$dom     = dom( $content );
-
-	/* @var \DOMElement $form Form element. */
-	$form = $dom->getElementsByTagName( 'form' )->item( 0 );
-	$divs = $form->getElementsByTagName( 'div' );
+	$form    = get_dom_element( 'form', $dom );
+	$divs    = $form->getElementsByTagName( 'div' );
 
 	if ( $divs->item( 0 ) ) {
-
-		/* @var DOMElement $div Div element. */
-		$div = $divs->item( 0 );
-
+		$div    = $divs->item( 0 );
 		$inputs = $div->getElementsByTagName( 'input' );
 
 		if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $inputs->item( 0 ) ) {
-
-			/* @var DOMElement $input Input element. */
-			$input = $inputs->item( 0 );
+			$input = dom_element( $inputs->item( 0 ) );
 
 			$input->setAttribute(
 				'style',
@@ -56,30 +48,18 @@ function render_search_block( string $content, array $block ): string {
 		}
 	}
 
-	$content = $dom->saveHTML();
-
+	$content    = $dom->saveHTML();
 	$class_name = $block['attrs']['className'] ?? '';
 
 	if ( $class_name && str_contains( $class_name, 'is-style-toggle' ) ) {
-		$dom = dom( $content );
-
-		/* @var \DOMElement $form Form element. */
-		$form = $dom->getElementsByTagName( 'form' )->item( 0 );
-
-		/* @var \DOMElement $label Label element. */
-		$label = $form->getElementsByTagName( 'label' )->item( 0 );
-
-		/* @var \DOMElement $wrap Wrap element. */
-		$wrap = $form->getElementsByTagName( 'div' )->item( 0 );
-
-		/* @var \DOMElement $input Input element. */
-		$input = $wrap->getElementsByTagName( 'input' )->item( 0 );
-
-		/* @var \DOMElement $button Button element. */
-		$button   = $wrap->getElementsByTagName( 'button' )->item( 0 );
-		$checkbox = $dom->createElement( 'input' );
-		$button   = change_tag_name( $button, 'label' );
-
+		$dom         = dom( $content );
+		$form        = get_dom_element( 'form', $dom );
+		$label       = get_dom_element( 'label', $form );
+		$wrap        = get_dom_element( 'div', $form );
+		$input       = get_dom_element( 'input', $wrap );
+		$button      = get_dom_element( 'button', $wrap );
+		$button      = change_tag_name( $button, 'label' );
+		$checkbox    = $dom->createElement( 'input' );
 		$placeholder = $input->getAttribute( 'placeholder' );
 
 		if ( ! $placeholder ) {

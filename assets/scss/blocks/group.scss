@@ -1,7 +1,3 @@
-.wp-block-group {
-	max-width: 100vw;
-}
-
 .wp-block-group[style*="min-height"] {
 	display: flex;
 	flex-direction: column;
@@ -9,4 +5,14 @@
 	align-items: center;
 	align-content: center;
 	justify-content: center;
+}
+
+// Gutenberg override.
+:where(.wp-block-group.has-background) {
+	padding: 0;
+}
+
+// Site editor.
+main.wp-block-group {
+	overflow-x: hidden;
 }
