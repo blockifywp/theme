@@ -28,8 +28,8 @@
 	<rule ref="Generic.ControlStructures.DisallowYodaConditions"/>
 
 	<arg name="extensions" value="php"/>
-	<file>functions.php</file>
-	<file>includes/</file>
+	<file>./functions.php</file>
+	<file>./includes/</file>
 
 	<exclude-pattern>./docker/</exclude-pattern>
 	<exclude-pattern>./node_modules/</exclude-pattern>

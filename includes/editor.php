@@ -48,7 +48,7 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_scripts' );
  * @return void
  */
 function enqueue_editor_scripts(): void {
-	$asset   = require DIR . 'assets/js/index.asset.php';
+	$asset   = require DIR . 'assets/js/editor.asset.php';
 	$deps    = $asset['dependencies'];
 	$options = get_option( SLUG );
 
@@ -56,16 +56,16 @@ function enqueue_editor_scripts(): void {
 
 	wp_register_script(
 		'blockify-editor',
-		get_url() . 'assets/js/index.js',
+		get_url() . 'assets/js/editor.js',
 		$deps,
-		filemtime( DIR . 'assets/js/index.js' ),
+		filemtime( DIR . 'assets/js/editor.js' ),
 		true
 	);
 
-	wp_enqueue_script( 'blockify-editor' );
+	wp_enqueue_script( SLUG . '-editor' );
 
 	$config = apply_filters(
-		'blockify',
+		SLUG . '_editor_script',
 		[
 			'url'                => get_url(),
 			'siteUrl'            => trailingslashit(

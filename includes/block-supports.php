@@ -6,7 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 
-add_filter( 'blockify', NS . 'add_block_supports' );
+add_filter( 'blockify_editor_script', NS . 'add_block_supports' );
 /**
  * Add block support config.
  *

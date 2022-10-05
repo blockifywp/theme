@@ -57,10 +57,6 @@
         "extraLight": 200,
         "thin": 100
       },
-      "letterSpacing": {
-        "text": "normal",
-        "heading": "-0.01em"
-      },
       "boxShadow": {
         "x": "0px",
         "y": "3px",

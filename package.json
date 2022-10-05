@@ -1,17 +1,17 @@
 {
   "name": "blockify-theme",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Blockify theme.",
   "author": "Blockify",
   "license": "GPL-2.0-or-later",
-  "main": "assets/js/editor.js",
+  "main": "assets/js/index.js",
   "scripts": {
     "build": "npm run js && npm run css && npm run pot",
     "js": "wp-scripts build --output-path=assets/js",
     "css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css src/scss && rm -Rf assets/css/abstracts",
     "pot": "wp i18n make-pot ./ languages/blockify.pot --exclude='wp,wp-content,vendor,tests,node_modules,build,assets,src'",
     "test": "jest --verbose ./tests/js/*.js",
-    "zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/ includes/ parts/ patterns/ styles/ templates/ vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php index.php readme.txt screenshot.png style.css theme.json"
+    "zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/ includes/ parts/ patterns/ styles/ templates/ languages/ vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php index.php readme.txt screenshot.png style.css theme.json"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",

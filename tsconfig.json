@@ -9,7 +9,7 @@
     "strict": true
   },
   "include": [
-    "assets/tsx"
+    "src"
   ],
   "exclude": [
     "assets/js",

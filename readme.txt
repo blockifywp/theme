@@ -2,14 +2,14 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.4.4
+Stable tag: 0.4.5
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Lightweight yet powerful full site editing block theme framework for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
+Lightweight yet powerful full site editing block theme framework. Use it as a starting point to create almost any kind of design. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Child theme support, style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, extended gradient support, absolute positioning, responsive settings and more.
 
 == Installation ==
 
@@ -37,10 +37,6 @@ TGMPA
 License: GPL-2.0-or-later
 License URL: https://www.opensource.org/licenses/GPL-2.0
 
-WPTT Webfont Loader
-License: MIT
-License URL: https://opensource.org/licenses/MIT
-
 Composer
 License: MIT
 License URL: https://github.com/composer/composer/blob/main/LICENSE
@@ -57,16 +53,25 @@ Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
-
 All other custom made assets are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
 
+= 0.4.5 - 5 October 2022 =
+
+* Add: Default hero pattern
+* Update: Selected font loading improvements
+* Update: Rename index.js to editor.js
+* Update: Rename blockify filter to blockify_editor_script
+* Update: Footer pattern spacing
+* Fix: Navigation link underline
+
 = 0.4.4 - 5 October 2022 =
 
 * Add: WordPress 6.1-beta support for theme.json filter
+* Add: Missing languages files
 
 = 0.4.3 - 5 October 2022 =
 

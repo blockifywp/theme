@@ -10,7 +10,7 @@ module.exports = env => {
 		},
 
 		entry: {
-			...defaultConfig.entry,
+			editor: './src/index.tsx',
 			'public/animation': './src/public/animation.tsx',
 		},
 

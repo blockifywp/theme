@@ -65,23 +65,23 @@ function register_local_font_choices( $theme_json ) {
  * @return array
  */
 function get_selected_fonts( array $styles ): array {
-	$selected_fonts = [];
-	$font_families  = [];
+	$font_families = [];
 
-	$font_styles = [
-		'heading' => $styles['blocks']['core/heading']['typography']['fontFamily'] ?? null,
-		'body'    => $styles['typography']['fontFamily'] ?? null,
-		'link'    => $styles['elements']['link']['typography']['fontFamily'] ?? null,
-		'button'  => $styles['elements']['button']['typography']['fontFamily'] ?? $styles['blocks']['core/button']['typography']['fontFamily'] ?? null,
+	$item_groups = [
+		[ $styles ],
+		$styles['elements'] ?? [],
+		$styles['blocks'] ?? [], // Not supported by core.
 	];
 
-	foreach ( $font_styles as $font_style ) {
-		if ( $font_style ) {
-			$font_families[] = $font_style;
+	foreach ( $item_groups as $item_group ) {
+		foreach ( $item_group as $item ) {
+			$font_family = $item['typography']['fontFamily'] ?? '';
+
+			if ( $font_family ) {
+				$font_families[] = $font_family;
+			}
 		}
 	}
-
-	$font_families = array_unique( $font_families );
 
 	foreach ( $font_families as $font_family ) {
 		if ( str_contains( $font_family, 'var(--' ) ) {
@@ -116,7 +116,7 @@ function get_selected_fonts( array $styles ): array {
 		];
 	}
 
-	return $selected_fonts;
+	return get_system_fonts();
 }
 
 /**
