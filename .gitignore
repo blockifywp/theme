@@ -1,4 +1,8 @@
 node_modules
+vendor
+!vendor/wptrt
+!vendor/composer
+!vendor/autoload.php
 wp/
 wp-content/
 templates/single-block_pattern.html

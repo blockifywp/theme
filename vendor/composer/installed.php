@@ -3,7 +3,7 @@
         'name' => 'blockify/theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3eee4419a9a12941edf3cb6c3b420a62b581d09d',
+        'reference' => '03d2e9704436fe1698b9518f1aa106f5b429c217',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'blockify/theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3eee4419a9a12941edf3cb6c3b420a62b581d09d',
+            'reference' => '03d2e9704436fe1698b9518f1aa106f5b429c217',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

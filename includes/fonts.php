@@ -26,10 +26,15 @@ add_filter( 'theme_json_theme', NS . 'register_local_font_choices' );
  * @param WP_Theme_JSON_Data_Gutenberg $theme_json
  *
  * @return WP_Theme_JSON_Data_Gutenberg
+ *
+ * @phpstan-ignore-next-line
  */
 function register_local_font_choices( WP_Theme_JSON_Data_Gutenberg $theme_json ): WP_Theme_JSON_Data_Gutenberg {
-	$default = $theme_json->get_data();
+	// @phpstan-ignore-next-line
+	$default     = $theme_json->get_data();
+	$layout_unit = is_admin() ? '%' : 'vw';
 
+	// @phpstan-ignore-next-line
 	$theme_json->update_with(
 		array_merge_recursive(
 			$default,
@@ -41,33 +46,11 @@ function register_local_font_choices( WP_Theme_JSON_Data_Gutenberg $theme_json )
 							is_admin() ? get_all_fonts() : get_selected_fonts()
 						),
 					],
-				],
-			]
-		)
-	);
-
-	return $theme_json;
-}
-
-add_filter( 'theme_json_theme', NS . 'load_selected_fonts', 11 );
-/**
- * Description of expected behavior.
- *
- * @since 1.0.0
- *
- * @param WP_Theme_JSON_Data_Gutenberg $theme_json
- *
- * @return WP_Theme_JSON_Data_Gutenberg
- */
-function load_selected_fonts( WP_Theme_JSON_Data_Gutenberg $theme_json ): WP_Theme_JSON_Data_Gutenberg {
-	$default = $theme_json->get_data();
-
-	$theme_json->update_with(
-		array_merge_recursive(
-			$default,
-			[
-				'settings' => [
-					'typography' => [],
+					// TODO: String replace actual value and move out of fonts.
+					'layout'     => [
+						'contentSize' => "min(calc(100{$layout_unit} - 40px), 800px)",
+						'wideSize'    => "min(calc(100{$layout_unit} - 40px), 1200px)",
+					],
 				],
 			]
 		)
@@ -81,7 +64,7 @@ function load_selected_fonts( WP_Theme_JSON_Data_Gutenberg $theme_json ): WP_The
  *
  * @since 0.0.2
  *
- * @return void
+ * @return array
  */
 function get_selected_fonts(): array {
 	$selected_fonts = [];
@@ -146,7 +129,7 @@ function get_selected_fonts(): array {
  *
  * @since 1.0.0
  *
- * @return void
+ * @return array
  */
 function get_all_fonts(): array {
 	$font_families = [];
