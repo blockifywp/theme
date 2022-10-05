@@ -20,19 +20,39 @@ add_filter( 'theme_json_theme', NS . 'register_local_font_choices' );
 /**
  * Filters theme.json font families.
  *
- * @since 0.4.1
+ * @todo  Move layout settings to separate file.
+ *
+ * @since 0.4.2
  *
  * @param mixed $theme_json WP_Theme_JSON_Data | WP_Theme_JSON_Data_Gutenberg.
  *
  * @return mixed
  */
 function register_local_font_choices( $theme_json ) {
-	$default = $theme_json->get_data();
+	$data        = $theme_json->get_data();
+	$layout_unit = is_admin() ? '%' : 'vw';
+
+	if ( \class_exists( 'WP_Theme_JSON_Data' ) && \is_a( $theme_json, 'WP_Theme_JSON_Data_Gutenberg' ) ) {
+		return $theme_json;
+	}
 
 	$theme_json->update_with(
 		array_merge_recursive(
-			$default,
-			get_custom_theme_data()
+			$data,
+			[
+				'settings' => [
+					'typography' => [
+						'fontFamilies' => array_merge(
+							get_system_fonts(),
+							is_admin() ? get_all_fonts() : get_selected_fonts( $data['styles'] ?? [] )
+						),
+					],
+					'layout'     => [
+						'contentSize' => "min(calc(100{$layout_unit} - 40px), 800px)",
+						'wideSize'    => "min(calc(100{$layout_unit} - 40px), 1200px)",
+					],
+				],
+			]
 		)
 	);
 
@@ -40,49 +60,23 @@ function register_local_font_choices( $theme_json ) {
 }
 
 /**
- * Adds theme.json data.
- *
- * @since 0.4.2
- *
- * @return array
- */
-function get_custom_theme_data(): array {
-	$layout_unit = is_admin() ? '%' : 'vw';
-
-	return [
-		'settings' => [
-			'typography' => [
-				'fontFamilies' => array_merge(
-					get_system_fonts(),
-					is_admin() ? get_all_fonts() : get_selected_fonts()
-				),
-			],
-			// TODO: String replace actual value and move out of fonts.
-			'layout'     => [
-				'contentSize' => "min(calc(100{$layout_unit} - 40px), 800px)",
-				'wideSize'    => "min(calc(100{$layout_unit} - 40px), 1200px)",
-			],
-		],
-	];
-}
-
-/**
  * Returns array of user selected font families.
  *
  * @since 0.4.0
  *
+ * @param array $styles Theme.json styles.
+ *
  * @return array
  */
-function get_selected_fonts(): array {
+function get_selected_fonts( array $styles ): array {
 	$selected_fonts = [];
 	$font_families  = [];
-	$global_styles  = wp_get_global_styles();
 
 	$font_styles = [
-		'heading' => $global_styles['blocks']['core/heading']['typography']['fontFamily'] ?? null,
-		'body'    => $global_styles['typography']['fontFamily'] ?? null,
-		'link'    => $global_styles['elements']['link']['typography']['fontFamily'] ?? null,
-		'button'  => $global_styles['elements']['button']['typography']['fontFamily'] ?? $global_styles['blocks']['core/button']['typography']['fontFamily'] ?? null,
+		'heading' => $styles['blocks']['core/heading']['typography']['fontFamily'] ?? null,
+		'body'    => $styles['typography']['fontFamily'] ?? null,
+		'link'    => $styles['elements']['link']['typography']['fontFamily'] ?? null,
+		'button'  => $styles['elements']['button']['typography']['fontFamily'] ?? $styles['blocks']['core/button']['typography']['fontFamily'] ?? null,
 	];
 
 	foreach ( $font_styles as $font_style ) {
@@ -94,7 +88,6 @@ function get_selected_fonts(): array {
 	$font_families = array_unique( $font_families );
 
 	foreach ( $font_families as $font_family ) {
-
 		if ( str_contains( $font_family, 'var(--' ) ) {
 			$explode_font = explode( '--', str_replace( ')', '', $font_family ) );
 		} else {
@@ -129,7 +122,6 @@ function get_selected_fonts(): array {
 
 	return $selected_fonts;
 }
-
 
 /**
  * Returns an array of all available local fonts.
