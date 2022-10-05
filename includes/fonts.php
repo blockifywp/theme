@@ -65,7 +65,8 @@ function register_local_font_choices( $theme_json ) {
  * @return array
  */
 function get_selected_fonts( array $styles ): array {
-	$font_families = [];
+	$selected_fonts = [];
+	$font_families  = [];
 
 	$item_groups = [
 		[ $styles ],
@@ -116,7 +117,7 @@ function get_selected_fonts( array $styles ): array {
 		];
 	}
 
-	return get_system_fonts();
+	return $selected_fonts;
 }
 
 /**

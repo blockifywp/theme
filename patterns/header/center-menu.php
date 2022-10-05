@@ -6,7 +6,7 @@
 <!-- wp:site-title {"level":6} /--></div>
 <!-- /wp:group -->
 
-<!-- wp:navigation {"ref":152,"layout":{"type":"flex","flexWrap":"nowrap"}} /-->
+<!-- wp:navigation {"layout":{"type":"flex","flexWrap":"nowrap"}} /-->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:buttons -->

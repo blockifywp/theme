@@ -1,4 +1,4 @@
-<!-- wp:group {"align":"full","layout":{"type":"constrained","contentSize":"1000px"}} -->
+<!-- wp:group {"align":"full","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull"><!-- wp:group {"style":{"spacing":{"margin":{"top":"5em","bottom":"2em"}}},"layout":{"contentSize":"600px","type":"constrained"}} -->
 <div class="wp-block-group" style="margin-top:5em;margin-bottom:2em"><!-- wp:heading {"textAlign":"center"} -->
 <h2 class="has-text-align-center">Pricing packages and plans for every team size</h2>
