@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function function_exists;
+use function str_contains;
 use const DIRECTORY_SEPARATOR;
 use const PHP_VERSION;
 use function add_action;
@@ -33,6 +34,8 @@ add_action( 'after_setup_theme', NS . 'setup', 9 );
  * @return void
  */
 function setup(): void {
+	global $wp_version;
+
 	array_map(
 		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
 		[
@@ -44,16 +47,38 @@ function setup(): void {
 			...glob( DIR . 'includes/extensions/*.php' ),
 		]
 	);
+}
 
-	if ( function_exists( 'tgmpa' ) ) {
-		tgmpa(
-			[
-				[
-					'name'     => 'Gutenberg',
-					'slug'     => 'gutenberg',
-					'required' => false,
-				],
-			]
-		);
+add_action( 'after_setup_theme', NS . 'load_dependencies' );
+/**
+ * Load theme dependencies.
+ *
+ * @since 0.4.2
+ *
+ * @return void
+ */
+function load_dependencies(): void {
+	if ( ! function_exists( 'tgmpa' ) ) {
+		return;
 	}
+
+	global $wp_version;
+
+	if ( str_contains( $wp_version, 'beta' ) ) {
+		return;
+	}
+
+	if ( version_compare( $wp_version, '6.1', '>=' ) ) {
+		return;
+	}
+
+	tgmpa(
+		[
+			[
+				'name'     => 'Gutenberg',
+				'slug'     => 'gutenberg',
+				'required' => false,
+			],
+		]
+	);
 }

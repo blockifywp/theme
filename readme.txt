@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.4.1
+Stable tag: 0.4.2
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ Lightweight yet powerful full site editing block theme framework for building mo
 
 == Copyright ==
 
-Blockify 2022, Blockify.
+Copyright 2022, Blockify.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,8 +32,6 @@ the Free Software Foundation, either version 2 of the License, or
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details,
-
-https://www.opensource.org/licenses/GPL-2.0
 
 TGMPA
 License: GPL-2.0-or-later
@@ -66,7 +64,15 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.4.0 - 4 September 2022 =
+= 0.4.2 - 5 October 2022 =
+
+* Fix: Local font loading
+
+= 0.4.1 - 5 October 2022 =
+
+* Fix: Theme.json filters
+
+= 0.4.0 - 4 October 2022 =
 
 * Add: Icon block variation
 * Add: Conic gradient support

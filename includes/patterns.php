@@ -228,8 +228,8 @@ function block_pattern_preview( array $posts ): array {
 
 	ob_start();
 	echo $pattern; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	$content = ob_get_clean();
-	$admin_bar ='show_admin_bar';
+	$content   = ob_get_clean();
+	$admin_bar = 'show_admin_bar';
 
 	/* @var WP_Post $post Post object */
 	$post                  = new stdClass();
