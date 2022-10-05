@@ -113,7 +113,7 @@ nav .wp-block-navigation-item__label,
 }
 
 // Theme.json doesn't work.
-.wp-block-navigation ul li.wp-block-navigation-item {
+.wp-block-navigation div .wp-block-navigation-item {
 	margin-bottom: 0;
 	padding: $navigation_padding; // Override core 0px.
 
@@ -143,8 +143,6 @@ nav .wp-block-navigation-item__label,
 .wp-block-navigation.items-justified-right .wp-block-navigation__submenu-container {
 	right: auto !important;
 }
-
-
 
 // Reset needed as default is too low (600px).
 @media (min-width: 600px) {
@@ -188,13 +186,17 @@ nav .wp-block-navigation-item__label,
 		background-color: inherit;
 	}
 
-	.wp-block-navigation-link:after {
-		display: block;
-		content: var(--wp--custom--navigation-separator--content, '');
-		margin: var(--wp--custom--navigation-separator--margin, 0 0 0 1em);
+	.wp-block-navigation-item__label {
+		display: flex;
+
+		&:after {
+			display: block;
+			content: var(--wp--custom--navigation-separator--content, '');
+			margin: var(--wp--custom--navigation-separator--margin, 0 0 0 1em);
+		}
 	}
 
-	.wp-block-navigation-link:last-of-type:after {
+	.wp-block-navigation-item:last-of-type .wp-block-navigation-item__label:after {
 		display: none
 	}
 }

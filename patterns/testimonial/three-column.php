@@ -24,7 +24,7 @@
 
 <!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
 <blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph -->
-<p>Nice work on this product. You’ve saved our business! If you aren’t sure, always go for this product. Believe me, you won’t regret it.</p>
+<p>Nice work on this product. You’ve saved our business! If you aren't sure, always go for this product. Believe me, you won't regret it.</p>
 <!-- /wp:paragraph --><cite>Jess Brown </cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column -->
@@ -84,7 +84,7 @@
 
 <!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
 <blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph -->
-<p>I don’t know what else to say. I don’t always clop, but when I do, it’s because of this product. This is simply unbelievable!</p>
+<p>I don’t know what else to say. I don't always clop, but when I do, it's because of this product. This is simply unbelievable!</p>
 <!-- /wp:paragraph --><cite>Alice Jones </cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column --></div>

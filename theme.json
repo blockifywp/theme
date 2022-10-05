@@ -453,10 +453,10 @@
       },
       "link": {
         "color": {
-          "text": "var(--wp--preset--color--primary-600, var(--wp--preset--color--neutral-600))"
+          "text": "inherit"
         },
         "typography": {
-          "textDecoration": "none"
+          "textDecoration": "underline"
         },
         ":hover": {
           "color": {
