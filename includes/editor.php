@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use WP_Theme_JSON_Data_Gutenberg;
 use function add_action;
 use function add_editor_style;
 use function basename;
@@ -14,13 +13,10 @@ use function file_get_contents;
 use function filemtime;
 use function get_option;
 use function glob;
-use function str_replace;
 use function trim;
-use function wp_add_inline_style;
 use function wp_dequeue_style;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
-use function wp_get_global_settings;
 use function wp_register_script;
 use WP_Screen;
 
@@ -68,17 +64,24 @@ function enqueue_editor_scripts(): void {
 
 	wp_enqueue_script( 'blockify-editor' );
 
-	$config = apply_filters( 'blockify', [
-		'url'                => get_url(),
-		'siteUrl'            => trailingslashit( get_site_url() ),
-		'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
-		'nonce'              => wp_create_nonce( SLUG ),
-		'icon'               => trim( file_get_contents( DIR . 'assets/svg/social/blockify.svg' ) ),
-		'darkMode'           => ( $options['darkMode'] ?? false ) === 'true',
-		'removeEmojiScripts' => ( $options['removeEmojiScripts'] ?? null ) === 'true',
-		'excerptLength'      => $options['excerptLength'] ?? 33,
-		'conicGradient'      => $options['conicGradient'] ?? '',
-	] );
+	$config = apply_filters(
+		'blockify',
+		[
+			'url'                => get_url(),
+			'siteUrl'            => trailingslashit(
+				get_site_url()
+			),
+			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
+			'nonce'              => wp_create_nonce( SLUG ),
+			'icon'               => trim(
+				file_get_contents( DIR . 'assets/svg/social/blockify.svg' )
+			),
+			'darkMode'           => ( $options['darkMode'] ?? false ) === 'true',
+			'removeEmojiScripts' => ( $options['removeEmojiScripts'] ?? null ) === 'true',
+			'excerptLength'      => $options['excerptLength'] ?? 33,
+			'conicGradient'      => $options['conicGradient'] ?? '',
+		]
+	);
 
 	wp_localize_script(
 		'blockify-editor',

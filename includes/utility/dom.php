@@ -63,7 +63,7 @@ function dom( string $html ): DOMDocument {
  */
 function dom_element( $node ) {
 	if ( $node->nodeType === XML_ELEMENT_NODE ) {
-		/* @var \DOMElement $node */
+		/* @var \DOMElement $node DOM Element node */
 		return $node;
 	}
 

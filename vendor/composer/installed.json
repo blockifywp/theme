@@ -1,37 +1,36 @@
 {
     "packages": [
         {
-            "name": "wptrt/admin-notices",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "name": "tgmpa/tgm-plugin-activation",
+            "version": "dev-develop",
+            "version_normalized": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WPTT/admin-notices.git",
-                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2"
+                "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
+                "reference": "2d34264f4fdcfcc60261d490ff2e689f0c33730c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WPTT/admin-notices/zipball/42101e8cf841b17342fcef984a06caf63990c6f2",
-                "reference": "42101e8cf841b17342fcef984a06caf63990c6f2",
+                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/2d34264f4fdcfcc60261d490ff2e689f0c33730c",
+                "reference": "2d34264f4fdcfcc60261d490ff2e689f0c33730c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=5.2"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2",
-                "php": "~7.1",
-                "szepeviktor/phpstan-wordpress": "^0.6.0",
-                "wp-coding-standards/wpcs": "^2.3"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6",
+                "phpcompatibility/phpcompatibility-wp": "^2.0",
+                "wp-coding-standards/wpcs": "^2.0"
             },
-            "time": "2020-06-07T10:36:24+00:00",
+            "time": "2020-01-22T04:31:23+00:00",
             "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {
-                "psr-4": {
-                    "WPTRT\\AdminNotices\\": "src/"
-                }
+                "files": [
+                    "class-tgm-plugin-activation.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -39,22 +38,35 @@
             ],
             "authors": [
                 {
-                    "name": "WordPress.org Theme Review Team",
-                    "email": "themes@wordpress.org",
-                    "homepage": "https://make.wordpress.org/themes",
+                    "name": "Thomas Griffin",
+                    "homepage": "http://thomasgriffinmedia.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Gary Jones",
+                    "homepage": "https://github.com/GaryJones",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Juliette Reinders Folmer",
+                    "homepage": "https://github.com/jrfnl",
                     "role": "Developer"
                 }
             ],
-            "description": "A class to create admin-notices for the WordPress dashboard.",
-            "homepage": "https://github.com/WPTRT/admin-notices",
+            "description": "TGM Plugin Activation is a PHP library that allows you to easily require or recommend plugins for your WordPress themes (and plugins).",
+            "homepage": "http://tgmpluginactivation.com",
             "keywords": [
+                "activation",
+                "library",
+                "plugins",
+                "theme",
                 "wordpress"
             ],
             "support": {
-                "issues": "https://github.com/WPTRT/admin-notices/issues",
-                "source": "https://github.com/WPTT/admin-notices/tree/master"
+                "issues": "https://github.com/TGMPA/TGM-Plugin-Activation/issues",
+                "source": "https://github.com/TGMPA/TGM-Plugin-Activation"
             },
-            "install-path": "../wptrt/admin-notices"
+            "install-path": "../tgmpa/tgm-plugin-activation"
         }
     ],
     "dev": false,

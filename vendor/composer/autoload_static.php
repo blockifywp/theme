@@ -6,18 +6,8 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit667c9a000e0f72600cfdbabd756813f0
 {
-    public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
-            'WPTRT\\AdminNotices\\' => 19,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'WPTRT\\AdminNotices\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/wptrt/admin-notices/src',
-        ),
+    public static $files = array (
+        'a5f882d89ab791a139cd2d37e50cdd80' => __DIR__ . '/..' . '/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php',
     );
 
     public static $classMap = array (
@@ -27,8 +17,6 @@ class ComposerStaticInit667c9a000e0f72600cfdbabd756813f0
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit667c9a000e0f72600cfdbabd756813f0::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit667c9a000e0f72600cfdbabd756813f0::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit667c9a000e0f72600cfdbabd756813f0::$classMap;
 
         }, null, ClassLoader::class);

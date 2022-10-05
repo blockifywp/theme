@@ -24,28 +24,32 @@ function render_search_block( string $content, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 	$dom     = dom( $content );
 	$form    = get_dom_element( 'form', $dom );
-	$divs    = $form->getElementsByTagName( 'div' );
 
-	if ( $divs->item( 0 ) ) {
-		$div    = $divs->item( 0 );
-		$inputs = $div->getElementsByTagName( 'input' );
+	if ( ! $form ) {
+		return $content;
+	}
 
-		if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $inputs->item( 0 ) ) {
-			$input = dom_element( $inputs->item( 0 ) );
+	$div = get_dom_element( 'div', $form );
 
-			$input->setAttribute(
-				'style',
-				implode(
-					';',
-					[
-						'padding-top:' . ( $padding['top'] ?? '' ),
-						'padding-right:' . ( $padding['right'] ?? '' ),
-						'padding-bottom:' . ( $padding['bottom'] ?? '' ),
-						'padding-left:' . ( $padding['left'] ?? '' ),
-					]
-				)
-			);
-		}
+	if ( ! $div ) {
+		return $content;
+	}
+
+	$input = get_dom_element( 'input', $div );
+
+	if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $input ) {
+		$input->setAttribute(
+			'style',
+			implode(
+				';',
+				[
+					'padding-top:' . ( $padding['top'] ?? '' ),
+					'padding-right:' . ( $padding['right'] ?? '' ),
+					'padding-bottom:' . ( $padding['bottom'] ?? '' ),
+					'padding-left:' . ( $padding['left'] ?? '' ),
+				]
+			)
+		);
 	}
 
 	$content    = $dom->saveHTML();

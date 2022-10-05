@@ -3,7 +3,7 @@
         'name' => 'blockify/theme',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '03d2e9704436fe1698b9518f1aa106f5b429c217',
+        'reference' => '0e20799cd54791b0b79dcc8f9e9ed713122994c2',
         'type' => 'wordpress-theme',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,18 +13,18 @@
         'blockify/theme' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '03d2e9704436fe1698b9518f1aa106f5b429c217',
+            'reference' => '0e20799cd54791b0b79dcc8f9e9ed713122994c2',
             'type' => 'wordpress-theme',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'wptrt/admin-notices' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '42101e8cf841b17342fcef984a06caf63990c6f2',
+        'tgmpa/tgm-plugin-activation' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'reference' => '2d34264f4fdcfcc60261d490ff2e689f0c33730c',
             'type' => 'library',
-            'install_path' => __DIR__ . '/../wptrt/admin-notices',
+            'install_path' => __DIR__ . '/../tgmpa/tgm-plugin-activation',
             'aliases' => array(
                 0 => '9999999-dev',
             ),

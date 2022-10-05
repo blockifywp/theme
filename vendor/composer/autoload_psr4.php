@@ -6,5 +6,4 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'WPTRT\\AdminNotices\\' => array($vendorDir . '/wptrt/admin-notices/src'),
 );

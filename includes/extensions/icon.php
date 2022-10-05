@@ -134,6 +134,7 @@ function render_image_icon( string $content, array $block ): string {
 		];
 
 		$styles['--wp--custom--icon--color'] = $styles['--wp--custom--icon--color'] ?? 'currentColor';
+
 		$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : $block['attrs']['icon'] ?? __( 'SVG Icon', 'blockify' );
 
 		$span->setAttribute( 'class', implode( ' ', $classes ) );

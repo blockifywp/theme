@@ -8,6 +8,7 @@ use function apply_filters;
 use function array_merge;
 use function array_merge_recursive;
 use function basename;
+use function class_exists;
 use function get_stylesheet_directory;
 use function get_template_directory;
 use function glob;
@@ -17,13 +18,17 @@ use function str_replace;
 use WP_Theme_JSON_Data_Gutenberg;
 use function ucwords;
 
+if ( ! class_exists( 'WP_Theme_JSON_Data_Gutenberg' ) ) {
+	return;
+}
+
 add_filter( 'theme_json_theme', NS . 'register_local_font_choices' );
 /**
- * Description of expected behavior.
+ * Filters theme.json font families.
  *
- * @since 1.0.0
+ * @since 0.4.0
  *
- * @param WP_Theme_JSON_Data_Gutenberg $theme_json
+ * @param WP_Theme_JSON_Data_Gutenberg $theme_json Theme.json file data object.
  *
  * @return WP_Theme_JSON_Data_Gutenberg
  *
@@ -62,7 +67,7 @@ function register_local_font_choices( WP_Theme_JSON_Data_Gutenberg $theme_json )
 /**
  * Returns array of user selected font families.
  *
- * @since 0.0.2
+ * @since 0.4.0
  *
  * @return array
  */
@@ -97,7 +102,7 @@ function get_selected_fonts(): array {
 		$slug = end( $explode_font );
 		$name = ucwords( str_replace( '-', ' ', $slug ) );
 
-		if ( in_array( $slug, [ 'sans-serif', 'serif', 'monospace' ] ) ) {
+		if ( in_array( $slug, [ 'sans-serif', 'serif', 'monospace' ], true ) ) {
 			continue;
 		}
 
@@ -125,9 +130,9 @@ function get_selected_fonts(): array {
 
 
 /**
- * Description of expected behavior.
+ * Returns an array of all available local fonts.
  *
- * @since 1.0.0
+ * @since 0.4.0
  *
  * @return array
  */
@@ -172,9 +177,9 @@ function get_all_fonts(): array {
 }
 
 /**
- * Description of expected behavior.
+ * Returns an array of system fonts with custom properties.
  *
- * @since 1.0.0
+ * @since 0.4.0
  *
  * @return array
  */

@@ -4,6 +4,16 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+/**
+ * Returns placeholder HTML element string.
+ *
+ * @since 1.0.0
+ *
+ * @param string $html       Block content.
+ * @param array  $attributes Block attributes.
+ *
+ * @return string
+ */
 function get_image_placeholder( string $html, array $attributes = [] ): string {
 	$html        = ! $html ? '<figure class="wp-block-image"><img src="" alt=""/></figure>' : $html;
 	$dom         = dom( $html );
@@ -23,16 +33,16 @@ function get_image_placeholder( string $html, array $attributes = [] ): string {
 		$figure->appendChild( $result );
 		$figure->setAttribute( 'class', $figure->getAttribute( 'class' ) . ' is-placeholder' );
 
-		$css = css_array_to_string( [
-				'width'         => $attributes['width'] ?? '',
-				'height'        => $attributes['height'] ?? '',
-				'margin-top'    => $attributes['style']['spacing']['margin']['top'] ?? '',
-				'margin-right'  => $attributes['style']['spacing']['margin']['right'] ?? '',
-				'margin-bottom' => $attributes['style']['spacing']['margin']['bottom'] ?? '',
-				'margin-left'   => $attributes['style']['spacing']['margin']['left'] ?? '',
-			] ) . ';';
+		$css = [
+			'width'         => $attributes['width'] ?? '',
+			'height'        => $attributes['height'] ?? '',
+			'margin-top'    => $attributes['style']['spacing']['margin']['top'] ?? '',
+			'margin-right'  => $attributes['style']['spacing']['margin']['right'] ?? '',
+			'margin-bottom' => $attributes['style']['spacing']['margin']['bottom'] ?? '',
+			'margin-left'   => $attributes['style']['spacing']['margin']['left'] ?? '',
+		];
 
-		$figure->setAttribute( 'style', $css . $figure->getAttribute( 'style' ) );
+		$figure->setAttribute( 'style', css_array_to_string( $css ) . ';' . $figure->getAttribute( 'style' ) );
 	}
 
 	return $dom->saveHTML();

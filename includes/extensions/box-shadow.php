@@ -26,7 +26,7 @@ function render_box_shadow( string $content, array $block ): string {
 		$first_child = get_dom_element( '*', $dom );
 		$style       = $first_child->getAttribute( 'style' );
 		$styles      = explode( ';', $style );
-		$z_index     = (string) ( $block['attrs']['boxShadow']['zIndex'] ?? '-1');
+		$z_index     = (string) ( $block['attrs']['boxShadow']['zIndex'] ?? '-1' );
 		$z_index     = str_replace( 'px', '', $z_index );
 
 		$styles[] = '--wp--custom--box-shadow--z-index:' . $z_index;

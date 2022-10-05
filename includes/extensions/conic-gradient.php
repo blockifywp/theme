@@ -34,9 +34,11 @@ function add_conic_gradient(): void {
 
 	wp_add_inline_style(
 		'global-styles',
-		'body{' . css_array_to_string( [
-			'--wp--preset--gradient--conic' => $conic . ' !important',
-		] ) . '}'
+		'body{' . css_array_to_string(
+			[
+				'--wp--preset--gradient--conic' => $conic . ' !important',
+			]
+		) . '}'
 	);
 }
 

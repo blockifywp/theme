@@ -9,8 +9,8 @@ namespace Blockify\Theme;
  *
  * @since 1.0.0
  *
- * @param array $styles
- * @param array $attrs
+ * @param array $styles Array of styles.
+ * @param array $attrs  Array of attributes.
  *
  * @return array
  */

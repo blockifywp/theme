@@ -29,7 +29,7 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 		return '';
 	}
 
-	$initial += strlen( $start );
+	$initial = $initial + strlen( $start );
 	$len     = strpos( $string, $end, $initial ) - $initial;
 	$string  = $start . substr( $string, $initial, $len ) . $end;
 
@@ -45,7 +45,7 @@ function str_between( string $start, string $end, string $string, bool $omit = f
  *
  * @since 0.4.0
  *
- * @param string $string
+ * @param string $string String to modify.
  *
  * @return string
  */

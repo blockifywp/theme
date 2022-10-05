@@ -42,7 +42,7 @@ function add_dynamic_custom_properties(): void {
 	$body_color     = $global_styles['color']['text'] ?? null;
 	$box_shadow     = $settings['custom']['boxShadow'] ?? [];
 
-	// Button
+	// Button.
 	$button_block         = $global_styles['blocks']['core/button'] ?? [];
 	$button_element       = $global_styles['elements']['button'] ?? [];
 	$button_text          = $button_element['color']['text'] ?? $button_block['color']['text'] ?? null;
@@ -81,15 +81,17 @@ function add_dynamic_custom_properties(): void {
 	if ( $box_shadow ) {
 		$css .= '[style*="--wp--custom--box-shadow--"] {';
 
-		$css .= css_array_to_string( [
-			'--wp--custom--box-shadow--x'       => $box_shadow['x'],
-			'--wp--custom--box-shadow--y'       => $box_shadow['y'],
-			'--wp--custom--box-shadow--blur'    => $box_shadow['blur'],
-			'--wp--custom--box-shadow--spread'  => $box_shadow['spread'],
-			'--wp--custom--box-shadow--color'   => $box_shadow['color'],
-			'--wp--custom--box-shadow--radius'  => $box_shadow['radius'],
-			'--wp--custom--box-shadow--z-index' => $box_shadow['zIndex'],
-		] );
+		$css .= css_array_to_string(
+			[
+				'--wp--custom--box-shadow--x'       => $box_shadow['x'],
+				'--wp--custom--box-shadow--y'       => $box_shadow['y'],
+				'--wp--custom--box-shadow--blur'    => $box_shadow['blur'],
+				'--wp--custom--box-shadow--spread'  => $box_shadow['spread'],
+				'--wp--custom--box-shadow--color'   => $box_shadow['color'],
+				'--wp--custom--box-shadow--radius'  => $box_shadow['radius'],
+				'--wp--custom--box-shadow--z-index' => $box_shadow['zIndex'],
+			]
+		);
 
 		$css .= '}';
 	}

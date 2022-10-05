@@ -84,7 +84,7 @@ function register_block_patterns(): void {
 				$pattern['postTypes']  = [ 'page' ];
 			}
 
-			if ( in_array( $category_slug, [ 'header', 'footer' ] ) ) {
+			if ( in_array( $category_slug, [ 'header', 'footer' ], true ) ) {
 				$pattern['blockTypes'] = [ 'core/template-part/' . $category_slug ];
 			}
 
@@ -149,7 +149,7 @@ add_filter( 'template_include', NS . 'archive_block_pattern_template' );
  *
  * @since 1.0.0
  *
- * @param string $template
+ * @param string $template Template slug.
  *
  * @return string
  */
@@ -163,18 +163,18 @@ function archive_block_pattern_template( string $template ): string {
 
 add_filter( 'template_include', NS . 'single_block_pattern_template' );
 /**
- * Description of expected behavior.
+ * Filter pattern template.
  *
- * @since 1.0.0
+ * @since 0.4.0
  *
- * @param string $template
+ * @param string $template Template slug.
  *
  * @return string
  */
 function single_block_pattern_template( string $template ): string {
 	global $wp;
 
-	$request   = explode( DS, ( $wp->request ?? '' ) );
+	$request = explode( DS, ( $wp->request ?? '' ) );
 
 	if ( ! isset( $request[0] ) || $request[0] !== 'pattern' ) {
 		return $template;
@@ -183,15 +183,13 @@ function single_block_pattern_template( string $template ): string {
 	return locate_block_template( get_template_directory() . '/templates/blank.html', 'blank', [] );
 }
 
-add_filter( 'the_posts', NS . 'block_pattern_preview', -99 );
+add_filter( 'the_posts', NS . 'block_pattern_preview', -10 );
 /**
  * Generates dynamic block pattern previews without registering a CPT.
  *
- * @param array    $posts    Original posts object
+ * @param array $posts Original posts object.
  *
- * @return  array  $posts  Modified posts object
- * @global  object $wp_query The main WordPress query object
- * @global  object $wp       The main WordPress object
+ * @return array
  */
 function block_pattern_preview( array $posts ): array {
 	global $wp, $wp_query;
@@ -229,11 +227,11 @@ function block_pattern_preview( array $posts ): array {
 	$pattern = file_get_contents( $file );
 
 	ob_start();
-	echo $pattern;
+	echo $pattern; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$content = ob_get_clean();
 
-	/* @var WP_Post $post */
-	$post                  = new stdClass;
+	/* @var WP_Post $post Post object */
+	$post                  = new stdClass();
 	$post->post_author     = 1;
 	$post->post_name       = $name;
 	$post->guid            = home_url() . DS . $post_type . DS . $name;

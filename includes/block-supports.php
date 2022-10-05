@@ -10,13 +10,12 @@ add_filter( 'blockify', NS . 'add_block_supports' );
 /**
  * Add block support config.
  *
+ * @todo  Move to rest endpoint.
  * @since 0.4.0
  *
  * @param array $config Default config.
  *
  * @return array
- * @todo  Use rest api instead of inline.
- *
  */
 function add_block_supports( array $config ): array {
 	$config['blockSupports'] = [
@@ -262,7 +261,7 @@ function add_block_supports( array $config ): array {
 			'blockifyPosition'       => true,
 			'blockifyWidth'          => true,
 		],
-		'core/page-list'          => [
+		'core/page-list'           => [
 			'spacing' => [
 				'blockGap' => true,
 			],
