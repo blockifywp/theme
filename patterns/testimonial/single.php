@@ -23,7 +23,7 @@
 
 <!-- wp:quote {"align":"center","className":"is-style-plain"} -->
 <blockquote class="wp-block-quote has-text-align-center is-style-plain aligncenter"><!-- wp:paragraph -->
-<p>This product is by far the most valuable resource we have ever purchased. I don't know what else to say, it's like the Apple of WordPress themes. This is simply unbelievable!</p>
+<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <!-- /wp:paragraph --><cite>Steve Jobs</cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:group -->

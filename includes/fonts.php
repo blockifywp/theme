@@ -32,10 +32,6 @@ function register_local_font_choices( $theme_json ) {
 	$data        = $theme_json->get_data();
 	$layout_unit = is_admin() ? '%' : 'vw';
 
-	if ( \class_exists( 'WP_Theme_JSON_Data' ) && \is_a( $theme_json, 'WP_Theme_JSON_Data_Gutenberg' ) ) {
-		return $theme_json;
-	}
-
 	$theme_json->update_with(
 		array_merge_recursive(
 			$data,
