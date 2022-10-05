@@ -23,7 +23,12 @@ function render_list_block( string $content, array $block ): string {
 
 	$dom = dom( $content );
 
-	$ul    = get_dom_element( 'ul', $dom );
+	$ul = get_dom_element( 'ul', $dom );
+
+	if ( ! $ul ) {
+		return $content;
+	}
+
 	$style = $ul->getAttribute( 'style' );
 
 	if ( $block_gap ) {

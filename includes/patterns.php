@@ -229,6 +229,7 @@ function block_pattern_preview( array $posts ): array {
 	ob_start();
 	echo $pattern; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	$content = ob_get_clean();
+	$admin_bar ='show_admin_bar';
 
 	/* @var WP_Post $post Post object */
 	$post                  = new stdClass();
@@ -255,7 +256,7 @@ function block_pattern_preview( array $posts ): array {
 	$wp_query->is_category = false;
 	$wp_query->is_404      = false;
 
-	add_filter( 'show_admin_bar', fn() => false );
+	add_filter( $admin_bar, fn() => false );
 
 	return $posts;
 }
