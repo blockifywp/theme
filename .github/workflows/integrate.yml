@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   byte_level:
-    name: "0️⃣ Byte-level"
+    name: "0️⃣ Byte level"
     runs-on: "ubuntu-20.04"
     steps:
       - name: "Checkout code"
@@ -82,16 +82,16 @@ jobs:
         with:
           dependency-versions: "${{ matrix.dependencies }}"
 
-#      - name: "Execute unit tests"
-#        run: "composer run pest -- --ci"
+  #      - name: "Execute unit tests"
+  #        run: "composer run pest -- --ci"
 
-#      - name: "Send coverage to Coveralls"
-#        env:
-#          COVERALLS_REPO_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#        if: "${{ env.COVERALLS_REPO_TOKEN && matrix.php-version == '7.4' && matrix.dependencies == 'highest' }}"
-#        run: |
-#          wget "https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.2/php-coveralls.phar"
-#          php ./php-coveralls.phar -v
+  #      - name: "Send coverage to Coveralls"
+  #        env:
+  #          COVERALLS_REPO_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  #        if: "${{ env.COVERALLS_REPO_TOKEN && matrix.php-version == '7.4' && matrix.dependencies == 'highest' }}"
+  #        run: |
+  #          wget "https://github.com/php-coveralls/php-coveralls/releases/download/v2.5.2/php-coveralls.phar"
+  #          php ./php-coveralls.phar -v
 
   static_analysis:
     name: "3️⃣ Static Analysis"
