@@ -10,7 +10,8 @@ module.exports = env => {
 		},
 
 		entry: {
-			index: './assets/tsx/index.tsx',
+			...defaultConfig.entry,
+			'public/animation': './src/public/animation.tsx',
 		},
 
 		plugins: [

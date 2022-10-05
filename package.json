@@ -7,8 +7,8 @@
   "main": "assets/js/editor.js",
   "scripts": {
     "build": "npm run js && npm run css && npm run pot",
-    "js": "wp-scripts build assets/tsx/index.tsx --output-path=assets/js",
-    "css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss && rm -Rf assets/css/abstracts",
+    "js": "wp-scripts build --output-path=assets/js",
+    "css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css src/scss && rm -Rf assets/css/abstracts",
     "pot": "wp i18n make-pot ./ assets/lang/blockify.pot --exclude='wp,wp-content,vendor,tests,node_modules,build,assets/tsx,assets/scss,assets/svg,assets/fonts'",
     "test": "jest --verbose ./tests/js/*.js"
   },

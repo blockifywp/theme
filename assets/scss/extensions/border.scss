@@ -1,3 +1,0 @@
-:where([style*=border-width]):not([style*=border-color]) {
-	border-color: var(--wp--custom--border--color, currentColor);
-}

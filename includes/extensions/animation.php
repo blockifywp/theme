@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function apply_filters;
+use function file_get_contents;
 use function get_stylesheet_directory;
 use function get_template_directory;
 use function wp_add_inline_script;
@@ -25,37 +26,6 @@ function animate_blocks() {
 		return;
 	}
 
-	$js = <<<JS
-document.addEventListener( 'DOMContentLoaded', () => {
-	const observer = new IntersectionObserver( containers => {
-		containers.forEach( container => {
-			if ( container.isIntersecting ) {
-				const blocks = container.target.children;
-				let delay    = 0;
-
-				[ ...blocks ].forEach( block => {
-					delay = delay + 100;
-					block.style.opacity = 1;
-					block.style.transition = 'opacity 1s';
-					block.style.transitionDelay = delay + 'ms';
-				} );
-            }
-		} );
-	} );
-
-	const containers = document.querySelectorAll( '.wp-block-columns, main > .wp-block-group' );
-
-	[...containers].forEach( containers => {
-		observer.observe( containers );
-
-		const blocks = containers.children;
-
-		[ ...blocks ].forEach( block => {
-			block.style.opacity = 0;
-		} );
-	} );
-} );
-JS;
-
-	wp_add_inline_script( 'wp-block-navigation-view', $js );
+	// No dependencies, 500 bytes.
+	wp_add_inline_script( 'wp-block-navigation-view', file_get_contents( DIR . 'assets/js/public/animation.js' ) );
 }

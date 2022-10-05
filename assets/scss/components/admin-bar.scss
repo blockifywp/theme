@@ -1,9 +1,0 @@
-.admin-bar {
-	--wp--custom--site-blocks--min-height: calc(100vh - 46px);
-}
-
-@media (min-width: 783px) {
-	.admin-bar {
-		--wp--custom--site-blocks--min-height: calc(100vh - 32px);
-	}
-}
