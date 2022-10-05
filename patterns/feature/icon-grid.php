@@ -1,5 +1,5 @@
-<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3em","bottom":"5em","left":"3em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px"}},"backgroundColor":"neutral-50","layout":{"contentSize":"1100px","type":"constrained"}} -->
-<div class="wp-block-group alignwide has-neutral-50-background-color has-background" style="border-radius:5px;margin-top:3em;margin-bottom:3em;padding-top:3em;padding-right:3em;padding-bottom:5em;padding-left:3em"><!-- wp:group {"layout":{"contentSize":"540px","type":"constrained"}} -->
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"3em","right":"3em","bottom":"5em","left":"3em"},"margin":{"top":"3em","bottom":"3em"}},"border":{"radius":"5px","width":"1px"}},"layout":{"contentSize":"1100px","type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="border-width:1px;border-radius:5px;margin-top:3em;margin-bottom:3em;padding-top:3em;padding-right:3em;padding-bottom:5em;padding-left:3em"><!-- wp:group {"layout":{"contentSize":"540px","type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":3,"style":{"spacing":{"margin":{"bottom":"2em"}}}} -->
 <h3 class="has-text-align-center" style="margin-bottom:2em">Reasons why people love our products and services</h3>
 <!-- /wp:heading --></div>

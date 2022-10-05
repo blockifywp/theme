@@ -89,7 +89,7 @@ function register_block_patterns(): void {
 			}
 
 			if ( $category_slug === 'template' ) {
-				$pattern['inserter'] = [ 'false' ];
+				$pattern['inserter'] = false;
 			}
 
 			$patterns[ $pattern_slug ] = $pattern;
