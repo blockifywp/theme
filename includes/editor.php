@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use WP_Theme_JSON_Data_Gutenberg;
 use function add_action;
 use function add_editor_style;
 use function basename;
@@ -128,5 +129,36 @@ function enqueue_editor_only_styles(): void {
 		[],
 		filemtime( DIR . 'assets/css/editor.css' )
 	);
+}
 
+add_filter( 'theme_json_theme', NS . 'add_layout_sizes' );
+/**
+ * Description of expected behavior.
+ *
+ * @since 1.0.0
+ *
+ * @param WP_Theme_JSON_Data_Gutenberg $theme_json
+ *
+ * @return WP_Theme_JSON_Data_Gutenberg
+ */
+function add_layout_sizes( WP_Theme_JSON_Data_Gutenberg $theme_json ): WP_Theme_JSON_Data_Gutenberg {
+	$default     = $theme_json->get_data();
+	$layout_unit = is_admin() ? '%' : 'vw';
+
+	$theme_json->update_with(
+		array_merge_recursive(
+			$default,
+			[
+				'settings' => [
+					'layout' => [
+						// TODO: String replace actual value.
+						'contentSize' => "min(calc(100{$layout_unit} - 40px), 800px)",
+						'wideSize'    => "min(calc(100{$layout_unit} - 40px), 1200px)",
+					],
+				],
+			]
+		)
+	);
+
+	return $theme_json;
 }

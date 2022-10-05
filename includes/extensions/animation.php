@@ -5,9 +5,12 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_action;
+use function apply_filters;
+use function get_stylesheet_directory;
+use function get_template_directory;
 use function wp_add_inline_script;
 
-add_action( null, NS . 'add_animation_script' );
+add_action( 'wp_enqueue_scripts', NS . 'animate_blocks' );
 /**
  * Animations.
  *
@@ -15,14 +18,20 @@ add_action( null, NS . 'add_animation_script' );
  *
  * @return void
  */
-function add_animation_script() {
+function animate_blocks() {
+	$has_animation = apply_filters( 'blockify_animate_blocks', get_template_directory() !== get_stylesheet_directory() );
+
+	if ( ! $has_animation ) {
+		return;
+	}
 
 	$js = <<<JS
 document.addEventListener( 'DOMContentLoaded', () => {
-	const observer = new IntersectionObserver( container => {
+	const observer = new IntersectionObserver( containers => {
+		containers.forEach( container => {
 			if ( container.isIntersecting ) {
 				const blocks = container.target.children;
-				let delay = 0;
+				let delay    = 0;
 
 				[ ...blocks ].forEach( block => {
 					delay = delay + 100;
@@ -31,14 +40,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 					block.style.transitionDelay = delay + 'ms';
 				} );
             }
+		} );
 	} );
 
 	const containers = document.querySelectorAll( '.wp-block-columns, main > .wp-block-group' );
 
-	[...containers].forEach( container => {
-		observer.observe( container );
+	[...containers].forEach( containers => {
+		observer.observe( containers );
 
-		const blocks = container.children;
+		const blocks = containers.children;
 
 		[ ...blocks ].forEach( block => {
 			block.style.opacity = 0;
@@ -47,5 +57,5 @@ document.addEventListener( 'DOMContentLoaded', () => {
 } );
 JS;
 
-	wp_add_inline_script( 'wp-block-navigation-view', $js, 'before' );
+	wp_add_inline_script( 'wp-block-navigation-view', $js );
 }
