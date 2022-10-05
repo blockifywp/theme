@@ -2,14 +2,14 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.4.5
+Stable tag: 0.4.6
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Lightweight yet powerful full site editing block theme framework. Use it as a starting point to create almost any kind of design. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Child theme support, style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, extended gradient support, absolute positioning, responsive settings and more.
+Lightweight full site editing block theme framework. Blockify provides useful features that help you build modern WordPress sites with blocks. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Customization settings include SVG icons, custom Google Fonts, box shadows, gradient text, absolute positioning, responsive settings, negative margins and more. Designed for use with child themes and compatible with most popular plugins. Blockify is a great starting point and toolkit for building your own custom block theme.
 
 == Installation ==
 
@@ -58,6 +58,10 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.4.6 - 5 October 2022 =
+
+* Fix: Navigation ids in header patterns
 
 = 0.4.5 - 5 October 2022 =
 

@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://github.com/blockifywp/theme/blob/main/LICENSE)
 [![WordPress.org](https://img.shields.io/wordpress/theme/installs/blockify?label=WordPress.org)](https://img.shields.io/wordpress/theme/installs/blockify?label=WordPress.org)
 
-Lightweight yet powerful full site editing block theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
+Lightweight full site editing block theme framework. Blockify provides useful features that help you build modern WordPress sites with blocks. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Customization settings include SVG icons, custom Google Fonts, box shadows, gradient text, absolute positioning, responsive settings, negative margins and more. Designed for use with child themes and compatible with most popular plugins. Blockify is a great starting point and toolkit for building your own custom block theme.
 
 <img width="600" alt="Blockify full site editing theme screenshot" src="https://user-images.githubusercontent.com/24793388/191764447-00fd54f3-7eae-417a-93fe-4e12a688300f.png">
 
