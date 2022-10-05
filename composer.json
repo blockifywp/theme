@@ -42,7 +42,7 @@
   ],
   "require": {
     "php": "^7.4 || ^8.0",
-    "tgmpa/tgm-plugin-activation": "*"
+    "tgmpa/tgm-plugin-activation": "dev-develop"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
