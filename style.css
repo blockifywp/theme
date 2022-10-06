@@ -2,11 +2,11 @@
  * Theme Name: Blockify
  * Author: Blockify
  * Author URI: https://blockifywp.com/
- * Description: Lightweight yet powerful full site editing block theme for building modern WordPress sites with blocks. Use it as a starting point to create almost any design! Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Style variations, block patterns, templates and placeholder content to get started quickly. Blockify adds minimalistic settings which extend core blocks the WordPress way, allowing for greater design control. Smart customization features include SVG icons, box shadows, text gradients, absolute positioning, responsive settings and more.
+ * Description: Lightweight full site editing block theme framework. Blockify provides useful features that help you build modern WordPress sites with blocks. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Customization settings include SVG icons, custom Google Fonts, box shadows, gradient text, absolute positioning, responsive settings, negative margins and more. Designed for use with child themes and compatible with most popular plugins. Blockify is a great starting point and toolkit for building your own custom block theme.
  * Requires at least: 6.0
  * Tested up to: 6.1
  * Requires PHP: 7.4
- * Version: 0.4.6
+ * Version: 0.5.0
  * License: GNU General Public License v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: blockify

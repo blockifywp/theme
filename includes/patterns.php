@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use WP_Post;
 use function add_action;
 use function add_filter;
 use function apply_filters;
@@ -18,12 +17,13 @@ use function get_template_directory;
 use function glob;
 use function in_array;
 use function is_null;
-use function is_post_type_archive;
 use function locate_block_template;
+use function ob_get_clean;
 use function ob_start;
 use function register_block_pattern;
 use function register_block_pattern_category;
 use function remove_theme_support;
+use function str_contains;
 use function str_replace;
 use function ucfirst;
 use function ucwords;
@@ -31,6 +31,7 @@ use function wp_list_pluck;
 use stdClass;
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;
+use WP_Post;
 
 add_action( 'init', NS . 'remove_core_patterns', 9 );
 /**
@@ -60,7 +61,7 @@ function register_block_patterns(): void {
 	];
 
 	foreach ( $dirs as $dir ) {
-		$files          = glob( $dir . '/*.php' );
+		$files          = glob( $dir . '/*' );
 		$category_slug  = basename( $dir );
 		$category_title = ucwords( str_replace( '-', ' ', $category_slug ) );
 
@@ -69,7 +70,15 @@ function register_block_patterns(): void {
 				continue;
 			}
 
-			$pattern_base  = basename( $file, '.php' );
+			$file_base = basename( $file );
+			$file_type = explode( '.', $file_base )[1] ?? 'html';
+
+			// TODO: Add json support.
+			if ( ! in_array( $file_type, [ 'html', 'php' ], true ) ) {
+				continue;
+			}
+
+			$pattern_base  = basename( $file, '.' . $file_type );
 			$pattern_slug  = $category_slug . '-' . $pattern_base;
 			$pattern_title = $category_title . ' ' . ucwords( str_replace( '-', ' ', $pattern_base ) );
 
@@ -78,6 +87,14 @@ function register_block_patterns(): void {
 				'content'    => file_get_contents( $file ),
 				'categories' => [ $category_slug ],
 			];
+
+			if ( $file_type === 'php' ) {
+				ob_start();
+				include $file;
+
+				$pattern['content']  = ob_get_clean();
+				$pattern['inserter'] = false;
+			}
 
 			if ( $category_slug === 'page' ) {
 				$pattern['blockTypes'] = [ 'core/post-content' ];
@@ -139,28 +156,6 @@ function auto_register_pattern_categories(): void {
 	}
 }
 
-/**
- * Front end.
- */
-
-add_filter( 'template_include', NS . 'archive_block_pattern_template' );
-/**
- * Description of expected behavior.
- *
- * @since 1.0.0
- *
- * @param string $template Template slug.
- *
- * @return string
- */
-function archive_block_pattern_template( string $template ): string {
-	if ( is_post_type_archive( 'block_pattern' ) ) {
-		$template = locate_block_template( get_template_directory() . '/templates/archive.html', 'patterns', [] );
-	}
-
-	return $template;
-}
-
 add_filter( 'template_include', NS . 'single_block_pattern_template' );
 /**
  * Filter pattern template.
@@ -209,26 +204,39 @@ function block_pattern_preview( array $posts ): array {
 	}
 
 	$cache    = true;
-	$category = $request[1] ?? '';
-	$name     = $request[2] ?? '';
+	$category = explode( '-', $request[1] ?? '' )[0] ?? '';
+	$name     = str_replace( $category . '-', '', $request[1] ?? '' );
 
 	if ( ! $category || ! $name ) {
 		return $posts;
 	}
 
-	$parent = get_template_directory() . "/patterns/{$category}/{$name}.php";
-	$child  = get_stylesheet_directory() . "/patterns/{$category}/{$name}.php";
+	$paths = [
+		get_template_directory() . "/patterns/{$category}/{$name}.html",
+		get_template_directory() . "/patterns/{$category}/{$name}.php",
+		get_stylesheet_directory() . "/patterns/{$category}/{$name}.html",
+		get_stylesheet_directory() . "/patterns/{$category}/{$name}.php",
+	];
 
-	if ( ! file_exists( $child ) && ! file_exists( $parent ) ) {
+	$pattern = '';
+
+	foreach ( $paths as $path ) {
+		if ( file_exists( $path ) ) {
+			$pattern = file_get_contents( $path );
+
+			if ( str_contains( $path, '.php' ) ) {
+				ob_start();
+				include $path;
+
+				$pattern = ob_get_clean();
+			}
+		}
+	}
+
+	if ( ! $pattern ) {
 		return $posts;
 	}
 
-	$file    = file_exists( $child ) ? $child : $parent;
-	$pattern = file_get_contents( $file );
-
-	ob_start();
-	echo $pattern; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	$content   = ob_get_clean();
 	$admin_bar = 'show_admin_bar';
 
 	/* @var WP_Post $post Post object */
@@ -237,7 +245,7 @@ function block_pattern_preview( array $posts ): array {
 	$post->post_name       = $name;
 	$post->guid            = home_url() . DS . $post_type . DS . $name;
 	$post->post_title      = ucwords( str_replace( '-', ' ', $name ) );
-	$post->post_content    = $content;
+	$post->post_content    = $pattern;
 	$post->ID              = -999;
 	$post->post_type       = 'page';
 	$post->post_status     = 'static';

@@ -212,7 +212,6 @@ function add_block_supports( array $config ): array {
 				'blockGap' => true,
 			],
 		],
-
 		'core/navigation-submenu'  => [
 			'spacing' => [
 				'margin'   => true,
@@ -406,13 +405,22 @@ function add_block_supports( array $config ): array {
 			],
 		],
 		'core/site-logo'           => [
-			'color'        => [
+			'color'                => [
 				'background' => true,
 				'gradients'  => true,
 				'link'       => true,
 				'text'       => true,
 			],
-			'blockifyIcon' => true,
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => false,
+				'color'                         => false,
+				'style'                         => false,
+				'__experimentalDefaultControls' => [
+					'width' => false,
+					'color' => false,
+				],
+			],
 		],
 		'core/social-links'        => [
 			'align'                => [

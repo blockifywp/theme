@@ -13,6 +13,7 @@ use function file_get_contents;
 use function filemtime;
 use function get_option;
 use function glob;
+use function home_url;
 use function trim;
 use function wp_dequeue_style;
 use function wp_enqueue_script;
@@ -69,7 +70,7 @@ function enqueue_editor_scripts(): void {
 		[
 			'url'                => get_url(),
 			'siteUrl'            => trailingslashit(
-				get_site_url()
+				home_url()
 			),
 			'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
 			'nonce'              => wp_create_nonce( SLUG ),

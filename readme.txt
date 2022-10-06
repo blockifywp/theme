@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.4.6
+Stable tag: 0.5.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,20 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.5.0 - 6 October 2022 =
+
+* Add: Icon Guide pattern
+* Add: Secondary color palette
+* Add: Light and secondary button styles
+* Update: Clean up all icon patterns
+* Update: Rename color palette
+* Update: Simplify color palette names
+* Fix: Line icons missing fill
+* Remove: Template patterns
+* Remove: Site logo icon support
+* Remove: Site logo default style
+* Remove: Navigation separator
 
 = 0.4.6 - 5 October 2022 =
 

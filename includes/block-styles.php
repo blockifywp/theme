@@ -89,7 +89,7 @@ function add_block_styles( array $config ): array {
 		],
 		[
 			'type' => 'core/site-logo',
-			'name' => [ 'rounded' ],
+			'name' => [ 'default', 'rounded' ],
 		],
 		[
 			'type' => 'core/separator',
