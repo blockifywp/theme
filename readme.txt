@@ -64,7 +64,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 * Add: Featured image margin bottom
 * Fix: Gradient picker bug
 * Fix: str_between bug
-* Fix: Icon guide pattern preview
+* Remove: Icon guide pattern preview
 
 = 0.5.0 - 6 October 2022 =
 
