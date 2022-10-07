@@ -105,7 +105,7 @@ function register_block_patterns(): void {
 				'icon-guide',
 			];
 
-			if ( in_array( $pattern_base, $exclude ) ) {
+			if ( in_array( $pattern_base, $exclude, true ) ) {
 				$pattern['inserter'] = false;
 			}
 
