@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function str_contains;
 use function str_replace;
 use function strlen;
 use function strpos;
@@ -30,8 +31,13 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 	}
 
 	$initial = $initial + strlen( $start );
-	$len     = strpos( $string, $end, $initial ) - $initial;
-	$string  = $start . substr( $string, $initial, $len ) . $end;
+
+	if ( ! str_contains( $string, (string) $initial ) ) {
+		return $string;
+	}
+
+	$len    = strpos( $string, $end, $initial ) - $initial;
+	$string = $start . substr( $string, $initial, $len ) . $end;
 
 	if ( $omit ) {
 		$string = str_replace( [ $start, $end ], '', $string );

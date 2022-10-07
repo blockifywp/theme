@@ -70,7 +70,7 @@ function get_image_placeholder( string $html, array $block ): string {
 			'height'        => $attributes['height'] ?? '',
 			'margin-top'    => $attributes['style']['spacing']['margin']['top'] ?? '',
 			'margin-right'  => $attributes['style']['spacing']['margin']['right'] ?? '',
-			'margin-bottom' => $attributes['style']['spacing']['margin']['bottom'] ?? '',
+			'margin-bottom' => $attributes['style']['spacing']['margin']['bottom'] ?? 'var(--wp--preset--spacing--sm)', // TODO: Get from theme.json.
 			'margin-left'   => $attributes['style']['spacing']['margin']['left'] ?? '',
 		];
 
