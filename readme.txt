@@ -62,6 +62,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 = 0.6.0 - 10 October 2022 =
 
 * Add: Box shadow inset support
+* Add: Animation php filter
 * Remove: index.php file
 * Remove: Box shadow gradient support
 

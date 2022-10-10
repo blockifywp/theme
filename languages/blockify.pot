@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.5.1\n"
+"Project-Id-Version: Blockify 0.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-07T11:24:05+00:00\n"
+"POT-Creation-Date: 2022-10-10T14:42:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -28,50 +28,56 @@ msgid "https://blockifywp.com/"
 msgstr ""
 
 #: includes/block-styles.php:26
-msgid "Numbered"
-msgstr ""
-
 #: includes/block-styles.php:31
-msgid "Checklist"
-msgstr ""
-
 #: includes/block-styles.php:36
-msgid "Check Circle"
+msgid "Boxed"
 msgstr ""
 
 #: includes/block-styles.php:41
-msgid "Square"
+msgid "Numbered"
 msgstr ""
 
 #: includes/block-styles.php:46
-msgid "Mega Menu"
+msgid "Checklist"
 msgstr ""
 
 #: includes/block-styles.php:51
-msgid "Toggle"
+msgid "Check Circle"
 msgstr ""
 
 #: includes/block-styles.php:56
-msgid "Sub Heading"
+msgid "Square"
 msgstr ""
 
 #: includes/block-styles.php:61
-msgid "Angle"
+msgid "Mega Menu"
 msgstr ""
 
 #: includes/block-styles.php:66
-msgid "Curve"
+msgid "Toggle"
 msgstr ""
 
 #: includes/block-styles.php:71
-msgid "Round"
+msgid "Sub Heading"
 msgstr ""
 
 #: includes/block-styles.php:76
-msgid "Wave"
+msgid "Angle"
 msgstr ""
 
 #: includes/block-styles.php:81
+msgid "Curve"
+msgstr ""
+
+#: includes/block-styles.php:86
+msgid "Round"
+msgstr ""
+
+#: includes/block-styles.php:91
+msgid "Wave"
+msgstr ""
+
+#: includes/block-styles.php:96
 msgid "Fade"
 msgstr ""
 
@@ -87,7 +93,7 @@ msgstr ""
 msgid "Search this website"
 msgstr ""
 
-#: includes/extensions/icon.php:145
+#: includes/extensions/icon.php:149
 msgid "SVG Icon"
 msgstr ""
 

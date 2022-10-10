@@ -50,7 +50,7 @@ function css_string_to_array( string $css ): array {
 			$property = $parts[0];
 			$value    = $parts[1];
 
-			if ( ! is_null($value)) {
+			if ( $value ) {
 				$array[ $property ] = $value;
 			}
 		}
