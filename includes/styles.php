@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function array_flip;
+use function array_merge;
 use function basename;
 use function file_exists;
 use function file_get_contents;
@@ -76,25 +77,22 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--button--line-height'    => $button_line_height,
 	];
 
-	$css = $element . '{' . css_array_to_string( $all ) . '}';
-
 	if ( $box_shadow ) {
-		$css .= '[style*="--wp--custom--box-shadow--"] {';
-
-		$css .= css_array_to_string(
+		$all = array_merge(
+			$all,
 			[
-				'--wp--custom--box-shadow--x'       => $box_shadow['x'],
-				'--wp--custom--box-shadow--y'       => $box_shadow['y'],
-				'--wp--custom--box-shadow--blur'    => $box_shadow['blur'],
-				'--wp--custom--box-shadow--spread'  => $box_shadow['spread'],
-				'--wp--custom--box-shadow--color'   => $box_shadow['color'],
-				'--wp--custom--box-shadow--radius'  => $box_shadow['radius'],
-				'--wp--custom--box-shadow--z-index' => $box_shadow['zIndex'],
+				'--wp--custom--box-shadow--inset'  => $box_shadow['inset'] ?? ' ',
+				'--wp--custom--box-shadow--x'      => $box_shadow['x'] ?? null,
+				'--wp--custom--box-shadow--y'      => $box_shadow['y'] ?? null,
+				'--wp--custom--box-shadow--blur'   => $box_shadow['blur'] ?? null,
+				'--wp--custom--box-shadow--spread' => $box_shadow['spread'] ?? null,
+				'--wp--custom--box-shadow--color'  => $box_shadow['color'] ?? null,
+				'--wp--custom--box-shadow--radius' => $box_shadow['radius'] ?? null,
 			]
 		);
-
-		$css .= '}';
 	}
+
+	$css = $element . '{' . css_array_to_string( $all ) . '}';
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',

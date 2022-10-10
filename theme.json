@@ -58,13 +58,12 @@
         "thin": 100
       },
       "boxShadow": {
+        "inset": "",
         "x": "0px",
         "y": "3px",
         "blur": "10px",
         "spread": "0px",
-        "color": "var(--wp--preset--color--primary-light, var(--wp--preset--color--neutral-light))",
-        "radius": "0px",
-        "zIndex": -1
+        "color": "var(--wp--preset--color--primary-light, var(--wp--preset--color--neutral-light))"
       },
       "checklist": {
         "background": "currentColor"

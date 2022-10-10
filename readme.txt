@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.5.1
+Stable tag: 0.6.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,12 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.6.0 - 10 October 2022 =
+
+* Add: Box shadow inset support
+* Remove: index.php file
+* Remove: Box shadow gradient support
 
 = 0.5.1 - 7 October 2022 =
 

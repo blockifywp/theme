@@ -142,6 +142,10 @@ function get_icon_html( string $content, array $block ): string {
 
 	$styles['--wp--custom--icon--color'] = $styles['--wp--custom--icon--color'] ?? 'currentColor';
 
+	if ( $styles['--wp--custom--icon--color'] === '' ) {
+		unset( $styles['--wp--custom--icon--color'] );
+	}
+
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : $block['attrs']['icon'] ?? __( 'SVG Icon', 'blockify' );
 
 	$span->setAttribute( 'class', implode( ' ', $classes ) );

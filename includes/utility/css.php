@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function explode;
+use function is_null;
 
 /**
  * Converts array of CSS rules to string.
@@ -19,7 +20,7 @@ function css_array_to_string( array $styles ): string {
 	$css = '';
 
 	foreach ( $styles as $property => $value ) {
-		if ( ! $value ) {
+		if ( is_null( $value ) ) {
 			continue;
 		}
 
@@ -49,7 +50,9 @@ function css_string_to_array( string $css ): array {
 			$property = $parts[0];
 			$value    = $parts[1];
 
-			$array[ $property ] = $value;
+			if ( ! is_null($value)) {
+				$array[ $property ] = $value;
+			}
 		}
 	}
 
