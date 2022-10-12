@@ -34,8 +34,6 @@ add_action( 'after_setup_theme', NS . 'setup', 9 );
  * @return void
  */
 function setup(): void {
-	global $wp_version;
-
 	array_map(
 		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
 		[

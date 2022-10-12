@@ -14,6 +14,7 @@ use function glob;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
+use function is_array;
 use function str_replace;
 use function wp_add_inline_style;
 use function wp_dequeue_style;
@@ -32,10 +33,7 @@ add_action( 'wp_enqueue_scripts', NS . 'add_dynamic_custom_properties' );
 function add_dynamic_custom_properties(): void {
 	$settings       = wp_get_global_settings();
 	$global_styles  = wp_get_global_styles();
-	$element        = is_admin() ? '.editor-styles-wrapper' : 'body';
-	$content_size   = $settings['layout']['contentSize'] ?? '800px';
-	$wide_size      = $settings['layout']['wideSize'] ?? '1200px';
-	$layout_unit    = is_admin() ? '%' : 'vw';
+	$element        = is_admin() ? 'body,.editor-styles-wrapper' : 'body';
 	$border_width   = $settings['custom']['border']['width'] ?? '1px';
 	$border_style   = $settings['custom']['border']['style'] ?? 'solid';
 	$border_color   = $settings['custom']['border']['color'] ?? '#ddd';
@@ -56,9 +54,6 @@ function add_dynamic_custom_properties(): void {
 	$button_padding       = $button_element['spacing']['padding'] ?? $button_block['spacing']['padding'] ?? null;
 
 	$all = [
-		// var(--wp--style--block-gap) doesn't work here.
-		'--wp--custom--layout--content-size'   => "min(calc(100{$layout_unit} - 40px),{$content_size})",
-		'--wp--custom--layout--wide-size'      => "min(calc(100{$layout_unit} - 40px),{$wide_size})",
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'       => $bodyBackground,
 		'--wp--custom--body--color'            => $body_color,

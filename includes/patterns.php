@@ -46,11 +46,11 @@ add_action( 'init', NS . 'register_block_patterns' );
  * @return void
  */
 function register_block_patterns(): void {
-	$patterns = [];
-	$dirs     = [
-		...glob( get_template_directory() . '/patterns/*', GLOB_ONLYDIR ),
-		...glob( get_stylesheet_directory() . '/patterns/*', GLOB_ONLYDIR ),
-	];
+	$patterns       = [];
+	$stylesheet_dir = get_stylesheet_directory();
+	$template_dir   = get_template_directory();
+	$pattern_dir    = $stylesheet_dir === $template_dir ? $template_dir : $stylesheet_dir;
+	$dirs           = glob( $pattern_dir . '/patterns/*', GLOB_ONLYDIR );
 
 	foreach ( $dirs as $dir ) {
 		$files          = glob( $dir . '/*.html' );
@@ -70,21 +70,22 @@ function register_block_patterns(): void {
 				continue;
 			}
 
-			$pattern_base  = basename( $file, '.' . $file_type );
-			$pattern_slug  = $category_slug . '-' . $pattern_base;
-			$pattern_title = $category_title . ' ' . ucwords( str_replace( '-', ' ', $pattern_base ) );
+			$pattern_base    = basename( $file, '.' . $file_type );
+			$pattern_slug    = $category_slug . '-' . $pattern_base;
+			$pattern_title   = $category_title . ' ' . ucwords( str_replace( '-', ' ', $pattern_base ) );
+			$pattern_content = file_get_contents( $file );
 
 			$pattern = [
 				'title'      => $pattern_title,
-				'content'    => file_get_contents( $file ),
+				'content'    => $pattern_content,
 				'categories' => [ $category_slug ],
 			];
 
-			if ( $file_type === 'php' ) {
-				ob_start();
-				include $file;
+			ob_start();
+			include $file;
+			$pattern['content']  = ob_get_clean();
 
-				$pattern['content']  = ob_get_clean();
+			if ( $file_type === 'php' ) {
 				$pattern['inserter'] = false;
 			}
 

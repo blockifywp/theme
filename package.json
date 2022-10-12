@@ -1,6 +1,6 @@
 {
   "name": "blockify-theme",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Blockify theme.",
   "author": "Blockify",
   "license": "GPL-2.0-or-later",
@@ -11,7 +11,7 @@
     "css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css src/scss && rm -Rf assets/css/abstracts",
     "pot": "wp i18n make-pot ./ languages/blockify.pot --exclude='wp,wp-content,vendor,tests,node_modules,build,assets,src'",
     "test": "jest --verbose ./tests/js/*.js",
-    "zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/ includes/ parts/ patterns/ styles/ templates/ languages/ vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php index.php readme.txt screenshot.png style.css theme.json"
+    "zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/ includes/ parts/ patterns/ styles/ templates/ languages/ vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php functions.php readme.txt screenshot.png style.css theme.json"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.18.6",

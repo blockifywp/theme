@@ -32,6 +32,10 @@ function register_local_font_choices( $theme_json ) {
 	$data        = $theme_json->get_data();
 	$layout_unit = is_admin() ? '%' : 'vw';
 
+	// Gutenberg bug.
+	unset( $data['settings']['layout']['contentSize'] );
+	unset( $data['settings']['layout']['wideSize'] );
+
 	$theme_json->update_with(
 		array_merge_recursive(
 			$data,

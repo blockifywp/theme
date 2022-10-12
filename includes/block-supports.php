@@ -103,6 +103,16 @@ function add_block_supports( array $config ): array {
 			'blockifyFilter'         => true,
 		],
 		'core/cover'               => [
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width' => true,
+					'color' => true,
+				],
+			],
 			'blockifyPosition' => true,
 		],
 		'core/embed'               => [
