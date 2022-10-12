@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.6.0\n"
+"Project-Id-Version: Blockify 0.7.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-10T14:42:49+00:00\n"
+"POT-Creation-Date: 2022-10-12T02:22:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -17,6 +17,10 @@ msgstr ""
 #. Theme Name of the theme
 #. Author of the theme
 msgid "Blockify"
+msgstr ""
+
+#. Theme URI of the theme
+msgid "https://blockifywp.com/themes/blockify"
 msgstr ""
 
 #. Description of the theme
@@ -184,12 +188,12 @@ msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral Dark"
+msgid "Neutral Darker"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral"
+msgid "Neutral Dark"
 msgstr ""
 
 #: theme.json
@@ -199,7 +203,7 @@ msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Background"
+msgid "Neutral Lighter"
 msgstr ""
 
 #: theme.json
@@ -229,27 +233,17 @@ msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "Primary Light"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Neutral Dark"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Neutral Light"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
 msgid "Black Dark"
 msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
 msgid "White Light"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "White Transparent"
 msgstr ""
 
 #: theme.json
