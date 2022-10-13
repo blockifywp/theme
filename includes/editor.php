@@ -113,7 +113,6 @@ function add_editor_styles(): void {
 
 	foreach ( $files as $file ) {
 		add_editor_style( 'assets/css/' . basename( dirname( $file ) ) . DS . basename( $file ) );
-
 	}
 }
 
@@ -126,7 +125,6 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_only_styles' );
  * @return void
  */
 function enqueue_editor_only_styles(): void {
-
 	wp_enqueue_style(
 		'blockify-editor',
 		get_url() . 'assets/css/editor.css',

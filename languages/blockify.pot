@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.7.0\n"
+"Project-Id-Version: Blockify 0.8.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-12T02:22:41+00:00\n"
+"POT-Creation-Date: 2022-10-13T11:45:26+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -34,54 +34,55 @@ msgstr ""
 #: includes/block-styles.php:26
 #: includes/block-styles.php:31
 #: includes/block-styles.php:36
-msgid "Boxed"
-msgstr ""
-
 #: includes/block-styles.php:41
-msgid "Numbered"
+msgid "Surface"
 msgstr ""
 
 #: includes/block-styles.php:46
-msgid "Checklist"
+msgid "Numbered"
 msgstr ""
 
 #: includes/block-styles.php:51
-msgid "Check Circle"
+msgid "Checklist"
 msgstr ""
 
 #: includes/block-styles.php:56
-msgid "Square"
+msgid "Check Circle"
 msgstr ""
 
 #: includes/block-styles.php:61
-msgid "Mega Menu"
+msgid "Square"
 msgstr ""
 
 #: includes/block-styles.php:66
-msgid "Toggle"
+msgid "Mega Menu"
 msgstr ""
 
 #: includes/block-styles.php:71
-msgid "Sub Heading"
+msgid "Toggle"
 msgstr ""
 
 #: includes/block-styles.php:76
-msgid "Angle"
+msgid "Sub Heading"
 msgstr ""
 
 #: includes/block-styles.php:81
-msgid "Curve"
+msgid "Angle"
 msgstr ""
 
 #: includes/block-styles.php:86
-msgid "Round"
+msgid "Curve"
 msgstr ""
 
 #: includes/block-styles.php:91
-msgid "Wave"
+msgid "Round"
 msgstr ""
 
 #: includes/block-styles.php:96
+msgid "Wave"
+msgstr ""
+
+#: includes/block-styles.php:101
 msgid "Fade"
 msgstr ""
 
@@ -153,22 +154,7 @@ msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Primary Dark"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
 msgid "Primary"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Primary Light"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Secondary Dark"
 msgstr ""
 
 #: theme.json
@@ -178,37 +164,37 @@ msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Secondary Light"
+msgid "Foreground"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Black"
+msgid "Heading"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral Darker"
+msgid "Body"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral Dark"
+msgid "Neutral"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral light"
+msgid "Outline"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Neutral Lighter"
+msgid "Surface"
 msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "White"
+msgid "Background"
 msgstr ""
 
 #: theme.json
@@ -233,17 +219,17 @@ msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "Black Dark"
+msgid "Body/Heading"
 msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "White Light"
+msgid "Surface/Border"
 msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "White Transparent"
+msgid "Background/Transparent"
 msgstr ""
 
 #: theme.json

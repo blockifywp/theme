@@ -21,19 +21,24 @@ add_filter( 'blockify_editor_script', NS . 'add_block_styles' );
 function add_block_styles( array $config ): array {
 	$config['blockStyles']['register'] = [
 		[
+			'type'  => 'core/code',
+			'name'  => 'surface',
+			'label' => __( 'Surface', 'blockify' ),
+		],
+		[
 			'type'  => 'core/columns',
-			'name'  => 'boxed',
-			'label' => __( 'Boxed', 'blockify' ),
+			'name'  => 'surface',
+			'label' => __( 'Surface', 'blockify' ),
 		],
 		[
 			'type'  => 'core/column',
-			'name'  => 'boxed',
-			'label' => __( 'Boxed', 'blockify' ),
+			'name'  => 'surface',
+			'label' => __( 'Surface', 'blockify' ),
 		],
 		[
 			'type'  => 'core/group',
-			'name'  => 'boxed',
-			'label' => __( 'Boxed', 'blockify' ),
+			'name'  => 'surface',
+			'label' => __( 'Surface', 'blockify' ),
 		],
 		[
 			'type'  => 'core/list',

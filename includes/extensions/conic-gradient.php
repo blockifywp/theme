@@ -20,25 +20,24 @@ add_action( 'wp_enqueue_scripts', NS . 'add_conic_gradient' );
 function add_conic_gradient(): void {
 	$settings  = wp_get_global_settings();
 	$gradients = $settings['color']['gradients']['theme'] ?? [];
-	$conic     = null;
+	$css       = [];
 
 	foreach ( $gradients as $gradient ) {
-		if ( ( $gradient['slug'] ?? '' ) === 'conic' ) {
-			$conic = str_replace(
-				'linear-gradient(',
-				'conic-gradient(from ',
-				$gradient['gradient']
-			);
+		$slug  = $gradient['slug'] ?? '';
+		$value = str_replace(
+			'linear-gradient(',
+			'conic-gradient(from ',
+			$gradient['gradient']
+		);
+
+		if ( $slug === 'conic-light' ) {
+			$css['--wp--preset--gradient--conic-light'] = $value;
+		} else {
+			$css['--wp--preset--gradient--conic-dark'] = $value;
 		}
 	}
 
-	wp_add_inline_style(
-		'global-styles',
-		'body{' . css_array_to_string(
-			[
-				'--wp--preset--gradient--conic' => $conic . ' !important',
-			]
-		) . '}'
-	);
-}
+	$css = 'body{' . css_array_to_string( $css ) . '}';
 
+	wp_add_inline_style( 'global-styles', $css );
+}

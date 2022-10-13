@@ -5,6 +5,8 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function explode;
+use function implode;
 
 add_filter( 'render_block', NS . 'render_block_position', 10, 2 );
 /**
@@ -36,10 +38,11 @@ function render_block_position( string $content, array $block ): string {
 		return $content;
 	}
 
-	$styles = css_string_to_array( $first->getAttribute( 'style' ) );
+	$classes = explode( ' ', $first->getAttribute( 'class' ) );
+	$styles  = css_string_to_array( $first->getAttribute( 'style' ) );
 
 	if ( $position ) {
-		$styles['position'] = $position;
+		$classes[] = 'position-' . $position;
 	}
 
 	if ( $inset ) {
@@ -58,7 +61,11 @@ function render_block_position( string $content, array $block ): string {
 		$styles['overflow-y'] = $overflow['y'] ?? null;
 	}
 
-	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	$first->setAttribute( 'class', implode( ' ', $classes ) );
+
+	if ( $styles ) {
+		$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	}
 
 	return $dom->saveHTML();
 }

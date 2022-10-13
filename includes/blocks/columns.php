@@ -19,9 +19,10 @@ add_filter( 'render_block_core/columns', NS . 'render_columns_block', 10, 2 );
  * @return string
  */
 function render_columns_block( string $content, array $block ): string {
-	$class = 'is-stacked-on-mobile';
+	$class      = 'is-stacked-on-mobile';
+	$is_stacked = $block['attrs']['stackedOnMobile'] ?? null;
 
-	if ( isset( $block['attrs']['isStackedOnMobile'] ) && $block['attrs']['isStackedOnMobile'] === false ) {
+	if ( $is_stacked && $block['attrs']['isStackedOnMobile'] === false ) {
 		$class = 'is-not-stacked-on-mobile';
 	}
 

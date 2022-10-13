@@ -83,7 +83,7 @@ function register_block_patterns(): void {
 
 			ob_start();
 			include $file;
-			$pattern['content']  = ob_get_clean();
+			$pattern['content'] = ob_get_clean();
 
 			if ( $file_type === 'php' ) {
 				$pattern['inserter'] = false;

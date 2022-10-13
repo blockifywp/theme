@@ -5,59 +5,13 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function apply_filters;
-use function array_merge;
-use function array_merge_recursive;
 use function basename;
 use function get_stylesheet_directory;
 use function get_template_directory;
 use function glob;
 use function in_array;
-use function is_admin;
 use function str_replace;
 use function ucwords;
-
-add_filter( 'theme_json_theme', NS . 'register_local_font_choices' );
-/**
- * Filters theme.json font families.
- *
- * @todo  Move layout settings to separate file.
- *
- * @since 0.4.2
- *
- * @param mixed $theme_json WP_Theme_JSON_Data | WP_Theme_JSON_Data_Gutenberg.
- *
- * @return mixed
- */
-function register_local_font_choices( $theme_json ) {
-	$data        = $theme_json->get_data();
-	$layout_unit = is_admin() ? '%' : 'vw';
-
-	// Gutenberg bug.
-	unset( $data['settings']['layout']['contentSize'] );
-	unset( $data['settings']['layout']['wideSize'] );
-
-	$theme_json->update_with(
-		array_merge_recursive(
-			$data,
-			[
-				'settings' => [
-					'typography' => [
-						'fontFamilies' => array_merge(
-							get_system_fonts(),
-							is_admin() ? get_all_fonts() : get_selected_fonts( $data['styles'] ?? [] )
-						),
-					],
-					'layout'     => [
-						'contentSize' => "min(calc(100{$layout_unit} - 40px), 800px)",
-						'wideSize'    => "min(calc(100{$layout_unit} - 40px), 1200px)",
-					],
-				],
-			]
-		)
-	);
-
-	return $theme_json;
-}
 
 /**
  * Returns array of user selected font families.

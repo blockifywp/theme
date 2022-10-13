@@ -55,6 +55,7 @@ function add_block_supports( array $config ): array {
 				'fontSize'   => true,
 				'fontWeight' => true,
 				'fontFamily' => true,
+				'lineHeight' => true,
 			],
 			'__experimentalBorder' => [
 				'radius'                        => true,
@@ -113,7 +114,7 @@ function add_block_supports( array $config ): array {
 					'color' => true,
 				],
 			],
-			'blockifyPosition' => true,
+			'blockifyPosition'     => true,
 		],
 		'core/embed'               => [
 			'spacing'              => [
@@ -144,6 +145,7 @@ function add_block_supports( array $config ): array {
 			'blockifyNegativeMargin' => true,
 			'blockifyFilter'         => true,
 			'blockifyTransform'      => true,
+			'blockifyDarkMode'       => true,
 		],
 		'core/heading'             => [
 			'align'                  => [

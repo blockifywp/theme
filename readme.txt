@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.7.0
+Stable tag: 0.8.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,7 +59,26 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.7.0 - 11 October 2022 =
+= 0.8.0 - 13 October 2022 =
+
+* Add: Dark style variation & toggle
+* Add: Surface styles & custom properties
+* Add: On-click field for button block
+* Add: Background, text and link color support for Cover block
+* Add: Position utility classes
+* Add: Brush stroke color support
+* Add: Border inheritance for tables and legend
+* Add: Button line height support
+* Improve: Cover block colors
+* Update: Vertical navigation styling
+* Update: Switch to semantic color palette names
+* Fix: Remove id from nav menu in patterns
+* Fix: Sub menu padding
+* Fix: Template part inline css
+* Fix: Icon psuedo element bug in Gutenberg 14.3
+* Fix: Horizontal submenu padding on mobile
+
+= 0.7.0 - 12 October 2022 =
 
 * Add: Cover block border support
 * Add: Boxed style css

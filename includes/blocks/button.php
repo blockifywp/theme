@@ -86,5 +86,15 @@ function render_button_block( string $content, array $block ): string {
 		$content = $dom->saveHTML();
 	}
 
+	$on_click = $block['attrs']['onclick'] ?? '';
+
+	if ( $on_click ) {
+		$dom    = dom( $content );
+		$button = get_dom_element( 'div', $dom );
+		$link   = get_dom_element( 'a', $button );
+		$link->setAttribute( 'onclick', $on_click );
+		$content = $dom->saveHTML();
+	}
+
 	return $content;
 }
