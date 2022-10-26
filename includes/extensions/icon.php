@@ -167,8 +167,6 @@ function get_icon_html( string $content, array $block ): string {
 		$styles['--wp--custom--icon--color'] = $color;
 	}
 
-	unset( $styles['--wp--custom--icon--url'] );
-
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
 	$span->setAttribute( 'class', implode( ' ', $classes ) );
@@ -190,21 +188,6 @@ function get_icon_html( string $content, array $block ): string {
 	} else {
 		$figure->appendChild( $span );
 	}
-
-	$svg_string = $block['attrs']['iconSvgString'] ?? get_icon( $icon_set, $icon_name );
-
-	if ( ! $svg_string ) {
-		$svg_string = get_icon( $icon_set, $icon_name );
-	}
-
-	$css = <<<CSS
-.blockify-icon-{$icon_set}-{$icon_name}{--wp--custom--icon--url: url('data:image/svg+xml;utf8,{$svg_string}');}
-CSS;
-
-	wp_add_inline_style(
-		'global-styles',
-		trim( $css )
-	);
 
 	return $dom->saveHTML();
 }

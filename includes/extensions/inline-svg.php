@@ -4,16 +4,14 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function content_url;
-use const ABSPATH;
 use function add_filter;
+use function content_url;
+use function dirname;
 use function file_exists;
 use function file_get_contents;
-use function home_url;
 use function in_array;
 use function str_contains;
 use function str_replace;
-use const WP_CONTENT_DIR;
 
 add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
 /**
@@ -46,7 +44,7 @@ function render_inline_svg( string $content, array $block ): string {
 
 	$src = str_replace(
 		content_url(),
-		WP_CONTENT_DIR,
+		dirname( dirname( DIR ) ),
 		$img->getAttribute( 'src' )
 	);
 

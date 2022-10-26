@@ -5,12 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function file_exists;
-use function file_get_contents;
-use function home_url;
 use function str_contains;
-use function str_replace;
-use const ABSPATH;
 
 add_filter( 'render_block_core/image', NS . 'render_image_block', 10, 2 );
 /**
