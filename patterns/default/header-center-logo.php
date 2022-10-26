@@ -22,6 +22,6 @@
 <figure class="wp-block-image size-large is-resized"><img src="<?php echo content_url( "/themes/blockify/assets/img/" ) ?>blockify.svg" alt="" class="wp-image-504" width="120" height="30"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:navigation {"ref":136,"textColor":"neutral-darker","overlayMenu":"always","icon":"menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"right":"0","left":"0"}},"typography":{"fontSize":"18px"}}} /--></div>
+<!-- wp:navigation {"textColor":"neutral-darker","overlayMenu":"always","icon":"menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"right":"0","left":"0"}},"typography":{"fontSize":"18px"}}} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

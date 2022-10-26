@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-26T06:00:19+00:00\n"
+"POT-Creation-Date: 2022-10-26T09:48:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -79,38 +79,34 @@ msgid "Mega Menu"
 msgstr ""
 
 #: includes/block-styles.php:65
-msgid "Toggle"
-msgstr ""
-
-#: includes/block-styles.php:70
 msgid "Sub Heading"
 msgstr ""
 
-#: includes/block-styles.php:75
+#: includes/block-styles.php:70
 msgid "Notice"
 msgstr ""
 
-#: includes/block-styles.php:80
+#: includes/block-styles.php:75
 msgid "Angle"
 msgstr ""
 
-#: includes/block-styles.php:85
+#: includes/block-styles.php:80
 msgid "Curve"
 msgstr ""
 
-#: includes/block-styles.php:90
+#: includes/block-styles.php:85
 msgid "Round"
 msgstr ""
 
-#: includes/block-styles.php:95
+#: includes/block-styles.php:90
 msgid "Wave"
 msgstr ""
 
-#: includes/block-styles.php:100
+#: includes/block-styles.php:95
 msgid "Fade"
 msgstr ""
 
-#: includes/extensions/icon.php:169
+#: includes/extensions/icon.php:172
 msgid " icon"
 msgstr ""
 

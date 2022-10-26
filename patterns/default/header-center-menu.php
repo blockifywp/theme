@@ -12,7 +12,7 @@
 <figure class="wp-block-image size-large is-resized"><img src="<?php echo content_url( "/themes/blockify/assets/img/" ) ?>blockify.svg" alt="" class="wp-image-504" width="120"/></figure>
 <!-- /wp:image -->
 
-<!-- wp:navigation {"ref":152,"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"typography":{"fontSize":"16px"}}} /-->
+<!-- wp:navigation {"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"typography":{"fontSize":"16px"}}} /-->
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group"><!-- wp:buttons -->

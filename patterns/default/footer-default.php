@@ -35,7 +35,7 @@
 <p class="has-text-align-left" style="margin-bottom:var(--wp--preset--spacing--sm)"><strong>Page List</strong> </p>
 <!-- /wp:paragraph -->
 
-<!-- wp:navigation {"ref":152,"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical"},"style":{"spacing":{"margin":{"top":"0"}}}} /--></div>
+<!-- wp:navigation {"overlayMenu":"never","layout":{"type":"flex","orientation":"vertical"},"style":{"spacing":{"margin":{"top":"0"}}}} /--></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
