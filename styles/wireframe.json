@@ -1,0 +1,129 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "title": "Wireframe",
+  "settings": {
+    "custom": {
+      "patternStyle": "default",
+      "darkMode": {
+        "palette": {
+          "primary": "#ffffff",
+          "foreground": "#ffffff",
+          "heading": "#ffffff",
+          "body": "#f6f6f9",
+          "outline": "#3f4c7c",
+          "surface": "#151929",
+          "background": "#151929"
+        }
+      },
+      "border": {
+        "width": "2px",
+        "color": "var(--wp--preset--color--foreground)",
+        "radius": "0"
+      },
+      "boxShadow": {
+        "x": "4px",
+        "y": "4px",
+        "blur": "0",
+        "spread": "0",
+        "color": "var(--wp--preset--color--foreground)"
+      },
+      "surface": {
+        "borderColor": "var(--wp--preset--color--foreground)"
+      }
+    },
+    "color": {
+      "palette": [
+        {
+          "color": "#1d243c",
+          "name": "Primary",
+          "slug": "primary"
+        },
+        {
+          "color": "#d0d4e3",
+          "name": "Secondary",
+          "slug": "secondary"
+        },
+        {
+          "color": "#151929",
+          "name": "Foreground",
+          "slug": "foreground"
+        },
+        {
+          "color": "#1d243c",
+          "name": "Heading",
+          "slug": "heading"
+        },
+        {
+          "color": "#3f4c7c",
+          "name": "Body",
+          "slug": "body"
+        },
+        {
+          "color": "#7e87ad",
+          "name": "Neutral",
+          "slug": "neutral"
+        },
+        {
+          "color": "#d0d4e3",
+          "name": "Outline",
+          "slug": "outline"
+        },
+        {
+          "color": "#ffffff",
+          "name": "Surface",
+          "slug": "surface"
+        },
+        {
+          "color": "#ffffff",
+          "name": "Background",
+          "slug": "background"
+        },
+        {
+          "color": "currentColor",
+          "name": "Current Color",
+          "slug": "currentColor"
+        },
+        {
+          "color": "inherit",
+          "name": "Inherit",
+          "slug": "inherit"
+        },
+        {
+          "color": "transparent",
+          "name": "Transparent",
+          "slug": "transparent"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "text": "var(--wp--preset--color--foreground)"
+    },
+    "elements": {
+      "button": {
+        "color": {
+          "text": "var(--wp--preset--color--foreground)",
+          "background": "var(--wp--preset--color--background)"
+        },
+        "border": {
+          "width": "var(--wp--custom--border--width)",
+          "style": "var(--wp--custom--border--style)",
+          "color": "var(--wp--preset--color--foreground)"
+        },
+        "shadow": "var(--wp--custom--box-shadow)",
+        ":hover": {
+          "shadow": "2px 2px 0 0"
+        }
+      }
+    },
+    "blocks": {
+      "core/button": {
+        "typography": {
+          "lineHeight": "calc(1em - 4px)"
+        }
+      }
+    }
+  }
+}

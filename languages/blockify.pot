@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.8.0\n"
+"Project-Id-Version: Blockify 0.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-13T11:45:26+00:00\n"
+"POT-Creation-Date: 2022-10-26T06:00:19+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -24,132 +24,124 @@ msgid "https://blockifywp.com/themes/blockify"
 msgstr ""
 
 #. Description of the theme
-msgid "Lightweight full site editing block theme framework. Blockify provides useful features that help you build modern WordPress sites with blocks. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Customization settings include SVG icons, custom Google Fonts, box shadows, gradient text, absolute positioning, responsive settings, negative margins and more. Designed for use with child themes and compatible with most popular plugins. Blockify is a great starting point and toolkit for building your own custom block theme."
+msgid "Lightweight full site editing block theme framework. Blockify provides useful features that help you build modern WordPress sites with blocks. Optimized for speed - loads zero CSS, JavaScript, image or font files by default. Customization settings including SVG icons, box shadows, gradient text, absolute positioning, responsive settings, negative margins and more. Designed for use with child themes and compatible with most popular plugins. Blockify is a great starting point and toolkit for building your own custom block theme."
 msgstr ""
 
 #. Author URI of the theme
 msgid "https://blockifywp.com/"
 msgstr ""
 
-#: includes/block-styles.php:26
-#: includes/block-styles.php:31
-#: includes/block-styles.php:36
-#: includes/block-styles.php:41
-msgid "Surface"
+#: functions.php:81
+msgid "Please deactivate Gutenberg"
 msgstr ""
 
-#: includes/block-styles.php:46
-msgid "Numbered"
+#: functions.php:82
+msgid "Gutenberg is no longer required to use Blockify with WordPress 6.1 and higher. "
 msgstr ""
 
-#: includes/block-styles.php:51
-msgid "Checklist"
+#: functions.php:82
+msgid "Go to plugins page →"
 msgstr ""
 
-#: includes/block-styles.php:56
-msgid "Check Circle"
-msgstr ""
-
-#: includes/block-styles.php:61
-msgid "Square"
-msgstr ""
-
-#: includes/block-styles.php:66
-msgid "Mega Menu"
-msgstr ""
-
-#: includes/block-styles.php:71
-msgid "Toggle"
-msgstr ""
-
-#: includes/block-styles.php:76
-msgid "Sub Heading"
-msgstr ""
-
-#: includes/block-styles.php:81
-msgid "Angle"
-msgstr ""
-
-#: includes/block-styles.php:86
-msgid "Curve"
-msgstr ""
-
-#: includes/block-styles.php:91
-msgid "Round"
-msgstr ""
-
-#: includes/block-styles.php:96
-msgid "Wave"
-msgstr ""
-
-#: includes/block-styles.php:101
-msgid "Fade"
-msgstr ""
-
-#: includes/blocks/archive-title.php:35
+#: includes/block-filters/archive-title.php:35
 msgid "Search results"
 msgstr ""
 
-#: includes/blocks/post-title.php:34
+#: includes/block-filters/post-title.php:34
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/blocks/search.php:72
+#: includes/block-filters/search.php:72
 msgid "Search this website"
 msgstr ""
 
-#: includes/extensions/icon.php:149
-msgid "SVG Icon"
+#: includes/block-styles.php:25
+#: includes/block-styles.php:30
+#: includes/block-styles.php:35
+#: includes/block-styles.php:40
+msgid "Surface"
+msgstr ""
+
+#: includes/block-styles.php:45
+msgid "Checklist"
+msgstr ""
+
+#: includes/block-styles.php:50
+msgid "Checklist Circle"
+msgstr ""
+
+#: includes/block-styles.php:55
+msgid "Square"
+msgstr ""
+
+#: includes/block-styles.php:60
+msgid "Mega Menu"
+msgstr ""
+
+#: includes/block-styles.php:65
+msgid "Toggle"
+msgstr ""
+
+#: includes/block-styles.php:70
+msgid "Sub Heading"
+msgstr ""
+
+#: includes/block-styles.php:75
+msgid "Notice"
+msgstr ""
+
+#: includes/block-styles.php:80
+msgid "Angle"
+msgstr ""
+
+#: includes/block-styles.php:85
+msgid "Curve"
+msgstr ""
+
+#: includes/block-styles.php:90
+msgid "Round"
+msgstr ""
+
+#: includes/block-styles.php:95
+msgid "Wave"
+msgstr ""
+
+#: includes/block-styles.php:100
+msgid "Fade"
+msgstr ""
+
+#: includes/extensions/icon.php:169
+msgid " icon"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "72px"
+msgid "S"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "60px"
+msgid "M"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "48px"
+msgid "L"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "36px"
+msgid "XL"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "30px"
+msgid "XXL"
 msgstr ""
 
 #: theme.json
-msgctxt "Font size name"
-msgid "24px"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "20px"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "18px"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "16px"
-msgstr ""
-
-#: theme.json
-msgctxt "Font size name"
-msgid "14px"
+msgctxt "Font family name"
+msgid "Inter"
 msgstr ""
 
 #: theme.json
@@ -225,6 +217,16 @@ msgstr ""
 #: theme.json
 msgctxt "Gradient name"
 msgid "Surface/Border"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Conic Light"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Conic Dark"
 msgstr ""
 
 #: theme.json

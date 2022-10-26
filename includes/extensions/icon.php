@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_action;
+use function apply_filters;
 use function array_diff;
 use function array_keys;
 use function basename;
@@ -15,8 +16,8 @@ use function glob;
 use function implode;
 use function preg_replace;
 use function str_replace;
-use function strtolower;
 use function trim;
+use function wp_add_inline_style;
 use WP_REST_Request;
 use WP_REST_Server;
 
@@ -53,6 +54,23 @@ function register_icons_rest_route(): void {
 }
 
 /**
+ * Description of expected behavior.
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function get_icon_sets(): array {
+	return apply_filters(
+		'blockify_icon_sets',
+		[
+			'social'    => DIR . 'assets/svg/social',
+			'wordpress' => DIR . 'assets/svg/wordpress',
+		]
+	);
+}
+
+/**
  * Returns icon data for rest endpoint
  *
  * @since 0.4.8
@@ -63,10 +81,7 @@ function register_icons_rest_route(): void {
  */
 function get_icon_data( WP_REST_Request $request ) {
 	$icon_data = [];
-	$icon_sets = [
-		'social'    => DIR . 'assets/svg/social',
-		'wordpress' => DIR . 'assets/svg/wordpress',
-	];
+	$icon_sets = get_icon_sets();
 
 	foreach ( $icon_sets as $icon_set => $set_dir ) {
 		$icons = glob( $set_dir . '/*.svg' );
@@ -75,7 +90,7 @@ function get_icon_data( WP_REST_Request $request ) {
 			$name = basename( $icon, '.svg' );
 			$icon = file_get_contents( $icon );
 
-			if ( $icon_set === strtolower( 'WordPress' ) ) {
+			if ( $icon_set === 'WordPress' ) {
 				$icon = str_replace(
 					[ 'fill="none"' ],
 					[ 'fill="currentColor"' ],
@@ -107,7 +122,6 @@ function get_icon_data( WP_REST_Request $request ) {
 	}
 
 	return $icon_data;
-
 }
 
 /**
@@ -130,26 +144,39 @@ function get_icon_html( string $content, array $block ): string {
 		return $content;
 	}
 
+	$link    = get_dom_element( 'a', $figure );
 	$span    = change_tag_name( $img, 'span' );
 	$classes = explode( ' ', $figure->getAttribute( 'class' ) );
 	$styles  = css_string_to_array( $figure->getAttribute( 'style' ) );
 	$classes = array_diff( $classes, [ 'wp-block-image', 'is-style-icon' ] );
+
+	// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
+	$icon_set  = $block['attrs']['iconSet'] ?? 'wordpress';
+	$icon_name = $block['attrs']['iconName'] ?? 'star-empty';
+
 	$classes = [
 		'wp-block-image__icon',
 		'blockify-icon',
+		'blockify-icon-' . $icon_set . '-' . $icon_name,
 		...$classes,
 	];
 
-	$styles['--wp--custom--icon--color'] = $styles['--wp--custom--icon--color'] ?? 'currentColor';
+	$color = $styles['----wp--custom--icon--color'] ?? 'currentColor';
 
-	if ( $styles['--wp--custom--icon--color'] === '' ) {
-		unset( $styles['--wp--custom--icon--color'] );
+	if ( $color && $color !== 'currentColor' ) {
+		$styles['--wp--custom--icon--color'] = $color;
 	}
 
-	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : $block['attrs']['icon'] ?? __( 'SVG Icon', 'blockify' );
+	unset( $styles['--wp--custom--icon--url'] );
+
+	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
 	$span->setAttribute( 'class', implode( ' ', $classes ) );
-	$span->setAttribute( 'style', css_array_to_string( $styles ) );
+
+	if ( $styles ) {
+		$span->setAttribute( 'style', css_array_to_string( $styles ) );
+	}
+
 	$span->setAttribute( 'aria-label', $aria_label );
 
 	$span->removeAttribute( 'src' );
@@ -158,7 +185,62 @@ function get_icon_html( string $content, array $block ): string {
 	$figure->setAttribute( 'class', 'wp-block-image is-style-icon' );
 	$figure->setAttribute( 'style', '' );
 
-	$figure->appendChild( $span );
+	if ( $link ) {
+		$link->appendChild( $span );
+	} else {
+		$figure->appendChild( $span );
+	}
+
+	$svg_string = $block['attrs']['iconSvgString'] ?? get_icon( $icon_set, $icon_name );
+
+	if ( ! $svg_string ) {
+		$svg_string = get_icon( $icon_set, $icon_name );
+	}
+
+	$css = <<<CSS
+.blockify-icon-{$icon_set}-{$icon_name}{--wp--custom--icon--url: url('data:image/svg+xml;utf8,{$svg_string}');}
+CSS;
+
+	wp_add_inline_style(
+		'global-styles',
+		trim( $css )
+	);
 
 	return $dom->saveHTML();
+}
+
+/**
+ * Returns array of all registered icons.
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function get_icons(): array {
+	$icons     = [];
+	$icon_sets = get_icon_sets();
+
+	foreach ( $icon_sets as $icon_set => $dir ) {
+		$icons[ $icon_set ] = [];
+
+		foreach ( glob( $dir . '/*.svg' ) as $file ) {
+			$icons[ $icon_set ][ basename( $file, '.svg' ) ] = trim( file_get_contents( $file ) );
+		}
+	}
+
+	return $icons;
+}
+
+/**
+ * Returns svg string for given icon.
+ *
+ * @since 1.0.0
+ *
+ * @param string $set  Icon set.
+ * @param string $name Icon name.
+ *
+ * @return string
+ */
+function get_icon( string $set, string $name ): string {
+	return get_icons()[ $set ][ $name ] ?? '';
 }

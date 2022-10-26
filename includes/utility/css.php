@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function explode;
 use function is_null;
+use function str_replace;
 
 /**
  * Converts array of CSS rules to string.
@@ -40,7 +41,11 @@ function css_array_to_string( array $styles ): string {
  * @return array
  */
 function css_string_to_array( string $css ): array {
-	$array    = [];
+	$array = [];
+
+	// Prevent svg url strings from being split.
+	$css = str_replace( 'xml;', 'xml$', $css );
+
 	$elements = explode( ';', $css );
 
 	foreach ( $elements as $element ) {
@@ -51,7 +56,7 @@ function css_string_to_array( string $css ): array {
 			$value    = $parts[1];
 
 			if ( $value ) {
-				$array[ $property ] = $value;
+				$array[ $property ] = str_replace( 'xml$', 'xml;', $value );
 			}
 		}
 	}

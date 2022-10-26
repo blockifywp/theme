@@ -1,1 +1,1 @@
-.has-box-shadow{box-shadow:var(--wp--custom--box-shadow--inset) var(--wp--custom--box-shadow--x) var(--wp--custom--box-shadow--y) var(--wp--custom--box-shadow--blur) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color)}
+.has-box-shadow{box-shadow:var(--wp--custom--box-shadow--inset) var(--wp--custom--box-shadow--x, 0) var(--wp--custom--box-shadow--y, 3px) var(--wp--custom--box-shadow--blur, 6px) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color, var(--wp--preset--color--custom-box-shadow, var(--wp--preset--color--outline)))}

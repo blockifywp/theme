@@ -7,20 +7,15 @@ namespace Blockify\Theme;
 use function add_action;
 use function apply_filters;
 use function basename;
-use function explode;
-use function file_get_contents;
-use function get_stylesheet_directory;
-use function get_template_directory;
 use function glob;
 use function in_array;
-use function ob_get_clean;
-use function ob_start;
-use function register_block_pattern;
+use function is_admin;
 use function register_block_pattern_category;
 use function remove_theme_support;
-use function str_replace;
+use function sanitize_title_with_dashes;
+use function trailingslashit;
+use function trim;
 use function ucfirst;
-use function ucwords;
 use function wp_list_pluck;
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;
@@ -46,81 +41,10 @@ add_action( 'init', NS . 'register_block_patterns' );
  * @return void
  */
 function register_block_patterns(): void {
-	$patterns       = [];
-	$stylesheet_dir = get_stylesheet_directory();
-	$template_dir   = get_template_directory();
-	$pattern_dir    = $stylesheet_dir === $template_dir ? $template_dir : $stylesheet_dir;
-	$dirs           = glob( $pattern_dir . '/patterns/*', GLOB_ONLYDIR );
+	$dir = get_pattern_dir();
 
-	foreach ( $dirs as $dir ) {
-		$files          = glob( $dir . '/*.html' );
-		$category_slug  = basename( $dir );
-		$category_title = ucwords( str_replace( '-', ' ', $category_slug ) );
-
-		foreach ( $files as $file ) {
-			if ( in_array( $file, $patterns, true ) ) {
-				continue;
-			}
-
-			$file_base = basename( $file );
-			$file_type = explode( '.', $file_base )[1] ?? 'html';
-
-			// TODO: Add json support.
-			if ( ! in_array( $file_type, [ 'html', 'php' ], true ) ) {
-				continue;
-			}
-
-			$pattern_base    = basename( $file, '.' . $file_type );
-			$pattern_slug    = $category_slug . '-' . $pattern_base;
-			$pattern_title   = $category_title . ' ' . ucwords( str_replace( '-', ' ', $pattern_base ) );
-			$pattern_content = file_get_contents( $file );
-
-			$pattern = [
-				'title'      => $pattern_title,
-				'content'    => $pattern_content,
-				'categories' => [ $category_slug ],
-			];
-
-			ob_start();
-			include $file;
-			$pattern['content'] = ob_get_clean();
-
-			if ( $file_type === 'php' ) {
-				$pattern['inserter'] = false;
-			}
-
-			if ( $category_slug === 'page' ) {
-				$pattern['blockTypes'] = [ 'core/post-content' ];
-				$pattern['postTypes']  = [ 'page' ];
-			}
-
-			if ( in_array( $category_slug, [ 'header', 'footer' ], true ) ) {
-				$pattern['blockTypes'] = [ 'core/template-part/' . $category_slug ];
-			}
-
-			if ( $category_slug === 'template' ) {
-				$pattern['inserter'] = false;
-			}
-
-			$exclude = [
-				'icon-guide',
-			];
-
-			if ( in_array( $pattern_base, $exclude, true ) ) {
-				$pattern['inserter'] = false;
-			}
-
-			$patterns[ $pattern_slug ] = $pattern;
-		}
-	}
-
-	$patterns = apply_filters( 'blockify_patterns', $patterns );
-
-	foreach ( $patterns as $pattern => $args ) {
-		register_block_pattern(
-			$pattern,
-			$args
-		);
+	foreach ( glob( $dir . '/*.php' ) as $file ) {
+		register_block_pattern_from_file( $file );
 	}
 }
 
@@ -155,4 +79,79 @@ function auto_register_pattern_categories(): void {
 			);
 		}
 	}
+}
+
+/**
+ * Parses and registers block pattern from PHP file with header comment.
+ *
+ * @since 0.0.8
+ *
+ * @param string $file Path to PHP file.
+ *
+ * @return void
+ */
+function register_block_pattern_from_file( string $file ): void {
+	$style   = basename( $file, '.php' );
+	$headers = get_file_data(
+		$file,
+		[
+			'title'         => 'Title',
+			'slug'          => 'Slug',
+			'categories'    => 'Categories',
+			'block_types'   => 'Block Types',
+			'post_types'    => 'Post Types',
+			'inserter'      => 'Inserter',
+			'keywords'      => 'Keywords',
+			'viewportWidth' => 'Viewport Width',
+		]
+	);
+
+	$categories = explode( ',', $headers['categories'] );
+
+	[ $category ] = $categories;
+
+	$category = trim( sanitize_title_with_dashes( $category ) );
+
+	ob_start();
+	include $file;
+	$content = ob_get_clean();
+	$content = str_replace(
+		str_between( '<?php', '?>', $content ),
+		'',
+		$content
+	);
+
+	$pattern = [
+		'title'      => $headers['title'],
+		'content'    => $content,
+		'categories' => $categories,
+	];
+
+	if ( $headers['block_types'] ) {
+		$pattern['blockTypes'] = $headers['block_types'];
+	}
+
+	if ( $headers['post_types'] ) {
+		$pattern['postTypes'] = $headers['post_types'];
+	}
+
+	if ( $headers['inserter'] ) {
+		$pattern['inserter'] = $headers['inserter'];
+	}
+
+	if ( $category === 'template' ) {
+		$pattern['inserter'] = false;
+	}
+
+	foreach ( $categories as $category ) {
+		register_block_pattern_category(
+			$category,
+			[
+				'label' => ucwords( $category ),
+			]
+		);
+	}
+
+	// @phpstan-ignore-next-line
+	register_block_pattern( $headers['slug'], $pattern );
 }

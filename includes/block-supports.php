@@ -6,18 +6,17 @@ namespace Blockify\Theme;
 
 use function add_filter;
 
-add_filter( 'blockify_editor_script', NS . 'add_block_supports' );
+add_filter( SLUG . '_editor_script', NS . 'register_block_supports' );
 /**
- * Add block support config.
+ * Add default block supports.
  *
- * @todo  Move to rest endpoint.
- * @since 0.4.0
+ * @since 1.0.0
  *
- * @param array $config Default config.
+ * @param array $config Blockify editor config.
  *
  * @return array
  */
-function add_block_supports( array $config ): array {
+function register_block_supports( array $config ): array {
 	$config['blockSupports'] = [
 		'blockify/accordion'       => [
 			'blockifyBoxShadow' => true,
@@ -44,11 +43,12 @@ function add_block_supports( array $config ): array {
 			'minHeight' => '6em',
 		],
 		'core/buttons'             => [
-			'spacing' => [
+			'spacing'          => [
 				'padding'  => true, // Required.
 				'margin'   => true,
 				'blockGap' => true,
 			],
+			'blockifyPosition' => true,
 		],
 		'core/button'              => [
 			'typography'           => [
@@ -68,6 +68,7 @@ function add_block_supports( array $config ): array {
 				],
 			],
 			'blockifyBoxShadow'    => true,
+			'blockifyOnclick'      => true,
 		],
 		'core/code'                => [
 			'blockifyBoxShadow' => true,
@@ -186,6 +187,9 @@ function add_block_supports( array $config ): array {
 				'margin'  => true,
 				'padding' => true,
 			],
+			'typography'             => [
+				'fontSize' => true, // Used by icons.
+			],
 			'blockifyBackground'     => true,
 			'blockifyBoxShadow'      => true,
 			'blockifyFilter'         => true,
@@ -193,6 +197,7 @@ function add_block_supports( array $config ): array {
 			'blockifyNegativeMargin' => true,
 			'blockifyPosition'       => true,
 			'blockifyTransform'      => true,
+			'blockifyOnclick'        => true,
 		],
 		'core/list'                => [
 			'__experimentalLayout' => [
@@ -382,6 +387,7 @@ function add_block_supports( array $config ): array {
 		],
 		'core/search'              => [
 			'blockifyBoxShadow' => true,
+			'blockifyPosition'  => true,
 			'spacing'           => [
 				'padding' => true,
 				'margin'  => true,

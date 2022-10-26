@@ -53,24 +53,6 @@ function dom( string $html ): DOMDocument {
 }
 
 /**
- * Casts a DOMNode to a DOMElement.
- *
- * @since 0.4.0
- *
- * @param mixed $node DOMNode to cast to DOMElement.
- *
- * @return \DOMElement|null
- */
-function dom_element( $node ) {
-	if ( $node->nodeType === XML_ELEMENT_NODE ) {
-		/* @var \DOMElement $node DOM Element node */
-		return $node;
-	}
-
-	return null;
-}
-
-/**
  * Returns a formatted DOMElement object from a DOMDocument object.
  *
  * @since 0.4.0
@@ -93,6 +75,24 @@ function get_dom_element( string $tag, $dom_or_element, int $index = 0 ) {
 	}
 
 	return dom_element( $element );
+}
+
+/**
+ * Casts a DOMNode to a DOMElement.
+ *
+ * @since 0.4.0
+ *
+ * @param mixed $node DOMNode to cast to DOMElement.
+ *
+ * @return \DOMElement|null
+ */
+function dom_element( $node ) {
+	if ( $node->nodeType === XML_ELEMENT_NODE ) {
+		/* @var \DOMElement $node DOM Element node */
+		return $node;
+	}
+
+	return null;
 }
 
 /**

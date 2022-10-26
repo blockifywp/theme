@@ -7,6 +7,9 @@ vendor/*
 !vendor/tgmpa
 vendor/tgmpa/tgm-plugin-activation/*
 !vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php
+!vendor/wptrt
+vendor/wptrt/admin-notices/*
+!vendor/wptrt/admin-notices/src
 *.zip
 *.lock
 *cache

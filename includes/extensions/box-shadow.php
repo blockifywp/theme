@@ -5,8 +5,6 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function explode;
-use function implode;
 use function method_exists;
 
 add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
@@ -29,6 +27,10 @@ function render_box_shadow( string $content, array $block ): string {
 
 	$dom   = dom( $content );
 	$first = get_dom_element( '*', $dom );
+
+	if ( ! $first ) {
+		return $content;
+	}
 
 	if ( ! method_exists( $first, 'getAttribute' ) ) {
 		return $content;

@@ -4,26 +4,30 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function function_exists;
-use function str_contains;
 use const DIRECTORY_SEPARATOR;
 use const PHP_VERSION;
 use function add_action;
 use function array_map;
+use function class_exists;
+use function defined;
+use function function_exists;
 use function glob;
 use function is_readable;
+use function str_contains;
 use function tgmpa;
 use function version_compare;
-
-if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
-	return;
-}
+use WPTRT\AdminNotices\Notices;
 
 const SLUG = 'blockify';
+const NAME = 'Blockify';
 const NS   = __NAMESPACE__ . '\\';
 const DS   = DIRECTORY_SEPARATOR;
 const DIR  = __DIR__ . DS;
 const FILE = __FILE__;
+
+if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
+	return;
+}
 
 add_action( 'after_setup_theme', NS . 'setup', 9 );
 /**
@@ -38,11 +42,12 @@ function setup(): void {
 		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
 		[
 			DIR . 'vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php',
+			...glob( DIR . 'vendor/wptrt/admin-notices/src/*.php' ),
 			...glob( DIR . 'includes/utility/*.php' ),
-			...glob( DIR . 'includes/config/*.php' ),
 			...glob( DIR . 'includes/*.php' ),
-			...glob( DIR . 'includes/blocks/*.php' ),
+			...glob( DIR . 'includes/block-filters/*.php' ),
 			...glob( DIR . 'includes/extensions/*.php' ),
+			...glob( DIR . 'includes/plugins/*.php' ),
 		]
 	);
 }
@@ -56,17 +61,30 @@ add_action( 'after_setup_theme', NS . 'load_dependencies' );
  * @return void
  */
 function load_dependencies(): void {
-	if ( ! function_exists( 'tgmpa' ) ) {
+	if ( ! function_exists( 'tgmpa' ) || ! class_exists( 'WPTRT\\AdminNotices\\Notices' ) ) {
 		return;
 	}
 
 	global $wp_version;
 
-	if ( str_contains( $wp_version, 'beta' ) ) {
-		return;
-	}
+	$min_wp_version = '6.1';
 
-	if ( version_compare( $wp_version, '6.1', '>=' ) ) {
+	if ( str_contains( $wp_version, $min_wp_version ) || version_compare( $wp_version, $min_wp_version, '>=' ) ) {
+		if ( ! defined( 'GUTENBERG_VERSION' ) ) {
+			return;
+		}
+
+		$notice = new Notices();
+
+		$notice->add(
+			'blockify_deactivate_gutenberg',
+			__( 'Please deactivate Gutenberg', 'blockify' ),
+			__( 'Gutenberg is no longer required to use Blockify with WordPress 6.1 and higher. ', 'blockify' ) . '<a href="' . admin_url( 'plugins.php' ) . '">' . __( 'Go to plugins page →', 'blockify' ) . '</a>',
+			[]
+		);
+
+		$notice->boot();
+
 		return;
 	}
 

@@ -5,5 +5,4 @@ parameters:
 	paths:
 		- functions.php
 		- includes/
-		- patterns/
 	#ignoreErrors:

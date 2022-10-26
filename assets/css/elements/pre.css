@@ -1,1 +1,1 @@
-pre,code{font-family:var(--wp--preset--font-family--monospace)}pre p,code p{white-space:normal}
+pre{width:100%;font-family:var(--wp--custom--font-stack--monospace)}pre p{white-space:normal}pre div{border:0}

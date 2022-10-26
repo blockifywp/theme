@@ -6,114 +6,109 @@ namespace Blockify\Theme;
 
 use function add_filter;
 
-add_filter( 'blockify_editor_script', NS . 'add_block_styles' );
+add_filter( SLUG . '_editor_script', NS . 'register_block_styles' );
 /**
- * Add block styles config.
+ * Adds default blocks styles.
  *
- * @todo  Use rest api instead of inline.
+ * @since 1.0.0
  *
- * @since 0.4.0
- *
- * @param array $config Default config.
+ * @param array $config Blockify editor config.
  *
  * @return array
  */
-function add_block_styles( array $config ): array {
-	$config['blockStyles']['register'] = [
-		[
-			'type'  => 'core/code',
-			'name'  => 'surface',
-			'label' => __( 'Surface', 'blockify' ),
+function register_block_styles( array $config ): array {
+	$config['blockStyles'] = [
+		'register'   => [
+			[
+				'type'  => 'core/code',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/columns',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/column',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/group',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/list',
+				'name'  => 'checklist',
+				'label' => __( 'Checklist', 'blockify' ),
+			],
+			[
+				'type'  => 'core/list',
+				'name'  => 'checklist-circle',
+				'label' => __( 'Checklist Circle', 'blockify' ),
+			],
+			[
+				'type'  => 'core/list',
+				'name'  => 'square',
+				'label' => __( 'Square', 'blockify' ),
+			],
+			[
+				'type'  => 'core/navigation-submenu',
+				'name'  => 'mega-menu',
+				'label' => __( 'Mega Menu', 'blockify' ),
+			],
+			[
+				'type'  => 'core/paragraph',
+				'name'  => 'sub-heading',
+				'label' => __( 'Sub Heading', 'blockify' ),
+			],
+			[
+				'type'  => 'core/paragraph',
+				'name'  => 'notice',
+				'label' => __( 'Notice', 'blockify' ),
+			],
+			[
+				'type'  => 'core/spacer',
+				'name'  => 'angle',
+				'label' => __( 'Angle', 'blockify' ),
+			],
+			[
+				'type'  => 'core/spacer',
+				'name'  => 'curve',
+				'label' => __( 'Curve', 'blockify' ),
+			],
+			[
+				'type'  => 'core/spacer',
+				'name'  => 'round',
+				'label' => __( 'Round', 'blockify' ),
+			],
+			[
+				'type'  => 'core/spacer',
+				'name'  => 'wave',
+				'label' => __( 'Wave', 'blockify' ),
+			],
+			[
+				'type'  => 'core/spacer',
+				'name'  => 'fade',
+				'label' => __( 'Fade', 'blockify' ),
+			],
 		],
-		[
-			'type'  => 'core/columns',
-			'name'  => 'surface',
-			'label' => __( 'Surface', 'blockify' ),
-		],
-		[
-			'type'  => 'core/column',
-			'name'  => 'surface',
-			'label' => __( 'Surface', 'blockify' ),
-		],
-		[
-			'type'  => 'core/group',
-			'name'  => 'surface',
-			'label' => __( 'Surface', 'blockify' ),
-		],
-		[
-			'type'  => 'core/list',
-			'name'  => 'numbered',
-			'label' => __( 'Numbered', 'blockify' ),
-		],
-		[
-			'type'  => 'core/list',
-			'name'  => 'checklist',
-			'label' => __( 'Checklist', 'blockify' ),
-		],
-		[
-			'type'  => 'core/list',
-			'name'  => 'checklist',
-			'label' => __( 'Check Circle', 'blockify' ),
-		],
-		[
-			'type'  => 'core/list',
-			'name'  => 'square',
-			'label' => __( 'Square', 'blockify' ),
-		],
-		[
-			'type'  => 'core/navigation-submenu',
-			'name'  => 'mega-menu',
-			'label' => __( 'Mega Menu', 'blockify' ),
-		],
-		[
-			'type'  => 'core/search',
-			'name'  => 'toggle',
-			'label' => __( 'Toggle', 'blockify' ),
-		],
-		[
-			'type'  => 'core/paragraph',
-			'name'  => 'sub-heading',
-			'label' => __( 'Sub Heading', 'blockify' ),
-		],
-		[
-			'type'  => 'core/spacer',
-			'name'  => 'angle',
-			'label' => __( 'Angle', 'blockify' ),
-		],
-		[
-			'type'  => 'core/spacer',
-			'name'  => 'curve',
-			'label' => __( 'Curve', 'blockify' ),
-		],
-		[
-			'type'  => 'core/spacer',
-			'name'  => 'round',
-			'label' => __( 'Round', 'blockify' ),
-		],
-		[
-			'type'  => 'core/spacer',
-			'name'  => 'wave',
-			'label' => __( 'Wave', 'blockify' ),
-		],
-		[
-			'type'  => 'core/spacer',
-			'name'  => 'fade',
-			'label' => __( 'Fade', 'blockify' ),
-		],
-	];
 
-	$config['blockStyles']['unregister'] = [
-		[
-			'type' => 'core/image',
-			'name' => [ 'rounded', 'default' ],
-		],
-		[
-			'type' => 'core/site-logo',
-			'name' => [ 'default', 'rounded' ],
-		],
-		[
-			'type' => 'core/separator',
-			'name' => [ 'wide', 'dots' ],
+		'unregister' => [
+			[
+				'type' => 'core/image',
+				'name' => [ 'rounded', 'default' ],
+			],
+			[
+				'type' => 'core/site-logo',
+				'name' => [ 'default', 'rounded' ],
+			],
+			[
+				'type' => 'core/separator',
+				'name' => [ 'wide', 'dots' ],
+			],
 		],
 	];
 

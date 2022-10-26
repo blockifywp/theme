@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.8.0
+Stable tag: 0.9.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,37 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.0 - 26 October 2022 =
+
+* Add: Wireframe and blueprint style variations
+* Add: Notice block style for paragraphs
+* Add: Dynamic front page pattern templates
+* Add: Remaining checks for conditional stylesheets
+* Add: Inline SVG support for image block
+* Add: Style previews to site editor
+* Add: Link and onclick support to icon block variation
+* Add: Basic EDD styling
+* Add: Add button hover effects
+* Add: Notice to deactivate Gutenberg if 6.1
+* Add: Template patterns
+* Add: Pattern, style and block filters
+* Update: Switch to Inter as default font for OS consistency
+* Update: Icon block variation optimizations
+* Update: Clean up style handling
+* Update: Font sizes to semantic scale for better UI
+* Update: Simplify pattern registration
+* Update: Replace logos with image block
+* Update: All patterns for 6.1
+* Update: Adjust side spacing for containers
+* Fix: Search form block styling
+* Remove: All font families from settings
+* Remove: Custom numbered list block style
+* Remove: Animation scripts
+* Remove: Loading all fonts in editor
+* Remove: Rest page settings
+* Remove: Unused animation scripts
+* Remove: Search toggle block style
 
 = 0.8.0 - 13 October 2022 =
 

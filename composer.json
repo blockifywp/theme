@@ -13,7 +13,7 @@
     "install:dev": "@composer update",
     "install:prod": "@composer update --no-dev",
     "install:cs": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
-    "phpcs": "phpcs",
+    "phpcs": "phpcs -s",
     "phpcbf": "phpcbf",
     "phpstan": "phpstan",
     "pest": "pest"
@@ -42,7 +42,8 @@
   ],
   "require": {
     "php": "^7.4 || ^8.0",
-    "tgmpa/tgm-plugin-activation": "dev-develop"
+    "tgmpa/tgm-plugin-activation": "dev-develop",
+    "wptrt/admin-notices": "dev-master"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
