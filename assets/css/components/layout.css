@@ -1,0 +1,1 @@
+.inherit-layout>*:not(.alignfull,.alignwide){max-width:var(--wp--custom--layout--content-size)}[style*='--wp--custom--layout--content-size']>*:not(.alignfull,.alignwide){max-width:var(--wp--custom--layout--content-size)}[style*='--wp--custom--layout--content-size']>*:not([class*=' align']){margin-left:auto;margin-right:auto}

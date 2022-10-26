@@ -17,6 +17,7 @@ use function filemtime;
 use function get_option;
 use function get_stylesheet_directory_uri;
 use function get_the_block_template_html;
+use function get_the_content;
 use function glob;
 use function is_a;
 use function is_admin;
@@ -133,8 +134,8 @@ add_action( 'wp_enqueue_scripts', NS . 'add_conditional_style_sheets' );
  * @return void
  */
 function add_conditional_style_sheets(): void {
-	$template = get_the_block_template_html();
-	$options  = get_option( 'blockify_settings' ) ?? [];
+	$content = get_the_content() . get_the_block_template_html();
+	$options = get_option( 'blockify_settings' ) ?? [];
 
 	$stylesheets = [
 		...( is_admin() ? glob( DIR . 'assets/css/blocks/*.css' ) : [] ),
@@ -151,48 +152,76 @@ function add_conditional_style_sheets(): void {
 		$stylesheets[] = get_stylesheet_directory_uri() . '/style.css';
 	}
 
-	$block_styles = [
-		'button-outline'   => ' is-style-outline',
-		'button-secondary' => ' is-style-secondary',
-		'checklist-circle' => ' is-style-checklist-circle',
-		'checklist'        => ' is-style-checklist',
-		'divider-angle'    => ' is-style-angle',
-		'divider-curve'    => ' is-style-curve',
-		'divider-fade'     => ' is-style-fade',
-		'divider-round'    => ' is-style-round',
-		'divider-wave'     => ' is-style-wave',
-		'mega-menu'        => ' is-style-mega-menu',
-		'notice'           => ' is-style-notice',
-		'numbered-list'    => ' is-style-numbered',
-		'search-toggle'    => ' is-style-toggle',
-		'square-list'      => ' is-style-square',
-		'sub-heading'      => ' is-style-sub-heading',
-		'surface'          => ' is-style-surface',
+	$conditions['block-styles'] = [
+		'button-outline'   => str_contains( $content, ' is-style-outline' ),
+		'button-secondary' => str_contains( $content, ' is-style-secondary' ),
+		'checklist-circle' => str_contains( $content, ' is-style-checklist-circle' ),
+		'checklist'        => str_contains( $content, ' is-style-checklist' ),
+		'divider-angle'    => str_contains( $content, ' is-style-angle' ),
+		'divider-curve'    => str_contains( $content, ' is-style-curve' ),
+		'divider-fade'     => str_contains( $content, ' is-style-fade' ),
+		'divider-round'    => str_contains( $content, ' is-style-round' ),
+		'divider-wave'     => str_contains( $content, ' is-style-wave' ),
+		'mega-menu'        => str_contains( $content, ' is-style-mega-menu' ),
+		'notice'           => str_contains( $content, ' is-style-notice' ),
+		'numbered-list'    => str_contains( $content, ' is-style-numbered' ),
+		'search-toggle'    => str_contains( $content, ' is-style-toggle' ),
+		'square-list'      => str_contains( $content, ' is-style-square' ),
+		'sub-heading'      => str_contains( $content, ' is-style-sub-heading' ),
+		'surface'          => str_contains( $content, ' is-style-surface' ),
 	];
 
-	foreach ( $block_styles as $block_style => $string ) {
-		if ( str_contains( $template, $string ) ) {
-			$conditions['block-styles'][ $block_style ] = true;
-		}
-	}
+	$conditions['elements'] = [
+		'all'        => true,
+		'big'        => str_contains( $content, '<big' ),
+		'blockquote' => str_contains( $content, '<blockquote' ),
+		'body'       => true,
+		'button'     => str_contains( $content, '<button' ),
+		'cite'       => str_contains( $content, '<cite' ),
+		'code'       => str_contains( $content, '<code' ),
+		'form'       => str_contains( $content, '<form' ),
+		'hr'         => str_contains( $content, '<hr' ),
+		'html'       => true,
+		'link'       => str_contains( $content, '<link' ),
+		'list'       => str_contains( $content, '<list' ),
+		'mark'       => str_contains( $content, '<mark' ),
+		'pre'        => str_contains( $content, '<pre' ),
+		'small'      => str_contains( $content, '<small' ),
+		'strong'     => str_contains( $content, '<strong' ),
+		'sub'        => str_contains( $content, '<sub' ),
+		'sup'        => str_contains( $content, '<sup' ),
+		'table'      => str_contains( $content, '<table' ),
+	];
 
 	$conditions['components'] = [
-		'admin-bar' => is_admin_bar_showing(),
+		'admin-bar'          => is_admin_bar_showing(),
+		'border'             => str_contains( $content, 'border-width:' ),
+		'drop-cap'           => str_contains( $content, 'has-drop-cap' ),
+		'layout'             => true,
+		'placeholder-image'  => str_contains( $content, 'is-placeholder' ),
+		'screen-reader-text' => true,
+		'site-blocks'        => true,
 	];
 
 	$conditions['extensions'] = [
-		'box-shadow' => str_contains( $template, ' has-box-shadow' ),
-		'icon'       => str_contains( $template, ' is-style-icon' ),
-		'mobile'     => str_contains( $template, '-mobile' ),
+		'box-shadow' => str_contains( $content, ' has-box-shadow' ),
+		'icon'       => str_contains( $content, ' is-style-icon' ),
+		'mobile'     => str_contains( $content, '-mobile' ),
 	];
 
 	$conditions['formats'] = [
-		'arrow'         => str_contains( $template, 'is-underline-arrow' ),
-		'brush'         => str_contains( $template, 'is-underline-brush' ),
-		'circle'        => str_contains( $template, 'is-underline-circle' ),
-		'gradient-text' => str_contains( $template, 'has-text-gradient' ),
-		'highlight'     => str_contains( $template, 'has-inline-color' ),
-		'underline'     => str_contains( $template, 'has-text-underline' ),
+		'arrow'         => str_contains( $content, 'is-underline-arrow' ),
+		'brush'         => str_contains( $content, 'is-underline-brush' ),
+		'circle'        => str_contains( $content, 'is-underline-circle' ),
+		'gradient-text' => str_contains( $content, 'has-text-gradient' ),
+		'highlight'     => str_contains( $content, 'has-inline-color' ),
+		'underline'     => str_contains( $content, 'has-text-underline' ),
+	];
+
+	$conditions['utility'] = [
+		'button-width' => str_contains( $content, 'wp-block-button__width-' ),
+		'margin'       => str_contains( $content, ' margin-auto' ),
+		'position'     => str_contains( $content, ' position-' ),
 	];
 
 	add_conditional_style_sheets_inline( $stylesheets, $conditions );
@@ -214,7 +243,9 @@ function add_conditional_style_sheets_inline( array $stylesheets, array $conditi
 	foreach ( $stylesheets as $stylesheet ) {
 		$dir = basename( dirname( $stylesheet ) );
 
-		if ( $conditions[ $dir ][ basename( $stylesheet, '.css' ) ] ?? true ) {
+		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
+
+		if ( $condition ) {
 			$styles .= trim( file_get_contents( $stylesheet ) );
 		}
 
