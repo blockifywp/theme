@@ -59,6 +59,10 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
+= 0.9.2 - 26 October 2022 =
+
+* Fix: Use content_url instead of home_url for inline SVG check
+
 = 0.9.1 - 26 October 2022 =
 
 * Fix: Missing site logo
