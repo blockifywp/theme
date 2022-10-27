@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function is_admin;
 use function wp_add_inline_style;
+use function wp_get_global_styles;
 use function wp_list_pluck;
 
 add_filter( 'wp_theme_json_data_theme', NS . 'add_all_fonts_in_editor' );
@@ -20,11 +21,16 @@ add_filter( 'theme_json_theme', NS . 'add_all_fonts_in_editor' );
  */
 function add_all_fonts_in_editor( $theme_json ) {
 	$data  = $theme_json->get_data();
-	$fonts = is_admin() ? get_all_fonts() : get_selected_fonts( $data['styles'] ?? [] );
+	$fonts = is_admin() ? get_all_fonts() : array_merge(
+		get_selected_fonts( wp_get_global_styles() ),
+		get_selected_fonts( $data['styles'] ?? [] ),
+	);
 
-	$data['settings']['typography']['fontFamilies']['theme'] = $fonts;
+	if ( $fonts ) {
+		$data['settings']['typography']['fontFamilies']['theme'] = $fonts;
 
-	$theme_json->update_with( $data );
+		$theme_json->update_with( $data );
+	}
 
 	return $theme_json;
 }
@@ -64,6 +70,10 @@ function add_system_font_stacks(): void {
  * @return array
  */
 function get_selected_fonts( array $styles ): array {
+	if ( ! $styles ) {
+		return [];
+	}
+
 	$selected_fonts = [];
 	$font_families  = [];
 	$item_groups    = [

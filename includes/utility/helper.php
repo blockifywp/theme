@@ -9,7 +9,6 @@ use function file_exists;
 use function file_get_contents;
 use function get_template_directory_uri;
 use function trailingslashit;
-use function wp_get_global_settings;
 
 /**
  * Returns the URL for the theme or plugin.
@@ -59,5 +58,5 @@ function get_style_variation_json( string $style ): array {
 		);
 	}
 
-	return $json;
+	return $json ?? [];
 }

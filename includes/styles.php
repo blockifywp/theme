@@ -15,6 +15,7 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function get_option;
+use function get_site_url;
 use function get_stylesheet_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
@@ -22,7 +23,9 @@ use function glob;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
+use function is_array;
 use function is_child_theme;
+use function is_front_page;
 use function str_contains;
 use function str_replace;
 use function trim;
@@ -65,17 +68,20 @@ function add_dynamic_custom_properties(): void {
 	];
 
 	if ( $box_shadow ) {
-		$inset  = $box_shadow['inset'] ?? ' ';
-		$x      = $box_shadow['x'] ?? null;
-		$y      = $box_shadow['y'] ?? null;
-		$blur   = $box_shadow['blur'] ?? null;
-		$spread = $box_shadow['spread'] ?? null;
-		$color  = $box_shadow['color'] ?? null;
+		if ( is_array( $box_shadow ) ) {
+			$inset      = $box_shadow['inset'] ?? ' ';
+			$x          = $box_shadow['x'] ?? null;
+			$y          = $box_shadow['y'] ?? null;
+			$blur       = $box_shadow['blur'] ?? null;
+			$spread     = $box_shadow['spread'] ?? null;
+			$color      = $box_shadow['color'] ?? null;
+			$box_shadow = "$inset $x $y $blur $spread $color";
+		}
 
 		$all = array_merge(
 			$all,
 			[
-				'--wp--custom--box-shadow' => "$inset $x $y $blur $spread $color",
+				'--wp--custom--box-shadow' => $box_shadow,
 			]
 		);
 	}
@@ -191,8 +197,8 @@ function add_conditional_style_sheets(): void {
 		'button'     => str_contains( $content, '<button' ),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
-		'form'       => str_contains( $content, '<form' ),
 		'hr'         => str_contains( $content, '<hr' ),
+		'form'       => str_contains( $content, '<fieldset' ) || str_contains( $content, '<form' ),
 		'html'       => true,
 		'link'       => str_contains( $content, '<link' ),
 		'list'       => str_contains( $content, '<list' ),
@@ -222,12 +228,12 @@ function add_conditional_style_sheets(): void {
 	];
 
 	$conditions['formats'] = [
-		'arrow'         => str_contains( $content, 'is-underline-arrow' ),
-		'brush'         => str_contains( $content, 'is-underline-brush' ),
-		'circle'        => str_contains( $content, 'is-underline-circle' ),
-		'gradient-text' => str_contains( $content, 'has-text-gradient' ),
-		'highlight'     => str_contains( $content, 'has-inline-color' ),
-		'underline'     => str_contains( $content, 'has-text-underline' ),
+		'arrow'     => str_contains( $content, 'is-underline-arrow' ),
+		'brush'     => str_contains( $content, 'is-underline-brush' ),
+		'circle'    => str_contains( $content, 'is-underline-circle' ),
+		'gradient'  => str_contains( $content, 'has-text-gradient' ),
+		'highlight' => str_contains( $content, 'has-inline-color' ),
+		'underline' => str_contains( $content, 'has-text-underline' ),
 	];
 
 	$conditions['utility'] = [
@@ -251,11 +257,15 @@ function add_conditional_style_sheets(): void {
  */
 function add_conditional_style_sheets_inline( array $stylesheets, array $conditions ): void {
 	$styles = '';
+	$url    = get_site_url();
 
 	foreach ( $stylesheets as $stylesheet ) {
-		$dir = basename( dirname( $stylesheet ) );
-
+		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
+
+		if ( str_contains( $url, 'wp-themes.com' ) && ! is_front_page() ) {
+			$condition = true;
+		}
 
 		if ( $condition ) {
 			$styles .= trim( file_get_contents( $stylesheet ) );

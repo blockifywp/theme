@@ -325,7 +325,7 @@ function register_block_supports( array $config ): array {
 			],
 		],
 		'core/post-featured-image' => [
-			'align'     => [
+			'align'             => [
 				'full',
 				'wide',
 				'left',
@@ -333,10 +333,11 @@ function register_block_supports( array $config ): array {
 				'right',
 				'none',
 			],
-			'alignWide' => true,
-			'color'     => [
+			'alignWide'         => true,
+			'color'             => [
 				'background' => true,
 			],
+			'blockifyBoxShadow' => true,
 		],
 		'core/post-terms'          => [
 			'align'     => [

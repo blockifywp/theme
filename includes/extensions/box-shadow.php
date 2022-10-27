@@ -5,6 +5,9 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function explode;
+use function implode;
+use function in_array;
 use function method_exists;
 
 add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
@@ -66,11 +69,14 @@ function render_box_shadow( string $content, array $block ): string {
 		$first->setAttribute( 'style', css_array_to_string( $styles ) );
 	}
 
-	if ( $box_shadow['useDefault'] ?? $styles ) {
-		$first->setAttribute(
-			'class',
-			$first->getAttribute( 'class' ) . ' has-box-shadow'
-		);
+	$classes = explode( ' ', $first->getAttribute( 'class' ) );
+
+	if ( ( $box_shadow['useDefault'] ?? $styles ) ) {
+		if ( ! in_array( 'has-box-shadow', $classes, true ) ) {
+			$classes[] = 'has-box-shadow';
+		}
+
+		$first->setAttribute( 'class', implode( ' ', $classes ) );
 	}
 
 	return $dom->saveHTML();

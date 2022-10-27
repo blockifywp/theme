@@ -51,12 +51,12 @@
         "radius": "5px"
       },
       "boxShadow": {
-        "inset": " ",
+        "inset": "",
         "x": "0",
-        "y": "0",
-        "blur": "0",
-        "spread": "0",
-        "color": "var(--wp--preset--color--custom-shadow,var(--wp--preset--color--outline))"
+        "y": "5px",
+        "blur": "15px",
+        "spread": "5px",
+        "color": "var(--wp--preset--color--custom-shadow,var(--wp--preset--color--surface))"
       },
       "fontWeight": {
         "black": 900,

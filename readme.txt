@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.9.5
+Stable tag: 0.9.6
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,14 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.6 - 27 October 2022 =
+
+* Add: Box shadow support to post featured image block
+* Add: Gradient text for heading and paragraph blocks
+* Fix: Fonts not loading
+* Fix: Transparent text issue with gradient and underline formats
+* Fix: Icon css not loading in pattern preview
 
 = 0.9.5 - 26 October 2022 =
 

@@ -19,6 +19,6 @@ add_filter( 'render_block_core/navigation', NS . 'render_navigation_block', 10, 
  */
 function render_navigation_block( string $content, array $block ): string {
 
-	// Fix relative URLs.
+	// Allow root relative URLs.
 	return str_replace( 'http://./', './', $content );
 }
