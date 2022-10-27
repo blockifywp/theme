@@ -152,6 +152,18 @@ function add_conditional_style_sheets(): void {
 		$stylesheets[] = get_stylesheet_directory_uri() . '/style.css';
 	}
 
+	$conditions = [];
+
+	// Load all block CSS in admin.
+	foreach ( $stylesheets as $stylesheet ) {
+		$dir  = basename( dirname( $stylesheet ) );
+		$file = basename( $stylesheet, '.css' );
+
+		if ( $dir === 'blocks' ) {
+			$conditions['blocks'][ $file ] = true;
+		}
+	}
+
 	$conditions['block-styles'] = [
 		'button-outline'   => str_contains( $content, ' is-style-outline' ),
 		'button-secondary' => str_contains( $content, ' is-style-secondary' ),

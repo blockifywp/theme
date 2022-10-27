@@ -6,19 +6,31 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function apply_filters;
-use function basename;
 use function glob;
 use function in_array;
-use function is_admin;
 use function register_block_pattern_category;
 use function remove_theme_support;
 use function sanitize_title_with_dashes;
-use function trailingslashit;
 use function trim;
 use function ucfirst;
+use function wp_get_global_settings;
 use function wp_list_pluck;
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;
+
+/**
+ * Description of expected behavior.
+ *
+ * @since 1.0.0
+ *
+ * @return string
+ */
+function get_pattern_dir(): string {
+	return apply_filters(
+		'blockify_pattern_dir',
+		DIR . 'patterns/default'
+	);
+}
 
 add_action( 'init', NS . 'remove_core_patterns', 9 );
 /**
@@ -91,7 +103,6 @@ function auto_register_pattern_categories(): void {
  * @return void
  */
 function register_block_pattern_from_file( string $file ): void {
-	$style   = basename( $file, '.php' );
 	$headers = get_file_data(
 		$file,
 		[

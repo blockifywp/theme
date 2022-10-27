@@ -248,25 +248,6 @@
       "dropCap": true,
       "lineHeight": true,
       "fluid": false,
-      "fontFamilies": [
-        {
-          "fontFamily": "Inter",
-          "name": "Inter",
-          "slug": "inter",
-          "fontFace": [
-            {
-              "fontFamily": "Inter",
-              "fontStyle": "normal",
-              "fontStretch": "normal",
-              "fontDisplay": "swap",
-              "fontWeight": "100 900",
-              "src": [
-                "file:./assets/fonts/inter.woff2"
-              ]
-            }
-          ]
-        }
-      ],
       "fontSizes": [
         {
           "name": "S",

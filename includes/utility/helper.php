@@ -61,34 +61,3 @@ function get_style_variation_json( string $style ): array {
 
 	return $json;
 }
-
-/**
- * Return the selected style variation pattern directory.
- *
- * @since 1.0.0
- *
- * @return string
- */
-function get_pattern_style(): string {
-	$settings = wp_get_global_settings();
-
-	return apply_filters(
-		'blockify_pattern_style',
-		$settings['custom']['patternStyle'] ?? 'default',
-		$settings
-	);
-}
-
-/**
- * Description of expected behavior.
- *
- * @since 1.0.0
- *
- * @return string
- */
-function get_pattern_dir(): string {
-	return apply_filters(
-		'blockify_pattern_dir',
-		DIR . 'patterns/default'
-	);
-}

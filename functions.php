@@ -44,10 +44,15 @@ function setup(): void {
 			DIR . 'vendor/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php',
 			...glob( DIR . 'vendor/wptrt/admin-notices/src/*.php' ),
 			...glob( DIR . 'includes/utility/*.php' ),
-			...glob( DIR . 'includes/*.php' ),
+			DIR . 'includes/block-styles.php',
+			DIR . 'includes/block-supports.php',
+			DIR . 'includes/fonts.php',
+			DIR . 'includes/optimization.php',
+			DIR . 'includes/patterns.php',
+			DIR . 'includes/scripts.php',
+			DIR . 'includes/styles.php',
 			...glob( DIR . 'includes/block-filters/*.php' ),
 			...glob( DIR . 'includes/extensions/*.php' ),
-			...glob( DIR . 'includes/plugins/*.php' ),
 		]
 	);
 }
