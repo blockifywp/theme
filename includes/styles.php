@@ -73,11 +73,11 @@ function add_dynamic_custom_properties(): void {
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
 
 	$all = [
-		'--wp--custom--border'               => "$border_width $border_style $border_color",
-		'--wp--custom--body--background'     => $bodyBackground,
-		'--wp--custom--body--color'          => $body_color,
-		'--wp--custom--heading--font-weight' => $heading_font_weight,
-		'--wp--custom--heading--font-family' => $heading_font_family,
+		'--wp--custom--border'                 => "$border_width $border_style $border_color",
+		'--wp--custom--body--background'       => $bodyBackground,
+		'--wp--custom--body--color'            => $body_color,
+		'--wp--custom--heading--font-weight'   => $heading_font_weight,
+		'--wp--custom--heading--font-family'   => $heading_font_family,
 
 		// Used by .button.
 		'--wp--custom--button--background'     => $button_background,
@@ -220,23 +220,29 @@ function add_conditional_style_sheets(): void {
 		'big'        => str_contains( $content, '<big' ),
 		'blockquote' => str_contains( $content, '<blockquote' ),
 		'body'       => true,
-		'button'     => str_contains_any( $content, [
-			'<button',
-			'type="button"',
-			'type="submit"',
-			'type="reset"',
-			'nf-form',
-		] ),
+		'button'     => str_contains_any(
+			$content,
+			[
+				'<button',
+				'type="button"',
+				'type="submit"',
+				'type="reset"',
+				'nf-form',
+			]
+		),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
 		'hr'         => str_contains( $content, '<hr' ),
-		'form'       => str_contains_any( $content, [
-			'<fieldset',
-			'<form',
-			'nf-form',
-		] ),
+		'form'       => str_contains_any(
+			$content,
+			[
+				'<fieldset',
+				'<form',
+				'nf-form',
+			]
+		),
 		'html'       => true,
-		'link'       => str_contains( $content, '<link' ),
+		'link'       => str_contains( $content, '<a' ),
 		'list'       => str_contains( $content, '<list' ),
 		'mark'       => str_contains( $content, '<mark' ),
 		'pre'        => str_contains( $content, '<pre' ),
@@ -299,7 +305,6 @@ function add_conditional_style_sheets(): void {
 function add_conditional_style_sheets_inline( array $stylesheets, array $conditions ): void {
 	$styles = '';
 	$url    = get_site_url();
-
 
 	foreach ( $stylesheets as $stylesheet ) {
 		$dir       = basename( dirname( $stylesheet ) );

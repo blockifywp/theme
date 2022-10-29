@@ -64,8 +64,8 @@ function reverse_quotes( string $string ): string {
  *
  * @since 1.0.0
  *
- * @param string $haystack
- * @param array  $needles
+ * @param string $haystack The string to search.
+ * @param array  $needles  The strings to search for.
  *
  * @return bool
  */

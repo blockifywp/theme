@@ -53,36 +53,8 @@ function convert_spacing_to_classes( string $content, array $block ): string {
 		return $content;
 	}
 
-	$dom                     = new DOMDocument();
-	$libxml_previous_state   = libxml_use_internal_errors( true );
-	$dom->preserveWhiteSpace = true;
-
-	if ( defined( 'LIBXML_HTML_NOIMPLIED' ) && defined( 'LIBXML_HTML_NODEFDTD' ) ) {
-		$options = LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD;
-	} elseif ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
-		$options = LIBXML_HTML_NOIMPLIED;
-	} elseif ( defined( 'LIBXML_HTML_NODEFDTD' ) ) {
-		$options = LIBXML_HTML_NODEFDTD;
-	} else {
-		$options = 0;
-	}
-
-	$dom->loadHTML(
-		mb_convert_encoding(
-			$content,
-			'HTML-ENTITIES',
-			'UTF-8' ),
-		$options
-	);
-
-	$dom->formatOutput = true;
-
-	libxml_clear_errors();
-	libxml_use_internal_errors( $libxml_previous_state );
-
-	/* @var $element DOMElement */
-	$element = $dom->firstChild;
-
+	$dom     = dom( $content );
+	$element = get_dom_element( '*', $dom );
 	$classes = explode( ' ', $element->getAttribute( 'class' ) );
 	$prefix  = 'var:preset|spacing|';
 
@@ -161,26 +133,28 @@ function add_spacing_utility_classes(): void {
 			continue;
 		}
 
-		$styles ["has-padding-{$slug}"]        = "padding:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-padding-top-{$slug}"]    = "padding-top:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-padding-right-{$slug}"]  = "padding-right:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-padding-bottom-{$slug}"] = "padding-bottom:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-padding-left-{$slug}"]   = "padding-left:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-margin-{$slug}"]         = "margin:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-margin-top-{$slug}"]     = "margin-top:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-margin-right-{$slug}"]   = "margin-right:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-margin-bottom-{$slug}"]  = "margin-bottom:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-margin-left-{$slug}"]    = "margin-left:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-gap-{$slug}"]            = "gap:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-gap-vertical-{$slug}"]   = "row-gap:var(--wp--preset--spacing--{$slug})";
-		$styles ["has-gap-horizontal-{$slug}"] = "column-gap:var(--wp--preset--spacing--{$slug})";
+		$styles[ "padding-{$slug}" ]        = 'padding';
+		$styles[ "padding-top-{$slug}" ]    = 'padding-top';
+		$styles[ "padding-right-{$slug}" ]  = 'padding-right';
+		$styles[ "padding-bottom-{$slug}" ] = 'padding-bottom';
+		$styles[ "padding-left-{$slug}" ]   = 'padding-left';
+		$styles[ "margin-{$slug}" ]         = 'margin';
+		$styles[ "margin-top-{$slug}" ]     = 'margin-top';
+		$styles[ "margin-right-{$slug}" ]   = 'margin-right';
+		$styles[ "margin-bottom-{$slug}" ]  = 'margin-bottom';
+		$styles[ "margin-left-{$slug}" ]    = 'margin-left';
+		$styles[ "gap-{$slug}" ]            = 'gap';
+		$styles[ "gap-vertical-{$slug}" ]   = 'row-gap';
+		$styles[ "gap-horizontal-{$slug}" ] = 'column-gap';
 	}
 
 	$html = get_the_content() . get_the_block_template_html();
 
-	foreach ( $styles as $class => $rule ) {
+	foreach ( $styles as $class => $property ) {
+		$slug = str_replace( $property . '-', '', $class );
+
 		if ( str_contains( $html, $class ) ) {
-			$css .= ".{$class}{{$rule}!important}";
+			$css .= ".has-{$class}{{$property}:var(--wp--preset--spacing--{$slug})!important}";
 		}
 	}
 

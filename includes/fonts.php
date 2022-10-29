@@ -19,7 +19,7 @@ add_filter( 'theme_json_theme', NS . 'add_all_fonts_in_editor' );
  * @return mixed
  */
 function add_all_fonts_in_editor( $theme_json ) {
-	$data  = $theme_json->get_data();
+	$data = $theme_json->get_data();
 
 	$data['settings']['typography']['fontFamilies']['theme'] = get_all_fonts();
 
@@ -28,8 +28,8 @@ function add_all_fonts_in_editor( $theme_json ) {
 	return $theme_json;
 }
 
-add_filter( 'wp_enqueue_scripts', NS . 'add_system_font_stacks' );
-add_filter( 'admin_enqueue_scripts', NS . 'add_system_font_stacks' );
+add_filter( 'wp_enqueue_scripts', NS . 'add_system_font_stacks', 11 );
+add_filter( 'admin_enqueue_scripts', NS . 'add_system_font_stacks', 11 );
 /**
  * Adds system font stack custom properties.
  *
