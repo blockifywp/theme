@@ -11,6 +11,7 @@ use function array_flip;
 use function array_merge;
 use function basename;
 use function dirname;
+use function do_blocks;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
@@ -55,6 +56,18 @@ function add_dynamic_custom_properties(): void {
 	$body_color     = $global_styles['color']['text'] ?? null;
 	$box_shadow     = $custom['boxShadow'] ?? [];
 
+	// Button.
+	$button_block         = $global_styles['blocks']['core/button'] ?? [];
+	$button_element       = $global_styles['elements']['button'] ?? [];
+	$button_text          = $button_element['color']['text'] ?? $button_block['color']['text'] ?? null;
+	$button_background    = $button_element['color']['background'] ?? $button_block['color']['background'] ?? null;
+	$button_border_radius = $button_element['border']['radius'] ?? $button_block['border']['radius'] ?? null;
+	$button_border_width  = $button_element['border']['width'] ?? $button_block['border']['width'] ?? null;
+	$button_font_size     = $button_element['typography']['fontSize'] ?? $button_block['typography']['fontSize'] ?? null;
+	$button_font_weight   = $button_element['typography']['fontWeight'] ?? $button_block['typography']['fontWeight'] ?? null;
+	$button_line_height   = $button_element['typography']['lineHeight'] ?? $button_block['typography']['lineHeight'] ?? null;
+	$button_padding       = $button_element['spacing']['padding'] ?? $button_block['spacing']['padding'] ?? null;
+
 	// Also used by b, strong elements and legend element.
 	$heading_font_weight = $global_styles['elements']['heading']['typography']['fontWeight'] ?? null;
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
@@ -65,6 +78,19 @@ function add_dynamic_custom_properties(): void {
 		'--wp--custom--body--color'          => $body_color,
 		'--wp--custom--heading--font-weight' => $heading_font_weight,
 		'--wp--custom--heading--font-family' => $heading_font_family,
+
+		// Used by .button.
+		'--wp--custom--button--background'     => $button_background,
+		'--wp--custom--button--color'          => $button_text,
+		'--wp--custom--button--padding-top'    => $button_padding['top'] ?? null,
+		'--wp--custom--button--padding-right'  => $button_padding['right'] ?? null,
+		'--wp--custom--button--padding-bottom' => $button_padding['bottom'] ?? null,
+		'--wp--custom--button--padding-left'   => $button_padding['left'] ?? null,
+		'--wp--custom--button--border-radius'  => $button_border_radius,
+		'--wp--custom--button--border-width'   => $button_border_width,
+		'--wp--custom--button--font-size'      => $button_font_size,
+		'--wp--custom--button--font-weight'    => $button_font_weight,
+		'--wp--custom--button--line-height'    => $button_line_height,
 	];
 
 	if ( $box_shadow ) {
@@ -131,7 +157,7 @@ function enqueue_block_styles(): void {
 }
 
 add_action( 'admin_init', NS . 'add_conditional_style_sheets' );
-add_action( 'wp_enqueue_scripts', NS . 'add_conditional_style_sheets' );
+add_action( 'wp_enqueue_scripts', NS . 'add_conditional_style_sheets', 11 );
 /**
  * Adds split styles.
  *
@@ -140,7 +166,7 @@ add_action( 'wp_enqueue_scripts', NS . 'add_conditional_style_sheets' );
  * @return void
  */
 function add_conditional_style_sheets(): void {
-	$content = get_the_content() . get_the_block_template_html();
+	$content = do_blocks( get_the_content() ) . get_the_block_template_html();
 	$options = get_option( 'blockify_settings' ) ?? [];
 
 	$stylesheets = [
@@ -171,22 +197,22 @@ function add_conditional_style_sheets(): void {
 	}
 
 	$conditions['block-styles'] = [
-		'button-outline'   => str_contains( $content, ' is-style-outline' ),
-		'button-secondary' => str_contains( $content, ' is-style-secondary' ),
-		'checklist-circle' => str_contains( $content, ' is-style-checklist-circle' ),
-		'checklist'        => str_contains( $content, ' is-style-checklist' ),
-		'divider-angle'    => str_contains( $content, ' is-style-angle' ),
-		'divider-curve'    => str_contains( $content, ' is-style-curve' ),
-		'divider-fade'     => str_contains( $content, ' is-style-fade' ),
-		'divider-round'    => str_contains( $content, ' is-style-round' ),
-		'divider-wave'     => str_contains( $content, ' is-style-wave' ),
-		'mega-menu'        => str_contains( $content, ' is-style-mega-menu' ),
-		'notice'           => str_contains( $content, ' is-style-notice' ),
-		'numbered-list'    => str_contains( $content, ' is-style-numbered' ),
-		'search-toggle'    => str_contains( $content, ' is-style-toggle' ),
-		'square-list'      => str_contains( $content, ' is-style-square' ),
-		'sub-heading'      => str_contains( $content, ' is-style-sub-heading' ),
-		'surface'          => str_contains( $content, ' is-style-surface' ),
+		'button-outline'   => str_contains( $content, 'is-style-outline' ),
+		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
+		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
+		'checklist'        => str_contains( $content, 'is-style-checklist' ),
+		'divider-angle'    => str_contains( $content, 'is-style-angle' ),
+		'divider-curve'    => str_contains( $content, 'is-style-curve' ),
+		'divider-fade'     => str_contains( $content, 'is-style-fade' ),
+		'divider-round'    => str_contains( $content, 'is-style-round' ),
+		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
+		'mega-menu'        => str_contains( $content, 'is-style-mega-menu' ),
+		'notice'           => str_contains( $content, 'is-style-notice' ),
+		'numbered-list'    => str_contains( $content, 'is-style-numbered' ),
+		'search-toggle'    => str_contains( $content, 'is-style-toggle' ),
+		'square-list'      => str_contains( $content, 'is-style-square' ),
+		'sub-heading'      => str_contains( $content, 'is-style-sub-heading' ),
+		'surface'          => str_contains( $content, 'is-style-surface' ),
 	];
 
 	$conditions['elements'] = [
@@ -194,11 +220,21 @@ function add_conditional_style_sheets(): void {
 		'big'        => str_contains( $content, '<big' ),
 		'blockquote' => str_contains( $content, '<blockquote' ),
 		'body'       => true,
-		'button'     => str_contains( $content, '<button' ),
+		'button'     => str_contains_any( $content, [
+			'<button',
+			'type="button"',
+			'type="submit"',
+			'type="reset"',
+			'nf-form',
+		] ),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
 		'hr'         => str_contains( $content, '<hr' ),
-		'form'       => str_contains( $content, '<fieldset' ) || str_contains( $content, '<form' ),
+		'form'       => str_contains_any( $content, [
+			'<fieldset',
+			'<form',
+			'nf-form',
+		] ),
 		'html'       => true,
 		'link'       => str_contains( $content, '<link' ),
 		'list'       => str_contains( $content, '<list' ),
@@ -222,8 +258,8 @@ function add_conditional_style_sheets(): void {
 	];
 
 	$conditions['extensions'] = [
-		'box-shadow' => str_contains( $content, ' has-box-shadow' ),
-		'icon'       => str_contains( $content, ' is-style-icon' ),
+		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
+		'icon'       => str_contains( $content, 'is-style-icon' ),
 		'mobile'     => str_contains( $content, '-mobile' ),
 	];
 
@@ -240,6 +276,11 @@ function add_conditional_style_sheets(): void {
 		'button-width' => str_contains( $content, 'wp-block-button__width-' ),
 		'margin'       => str_contains( $content, ' margin-auto' ),
 		'position'     => str_contains( $content, ' position-' ),
+	];
+
+	$conditions['plugins'] = [
+		'ninja-forms'                    => str_contains( $content, 'nf-form' ),
+		'syntax-highlighting-code-block' => defined( 'Syntax_Highlighting_Code_Block\\PLUGIN_VERSION' ),
 	];
 
 	add_conditional_style_sheets_inline( $stylesheets, $conditions );
@@ -259,10 +300,12 @@ function add_conditional_style_sheets_inline( array $stylesheets, array $conditi
 	$styles = '';
 	$url    = get_site_url();
 
+
 	foreach ( $stylesheets as $stylesheet ) {
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
+		// Fix for icons.
 		if ( str_contains( $url, 'wp-themes.com' ) && ! is_front_page() ) {
 			$condition = true;
 		}

@@ -55,8 +55,8 @@
         "x": "0",
         "y": "5px",
         "blur": "15px",
-        "spread": "5px",
-        "color": "var(--wp--preset--color--custom-shadow,var(--wp--preset--color--surface))"
+        "spread": "0",
+        "color": "var(--wp--preset--color--custom-shadow,rgba(0,10,20,0.1))"
       },
       "fontWeight": {
         "black": 900,
@@ -397,7 +397,7 @@
     "blocks": {
       "core/button": {
         "typography": {
-          "lineHeight": "1"
+
         }
       },
       "core/code": {
@@ -465,6 +465,11 @@
             "bottom": "0",
             "left": "0"
           }
+        }
+      },
+      "core/list": {
+        "typography": {
+          "lineHeight": "2"
         }
       },
       "core/navigation": {

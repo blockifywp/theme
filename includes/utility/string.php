@@ -58,3 +58,23 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 function reverse_quotes( string $string ): string {
 	return str_replace( [ "'", '"' ], [ '"', "'" ], $string );
 }
+
+/**
+ * Description of expected behavior.
+ *
+ * @since 1.0.0
+ *
+ * @param string $haystack
+ * @param array  $needles
+ *
+ * @return bool
+ */
+function str_contains_any( string $haystack, array $needles ): bool {
+	foreach ( $needles as $needle ) {
+		if ( str_contains( $haystack, $needle ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}

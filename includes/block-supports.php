@@ -43,12 +43,13 @@ function register_block_supports( array $config ): array {
 			'minHeight' => '6em',
 		],
 		'core/buttons'             => [
-			'spacing'          => [
+			'spacing'            => [
 				'padding'  => true, // Required.
 				'margin'   => true,
 				'blockGap' => true,
 			],
-			'blockifyPosition' => true,
+			'blockifyPosition'   => true,
+			'blockifyResponsive' => true,
 		],
 		'core/button'              => [
 			'typography'           => [
@@ -69,6 +70,10 @@ function register_block_supports( array $config ): array {
 			],
 			'blockifyBoxShadow'    => true,
 			'blockifyOnclick'      => true,
+			'blockifyResponsive'   => [
+				'hideMobile'  => true,
+				'hideDesktop' => true,
+			],
 		],
 		'core/code'                => [
 			'blockifyBoxShadow' => true,
@@ -92,7 +97,12 @@ function register_block_supports( array $config ): array {
 			'blockifyBoxShadow'      => true,
 			'blockifyPosition'       => true,
 			'blockifyNegativeMargin' => true,
-			'blockifyResponsive'     => true,
+			'blockifyResponsive'     => [
+				'reverseMobile' => true,
+				'hideMobile'    => true,
+				'hideDesktop'   => true,
+				'centerMobile'  => true,
+			],
 		],
 		'core/columns'             => [
 			'typography'             => [
@@ -103,6 +113,12 @@ function register_block_supports( array $config ): array {
 			'blockifyPosition'       => true,
 			'blockifyNegativeMargin' => true,
 			'blockifyFilter'         => true,
+			'blockifyResponsive'     => [
+				'reverseMobile' => true,
+				'hideMobile'    => true,
+				'hideDesktop'   => true,
+				'centerMobile'  => true,
+			],
 		],
 		'core/cover'               => [
 			'__experimentalBorder' => [
@@ -147,6 +163,12 @@ function register_block_supports( array $config ): array {
 			'blockifyFilter'         => true,
 			'blockifyTransform'      => true,
 			'blockifyDarkMode'       => true,
+			'blockifyResponsive'     => [
+				'reverseMobile' => true,
+				'hideMobile'    => true,
+				'hideDesktop'   => true,
+				'centerMobile'  => true,
+			],
 		],
 		'core/heading'             => [
 			'align'                  => [
@@ -221,6 +243,7 @@ function register_block_supports( array $config ): array {
 			'spacing'              => [
 				'margin' => true,
 			],
+			'blockifyResponsive'   => true,
 		],
 		'core/navigation'          => [
 			'spacing' => [
@@ -384,7 +407,8 @@ function register_block_supports( array $config ): array {
 			],
 		],
 		'core/row'                 => [
-			'blockifyBoxShadow' => true,
+			'blockifyBoxShadow'  => true,
+			'blockifyResponsive' => true,
 		],
 		'core/search'              => [
 			'blockifyBoxShadow' => true,
@@ -440,6 +464,9 @@ function register_block_supports( array $config ): array {
 					'color' => false,
 				],
 			],
+		],
+		'core/stack'               => [
+			'blockifyResponsive' => true,
 		],
 		'core/social-links'        => [
 			'align'                => [

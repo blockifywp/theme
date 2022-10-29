@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.0
 Tested up to: 6.1
-Stable tag: 0.9.6
+Stable tag: 0.9.8
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -58,6 +58,25 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.8 - 29 October 2022 =
+
+* Add: Spacing scale utility classes
+* Add: Ninja form styles
+* Add: Min height setting for Group block
+* Add: Basic code syntax highlighting plugin support
+* Update: Refactor responsive block supports
+* Update: Optimize circle text format svg
+* Fix: Temporary fix for font loading (again)
+* Fix: Conditional style string checks
+* Fix: Use do_blocks for content checks
+* Fix: Add missing button custom properties
+* Fix: Navigation block spacing and sub menu styles
+* Fix: Default box shadow color (now uses transparent)
+
+= 0.9.7 - 27 October 2022 =
+
+* Fix: Temporary fix for font loading
 
 = 0.9.6 - 27 October 2022 =
 

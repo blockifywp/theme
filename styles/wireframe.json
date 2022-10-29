@@ -21,13 +21,7 @@
         "color": "var(--wp--preset--color--foreground)",
         "radius": "0"
       },
-      "boxShadow": {
-        "x": "4px",
-        "y": "4px",
-        "blur": "0",
-        "spread": "0",
-        "color": "var(--wp--preset--color--foreground)"
-      },
+      "boxShadow": "4px 4px 0 0 var(--wp--preset--color--foreground)",
       "surface": {
         "borderColor": "var(--wp--preset--color--foreground)"
       }
