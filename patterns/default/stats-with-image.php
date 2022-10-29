@@ -22,7 +22,7 @@
 <!-- wp:columns {"style":{"spacing":{"padding":{"top":"var:preset|spacing|sm"}}}} -->
 <div class="wp-block-columns" style="padding-top:var(--wp--preset--spacing--sm)"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"xx-large"} -->
-<h6 class="has-text-align-left has-xx-large-font-size">300</h6>
+<h6 class="has-text-align-left has-xx-large-font-size">30k</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"left","fontSize":"18"} -->
@@ -44,7 +44,7 @@
 <!-- wp:columns {"style":{"spacing":{"padding":{"bottom":"2em"}}}} -->
 <div class="wp-block-columns" style="padding-bottom:2em"><!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"left","level":6,"fontSize":"xx-large"} -->
-<h6 class="has-text-align-left has-xx-large-font-size">333</h6>
+<h6 class="has-text-align-left has-xx-large-font-size">33</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"left","fontSize":"18"} -->

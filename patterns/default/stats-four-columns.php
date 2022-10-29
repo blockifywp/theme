@@ -30,7 +30,7 @@
 
 <!-- wp:column {"style":{"spacing":{"blockGap":"0px"}}} -->
 <div class="wp-block-column"><!-- wp:heading {"textAlign":"center","level":6,"fontSize":"xx-large"} -->
-<h6 class="has-text-align-center has-xx-large-font-size">333</h6>
+<h6 class="has-text-align-center has-xx-large-font-size">33</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"18"} -->
