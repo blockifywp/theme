@@ -47,7 +47,16 @@ function render_block_layout( string $content, array $block ): string {
 	return $content;
 }
 
-
+/**
+ * Render marquee block variation.
+ *
+ * @since 1.0.0
+ *
+ * @param string $content Block HTML.
+ * @param array  $block   Block data.
+ *
+ * @return string
+ */
 function render_marquee_block_variation( string $content, array $block ): string {
 	$dom = dom( $content );
 	$div = get_dom_element( 'div', $dom );
@@ -86,9 +95,9 @@ function render_marquee_block_variation( string $content, array $block ): string
 		$wrap->appendChild( $item );
 
 		for ( $j = 0; $j < $repeat; $j++ ) {
-			$clone = $item->cloneNode( true );
+			$clone = dom_element( $item->cloneNode( true ) );
 
-			if ( ! $clone || ! method_exists( $clone, 'setAttribute' ) || ! method_exists( $clone, 'getAttribute' ) ) {
+			if ( ! $clone ) {
 				continue;
 			}
 

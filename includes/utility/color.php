@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param array $styles Array of styles.
  * @param array $attrs  Array of attributes.

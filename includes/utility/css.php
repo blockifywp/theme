@@ -56,7 +56,7 @@ function css_string_to_array( string $css ): array {
 			$property = $parts[0];
 			$value    = $parts[1];
 
-			if ( ! is_null( $value ) ) {
+			if ( $value !== '' && $value !== 'null' ) {
 				$array[ $property ] = str_replace( 'xml$', 'xml;', $value );
 			}
 		}
@@ -70,7 +70,7 @@ function css_string_to_array( string $css ): array {
  *
  * @since 0.9.10
  *
- * @param string $custom_property
+ * @param string $custom_property Custom property value to format.
  *
  * @return string
  */

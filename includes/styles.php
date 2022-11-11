@@ -65,6 +65,8 @@ function enqueue_styles(): void {
  *
  * @since 0.0.19
  *
+ * @param string $handle The stylesheet handle.
+ *
  * @return void
  */
 function add_dynamic_custom_properties( string $handle ): void {
@@ -179,6 +181,15 @@ function add_block_styles(): void {
 	}
 }
 
+/**
+ * Get all stylesheets to load conditionally.
+ *
+ * @since 0.9.10
+ *
+ * @param array $options Options.
+ *
+ * @return array
+ */
 function get_conditional_stylesheets( array $options ): array {
 	$stylesheets = [
 		...( is_admin() ? glob( DIR . 'assets/css/blocks/*.css' ) : [] ),
@@ -203,9 +214,10 @@ function get_conditional_stylesheets( array $options ): array {
  *
  * @since 0.0.27
  *
- * @param string $content Page content.
+ * @param array  $stylesheets Stylesheets to load.
+ * @param string $content     Page content.
  *
- * @return void
+ * @return array
  */
 function get_stylesheet_conditions( array $stylesheets, string $content ): array {
 	$conditions = [];
@@ -371,6 +383,7 @@ function add_conditional_stylesheets( array $stylesheets, array $conditions, str
  * @since 0.0.27
  *
  * @param string $content Page content.
+ * @param string $handle  Stylesheet handle.
  *
  * @return void
  */
@@ -402,7 +415,7 @@ add_action( 'admin_init', NS . 'add_editor_stylesheets' );
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return void
  */

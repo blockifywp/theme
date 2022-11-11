@@ -10,7 +10,7 @@ add_filter( SLUG . '_editor_script', NS . 'register_block_supports' );
 /**
  * Add default block supports.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param array $config Blockify editor config.
  *

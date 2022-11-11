@@ -14,7 +14,7 @@ add_action( 'wp_enqueue_scripts', NS . 'add_conic_gradient' );
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return void
  */

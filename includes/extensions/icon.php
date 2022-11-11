@@ -55,7 +55,7 @@ function register_icons_rest_route(): void {
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return array
  */
@@ -126,7 +126,7 @@ function get_icon_data( WP_REST_Request $request ) {
 /**
  * Returns array of all registered icons.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return array
  */
@@ -148,7 +148,7 @@ function get_icons(): array {
 /**
  * Returns svg string for given icon.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param string $set  Icon set.
  * @param string $name Icon name.

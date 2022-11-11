@@ -39,7 +39,7 @@ function render_block_animation( string $content, array $block ): string {
 
 		$classes = explode( ' ', $first->getAttribute( 'class' ) );
 
-		unset( $classes[ array_search( 'has-animation', $classes ) ] );
+		unset( $classes[ array_search( 'has-animation', $classes, true ) ] );
 		$classes[] = 'will-animate';
 
 		if ( $event === 'enter-infinite' ) {
@@ -60,12 +60,12 @@ function render_block_animation( string $content, array $block ): string {
 
 add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 2 );
 /**
- * Description of expected behavior.
+ * Conditionally add animation JS.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $js
- * @param string $content
+ * @param string $js      The inline JS.
+ * @param string $content The block content.
  *
  * @return string
  */

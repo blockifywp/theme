@@ -69,7 +69,7 @@ function enqueue_editor_scripts(): void {
 /**
  * Returns filtered editor data.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return mixed|void
  */
@@ -172,6 +172,8 @@ function remove_emoji_scripts(): void {
  *
  * @since 0.0.27
  *
+ * @param string $content Page content.
+ *
  * @return void
  */
 function add_inline_scripts( string $content ): void {
@@ -182,7 +184,9 @@ function add_inline_scripts( string $content ): void {
 		reduce_whitespace(
 			trim(
 				apply_filters(
-					'blockify_inline_js', '', $content
+					'blockify_inline_js',
+					'',
+					$content
 				)
 			)
 		)

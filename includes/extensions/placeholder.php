@@ -11,7 +11,7 @@ use function in_array;
 /**
  * Returns placeholder HTML element string.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param string $html  Block content.
  * @param array  $block Block attributes.

@@ -8,10 +8,10 @@ namespace Blockify\Theme;
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block html content.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -37,12 +37,12 @@ function render_counter_block_variation( string $content, array $block ): string
 
 add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
 /**
- * Description of expected behavior.
+ * Conditionally add counter JS.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $js
- * @param string $content
+ * @param string $js      Inline js.
+ * @param string $content Block html content.
  *
  * @return string
  */

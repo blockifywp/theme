@@ -35,11 +35,11 @@ function render_width_attributes( string $content, array $block ): string {
 	$styles  = css_string_to_array( $first->getAttribute( 'style' ) );
 
 	if ( $width['mobile'] ?? null ) {
-		$styles['--wp--custom--width--mobile'] = $width['mobile'] ?? '';
+		$styles['--wp--custom--width--mobile'] = $width['mobile'];
 	}
 
 	if ( $width['desktop'] ?? null ) {
-		$styles['--wp--custom--width--desktop'] = $width['desktop'] ?? '';
+		$styles['--wp--custom--width--desktop'] = $width['desktop'];
 	}
 
 	if ( ! in_array( 'has-custom-width', $classes, true ) ) {

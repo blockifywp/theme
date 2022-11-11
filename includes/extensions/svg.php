@@ -11,12 +11,12 @@ use function urldecode;
 
 add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 11, 2 );
 /**
- * Description of expected behavior.
+ * Render SVG block variation.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block html content.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -49,6 +49,7 @@ function render_svg_block_variation( string $content, array $block ): string {
 	}
 
 	$imported = $dom->importNode( $svg_element, true );
+	$imported = dom_element( $imported );
 	$width    = $block['attrs']['width'] ?? '';
 	$height   = $block['attrs']['height'] ?? '';
 
@@ -80,10 +81,10 @@ add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $content
- * @param array  $block
+ * @param string $content Block html content.
+ * @param array  $block   Block data.
  *
  * @return string
  */
@@ -122,6 +123,7 @@ function render_inline_svg( string $content, array $block ): string {
 		}
 
 		$imported = $dom->importNode( $svg_element, true );
+		$imported = dom_element( $imported );
 		$imported->removeAttribute( 'height' );
 		$imported->removeAttribute( 'width' );
 
@@ -140,12 +142,11 @@ function render_inline_svg( string $content, array $block ): string {
 
 		$classes = explode( ' ', $img->getAttribute( 'class' ) );
 
-		unset ( $classes[ array_search( 'has-inline-svg', $classes ) ] );
+		unset( $classes[ array_search( 'has-inline-svg', $classes, true ) ] );
 
 		$classes[] = 'inline-svg';
 
-		$imported->setAttribute( 'class', implode( ' ', $classes ) . ' ' . $svg_element->getAttribute('class') );
-
+		$imported->setAttribute( 'class', implode( ' ', $classes ) . ' ' . $svg_element->getAttribute( 'class' ) );
 
 		$content = str_replace(
 			$dom->saveHTML( $img ),

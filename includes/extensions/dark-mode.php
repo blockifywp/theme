@@ -10,6 +10,7 @@ use function is_admin;
 use function wp_add_inline_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
+use function wp_unslash;
 
 add_action( 'blockify_editor_scripts', NS . 'add_dark_mode_custom_properties', 11 );
 add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties', 11 );
@@ -52,14 +53,14 @@ add_filter( 'body_class', NS . 'add_dark_mode_body_class' );
 /**
  * Sets default body class.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param $classes
+ * @param array $classes Body classes.
  *
- * @return mixed
+ * @return array
  */
-function add_dark_mode_body_class( $classes ) {
-	$dark_mode = ( $_COOKIE['blockifyDarkMode'] ?? null ) === 'true';
+function add_dark_mode_body_class( array $classes ): array {
+	$dark_mode = wp_unslash( $_COOKIE['blockifyDarkMode'] ?? null ) === 'true';
 
 	if ( $dark_mode ) {
 		$classes[] = 'is-style-dark';

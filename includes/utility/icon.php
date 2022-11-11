@@ -55,9 +55,9 @@ function get_icon_html( string $content, array $block ): string {
 		$span->setAttribute( 'style', css_array_to_string( $styles ) );
 	}
 
-	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label ?? __( 'SVG Icon' ) );
+	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label );
 
-	if ( ! ( $block['attrs']['title'] ?? null ) ?? ! $aria_label ) {
+	if ( ! ( $block['attrs']['title'] ?? null ) || ! $aria_label ) {
 		$span->setAttribute( 'aria-label', $aria_label );
 		$span->setAttribute( 'role', 'presentation' );
 	}

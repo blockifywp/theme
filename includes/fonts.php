@@ -19,11 +19,11 @@ add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
 /**
  * Add all fonts to the editor.
  *
- * @param WP_Theme_JSON_Data $theme_json Theme JSON.
+ * @param \WP_Theme_JSON_Data $theme_json Theme JSON.
  *
- * @return WP_Theme_JSON_Data
+ * @return \WP_Theme_JSON_Data
  */
-function add_fonts( WP_Theme_JSON_Data $theme_json ): WP_Theme_JSON_Data {
+function add_fonts( \WP_Theme_JSON_Data $theme_json ): \WP_Theme_JSON_Data {
 	$data  = $theme_json->get_data();
 	$fonts = is_child_theme() ? [] : get_all_fonts();
 
@@ -41,7 +41,7 @@ add_filter( 'blockify_editor_scripts', NS . 'add_system_font_stacks', 11 );
 /**
  * Adds system font stack custom properties.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @return void
  */
@@ -98,7 +98,6 @@ function get_selected_fonts( array $styles ): array {
 	$content        = get_page_content();
 
 	foreach ( $all_font_slugs as $font_family ) {
-
 
 		if ( str_contains( $content, "has={$font_family}-font-family" ) ) {
 			$font_families[] = $font_family;
@@ -219,7 +218,7 @@ add_filter( SLUG . '_editor_script', NS . 'add_font_family_data', 11 );
 /**
  * Add default block supports.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param array $config Blockify editor config.
  *

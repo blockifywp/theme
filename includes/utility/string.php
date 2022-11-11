@@ -49,7 +49,7 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 /**
  * Description of expected behavior.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
  * @param string $haystack The string to search.
  * @param array  $needles  The strings to search for.
@@ -67,11 +67,11 @@ function str_contains_any( string $haystack, array $needles ): bool {
 }
 
 /**
- * Description of expected behavior.
+ * Replaces multiple whitespace with single.
  *
- * @since 1.0.0
+ * @since 0.9.10
  *
- * @param string $string
+ * @param string $string The string to search.
  *
  * @return string
  */
