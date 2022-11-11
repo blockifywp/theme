@@ -10,7 +10,9 @@ module.exports = env => {
 		},
 
 		entry: {
-			editor: './src/editor.tsx'
+			editor: './src/editor.tsx',
+			animation: './src/public/animation.tsx',
+			counter: './src/public/counter.tsx',
 		},
 
 		plugins: [

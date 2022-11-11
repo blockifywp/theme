@@ -10,7 +10,7 @@ use function implode;
 use function in_array;
 use function method_exists;
 
-add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
+// add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
 /**
  * Adds box shadow support to dynamic core blocks.
  *

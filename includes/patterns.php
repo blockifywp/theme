@@ -11,9 +11,9 @@ use function in_array;
 use function register_block_pattern_category;
 use function remove_theme_support;
 use function sanitize_title_with_dashes;
+use function sort;
 use function trim;
 use function ucfirst;
-use function wp_get_global_settings;
 use function wp_list_pluck;
 use WP_Block_Pattern_Categories_Registry;
 use WP_Block_Patterns_Registry;
@@ -44,7 +44,7 @@ function remove_core_patterns(): void {
 	remove_theme_support( 'core-block-patterns' );
 }
 
-add_action( 'init', NS . 'register_block_patterns' );
+add_action( false, NS . 'register_block_patterns' );
 /**
  * Registers default block patterns.
  *
@@ -75,6 +75,8 @@ function auto_register_pattern_categories(): void {
 		if ( ! isset( $block_pattern['categories'] ) ) {
 			continue;
 		}
+
+		sort( $block_pattern['categories'] );
 
 		foreach ( $block_pattern['categories'] as $category ) {
 			$categories = wp_list_pluck( WP_Block_Pattern_Categories_Registry::get_instance()->get_all_registered(), 'name' );

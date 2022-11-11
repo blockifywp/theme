@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function explode;
 use function implode;
+use function method_exists;
 
 add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 10, 2 );
 /**
@@ -24,8 +25,13 @@ function render_post_content_block( string $content, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 
 	if ( ! empty( $margin ) || ! empty( $padding ) ) {
-		$dom      = dom( $content );
-		$div      = get_dom_element( 'div', $dom );
+		$dom = dom( $content );
+		$div = get_dom_element( 'div', $dom );
+
+		if ( ! $div || ! method_exists( $div, 'getAttribute' ) ) {
+			return $content;
+		}
+
 		$styles   = [];
 		$original = $div->getAttribute( 'style' );
 

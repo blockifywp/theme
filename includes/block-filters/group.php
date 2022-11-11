@@ -5,6 +5,9 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function explode;
+use function implode;
+use function method_exists;
 
 add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
 /**
@@ -18,16 +21,8 @@ add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
  * @return string
  */
 function render_block_layout( string $content, array $block ): string {
-	$dom   = dom( $content );
-	$div   = get_dom_element( 'div', $dom );
-	$align = $block['attrs']['align'] ?? null;
-
-	if ( ! $align ) {
-		$first     = get_dom_element( '*', $dom );
-		$classes   = \explode( ' ', $first->getAttribute( 'class' ) );
-		$classes[] = 'items-justified-left';
-		$first->setAttribute( 'class', \implode( ' ', $classes ) );
-	}
+	$dom = dom( $content );
+	$div = get_dom_element( 'div', $dom );
 
 	if ( $div && $div->tagName === 'main' ) {
 		$div->setAttribute(
@@ -39,9 +34,73 @@ function render_block_layout( string $content, array $block ): string {
 	if ( $block['attrs']['minHeight'] ?? null ) {
 		$div->setAttribute(
 			'style',
-			$div->getAttribute( 'style' ) . 'min-height:' . $block['attrs']['minHeight']
+			$div->getAttribute( 'style' ) . ';min-height:' . $block['attrs']['minHeight']
 		);
 	}
+
+	$content = $dom->saveHTML();
+
+	if ( ( $block['attrs']['layout']['orientation'] ?? null ) === 'marquee' ) {
+		$content = render_marquee_block_variation( $content, $block );
+	}
+
+	return $content;
+}
+
+
+function render_marquee_block_variation( string $content, array $block ): string {
+	$dom = dom( $content );
+	$div = get_dom_element( 'div', $dom );
+
+	if ( ! $div ) {
+		return $content;
+	}
+
+	$repeat  = $block['attrs']['repeatItems'] ?? 2;
+	$wrap    = $dom->createElement( 'div' );
+	$styles  = css_string_to_array( $div->getAttribute( 'style' ) );
+	$classes = explode( ' ', $div->getAttribute( 'class' ) );
+
+	unset( $classes[ array_search( 'is-marquee', $classes ) ] );
+
+	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+
+	if ( $gap || $gap === '0' ) {
+		$styles['--marquee-gap'] = $gap;
+	}
+
+	$div->setAttribute( 'class', implode( ' ', $classes ) );
+	$div->setAttribute( 'style', css_array_to_string( $styles ) );
+
+	$wrap->setAttribute( 'class', 'is-marquee' );
+
+	$count = $div->childNodes->count();
+
+	for ( $i = 0; $i < $count; $i++ ) {
+		$item = $div->childNodes->item( $i );
+
+		if ( ! $item || ! method_exists( $item, 'setAttribute' ) ) {
+			continue;
+		}
+
+		$wrap->appendChild( $item );
+
+		for ( $j = 0; $j < $repeat; $j++ ) {
+			$clone = $item->cloneNode( true );
+
+			if ( ! $clone || ! method_exists( $clone, 'setAttribute' ) || ! method_exists( $clone, 'getAttribute' ) ) {
+				continue;
+			}
+
+			$clone->setAttribute( 'aria-hidden', 'true' );
+			$classes   = explode( ' ', $clone->getAttribute( 'class' ) );
+			$classes[] = 'is-cloned';
+			$clone->setAttribute( 'class', implode( ' ', $classes ) );
+			$wrap->appendChild( $clone );
+		}
+	}
+
+	$div->insertBefore( $wrap, $div->firstChild );
 
 	return $dom->saveHTML();
 }

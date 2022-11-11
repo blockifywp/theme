@@ -18,13 +18,15 @@ add_filter( 'render_block_core/query', NS . 'render_query_block', 10, 2 );
  * @return string
  */
 function render_query_block( string $content, array $block ): string {
-	if ( $block['attrs']['style']['spacing']['blockGap'] ?? null ) {
-		$dom = dom( $content );
-		$div = get_dom_element( 'div', $dom );
+	$block_gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+	if ( $block_gap ) {
+		$dom    = dom( $content );
+		$div    = get_dom_element( 'div', $dom );
+		$styles = css_string_to_array( $div->getAttribute( 'style' ) );
 
-		$style = $div->getAttribute( 'style' ) ? $div->getAttribute( 'style' ) . ';' : '';
+		$styles['--wp--style--block-gap'] = format_custom_property( $block_gap );
 
-		$div->setAttribute( 'style', $style . '--wp--style--block-gap:' . $block['attrs']['style']['spacing']['blockGap'] );
+		$div->setAttribute( 'style', css_array_to_string( $styles ) );
 
 		$content = $dom->saveHTML();
 	}

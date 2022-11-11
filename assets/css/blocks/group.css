@@ -1,1 +1,1 @@
-.wp-block-column>.wp-block-group{max-width:100% !important}.wp-block-group[style*="min-height"]{display:flex;flex-direction:column;flex-wrap:wrap;align-items:center;align-content:center;justify-content:center}:where(.wp-block-group.has-background){padding:0}main.wp-block-group{overflow-x:hidden}
+.wp-block-column>.wp-block-group{max-width:100% !important}:where(.wp-block-group.has-background){padding:0}main.wp-block-group{overflow-x:hidden}

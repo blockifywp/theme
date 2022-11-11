@@ -1,0 +1,1 @@
+.toggle-switch{position:absolute;left:4px;transition:var(--wp--custom--transition, left 0.2s ease-in-out)}body.is-style-dark .toggle-switch{left:calc(100% - (1em + 4px))}

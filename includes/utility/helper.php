@@ -4,10 +4,10 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function apply_filters;
-use function file_exists;
-use function file_get_contents;
 use function get_template_directory_uri;
+use function get_the_block_template_html;
+use function get_the_content;
+use function sprintf;
 use function trailingslashit;
 
 /**
@@ -22,41 +22,15 @@ function get_url(): string {
 }
 
 /**
- * Returns array of default style variation slugs.
+ * Get entire rendered page html.
  *
  * @since 1.0.0
  *
- * @return array
+ * @return string
  */
-function get_default_style_variations(): array {
-	return [
-		'default',
-		...array_map(
-			static fn( string $file ): string => basename( $file, '.json' ),
-			glob( DIR . 'styles/*.json' )
-		),
-	];
-}
+function get_page_content(): string {
+	$template = get_the_block_template_html() ?? '';
+	$content  = get_the_content() ?? '';
 
-/**
- * Gets style variation data from json file.
- *
- * @since 1.0.0
- *
- * @param string $style Selected style variation.
- *
- * @return array
- */
-function get_style_variation_json( string $style ): array {
-	$dir  = apply_filters( 'blockify_styles_dir', DIR . 'styles' );
-	$json = [];
-
-	if ( file_exists( $dir . "/$style.json" ) ) {
-		$json = json_decode(
-			file_get_contents( $dir . "/$style.json" ),
-			true
-		);
-	}
-
-	return $json ?? [];
+	return do_blocks( $template . $content );
 }

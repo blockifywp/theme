@@ -1,0 +1,1 @@
+.has-filter{filter:var(--filter);backdrop-filter:var(--backdrop)}.has-filter:hover,.has-filter:focus{filter:var(--filter-hover, var(--filter));backdrop-filter:var(--backdrop-hover, var(--backdrop))}.has-filter.will-animate{filter:var(--filter-animate);backdrop-filter:var(--backdrop-animate)}

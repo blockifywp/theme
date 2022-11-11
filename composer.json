@@ -26,24 +26,8 @@
       "pestphp/pest-plugin": true
     }
   },
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "name": "tgm/plugin-activation",
-        "version": "2.6.1",
-        "source": {
-          "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
-          "type": "git",
-          "reference": "master"
-        }
-      }
-    }
-  ],
   "require": {
-    "php": "^7.4 || ^8.0",
-    "tgmpa/tgm-plugin-activation": "dev-develop",
-    "wptrt/admin-notices": "dev-master"
+    "php": "^7.4 || ^8.0"
   },
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",

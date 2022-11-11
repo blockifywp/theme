@@ -1,0 +1,1 @@
+.has-animation{animation:var(--animation)}@keyframes animate{0%{filter:var(--filter-animate);backdrop-filter:var(--backdrop-animate);transform:var(--transform-animate)}100%{filter:var(--filter);backdrop-filter:var(--backdrop);transform:var(--transform)}}

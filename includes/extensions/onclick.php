@@ -5,6 +5,8 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function rtrim;
+use function trim;
 
 add_filter( 'render_block', NS . 'render_block_onclick_attribute', 11, 2 );
 /**
@@ -19,6 +21,9 @@ add_filter( 'render_block', NS . 'render_block_onclick_attribute', 11, 2 );
  */
 function render_block_onclick_attribute( string $content, array $block ): string {
 	$on_click = $block['attrs']['onclick'] ?? '';
+	$on_click = str_replace( '"', "'", $on_click );
+	$on_click = trim( rtrim( $on_click, ';' ) );
+	$on_click = reduce_whitespace( $on_click );
 	$link     = null;
 
 	// Buttons.

@@ -1,8 +1,8 @@
 === Blockify ===
 Contributors: blockify
-Requires at least: 6.0
+Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.9
+Stable tag: 0.9.10
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -33,10 +33,6 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details,
 
-TGMPA
-License: GPL-2.0-or-later
-License URL: https://www.opensource.org/licenses/GPL-2.0
-
 Composer
 License: MIT
 License URL: https://github.com/composer/composer/blob/main/LICENSE
@@ -44,10 +40,6 @@ License URL: https://github.com/composer/composer/blob/main/LICENSE
 WordPress & Social Icons
 License: GPL-2.0-or-later
 License URL: https://github.com/WordPress/WordPress/blob/master/license.txt
-
-Dashicons
-License: GPL-2.0-or-later
-License URL: https://www.gnu.org/licenses/gpl-2.0.html
 
 Google Fonts
 License: SIL Open Font License, 1.1
@@ -58,6 +50,26 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.10 - 10 November 2022 =
+
+* Add: Responsive positioning settings
+* Add: Box shadow hover settings
+* Add: Marquee block variation
+* Add: SVG block variation
+* Add: Filter and transform animations
+* Add: Font family text format
+* Add: Font size text format
+* Add: Curved text block style
+* Add: Backdrop filter settings
+* Add: Spacing support to navigation block
+* Add: Margin support to pagination block
+* Add: Boxed blog layout
+* Add: Block gap support to Query block
+* Add: List and List Item block border support
+* Add: Order, overflow and pointer events settings
+* Fix: Font family loading
+* Remove: Gutenberg as dependency
 
 = 0.9.9 - 29 October 2022 =
 

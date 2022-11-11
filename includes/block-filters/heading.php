@@ -22,7 +22,7 @@ function render_heading_block( string $content, array $block ): string {
 	$dom = dom( $content );
 
 	// No way of knowing tag.
-	$heading = get_dom_element( 'h1', $dom ) ?? get_dom_element( 'h2', $dom ) ?? get_dom_element( 'h3', $dom ) ?? get_dom_element( 'h4', $dom ) ?? get_dom_element( 'h5', $dom ) ?? get_dom_element( 'h6', $dom );
+	$heading = get_dom_element( '*', $dom );
 
 	if ( ! $heading ) {
 		return $content;
@@ -30,13 +30,9 @@ function render_heading_block( string $content, array $block ): string {
 
 	$class = $heading->getAttribute( 'class' );
 
-	if ( ! $class ) {
-		return $content;
-	}
-
 	$heading->setAttribute(
 		'class',
-		'wp-block-heading ' . $class
+		'wp-block-heading' . ( $class ? ' ' . \trim( $class ) : '' )
 	);
 
 	return $dom->saveHTML();

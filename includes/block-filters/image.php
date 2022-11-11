@@ -21,9 +21,10 @@ add_filter( 'render_block_core/image', NS . 'render_image_block', 10, 2 );
 function render_image_block( string $content, array $block ): string {
 	$id   = $block['attrs']['id'] ?? '';
 	$icon = str_contains( $content, 'is-style-icon' ) || isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-icon' );
+	$svg  = $block['attrs']['style']['svgString'] ?? '';
 
 	// Placeholder.
-	if ( ! $id && ! $icon ) {
+	if ( ! $id && ! $icon && ! $svg ) {
 		$content = render_image_placeholder( $content, $block );
 	}
 

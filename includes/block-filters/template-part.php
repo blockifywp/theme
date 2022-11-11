@@ -27,8 +27,13 @@ function render_block_template_part( string $content, array $block ): string {
 
 	$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 	$styles = add_block_support_color( $styles, $block['attrs'] );
+	$styles = css_array_to_string( $styles );
 
-	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	if ( $styles ) {
+		$first->setAttribute( 'style', $styles );
+	} else {
+		$first->removeAttribute( 'style' );
+	}
 
 	return $dom->saveHTML();
 }

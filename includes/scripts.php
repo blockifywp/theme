@@ -15,6 +15,7 @@ use function home_url;
 use function remove_action;
 use function remove_filter;
 use function trailingslashit;
+use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_register_script;
 use WP_Screen;
@@ -162,5 +163,31 @@ function remove_emoji_scripts(): void {
 		10,
 		2
 	);
+}
+
+/**
+ * Register proxy handle for inline scripts.
+ *
+ * Called in styles.php to share page content string.
+ *
+ * @since 0.0.27
+ *
+ * @return void
+ */
+function add_inline_scripts( string $content ): void {
+	wp_register_script( SLUG, '', [], '', true );
+
+	wp_add_inline_script(
+		SLUG,
+		reduce_whitespace(
+			trim(
+				apply_filters(
+					'blockify_inline_js', '', $content
+				)
+			)
+		)
+	);
+
+	wp_enqueue_script( SLUG );
 }
 

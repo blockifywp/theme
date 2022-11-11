@@ -47,19 +47,6 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 }
 
 /**
- * Replaces double quotes with single and single quotes with double.
- *
- * @since 0.4.0
- *
- * @param string $string String to modify.
- *
- * @return string
- */
-function reverse_quotes( string $string ): string {
-	return str_replace( [ "'", '"' ], [ '"', "'" ], $string );
-}
-
-/**
  * Description of expected behavior.
  *
  * @since 1.0.0
@@ -77,4 +64,17 @@ function str_contains_any( string $haystack, array $needles ): bool {
 	}
 
 	return false;
+}
+
+/**
+ * Description of expected behavior.
+ *
+ * @since 1.0.0
+ *
+ * @param string $string
+ *
+ * @return string
+ */
+function reduce_whitespace( string $string ): string {
+	return preg_replace( '/\s+/', ' ', $string );
 }

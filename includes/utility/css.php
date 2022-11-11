@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function explode;
 use function is_null;
+use function str_contains;
 use function str_replace;
 
 /**
@@ -55,11 +56,38 @@ function css_string_to_array( string $css ): array {
 			$property = $parts[0];
 			$value    = $parts[1];
 
-			if ( $value ) {
+			if ( ! is_null( $value ) ) {
 				$array[ $property ] = str_replace( 'xml$', 'xml;', $value );
 			}
 		}
 	}
 
 	return $array;
+}
+
+/**
+ * Formats custom properties for unsupported blocks.
+ *
+ * @since 0.9.10
+ *
+ * @param string $custom_property
+ *
+ * @return string
+ */
+function format_custom_property( string $custom_property ): string {
+	if ( ! str_contains( $custom_property, 'var:' ) ) {
+		return $custom_property;
+	}
+
+	return str_replace(
+		[
+			'var:',
+			'|',
+		],
+		[
+			'var(--wp--',
+			'--',
+		],
+		$custom_property . ')'
+	);
 }
