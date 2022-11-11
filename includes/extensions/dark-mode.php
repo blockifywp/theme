@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function add_filter;
+use function esc_url_raw;
 use function is_admin;
 use function wp_add_inline_style;
 use function wp_get_global_settings;
@@ -60,7 +61,7 @@ add_filter( 'body_class', NS . 'add_dark_mode_body_class' );
  * @return array
  */
 function add_dark_mode_body_class( array $classes ): array {
-	$dark_mode = wp_unslash( $_COOKIE['blockifyDarkMode'] ?? null ) === 'true';
+	$dark_mode = esc_url_raw( wp_unslash( $_COOKIE['blockifyDarkMode'] ?? null ) ) === 'true';
 
 	if ( $dark_mode ) {
 		$classes[] = 'is-style-dark';

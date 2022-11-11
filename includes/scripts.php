@@ -17,6 +17,7 @@ use function remove_filter;
 use function trailingslashit;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
+use function wp_get_theme;
 use function wp_register_script;
 use WP_Screen;
 
@@ -177,7 +178,7 @@ function remove_emoji_scripts(): void {
  * @return void
  */
 function add_inline_scripts( string $content ): void {
-	wp_register_script( SLUG, '', [], '', true );
+	wp_register_script( SLUG, '', [], wp_get_theme()->get( 'version' ), true );
 
 	wp_add_inline_script(
 		SLUG,

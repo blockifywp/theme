@@ -28,8 +28,5 @@ function get_url(): string {
  * @return string
  */
 function get_page_content(): string {
-	$template = get_the_block_template_html() ?: '';
-	$content  = get_the_content() ?: '';
-
-	return do_blocks( $template . $content );
+	return do_blocks( get_the_block_template_html() . get_the_content() );
 }

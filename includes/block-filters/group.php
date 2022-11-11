@@ -70,7 +70,7 @@ function render_marquee_block_variation( string $content, array $block ): string
 	$styles  = css_string_to_array( $div->getAttribute( 'style' ) );
 	$classes = explode( ' ', $div->getAttribute( 'class' ) );
 
-	unset( $classes[ array_search( 'is-marquee', $classes ) ] );
+	unset( $classes[ array_search( 'is-marquee', $classes, true ) ] );
 
 	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
 
