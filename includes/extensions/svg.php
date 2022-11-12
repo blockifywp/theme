@@ -57,8 +57,6 @@ function render_svg_block_variation( string $content, array $block ): string {
 		$imported->setAttribute( 'width', (string) $width );
 	}
 
-	$height = $height === '' ? $width : $height;
-
 	if ( $height ) {
 		$imported->setAttribute( 'height', (string) $height );
 	}

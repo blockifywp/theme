@@ -82,6 +82,9 @@
       },
       "surface": {
         "borderColor": "transparent"
+      },
+      "buttonOutline": {
+        "color": "var(--wp--preset--color--heading,inherit)"
       }
     },
     "spacing": {

@@ -19,11 +19,11 @@ add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
 /**
  * Add all fonts to the editor.
  *
- * @param \WP_Theme_JSON_Data $theme_json Theme JSON.
+ * @param mixed $theme_json Theme JSON.
  *
- * @return \WP_Theme_JSON_Data
+ * @return mixed
  */
-function add_fonts( \WP_Theme_JSON_Data $theme_json ): \WP_Theme_JSON_Data {
+function add_fonts( $theme_json ) {
 	$data  = $theme_json->get_data();
 	$fonts = is_child_theme() ? [] : get_all_fonts();
 

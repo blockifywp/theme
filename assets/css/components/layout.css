@@ -1,1 +1,0 @@
-.inherit-layout>*:not(.alignfull,.alignwide){max-width:var(--wp--custom--layout--content-size)}.is-layout-constrained>.alignwide{width:100vw}

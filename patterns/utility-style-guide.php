@@ -1,9 +1,9 @@
 <?php
 /**
- * Title: Page Style Guide
- * Slug: page-style-guide
- * Categories: page
- * Block Types: core/post-content
+ * Title: Utility Style Guide
+ * Slug: utility-style-guide
+ * Categories: utility
+ * 
  */
 ?>
 <!-- wp:group {"layout":{"inherit":true,"type":"constrained"}} -->
