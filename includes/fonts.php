@@ -4,16 +4,20 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use WP_Theme_JSON_Data;
 use function add_filter;
+use function apply_filters;
 use function array_keys;
+use function get_stylesheet;
 use function get_template_directory;
+use function in_array;
 use function is_admin;
 use function is_child_theme;
 use function str_contains;
 use function wp_add_inline_style;
 use function wp_list_pluck;
 
+add_filter( 'theme_json_theme', NS . 'add_fonts', 11 );
+add_filter( 'theme_json_user', NS . 'add_fonts', 11 );
 add_filter( 'wp_theme_json_data_theme', NS . 'add_fonts', 11 );
 add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
 /**
@@ -25,9 +29,10 @@ add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
  */
 function add_fonts( $theme_json ) {
 	$data  = $theme_json->get_data();
-	$fonts = is_child_theme() ? [] : get_all_fonts();
+	$fonts = in_array( get_stylesheet(), [ 'launchify', 'dreamify', 'brandify' ] ) ? [] : get_all_fonts();
+	$load  = apply_filters( 'blockify_load_all_fonts', true );
 
-	if ( $fonts ) {
+	if ( $load && $fonts && ! ( $data['settings']['typography']['fontFamilies']['theme'] ?? null ) ) {
 		$data['settings']['typography']['fontFamilies']['theme'] = $fonts;
 	}
 

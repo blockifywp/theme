@@ -56,7 +56,7 @@
         "y": "5px",
         "blur": "15px",
         "spread": "0",
-        "color": "var(--wp--preset--color--custom-shadow,rgba(0,10,20,0.1))"
+        "color": "var(--wp--preset--color--custom-shadow,rgba(100,110,120,0.2))"
       },
       "fontWeight": {
         "black": 900,
@@ -296,6 +296,24 @@
             "min": "48px",
             "max": "72px"
           }
+        }
+      ],
+      "fontFamilies": [
+        {
+          "slug": "inter",
+          "name": "Inter",
+          "fontFamily": "Inter",
+          "fontFace": [
+            {
+              "fontFamily": "Inter",
+              "fontDisplay": "swap",
+              "fontStyle": "normal",
+              "fontWeight": "100 900",
+              "src": [
+                "file:./assets/fonts/inter.woff2"
+              ]
+            }
+          ]
         }
       ]
     }

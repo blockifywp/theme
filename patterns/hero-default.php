@@ -22,8 +22,8 @@
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#pricing">Get started</a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#features">Learn more</a></div>
+<!-- wp:button {"textColor":"primary","className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-primary-color has-text-color wp-element-button" href="#features">Learn more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->

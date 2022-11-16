@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use const GLOB_ONLYDIR;
+use function class_exists;
 use function add_action;
 use function add_editor_style;
 use function add_filter;
@@ -15,15 +16,12 @@ use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
-use function get_option;
 use function get_site_url;
-use function get_stylesheet_directory_uri;
 use function glob;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_array;
-use function is_child_theme;
 use function is_front_page;
 use function str_contains;
 use function str_replace;
@@ -46,8 +44,7 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 11 );
 function enqueue_styles(): void {
 	$content     = get_page_content();
 	$handle      = is_admin() ? 'blockify-editor' : 'global-styles';
-	$options     = get_option( 'blockify_settings' );
-	$stylesheets = get_conditional_stylesheets( $options );
+	$stylesheets = get_conditional_stylesheets();
 	$conditions  = get_stylesheet_conditions( $stylesheets, $content );
 
 	add_dynamic_custom_properties( $handle );
@@ -186,12 +183,10 @@ function add_block_styles(): void {
  *
  * @since 0.9.10
  *
- * @param array $options Options.
- *
  * @return array
  */
-function get_conditional_stylesheets( array $options ): array {
-	$stylesheets = [
+function get_conditional_stylesheets(): array {
+	return [
 		...( is_admin() ? glob( DIR . 'assets/css/blocks/*.css' ) : [] ),
 		...glob( DIR . 'assets/css/elements/*.css' ),
 		...glob( DIR . 'assets/css/components/*.css' ),
@@ -201,12 +196,6 @@ function get_conditional_stylesheets( array $options ): array {
 		...glob( DIR . 'assets/css/utility/*.css' ),
 		...glob( DIR . 'assets/css/plugins/*.css' ),
 	];
-
-	if ( is_child_theme() && ( $options['load_child_theme_style_css'] ?? false ) ) {
-		$stylesheets[] = get_stylesheet_directory_uri() . '/style.css';
-	};
-
-	return $stylesheets;
 }
 
 /**
@@ -233,6 +222,7 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 	}
 
 	$conditions['block-styles'] = [
+		'accordion'        => str_contains( $content, 'is-style-accordion' ),
 		'button-outline'   => str_contains( $content, 'is-style-outline' ),
 		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
 		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
@@ -322,6 +312,7 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'underline'  => str_contains( $content, 'has-text-underline' ),
 		'font-size'  => str_contains( $content, 'has-custom-font-size' ),
 		'inline-svg' => str_contains( $content, 'inline-svg' ),
+		'outline'    => str_contains( $content, 'has-text-outline' ),
 	];
 
 	$conditions['utility'] = [
@@ -332,6 +323,9 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 	$conditions['plugins'] = [
 		'ninja-forms'                    => str_contains( $content, 'nf-form' ),
 		'syntax-highlighting-code-block' => defined( 'Syntax_Highlighting_Code_Block\\PLUGIN_VERSION' ),
+		'edd'                            => class_exists( 'EDD_Requirements_Check' ),
+		'gravity-forms'                  => class_exists( 'GFForms' ),
+		'woocommerce'                    => class_exists( 'WooCommerce' ),
 	];
 
 	return $conditions;
