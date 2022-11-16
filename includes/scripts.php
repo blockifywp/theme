@@ -10,6 +10,7 @@ use function apply_filters;
 use function array_diff;
 use function do_action;
 use function filemtime;
+use function function_exists;
 use function get_option;
 use function home_url;
 use function remove_action;
@@ -75,16 +76,20 @@ function enqueue_editor_scripts(): void {
  * @return mixed|void
  */
 function get_editor_data() {
+	$current_screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
 	return apply_filters(
 		SLUG . '_editor_script',
 		[
-			'url'      => get_url(),
-			'siteUrl'  => trailingslashit(
+			'url'        => get_url(),
+			'siteUrl'    => trailingslashit(
 				home_url()
 			),
-			'ajaxUrl'  => admin_url( 'admin-ajax.php' ),
-			'adminUrl' => trailingslashit( admin_url() ),
-			'nonce'    => wp_create_nonce( SLUG ),
+			'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
+			'adminUrl'   => trailingslashit( admin_url() ),
+			'nonce'      => wp_create_nonce( SLUG ),
+			'icon'       => get_icon( 'social', SLUG ),
+			'siteEditor' => $current_screen && $current_screen->base === 'site-editor',
 		]
 	);
 }
@@ -122,16 +127,8 @@ add_action( 'after_setup_theme', NS . 'remove_emoji_scripts' );
  * @return void
  */
 function remove_emoji_scripts(): void {
-	if ( ! ( get_option( 'blockify_settings' )['remove_emoji_scripts'] ?? true ) ) {
-		return;
-	}
-
 	$options = get_option( SLUG );
-	$enabled = true;
-
-	if ( isset( $options['removeEmojiScripts'] ) ) {
-		$enabled = $options['removeEmojiScripts'] === 'true';
-	}
+	$enabled = ( $options['removeEmojiScripts'] ?? 'true' ) === 'true';
 
 	if ( ! $enabled ) {
 		return;

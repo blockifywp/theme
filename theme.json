@@ -297,24 +297,6 @@
             "max": "72px"
           }
         }
-      ],
-      "fontFamilies": [
-        {
-          "slug": "inter",
-          "name": "Inter",
-          "fontFamily": "Inter",
-          "fontFace": [
-            {
-              "fontFamily": "Inter",
-              "fontDisplay": "swap",
-              "fontStyle": "normal",
-              "fontWeight": "100 900",
-              "src": [
-                "file:./assets/fonts/inter.woff2"
-              ]
-            }
-          ]
-        }
       ]
     }
   },

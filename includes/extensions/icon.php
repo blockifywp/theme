@@ -6,14 +6,11 @@ namespace Blockify\Theme;
 
 use function add_action;
 use function apply_filters;
-use function array_diff;
 use function array_keys;
 use function basename;
 use function current_user_can;
-use function explode;
 use function file_get_contents;
 use function glob;
-use function implode;
 use function preg_replace;
 use function str_replace;
 use function trim;
@@ -53,7 +50,7 @@ function register_icons_rest_route(): void {
 }
 
 /**
- * Description of expected behavior.
+ * Returns array of all icon sets and their directory path.
  *
  * @since 0.9.10
  *

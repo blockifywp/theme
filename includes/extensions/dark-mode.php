@@ -5,13 +5,10 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_action;
-use function add_filter;
-use function esc_url_raw;
 use function is_admin;
 use function wp_add_inline_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
-use function wp_unslash;
 
 add_action( 'blockify_editor_scripts', NS . 'add_dark_mode_custom_properties', 11 );
 add_action( 'wp_enqueue_scripts', NS . 'add_dark_mode_custom_properties', 11 );
@@ -48,24 +45,4 @@ function add_dark_mode_custom_properties(): void {
 		is_admin() ? 'blockify-editor' : 'global-styles',
 		'.is-style-dark{' . css_array_to_string( $styles ) . '}'
 	);
-}
-
-add_filter( 'body_class', NS . 'add_dark_mode_body_class' );
-/**
- * Sets default body class.
- *
- * @since 0.9.10
- *
- * @param array $classes Body classes.
- *
- * @return array
- */
-function add_dark_mode_body_class( array $classes ): array {
-	$dark_mode = esc_url_raw( wp_unslash( $_COOKIE['blockifyDarkMode'] ?? null ) ) === 'true';
-
-	if ( $dark_mode ) {
-		$classes[] = 'is-style-dark';
-	}
-
-	return $classes;
 }

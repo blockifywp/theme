@@ -5,7 +5,8 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function method_exists;
+use function explode;
+use function implode;
 
 add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
 /**
@@ -28,11 +29,21 @@ function render_heading_block( string $content, array $block ): string {
 		return $content;
 	}
 
-	$class = $heading->getAttribute( 'class' );
+	$classes   = explode( ' ', $heading->getAttribute( 'class' ) );
+	$classes[] = 'wp-block-heading';
+
+	$styles = css_string_to_array( $heading->getAttribute( 'style' ) );
+
+
 
 	$heading->setAttribute(
 		'class',
-		'wp-block-heading' . ( $class ? ' ' . \trim( $class ) : '' )
+		implode( ' ', $classes )
+	);
+
+	$heading->setAttribute(
+		'style',
+		css_array_to_string( $styles )
 	);
 
 	return $dom->saveHTML();

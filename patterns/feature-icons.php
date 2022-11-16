@@ -125,16 +125,16 @@
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"styles","iconSize":"2em","iconSvgString":"\u003csvg viewBox=\u00220 0 24 24\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022\u003e\u003cpath d=\u0022M12 4c-4.4 0-8 3.6-8 8v.1c0 4.1 3.2 7.5 7.2 7.9h.8c4.4 0 8-3.6 8-8s-3.6-8-8-8zm0 15V5c3.9 0 7 3.1 7 7s-3.1 7-7 7z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;M12 4c-4.4 0-8 3.6-8 8v.1c0 4.1 3.2 7.5 7.2 7.9h.8c4.4 0 8-3.6 8-8s-3.6-8-8-8zm0 15V5c3.9 0 7 3.1 7 7s-3.1 7-7 7z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"store","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill-rule=\u0022evenodd\u0022 d=\u0022M19.75 11H21V8.667L19.875 4H4.125L3 8.667V11h1.25v8.75h15.5V11zm-1.5 0H5.75v7.25H10V13h4v5.25h4.25V11zm-5.5-5.5h2.067l.486 3.24.028.76H12.75v-4zm-3.567 0h2.067v4H8.669l.028-.76.486-3.24zm7.615 3.1-.464-3.1h2.36l.806 3.345V9.5h-2.668l-.034-.9zM7.666 5.5h-2.36L4.5 8.845V9.5h2.668l.034-.9.464-3.1z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path fill-rule=&quot;evenodd&quot; d=&quot;M19.75 11H21V8.667L19.875 4H4.125L3 8.667V11h1.25v8.75h15.5V11zm-1.5 0H5.75v7.25H10V13h4v5.25h4.25V11zm-5.5-5.5h2.067l.486 3.24.028.76H12.75v-4zm-3.567 0h2.067v4H8.669l.028-.76.486-3.24zm7.615 3.1-.464-3.1h2.36l.806 3.345V9.5h-2.668l-.034-.9zM7.666 5.5h-2.36L4.5 8.845V9.5h2.668l.034-.9.464-3.1z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Dark Mode</h6>
+<h6 class="has-text-align-center">WooCommerce</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Add dark mode to your site with separate, customizable dark mode color palettes and gradients</p>
+<p class="aligncenter has-text-align-center aligncenter">Additional support for WooCommerce templates, colors and spacing to ensure consistent styling for your store</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

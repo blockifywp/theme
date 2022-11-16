@@ -21,7 +21,7 @@ add_filter( SLUG . '_editor_script', NS . 'register_block_styles' );
  */
 function register_block_styles( array $config ): array {
 	$config['blockStyles'] = [
-		'register'   => [
+		'register' => [
 			[
 				'type'  => 'core/code',
 				'name'  => 'surface',
@@ -61,6 +61,11 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/list',
 				'name'  => 'square',
 				'label' => __( 'Square', 'blockify' ),
+			],
+			[
+				'type'  => 'core/list',
+				'name'  => 'accordion',
+				'label' => __( 'Accordion', 'blockify' ),
 			],
 			[
 				'type'  => 'core/navigation-submenu',

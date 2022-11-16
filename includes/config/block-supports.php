@@ -10,6 +10,8 @@ add_filter( SLUG . '_editor_script', NS . 'register_block_supports' );
 /**
  * Add default block supports.
  *
+ * @todo: Move to rest endpoint.
+ *
  * @since 0.9.10
  *
  * @param array $config Blockify editor config.
@@ -201,6 +203,11 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyOnclick'        => true,
 		],
 		'core/list'                 => [
+			'spacing'              => [
+				'padding'  => true,
+				'margin'   => true,
+				'blockGap' => true,
+			],
 			'__experimentalLayout' => [
 				'allowSwitching'  => false,
 				'allowInheriting' => false,
@@ -209,13 +216,22 @@ function register_block_supports( array $config = [] ): array {
 					'orientation' => 'vertical',
 				],
 			],
-			'spacing'              => [
-				'padding'  => true,
-				'margin'   => true,
-				'blockGap' => true,
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width' => true,
+					'color' => true,
+				],
 			],
 		],
 		'core/list-item'            => [
+			'spacing' => [
+				'padding' => true,
+				'margin'  => true,
+			],
 			'__experimentalBorder' => [
 				'radius'                        => true,
 				'width'                         => true,
@@ -589,6 +605,9 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 			'blockifyBoxShadow'    => true,
+			'blockifyFilter'       => true,
+			'blockifyResponsive'   => true,
+			'blockifyTransform'    => true,
 		],
 	];
 

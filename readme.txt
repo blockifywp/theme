@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.11
+Stable tag: 0.9.13
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -51,12 +51,19 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.9.12 - 14 November 2022 =
+= 0.9.13 - 16 November 2022 =
+
+* Remove: Font family in theme.json
+
+= 0.9.12 - 16 November 2022 =
 
 * Add: WooCommerce templates and styling
+* Add: EDD styles
 * Update: Group typography text formats
 * Update: Absolute header for full-width template
 * Fix: Single and page template use content width
+* Fix: Checklist circle List block style icon
+* Remove: Unused image assets
 
 = 0.9.11 - 12 November 2022 =
 

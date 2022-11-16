@@ -36,10 +36,11 @@ function setup(): void {
 		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
 		[
 			...glob( DIR . 'includes/utility/*.php' ),
-			...glob( DIR . 'includes/api/*.php' ),
+			...glob( DIR . 'includes/config/*.php' ),
 			...glob( DIR . 'includes/*.php' ),
-			...glob( DIR . 'includes/block-filters/*.php' ),
+			...glob( DIR . 'includes/blocks/*.php' ),
 			...glob( DIR . 'includes/extensions/*.php' ),
+			...glob( DIR . 'includes/plugins/*.php' ),
 		]
 	);
 }
