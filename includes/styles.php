@@ -228,7 +228,6 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
 		'checklist'        => str_contains( $content, 'is-style-checklist' ),
 		'curved-text'      => str_contains( $content, 'is-style-curved-text' ),
-		'dark'             => str_contains( $content, 'is-style-dark' ),
 		'divider-angle'    => str_contains( $content, 'is-style-angle' ),
 		'divider-curve'    => str_contains( $content, 'is-style-curve' ),
 		'divider-fade'     => str_contains( $content, 'is-style-fade' ),

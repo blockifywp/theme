@@ -5,8 +5,6 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function array_keys;
-use function in_array;
 use function wp_get_global_settings;
 
 add_filter( SLUG . '_editor_script', NS . 'register_block_styles' );
@@ -36,6 +34,11 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/column',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/group',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
 			],
 			[
 				'type'  => 'core/group',

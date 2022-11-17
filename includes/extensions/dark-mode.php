@@ -38,11 +38,60 @@ function add_dark_mode_custom_properties(): void {
 
 	$global_styles = wp_get_global_styles();
 
-	$styles['background'] = format_custom_property( $global_styles['color']['background'] ?? null );
-	$styles['color']      = format_custom_property( $global_styles['color']['text'] ?? null );
+	$styles['background']   = format_custom_property( $global_styles['color']['background'] ?? null );
+	$styles['color']        = format_custom_property( $global_styles['color']['text'] ?? null );
+	$theme_color_palette    = $global_settings['color']['palette']['theme'] ?? [];
+	$theme_gradient_palette = $global_settings['color']['gradients']['theme'] ?? [];
+
+	$light = [];
+
+	$light_background_slug = \str_replace(
+		[
+			'var(--wp--preset--color--',
+			'var(--wp--preset--gradient--',
+			')',
+		],
+		'',
+		$global_styles['color']['background'] ?? ''
+	);
+
+	$light_text_slug = \str_replace(
+		[
+			'var(--wp--preset--color--',
+			'var(--wp--preset--gradient--',
+			')',
+		],
+		'',
+		$global_styles['color']['text'] ?? ''
+	);
+
+	foreach ( $theme_color_palette as $color ) {
+		if ( $light_background_slug === $color['slug'] ) {
+			$light['background'] = $color['color'];
+		}
+
+		if ( $light_text_slug === $color['slug'] ) {
+			$light['color'] = $color['color'];
+		}
+	}
+
+	foreach ( $theme_gradient_palette as $gradient ) {
+		if ( $light_background_slug === $gradient['slug'] ) {
+			$light['background'] = $gradient['gradient'];
+		}
+	}
+
+	foreach ( $theme_color_palette as $color ) {
+		$light[ '--wp--preset--color--' . $color['slug'] ] = $color['color'];
+	}
+
+	foreach ( $theme_gradient_palette as $gradient ) {
+		$light[ '--wp--preset--gradient--' . $gradient['slug'] ] = $gradient['gradient'];
+	}
 
 	wp_add_inline_style(
 		is_admin() ? 'blockify-editor' : 'global-styles',
-		'.is-style-dark{' . css_array_to_string( $styles ) . '}'
+		'.is-style-dark{' . css_array_to_string( $styles ) . '}' .
+		'.is-style-light{' . css_array_to_string( $light ) . '}'
 	);
 }
