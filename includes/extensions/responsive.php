@@ -99,7 +99,6 @@ function render_responsive_block_css( string $content, array $block ): string {
 	}
 
 	return $content;
-
 }
 
 

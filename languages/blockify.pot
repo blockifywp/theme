@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.9.13\n"
+"Project-Id-Version: Blockify 0.9.14\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-16T13:58:06+00:00\n"
+"POT-Creation-Date: 2022-11-17T12:23:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -106,184 +106,184 @@ msgstr ""
 msgid "Secondary"
 msgstr ""
 
-#: includes/extensions/responsive.php:133
+#: includes/extensions/responsive.php:132
 msgid "Position"
 msgstr ""
 
-#: includes/extensions/responsive.php:140
+#: includes/extensions/responsive.php:139
 msgid "Relative"
 msgstr ""
 
-#: includes/extensions/responsive.php:144
+#: includes/extensions/responsive.php:143
 msgid "Absolute"
 msgstr ""
 
-#: includes/extensions/responsive.php:148
+#: includes/extensions/responsive.php:147
 msgid "Sticky"
 msgstr ""
 
-#: includes/extensions/responsive.php:152
+#: includes/extensions/responsive.php:151
 msgid "Fixed"
 msgstr ""
 
-#: includes/extensions/responsive.php:156
+#: includes/extensions/responsive.php:155
 msgid "Static"
 msgstr ""
 
-#: includes/extensions/responsive.php:163
+#: includes/extensions/responsive.php:162
 msgid "Inset"
 msgstr ""
 
-#: includes/extensions/responsive.php:167
+#: includes/extensions/responsive.php:166
 msgid "Z-Index"
 msgstr ""
 
-#: includes/extensions/responsive.php:171
+#: includes/extensions/responsive.php:170
 msgid "Overflow"
 msgstr ""
 
-#: includes/extensions/responsive.php:178
-#: includes/extensions/responsive.php:212
+#: includes/extensions/responsive.php:177
+#: includes/extensions/responsive.php:211
 msgid "Auto"
 msgstr ""
 
-#: includes/extensions/responsive.php:182
-#: includes/extensions/responsive.php:232
+#: includes/extensions/responsive.php:181
+#: includes/extensions/responsive.php:231
 msgid "Visible"
 msgstr ""
 
-#: includes/extensions/responsive.php:186
+#: includes/extensions/responsive.php:185
 msgid "Hidden"
 msgstr ""
 
-#: includes/extensions/responsive.php:190
+#: includes/extensions/responsive.php:189
 msgid "Clip"
 msgstr ""
 
-#: includes/extensions/responsive.php:194
-#: includes/extensions/responsive.php:256
+#: includes/extensions/responsive.php:193
+#: includes/extensions/responsive.php:255
 msgid "Initial"
 msgstr ""
 
-#: includes/extensions/responsive.php:198
-#: includes/extensions/responsive.php:252
+#: includes/extensions/responsive.php:197
+#: includes/extensions/responsive.php:251
 msgid "Inherit"
 msgstr ""
 
-#: includes/extensions/responsive.php:205
+#: includes/extensions/responsive.php:204
 msgid "Pointer Events"
 msgstr ""
 
-#: includes/extensions/responsive.php:216
-#: includes/extensions/responsive.php:286
+#: includes/extensions/responsive.php:215
+#: includes/extensions/responsive.php:285
 msgid "None"
 msgstr ""
 
-#: includes/extensions/responsive.php:220
+#: includes/extensions/responsive.php:219
 msgid "Visible Painted"
 msgstr ""
 
-#: includes/extensions/responsive.php:224
+#: includes/extensions/responsive.php:223
 msgid "Visible Fill"
 msgstr ""
 
-#: includes/extensions/responsive.php:228
+#: includes/extensions/responsive.php:227
 msgid "Visible Stroke"
 msgstr ""
 
-#: includes/extensions/responsive.php:236
+#: includes/extensions/responsive.php:235
 msgid "Painted"
 msgstr ""
 
-#: includes/extensions/responsive.php:240
+#: includes/extensions/responsive.php:239
 msgid "Fill"
 msgstr ""
 
-#: includes/extensions/responsive.php:244
+#: includes/extensions/responsive.php:243
 msgid "Stroke"
 msgstr ""
 
-#: includes/extensions/responsive.php:248
+#: includes/extensions/responsive.php:247
 msgid "All"
 msgstr ""
 
-#: includes/extensions/responsive.php:260
+#: includes/extensions/responsive.php:259
 msgid "Revert"
 msgstr ""
 
-#: includes/extensions/responsive.php:264
+#: includes/extensions/responsive.php:263
 msgid "Revert Layer"
 msgstr ""
 
-#: includes/extensions/responsive.php:268
+#: includes/extensions/responsive.php:267
 msgid "Unset"
 msgstr ""
 
-#: includes/extensions/responsive.php:275
+#: includes/extensions/responsive.php:274
 msgid "Order"
 msgstr ""
 
-#: includes/extensions/responsive.php:279
+#: includes/extensions/responsive.php:278
 msgid "Display"
 msgstr ""
 
-#: includes/extensions/responsive.php:290
+#: includes/extensions/responsive.php:289
 msgid "Flex"
 msgstr ""
 
-#: includes/extensions/responsive.php:294
+#: includes/extensions/responsive.php:293
 msgid "Inline Flex"
 msgstr ""
 
-#: includes/extensions/responsive.php:298
+#: includes/extensions/responsive.php:297
 msgid "Block"
 msgstr ""
 
-#: includes/extensions/responsive.php:302
+#: includes/extensions/responsive.php:301
 msgid "Inline Block"
 msgstr ""
 
-#: includes/extensions/responsive.php:306
+#: includes/extensions/responsive.php:305
 msgid "Inline"
 msgstr ""
 
-#: includes/extensions/responsive.php:310
+#: includes/extensions/responsive.php:309
 msgid "Grid"
 msgstr ""
 
-#: includes/extensions/responsive.php:314
+#: includes/extensions/responsive.php:313
 msgid "Inline Grid"
 msgstr ""
 
-#: includes/extensions/responsive.php:318
+#: includes/extensions/responsive.php:317
 msgid "Table"
 msgstr ""
 
-#: includes/extensions/responsive.php:325
+#: includes/extensions/responsive.php:324
 msgid "Flex Direction"
 msgstr ""
 
-#: includes/extensions/responsive.php:332
+#: includes/extensions/responsive.php:331
 msgid "Row"
 msgstr ""
 
-#: includes/extensions/responsive.php:336
+#: includes/extensions/responsive.php:335
 msgid "Row Reverse"
 msgstr ""
 
-#: includes/extensions/responsive.php:340
+#: includes/extensions/responsive.php:339
 msgid "Column"
 msgstr ""
 
-#: includes/extensions/responsive.php:344
+#: includes/extensions/responsive.php:343
 msgid "Column Reverse"
 msgstr ""
 
-#: includes/extensions/responsive.php:351
+#: includes/extensions/responsive.php:350
 msgid "Width"
 msgstr ""
 
-#: includes/extensions/responsive.php:355
+#: includes/extensions/responsive.php:354
 msgid "Max Width"
 msgstr ""
 

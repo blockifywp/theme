@@ -38,7 +38,7 @@ function render_list_block( string $content, array $block ): string {
 	$styles = css_string_to_array( $ul->getAttribute( 'style' ) );
 
 	if ( $block_gap ) {
-		$styles['--wp--style--block-gap'] = $block_gap;
+		$styles['--wp--style--block-gap'] = format_custom_property( $block_gap );
 	}
 
 	if ( $justify_content ) {
@@ -55,9 +55,8 @@ function render_list_block( string $content, array $block ): string {
 }
 
 function render_list_block_accordion( array $block ): string {
-	$dom = dom( '' );
+	$dom     = dom( '' );
 	$summary = $dom->createElement( 'summary' );
-
 
 	return $dom->saveHTML();
 }

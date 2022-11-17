@@ -151,7 +151,6 @@ function render_inline_svg( string $content, array $block ): string {
 			$dom->saveHTML( $imported ),
 			$content
 		);
-
 	}
 
 	return $content;

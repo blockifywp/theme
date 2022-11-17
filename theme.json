@@ -484,6 +484,11 @@
           "blockGap": "var(--wp--preset--spacing--sm)"
         }
       },
+      "core/post-author": {
+        "border": {
+          "radius": "999px"
+        }
+      },
       "core/post-date": {
         "typography": {
           "fontSize": "var(--wp--preset--font-size--small)"
@@ -526,6 +531,19 @@
       "core/post-title": {
         "color": {
           "text": "var(--wp--preset--color--heading)"
+        }
+      },
+      "core/preformatted": {
+        "border": {
+          "radius": "var(--wp--custom--border--radius)"
+        },
+        "spacing": {
+          "padding": {
+            "top": "var(--wp--style--block-gap)",
+            "right": "var(--wp--style--block-gap)",
+            "bottom": "var(--wp--style--block-gap)",
+            "left": "var(--wp--style--block-gap)"
+          }
         }
       },
       "core/pullquote": {

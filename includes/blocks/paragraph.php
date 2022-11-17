@@ -48,8 +48,22 @@ function render_paragraph_block( string $content, array $block ): string {
 			)
 		);
 
+		if ( $block['attrs']['curvedText'] ?? '' ) {
+			$p->textContent = '';
+
+			$svg_dom     = dom( $block['attrs']['curvedText']['svgString'] ?? $p->textContent );
+			$svg_element = get_dom_element( 'svg', $svg_dom );
+
+			if ( $svg_element ) {
+				$imported = $dom->importNode( $svg_element, true );
+
+				$p->appendChild( $imported );
+			}
+		}
+
 		$content = $dom->saveHTML();
 	}
+
 
 	return $content;
 }
