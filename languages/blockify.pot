@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.9.14\n"
+"Project-Id-Version: Blockify 0.9.15\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-17T12:23:25+00:00\n"
+"POT-Creation-Date: 2022-11-18T02:08:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -43,66 +43,70 @@ msgstr ""
 msgid "Search this website"
 msgstr ""
 
-#: includes/config/block-styles.php:28
-#: includes/config/block-styles.php:33
-#: includes/config/block-styles.php:38
-#: includes/config/block-styles.php:48
+#: includes/config/block-styles.php:26
+#: includes/config/block-styles.php:31
+#: includes/config/block-styles.php:36
+#: includes/config/block-styles.php:51
 msgid "Surface"
 msgstr ""
 
-#: includes/config/block-styles.php:43
+#: includes/config/block-styles.php:41
+msgid "Light"
+msgstr ""
+
+#: includes/config/block-styles.php:46
 msgid "Dark"
 msgstr ""
 
-#: includes/config/block-styles.php:53
+#: includes/config/block-styles.php:56
 msgid "Checklist"
 msgstr ""
 
-#: includes/config/block-styles.php:58
+#: includes/config/block-styles.php:61
 msgid "Checklist Circle"
 msgstr ""
 
-#: includes/config/block-styles.php:63
+#: includes/config/block-styles.php:66
 msgid "Square"
 msgstr ""
 
-#: includes/config/block-styles.php:68
+#: includes/config/block-styles.php:71
 msgid "Accordion"
 msgstr ""
 
-#: includes/config/block-styles.php:73
+#: includes/config/block-styles.php:76
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config/block-styles.php:78
+#: includes/config/block-styles.php:81
 msgid "Sub Heading"
 msgstr ""
 
-#: includes/config/block-styles.php:83
+#: includes/config/block-styles.php:86
 msgid "Notice"
 msgstr ""
 
-#: includes/config/block-styles.php:88
+#: includes/config/block-styles.php:91
 msgid "Angle"
 msgstr ""
 
-#: includes/config/block-styles.php:93
+#: includes/config/block-styles.php:96
 msgid "Curve"
 msgstr ""
 
-#: includes/config/block-styles.php:98
+#: includes/config/block-styles.php:101
 msgid "Round"
 msgstr ""
 
-#: includes/config/block-styles.php:103
+#: includes/config/block-styles.php:106
 msgid "Wave"
 msgstr ""
 
-#: includes/config/block-styles.php:108
+#: includes/config/block-styles.php:111
 msgid "Fade"
 msgstr ""
 
-#: includes/config/block-styles.php:134
+#: includes/config/block-styles.php:137
 msgid "Secondary"
 msgstr ""
 

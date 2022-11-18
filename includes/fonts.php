@@ -29,7 +29,7 @@ add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
  */
 function add_fonts( $theme_json ) {
 	$data  = $theme_json->get_data();
-	$fonts = in_array( get_stylesheet(), [ 'launchify', 'dreamify', 'brandify' ] ) ? [] : get_all_fonts();
+	$fonts = get_all_fonts();
 	$load  = apply_filters( 'blockify_load_all_fonts', true );
 
 	if ( $load && $fonts && ! ( $data['settings']['typography']['fontFamilies']['theme'] ?? null ) ) {
