@@ -503,7 +503,7 @@ function theme_json_fix( $theme_json ) {
 	$theme_json->update_with(
 		array_replace_recursive(
 			wp_json_file_decode(
-				DIR . 'theme1.json',
+				DIR . 'theme.json',
 				[ 'associative' => true ]
 			),
 			wp_json_file_decode(
