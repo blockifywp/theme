@@ -1,6 +1,6 @@
 {
   "name": "blockify-theme",
-  "version": "0.9.15",
+  "version": "0.9.16",
   "description": "Blockify theme.",
   "author": "Blockify",
   "license": "GPL-2.0-or-later",
@@ -15,7 +15,6 @@
     "svn": "func() { npm run pot && npm run zip && cp ../../blockify.zip /Users/seothemes/Documents/Blockify/svn/blockify && cd /Users/seothemes/Documents/Blockify/svn/blockify && svn up && svn cp $1 $2 && cd $2 && rm -Rf ./* && cd .. && unzip blockify.zip -d $2 && rm blockify.zip && open -a Terminal .; }; func"
   },
   "devDependencies": {
-    "@10up/block-components": "^1.14.1",
     "@babel/preset-typescript": "^7.18.6",
     "@types/redux": "^3.6.0",
     "@types/wordpress__block-editor": "^7.0.0",

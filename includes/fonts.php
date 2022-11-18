@@ -7,19 +7,17 @@ namespace Blockify\Theme;
 use function add_filter;
 use function apply_filters;
 use function array_keys;
-use function get_stylesheet;
+use function file_exists;
 use function get_template_directory;
 use function in_array;
 use function is_admin;
-use function is_child_theme;
 use function str_contains;
 use function wp_add_inline_style;
+use function wp_json_file_decode;
 use function wp_list_pluck;
 
-add_filter( 'theme_json_theme', NS . 'add_fonts', 11 );
-add_filter( 'theme_json_user', NS . 'add_fonts', 11 );
 add_filter( 'wp_theme_json_data_theme', NS . 'add_fonts', 11 );
-add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
+add_filter( 'wp_theme_json_data_theme', NS . 'add_fonts', 11 );
 /**
  * Add all fonts to the editor.
  *
@@ -28,9 +26,15 @@ add_filter( 'wp_theme_json_data_user', NS . 'add_fonts', 11 );
  * @return mixed
  */
 function add_fonts( $theme_json ) {
-	$data  = $theme_json->get_data();
-	$fonts = get_all_fonts();
-	$load  = apply_filters( 'blockify_load_all_fonts', true );
+	$data             = $theme_json->get_data();
+	$fonts            = get_all_fonts();
+	$load             = apply_filters( 'blockify_load_all_fonts', true );
+	$child_theme_json = get_stylesheet_directory() . '/theme.json';
+	$child_theme      = file_exists( $child_theme_json ) ? wp_json_file_decode( $child_theme_json, [ 'associative' => true ] ) : [];
+
+	if ( $child_theme['settings']['typography']['fontFamilies'] ?? [] ) {
+		return $theme_json;
+	}
 
 	if ( $load && $fonts && ! ( $data['settings']['typography']['fontFamilies']['theme'] ?? null ) ) {
 		$data['settings']['typography']['fontFamilies']['theme'] = $fonts;

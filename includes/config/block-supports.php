@@ -228,7 +228,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 		],
 		'core/list-item'            => [
-			'spacing' => [
+			'spacing'              => [
 				'padding' => true,
 				'margin'  => true,
 			],

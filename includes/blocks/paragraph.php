@@ -64,6 +64,5 @@ function render_paragraph_block( string $content, array $block ): string {
 		$content = $dom->saveHTML();
 	}
 
-
 	return $content;
 }

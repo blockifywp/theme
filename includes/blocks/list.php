@@ -29,12 +29,6 @@ function render_list_block( string $content, array $block ): string {
 		return $content;
 	}
 
-	$classes = explode( ' ', $ul->getAttribute( 'class' ) );
-
-	if ( in_array( 'is-style-accordion', $classes, true ) ) {
-		return render_list_block_accordion( $block );
-	}
-
 	$styles = css_string_to_array( $ul->getAttribute( 'style' ) );
 
 	if ( $block_gap ) {
@@ -48,15 +42,6 @@ function render_list_block( string $content, array $block ): string {
 	}
 
 	$ul->setAttribute( 'style', css_array_to_string( $styles ) );
-
-	$content = $dom->saveHTML();
-
-	return $content;
-}
-
-function render_list_block_accordion( array $block ): string {
-	$dom     = dom( '' );
-	$summary = $dom->createElement( 'summary' );
 
 	return $dom->saveHTML();
 }

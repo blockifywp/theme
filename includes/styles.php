@@ -5,23 +5,27 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use const GLOB_ONLYDIR;
-use function class_exists;
 use function add_action;
 use function add_editor_style;
 use function add_filter;
 use function array_flip;
 use function array_merge;
+use function array_replace_recursive;
 use function basename;
+use function class_exists;
 use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function get_site_url;
+use function get_stylesheet_directory;
 use function glob;
+use function home_url;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_array;
+use function is_child_theme;
 use function is_front_page;
 use function str_contains;
 use function str_replace;
@@ -31,6 +35,7 @@ use function wp_dequeue_style;
 use function wp_enqueue_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
+use function wp_json_file_decode;
 
 add_action( 'blockify_editor_scripts', NS . 'enqueue_styles', 11 );
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 11 );
@@ -476,6 +481,37 @@ function fix_layout_sizes( $theme_json ) {
 	$new['settings']['layout']['wideSize']    = $wide_size;
 
 	$theme_json->update_with( array_merge( $default, $new ) );
+
+	return $theme_json;
+}
+
+add_filter( 'wp_theme_json_data_theme', NS . 'theme_json_fix', 11 );
+/**
+ * Temporary fix for parent theme.json not loading in wp.org.
+ *
+ * @since 1.0.0
+ *
+ * @param mixed $theme_json \WP_Theme_JSON_Data|\WP_Theme_JSON_Data_Gutenberg.
+ *
+ * @return mixed
+ */
+function theme_json_fix( $theme_json ) {
+	if ( ! str_contains( home_url(), 'wp-themes.com' ) || ! is_child_theme() ) {
+		return $theme_json;
+	}
+
+	$theme_json->update_with(
+		array_replace_recursive(
+			wp_json_file_decode(
+				DIR . 'theme1.json',
+				[ 'associative' => true ]
+			),
+			wp_json_file_decode(
+				get_stylesheet_directory() . '/theme.json',
+				[ 'associative' => true ]
+			)
+		)
+	);
 
 	return $theme_json;
 }

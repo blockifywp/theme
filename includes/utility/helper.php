@@ -9,8 +9,6 @@ use function function_exists;
 use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
-use function is_shop;
-use function is_woocommerce;
 use function trailingslashit;
 
 /**
@@ -34,7 +32,7 @@ function get_url(): string {
 function get_page_content(): string {
 	$content = get_the_content();
 
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+	if ( function_exists( 'is_woocommerce' ) && \is_woocommerce() ) {
 		return do_blocks( $content );
 	}
 

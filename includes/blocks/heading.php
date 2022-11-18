@@ -34,8 +34,6 @@ function render_heading_block( string $content, array $block ): string {
 
 	$styles = css_string_to_array( $heading->getAttribute( 'style' ) );
 
-
-
 	$heading->setAttribute(
 		'class',
 		implode( ' ', $classes )

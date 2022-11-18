@@ -19,7 +19,7 @@ add_filter( SLUG . '_editor_script', NS . 'register_block_styles' );
  */
 function register_block_styles( array $config ): array {
 	$config['blockStyles'] = [
-		'register' => [
+		'register'   => [
 			[
 				'type'  => 'core/code',
 				'name'  => 'surface',
