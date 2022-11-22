@@ -12,17 +12,17 @@ add_filter( 'render_block_core/template-part', NS . 'render_block_template_part'
  *
  * @since 0.7.1
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_block_template_part( string $content, array $block ): string {
-	$dom   = dom( $content );
+function render_block_template_part( string $html, array $block ): string {
+	$dom   = dom( $html );
 	$first = get_dom_element( '*', $dom );
 
 	if ( ! $first ) {
-		return $content;
+		return $html;
 	}
 
 	$styles = css_string_to_array( $first->getAttribute( 'style' ) );

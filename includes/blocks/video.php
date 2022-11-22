@@ -30,14 +30,14 @@ add_filter( 'render_block_core/video', NS . 'render_video_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_video_block( string $content, array $block ): string {
+function render_video_block( string $html, array $block ): string {
 
-	$content = str_replace(
+	$html = str_replace(
 		[
 			'style="background:',
 			'style="background-color:',
@@ -45,12 +45,12 @@ function render_video_block( string $content, array $block ): string {
 		[
 			'style="--wp--custom--video--background:',
 		],
-		$content
+		$html
 	);
 
 	add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
 
-	return $content;
+	return $html;
 }
 
 /**

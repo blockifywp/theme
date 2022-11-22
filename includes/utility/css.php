@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function array_key_last;
 use function explode;
 use function is_null;
 use function str_contains;
@@ -15,10 +16,11 @@ use function str_replace;
  * @since 0.0.22
  *
  * @param array $styles [ 'color' => 'red', 'background' => 'blue' ].
+ * @param bool  $trim   Whether to trim the trailing semicolon.
  *
  * @return string
  */
-function css_array_to_string( array $styles ): string {
+function css_array_to_string( array $styles, bool $trim = false ): string {
 	$css = '';
 
 	foreach ( $styles as $property => $value ) {
@@ -26,7 +28,8 @@ function css_array_to_string( array $styles ): string {
 			continue;
 		}
 
-		$css .= "$property:$value;";
+		$semicolon = $trim && $property === array_key_last( $styles ) ? '' : ';';
+		$css       .= $property . ':' . $value . $semicolon;
 	}
 
 	return $css;

@@ -5,14 +5,10 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_action;
-use function apply_filters;
-use function glob;
 use function in_array;
 use function register_block_pattern_category;
 use function remove_theme_support;
-use function sanitize_title_with_dashes;
 use function sort;
-use function trim;
 use function ucfirst;
 use function wp_list_pluck;
 use WP_Block_Pattern_Categories_Registry;

@@ -12,15 +12,15 @@ add_filter( 'render_block_core/query', NS . 'render_query_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_query_block( string $content, array $block ): string {
+function render_query_block( string $html, array $block ): string {
 	$block_gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
 	if ( $block_gap ) {
-		$dom    = dom( $content );
+		$dom    = dom( $html );
 		$div    = get_dom_element( 'div', $dom );
 		$styles = css_string_to_array( $div->getAttribute( 'style' ) );
 
@@ -28,8 +28,8 @@ function render_query_block( string $content, array $block ): string {
 
 		$div->setAttribute( 'style', css_array_to_string( $styles ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }

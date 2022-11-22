@@ -8,25 +8,20 @@ use const GLOB_ONLYDIR;
 use function add_action;
 use function add_editor_style;
 use function add_filter;
+use function apply_filters;
 use function array_flip;
 use function array_merge;
-use function array_replace_recursive;
 use function basename;
 use function class_exists;
 use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
-use function get_site_url;
-use function get_stylesheet_directory;
 use function glob;
-use function home_url;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_array;
-use function is_child_theme;
-use function is_front_page;
 use function str_contains;
 use function str_replace;
 use function trim;
@@ -35,10 +30,10 @@ use function wp_dequeue_style;
 use function wp_enqueue_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
-use function wp_json_file_decode;
+use function wp_register_style;
 
-add_action( 'blockify_editor_scripts', NS . 'enqueue_styles', 11 );
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 11 );
+add_action( 'enqueue_block_editor_assets', NS . 'enqueue_styles', 8 );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 0 );
 /**
  * Enqueues styles.
  *
@@ -47,31 +42,34 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 11 );
  * @return void
  */
 function enqueue_styles(): void {
-	$content     = get_page_content();
-	$handle      = is_admin() ? 'blockify-editor' : 'global-styles';
-	$stylesheets = get_conditional_stylesheets();
-	$conditions  = get_stylesheet_conditions( $stylesheets, $content );
-
-	add_dynamic_custom_properties( $handle );
-	add_responsive_styles( $content, $handle );
-	add_block_styles();
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_register_style( SLUG, '' );
+	wp_enqueue_style( SLUG );
+	wp_add_inline_style(
+		SLUG,
+		apply_filters(
+			'blockify_inline_css',
+			'',
+			get_page_content()
+		)
+	);
 
 	if ( ! is_admin() ) {
-		add_conditional_stylesheets( $stylesheets, $conditions, $handle, $content );
-		add_inline_scripts( $content );
+		array_unshift( wp_styles()->queue, SLUG );
 	}
 }
 
+add_filter( 'blockify_inline_css', NS . 'add_dynamic_custom_properties', 10, 2 );
 /**
- * Adds custom properties.
+ * Add dynamic custom properties.
  *
- * @since 0.0.19
+ * @since 0.9.19
  *
- * @param string $handle The stylesheet handle.
+ * @param string $css Inline styles.
  *
- * @return void
+ * @return string
  */
-function add_dynamic_custom_properties( string $handle ): void {
+function add_dynamic_custom_properties( string $css ): string {
 	$element        = is_admin() ? 'body,.editor-styles-wrapper' : 'body';
 	$settings       = wp_get_global_settings();
 	$global_styles  = wp_get_global_styles();
@@ -140,25 +138,20 @@ function add_dynamic_custom_properties( string $handle ): void {
 		);
 	}
 
-	$css = $element . '{' . css_array_to_string( $all ) . '}';
-
-	wp_add_inline_style(
-		$handle,
-		$css
-	);
+	return $css . $element . '{' . css_array_to_string( $all ) . '}';
 }
 
+add_filter( 'enqueue_block_editor_assets', NS . 'add_block_styles' );
+add_filter( 'wp_enqueue_scripts', NS . 'add_block_styles' );
 /**
- * Enqueues front end scripts.
+ * Adds conditional block styles.
  *
- * @since 0.0.2
+ * @since 0.9.19
  *
  * @return void
  */
 function add_block_styles(): void {
 	global $wp_styles;
-
-	wp_dequeue_style( 'wp-block-library-theme' );
 
 	if ( ! is_a( $wp_styles, 'WP_Styles' ) ) {
 		return;
@@ -174,11 +167,12 @@ function add_block_styles(): void {
 		$slug = str_replace( 'wp-block-', '', $handle );
 		$file = DIR . 'assets/css/blocks/' . $slug . '.css';
 
-		if ( file_exists( $file ) ) {
-			wp_add_inline_style(
-				$handle,
-				file_get_contents( $file )
-			);
+		if ( ! file_exists( $file ) ) {
+			continue;
+		}
+
+		if ( ! is_admin() ) {
+			wp_add_inline_style( $handle, file_get_contents( $file ) );
 		}
 	}
 }
@@ -227,7 +221,6 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 	}
 
 	$conditions['block-styles'] = [
-		'accordion'        => str_contains( $content, 'is-style-accordion' ),
 		'button-outline'   => str_contains( $content, 'is-style-outline' ),
 		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
 		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
@@ -290,7 +283,6 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'admin-bar'          => is_admin_bar_showing(),
 		'border'             => str_contains( $content, 'border-width:' ),
 		'drop-cap'           => str_contains( $content, 'has-drop-cap' ),
-		'layout'             => true,
 		'placeholder-image'  => str_contains( $content, 'is-placeholder' ),
 		'screen-reader-text' => true,
 		'site-blocks'        => true,
@@ -298,6 +290,7 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 
 	$conditions['extensions'] = [
 		'animation'  => str_contains_any( $content, [ 'has-animation', 'will-animate' ] ),
+		'accordion'  => str_contains( $content, 'is-style-accordion' ),
 		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
 		'counter'    => str_contains( $content, 'is-style-counter' ),
 		'dark-mode'  => str_contains( $content, 'toggle-switch' ),
@@ -335,33 +328,27 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 	return $conditions;
 }
 
+add_filter( 'blockify_inline_css', NS . 'add_conditional_stylesheets', 10, 2 );
 /**
  * Adds conditional stylesheets inline.
  *
  * @since 0.0.27
  *
- * @param array  $stylesheets Stylesheets.
- * @param array  $conditions  Conditions.
- * @param string $handle      Stylesheet handle.
- * @param string $content     Block content.
+ * @param string $css     The CSS to add to.
+ * @param string $content Block content.
  *
- * @return void
+ * @return string
  */
-function add_conditional_stylesheets( array $stylesheets, array $conditions, string $handle, string $content ): void {
-	$styles = '';
-	$url    = get_site_url();
+function add_conditional_stylesheets( string $css, string $content ): string {
+	$stylesheets = get_conditional_stylesheets();
+	$conditions  = get_stylesheet_conditions( $stylesheets, $content );
 
 	foreach ( $stylesheets as $stylesheet ) {
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
-		// Fix for icons.
-		if ( str_contains( $url, 'wp-themes.com' ) && ! is_front_page() ) {
-			$condition = true;
-		}
-
 		if ( $condition || $content === '' ) {
-			$styles .= trim( file_get_contents( $stylesheet ) );
+			$css .= trim( file_get_contents( $stylesheet ) );
 		}
 
 		if ( is_admin() ) {
@@ -369,49 +356,12 @@ function add_conditional_stylesheets( array $stylesheets, array $conditions, str
 		}
 	}
 
-	wp_add_inline_style(
-		$handle,
-		$styles
-	);
+	return $css;
 }
-
-/**
- * Adds responsive styles.
- *
- * @since 0.0.27
- *
- * @param string $content Page content.
- * @param string $handle  Stylesheet handle.
- *
- * @return void
- */
-function add_responsive_styles( string $content, string $handle ): void {
-	$properties = array_keys( get_responsive_settings() );
-	$mobile     = '';
-	$desktop    = '';
-
-	foreach ( $properties as $property ) {
-		$split    = preg_split( '/(?=[A-Z])/', $property );
-		$property = implode( '-', array_map( 'strtolower', $split ) );
-
-		if ( ! is_admin() && ! str_contains( $content, 'has-' . $property ) ) {
-			continue;
-		}
-
-		$mobile  .= ".has-{$property}{{$property}:var(--{$property})!important}";
-		$desktop .= ".has-{$property}{{$property}:var(--{$property}-desktop,var(--{$property}))!important}";
-	}
-
-	wp_add_inline_style(
-		$handle,
-		"{$mobile}@media(min-width:782px){{$desktop}}"
-	);
-}
-
 
 add_action( 'admin_init', NS . 'add_editor_stylesheets' );
 /**
- * Description of expected behavior.
+ * Adds editor only styles.
  *
  * @since 0.9.10
  *
@@ -431,8 +381,7 @@ function add_editor_stylesheets() {
 	}
 }
 
-
-add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_only_styles', 9 );
+add_action( 'admin_enqueue_scripts', NS . 'enqueue_editor_only_styles', 9 );
 /**
  * Enqueues editor assets.
  *
@@ -453,10 +402,9 @@ function enqueue_editor_only_styles(): void {
 	wp_enqueue_style( 'blockify-editor' );
 }
 
-add_filter( 'theme_json_theme', NS . 'fix_layout_sizes' );
-add_filter( 'wp_theme_json_data_theme', NS . 'fix_layout_sizes' );
+add_filter( 'wp_theme_json_data_theme', NS . 'fix_editor_layout_sizes' );
 /**
- * Filters theme.json font families.
+ * Changes layout size unit from vw to % in editor.
  *
  * @todo  Move layout settings to separate file.
  *
@@ -466,7 +414,7 @@ add_filter( 'wp_theme_json_data_theme', NS . 'fix_layout_sizes' );
  *
  * @return mixed
  */
-function fix_layout_sizes( $theme_json ) {
+function fix_editor_layout_sizes( $theme_json ) {
 	$default      = $theme_json->get_data();
 	$new          = [];
 	$content_size = $default['settings']['layout']['contentSize'] ?? 'min(calc(100vw - 3rem), 800px)';
@@ -481,37 +429,6 @@ function fix_layout_sizes( $theme_json ) {
 	$new['settings']['layout']['wideSize']    = $wide_size;
 
 	$theme_json->update_with( array_merge( $default, $new ) );
-
-	return $theme_json;
-}
-
-add_filter( 'wp_theme_json_data_theme', NS . 'theme_json_fix', 11 );
-/**
- * Temporary fix for parent theme.json not loading in wp.org.
- *
- * @since 1.0.0
- *
- * @param mixed $theme_json \WP_Theme_JSON_Data|\WP_Theme_JSON_Data_Gutenberg.
- *
- * @return mixed
- */
-function theme_json_fix( $theme_json ) {
-	if ( ! str_contains( home_url(), 'wp-themes.com' ) || ! is_child_theme() ) {
-		return $theme_json;
-	}
-
-	$theme_json->update_with(
-		array_replace_recursive(
-			wp_json_file_decode(
-				DIR . 'theme.json',
-				[ 'associative' => true ]
-			),
-			wp_json_file_decode(
-				get_stylesheet_directory() . '/theme.json',
-				[ 'associative' => true ]
-			)
-		)
-	);
 
 	return $theme_json;
 }

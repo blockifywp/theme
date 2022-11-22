@@ -15,27 +15,27 @@ add_filter( 'render_block_core/navigation', NS . 'render_navigation_block', 10, 
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_navigation_block( string $content, array $block ): string {
+function render_navigation_block( string $html, array $block ): string {
 
 	// Replace invalid root relative URLs.
-	$content = str_replace( 'http://./', './', $content );
+	$html = str_replace( 'http://./', './', $html );
 
 	$spacing = $block['attrs']['style']['spacing'] ?? null;
 
 	if ( ! $spacing ) {
-		return $content;
+		return $html;
 	}
 
-	$dom = dom( $content );
+	$dom = dom( $html );
 	$nav = get_dom_element( 'nav', $dom );
 
 	if ( ! $nav ) {
-		return $content;
+		return $html;
 	}
 
 	$styles = css_string_to_array( $nav->getAttribute( 'style' ) );

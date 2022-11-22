@@ -15,21 +15,21 @@ add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 
  *
  * @since 0.0.1
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_post_content_block( string $content, array $block ): string {
+function render_post_content_block( string $html, array $block ): string {
 	$margin  = $block['attrs']['style']['spacing']['margin'] ?? [];
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 
 	if ( ! empty( $margin ) || ! empty( $padding ) ) {
-		$dom = dom( $content );
+		$dom = dom( $html );
 		$div = get_dom_element( 'div', $dom );
 
 		if ( ! $div || ! method_exists( $div, 'getAttribute' ) ) {
-			return $content;
+			return $html;
 		}
 
 		$styles   = [];
@@ -51,9 +51,9 @@ function render_post_content_block( string $content, array $block ): string {
 
 		$div->setAttribute( 'style', implode( ';', $styles ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }
 

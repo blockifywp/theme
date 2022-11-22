@@ -13,13 +13,13 @@ add_filter( 'render_block_core/post-author', NS . 'render_post_author_block', 10
  *
  * @since 0.0.1
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_post_author_block( string $content, array $block ): string {
-	$dom    = dom( $content );
+function render_post_author_block( string $html, array $block ): string {
+	$dom    = dom( $html );
 	$styles = [];
 
 	$div   = get_dom_element( 'div', $dom );

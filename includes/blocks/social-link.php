@@ -12,20 +12,20 @@ add_filter( 'render_block_core/social-link', NS . 'render_social_link_block', 10
  *
  * @since 0.0.24
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_social_link_block( string $content, array $block ): string {
+function render_social_link_block( string $html, array $block ): string {
 	$textColor = $block['attrs']['textColor'] ?? null;
 
 	if ( $textColor ) {
-		$dom       = dom( $content );
+		$dom       = dom( $html );
 		$list_item = get_dom_element( 'li', $dom );
 
 		if ( ! $list_item ) {
-			return $content;
+			return $html;
 		}
 
 		$styles          = css_string_to_array( $list_item->getAttribute( 'style' ) );
@@ -39,9 +39,9 @@ function render_social_link_block( string $content, array $block ): string {
 
 		$list_item->setAttribute( 'class', implode( ' ', $classes ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }
 

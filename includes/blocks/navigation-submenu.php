@@ -13,13 +13,13 @@ add_filter( 'render_block_core/navigation-submenu', NS . 'render_navigation_subm
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_navigation_submenu_block( string $content, array $block ): string {
-	$dom     = dom( $content );
+function render_navigation_submenu_block( string $html, array $block ): string {
+	$dom     = dom( $html );
 	$attrs   = $block['attrs'] ?? [];
 	$style   = $attrs['style'] ?? [];
 	$spacing = $style['spacing'] ?? [];

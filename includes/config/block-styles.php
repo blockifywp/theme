@@ -7,7 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function wp_get_global_settings;
 
-add_filter( SLUG . '_editor_script', NS . 'register_block_styles' );
+add_filter( 'blockify_editor_data', NS . 'register_block_styles' );
 /**
  * Adds default blocks styles.
  *
@@ -24,6 +24,16 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/code',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
+				'type'  => 'core/code',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/code',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
 			],
 			[
 				'type'  => 'core/columns',
@@ -69,6 +79,11 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/list',
 				'name'  => 'accordion',
 				'label' => __( 'Accordion', 'blockify' ),
+			],
+			[
+				'type'  => 'core/list-item',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
 			],
 			[
 				'type'  => 'core/navigation-submenu',

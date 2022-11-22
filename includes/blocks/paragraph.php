@@ -16,21 +16,21 @@ add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 10, 2 
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_paragraph_block( string $content, array $block ): string {
+function render_paragraph_block( string $html, array $block ): string {
 	$tags = [
 		'[year]' => gmdate( 'Y' ),
 	];
 
 	foreach ( $tags as $tag => $value ) {
-		$content = str_replace( $tag, $value, $content );
+		$html = str_replace( $tag, $value, $html );
 	}
 
-	$dom = dom( $content );
+	$dom = dom( $html );
 	$p   = get_dom_element( 'p', $dom );
 
 	if ( $p ) {
@@ -61,8 +61,8 @@ function render_paragraph_block( string $content, array $block ): string {
 			}
 		}
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }

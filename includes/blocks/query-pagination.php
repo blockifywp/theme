@@ -13,17 +13,17 @@ add_filter( 'render_block_core/query-pagination', NS . 'render_query_pagination_
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_query_pagination_block( string $content, array $block ): string {
-	$dom = dom( $content );
+function render_query_pagination_block( string $html, array $block ): string {
+	$dom = dom( $html );
 	$nav = get_dom_element( 'nav', $dom );
 
 	if ( ! $nav ) {
-		return $content;
+		return $html;
 	}
 
 	$styles = css_string_to_array( $nav->getAttribute( 'style' ) );

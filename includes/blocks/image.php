@@ -13,25 +13,25 @@ add_filter( 'render_block_core/image', NS . 'render_image_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_image_block( string $content, array $block ): string {
+function render_image_block( string $html, array $block ): string {
 	$id   = $block['attrs']['id'] ?? '';
-	$icon = str_contains( $content, 'is-style-icon' ) || isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-icon' );
+	$icon = str_contains( $html, 'is-style-icon' ) || isset( $block['attrs']['className'] ) && str_contains( $block['attrs']['className'], 'is-style-icon' );
 	$svg  = $block['attrs']['style']['svgString'] ?? '';
 
 	// Placeholder.
 	if ( ! $id && ! $icon && ! $svg ) {
-		$content = render_image_placeholder( $content, $block );
+		$html = render_image_placeholder( $html, $block );
 	}
 
 	// Icon.
 	if ( $icon ) {
-		$content = get_icon_html( $content, $block );
+		$html = get_icon_html( $html, $block );
 	}
 
-	return $content;
+	return $html;
 }

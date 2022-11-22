@@ -25,9 +25,15 @@ function render_counter_block_variation( string $content, array $block ): string
 	$dom = dom( $content );
 	$p   = get_dom_element( 'p', $dom );
 
-	foreach ( $counter as $attribute => $value ) {
-		$p->setAttribute( "data-$attribute", $value );
+	if ( ! $p ) {
+		return $content;
 	}
+
+	foreach ( $counter as $attribute => $value ) {
+		$p->setAttribute( "data-$attribute", (string) $value );
+	}
+
+	$p->textContent = trim( $p->textContent );
 
 	$content = $dom->saveHTML();
 

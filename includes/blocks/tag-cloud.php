@@ -13,15 +13,15 @@ add_filter( 'render_block_core/tag-cloud', NS . 'render_tag_cloud_block', 10, 2 
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_tag_cloud_block( string $content, array $block ): string {
+function render_tag_cloud_block( string $html, array $block ): string {
 	$smallest  = $block['attrs']['smallestFontSize'] ?? '1em';
 	$largest   = $block['attrs']['largestFontSize'] ?? '1em';
-	$dom       = dom( $content );
+	$dom       = dom( $html );
 	$paragraph = get_dom_element( 'p', $dom );
 
 	$paragraph->setAttribute(

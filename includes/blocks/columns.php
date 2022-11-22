@@ -13,12 +13,12 @@ add_filter( 'render_block_core/columns', NS . 'render_columns_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_columns_block( string $content, array $block ): string {
+function render_columns_block( string $html, array $block ): string {
 	$class      = 'is-stacked-on-mobile';
 	$is_stacked = $block['attrs']['stackedOnMobile'] ?? null;
 
@@ -27,8 +27,8 @@ function render_columns_block( string $content, array $block ): string {
 	}
 
 	if ( $class === 'is-stacked-on-mobile' ) {
-		$content = str_replace( 'wp-block-columns', 'wp-block-columns is-stacked-on-mobile', $content );
+		$html = str_replace( 'wp-block-columns', 'wp-block-columns is-stacked-on-mobile', $html );
 	}
 
-	return $content;
+	return $html;
 }

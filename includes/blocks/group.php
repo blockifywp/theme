@@ -15,13 +15,13 @@ add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
  *
  * @since 0.0.20
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_block_layout( string $content, array $block ): string {
-	$dom = dom( $content );
+function render_block_layout( string $html, array $block ): string {
+	$dom = dom( $html );
 	$div = get_dom_element( 'div', $dom );
 
 	if ( $div && $div->tagName === 'main' ) {
@@ -38,13 +38,13 @@ function render_block_layout( string $content, array $block ): string {
 		);
 	}
 
-	$content = $dom->saveHTML();
+	$html = $dom->saveHTML();
 
 	if ( ( $block['attrs']['layout']['orientation'] ?? null ) === 'marquee' ) {
-		$content = render_marquee_block_variation( $content, $block );
+		$html = render_marquee_block_variation( $html, $block );
 	}
 
-	return $content;
+	return $html;
 }
 
 /**
@@ -52,17 +52,17 @@ function render_block_layout( string $content, array $block ): string {
  *
  * @since 1.0.0
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_marquee_block_variation( string $content, array $block ): string {
-	$dom = dom( $content );
+function render_marquee_block_variation( string $html, array $block ): string {
+	$dom = dom( $html );
 	$div = get_dom_element( 'div', $dom );
 
 	if ( ! $div ) {
-		return $content;
+		return $html;
 	}
 
 	$repeat  = $block['attrs']['repeatItems'] ?? 2;

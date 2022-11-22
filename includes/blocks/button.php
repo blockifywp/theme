@@ -16,14 +16,14 @@ add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_button_block( string $content, array $block ): string {
-	if ( str_contains( $content, 'is-style-outline' ) ) {
-		$dom    = dom( $content );
+function render_button_block( string $html, array $block ): string {
+	if ( str_contains( $html, 'is-style-outline' ) ) {
+		$dom    = dom( $html );
 		$button = get_dom_element( 'div', $dom );
 		$link   = get_dom_element( 'a', $button );
 
@@ -39,12 +39,12 @@ function render_button_block( string $content, array $block ): string {
 			)
 		);
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	if ( str_contains( $content, '-border-' ) ) {
+	if ( str_contains( $html, '-border-' ) ) {
 		$global_settings = wp_get_global_settings();
-		$dom             = dom( $content );
+		$dom             = dom( $html );
 		$button          = get_dom_element( 'div', $dom );
 		$link            = get_dom_element( 'a', $dom );
 		$classes         = explode( ' ', $button->getAttribute( 'class' ) );
@@ -83,8 +83,8 @@ function render_button_block( string $content, array $block ): string {
 			$button->removeAttribute( 'style' );
 		}
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }

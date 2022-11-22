@@ -12,15 +12,15 @@ add_filter( 'render_block_core/post-featured-image', NS . 'render_featured_image
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_featured_image_block( string $content, array $block ): string {
-	if ( ! $content ) {
-		$content = render_image_placeholder( $content, $block['attrs'] );
+function render_featured_image_block( string $html, array $block ): string {
+	if ( ! $html ) {
+		$html = render_image_placeholder( $html, $block['attrs'] );
 	}
 
-	return $content;
+	return $html;
 }

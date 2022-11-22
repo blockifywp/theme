@@ -56,7 +56,11 @@
         "y": "5px",
         "blur": "15px",
         "spread": "0",
-        "color": "var(--wp--preset--color--custom-shadow,rgba(100,110,120,0.2))"
+        "color": "var(--wp--preset--color--custom-shadow,rgba(100,110,120,0.2))",
+        "hover": {
+          "inset": "",
+          "y": "10px"
+        }
       },
       "fontWeight": {
         "black": 900,
@@ -470,6 +474,9 @@
         }
       },
       "core/list": {
+        "border": {
+          "radius": "var(--wp--custom--border--radius)"
+        },
         "typography": {
           "lineHeight": "2"
         }

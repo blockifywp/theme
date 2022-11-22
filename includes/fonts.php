@@ -223,7 +223,7 @@ function get_all_fonts(): array {
 	return apply_filters( 'blockify_font_families', $font_families );
 }
 
-add_filter( SLUG . '_editor_script', NS . 'add_font_family_data', 11 );
+add_filter( 'blockify_editor_data', NS . 'add_font_family_data', 11 );
 /**
  * Add default block supports.
  *

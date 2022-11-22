@@ -15,24 +15,24 @@ add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_search_block( string $content, array $block ): string {
+function render_search_block( string $html, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
-	$dom     = dom( $content );
+	$dom     = dom( $html );
 	$form    = get_dom_element( 'form', $dom );
 
 	if ( ! $form ) {
-		return $content;
+		return $html;
 	}
 
 	$div = get_dom_element( 'div', $form );
 
 	if ( ! $div ) {
-		return $content;
+		return $html;
 	}
 
 	$input = get_dom_element( 'input', $div );
@@ -52,11 +52,11 @@ function render_search_block( string $content, array $block ): string {
 		);
 	}
 
-	$content    = $dom->saveHTML();
+	$html       = $dom->saveHTML();
 	$class_name = $block['attrs']['className'] ?? '';
 
 	if ( $class_name && str_contains( $class_name, 'is-style-toggle' ) ) {
-		$dom         = dom( $content );
+		$dom         = dom( $html );
 		$form        = get_dom_element( 'form', $dom );
 		$label       = get_dom_element( 'label', $form );
 		$wrap        = get_dom_element( 'div', $form );
@@ -119,9 +119,9 @@ function render_search_block( string $content, array $block ): string {
 		$close->appendChild( $close_path );
 		$button->appendChild( $close );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }
 

@@ -22,7 +22,7 @@ use function wp_get_theme;
 use function wp_register_script;
 use WP_Screen;
 
-add_action( 'current_screen', NS . 'maybe_load_editor_assets' );
+add_action( 'current_screen', NS . 'add_editor_scripts_hook' );
 /**
  * Conditionally changes which action hook editor assets are enqueued.
  *
@@ -32,10 +32,10 @@ add_action( 'current_screen', NS . 'maybe_load_editor_assets' );
  *
  * @return void
  */
-function maybe_load_editor_assets( WP_Screen $screen ): void {
+function add_editor_scripts_hook( WP_Screen $screen ): void {
 	add_action(
 		$screen->base === 'site-editor' ? 'admin_enqueue_scripts' : 'enqueue_block_editor_assets',
-		static fn() => do_action( 'blockify_editor_scripts' )
+		static fn() => do_action( 'blockify_editor_scripts', $screen )
 	);
 }
 
@@ -79,7 +79,7 @@ function get_editor_data() {
 	$current_screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
 
 	return apply_filters(
-		SLUG . '_editor_script',
+		'blockify_editor_data',
 		[
 			'url'        => get_url(),
 			'siteUrl'    => trailingslashit(
@@ -163,6 +163,7 @@ function remove_emoji_scripts(): void {
 	);
 }
 
+add_action( 'wp_enqueue_scripts', NS . 'add_inline_scripts', 10, 2 );
 /**
  * Register proxy handle for inline scripts.
  *
@@ -170,15 +171,21 @@ function remove_emoji_scripts(): void {
  *
  * @since 0.0.27
  *
- * @param string $content Page content.
+ * @param string $handle  Handle to use for inline scripts.
  *
  * @return void
  */
-function add_inline_scripts( string $content ): void {
-	wp_register_script( SLUG, '', [], wp_get_theme()->get( 'version' ), true );
+function add_inline_scripts( string $handle ): void {
+	if ( $handle === 'blockify-editor' ) {
+		return;
+	}
+
+	$content = get_page_content();
+
+	wp_register_script( $handle, '', [], wp_get_theme()->get( 'version' ), true );
 
 	wp_add_inline_script(
-		SLUG,
+		$handle,
 		reduce_whitespace(
 			trim(
 				apply_filters(
@@ -190,6 +197,6 @@ function add_inline_scripts( string $content ): void {
 		)
 	);
 
-	wp_enqueue_script( SLUG );
+	wp_enqueue_script( $handle );
 }
 

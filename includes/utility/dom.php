@@ -119,7 +119,6 @@ function change_tag_name( DOMElement $element, string $name ): DOMElement {
 	$new_element = $element->ownerDocument->createElement( $name );
 
 	foreach ( $child_nodes as $child ) {
-
 		$child2 = $element->ownerDocument->importNode( $child, true );
 		$new_element->appendChild( $child2 );
 	}
@@ -131,7 +130,9 @@ function change_tag_name( DOMElement $element, string $name ): DOMElement {
 		$new_element->setAttribute( $attr_name, $attr_value );
 	}
 
-	$element->parentNode->replaceChild( $new_element, $element );
+	if ( $element->parentNode ) {
+		$element->parentNode->replaceChild( $new_element, $element );
+	}
 
 	return $new_element;
 }

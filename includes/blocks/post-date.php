@@ -12,16 +12,16 @@ add_filter( 'render_block_core/post-date', NS . 'render_post_date', 10, 2 );
  *
  * @since 0.0.1
  *
- * @param string $content The block content.
+ * @param string $html The block content.
  * @param array  $block   The block.
  *
  * @return string
  */
-function render_post_date( string $content, array $block ): string {
+function render_post_date( string $html, array $block ): string {
 	$margin = $block['attrs']['style']['spacing']['margin'] ?? null;
 
 	if ( $margin ) {
-		$dom = dom( $content );
+		$dom = dom( $html );
 		$div = get_dom_element( 'div', $dom );
 
 		$styles = [
@@ -33,8 +33,8 @@ function render_post_date( string $content, array $block ): string {
 
 		$div->setAttribute( 'style', css_array_to_string( $styles ) . $div->getAttribute( 'style' ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }

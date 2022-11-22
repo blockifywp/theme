@@ -14,19 +14,19 @@ add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $content Block HTML.
+ * @param string $html Block HTML.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_heading_block( string $content, array $block ): string {
-	$dom = dom( $content );
+function render_heading_block( string $html, array $block ): string {
+	$dom = dom( $html );
 
 	// No way of knowing tag.
 	$heading = get_dom_element( '*', $dom );
 
 	if ( ! $heading ) {
-		return $content;
+		return $html;
 	}
 
 	$classes   = explode( ' ', $heading->getAttribute( 'class' ) );

@@ -35,6 +35,7 @@ function setup(): void {
 	array_map(
 		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
 		[
+			DIR . 'vendor/autoload.php',
 			...glob( DIR . 'includes/utility/*.php' ),
 			...glob( DIR . 'includes/config/*.php' ),
 			...glob( DIR . 'includes/*.php' ),
