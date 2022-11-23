@@ -9,6 +9,7 @@ use function function_exists;
 use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
+use function is_admin;
 use function trailingslashit;
 
 /**
@@ -30,6 +31,10 @@ function get_url(): string {
  * @return string
  */
 function get_page_content(): string {
+	if ( is_admin() ) {
+		return '';
+	}
+
 	$content = get_the_content();
 
 	if ( function_exists( 'is_woocommerce' ) && \is_woocommerce() ) {

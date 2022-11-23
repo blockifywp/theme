@@ -7,11 +7,13 @@ namespace Blockify\Theme;
 use function add_action;
 use function apply_filters;
 use function array_keys;
+use function array_values;
 use function basename;
 use function current_user_can;
 use function file_get_contents;
 use function glob;
 use function implode;
+use function in_array;
 use function preg_replace;
 use function str_replace;
 use function trim;
@@ -226,9 +228,9 @@ function get_icon_html( string $content, array $block ): string {
 
 	$figure_styles = [];
 
-	$position = $block['attrs']['style']['position'] ?? '';
+	$position = $block['attrs']['style']['position'] ?? [];
 
-	if ( $position !== 'relative' ) {
+	if ( $position && in_array( 'absolute', array_values( $position ) ) ) {
 		$figure_styles['display'] = 'contents';
 	}
 

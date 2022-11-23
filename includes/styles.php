@@ -17,11 +17,14 @@ use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
+use function function_exists;
+use function get_current_screen;
 use function glob;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_array;
+use function method_exists;
 use function str_contains;
 use function str_replace;
 use function trim;
@@ -32,8 +35,7 @@ use function wp_get_global_settings;
 use function wp_get_global_styles;
 use function wp_register_style;
 
-add_action( 'enqueue_block_editor_assets', NS . 'enqueue_styles', 8 );
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 0 );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
 /**
  * Enqueues styles.
  *
@@ -43,8 +45,9 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 0 );
  */
 function enqueue_styles(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
+
 	wp_register_style( SLUG, '' );
-	wp_enqueue_style( SLUG );
+
 	wp_add_inline_style(
 		SLUG,
 		apply_filters(
@@ -54,9 +57,45 @@ function enqueue_styles(): void {
 		)
 	);
 
-	if ( ! is_admin() ) {
-		array_unshift( wp_styles()->queue, SLUG );
+	wp_enqueue_style( SLUG );
+
+	array_unshift( wp_styles()->queue, SLUG );
+}
+
+add_action( 'admin_enqueue_scripts', NS . 'enqueue_editor_only_styles', 9 );
+/**
+ * Enqueues editor assets.
+ *
+ * @since 0.3.3
+ *
+ * @return void
+ */
+function enqueue_editor_only_styles(): void {
+	if ( function_exists( 'is_gutenberg_page' ) && ! is_gutenberg_page() ) {
+		return;
 	}
+
+	$current_screen = get_current_screen();
+
+	if ( method_exists( $current_screen, 'is_block_editor' ) && ! $current_screen->is_block_editor() ) {
+		return;
+	}
+
+	wp_dequeue_style( 'wp-block-library-theme' );
+
+	wp_register_style(
+		'blockify-editor',
+		get_url() . 'assets/css/editor.css',
+		[],
+		filemtime( DIR . 'assets/css/editor.css' )
+	);
+
+	wp_add_inline_style(
+		'blockify-editor',
+		apply_filters( 'blockify_inline_css', '', '' )
+	);
+
+	wp_enqueue_style( 'blockify-editor' );
 }
 
 add_filter( 'blockify_inline_css', NS . 'add_dynamic_custom_properties', 10, 2 );
@@ -347,19 +386,15 @@ function add_conditional_stylesheets( string $css, string $content ): string {
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
-		if ( $condition || $content === '' ) {
+		if ( $condition || $content === '' || is_admin() ) {
 			$css .= trim( file_get_contents( $stylesheet ) );
-		}
-
-		if ( is_admin() ) {
-			add_editor_style( 'assets/css/' . $dir . DS . basename( $stylesheet ) );
 		}
 	}
 
 	return $css;
 }
 
-add_action( 'admin_init', NS . 'add_editor_stylesheets' );
+add_action( 'init', NS . 'add_editor_stylesheets' );
 /**
  * Adds editor only styles.
  *
@@ -379,27 +414,6 @@ function add_editor_stylesheets() {
 			add_editor_style( $stylesheet );
 		}
 	}
-}
-
-add_action( 'admin_enqueue_scripts', NS . 'enqueue_editor_only_styles', 9 );
-/**
- * Enqueues editor assets.
- *
- * @since 0.3.3
- *
- * @return void
- */
-function enqueue_editor_only_styles(): void {
-	wp_dequeue_style( 'wp-block-library-theme' );
-
-	wp_register_style(
-		'blockify-editor',
-		get_url() . 'assets/css/editor.css',
-		[],
-		filemtime( DIR . 'assets/css/editor.css' )
-	);
-
-	wp_enqueue_style( 'blockify-editor' );
 }
 
 add_filter( 'wp_theme_json_data_theme', NS . 'fix_editor_layout_sizes' );

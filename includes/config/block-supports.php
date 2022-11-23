@@ -20,21 +20,13 @@ add_filter( 'blockify_editor_data', NS . 'register_block_supports' );
  */
 function register_block_supports( array $config = [] ): array {
 	$config['blockSupports'] = [
-		'blockify/accordion'        => [
+		'blockify/accordion'       => [
 			'blockifyBoxShadow' => true,
 		],
-		'blockify/tabs'             => [
+		'blockify/tabs'            => [
 			'blockifyBoxShadow' => true,
 		],
-		'blockify/dark-mode-toggle' => [
-			'color' => [
-				'background' => true,
-				'text'       => true,
-				'link'       => true,
-				'gradient'   => true,
-			],
-		],
-		'core/buttons'              => [
+		'core/buttons'             => [
 			'spacing'          => [
 				'padding'  => true, // Required.
 				'margin'   => true,
@@ -42,7 +34,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition' => true,
 		],
-		'core/button'               => [
+		'core/button'              => [
 			'__experimentalBorder' => [
 				'radius'                        => true,
 				'width'                         => true,
@@ -57,10 +49,12 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyOnclick'      => true,
 			'blockifyPosition'     => true,
 		],
-		'core/code'                 => [
+		'core/code'                => [
 			'blockifyBoxShadow' => true,
+			'blockifyPosition'  => true,
+			'blockifyTransform' => true,
 		],
-		'core/column'               => [
+		'core/column'              => [
 			'spacing'                => [
 				'padding' => true,
 				'margin'  => true,
@@ -83,7 +77,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyPosition'       => true,
 			'blockifyNegativeMargin' => true,
 		],
-		'core/columns'              => [
+		'core/columns'             => [
 			'typography'             => [
 				'fontSize'   => true,
 				'fontWeight' => true,
@@ -94,7 +88,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyNegativeMargin' => true,
 			'blockifyFilter'         => true,
 		],
-		'core/cover'                => [
+		'core/cover'               => [
 			'__experimentalBorder' => [
 				'radius'                        => true,
 				'width'                         => true,
@@ -107,7 +101,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition'     => true,
 		],
-		'core/embed'                => [
+		'core/embed'               => [
 			'spacing'              => [
 				'margin' => true,
 			],
@@ -122,12 +116,12 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/gallery'              => [
+		'core/gallery'             => [
 			'spacing' => [
 				'margin' => true,
 			],
 		],
-		'core/group'                => [
+		'core/group'               => [
 			'blockifyAnimation'      => true,
 			'blockifyBackground'     => true,
 			'blockifyBoxShadow'      => true,
@@ -137,7 +131,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyDarkMode'       => true,
 			'blockifyPosition'       => true,
 		],
-		'core/heading'              => [
+		'core/heading'             => [
 			'align'                  => [
 				'full',
 				'wide',
@@ -160,7 +154,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyTransform'      => true,
 			'blockifyFilter'         => true,
 		],
-		'core/html'                 => [
+		'core/html'                => [
 			'color'             => [
 				'background' => true,
 				'text'       => true,
@@ -171,7 +165,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyTransform' => true,
 			'blockifyFilter'    => true,
 		],
-		'core/image'                => [
+		'core/image'               => [
 			'__experimentalBorder'   => [
 				'radius'                        => true,
 				'width'                         => true,
@@ -204,7 +198,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyTransform'      => true,
 			'blockifyOnclick'        => true,
 		],
-		'core/list'                 => [
+		'core/list'                => [
 			'spacing'              => [
 				'padding'  => true,
 				'margin'   => true,
@@ -229,7 +223,13 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/list-item'            => [
+		'core/list-item'           => [
+			'color'                => [
+				'text'       => true,
+				'background' => true,
+				'link'       => true,
+				'gradient'   => true,
+			],
 			'spacing'              => [
 				'padding' => true,
 				'margin'  => true,
@@ -246,7 +246,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyBoxShadow'    => true,
 		],
-		'core/media-text'           => [
+		'core/media-text'          => [
 			'__experimentalBorder' => [
 				'radius' => true,
 			],
@@ -255,7 +255,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition'     => true,
 		],
-		'core/navigation'           => [
+		'core/navigation'          => [
 			'spacing'          => [
 				'margin'   => true,
 				'padding'  => true,
@@ -263,7 +263,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition' => true,
 		],
-		'core/navigation-submenu'   => [
+		'core/navigation-submenu'  => [
 			'spacing' => [
 				'margin'   => true,
 				'padding'  => true,
@@ -276,12 +276,12 @@ function register_block_supports( array $config = [] ): array {
 				'text'       => true,
 			],
 		],
-		'core/page-list'            => [
+		'core/page-list'           => [
 			'spacing' => [
 				'blockGap' => true,
 			],
 		],
-		'core/paragraph'            => [
+		'core/paragraph'           => [
 			'align'                  => [
 				'full',
 				'wide',
@@ -318,7 +318,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyTransform'      => true,
 			'blockifyFilter'         => true,
 		],
-		'core/post-content'         => [
+		'core/post-content'        => [
 			'align'     => [
 				'full',
 				'wide',
@@ -333,7 +333,7 @@ function register_block_supports( array $config = [] ): array {
 				'padding' => true,
 			],
 		],
-		'core/post-author'          => [
+		'core/post-author'         => [
 			// Border applied to avatar.
 			'__experimentalBorder' => [
 				'radius'                        => true,
@@ -346,7 +346,7 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/post-excerpt'         => [
+		'core/post-excerpt'        => [
 			'__experimentalLayout' => [
 				'allowSwitching'  => false,
 				'allowInheriting' => false,
@@ -355,12 +355,12 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/post-date'            => [
+		'core/post-date'           => [
 			'spacing' => [
 				'margin' => true,
 			],
 		],
-		'core/post-featured-image'  => [
+		'core/post-featured-image' => [
 			'align'             => [
 				'full',
 				'wide',
@@ -375,7 +375,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyBoxShadow' => true,
 		],
-		'core/post-terms'           => [
+		'core/post-terms'          => [
 			'align'     => [
 				'full',
 				'wide',
@@ -390,13 +390,13 @@ function register_block_supports( array $config = [] ): array {
 				'margin'  => true,
 			],
 		],
-		'core/post-title'           => [
+		'core/post-title'          => [
 			'spacing' => [
 				'padding' => true,
 				'margin'  => true,
 			],
 		],
-		'core/pullquote'            => [
+		'core/pullquote'           => [
 			'spacing'              => [
 				'margin'   => true,
 				'padding'  => true,
@@ -413,19 +413,19 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/query'                => [
+		'core/query'               => [
 			'spacing' => [
 				'padding'  => true,
 				'blockGap' => true,
 			],
 		],
-		'core/query-pagination'     => [
+		'core/query-pagination'    => [
 			'spacing' => [
 				'margin'  => true,
 				'padding' => true,
 			],
 		],
-		'core/quote'                => [
+		'core/quote'               => [
 			'spacing'              => [
 				'margin'   => true,
 				'padding'  => true,
@@ -442,11 +442,11 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/row'                  => [
+		'core/row'                 => [
 			'blockifyBoxShadow' => true,
 			'blockifyPosition'  => true,
 		],
-		'core/search'               => [
+		'core/search'              => [
 			'blockifyBoxShadow' => true,
 			'blockifyPosition'  => true,
 			'spacing'           => [
@@ -454,7 +454,7 @@ function register_block_supports( array $config = [] ): array {
 				'margin'  => true,
 			],
 		],
-		'core/separator'            => [
+		'core/separator'           => [
 			'align'                => [
 				'full',
 				'wide',
@@ -483,7 +483,7 @@ function register_block_supports( array $config = [] ): array {
 				'padding' => false,
 			],
 		],
-		'core/site-logo'            => [
+		'core/site-logo'           => [
 			'color'                => [
 				'background' => true,
 				'gradients'  => true,
@@ -501,10 +501,10 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/stack'                => [
+		'core/stack'               => [
 			'blockifyPosition' => true,
 		],
-		'core/social-links'         => [
+		'core/social-links'        => [
 			'align'                => [
 				'full',
 				'wide',
@@ -534,13 +534,13 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 		],
-		'core/social-link'          => [
+		'core/social-link'         => [
 			'color' => [
 				'background' => false,
 				'text'       => true,
 			],
 		],
-		'core/spacer'               => [
+		'core/spacer'              => [
 			'align'                => [
 				'full',
 				'wide',
@@ -572,13 +572,13 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyPosition'     => true,
 			'blockifyFilter'       => true,
 		],
-		'core/tag-cloud'            => [
+		'core/tag-cloud'           => [
 			'typography' => [
 				'textTransform' => true, // Doesn't work.
 				'letterSpacing' => true, // Doesn't work.
 			],
 		],
-		'core/template-part'        => [
+		'core/template-part'       => [
 			'blockifyBoxShadow' => true,
 			'color'             => [
 				'background' => true,
@@ -588,7 +588,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition'  => true,
 		],
-		'core/video'                => [
+		'core/video'               => [
 			'color'                => [
 				'gradients'  => true,
 				'background' => true,

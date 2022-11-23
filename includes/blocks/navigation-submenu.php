@@ -13,8 +13,8 @@ add_filter( 'render_block_core/navigation-submenu', NS . 'render_navigation_subm
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -65,7 +65,12 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 
 	$styles['--wp--custom--submenu--gap'] = $spacing['blockGap'] ?? 'var(--wp--style--block-gap)';
 
-	$submenu       = get_dom_element( 'ul', $dom );
+	$submenu = get_dom_element( 'ul', $dom );
+
+	if ( ! $submenu ) {
+		return $html;
+	}
+
 	$submenu_style = $submenu->getAttribute( 'style' );
 	$css           = $submenu_style ? $submenu_style . ';' : '';
 

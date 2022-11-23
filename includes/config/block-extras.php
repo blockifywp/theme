@@ -103,6 +103,10 @@ function get_block_extra_options(): array {
 					'label' => __( 'Inline Grid', 'blockify' ),
 					'value' => 'inline-grid',
 				],
+				[
+					'label' => __( 'Contents', 'blockify' ),
+					'value' => 'contents',
+				],
 			],
 		],
 		'order'         => [
