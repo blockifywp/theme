@@ -283,7 +283,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	return $css;
 }
 
-add_filter( 'wp_enqueue_scripts', NS . 'add_block_styles' );
+add_action( 'wp_enqueue_scripts', NS . 'add_block_styles' );
 /**
  * Adds conditional block styles.
  *
