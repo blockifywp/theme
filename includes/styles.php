@@ -4,9 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use const GLOB_ONLYDIR;
 use function add_action;
-use function add_editor_style;
 use function add_filter;
 use function apply_filters;
 use function array_flip;
@@ -16,15 +14,12 @@ use function class_exists;
 use function dirname;
 use function file_exists;
 use function file_get_contents;
-use function filemtime;
-use function function_exists;
-use function get_current_screen;
 use function glob;
+use function implode;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
 use function is_array;
-use function method_exists;
 use function str_contains;
 use function str_replace;
 use function trim;
@@ -46,14 +41,26 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
 function enqueue_styles(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
 
+	// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.MissingVersion
 	wp_register_style( SLUG, '' );
+
+	$content = get_page_content();
 
 	wp_add_inline_style(
 		SLUG,
 		apply_filters(
 			'blockify_inline_css',
-			'',
-			get_page_content()
+			implode(
+				'',
+				[
+					get_system_font_stacks(),
+					get_dynamic_custom_properties(),
+					get_dark_mode_custom_properties(),
+					get_conditional_stylesheets( $content, false ),
+					get_position_styles( $content, false ),
+					get_animation_styles( $content, false ),
+				]
+			),
 		)
 	);
 
@@ -62,54 +69,14 @@ function enqueue_styles(): void {
 	array_unshift( wp_styles()->queue, SLUG );
 }
 
-add_action( 'admin_enqueue_scripts', NS . 'enqueue_editor_only_styles', 9 );
-/**
- * Enqueues editor assets.
- *
- * @since 0.3.3
- *
- * @return void
- */
-function enqueue_editor_only_styles(): void {
-	if ( function_exists( 'is_gutenberg_page' ) && ! is_gutenberg_page() ) {
-		return;
-	}
-
-	$current_screen = get_current_screen();
-
-	if ( method_exists( $current_screen, 'is_block_editor' ) && ! $current_screen->is_block_editor() ) {
-		return;
-	}
-
-	wp_dequeue_style( 'wp-block-library-theme' );
-
-	wp_register_style(
-		'blockify-editor',
-		get_url() . 'assets/css/editor.css',
-		[],
-		filemtime( DIR . 'assets/css/editor.css' )
-	);
-
-	wp_add_inline_style(
-		'blockify-editor',
-		apply_filters( 'blockify_inline_css', '', '' )
-	);
-
-	wp_enqueue_style( 'blockify-editor' );
-}
-
-add_filter( 'blockify_inline_css', NS . 'add_dynamic_custom_properties', 10, 2 );
 /**
  * Add dynamic custom properties.
  *
  * @since 0.9.19
  *
- * @param string $css Inline styles.
- *
  * @return string
  */
-function add_dynamic_custom_properties( string $css ): string {
-	$element        = is_admin() ? 'body,.editor-styles-wrapper' : 'body';
+function get_dynamic_custom_properties(): string {
 	$settings       = wp_get_global_settings();
 	$global_styles  = wp_get_global_styles();
 	$custom         = $settings['custom'] ?? [];
@@ -177,107 +144,32 @@ function add_dynamic_custom_properties( string $css ): string {
 		);
 	}
 
-	return $css . $element . '{' . css_array_to_string( $all ) . '}';
-}
-
-add_filter( 'enqueue_block_editor_assets', NS . 'add_block_styles' );
-add_filter( 'wp_enqueue_scripts', NS . 'add_block_styles' );
-/**
- * Adds conditional block styles.
- *
- * @since 0.9.19
- *
- * @return void
- */
-function add_block_styles(): void {
-	global $wp_styles;
-
-	if ( ! is_a( $wp_styles, 'WP_Styles' ) ) {
-		return;
-	}
-
-	$handles = array_flip( $wp_styles->queue );
-
-	foreach ( $wp_styles->registered as $handle => $style ) {
-		if ( ! isset( $handles[ $handle ] ) ) {
-			continue;
-		}
-
-		$slug = str_replace( 'wp-block-', '', $handle );
-		$file = DIR . 'assets/css/blocks/' . $slug . '.css';
-
-		if ( ! file_exists( $file ) ) {
-			continue;
-		}
-
-		if ( ! is_admin() ) {
-			wp_add_inline_style( $handle, file_get_contents( $file ) );
-		}
-	}
+	return 'body{' . css_array_to_string( $all ) . '}';
 }
 
 /**
- * Get all stylesheets to load conditionally.
- *
- * @since 0.9.10
- *
- * @return array
- */
-function get_conditional_stylesheets(): array {
-	return [
-		...( is_admin() ? glob( DIR . 'assets/css/blocks/*.css' ) : [] ),
-		...glob( DIR . 'assets/css/elements/*.css' ),
-		...glob( DIR . 'assets/css/components/*.css' ),
-		...glob( DIR . 'assets/css/formats/*.css' ),
-		...glob( DIR . 'assets/css/extensions/*.css' ),
-		...glob( DIR . 'assets/css/block-styles/*.css' ),
-		...glob( DIR . 'assets/css/utility/*.css' ),
-		...glob( DIR . 'assets/css/plugins/*.css' ),
-	];
-}
-
-/**
- * Adds split styles.
+ * Adds conditional stylesheets inline.
  *
  * @since 0.0.27
  *
- * @param array  $stylesheets Stylesheets to load.
- * @param string $content     Page content.
+ * @param string $content   Block content.
+ * @param bool   $is_editor Is admin page.
  *
- * @return array
+ * @return string
  */
-function get_stylesheet_conditions( array $stylesheets, string $content ): array {
+function get_conditional_stylesheets( string $content, bool $is_editor ): string {
+	$stylesheets = [
+		...glob( DIR . 'assets/css/elements/*.css' ),
+		...glob( DIR . 'assets/css/components/*.css' ),
+		...glob( DIR . 'assets/css/block-styles/*.css' ),
+		...glob( DIR . 'assets/css/formats/*.css' ),
+		...glob( DIR . 'assets/css/extensions/*.css' ),
+		...glob( DIR . 'assets/css/plugins/*.css' ),
+	];
+
 	$conditions = [];
 
-	// Load all block CSS in admin.
-	foreach ( $stylesheets as $stylesheet ) {
-		$dir  = basename( dirname( $stylesheet ) );
-		$file = basename( $stylesheet, '.css' );
-
-		if ( $dir === 'blocks' ) {
-			$conditions['blocks'][ $file ] = true;
-		}
-	}
-
-	$conditions['block-styles'] = [
-		'button-outline'   => str_contains( $content, 'is-style-outline' ),
-		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
-		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
-		'checklist'        => str_contains( $content, 'is-style-checklist' ),
-		'curved-text'      => str_contains( $content, 'is-style-curved-text' ),
-		'divider-angle'    => str_contains( $content, 'is-style-angle' ),
-		'divider-curve'    => str_contains( $content, 'is-style-curve' ),
-		'divider-fade'     => str_contains( $content, 'is-style-fade' ),
-		'divider-round'    => str_contains( $content, 'is-style-round' ),
-		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
-		'mega-menu'        => str_contains( $content, 'is-style-mega-menu' ),
-		'notice'           => str_contains( $content, 'is-style-notice' ),
-		'numbered-list'    => str_contains( $content, 'is-style-numbered' ),
-		'search-toggle'    => str_contains( $content, 'is-style-toggle' ),
-		'square-list'      => str_contains( $content, 'is-style-square' ),
-		'sub-heading'      => str_contains( $content, 'is-style-sub-heading' ),
-		'surface'          => str_contains( $content, 'is-style-surface' ),
-	];
+	$css = '';
 
 	$conditions['elements'] = [
 		'all'        => true,
@@ -327,16 +219,24 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'site-blocks'        => true,
 	];
 
-	$conditions['extensions'] = [
-		'animation'  => str_contains_any( $content, [ 'has-animation', 'will-animate' ] ),
-		'accordion'  => str_contains( $content, 'is-style-accordion' ),
-		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
-		'counter'    => str_contains( $content, 'is-style-counter' ),
-		'dark-mode'  => str_contains( $content, 'toggle-switch' ),
-		'filter'     => str_contains( $content, 'has-filter' ),
-		'icon'       => str_contains( $content, 'is-style-icon' ),
-		'marquee'    => str_contains( $content, 'is-marquee' ),
-		'transform'  => str_contains( $content, 'has-transform' ),
+	$conditions['block-styles'] = [
+		'button-outline'   => str_contains( $content, 'is-style-outline' ),
+		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
+		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
+		'checklist'        => str_contains( $content, 'is-style-checklist' ),
+		'curved-text'      => str_contains( $content, 'is-style-curved-text' ),
+		'divider-angle'    => str_contains( $content, 'is-style-angle' ),
+		'divider-curve'    => str_contains( $content, 'is-style-curve' ),
+		'divider-fade'     => str_contains( $content, 'is-style-fade' ),
+		'divider-round'    => str_contains( $content, 'is-style-round' ),
+		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
+		'mega-menu'        => str_contains( $content, 'is-style-mega-menu' ),
+		'notice'           => str_contains( $content, 'is-style-notice' ),
+		'numbered-list'    => str_contains( $content, 'is-style-numbered' ),
+		'search-toggle'    => str_contains( $content, 'is-style-toggle' ),
+		'square-list'      => str_contains( $content, 'is-style-square' ),
+		'sub-heading'      => str_contains( $content, 'is-style-sub-heading' ),
+		'surface'          => str_contains( $content, 'is-style-surface' ),
 	];
 
 	$conditions['formats'] = [
@@ -351,9 +251,16 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'outline'    => str_contains( $content, 'has-text-outline' ),
 	];
 
-	$conditions['utility'] = [
-		'button-width' => str_contains( $content, 'wp-block-button__width-' ),
-		'margin'       => str_contains( $content, ' margin-auto' ),
+	$conditions['extensions'] = [
+		'animation'  => str_contains_any( $content, [ 'has-animation', 'will-animate' ] ),
+		'accordion'  => str_contains( $content, 'is-style-accordion' ),
+		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
+		'counter'    => str_contains( $content, 'is-style-counter' ),
+		'dark-mode'  => str_contains( $content, 'toggle-switch' ),
+		'filter'     => str_contains( $content, 'has-filter' ),
+		'icon'       => str_contains( $content, 'is-style-icon' ),
+		'marquee'    => str_contains( $content, 'is-marquee' ),
+		'transform'  => str_contains( $content, 'has-transform' ),
 	];
 
 	$conditions['plugins'] = [
@@ -364,29 +271,11 @@ function get_stylesheet_conditions( array $stylesheets, string $content ): array
 		'woocommerce'                    => class_exists( 'WooCommerce' ),
 	];
 
-	return $conditions;
-}
-
-add_filter( 'blockify_inline_css', NS . 'add_conditional_stylesheets', 10, 2 );
-/**
- * Adds conditional stylesheets inline.
- *
- * @since 0.0.27
- *
- * @param string $css     The CSS to add to.
- * @param string $content Block content.
- *
- * @return string
- */
-function add_conditional_stylesheets( string $css, string $content ): string {
-	$stylesheets = get_conditional_stylesheets();
-	$conditions  = get_stylesheet_conditions( $stylesheets, $content );
-
 	foreach ( $stylesheets as $stylesheet ) {
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
-		if ( $condition || $content === '' || is_admin() ) {
+		if ( $condition || $content === '' || $is_editor ) {
 			$css .= trim( file_get_contents( $stylesheet ) );
 		}
 	}
@@ -394,24 +283,37 @@ function add_conditional_stylesheets( string $css, string $content ): string {
 	return $css;
 }
 
-add_action( 'init', NS . 'add_editor_stylesheets' );
+add_filter( 'wp_enqueue_scripts', NS . 'add_block_styles' );
 /**
- * Adds editor only styles.
+ * Adds conditional block styles.
  *
- * @since 0.9.10
+ * @since 0.9.19
  *
  * @return void
  */
-function add_editor_stylesheets() {
-	$dirs = glob( DIR . 'assets/css/*', GLOB_ONLYDIR );
+function add_block_styles(): void {
+	global $wp_styles;
 
-	foreach ( $dirs as $dir ) {
-		$files = glob( $dir . '/*.css' );
+	if ( ! is_a( $wp_styles, 'WP_Styles' ) ) {
+		return;
+	}
 
-		foreach ( $files as $file ) {
-			$stylesheet = 'assets/css/' . basename( $dir ) . DS . basename( $file );
+	$handles = array_flip( $wp_styles->queue );
 
-			add_editor_style( $stylesheet );
+	foreach ( $wp_styles->registered as $handle => $style ) {
+		if ( ! isset( $handles[ $handle ] ) ) {
+			continue;
+		}
+
+		$slug = str_replace( 'wp-block-', '', $handle );
+		$file = DIR . 'assets/css/blocks/' . $slug . '.css';
+
+		if ( ! file_exists( $file ) ) {
+			continue;
+		}
+
+		if ( ! is_admin() ) {
+			wp_add_inline_style( $handle, file_get_contents( $file ) );
 		}
 	}
 }

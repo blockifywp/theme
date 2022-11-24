@@ -45,16 +45,14 @@ function add_fonts( $theme_json ) {
 	return $theme_json;
 }
 
-add_filter( 'wp_enqueue_scripts', NS . 'add_system_font_stacks', 11 );
-add_filter( 'blockify_editor_scripts', NS . 'add_system_font_stacks', 11 );
 /**
- * Adds system font stack custom properties.
+ * Returns system font stack custom properties.
  *
- * @since 0.9.10
+ * @since 0.9.21
  *
- * @return void
+ * @return string
  */
-function add_system_font_stacks(): void {
+function get_system_font_stacks(): string {
 	$styles       = [];
 	$system_fonts = get_system_fonts();
 
@@ -62,12 +60,7 @@ function add_system_font_stacks(): void {
 		$styles[ '--wp--custom--font-stack--' . $font['slug'] ] = $font['fontFamily'];
 	}
 
-	$css = ':root{' . css_array_to_string( $styles ) . '}';
-
-	wp_add_inline_style(
-		is_admin() ? 'blockify-editor' : 'global-styles',
-		$css
-	);
+	return 'body{' . css_array_to_string( $styles ) . '}';
 }
 
 /**

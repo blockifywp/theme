@@ -5,11 +5,9 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function _wp_to_kebab_case;
-use function add_action;
 use function add_filter;
 use function explode;
 use function implode;
-use function is_admin;
 use function sprintf;
 use function str_contains;
 
@@ -29,83 +27,83 @@ function register_responsive_settings( array $config = [] ): array {
 	return $config;
 }
 
-add_filter( 'blockify_inline_css', NS . 'enqueue_position_styles', 10, 2 );
 /**
- * Description of expected behavior.
+ * Conditionally adds CSS for utility classes
  *
- * @since 1.0.0
+ * @since 0.9.19
  *
- * @param string $css     CSS.
- * @param string $content Page Content.
+ * @param string $content   Page Content.
+ * @param bool   $is_editor Is editor page.
  *
  * @return string
  */
-function enqueue_position_styles( string $css, string $content ): string {
+function get_position_styles( string $content, bool $is_editor ): string {
 	$options = get_block_extra_options();
 	$all     = '';
 	$mobile  = '';
 	$desktop = '';
-	$editor  = is_admin() ? '.editor-styles-wrapper ' : '';
 
 	foreach ( $options as $key => $args ) {
 		$property       = _wp_to_kebab_case( $key );
 		$select_options = $args['options'] ?? [];
-
-		// Only select controls have utility classes.
-		if ( ! $select_options ) {
-
-			if ( $editor || str_contains( $content, " has-$property" ) ) {
-				$all .= sprintf(
-					$editor . '.has-%1$s{%1$s:var(--%1$s)}',
-					$property
-				);
-			}
-
-			if ( $editor || str_contains( $content, "--$property-mobile" ) ) {
-				$mobile .= sprintf(
-					$editor . '.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
-					$property
-				);
-			}
-
-			if ( $editor || str_contains( $content, "--$property-desktop" ) ) {
-				$desktop .= sprintf(
-					$editor . '.has-%1$s{%1$s:var(--%1$s-desktop,var(--%1$s))}',
-					$property
-				);
-			}
-		}
 
 		foreach ( $select_options as $option ) {
 			if ( ! $option['value'] ) {
 				continue;
 			}
 
-			if ( $editor || str_contains( $content, " has-{$property}-{$option['value']}" ) ) {
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}" ) ) {
 				$all .= sprintf(
-					$editor . '.has-%1$s-%2$s{%1$s:%2$s !important}',
+					'.has-%1$s-%2$s{%1$s:%2$s !important}',
 					$property,
 					$option['value'] ?? '',
 				);
 			}
 
-			if ( $editor || str_contains( $content, " has-{$property}-{$option['value']}-mobile" ) ) {
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-mobile" ) ) {
 				$mobile .= sprintf(
-					$editor . '.has-%1$s-%2$s-mobile{%1$s:%2$s !important}',
+					'.has-%1$s-%2$s-mobile{%1$s:%2$s !important}',
 					$property,
 					$option['value'] ?? '',
 				);
 			}
 
-			if ( $editor || str_contains( $content, " has-{$property}-{$option['value']}-desktop" ) ) {
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-desktop" ) ) {
 				$desktop .= sprintf(
-					$editor . '.has-%1$s-%2$s-desktop{%1$s:%2$s !important}',
+					'.has-%1$s-%2$s-desktop{%1$s:%2$s !important}',
 					$property,
 					$option['value'] ?? '',
 				);
 			}
 		}
+
+		// Has custom value.
+		if ( ! $select_options ) {
+
+			if ( $is_editor || str_contains( $content, " has-$property" ) ) {
+				$all .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s)}',
+					$property
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, "--$property-mobile" ) ) {
+				$mobile .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
+					$property
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, "--$property-desktop" ) ) {
+				$desktop .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-desktop,var(--%1$s))}',
+					$property
+				);
+			}
+		}
 	}
+
+	$css = '';
 
 	if ( $all ) {
 		$css .= $all;
@@ -124,20 +122,20 @@ function enqueue_position_styles( string $css, string $content ): string {
 
 add_filter( 'render_block', NS . 'add_position_classes', 10, 2 );
 /**
- * Description of expected behavior.
+ * Adds inline block positioning classes.
  *
  * @since 1.0.0
  *
- * @param string $content
- * @param array  $block
+ * @param string $html  Block content.
+ * @param array  $block Block data.
  *
  * @return string
  */
-function add_position_classes( string $content, array $block ): string {
+function add_position_classes( string $html, array $block ): string {
 	$style = $block['attrs']['style'] ?? [];
 
 	if ( ! $style ) {
-		return $content;
+		return $html;
 	}
 
 	$options = get_block_extra_options();
@@ -147,7 +145,7 @@ function add_position_classes( string $content, array $block ): string {
 			continue;
 		}
 
-		$dom   = dom( $content );
+		$dom   = dom( $html );
 		$first = get_dom_element( '*', $dom );
 
 		if ( ! $first ) {
@@ -179,28 +177,28 @@ function add_position_classes( string $content, array $block ): string {
 
 		$first->setAttribute( 'class', implode( ' ', $classes ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }
 
 add_filter( 'render_block', NS . 'add_position_styles', 10, 2 );
 /**
- * Description of expected behavior.
+ * Renders block inline positioning styles.
  *
  * @since 1.0.0
  *
- * @param string $content
- * @param array  $block
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
-function add_position_styles( string $content, array $block ): string {
+function add_position_styles( string $html, array $block ): string {
 	$style = $block['attrs']['style'] ?? [];
 
 	if ( ! $style ) {
-		return $content;
+		return $html;
 	}
 
 	$options = get_block_extra_options();
@@ -216,7 +214,7 @@ function add_position_styles( string $content, array $block ): string {
 			continue;
 		}
 
-		$dom   = dom( $content );
+		$dom   = dom( $html );
 		$first = get_dom_element( '*', $dom );
 
 		if ( ! $first ) {
@@ -243,8 +241,8 @@ function add_position_styles( string $content, array $block ): string {
 
 		$first->setAttribute( 'style', css_array_to_string( $styles ) );
 
-		$content = $dom->saveHTML();
+		$html = $dom->saveHTML();
 	}
 
-	return $content;
+	return $html;
 }

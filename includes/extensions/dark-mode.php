@@ -4,25 +4,22 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function add_filter;
 use function str_replace;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
 
-add_filter( 'blockify_inline_css', NS . 'add_dark_mode_custom_properties', 10, 1 );
 /**
- * Adds dark mode custom properties.
+ * Returns dark mode custom properties.
  *
  * @since 0.0.24
  *
- * @param string $css Inline styles.
- *
  * @return string
  */
-function add_dark_mode_custom_properties( string $css ): string {
+function get_dark_mode_custom_properties(): string {
 	$global_settings     = wp_get_global_settings();
 	$dark_mode_colors    = $global_settings['custom']['darkMode']['palette'] ?? [];
 	$dark_mode_gradients = $global_settings['custom']['darkMode']['gradients'] ?? [];
+	$css                 = '';
 
 	if ( ! $dark_mode_colors && ! $dark_mode_gradients ) {
 		return $css;

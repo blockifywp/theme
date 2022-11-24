@@ -7,24 +7,27 @@ namespace Blockify\Theme;
 use function add_filter;
 use function array_unique;
 use function explode;
+use function file_exists;
 use function file_get_contents;
-use function is_admin;
 use function str_contains;
 use function str_replace;
-use function wp_add_inline_style;
 
 /**
  * Gets animations from stylesheet.
  *
- * @since 1.0.0
+ * @since 0.9.18
  *
  * @return array
  */
 function get_animations(): array {
-	$parts      = explode(
-		'@keyframes',
-		file_get_contents( DIR . 'assets/css/extensions/animation.css' )
-	);
+
+	$file = DIR . 'assets/css/extensions/animation.css';
+
+	if ( ! file_exists( $file ) ) {
+		return [];
+	}
+
+	$parts      = explode( '@keyframes', file_get_contents( $file ) );
 	$animations = [];
 
 	unset( $parts[0] );
@@ -38,22 +41,22 @@ function get_animations(): array {
 	return $animations;
 }
 
-add_filter( 'blockify_inline_css', NS . 'enqueue_animation_styles', 10, 2 );
 /**
- * Conditionally enqueues animation styles.
+ * Returns inline styles for animations.
  *
- * @since 1.0.0
+ * @since 0.9.19
  *
- * @param string $css     Inline styles.
- * @param string $content Page content.
+ * @param string $content  Page content.
+ * @param bool   $is_editor Is admin.
  *
  * @return string
  */
-function enqueue_animation_styles( string $css, string $content ): string {
+function get_animation_styles( string $content, bool $is_editor ): string {
 	$animations = get_animations();
+	$css        = '';
 
 	foreach ( $animations as $name => $animation ) {
-		if ( is_admin() || str_contains( $content, "--wp--custom--animation--name:{$name}" ) ) {
+		if ( $is_editor || str_contains( $content, "--wp--custom--animation--name:{$name}" ) ) {
 			$css .= "@keyframes $name" . trim( $animation );
 		}
 	}

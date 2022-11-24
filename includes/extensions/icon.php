@@ -159,7 +159,6 @@ function get_icon( string $set, string $name ): string {
 	return get_icons()[ $set ][ $name ] ?? '';
 }
 
-
 /**
  * Renders image icon styles on front end.
  *
@@ -230,7 +229,7 @@ function get_icon_html( string $content, array $block ): string {
 
 	$position = $block['attrs']['style']['position'] ?? [];
 
-	if ( $position && in_array( 'absolute', array_values( $position ) ) ) {
+	if ( $position && in_array( 'absolute', array_values( $position ), true ) ) {
 		$figure_styles['display'] = 'contents';
 	}
 

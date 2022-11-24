@@ -6,7 +6,7 @@ module.exports = env => {
 		...defaultConfig,
 
 		module: {
-			...defaultConfig.module,
+			...defaultConfig.module
 		},
 
 		entry: {
