@@ -10,9 +10,7 @@ use function array_keys;
 use function file_exists;
 use function get_template_directory;
 use function in_array;
-use function is_admin;
 use function str_contains;
-use function wp_add_inline_style;
 use function wp_json_file_decode;
 use function wp_list_pluck;
 
@@ -43,24 +41,6 @@ function add_fonts( $theme_json ) {
 	$theme_json->update_with( $data );
 
 	return $theme_json;
-}
-
-/**
- * Returns system font stack custom properties.
- *
- * @since 0.9.21
- *
- * @return string
- */
-function get_system_font_stacks(): string {
-	$styles       = [];
-	$system_fonts = get_system_fonts();
-
-	foreach ( $system_fonts as $font ) {
-		$styles[ '--wp--custom--font-stack--' . $font['slug'] ] = $font['fontFamily'];
-	}
-
-	return 'body{' . css_array_to_string( $styles ) . '}';
 }
 
 /**

@@ -15,26 +15,26 @@ add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 11, 2 
  *
  * @since 0.9.10
  *
- * @param string $content Block html content.
+ * @param string $html Block html content.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_svg_block_variation( string $content, array $block ): string {
+function render_svg_block_variation( string $html, array $block ): string {
 	$svg_string = $block['attrs']['style']['svgString'] ?? '';
 
 	if ( ! $svg_string ) {
-		return $content;
+		return $html;
 	}
 
-	$dom    = dom( $content );
+	$dom    = dom( $html );
 	$figure = get_dom_element( 'figure', $dom );
 	$link   = get_dom_element( 'a', $figure );
 	$img    = get_dom_element( 'img', $link ?? $figure );
 	$svg    = get_dom_element( 'svg', $link ?? $figure );
 
 	if ( $svg ) {
-		return $content;
+		return $html;
 	}
 
 	if ( $img ) {
@@ -45,7 +45,7 @@ function render_svg_block_variation( string $content, array $block ): string {
 	$svg_element = get_dom_element( 'svg', $svg_dom );
 
 	if ( ! $svg_element ) {
-		return $content;
+		return $html;
 	}
 
 	$imported = $dom->importNode( $svg_element, true );
@@ -69,39 +69,36 @@ function render_svg_block_variation( string $content, array $block ): string {
 		$figure->appendChild( $imported );
 	}
 
-	$content = $dom->saveHTML();
-
-	return $content;
+	return $dom->saveHTML();
 }
-
 
 add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
 /**
- * Description of expected behavior.
+ * Renders inline SVGs in rich text content.
  *
  * @since 0.9.10
  *
- * @param string $content Block html content.
+ * @param string $html Block html content.
  * @param array  $block   Block data.
  *
  * @return string
  */
-function render_inline_svg( string $content, array $block ): string {
-	if ( ! str_contains( $content, 'has-inline-svg' ) ) {
-		return $content;
+function render_inline_svg( string $html, array $block ): string {
+	if ( ! str_contains( $html, 'has-inline-svg' ) ) {
+		return $html;
 	}
 
-	$dom   = dom( $content );
+	$dom   = dom( $html );
 	$first = get_dom_element( '*', $dom );
 
 	if ( ! $first ) {
-		return $content;
+		return $html;
 	}
 
 	$imgs = $dom->getElementsByTagName( 'img' );
 
 	if ( ! $imgs->length ) {
-		return $content;
+		return $html;
 	}
 
 	foreach ( $imgs as $index => $img ) {
@@ -117,7 +114,7 @@ function render_inline_svg( string $content, array $block ): string {
 		$svg_element = get_dom_element( 'svg', $svg_dom );
 
 		if ( ! $svg_element ) {
-			return $content;
+			return $html;
 		}
 
 		$imported = $dom->importNode( $svg_element, true );
@@ -146,12 +143,12 @@ function render_inline_svg( string $content, array $block ): string {
 
 		$imported->setAttribute( 'class', implode( ' ', $classes ) . ' ' . $svg_element->getAttribute( 'class' ) );
 
-		$content = str_replace(
+		$html = str_replace(
 			$dom->saveHTML( $img ),
 			$dom->saveHTML( $imported ),
-			$content
+			$html
 		);
 	}
 
-	return $content;
+	return $html;
 }

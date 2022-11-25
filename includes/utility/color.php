@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 /**
- * Description of expected behavior.
+ * Applies block color attributes.
  *
  * @since 0.9.10
  *

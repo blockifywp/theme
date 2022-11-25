@@ -125,7 +125,7 @@ function render_list_block_accordion( string $html, array $block ): string {
 
 		$li_style = $li->getAttribute( 'style' );
 
-		$has_border = str_contains_any( $li_style, [ 'border-width', 'border-style', 'border-color' ] );
+		$has_border = str_contains_any( $li_style, 'border-width', 'border-style', 'border-color' );
 
 		if ( $has_border ) {
 			$details->appendChild( $dom->createElement( 'hr' ) );

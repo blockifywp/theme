@@ -4,29 +4,31 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-\add_filter( 'render_block_core/paragraph', NS . 'render_counter_block_variation', 10, 2 );
+use function add_filter;
+
+add_filter( 'render_block_core/paragraph', NS . 'render_counter_block_variation', 10, 2 );
 /**
- * Description of expected behavior.
+ * Render counter block markup.
  *
  * @since 0.9.10
  *
- * @param string $content Block html content.
- * @param array  $block   Block data.
+ * @param string $html  Block html content.
+ * @param array  $block Block data.
  *
  * @return string
  */
-function render_counter_block_variation( string $content, array $block ): string {
+function render_counter_block_variation( string $html, array $block ): string {
 	$counter = $block['attrs']['style']['counter'] ?? '';
 
 	if ( ! $counter ) {
-		return $content;
+		return $html;
 	}
 
-	$dom = dom( $content );
+	$dom = dom( $html );
 	$p   = get_dom_element( 'p', $dom );
 
 	if ( ! $p ) {
-		return $content;
+		return $html;
 	}
 
 	foreach ( $counter as $attribute => $value ) {
@@ -35,11 +37,10 @@ function render_counter_block_variation( string $content, array $block ): string
 
 	$p->textContent = trim( $p->textContent );
 
-	$content = $dom->saveHTML();
+	$html = $dom->saveHTML();
 
-	return $content;
+	return $html;
 }
-
 
 add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
 /**
@@ -47,13 +48,13 @@ add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
  *
  * @since 0.9.10
  *
- * @param string $js      Inline js.
- * @param string $content Block html content.
+ * @param string $js   Inline js.
+ * @param string $html Block html content.
  *
  * @return string
  */
-function add_counter_js( string $js, string $content ): string {
-	if ( str_contains( $content, 'is-style-counter' ) ) {
+function add_counter_js( string $js, string $html ): string {
+	if ( str_contains( $html, 'is-style-counter' ) ) {
 		$js .= file_get_contents( DIR . 'assets/js/counter.js' );
 	}
 

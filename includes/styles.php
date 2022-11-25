@@ -30,6 +30,34 @@ use function wp_get_global_settings;
 use function wp_get_global_styles;
 use function wp_register_style;
 
+/**
+ * Returns filtered inline styles.
+ *
+ * @since 0.9.22
+ *
+ * @param string $content   Page content.
+ * @param bool   $is_editor Is Editor.
+ *
+ * @return string
+ */
+function get_inline_styles( string $content, bool $is_editor ): string {
+	return apply_filters(
+		'blockify_inline_css',
+		implode(
+			'',
+			[
+				get_dark_mode_custom_properties(),
+				get_dynamic_custom_properties(),
+				get_conditional_stylesheets( $content, $is_editor ),
+				get_position_styles( $content, $is_editor ),
+				get_animation_styles( $content, $is_editor ),
+			]
+		),
+		$content,
+		$is_editor
+	);
+}
+
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
 /**
  * Enqueues styles.
@@ -48,20 +76,7 @@ function enqueue_styles(): void {
 
 	wp_add_inline_style(
 		SLUG,
-		apply_filters(
-			'blockify_inline_css',
-			implode(
-				'',
-				[
-					get_system_font_stacks(),
-					get_dynamic_custom_properties(),
-					get_dark_mode_custom_properties(),
-					get_conditional_stylesheets( $content, false ),
-					get_position_styles( $content, false ),
-					get_animation_styles( $content, false ),
-				]
-			),
-		)
+		get_inline_styles( $content, false )
 	);
 
 	wp_enqueue_style( SLUG );
@@ -103,27 +118,38 @@ function get_dynamic_custom_properties(): string {
 	$heading_font_weight = $global_styles['elements']['heading']['typography']['fontWeight'] ?? null;
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
 
-	$all = [
-		'--scrollbar-width'                    => '15px',
-		'--wp--custom--border'                 => "$border_width $border_style $border_color",
-		'--wp--custom--body--background'       => $bodyBackground,
-		'--wp--custom--body--color'            => $body_color,
-		'--wp--custom--heading--font-weight'   => $heading_font_weight,
-		'--wp--custom--heading--font-family'   => $heading_font_family,
+	$system_fonts = get_system_fonts();
 
-		// Used by .button.
-		'--wp--custom--button--background'     => $button_background,
-		'--wp--custom--button--color'          => $button_text,
-		'--wp--custom--button--padding-top'    => $button_padding['top'] ?? null,
-		'--wp--custom--button--padding-right'  => $button_padding['right'] ?? null,
-		'--wp--custom--button--padding-bottom' => $button_padding['bottom'] ?? null,
-		'--wp--custom--button--padding-left'   => $button_padding['left'] ?? null,
-		'--wp--custom--button--border-radius'  => $button_border_radius,
-		'--wp--custom--button--border-width'   => $button_border_width,
-		'--wp--custom--button--font-size'      => $button_font_size,
-		'--wp--custom--button--font-weight'    => $button_font_weight,
-		'--wp--custom--button--line-height'    => $button_line_height,
-	];
+	$all = [];
+
+	foreach ( $system_fonts as $font ) {
+		$all[ '--wp--custom--font-stack--' . $font['slug'] ] = $font['fontFamily'];
+	}
+
+	$all = array_merge(
+		$all,
+		[
+			'--scrollbar-width'                    => '15px',
+			'--wp--custom--border'                 => "$border_width $border_style $border_color",
+			'--wp--custom--body--background'       => $bodyBackground,
+			'--wp--custom--body--color'            => $body_color,
+			'--wp--custom--heading--font-weight'   => $heading_font_weight,
+			'--wp--custom--heading--font-family'   => $heading_font_family,
+
+			// Used by .button.
+			'--wp--custom--button--background'     => $button_background,
+			'--wp--custom--button--color'          => $button_text,
+			'--wp--custom--button--padding-top'    => $button_padding['top'] ?? null,
+			'--wp--custom--button--padding-right'  => $button_padding['right'] ?? null,
+			'--wp--custom--button--padding-bottom' => $button_padding['bottom'] ?? null,
+			'--wp--custom--button--padding-left'   => $button_padding['left'] ?? null,
+			'--wp--custom--button--border-radius'  => $button_border_radius,
+			'--wp--custom--button--border-width'   => $button_border_width,
+			'--wp--custom--button--font-size'      => $button_font_size,
+			'--wp--custom--button--font-weight'    => $button_font_weight,
+			'--wp--custom--button--line-height'    => $button_line_height,
+		]
+	);
 
 	if ( $box_shadow ) {
 		if ( is_array( $box_shadow ) ) {
@@ -153,11 +179,15 @@ function get_dynamic_custom_properties(): string {
  * @since 0.0.27
  *
  * @param string $content   Block content.
- * @param bool   $is_editor Is admin page.
+ * @param bool   $is_editor Is editor.
  *
  * @return string
  */
 function get_conditional_stylesheets( string $content, bool $is_editor ): string {
+	if ( $is_editor ) {
+		return '';
+	}
+
 	$stylesheets = [
 		...glob( DIR . 'assets/css/elements/*.css' ),
 		...glob( DIR . 'assets/css/components/*.css' ),
@@ -178,24 +208,20 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'body'       => true,
 		'button'     => str_contains_any(
 			$content,
-			[
-				'<button',
-				'type="button"',
-				'type="submit"',
-				'type="reset"',
-				'nf-form',
-			]
+			'<button',
+			'type="button"',
+			'type="submit"',
+			'type="reset"',
+			'nf-form'
 		),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
 		'hr'         => str_contains( $content, '<hr' ),
 		'form'       => str_contains_any(
 			$content,
-			[
-				'<fieldset',
-				'<form',
-				'nf-form',
-			]
+			'<fieldset',
+			'<form',
+			'nf-form'
 		),
 		'html'       => true,
 		'link'       => str_contains( $content, '<a' ),
@@ -252,7 +278,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	];
 
 	$conditions['extensions'] = [
-		'animation'  => str_contains_any( $content, [ 'has-animation', 'will-animate' ] ),
+		'animation'  => str_contains_any( $content, 'has-animation', 'will-animate' ),
 		'accordion'  => str_contains( $content, 'is-style-accordion' ),
 		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
 		'counter'    => str_contains( $content, 'is-style-counter' ),
@@ -275,7 +301,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
-		if ( $condition || $content === '' || $is_editor ) {
+		if ( $condition || $content === '' ) {
 			$css .= trim( file_get_contents( $stylesheet ) );
 		}
 	}

@@ -6,22 +6,9 @@ namespace Blockify\Theme;
 
 use function do_blocks;
 use function function_exists;
-use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
 use function is_admin;
-use function trailingslashit;
-
-/**
- * Returns the URL for the theme or plugin.
- *
- * @since 0.0.13
- *
- * @return string
- */
-function get_url(): string {
-	return trailingslashit( get_template_directory_uri() );
-}
 
 /**
  * Get entire rendered page html.

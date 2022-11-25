@@ -15,6 +15,7 @@ use function do_action;
 use function filemtime;
 use function function_exists;
 use function get_current_screen;
+use function get_template_directory_uri;
 use function glob;
 use function home_url;
 use function trailingslashit;
@@ -65,7 +66,7 @@ function enqueue_editor_scripts(): void {
 
 	wp_register_script(
 		'blockify-editor',
-		get_url() . 'assets/js/editor.js',
+		get_template_directory_uri() . '/assets/js/editor.js',
 		$deps,
 		filemtime( DIR . 'assets/js/editor.js' ),
 		true
@@ -93,7 +94,7 @@ function get_editor_data() {
 	return apply_filters(
 		'blockify_editor_data',
 		[
-			'url'        => get_url(),
+			'url'        => trailingslashit( get_template_directory_uri() ),
 			'siteUrl'    => trailingslashit(
 				home_url()
 			),
@@ -119,7 +120,7 @@ function enqueue_editor_only_styles(): void {
 
 	wp_register_style(
 		'blockify-editor',
-		get_url() . 'assets/css/editor.css',
+		get_template_directory_uri() . '/assets/css/editor.css',
 		[],
 		filemtime( DIR . 'assets/css/editor.css' )
 	);
@@ -136,11 +137,14 @@ add_action( 'admin_init', NS . 'add_editor_stylesheets' );
  * @return void
  */
 function add_editor_stylesheets() {
-	add_editor_style( 'https://blockify-dynamic-styles' );
-
 	$dirs = glob( DIR . 'assets/css/*', GLOB_ONLYDIR );
 
 	foreach ( $dirs as $dir ) {
+
+		if ( basename( $dir ) === 'abstracts' ) {
+			continue;
+		}
+
 		$files = glob( $dir . '/*.css' );
 
 		foreach ( $files as $file ) {
@@ -149,36 +153,26 @@ function add_editor_stylesheets() {
 			add_editor_style( $stylesheet );
 		}
 	}
+
+	add_editor_style( 'https://blockify-dynamic-styles' );
 }
 
-add_filter( 'pre_http_request', NS . 'generate_inline_styles', 10, 3 );
+add_filter( 'pre_http_request', NS . 'generate_dynamic_styles', 10, 3 );
 /**
- * Filters the HTTP request arguments.
+ * Generates dynamic editor styles.
  *
- * @since 0.9.20
+ * @since 0.9.23
  *
- * @param array|bool $response Whether to preempt an HTTP request's return value. Default false.
- * @param array      $args     HTTP request args.
- * @param string     $url      The request URL.
+ * @param array|bool $response    HTTP response.
+ * @param array      $parsed_args Response args.
+ * @param string     $url         Response URL.
  *
  * @return array|bool
  */
-function generate_inline_styles( $response, array $args, string $url ) {
-	if ( $url !== 'https://blockify-dynamic-styles' ) {
+function generate_dynamic_styles( $response, array $parsed_args, string $url ) {
+	if ( 'https://blockify-dynamic-styles' === $url ) {
 		$response = [
-			'body'     => apply_filters(
-				'blockify_inline_css',
-				implode(
-					'',
-					[
-						get_system_font_stacks(),
-						get_dynamic_custom_properties(),
-						get_dark_mode_custom_properties(),
-						get_position_styles( '', true ),
-						get_animation_styles( '', true ),
-					]
-				),
-			),
+			'body'     => get_inline_styles( '', true ),
 			'headers'  => new Requests_Utility_CaseInsensitiveDictionary(),
 			'response' => [
 				'code'    => 200,

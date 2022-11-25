@@ -146,7 +146,7 @@ jobs:
       - name: "Check adherence to EditorConfig"
         uses: "greut/eclint-action@v0"
         with:
-          eclint_args: "-exclude=vendor/**,patterns/*"
+          eclint_args: "-exclude=vendor/**,patterns/**,assets/**"
 
       - name: "Install dependencies"
         uses: "ramsey/composer-install@v2"
