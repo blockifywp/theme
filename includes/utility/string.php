@@ -11,8 +11,8 @@ use function str_contains;
  *
  * @since 0.9.10
  *
- * @param string   $haystack The string to search.
- * @param string[] $needles  The strings to search for.
+ * @param string $haystack The string to search.
+ * @param mixed  ...$needles  The strings to search for.
  *
  * @return bool
  */

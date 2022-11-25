@@ -170,7 +170,7 @@ add_filter( 'pre_http_request', NS . 'generate_dynamic_styles', 10, 3 );
  * @return array|bool
  */
 function generate_dynamic_styles( $response, array $parsed_args, string $url ) {
-	if ( 'https://blockify-dynamic-styles' === $url ) {
+	if ( $url === 'https://blockify-dynamic-styles' ) {
 		$response = [
 			'body'     => get_inline_styles( '', true ),
 			'headers'  => new Requests_Utility_CaseInsensitiveDictionary(),

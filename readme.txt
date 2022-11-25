@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.22
+Stable tag: 0.9.23
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,11 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.23 - 25 November 2022 =
+
+* Add: Header, footer and template admin links
+* Fix: Editor stylesheet loading
 
 = 0.9.22 - 24 November 2022 =
 
