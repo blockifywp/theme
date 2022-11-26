@@ -222,6 +222,7 @@ function register_block_supports( array $config = [] ): array {
 					'color' => true,
 				],
 			],
+			'blockifyPosition'     => true,
 		],
 		'core/list-item'           => [
 			'color'                => [

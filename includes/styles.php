@@ -101,6 +101,7 @@ function get_dynamic_custom_properties(): string {
 	$bodyBackground = $global_styles['color']['background'] ?? null;
 	$body_color     = $global_styles['color']['text'] ?? null;
 	$box_shadow     = $custom['boxShadow'] ?? [];
+	$list_gap       = $global_styles['blocks']['core/list']['spacing']['blockGap'] ?? null;
 
 	// Button.
 	$button_block         = $global_styles['blocks']['core/button'] ?? [];
@@ -150,6 +151,10 @@ function get_dynamic_custom_properties(): string {
 			'--wp--custom--button--line-height'    => $button_line_height,
 		]
 	);
+
+	if ( $list_gap ) {
+		$all['--wp--custom--list--gap'] = $list_gap;
+	}
 
 	if ( $box_shadow ) {
 		if ( is_array( $box_shadow ) ) {

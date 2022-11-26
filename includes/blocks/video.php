@@ -24,29 +24,40 @@ function theme_supports(): void {
 	add_theme_support( 'responsive-embeds' );
 }
 
-add_filter( 'render_block_core/video', NS . 'render_video_block', 10, 2 );
+add_filter( 'render_block_core/video', NS . 'render_video_block', 11, 2 );
 /**
  * Modifies front end HTML output of block.
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
 function render_video_block( string $html, array $block ): string {
 
-	$html = str_replace(
-		[
-			'style="background:',
-			'style="background-color:',
-		],
-		[
-			'style="--wp--custom--video--background:',
-		],
-		$html
-	);
+
+	$dom = dom( $html );
+
+	$figure = get_dom_element( 'figure', $dom );
+
+	if ( ! $figure ) {
+		return $html;
+	}
+
+	$styles     = css_string_to_array( $figure->getAttribute( 'style' ) );
+	$background = $styles['background'] ?? $styles['background-color'] ?? '';
+
+	if ( $background ) {
+		$styles['--wp--custom--video--background'] = $background;
+
+		unset( $styles['background'], $styles['background-color'] );
+	}
+
+	$figure->setAttribute( 'style', css_array_to_string( $styles ) );
+
+	$html = $dom->saveHTML();
 
 	add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
 

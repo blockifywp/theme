@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
+use function array_unshift;
 use function explode;
 use function in_array;
 use function method_exists;
@@ -36,7 +37,7 @@ function render_list_block( string $html, array $block ): string {
 	$styles = css_string_to_array( $ul->getAttribute( 'style' ) );
 
 	if ( $block_gap === '0' || $block_gap ) {
-		$styles['--wp--style--block-gap'] = format_custom_property( $block_gap );
+		$styles['gap'] = format_custom_property( $block_gap );
 	}
 
 	if ( $justify_content ) {
@@ -48,7 +49,12 @@ function render_list_block( string $html, array $block ): string {
 	$ul->setAttribute( 'style', css_array_to_string( $styles ) );
 
 	$classes = explode( ' ', $ul->getAttribute( 'class' ) );
-	$html    = $dom->saveHTML();
+
+	array_unshift( $classes, 'wp-block-list' );
+
+	$ul->setAttribute( 'class', implode( ' ', $classes ) );
+
+	$html = $dom->saveHTML();
 
 	if ( in_array( 'is-style-accordion', $classes, true ) ) {
 		$html = render_list_block_accordion( $html, $block );
