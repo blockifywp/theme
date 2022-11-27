@@ -15,8 +15,8 @@ add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
  *
  * @since 0.0.20
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -52,8 +52,8 @@ function render_block_layout( string $html, array $block ): string {
  *
  * @since 1.0.0
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -75,7 +75,7 @@ function render_marquee_block_variation( string $html, array $block ): string {
 	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
 
 	if ( $gap || $gap === '0' ) {
-		$styles['--marquee-gap'] = $gap;
+		$styles['--marquee-gap'] = format_custom_property( $gap );
 	}
 
 	$div->setAttribute( 'class', implode( ' ', $classes ) );

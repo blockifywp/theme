@@ -7,7 +7,6 @@ namespace Blockify\Theme;
 use function add_action;
 use function add_filter;
 use function add_theme_support;
-use function str_replace;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
@@ -36,7 +35,6 @@ add_filter( 'render_block_core/video', NS . 'render_video_block', 11, 2 );
  * @return string
  */
 function render_video_block( string $html, array $block ): string {
-
 
 	$dom = dom( $html );
 

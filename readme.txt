@@ -51,11 +51,18 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 == Changelog ==
 
-= 0.9.24 - 26 November 2022 =
+= 0.9.24 - 27 November 2022 =
 
+* Add: Automatic heading IDs
 * Add: Positioning support to List block
 * Add: Block gap support to list block
 * Fix: Video background and margin styles
+* Fix: More font loading improvements
+* Fix: Reverse menu toggle button on mobile
+* Fix: Dark mode custom property strings
+* Fix: Social links colors
+* Fix: Curved text content saving
+* Fix: Marquee block gap
 * Remove: Menu links
 
 = 0.9.23 - 25 November 2022 =
@@ -91,6 +98,7 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 * Remove: Child theme json fix
 * Fix: Placeholder border
 * Fix: Surface before psuedo element pointer events
+* Fix: Marquee block gap custom properties
 
 = 0.9.18 - 21 November 2022 =
 

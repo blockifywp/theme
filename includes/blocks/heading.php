@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function explode;
 use function implode;
+use function sanitize_title_with_dashes;
 
 add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
 /**
@@ -14,8 +15,8 @@ add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -43,6 +44,19 @@ function render_heading_block( string $html, array $block ): string {
 		'style',
 		css_array_to_string( $styles )
 	);
+
+	$id = $heading->getAttribute( 'id' );
+
+	if ( ! $id ) {
+		$heading->setAttribute(
+			'id',
+			sanitize_title_with_dashes( $heading->textContent )
+		);
+	}
+
+	if ( ! $heading->getAttribute( 'style' ) ) {
+		$heading->removeAttribute( 'style' );
+	}
 
 	return $dom->saveHTML();
 }

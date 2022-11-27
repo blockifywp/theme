@@ -119,38 +119,27 @@ function get_dynamic_custom_properties(): string {
 	$heading_font_weight = $global_styles['elements']['heading']['typography']['fontWeight'] ?? null;
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
 
-	$system_fonts = get_system_fonts();
+	$all = [
+		'--scrollbar-width'                    => '15px',
+		'--wp--custom--border'                 => "$border_width $border_style $border_color",
+		'--wp--custom--body--background'       => $bodyBackground,
+		'--wp--custom--body--color'            => $body_color,
+		'--wp--custom--heading--font-weight'   => $heading_font_weight,
+		'--wp--custom--heading--font-family'   => $heading_font_family,
 
-	$all = [];
-
-	foreach ( $system_fonts as $font ) {
-		$all[ '--wp--custom--font-stack--' . $font['slug'] ] = $font['fontFamily'];
-	}
-
-	$all = array_merge(
-		$all,
-		[
-			'--scrollbar-width'                    => '15px',
-			'--wp--custom--border'                 => "$border_width $border_style $border_color",
-			'--wp--custom--body--background'       => $bodyBackground,
-			'--wp--custom--body--color'            => $body_color,
-			'--wp--custom--heading--font-weight'   => $heading_font_weight,
-			'--wp--custom--heading--font-family'   => $heading_font_family,
-
-			// Used by .button.
-			'--wp--custom--button--background'     => $button_background,
-			'--wp--custom--button--color'          => $button_text,
-			'--wp--custom--button--padding-top'    => $button_padding['top'] ?? null,
-			'--wp--custom--button--padding-right'  => $button_padding['right'] ?? null,
-			'--wp--custom--button--padding-bottom' => $button_padding['bottom'] ?? null,
-			'--wp--custom--button--padding-left'   => $button_padding['left'] ?? null,
-			'--wp--custom--button--border-radius'  => $button_border_radius,
-			'--wp--custom--button--border-width'   => $button_border_width,
-			'--wp--custom--button--font-size'      => $button_font_size,
-			'--wp--custom--button--font-weight'    => $button_font_weight,
-			'--wp--custom--button--line-height'    => $button_line_height,
-		]
-	);
+		// Used by .button.
+		'--wp--custom--button--background'     => $button_background,
+		'--wp--custom--button--color'          => $button_text,
+		'--wp--custom--button--padding-top'    => $button_padding['top'] ?? null,
+		'--wp--custom--button--padding-right'  => $button_padding['right'] ?? null,
+		'--wp--custom--button--padding-bottom' => $button_padding['bottom'] ?? null,
+		'--wp--custom--button--padding-left'   => $button_padding['left'] ?? null,
+		'--wp--custom--button--border-radius'  => $button_border_radius,
+		'--wp--custom--button--border-width'   => $button_border_width,
+		'--wp--custom--button--font-size'      => $button_font_size,
+		'--wp--custom--button--font-weight'    => $button_font_weight,
+		'--wp--custom--button--line-height'    => $button_line_height,
+	];
 
 	if ( $list_gap ) {
 		$all['--wp--custom--list--gap'] = $list_gap;

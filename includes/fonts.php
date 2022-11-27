@@ -7,9 +7,11 @@ namespace Blockify\Theme;
 use function add_filter;
 use function apply_filters;
 use function array_keys;
+use function array_merge;
 use function file_exists;
 use function get_template_directory;
 use function in_array;
+use function is_child_theme;
 use function str_contains;
 use function wp_json_file_decode;
 use function wp_list_pluck;
@@ -25,17 +27,23 @@ add_filter( 'wp_theme_json_data_theme', NS . 'add_fonts', 11 );
  */
 function add_fonts( $theme_json ) {
 	$data             = $theme_json->get_data();
-	$fonts            = get_all_fonts();
-	$load             = apply_filters( 'blockify_load_all_fonts', true );
-	$child_theme_json = get_stylesheet_directory() . '/theme.json';
-	$child_theme      = file_exists( $child_theme_json ) ? wp_json_file_decode( $child_theme_json, [ 'associative' => true ] ) : [];
+	$all_fonts        = get_all_fonts();
+	$load_all         = apply_filters( 'blockify_load_all_fonts', false );
+	$child_theme_json = is_child_theme() ? get_stylesheet_directory() . '/theme.json' : '';
+	$child_theme_json = file_exists( $child_theme_json ) ? wp_json_file_decode( $child_theme_json, [ 'associative' => true ] ) : [];
+	$theme_fonts      = $data['settings']['typography']['fontFamilies']['theme'] ?? null;
 
-	if ( $child_theme['settings']['typography']['fontFamilies'] ?? [] ) {
-		return $theme_json;
+	if ( $child_theme_json['settings']['typography']['fontFamilies'] ?? [] ) {
+		$data['settings']['typography']['fontFamilies']['theme'] = array_merge(
+			get_system_fonts(),
+			$child_theme_json['settings']['typography']['fontFamilies'],
+		);
+
+		return $theme_json->update_with( $data );
 	}
 
-	if ( $load && $fonts && ! ( $data['settings']['typography']['fontFamilies']['theme'] ?? null ) ) {
-		$data['settings']['typography']['fontFamilies']['theme'] = $fonts;
+	if ( $load_all || ! $theme_fonts ) {
+		$data['settings']['typography']['fontFamilies']['theme'] = $all_fonts;
 	}
 
 	$theme_json->update_with( $data );
@@ -101,7 +109,7 @@ function get_selected_fonts( array $styles ): array {
 		}
 
 		$selected_fonts[] = [
-			'fontFamily' => "$name,var(--wp--custom--font-stack--sans-serif)",
+			'fontFamily' => "$name,var(--wp--preset--font-family--sans-serif)",
 			'name'       => $name,
 			'slug'       => $slug,
 			'fontFace'   => [

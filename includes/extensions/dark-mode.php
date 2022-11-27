@@ -26,10 +26,16 @@ function get_dark_mode_custom_properties(): string {
 	}
 
 	foreach ( $dark_mode_colors as $slug => $color ) {
+
+		$slug = strtolower( preg_replace( '/(?<!^)[A-Z]/', '-$0', $slug ) );
+
 		$styles[ '--wp--preset--color--' . $slug ] = "var(--wp--preset--color--custom-dark-mode-$slug,$color)";
 	}
 
 	foreach ( $dark_mode_gradients as $slug => $gradient ) {
+
+		$slug = strtolower( preg_replace( '/(?<!^)[A-Z]/', '-$0', $slug ) );
+
 		$styles[ '--wp--preset--gradient--' . $slug ] = "var(--wp--preset--gradient--custom-dark-mode-$slug,$gradient)";
 	}
 
