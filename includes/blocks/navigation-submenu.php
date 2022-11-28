@@ -11,6 +11,8 @@ add_filter( 'render_block_core/navigation-submenu', NS . 'render_navigation_subm
 /**
  * Modifies front end HTML output of block.
  *
+ * @todo Doesn't work.
+ *
  * @since 0.0.2
  *
  * @param string $html  Block HTML.

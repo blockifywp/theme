@@ -125,6 +125,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyAnimation'      => true,
 			'blockifyBackground'     => true,
 			'blockifyBoxShadow'      => true,
+			'blockifyOnclick'        => true,
 			'blockifyNegativeMargin' => true,
 			'blockifyFilter'         => true,
 			'blockifyTransform'      => true,

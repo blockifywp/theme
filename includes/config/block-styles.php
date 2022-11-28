@@ -36,6 +36,26 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Dark', 'blockify' ),
 			],
 			[
+				'type'  => 'core/column',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
+			[
+				'type'  => 'core/column',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/columns',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
+			[
+				'type'  => 'core/columns',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
 				'type'  => 'core/columns',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),

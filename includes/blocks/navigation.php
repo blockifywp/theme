@@ -15,8 +15,8 @@ add_filter( 'render_block_core/navigation', NS . 'render_navigation_block', 10, 
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -58,5 +58,7 @@ function render_navigation_block( string $html, array $block ): string {
 		$nav->setAttribute( 'style', css_array_to_string( $styles ) );
 	}
 
-	return $dom->saveHTML();
+	$html = $dom->saveHTML();
+
+	return $html;
 }

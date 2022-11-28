@@ -58,7 +58,7 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 	);
 }
 
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles' );
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
 /**
  * Enqueues styles.
  *
@@ -80,8 +80,6 @@ function enqueue_styles(): void {
 	);
 
 	wp_enqueue_style( SLUG );
-
-	array_unshift( wp_styles()->queue, SLUG );
 }
 
 /**
@@ -172,7 +170,7 @@ function get_dynamic_custom_properties(): string {
  *
  * @since 0.0.27
  *
- * @param string $content   Block content.
+ * @param string $content   Page content.
  * @param bool   $is_editor Is editor.
  *
  * @return string
@@ -295,7 +293,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		$dir       = basename( dirname( $stylesheet ) );
 		$condition = $conditions[ $dir ][ basename( $stylesheet, '.css' ) ];
 
-		if ( $condition || $content === '' ) {
+		if ( $condition || ! $content ) {
 			$css .= trim( file_get_contents( $stylesheet ) );
 		}
 	}

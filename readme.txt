@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.24
+Stable tag: 0.9.25
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,21 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.25 - 28 November 2022 =
+
+* Add: Browser block pattern
+* Add: Inline color custom property support
+* Add: Onclick support to group block
+* Add: Dark/light styles to column blocks
+* Update: Patterns
+* Update: Blockify theme settings
+* Fix: Sub menu styling
+* Fix: Remove nav menu ref in patterns
+* Fix: List block spacing
+* Fix: Accordion marker webkit display
+* Fix: Style loading priority (make latest)
+* Remove: Font stack custom properties (using presets)
 
 = 0.9.24 - 27 November 2022 =
 

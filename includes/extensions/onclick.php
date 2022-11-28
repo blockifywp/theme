@@ -26,14 +26,18 @@ function render_block_onclick_attribute( string $content, array $block ): string
 	$on_click = reduce_whitespace( $on_click );
 	$link     = null;
 
-	// Buttons.
+	// Groups and buttons.
 	if ( $on_click && $content ) {
-		$dom    = dom( $content );
-		$button = get_dom_element( 'div', $dom );
-		$link   = get_dom_element( 'a', $button );
+		$dom  = dom( $content );
+		$div  = get_dom_element( 'div', $dom );
+		$link = get_dom_element( 'a', $div );
 
 		if ( $link ) {
 			$link->setAttribute( 'onclick', $on_click );
+		}
+
+		if ( ! $link && $div ) {
+			$div->setAttribute( 'onclick', $on_click );
 		}
 
 		$content = $dom->saveHTML();
