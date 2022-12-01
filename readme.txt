@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.25
+Stable tag: 0.9.26
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,17 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.26 - 1 December 2022 =
+
+* Add: Open on click support for submenus on mobile
+* Add: Basic accordion animation
+* Add: Default button gap
+* Add: Template search pattern
+* Add: More supports to buttons block
+* Add: get_elements_by_class_name() helper function
+* Fix: Outline button border width
+* Fix: Accordion toggle icon overlap issue
 
 = 0.9.25 - 28 November 2022 =
 

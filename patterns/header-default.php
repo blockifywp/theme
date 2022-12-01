@@ -13,15 +13,15 @@
 <!-- /wp:image -->
 
 <!-- wp:group {"style":{"spacing":{"blockGap":"0"},"\u002d\u002dflex-direction":"row-reverse","\u002d\u002dflex-direction-desktop":"row"},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"}} -->
-<div class="wp-block-group"><!-- wp:navigation {"icon":"menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"left":"var:preset|spacing|sm"}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"order":{"mobile":"2"}}} /-->
+<div class="wp-block-group"><!-- wp:navigation {"openSubmenusOnClick":true,"icon":"menu","layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"left":"var:preset|spacing|sm"}},"typography":{"fontSize":"16px","fontStyle":"normal","fontWeight":"500"},"order":{"mobile":"2"}}} /-->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"right","flexWrap":"nowrap"},"style":{"spacing":{"margin":{"left":"var:preset|spacing|sm"}}}} -->
 <div class="wp-block-buttons" style="margin-left:var(--wp--preset--spacing--sm)"><!-- wp:button {"backgroundColor":"transparent","textColor":"foreground","style":{"border":{"radius":"99px"},"spacing":{"padding":{"top":"0px","right":"var:preset|spacing|xs","bottom":"0px","left":"var:preset|spacing|xs"}},"typography":{"fontSize":"16px"}},"onclick":"document.body.classList.toggle('is-style-dark')"} -->
 <div class="wp-block-button has-custom-font-size" style="border-radius:99px;font-size:16px"><a class="wp-block-button__link has-foreground-color has-transparent-background-color has-text-color has-background wp-element-button" style="border-radius:99px;padding-top:0px;padding-right:var(--wp--preset--spacing--xs);padding-bottom:0px;padding-left:var(--wp--preset--spacing--xs)"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-foreground-color">🔆</mark></a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"textColor":"primary"},"className":"is-style-outline is-hide-mobile","fontSize":"small"} -->
-<div class="wp-block-button has-custom-font-size is-style-outline is-hide-mobile has-small-font-size"><a class="wp-block-button__link has-primary-color has-text-color wp-element-button"">Sign Up</a></div>
+<!-- wp:button {"textColor":"primary","className":"is-style-outline is-hide-mobile","fontSize":"small"} -->
+<div class="wp-block-button has-custom-font-size is-style-outline is-hide-mobile has-small-font-size"><a class="wp-block-button__link has-primary-color has-text-color wp-element-button">Sign Up</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

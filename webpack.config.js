@@ -11,6 +11,7 @@ module.exports = env => {
 
 		entry: {
 			editor: './src/editor.tsx',
+			accordion: './src/public/accordion.tsx',
 			animation: './src/public/animation.tsx',
 			counter: './src/public/counter.tsx',
 		},

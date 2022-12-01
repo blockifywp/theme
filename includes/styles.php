@@ -118,6 +118,7 @@ function get_dynamic_custom_properties(): string {
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
 
 	$all = [
+		'--breakpoint'                         => '782px', // Only used by JS.
 		'--scrollbar-width'                    => '15px',
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'       => $bodyBackground,

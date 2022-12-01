@@ -18,7 +18,7 @@ use function wp_register_script;
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );
 /**
- * Register proxy handle for inline scripts.
+ * Register proxy handle for inline frontend scripts.
  *
  * Called in styles.php to share page content string.
  *

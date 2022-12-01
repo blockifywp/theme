@@ -10,7 +10,7 @@ add_filter( 'blockify_editor_data', NS . 'register_block_supports' );
 /**
  * Add default block supports.
  *
- * @todo  : Move to rest endpoint.
+ * @todo  Move to rest settings.
  *
  * @since 0.9.10
  *
@@ -27,12 +27,28 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyBoxShadow' => true,
 		],
 		'core/buttons'             => [
-			'spacing'          => [
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width' => true,
+					'color' => true,
+				],
+			],
+			'color'                => [
+				'text'       => true,
+				'background' => true,
+				'gradients'  => true,
+			],
+			'spacing'              => [
 				'padding'  => true, // Required.
 				'margin'   => true,
 				'blockGap' => true,
 			],
-			'blockifyPosition' => true,
+			'blockifyPosition'     => true,
+			'blockifyBoxShadow'    => true,
 		],
 		'core/button'              => [
 			'__experimentalBorder' => [
@@ -573,6 +589,7 @@ function register_block_supports( array $config = [] ): array {
 			],
 			'blockifyPosition'     => true,
 			'blockifyFilter'       => true,
+			'blockifyTransform'    => true,
 		],
 		'core/tag-cloud'           => [
 			'typography' => [

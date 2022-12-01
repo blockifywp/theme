@@ -137,3 +137,29 @@ function change_tag_name( DOMElement $element, string $name ): DOMElement {
 	return $new_element;
 }
 
+/**
+ * Returns array of dom elements by class name.
+ *
+ * @since 0.9.26
+ *
+ * @param DOMDocument $dom        DOM document.
+ * @param string      $class_name Element class name.
+ * @param string      $tag        Element tag name (optional).
+ *
+ * @return array
+ */
+function get_elements_by_class_name( DOMDocument $dom, string $class_name, string $tag = '*' ): array {
+	$elements = [];
+
+	foreach ( $dom->getElementsByTagName( $tag ) as $element ) {
+		if ( $element->hasAttribute( 'class' ) ) {
+			$classes = explode( ' ', $element->getAttribute( 'class' ) );
+
+			if ( in_array( $class_name, $classes, true ) ) {
+				$elements[] = $element;
+			}
+		}
+	}
+
+	return $elements;
+}

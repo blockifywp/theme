@@ -21,6 +21,11 @@ function register_block_styles( array $config ): array {
 	$config['blockStyles'] = [
 		'register'   => [
 			[
+				'type'  => 'core/buttons',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
+			],
+			[
 				'type'  => 'core/code',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),

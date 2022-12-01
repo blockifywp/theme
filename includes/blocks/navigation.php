@@ -58,6 +58,20 @@ function render_navigation_block( string $html, array $block ): string {
 		$nav->setAttribute( 'style', css_array_to_string( $styles ) );
 	}
 
+	$buttons = get_elements_by_class_name( $dom, 'wp-block-navigation-submenu__toggle' );
+
+	foreach ( $buttons as $button ) {
+
+		$span = $button->nextSibling;
+
+		if ( ! $span || $span->tagName !== 'span' ) {
+			continue;
+		}
+
+		$span->parentNode->removeChild( $span );
+		$button->appendChild( $span );
+	}
+
 	$html = $dom->saveHTML();
 
 	return $html;

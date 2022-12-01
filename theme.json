@@ -402,8 +402,9 @@
       }
     },
     "blocks": {
-      "core/button": {
-        "typography": {
+      "core/buttons": {
+        "spacing": {
+          "blockGap": "var(--wp--preset--spacing--sm)"
         }
       },
       "core/code": {
