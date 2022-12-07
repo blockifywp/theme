@@ -22,8 +22,14 @@ function get_page_content(): string {
 		return '';
 	}
 
+	// Todo: Fix RCP conflict.
+	if ( function_exists( 'rcp_should_show_discounts' ) ) {
+		return '';
+	}
+
 	$content = get_the_content();
 
+	// Todo: Find better check.
 	if ( function_exists( 'is_woocommerce' ) && \is_woocommerce() ) {
 		return do_blocks( $content );
 	}

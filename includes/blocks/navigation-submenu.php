@@ -28,6 +28,7 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 	$padding = $spacing['padding'] ?? [];
 	$margin  = $spacing['margin'] ?? [];
 	$color   = $style['color'] ?? [];
+	$styles  = [];
 
 	if ( isset( $color['background'] ) ) {
 		$styles['--wp--custom--submenu--background'] = $color['background'];
@@ -45,7 +46,7 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 		$styles['--wp--custom--submenu--color'] = 'var(--wp--preset--color--' . $attrs['textColor'] . ')';
 	}
 
-	$styles['--wp--custom--submenu--padding'] = implode(
+	$padding = implode(
 		' ',
 		[
 			$padding['top'] ?? 0,
@@ -55,7 +56,11 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 		]
 	);
 
-	$styles['--wp--custom--submenu--margin'] = implode(
+	if ( $padding !== '0 0 0 0' ) {
+		$styles['--wp--custom--submenu--padding'] = format_custom_property( $padding );
+	}
+
+	$margin = implode(
 		' ',
 		[
 			$margin['top'] ?? 0,
@@ -65,7 +70,15 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 		]
 	);
 
-	$styles['--wp--custom--submenu--gap'] = $spacing['blockGap'] ?? 'var(--wp--style--block-gap)';
+	if ( $margin !== '0 0 0 0' ) {
+		$styles['--wp--custom--submenu--margin'] = format_custom_property( $margin );
+	}
+
+	$block_gap = $spacing['blockGap'] ?? null;
+
+	if ( $block_gap ) {
+		$styles['--wp--custom--submenu--gap'] = format_custom_property( $block_gap );
+	}
 
 	$submenu = get_dom_element( 'ul', $dom );
 

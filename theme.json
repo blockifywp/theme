@@ -477,14 +477,11 @@
       "core/list": {
         "border": {
           "radius": "var(--wp--custom--border--radius)"
-        },
-        "typography": {
-          "lineHeight": "2"
         }
       },
       "core/navigation": {
         "spacing": {
-          "blockGap": "0"
+          "blockGap": "1em"
         }
       },
       "core/page-list": {
