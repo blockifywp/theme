@@ -8,3 +8,7 @@ phpstan.neon.dist export-ignore
 tests/ export-ignore
 tsconfig.json export-ignore
 webpack.config.js export-ignore
+node_modules/ export-ignore
+tests/ export-ignore
+*.lock export-ignore
+

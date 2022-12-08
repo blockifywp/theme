@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "blockify/dark-mode-toggle",
+  "title": "Dark Mode Toggle",
+  "description": "Displays a dark mode toggle button, switch or drop down select.",
+  "textdomain": "blockify",
+  "category": "blockify",
+  "keywords": [
+    "links"
+  ],
+  "attributes": {},
+  "supports": {
+    "color": {
+      "text": true,
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "spacing": {
+      "margin": true
+    },
+    "typography": {
+      "fontSize": true
+    },
+    "__experimentalBorder": {
+      "width": true,
+      "style": true,
+      "color": true,
+      "radius": true,
+      "__experimentalDefaultControls": {
+        "width": true,
+        "color": true
+      }
+    }
+  },
+  "editorScript": "file:index.js",
+  "editorStyle": "file:editor.css",
+  "style": "file:style.css",
+  "viewScript": "file:view.js"
+}
