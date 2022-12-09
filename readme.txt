@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.27
+Stable tag: 0.9.28
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -33,6 +33,10 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details,
 
+TGMPA
+License: GPL-2.0-or-later
+License URI: https://packagist.org/packages/tgmpa/tgm-plugin-activation
+
 Composer
 License: MIT
 License URL: https://github.com/composer/composer/blob/main/LICENSE
@@ -50,6 +54,10 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.28 - 9 December 2022 =
+
+* Update: Switch to framework
 
 = 0.9.27 - 6 December 2022 =
 

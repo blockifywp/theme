@@ -2,12 +2,12 @@
     "packages": [
         {
             "name": "blockify/framework",
-            "version": "dev-main",
-            "version_normalized": "dev-main",
+            "version": "dev-package",
+            "version_normalized": "dev-package",
             "dist": {
                 "type": "path",
                 "url": "../../plugins/blockify",
-                "reference": "f3909ee33778ed593a34317e9cd411dbe90bca85"
+                "reference": "b512ca8feee1942c90e98da75ac1f456b28cfc53"
             },
             "require": {
                 "php": "^7.4 || ^8.0"
