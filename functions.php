@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_action;
+use function defined;
 use function file_exists;
 use function get_option;
 use function tgmpa;
@@ -20,6 +21,10 @@ add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup', 8 );
 function setup(): void {
 	$active_plugins  = get_option( 'active_plugins' ) ?? [];
 	$plugin_basename = 'blockify/blockify.php';
+
+	if ( defined( 'Blockify\Plugin\SLUG' ) ) {
+		return;
+	}
 
 	if ( isset( $active_plugins[ $plugin_basename ] ) ) {
 		return;
