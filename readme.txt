@@ -22,7 +22,7 @@ Lightweight full site editing block theme framework. Blockify provides useful fe
 
 == Copyright ==
 
-Copyright 2022, Blockify.
+Copyright © 2022, Blockify.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,7 +49,7 @@ Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
-All other custom made assets are licensed under GPL-2.0-or-later.
+All other custom made assets and software created by the author are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
 
@@ -57,7 +57,10 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.9.28 - 9 December 2022 =
 
-* Update: Switch to framework
+* Add: Theme framework
+* Add: SVG site logo support
+* Add: TGMPA
+* Add: Blockify plugin support
 
 = 0.9.27 - 6 December 2022 =
 

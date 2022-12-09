@@ -7,7 +7,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../plugins/blockify",
-                "reference": "b512ca8feee1942c90e98da75ac1f456b28cfc53"
+                "reference": "7e3d83583b46934fa8a43c6bb1d04fb53a33eb58"
             },
             "require": {
                 "php": "^7.4 || ^8.0"
