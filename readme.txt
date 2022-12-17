@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.27
+Stable tag: 0.9.30
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ Lightweight full site editing block theme framework. Blockify provides useful fe
 
 == Copyright ==
 
-Copyright 2022, Blockify.
+Copyright © 2022, Blockify.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,6 +32,10 @@ the Free Software Foundation, either version 2 of the License, or
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details,
+
+TGMPA
+License: GPL-2.0-or-later
+License URI: https://packagist.org/packages/tgmpa/tgm-plugin-activation
 
 Composer
 License: MIT
@@ -45,11 +49,26 @@ Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
-All other custom made assets are licensed under GPL-2.0-or-later.
+All other custom made assets and software created by the author are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.30 - 17 December 2022 =
+
+* Update: Install framework
+
+= 0.9.29 - 9 December 2022 =
+
+* Update: Version bump
+
+= 0.9.28 - 9 December 2022 =
+
+* Add: Theme framework
+* Add: SVG site logo support
+* Add: TGMPA
+* Add: Blockify plugin support
 
 = 0.9.27 - 6 December 2022 =
 
@@ -689,3 +708,45 @@ All other custom made assets are licensed under GPL-2.0-or-later.
 
 = 0.0.1 - March 23, 2022 =
 * Initial release
+
+
+
+
+
+
+
+
+
+A  +    0.9.30
+M  +    0.9.30/functions.php
+M  +    0.9.30/languages/blockify.pot
+M  +    0.9.30/readme.txt
+M  +    0.9.30/style.css
+M  +    0.9.30/vendor/blockify/framework/assets/css/block-styles/button-outline.css
+M  +    0.9.30/vendor/blockify/framework/assets/css/blocks/heading.css
+M  +    0.9.30/vendor/blockify/framework/assets/css/elements/button.css
+M  +    0.9.30/vendor/blockify/framework/assets/css/extensions/accordion.css
+M  +    0.9.30/vendor/blockify/framework/assets/css/plugins/ninja-forms.css
+M  +    0.9.30/vendor/blockify/framework/assets/js/editor.asset.php
+M  +    0.9.30/vendor/blockify/framework/assets/js/editor.js
+M  +    0.9.30/vendor/blockify/framework/blockify.php
+M  +    0.9.30/vendor/blockify/framework/includes/blocks/heading.php
+M  +    0.9.30/vendor/blockify/framework/includes/blocks/list.php
+M  +    0.9.30/vendor/blockify/framework/includes/blocks/site-logo.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/accordion.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/animation.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/dark-mode.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/icon.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/position.php
+M  +    0.9.30/vendor/blockify/framework/includes/extensions/svg.php
+M  +    0.9.30/vendor/blockify/framework/includes/styles.php
+M  +    0.9.30/vendor/blockify/framework/includes/utility/color.php
+M  +    0.9.30/vendor/blockify/framework/includes/utility/css.php
+M  +    0.9.30/vendor/blockify/framework/includes/utility/dom.php
+M  +    0.9.30/vendor/blockify/framework/includes/utility/string.php
+M  +    0.9.30/vendor/composer/installed.json
+M  +    0.9.30/vendor/composer/installed.php
+
+
+
+

@@ -301,6 +301,25 @@
             "max": "72px"
           }
         }
+      ],
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter",
+          "name": "Inter",
+          "slug": "inter",
+          "fontFace": [
+            {
+              "fontFamily": "Inter",
+              "fontStyle": "normal",
+              "fontStretch": "normal",
+              "fontDisplay": "swap",
+              "fontWeight": "100 900",
+              "src": [
+                "file:./vendor/blockify/framework/assets/fonts/inter.woff2"
+              ]
+            }
+          ]
+        }
       ]
     }
   },

@@ -4,43 +4,52 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use const DIRECTORY_SEPARATOR;
-use const PHP_VERSION;
 use function add_action;
-use function array_map;
-use function glob;
-use function is_readable;
-use function version_compare;
+use function defined;
+use function file_exists;
+use function get_option;
+use function tgmpa;
 
-const SLUG = 'blockify';
-const NAME = 'Blockify';
-const NS   = __NAMESPACE__ . '\\';
-const DS   = DIRECTORY_SEPARATOR;
-const DIR  = __DIR__ . DS;
-const FILE = __FILE__;
-
-if ( ! version_compare( '7.4.0', PHP_VERSION, '<=' ) ) {
-	return;
-}
-
-add_action( 'after_setup_theme', NS . 'setup', 9 );
+add_action( 'after_setup_theme', __NAMESPACE__ . '\\setup', 8 );
 /**
- * Sets up theme and allows child themes to override.
+ * Setup theme.
  *
- * @since 0.4.0
+ * @since 1.0.0
  *
  * @return void
  */
 function setup(): void {
-	array_map(
-		static fn( string $file ) => is_readable( $file ) ? require_once $file : null,
+	$active_plugins  = get_option( 'active_plugins' ) ?? [];
+	$plugin_basename = 'blockify/blockify.php';
+
+	if ( defined( 'Blockify\Plugin\SLUG' ) ) {
+		return;
+	}
+
+	if ( isset( $active_plugins[ $plugin_basename ] ) ) {
+		return;
+	}
+
+	if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+		return;
+	}
+
+	require_once __DIR__ . '/vendor/autoload.php';
+
+	tgmpa(
 		[
-			...glob( DIR . 'includes/utility/*.php' ),
-			...glob( DIR . 'includes/config/*.php' ),
-			...glob( DIR . 'includes/*.php' ),
-			...glob( DIR . 'includes/blocks/*.php' ),
-			...glob( DIR . 'includes/extensions/*.php' ),
-			...glob( DIR . 'includes/plugins/*.php' ),
+			[
+				'name'     => __( 'Blockify', 'blockify' ),
+				'slug'     => 'blockify',
+				'required' => false,
+			],
+		],
+		[
+			'id'           => 'blockify',
+			'is_automatic' => true,
+			'has_notices'  => true,
+			'parent_slug'  => 'themes.php',
+			'menu'         => 'install-required-plugins',
 		]
 	);
 }
