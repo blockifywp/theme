@@ -19,10 +19,7 @@ add_filter( 'render_block_core/site-logo', NS . 'render_site_logo_block', 10, 2 
  */
 function render_site_logo_block( string $html, array $block ): string {
 	if ( \str_contains( $html, '.svg' ) ) {
-
-		$dom = dom( $html );
-
-
+		$dom  = dom( $html );
 		$div  = get_dom_element( 'div', $dom );
 		$link = get_dom_element( 'a', $div );
 		$img  = get_dom_element( 'img', $link ?? $div );

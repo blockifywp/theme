@@ -146,6 +146,18 @@ function get_dynamic_custom_properties(): string {
 		$all['--wp--custom--list--gap'] = $list_gap;
 	}
 
+	$all = array_merge(
+		$all,
+		[
+			'--wp--custom--box-shadow-inset'  => ' ',
+			'--wp--custom--box-shadow-x'      => '0px',
+			'--wp--custom--box-shadow-y'      => '0px',
+			'--wp--custom--box-shadow-blur'   => '0px',
+			'--wp--custom--box-shadow-spread' => '0px',
+			'--wp--custom--box-shadow-color'  => 'rgba(0,0,0,0)',
+		]
+	);
+
 	if ( $box_shadow ) {
 		if ( is_array( $box_shadow ) ) {
 			$inset      = $box_shadow['inset'] ?? ' ';
@@ -161,6 +173,18 @@ function get_dynamic_custom_properties(): string {
 			$all,
 			[
 				'--wp--custom--box-shadow' => $box_shadow,
+			]
+		);
+	} else {
+		$all = array_merge(
+			$all,
+			[
+				'--wp--custom--box-shadow--inset'  => ' ',
+				'--wp--custom--box-shadow--x'      => '0px',
+				'--wp--custom--box-shadow--y'      => '0px',
+				'--wp--custom--box-shadow--blur'   => '0px',
+				'--wp--custom--box-shadow--spread' => '0px',
+				'--wp--custom--box-shadow--color'  => 'rgba(0,0,0,0)',
 			]
 		);
 	}
@@ -235,6 +259,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'admin-bar'          => is_admin_bar_showing(),
 		'border'             => str_contains( $content, 'border-width:' ),
 		'drop-cap'           => str_contains( $content, 'has-drop-cap' ),
+		'inline-image'       => str_contains( $content, 'wp-image-' ),
 		'placeholder-image'  => str_contains( $content, 'is-placeholder' ),
 		'screen-reader-text' => true,
 		'site-blocks'        => true,

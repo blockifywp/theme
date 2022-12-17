@@ -2,12 +2,18 @@
     "packages": [
         {
             "name": "blockify/framework",
-            "version": "dev-package",
-            "version_normalized": "dev-package",
+            "version": "dev-main",
+            "version_normalized": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blockifywp/plugin.git",
+                "reference": "ff9badc1a588f081d6db8b54e7888f2d3d93107c"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../plugins/blockify",
-                "reference": "7e3d83583b46934fa8a43c6bb1d04fb53a33eb58"
+                "type": "zip",
+                "url": "https://api.github.com/repos/blockifywp/plugin/zipball/ff9badc1a588f081d6db8b54e7888f2d3d93107c",
+                "reference": "ff9badc1a588f081d6db8b54e7888f2d3d93107c",
+                "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0"
@@ -21,6 +27,8 @@
                 "szepeviktor/phpstan-wordpress": "^1.1",
                 "wp-coding-standards/wpcs": "^2.3"
             },
+            "time": "2022-12-17T11:35:57+00:00",
+            "default-branch": true,
             "type": "wordpress-plugin",
             "installation-source": "dist",
             "autoload": {
@@ -28,29 +36,7 @@
                     "blockify.php"
                 ]
             },
-            "scripts": {
-                "install:dev": [
-                    "@composer update"
-                ],
-                "install:prod": [
-                    "@composer update --no-dev"
-                ],
-                "install:cs": [
-                    "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
-                ],
-                "phpcs": [
-                    "phpcs -s"
-                ],
-                "phpcbf": [
-                    "phpcbf"
-                ],
-                "phpstan": [
-                    "phpstan"
-                ],
-                "pest": [
-                    "pest"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -61,9 +47,9 @@
                 }
             ],
             "description": "Blockify Plugin for WordPress",
-            "transport-options": {
-                "symlink": false,
-                "relative": true
+            "support": {
+                "issues": "https://github.com/blockifywp/plugin/issues",
+                "source": "https://github.com/blockifywp/plugin/tree/main"
             },
             "install-path": "../blockify/framework"
         },

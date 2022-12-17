@@ -9,14 +9,14 @@ use function str_contains;
 use function str_replace;
 use function urldecode;
 
-add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 11, 2 );
+add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 9, 2 );
 /**
  * Render SVG block variation.
  *
  * @since 0.9.10
  *
- * @param string $html Block html content.
- * @param array  $block   Block data.
+ * @param string $html  Block html content.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -24,6 +24,10 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$svg_string = $block['attrs']['style']['svgString'] ?? '';
 
 	if ( ! $svg_string ) {
+		return $html;
+	}
+
+	if ( ! str_contains( $html, 'is-style-svg' ) ) {
 		return $html;
 	}
 
@@ -78,8 +82,8 @@ add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
  *
  * @since 0.9.10
  *
- * @param string $html Block html content.
- * @param array  $block   Block data.
+ * @param string $html  Block html content.
+ * @param array  $block Block data.
  *
  * @return string
  */

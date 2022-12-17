@@ -1,0 +1,1 @@
+.wp-block-heading img,.wp-block-paragraph img{border-radius:var(--wp--custom--image---border-radius, var(--wp--custom--border--radius, inherit));max-height:var(--wp--custom--inline-image--max-height, 100%)}

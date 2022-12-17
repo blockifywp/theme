@@ -39,7 +39,7 @@ function setup(): void {
 	tgmpa(
 		[
 			[
-				'name'     => 'Blockify',
+				'name'     => __( 'Blockify', 'blockify' ),
 				'slug'     => 'blockify',
 				'required' => false,
 			],

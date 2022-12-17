@@ -8,8 +8,6 @@ use function _wp_to_kebab_case;
 use function add_filter;
 use function explode;
 use function implode;
-use function sprintf;
-use function str_contains;
 
 add_filter( 'blockify_editor_data', NS . 'register_responsive_settings', 11 );
 /**
@@ -25,99 +23,6 @@ function register_responsive_settings( array $config = [] ): array {
 	$config['positionOptions'] = get_block_extra_options();
 
 	return $config;
-}
-
-/**
- * Conditionally adds CSS for utility classes
- *
- * @since 0.9.19
- *
- * @param string $content   Page Content.
- * @param bool   $is_editor Is editor page.
- *
- * @return string
- */
-function get_position_styles( string $content, bool $is_editor ): string {
-	$options = get_block_extra_options();
-	$all     = '';
-	$mobile  = '';
-	$desktop = '';
-
-	foreach ( $options as $key => $args ) {
-		$property       = _wp_to_kebab_case( $key );
-		$select_options = $args['options'] ?? [];
-
-		foreach ( $select_options as $option ) {
-			if ( ! $option['value'] ) {
-				continue;
-			}
-
-			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}" ) ) {
-				$all .= sprintf(
-					'.has-%1$s-%2$s{%1$s:%2$s !important}',
-					$property,
-					$option['value'] ?? '',
-				);
-			}
-
-			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-mobile" ) ) {
-				$mobile .= sprintf(
-					'.has-%1$s-%2$s-mobile{%1$s:%2$s !important}',
-					$property,
-					$option['value'] ?? '',
-				);
-			}
-
-			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-desktop" ) ) {
-				$desktop .= sprintf(
-					'.has-%1$s-%2$s-desktop{%1$s:%2$s !important}',
-					$property,
-					$option['value'] ?? '',
-				);
-			}
-		}
-
-		// Has custom value.
-		if ( ! $select_options ) {
-
-			if ( $is_editor || str_contains( $content, " has-$property" ) ) {
-				$all .= sprintf(
-					'.has-%1$s{%1$s:var(--%1$s)}',
-					$property
-				);
-			}
-
-			if ( $is_editor || str_contains( $content, "--$property-mobile" ) ) {
-				$mobile .= sprintf(
-					'.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
-					$property
-				);
-			}
-
-			if ( $is_editor || str_contains( $content, "--$property-desktop" ) ) {
-				$desktop .= sprintf(
-					'.has-%1$s{%1$s:var(--%1$s-desktop,var(--%1$s))}',
-					$property
-				);
-			}
-		}
-	}
-
-	$css = '';
-
-	if ( $all ) {
-		$css .= $all;
-	}
-
-	if ( $mobile ) {
-		$css .= sprintf( '@media(max-width:781px){%s}', $mobile );
-	}
-
-	if ( $desktop ) {
-		$css .= sprintf( '@media(min-width:782px){%s}', $desktop );
-	}
-
-	return $css;
 }
 
 add_filter( 'render_block', NS . 'add_position_classes', 10, 2 );

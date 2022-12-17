@@ -4,9 +4,13 @@ declare( strict_types=1 );
 
 namespace Blockify\Plugin;
 
+use function _wp_to_kebab_case;
 use function array_key_last;
 use function explode;
+use function file_exists;
+use function file_get_contents;
 use function is_null;
+use function sprintf;
 use function str_contains;
 use function str_replace;
 
@@ -29,7 +33,7 @@ function css_array_to_string( array $styles, bool $trim = false ): string {
 		}
 
 		$semicolon = $trim && $property === array_key_last( $styles ) ? '' : ';';
-		$css      .= $property . ':' . $value . $semicolon;
+		$css       .= $property . ':' . $value . $semicolon;
 	}
 
 	return $css;
@@ -93,4 +97,150 @@ function format_custom_property( string $custom_property ): string {
 		],
 		$custom_property . ')'
 	);
+}
+
+
+/**
+ * Conditionally adds CSS for utility classes
+ *
+ * @since 0.9.19
+ *
+ * @param string $content   Page Content.
+ * @param bool   $is_editor Is editor page.
+ *
+ * @return string
+ */
+function get_position_styles( string $content, bool $is_editor ): string {
+	$options = get_block_extra_options();
+	$all     = '';
+	$mobile  = '';
+	$desktop = '';
+
+	foreach ( $options as $key => $args ) {
+		$property       = _wp_to_kebab_case( $key );
+		$select_options = $args['options'] ?? [];
+
+		foreach ( $select_options as $option ) {
+			if ( ! $option['value'] ) {
+				continue;
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}" ) ) {
+				$all .= sprintf(
+					'.has-%1$s-%2$s{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-mobile" ) ) {
+				$mobile .= sprintf(
+					'.has-%1$s-%2$s-mobile{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-desktop" ) ) {
+				$desktop .= sprintf(
+					'.has-%1$s-%2$s-desktop{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+		}
+
+		// Has custom value.
+		if ( ! $select_options ) {
+
+			if ( $is_editor || str_contains( $content, " has-$property" ) ) {
+				$all .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s)}',
+					$property
+				);
+			}
+
+			if ( $is_editor || \str_contains( $content, "--$property-mobile" ) ) {
+				$mobile .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
+					$property
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, "--$property-desktop" ) ) {
+				$desktop .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-desktop,var(--%1$s))}',
+					$property
+				);
+			}
+		}
+	}
+
+	$css = '';
+
+	if ( $all ) {
+		$css .= $all;
+	}
+
+	if ( $mobile ) {
+		$css .= sprintf( '@media(max-width:781px){%s}', $mobile );
+	}
+
+	if ( $desktop ) {
+		$css .= sprintf( '@media(min-width:782px){%s}', $desktop );
+	}
+
+	return $css;
+}
+
+/**
+ * Gets animations from stylesheet.
+ *
+ * @since 0.9.18
+ *
+ * @return array
+ */
+function get_animations(): array {
+
+	$file = DIR . 'assets/css/extensions/animation.css';
+
+	if ( ! file_exists( $file ) ) {
+		return [];
+	}
+
+	$parts      = explode( '@keyframes', file_get_contents( $file ) );
+	$animations = [];
+
+	unset( $parts[0] );
+
+	foreach ( $parts as $animation ) {
+		$name = trim( explode( '{', $animation )[0] ?? '' );
+
+		$animations[ $name ] = str_replace( $name, '', $animation );
+	}
+
+	return $animations;
+}
+
+/**
+ * Returns inline styles for animations.
+ *
+ * @since 0.9.19
+ *
+ * @param string $content   Page content.
+ * @param bool   $is_editor Is admin.
+ *
+ * @return string
+ */
+function get_animation_styles( string $content, bool $is_editor ): string {
+	$animations = get_animations();
+	$css        = '';
+
+	foreach ( $animations as $name => $animation ) {
+		if ( $is_editor || str_contains( $content, "--wp--custom--animation--name:{$name}" ) ) {
+			$css .= "@keyframes $name" . trim( $animation );
+		}
+	}
+
+	return $css;
 }

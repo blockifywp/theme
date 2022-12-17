@@ -50,7 +50,11 @@ function render_heading_block( string $html, array $block ): string {
 	if ( ! $id ) {
 		$heading->setAttribute(
 			'id',
-			sanitize_title_with_dashes( $heading->textContent )
+			remove_non_alphanumeric(
+				sanitize_title_with_dashes(
+					$heading->textContent
+				)
+			)
 		);
 	}
 

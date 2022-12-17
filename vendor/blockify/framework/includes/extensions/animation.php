@@ -7,62 +7,8 @@ namespace Blockify\Plugin;
 use function add_filter;
 use function array_unique;
 use function explode;
-use function file_exists;
 use function file_get_contents;
 use function str_contains;
-use function str_replace;
-
-/**
- * Gets animations from stylesheet.
- *
- * @since 0.9.18
- *
- * @return array
- */
-function get_animations(): array {
-
-	$file = DIR . 'assets/css/extensions/animation.css';
-
-	if ( ! file_exists( $file ) ) {
-		return [];
-	}
-
-	$parts      = explode( '@keyframes', file_get_contents( $file ) );
-	$animations = [];
-
-	unset( $parts[0] );
-
-	foreach ( $parts as $animation ) {
-		$name = trim( explode( '{', $animation )[0] ?? '' );
-
-		$animations[ $name ] = str_replace( $name, '', $animation );
-	}
-
-	return $animations;
-}
-
-/**
- * Returns inline styles for animations.
- *
- * @since 0.9.19
- *
- * @param string $content  Page content.
- * @param bool   $is_editor Is admin.
- *
- * @return string
- */
-function get_animation_styles( string $content, bool $is_editor ): string {
-	$animations = get_animations();
-	$css        = '';
-
-	foreach ( $animations as $name => $animation ) {
-		if ( $is_editor || str_contains( $content, "--wp--custom--animation--name:{$name}" ) ) {
-			$css .= "@keyframes $name" . trim( $animation );
-		}
-	}
-
-	return $css;
-}
 
 add_filter( 'blockify_editor_data', NS . 'add_animation_names' );
 /**
