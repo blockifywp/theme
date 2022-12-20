@@ -1,0 +1,4 @@
+b,
+strong {
+	font-weight: var(--wp--custom--strong--font-weight,var(--wp--custom--heading--font-weight, var(--wp--custom--font-weight--bold, bolder)));
+}

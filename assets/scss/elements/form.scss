@@ -1,0 +1,63 @@
+@import "../abstracts/input";
+
+label {
+	display: block;
+	font-size: var(--wp--custom--label--font-size, var(--wp--preset--font-size--18, smaller));
+	font-weight: var(--wp--custom--label--font-weight, var(--wp--custom--font-weight--medium, 500));
+	margin-bottom: var(--wp--custom--label--margin-bottom, 0.5em);
+}
+
+fieldset {
+	margin: var(--wp--style--block-gap, 1em) 0;
+	padding: var(--wp--style--block-gap, 0);
+	border: var(--wp--custom--border, 0);
+	border-radius: var(--wp--custom--border--radius);
+}
+
+legend {
+	width: 100%;
+	margin: 0 0 var(--wp--style--block-gap, 1em);
+	float: left;
+	font-family: var(--wp--custom--heading--font-family);
+	font-weight: var(--wp--custom--heading--font-weight);
+}
+
+input,
+optgroup,
+select,
+textarea {
+
+	@include input;
+}
+
+select,
+textarea,
+input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
+	margin: var(--wp--custom--input--margin, 0 0 var(--wp--style--block-gap, 1em));
+	padding: $padding;
+	font-size: var(--wp--custom--button--font-size);
+	width: var(--wp--custom--input--width, 100%);
+	color: inherit;
+}
+
+// Match .wp-element-button workaround. Line height doesn't work.
+input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
+	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
+}
+
+// Override plugins.
+textarea {
+	min-width: 100%;
+	max-width: 100%;
+}
+
+::placeholder {
+	color: var(--wp--custom--placeholder--color, inherit);
+	opacity: var(--wp--custom--placeholder--opacity, 0.5);
+}
+
+::-webkit-input-placeholder {
+	color: var(--wp--custom--placeholder--color, inherit);
+	opacity: var(--wp--custom--placeholder--opacity, 0.5);
+}
+

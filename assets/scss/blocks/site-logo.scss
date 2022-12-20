@@ -1,0 +1,15 @@
+.custom-logo-link  {
+	display: block;
+
+	svg {
+		max-width: 100%;
+		height: auto;
+		fill: currentColor;
+	}
+}
+
+.is-style-icon {
+	.components-placeholder__fieldset {
+		display: none;
+	}
+}

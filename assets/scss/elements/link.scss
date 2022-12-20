@@ -1,0 +1,7 @@
+a {
+	transition: var(--wp--custom--transition, inherit);
+}
+
+[style*="text-decoration:"] a {
+	text-decoration: inherit;
+}

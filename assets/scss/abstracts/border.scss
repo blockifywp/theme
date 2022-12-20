@@ -1,0 +1,11 @@
+$border-width: var(--wp--custom--border--width, 1px);
+$border-style: var(--wp--custom--border--style, solid);
+$border-color: var(--wp--custom--border--color, transparent);
+$border-radius: var(--wp--custom--border--radius, 0);
+
+@mixin border($border) {
+	border-width: $border-width;
+	border-style: $border-style;
+	border-color: $border-color;
+	border-radius: $border-radius;
+}

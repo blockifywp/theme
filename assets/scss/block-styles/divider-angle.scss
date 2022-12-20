@@ -1,0 +1,6 @@
+@import "../abstracts/divider";
+
+.is-style-angle {
+
+	@include divider(url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M1000 120H0L1000 0v120z"/></svg>') );
+}

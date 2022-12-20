@@ -1,0 +1,39 @@
+.wp-site-blocks {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 1fr;
+	min-height: var(--wp--custom--site-blocks--min-height, 100vh);
+	overflow-x: hidden;
+}
+
+.wp-site-blocks > * + * {
+	margin-top: 0 !important;
+}
+
+.margin-auto {
+	margin: auto !important;
+}
+
+.margin-top-auto {
+	margin-top: auto !important;
+}
+
+.margin-left-auto {
+	margin-left: auto !important;
+}
+
+.margin-right-auto {
+	margin-right: auto !important;
+}
+
+.margin-bottom-auto {
+	margin-bottom: auto !important;
+}
+
+.nowrap {
+	white-space: nowrap !important; // !important for editor.
+}
+
+[style*="border-"] {
+	border-color: var(--wp--custom--border--color);
+}

@@ -1,0 +1,33 @@
+.wp-block-button {
+	transition: var(--wp--custom--transition);
+	line-height: 1;
+	border-style: none;
+
+	&:active,
+	&:hover,
+	&:focus {
+		opacity: var(--wp--custom--button--hover-opacity, .82);
+	}
+
+	&__link {
+		display: inline-flex;
+	}
+
+	&__width-25 {
+		--wp--custom--button--width: 25%;
+	}
+
+	&__width-50 {
+		--wp--custom--button--width: 50%;
+	}
+
+	&__width-75 {
+		--wp--custom--button--width: 75%;
+	}
+
+	&__width-100 {
+		--wp--custom--button--width: 100%;
+	}
+}
+
+

@@ -1,0 +1,22 @@
+.is-style-counter {
+
+	&:before {
+		content: attr(data-prefix);
+	}
+
+	&:after {
+		content: attr(data-suffix);
+	}
+
+	@media (prefers-reduced-motion) {
+
+		&:before {
+			content: '';
+		}
+
+		&:after {
+			content: '';
+		}
+
+	}
+}

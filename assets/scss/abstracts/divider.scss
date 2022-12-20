@@ -1,0 +1,15 @@
+@mixin divider($mask: "") {
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		background: currentColor;
+		width: 100%;
+		height: calc(100% + 1px);
+
+		@if ($mask) {
+			mask: $mask;
+			-webkit-mask: $mask;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+.toggle-switch{
+	position: relative;
+
+	&:before {
+		content:'';
+		display: block;
+		position: absolute;
+		left: 0.2em;
+		transition: var(--wp--custom--transition, left 0.2s ease-in-out);
+		z-index: 1;
+		pointer-events: none;
+		height: 1em;
+		width: 1em;
+		background: currentColor;
+		border-radius: 99px;
+
+		body.is-style-dark & {
+			left: calc(100% - 1.2em);
+		}
+	}
+}

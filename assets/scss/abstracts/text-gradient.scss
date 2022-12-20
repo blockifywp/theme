@@ -1,0 +1,9 @@
+@mixin text-gradient {
+	background: var(--wp--custom--text-gradient,currentColor);
+	-webkit-background-clip: text !important;
+	-webkit-text-fill-color: transparent;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	color: inherit;
+	padding: 0; // Remove core padding for .has-background.
+}

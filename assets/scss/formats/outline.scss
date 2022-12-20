@@ -1,0 +1,8 @@
+.has-text-outline {
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+
+	&:after {
+		content: attr(data-text);
+	}
+}

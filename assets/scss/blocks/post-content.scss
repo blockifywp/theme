@@ -1,0 +1,17 @@
+@import "../abstracts/align-wide";
+@import "../abstracts/align-full";
+
+.wp-block-post-content:not(.is-root-container) {
+
+	> .alignfull {
+		@include alignfull;
+	}
+}
+
+.wp-block-post-content {
+
+	div[style*="max-width: unset"] {
+		width: 100vw;
+		margin-left: calc(50% - 50vw) !important;
+	}
+}

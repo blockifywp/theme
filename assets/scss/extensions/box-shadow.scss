@@ -1,0 +1,22 @@
+$shadow: var(--wp--custom--box-shadow--inset,) var(--wp--custom--box-shadow--x) var(--wp--custom--box-shadow--y) var(--wp--custom--box-shadow--blur) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color);
+
+$shadowHover: var(--wp--custom--box-shadow--hover--inset,var(--wp--custom--box-shadow--inset, )) var(--wp--custom--box-shadow--hover--x,var(--wp--custom--box-shadow--x)) var(--wp--custom--box-shadow--hover--y,var(--wp--custom--box-shadow--y)) var(--wp--custom--box-shadow--hover--blur,var(--wp--custom--box-shadow--blur)) var(--wp--custom--box-shadow--hover--spread,var(--wp--custom--box-shadow--spread)) var(--wp--custom--box-shadow--hover--color,var(--wp--custom--box-shadow--color));
+
+
+.has-box-shadow,
+.has-box-shadow > .wp-block-button__link {
+	box-shadow: #{$shadow} !important;
+	transition: var(--wp--custom--transition);
+
+	&:hover {
+		box-shadow: #{$shadowHover} !important;
+	}
+}
+
+.has-box-shadow.wp-block-button {
+	box-shadow: none !important;
+
+	&:hover {
+		box-shadow: none !important;
+	}
+}

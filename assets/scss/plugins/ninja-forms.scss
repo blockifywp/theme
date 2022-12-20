@@ -1,0 +1,32 @@
+@import "../abstracts/button";
+@import "../abstracts/input";
+
+.nf-form-content button,
+.nf-form-content input[type=button],
+.nf-form-content input[type=submit] {
+
+	@include button;
+}
+
+
+.nf-form-content .list-select-wrap .nf-field-element>div,
+.nf-form-content input:not([type=button]),
+.nf-form-content textarea {
+
+	@include input;
+}
+
+hr.ninja-forms-field {
+	display: block;
+	border: 0;
+	border-bottom: var(--wp--custom--border);
+	margin: 1em 0 2em !important;
+}
+
+.list-wrap ul {
+	padding: 0;
+}
+
+.nf-iframe-overlay iframe {
+	width: 100%;
+}

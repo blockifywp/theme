@@ -10,5 +10,24 @@ tsconfig.json export-ignore
 webpack.config.js export-ignore
 node_modules/ export-ignore
 tests/ export-ignore
+vendor/ export-ignore
+src/ export-ignore
+parts/ export-ignore
+patterns/ export-ignore
+styles/ export-ignore
+templates/ export-ignore
+includes/plugin/ export-ignore
+.wordpress-org/ export-ignore
 *.lock export-ignore
-
+package.json export-ignore
+package-lock.json export-ignore
+wp-content/ export-ignore
+LICENSE export-ignore
+composer.json export-ignore
+readme.txt export-ignore
+languages/ export-ignore
+assets/scss/ export-ignore
+README.md export-ignore
+index.php export-ignore
+screenshot.png export-ignore
+style.css export-ignore

@@ -1,0 +1,23 @@
+.wp-block-quote {
+	width: 100%;
+
+	p:first-of-type {
+		margin-top: 0;
+	}
+
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+
+	cite {
+		display: block;
+		margin-top: calc(var(--wp--style--block-gap) / 2);
+		line-height: inherit;
+		font-size: smaller;
+	}
+}
+
+.is-style-plain {
+	border-left: 0 !important;
+	padding: 0 !important;
+}

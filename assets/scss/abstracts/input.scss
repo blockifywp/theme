@@ -1,0 +1,14 @@
+$padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
+
+@mixin input {
+	font: inherit;
+	transition: var(--wp--custom--transition, inherit);
+	border: var(--wp--custom--border, 0);
+	border-radius: var(--wp--custom--button--border-radius, inherit);
+	background: var(--wp--custom--input--background, transparent);
+	outline: none;
+
+	&:focus {
+		border-color: var(--wp--custom--input-focus--border-color, var(--wp--preset--color--primary, currentColor));
+	}
+}

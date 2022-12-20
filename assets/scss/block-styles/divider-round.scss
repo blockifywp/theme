@@ -1,0 +1,6 @@
+@import "../abstracts/divider";
+
+.is-style-round {
+
+	@include divider(url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0q500 239 1000 0v120H0Z"/></svg>') );
+}

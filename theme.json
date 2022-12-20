@@ -315,7 +315,7 @@
               "fontDisplay": "swap",
               "fontWeight": "100 900",
               "src": [
-                "file:./vendor/blockify/framework/assets/fonts/inter.woff2"
+                "file:./assets/fonts/inter.woff2"
               ]
             }
           ]
@@ -633,8 +633,7 @@
           }
         },
         "typography": {
-          "textDecoration": "none",
-          "fontWeight": "var(--wp--custom--font-weight--semi-bold)"
+          "textDecoration": "none"
         }
       },
       "core/social-links": {

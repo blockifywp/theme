@@ -1,0 +1,7 @@
+.wp-block-button__link {
+
+	.is-style-secondary & {
+		background: var(--wp--custom--button-secondary--background, var(--wp--preset--color--secondary));
+		color: var(--wp--custom--button-secondary--color);
+	}
+}

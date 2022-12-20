@@ -1,0 +1,18 @@
+.wp-block-cover {
+	background-size: cover !important;
+
+	&__background {
+		width: 100% !important;
+		max-width: 100% !important;
+		border-radius: inherit;
+	}
+
+	&__image-background {
+		border-radius: inherit;
+	}
+}
+
+.wp-block-cover__image-background, .wp-block-cover__video-background {
+	width: 100% !important;
+	max-width: 100% !important;
+}

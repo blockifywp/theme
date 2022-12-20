@@ -1,0 +1,16 @@
+@import "../abstracts/text-gradient";
+
+span.has-text-gradient {
+	display: inline-block;
+
+	// Underline brush.
+	position: relative;
+
+	@include text-gradient;
+
+	.wp-element-button & {
+		line-height: normal;
+		margin-top: calc(-2px - var(--wp--custom--border--width));
+		margin-bottom: calc(-2px - var(--wp--custom--border--width));
+	}
+}

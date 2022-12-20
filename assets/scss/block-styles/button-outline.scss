@@ -1,0 +1,44 @@
+.wp-block-button__link {
+
+	.wp-block-button.is-style-outline & {
+		line-height: calc(1em - 4px);
+	}
+
+	.is-style-outline & {
+		border-color: currentColor;
+		background: transparent;
+		color: var(--wp--preset--color--custom-button-outline, var(--wp--custom--button--background, var(--wp--preset--color--primary)));
+
+		&.wp-element-button {
+			padding: var(--wp--custom--button--padding, 0.9em 1.2em);
+		}
+	}
+
+	.is-style-outline &:not([style*=border-width]) {
+		border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
+	}
+
+	// Core override
+	.wp-block-button.is-style-outline &:not(.has-text-color) {
+		color: var(--wp--custom--button-outline--color, inherit) !important;
+	}
+}
+
+// EDD  & WooCommerce.
+.button.is-style-outline {
+	display: inline-flex;
+	line-height: calc(1em - 4px);
+	border-color: currentColor;
+	background: transparent;
+	color: var(--wp--preset--color--custom-button-outline, var(--wp--preset--color--primary));
+
+	&:not([style*=border-width]) {
+		border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
+	}
+
+	&:not([style*=border-color]) {
+		border-color: currentColor;
+	}
+}
+
+

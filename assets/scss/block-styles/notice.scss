@@ -1,0 +1,6 @@
+@import '../abstracts/notice';
+
+.is-style-notice {
+
+	@include notice;
+}

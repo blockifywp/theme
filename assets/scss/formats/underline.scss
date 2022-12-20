@@ -1,0 +1,14 @@
+.has-text-underline {
+	text-decoration-style: var(--wp--custom--underline--style, solid);
+	text-decoration-color: var(--wp--custom--underline--color, currentColor);
+	text-underline-offset: var(--wp--custom--underline--offset, 0.2em);
+	text-decoration-thickness: var(--wp--custom--underline--width);
+}
+
+.is-underline-none {
+	text-decoration: none;
+
+	&:before {
+		display: none;
+	}
+}

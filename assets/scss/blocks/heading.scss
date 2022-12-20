@@ -1,0 +1,11 @@
+@import "../abstracts/text-gradient";
+
+.wp-block-heading {
+	word-break: break-word;
+}
+
+.wp-block-heading[class*="-gradient-background"]:not(.has-text-color),
+.wp-block-heading[style*="-gradient("]:not(.has-text-color) {
+
+	@include text-gradient;
+}

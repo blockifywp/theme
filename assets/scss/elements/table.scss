@@ -1,0 +1,77 @@
+table {
+	width: 100%;
+	border: var(--wp--custom--border);
+	border-radius: var(--wp--custom--border--radius);
+	border-spacing: 0;
+
+	@media (max-width: 768px) {
+		font-size: var(--wp--preset--font-size--16, smaller);
+	}
+}
+
+tr {
+
+	&:nth-of-type(even) {
+		background-color: var(--wp--preset--color--surface);
+	}
+
+	&:first-of-type {
+
+		> td {
+
+			&:first-of-type {
+				border-top-left-radius: var(--wp--custom--border--radius);
+			}
+
+			&:last-of-type {
+				border-top-right-radius: var(--wp--custom--border--radius);
+			}
+		}
+	}
+
+	&:last-of-type {
+
+		> td {
+
+			&:first-of-type {
+				border-bottom-left-radius: var(--wp--custom--border--radius);
+			}
+
+			&:last-of-type {
+				border-bottom-right-radius: var(--wp--custom--border--radius);
+			}
+		}
+	}
+}
+
+th, td {
+	padding: 1em;
+	text-align: left;
+}
+
+th {
+
+	thead & {
+		border-bottom: var(--wp--custom--border);
+
+		&:first-of-type {
+			border-top-left-radius: var(--wp--custom--border--radius);
+		}
+
+		&:last-of-type {
+			border-top-right-radius: var(--wp--custom--border--radius);
+		}
+	}
+
+	tfoot & {
+		border-top: var(--wp--custom--border);
+
+		&:first-of-type {
+			border-bottom-left-radius: var(--wp--custom--border--radius);
+		}
+
+		&:last-of-type {
+			border-bottom-right-radius: var(--wp--custom--border--radius);
+		}
+	}
+}
