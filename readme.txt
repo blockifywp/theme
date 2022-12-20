@@ -45,12 +45,9 @@ WordPress & Social Icons
 License: GPL-2.0-or-later
 License URL: https://github.com/WordPress/WordPress/blob/master/license.txt
 
-Inter
-Source: Google Fonts
+Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
-
-All other custom made assets and software created by the author are licensed under GPL-2.0-or-later.
 
 © Copyright Blockify 2022, Blockify.
 
