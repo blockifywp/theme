@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.32
+Stable tag: 0.9.33
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,11 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.33 - 20 December 2022 =
+
+* Add: EDD and WooCommerce includes
+* Fix: Stylesheet escaping
 
 = 0.9.32 - 20 December 2022 =
 

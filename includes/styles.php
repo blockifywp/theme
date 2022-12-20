@@ -32,7 +32,6 @@ use function wp_enqueue_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
 use function wp_register_style;
-use function wp_strip_all_tags;
 
 /**
  * Returns filtered inline styles.
@@ -328,7 +327,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		}
 	}
 
-	return wp_strip_all_tags( $css );
+	return $css;
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'add_block_styles' );
@@ -361,7 +360,10 @@ function add_block_styles(): void {
 		}
 
 		if ( ! is_admin() ) {
-			wp_add_inline_style( $handle, wp_strip_all_tags( file_get_contents( $file ) ) );
+			wp_add_inline_style(
+				$handle,
+				file_get_contents( $file )
+			);
 		}
 	}
 }

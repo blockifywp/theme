@@ -86,6 +86,10 @@ function setup(): void {
 		DIR . 'includes/extensions/placeholder.php',
 		DIR . 'includes/extensions/position.php',
 		DIR . 'includes/extensions/svg.php',
+
+		// Plugins.
+		DIR . 'includes/plugins/edd.php',
+		DIR . 'includes/plugins/woocommerce.php',
 	];
 
 	foreach ( $files as $file ) {

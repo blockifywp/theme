@@ -1,3 +1,6 @@
+@import "../abstracts/align-wide";
+@import "../abstracts/align-full";
+
 .wp-site-blocks {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
@@ -36,4 +39,13 @@
 
 [style*="border-"] {
 	border-color: var(--wp--custom--border--color);
+}
+
+header,
+footer,
+main {
+
+	> .alignfull {
+		@include alignfull;
+	}
 }

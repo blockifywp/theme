@@ -15,8 +15,8 @@ add_filter( 'render_block_core/post-content', NS . 'render_post_content_block', 
  *
  * @since 0.0.1
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -42,11 +42,11 @@ function render_post_content_block( string $html, array $block ): string {
 		}
 
 		foreach ( $margin as $key => $value ) {
-			$styles[] = "margin-$key:$value";
+			$styles[] = "margin-$key:" . format_custom_property( $value );
 		}
 
 		foreach ( $padding as $key => $value ) {
-			$styles[] = "padding-$key:$value";
+			$styles[] = "padding-$key:" . format_custom_property( $value );
 		}
 
 		$div->setAttribute( 'style', implode( ';', $styles ) );
