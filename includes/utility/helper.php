@@ -4,16 +4,13 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function basename;
 use function defined;
-use function dirname;
 use function do_blocks;
 use function function_exists;
 use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
 use function is_admin;
-use function is_woocommerce;
 use function plugin_dir_url;
 use function str_contains;
 use function trailingslashit;
@@ -63,7 +60,7 @@ function get_uri( string $path = '' ): string {
  * @return string
  */
 function get_editor_stylesheet_path(): string {
-	return is_plugin() ? "../../plugins/blockify/vendor/blockify/theme/" : '';
+	return is_plugin() ? '../../plugins/blockify/vendor/blockify/theme/' : '';
 }
 
 /**
@@ -76,7 +73,7 @@ function get_editor_stylesheet_path(): string {
  * @return string
  */
 function get_asset_path(): string {
-	return is_plugin() ? DIR . 'vendor/blockify/theme/' : DIR;
+	return is_plugin_only() ? DIR . 'vendor/blockify/theme/' : DIR;
 }
 
 /**
@@ -105,7 +102,7 @@ function get_page_content( bool $do_blocks = true ): string {
 	}
 
 	// Todo: Find better check.
-	if ( function_exists( 'is_woocommerce' ) && is_woocommerce() ) {
+	if ( function_exists( 'is_woocommerce' ) && \is_woocommerce() ) {
 		return do_blocks( $content );
 	}
 

@@ -6,6 +6,8 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function get_option;
+use function sanitize_text_field;
+use function wp_unslash;
 
 add_filter( 'body_class', NS . 'add_dark_mode_body_class' );
 /**
@@ -18,9 +20,9 @@ add_filter( 'body_class', NS . 'add_dark_mode_body_class' );
  * @return array
  */
 function add_dark_mode_body_class( array $classes ): array {
-	$dark_mode = ( ( $_COOKIE['blockifyDarkMode'] ?? '' ) === 'true' );
+	$cookie = sanitize_text_field( wp_unslash( $_COOKIE['blockifyDarkMode'] ?? '' ) ) === 'true';
 
-	if ( $dark_mode ) {
+	if ( $cookie ) {
 		$classes[] = 'is-style-dark';
 	}
 
@@ -38,8 +40,8 @@ add_filter( 'blockify_inline_js', NS . 'add_dark_mode_inline_js' );
  * @return string
  */
 function add_dark_mode_inline_js( string $js ): string {
+	$cookie  = sanitize_text_field( wp_unslash( $_COOKIE['blockifyDarkMode'] ?? '' ) );
 	$options = get_option( SLUG );
-	$cookie  = $_COOKIE['blockifyDarkMode'] ?? '';
 
 	if ( $cookie === 'false' ) {
 		return $js;

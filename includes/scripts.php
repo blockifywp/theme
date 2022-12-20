@@ -108,7 +108,7 @@ function get_editor_data() {
 	);
 }
 
-// Prevent special characters converting to emojis (arrows, lines, etc.)
+// Prevent special characters converting to emojis (arrows, lines, etc.).
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );

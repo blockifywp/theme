@@ -11,6 +11,8 @@ webpack.config.js export-ignore
 node_modules/ export-ignore
 tests/ export-ignore
 vendor/ export-ignore
+wp/ export-ignore
+wp-content/ export-ignore
 src/ export-ignore
 parts/ export-ignore
 patterns/ export-ignore

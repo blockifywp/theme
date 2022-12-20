@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use WpOrg\Requests\Utility\CaseInsensitiveDictionary;
 use const GLOB_ONLYDIR;
 use function add_action;
 use function add_editor_style;
@@ -26,7 +25,6 @@ use function is_admin_bar_showing;
 use function is_array;
 use function str_contains;
 use function str_replace;
-use function strip_tags;
 use function trim;
 use function wp_add_inline_style;
 use function wp_dequeue_style;
@@ -34,6 +32,7 @@ use function wp_enqueue_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
 use function wp_register_style;
+use function wp_strip_all_tags;
 
 /**
  * Returns filtered inline styles.
@@ -329,7 +328,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		}
 	}
 
-	return strip_tags( $css );
+	return wp_strip_all_tags( $css );
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'add_block_styles' );
@@ -362,7 +361,7 @@ function add_block_styles(): void {
 		}
 
 		if ( ! is_admin() ) {
-			wp_add_inline_style( $handle, strip_tags( file_get_contents( $file ) ) );
+			wp_add_inline_style( $handle, wp_strip_all_tags( file_get_contents( $file ) ) );
 		}
 	}
 }
@@ -480,7 +479,7 @@ add_action( 'admin_init', NS . 'add_editor_stylesheets' );
  */
 function add_editor_stylesheets() {
 	$dirs = glob( DIR . 'assets/css/*', GLOB_ONLYDIR );
-	$path = get_asset_path();
+	$path = get_editor_stylesheet_path();
 
 	foreach ( $dirs as $dir ) {
 
@@ -516,7 +515,7 @@ function generate_dynamic_styles( $response, array $parsed_args, string $url ) {
 	if ( $url === 'https://blockify-dynamic-styles' ) {
 		$response = [
 			'body'     => get_inline_styles( '', true ),
-			'headers'  => new CaseInsensitiveDictionary(),
+			'headers'  => [],
 			'response' => [
 				'code'    => 200,
 				'message' => 'OK',

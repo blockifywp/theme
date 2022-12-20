@@ -27,15 +27,15 @@ use WP_REST_Request;
 function get_icon_sets(): array {
 
 	$options = get_option( SLUG )['iconSets'] ?? [
-			[
-				'label' => 'WordPress',
-				'value' => 'wordpress',
-			],
-			[
-				'label' => 'Social',
-				'value' => 'social',
-			],
-		];
+		[
+			'label' => 'WordPress',
+			'value' => 'wordpress',
+		],
+		[
+			'label' => 'Social',
+			'value' => 'social',
+		],
+	];
 
 	$icon_sets = [];
 

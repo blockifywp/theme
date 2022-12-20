@@ -7,9 +7,9 @@ namespace Blockify\Theme;
 use function add_action;
 use function str_contains;
 use function str_replace;
-use function strip_tags;
 use function wp_add_inline_style;
 use function wp_get_global_settings;
+use function wp_strip_all_tags;
 
 add_action( 'wp_enqueue_scripts', NS . 'add_conic_gradient' );
 /**
@@ -42,5 +42,5 @@ function add_conic_gradient(): void {
 
 	$css = 'body{' . css_array_to_string( $css ) . '}';
 
-	wp_add_inline_style( 'global-styles', strip_tags( $css ) );
+	wp_add_inline_style( 'global-styles', wp_strip_all_tags( $css ) );
 }

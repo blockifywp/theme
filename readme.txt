@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.31
+Stable tag: 0.9.32
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -56,9 +56,14 @@ All other custom made assets and software created by the author are licensed und
 
 == Changelog ==
 
+= 0.9.32 - 20 December 2022 =
+
+* Fix: Missing font files
+* Fix: Editor style paths
+
 = 0.9.31 - 20 December 2022 =
 
-* Add: Escaping for all CSS output (strip_tags)
+* Add: Escaping for CSS output
 * Remove: Framework
 
 = 0.9.30 - 17 December 2022 =

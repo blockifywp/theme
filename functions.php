@@ -8,7 +8,6 @@ use const DIRECTORY_SEPARATOR;
 use function add_action;
 use function function_exists;
 use function is_readable;
-use function tgmpa;
 
 const SLUG = 'blockify';
 const NAME = 'Blockify';
@@ -43,6 +42,7 @@ function setup(): void {
 		DIR . 'includes/config/block-supports.php',
 
 		// Includes.
+		DIR . 'includes/patterns.php',
 		DIR . 'includes/scripts.php',
 		DIR . 'includes/styles.php',
 
@@ -94,17 +94,15 @@ function setup(): void {
 		}
 	}
 
-	if ( ! function_exists( 'tgmpa' ) ) {
-		return;
-	}
-
-	tgmpa(
-		[
+	if ( function_exists( 'tgmpa' ) ) {
+		\tgmpa(
 			[
-				'name'     => __( 'Blockify', 'blockify' ),
-				'slug'     => 'blockify',
-				'required' => false,
-			],
-		]
-	);
+				[
+					'name'     => __( 'Blockify', 'blockify' ),
+					'slug'     => 'blockify',
+					'required' => false,
+				],
+			]
+		);
+	}
 }

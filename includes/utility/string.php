@@ -44,16 +44,15 @@ function reduce_whitespace( string $string ): string {
 	return preg_replace( '/\s+/', ' ', $string );
 }
 
-
 /**
  * Returns part of string between two strings.
  *
  * @since 0.0.2
  *
- * @param string $start
- * @param string $end
- * @param string $string
- * @param bool   $omit
+ * @param string $start  Start string.
+ * @param string $end    End string.
+ * @param string $string String content.
+ * @param bool   $omit   Omit start and end.
  *
  * @return string
  */
@@ -61,11 +60,16 @@ function str_between( string $start, string $end, string $string, bool $omit = f
 	$string = ' ' . $string;
 	$ini    = strpos( $string, $start );
 
-	if ( $ini == 0 ) {
+	if ( $ini === 0 ) {
 		return '';
 	}
 
-	$ini    += strlen( $start );
+	$ini += strlen( $start );
+
+	if ( strlen( $string ) < $ini ) {
+		$ini = 0;
+	}
+
 	$len    = strpos( $string, $end, $ini ) - $ini;
 	$string = $start . substr( $string, $ini, $len ) . $end;
 
@@ -81,7 +85,7 @@ function str_between( string $start, string $end, string $string, bool $omit = f
  *
  * @since 1.0.0
  *
- * @param string $string
+ * @param string $string String to sanitize.
  *
  * @return string
  */

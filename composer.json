@@ -8,7 +8,7 @@
       "email": "info@blockify.com"
     }
   ],
-  "type": "wordpress-plugin",
+  "type": "wordpress-theme",
   "scripts": {
     "install:dev": "@composer update",
     "install:prod": "@composer update --no-dev",
@@ -37,10 +37,5 @@
     "composer/installers": "^1.5 || ^2.0",
     "dingo-d/wp-pest-integration-test-setup": "dev-main",
     "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "dev-master"
-  },
-  "autoload": {
-    "files": [
-      "blockify.php"
-    ]
   }
 }
