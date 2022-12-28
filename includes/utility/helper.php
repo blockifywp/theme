@@ -11,6 +11,7 @@ use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
 use function is_admin;
+use function is_child_theme;
 use function plugin_dir_url;
 use function str_contains;
 use function trailingslashit;
@@ -60,7 +61,15 @@ function get_uri( string $path = '' ): string {
  * @return string
  */
 function get_editor_stylesheet_path(): string {
-	return is_plugin() ? '../../plugins/blockify/vendor/blockify/theme/' : '';
+	if ( is_plugin() ) {
+		return '../../plugins/blockify/vendor/blockify/theme/';
+	}
+
+	if ( is_child_theme() ) {
+		return '../blockify/';
+	}
+
+	return '';
 }
 
 /**

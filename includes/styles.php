@@ -241,6 +241,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 			$content,
 			'<fieldset',
 			'<form',
+			'<input',
 			'nf-form'
 		),
 		'html'       => true,
@@ -484,7 +485,6 @@ function add_editor_stylesheets() {
 	$path = get_editor_stylesheet_path();
 
 	foreach ( $dirs as $dir ) {
-
 		if ( basename( $dir ) === 'abstracts' ) {
 			continue;
 		}

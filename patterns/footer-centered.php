@@ -47,7 +47,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center","orientation":"horizontal"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"right","style":{"spacing":{"margin":{"top":"var:preset|spacing|md"}}},"fontSize":"small"} -->
-<p class="alignright has-text-align-right has-small-font-size alignright" style="margin-top:var(--wp--preset--spacing--md)">Copyright [year] Blockify. All rights reserved. </p>
+<p class="alignright has-text-align-right has-small-font-size alignright" style="margin-top:var(--wp--preset--spacing--md)">Copyright [year] [site_title]. All rights reserved. </p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

@@ -1,22 +1,22 @@
 # Copyright (C) 2022 Blockify
-# This file is distributed under the GNU General Public License v2 or later.
+# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.9.32\n"
+"Project-Id-Version: Blockify 0.9.34\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-20T11:41:10+00:00\n"
+"POT-Creation-Date: 2022-12-28T04:51:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
 
 #. Theme Name of the theme
 #. Author of the theme
-#: functions.php:105
+#: functions.php:49
 msgid "Blockify"
 msgstr ""
 
@@ -34,6 +34,14 @@ msgstr ""
 
 #: includes/blocks/archive-title.php:35
 msgid "Search results"
+msgstr ""
+
+#: includes/blocks/code.php:24
+msgid "Copy"
+msgstr ""
+
+#: includes/blocks/code.php:25
+msgid "Copied"
 msgstr ""
 
 #: includes/blocks/post-title.php:34

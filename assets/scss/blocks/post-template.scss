@@ -3,7 +3,7 @@ $gap: var(--wp--style--block-gap, 1em);
 .wp-block-post-template {
 	display: flex;
 	flex-wrap: wrap;
-	gap: $gap !important;
+	gap: var(--wp--style--block-gap, inherit) !important; // Theme.json doesn't work.
 
 	// For core/post-featured-image block placeholders.
 	&[class*='columns'] {

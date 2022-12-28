@@ -44,6 +44,9 @@
       "width": true
     },
     "custom": {
+      "spacing": {
+        "gap": "var(--wp--style--block-gap)"
+      },
       "border": {
         "width": "1px",
         "style": "solid",
@@ -538,7 +541,7 @@
       },
       "core/post-template": {
         "spacing": {
-          "blockGap": "var(--wp--preset--spacing--sm)"
+          "blockGap": "inherit"
         }
       },
       "core/post-terms": {

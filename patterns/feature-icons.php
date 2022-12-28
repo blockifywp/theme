@@ -6,135 +6,91 @@
  * 
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"}},"typography":{"fontSize":"0.9em"}},"layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"},"blockGap":"var:preset|spacing|lg"},"typography":{"fontSize":"0.9em"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md);font-size:0.9em"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|lg","left":"var:preset|spacing|lg"},"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"},"margin":{"top":"0","bottom":"0"}}}} -->
 <div class="wp-block-columns alignwide" id="features" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md)"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"layout","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M18 5.5H6a.5.5 0 0 0-.5.5v3h13V6a.5.5 0 0 0-.5-.5zm.5 5H10v8h8a.5.5 0 0 0 .5-.5v-7.5zm-10 0h-3V18a.5.5 0 0 0 .5.5h2.5v-8zM6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M18 5.5H6a.5.5 0 0 0-.5.5v3h13V6a.5.5 0 0 0-.5-.5zm.5 5H10v8h8a.5.5 0 0 0 .5-.5v-7.5zm-10 0h-3V18a.5.5 0 0 0 .5.5h2.5v-8zM6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"chart-bar","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M11.25 5h1.5v15h-1.5V5zM6 10h1.5v10H6V10zm12 4h-1.5v6H18v-6z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M11.25 5h1.5v15h-1.5V5zM6 10h1.5v10H6V10zm12 4h-1.5v6H18v-6z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Full Site Editing</h6>
+<h6 class="has-text-align-center">Analytics</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Customize every aspect of your site from within the site editor without needing to write code</p>
+<p class="aligncenter has-text-align-center aligncenter">Simplify your work and gain valuable insights into your business with our advanced analytics tools</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"mobile","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M15 4H9c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h6c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm.5 14c0 .3-.2.5-.5.5H9c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h6c.3 0 .5.2.5.5v12zm-4.5-.5h2V16h-2v1.5z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"settings","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M14.5 13.8c-1.1 0-2.1.7-2.4 1.8H4V17h8.1c.3 1 1.3 1.8 2.4 1.8s2.1-.7 2.4-1.8H20v-1.5h-3.1c-.3-1-1.3-1.7-2.4-1.7zM11.9 7c-.3-1-1.3-1.8-2.4-1.8S7.4 6 7.1 7H4v1.5h3.1c.3 1 1.3 1.8 2.4 1.8s2.1-.7 2.4-1.8H20V7h-8.1z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M14.5 13.8c-1.1 0-2.1.7-2.4 1.8H4V17h8.1c.3 1 1.3 1.8 2.4 1.8s2.1-.7 2.4-1.8H20v-1.5h-3.1c-.3-1-1.3-1.7-2.4-1.7zM11.9 7c-.3-1-1.3-1.8-2.4-1.8S7.4 6 7.1 7H4v1.5h3.1c.3 1 1.3 1.8 2.4 1.8s2.1-.7 2.4-1.8H20V7h-8.1z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Responsive Settings</h6>
+<h6 class="has-text-align-center">Less Code</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Change the layout, size and spacing of blocks depending on the users device width and screen size</p>
+<p class="aligncenter has-text-align-center aligncenter">Customize every aspect of your dashboard without needing to write a single line of code</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"image","iconSize":"2em","iconSvgString":"\u003csvg viewBox=\u00220 0 24 24\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022\u003e\u003cpath d=\u0022M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 4.5h14c.3 0 .5.2.5.5v8.4l-3-2.9c-.3-.3-.8-.3-1 0L11.9 14 9 12c-.3-.2-.6-.2-.8 0l-3.6 2.6V5c-.1-.3.1-.5.4-.5zm14 15H5c-.3 0-.5-.2-.5-.5v-2.4l4.1-3 3 1.9c.3.2.7.2.9-.1L16 12l3.5 3.4V19c0 .3-.2.5-.5.5z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 4.5h14c.3 0 .5.2.5.5v8.4l-3-2.9c-.3-.3-.8-.3-1 0L11.9 14 9 12c-.3-.2-.6-.2-.8 0l-3.6 2.6V5c-.1-.3.1-.5.4-.5zm14 15H5c-.3 0-.5-.2-.5-.5v-2.4l4.1-3 3 1.9c.3.2.7.2.9-.1L16 12l3.5 3.4V19c0 .3-.2.5-.5.5z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"people","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M3.445 16.505a.75.75 0 0 0 1.06.05l5.005-4.55 4.024 3.521 4.716-4.715V14h1.5V8.25H14v1.5h3.19l-3.724 3.723L9.49 9.995l-5.995 5.45a.75.75 0 0 0-.05 1.06z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M3.445 16.505a.75.75 0 0 0 1.06.05l5.005-4.55 4.024 3.521 4.716-4.715V14h1.5V8.25H14v1.5h3.19l-3.724 3.723L9.49 9.995l-5.995 5.45a.75.75 0 0 0-.05 1.06z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">SVG Icons</h6>
+<h6 class="has-text-align-center">Performance</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Choose from a multiple collections of SVG icons that can be placed directly into pages with the core image block</p>
+<p class="aligncenter has-text-align-center aligncenter">Whether you're just starting out or looking to expand, our platform is designed to grow with you</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
-<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"},"blockGap":{"top":"var:preset|spacing|lg","left":"var:preset|spacing|lg"},"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md)"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"block-default","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M19 8h-1V6h-5v2h-2V6H6v2H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm.5 10c0 .3-.2.5-.5.5H5c-.3 0-.5-.2-.5-.5v-8c0-.3.2-.5.5-.5h14c.3 0 .5.2.5.5v8z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M19 8h-1V6h-5v2h-2V6H6v2H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2zm.5 10c0 .3-.2.5-.5.5H5c-.3 0-.5-.2-.5-.5v-8c0-.3.2-.5.5-.5h14c.3 0 .5.2.5.5v8z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<!-- wp:columns {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"},"blockGap":{"top":"var:preset|spacing|lg","left":"var:preset|spacing|lg"},"margin":{"top":"var:preset|spacing|sm","bottom":"0"}}}} -->
+<div class="wp-block-columns alignwide" style="margin-top:var(--wp--preset--spacing--sm);margin-bottom:0;padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md)"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"comment-author-avatar","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill-rule=\u0022evenodd\u0022 d=\u0022M7.25 16.437a6.5 6.5 0 1 1 9.5 0V16A2.75 2.75 0 0 0 14 13.25h-4A2.75 2.75 0 0 0 7.25 16v.437Zm1.5 1.193a6.47 6.47 0 0 0 3.25.87 6.47 6.47 0 0 0 3.25-.87V16c0-.69-.56-1.25-1.25-1.25h-4c-.69 0-1.25.56-1.25 1.25v1.63ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path fill-rule=&quot;evenodd&quot; d=&quot;M7.25 16.437a6.5 6.5 0 1 1 9.5 0V16A2.75 2.75 0 0 0 14 13.25h-4A2.75 2.75 0 0 0 7.25 16v.437Zm1.5 1.193a6.47 6.47 0 0 0 3.25.87 6.47 6.47 0 0 0 3.25-.87V16c0-.69-.56-1.25-1.25-1.25h-4c-.69 0-1.25.56-1.25 1.25v1.63ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Block Extensions</h6>
+<h6 class="has-text-align-center">User Friendly</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Additional supports, extensions and text formats for core blocks, no custom block library required</p>
+<p class="aligncenter has-text-align-center aligncenter">Our platform is designed to be easy to use, so you can focus on what matters most - growing your business</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"typography","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M6.9 7 3 17.8h1.7l1-2.8h4.1l1 2.8h1.7L8.6 7H6.9zm-.7 6.6 1.5-4.3 1.5 4.3h-3zM21.6 17c-.1.1-.2.2-.3.2-.1.1-.2.1-.4.1s-.3-.1-.4-.2c-.1-.1-.1-.3-.1-.6V12c0-.5 0-1-.1-1.4-.1-.4-.3-.7-.5-1-.2-.2-.5-.4-.9-.5-.4 0-.8-.1-1.3-.1s-1 .1-1.4.2c-.4.1-.7.3-1 .4-.2.2-.4.3-.6.5-.1.2-.2.4-.2.7 0 .3.1.5.2.8.2.2.4.3.8.3.3 0 .6-.1.8-.3.2-.2.3-.4.3-.7 0-.3-.1-.5-.2-.7-.2-.2-.4-.3-.6-.4.2-.2.4-.3.7-.4.3-.1.6-.1.8-.1.3 0 .6 0 .8.1.2.1.4.3.5.5.1.2.2.5.2.9v1.1c0 .3-.1.5-.3.6-.2.2-.5.3-.9.4-.3.1-.7.3-1.1.4-.4.1-.8.3-1.1.5-.3.2-.6.4-.8.7-.2.3-.3.7-.3 1.2 0 .6.2 1.1.5 1.4.3.4.9.5 1.6.5.5 0 1-.1 1.4-.3.4-.2.8-.6 1.1-1.1 0 .4.1.7.3 1 .2.3.6.4 1.2.4.4 0 .7-.1.9-.2.2-.1.5-.3.7-.4h-.3zm-3-.9c-.2.4-.5.7-.8.8-.3.2-.6.2-.8.2-.4 0-.6-.1-.9-.3-.2-.2-.3-.6-.3-1.1 0-.5.1-.9.3-1.2s.5-.5.8-.7c.3-.2.7-.3 1-.5.3-.1.6-.3.7-.6v3.4z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M6.9 7 3 17.8h1.7l1-2.8h4.1l1 2.8h1.7L8.6 7H6.9zm-.7 6.6 1.5-4.3 1.5 4.3h-3zM21.6 17c-.1.1-.2.2-.3.2-.1.1-.2.1-.4.1s-.3-.1-.4-.2c-.1-.1-.1-.3-.1-.6V12c0-.5 0-1-.1-1.4-.1-.4-.3-.7-.5-1-.2-.2-.5-.4-.9-.5-.4 0-.8-.1-1.3-.1s-1 .1-1.4.2c-.4.1-.7.3-1 .4-.2.2-.4.3-.6.5-.1.2-.2.4-.2.7 0 .3.1.5.2.8.2.2.4.3.8.3.3 0 .6-.1.8-.3.2-.2.3-.4.3-.7 0-.3-.1-.5-.2-.7-.2-.2-.4-.3-.6-.4.2-.2.4-.3.7-.4.3-.1.6-.1.8-.1.3 0 .6 0 .8.1.2.1.4.3.5.5.1.2.2.5.2.9v1.1c0 .3-.1.5-.3.6-.2.2-.5.3-.9.4-.3.1-.7.3-1.1.4-.4.1-.8.3-1.1.5-.3.2-.6.4-.8.7-.2.3-.3.7-.3 1.2 0 .6.2 1.1.5 1.4.3.4.9.5 1.6.5.5 0 1-.1 1.4-.3.4-.2.8-.6 1.1-1.1 0 .4.1.7.3 1 .2.3.6.4 1.2.4.4 0 .7-.1.9-.2.2-.1.5-.3.7-.4h-.3zm-3-.9c-.2.4-.5.7-.8.8-.3.2-.6.2-.8.2-.4 0-.6-.1-.9-.3-.2-.2-.3-.6-.3-1.1 0-.5.1-.9.3-1.2s.5-.5.8-.7c.3-.2.7-.3 1-.5.3-.1.6-.3.7-.6v3.4z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"shield","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022m12 3.176 6.75 3.068v4.574c0 3.9-2.504 7.59-6.035 8.755a2.283 2.283 0 0 1-1.43 0c-3.53-1.164-6.035-4.856-6.035-8.755V6.244L12 3.176zM6.75 7.21v3.608c0 3.313 2.145 6.388 5.005 7.33a.775.775 0 0 0 .49 0c2.86-.942 5.005-4.017 5.005-7.33V7.21L12 4.824 6.75 7.21z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;m12 3.176 6.75 3.068v4.574c0 3.9-2.504 7.59-6.035 8.755a2.283 2.283 0 0 1-1.43 0c-3.53-1.164-6.035-4.856-6.035-8.755V6.244L12 3.176zM6.75 7.21v3.608c0 3.313 2.145 6.388 5.005 7.33a.775.775 0 0 0 .49 0c2.86-.942 5.005-4.017 5.005-7.33V7.21L12 4.824 6.75 7.21z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Google Fonts</h6>
+<h6 class="has-text-align-center">Secure Payments</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Locally hosted web fonts that are automatically loaded only when selected and saved in the editor</p>
+<p class="aligncenter has-text-align-center aligncenter">Our SaaS platform uses SSL encryption and regular updates to keep your data safe and secure</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"fullscreen","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M4.2 9h1.5V5.8H9V4.2H4.2V9zm14 9.2H15v1.5h4.8V15h-1.5v3.2zM15 4.2v1.5h3.2V9h1.5V4.2H15zM5.8 15H4.2v4.8H9v-1.5H5.8V15z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M4.2 9h1.5V5.8H9V4.2H4.2V9zm14 9.2H15v1.5h4.8V15h-1.5v3.2zM15 4.2v1.5h3.2V9h1.5V4.2H15zM5.8 15H4.2v4.8H9v-1.5H5.8V15z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
+<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"share","iconSize":"2em","iconSvgString":"\u003csvg viewBox=\u00220 0 24 24\u0022 xmlns=\u0022http://www.w3.org/2000/svg\u0022\u003e\u003cpath d=\u0022m9 11.8 6.1-4.5c.1.4.4.7.9.7h2c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1h-2c-.6 0-1 .4-1 1v.4l-6.4 4.8c-.2-.1-.4-.2-.6-.2H6c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h2c.2 0 .4-.1.6-.2l6.4 4.8v.4c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1h-2c-.5 0-.8.3-.9.7L9 12.2v-.4z\u0022/\u003e\u003c/svg\u003e"} -->
+<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;m9 11.8 6.1-4.5c.1.4.4.7.9.7h2c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1h-2c-.6 0-1 .4-1 1v.4l-6.4 4.8c-.2-.1-.4-.2-.6-.2H6c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h2c.2 0 .4-.1.6-.2l6.4 4.8v.4c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1h-2c-.5 0-.8.3-.9.7L9 12.2v-.4z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Absolute Positioning</h6>
+<h6 class="has-text-align-center">Social Media</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Create almost any kind of layout with the easy to use block positioning and layout settings</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column --></div>
-<!-- /wp:columns -->
-
-<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|lg","left":"var:preset|spacing|lg"},"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|md"},"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-columns alignwide" id="features" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--md)"><!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"tip","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M12 15.8c-3.7 0-6.8-3-6.8-6.8s3-6.8 6.8-6.8c3.7 0 6.8 3 6.8 6.8s-3.1 6.8-6.8 6.8zm0-12C9.1 3.8 6.8 6.1 6.8 9s2.4 5.2 5.2 5.2c2.9 0 5.2-2.4 5.2-5.2S14.9 3.8 12 3.8zM8 17.5h8V19H8zm2 3h4V22h-4z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M12 15.8c-3.7 0-6.8-3-6.8-6.8s3-6.8 6.8-6.8c3.7 0 6.8 3 6.8 6.8s-3.1 6.8-6.8 6.8zm0-12C9.1 3.8 6.8 6.1 6.8 9s2.4 5.2 5.2 5.2c2.9 0 5.2-2.4 5.2-5.2S14.9 3.8 12 3.8zM8 17.5h8V19H8zm2 3h4V22h-4z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Shadow Settings</h6>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Easily add custom box shadow styles to any block in just a few clicks with easy to use settings</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"aspect-ratio","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M18.5 5.5h-13c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h13c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2zm.5 11c0 .3-.2.5-.5.5h-13c-.3 0-.5-.2-.5-.5v-9c0-.3.2-.5.5-.5h13c.3 0 .5.2.5.5v9zM6.5 12H8v-2h2V8.5H6.5V12zm9.5 2h-2v1.5h3.5V12H16v2z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M18.5 5.5h-13c-1.1 0-2 .9-2 2v9c0 1.1.9 2 2 2h13c1.1 0 2-.9 2-2v-9c0-1.1-.9-2-2-2zm.5 11c0 .3-.2.5-.5.5h-13c-.3 0-.5-.2-.5-.5v-9c0-.3.2-.5.5-.5h13c.3 0 .5.2.5.5v9zM6.5 12H8v-2h2V8.5H6.5V12zm9.5 2h-2v1.5h3.5V12H16v2z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">Fluid Design</h6>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Flexible typography and spacing scales that automatically adapts and works with most screen sizes</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:column -->
-
-<!-- wp:column -->
-<div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"store","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath fill-rule=\u0022evenodd\u0022 d=\u0022M19.75 11H21V8.667L19.875 4H4.125L3 8.667V11h1.25v8.75h15.5V11zm-1.5 0H5.75v7.25H10V13h4v5.25h4.25V11zm-5.5-5.5h2.067l.486 3.24.028.76H12.75v-4zm-3.567 0h2.067v4H8.669l.028-.76.486-3.24zm7.615 3.1-.464-3.1h2.36l.806 3.345V9.5h-2.668l-.034-.9zM7.666 5.5h-2.36L4.5 8.845V9.5h2.668l.034-.9.464-3.1z\u0022/\u003e\u003c/svg\u003e"} -->
-<figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path fill-rule=&quot;evenodd&quot; d=&quot;M19.75 11H21V8.667L19.875 4H4.125L3 8.667V11h1.25v8.75h15.5V11zm-1.5 0H5.75v7.25H10V13h4v5.25h4.25V11zm-5.5-5.5h2.067l.486 3.24.028.76H12.75v-4zm-3.567 0h2.067v4H8.669l.028-.76.486-3.24zm7.615 3.1-.464-3.1h2.36l.806 3.345V9.5h-2.668l-.034-.9zM7.666 5.5h-2.36L4.5 8.845V9.5h2.668l.034-.9.464-3.1z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
-<!-- /wp:image -->
-
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="has-text-align-center">WooCommerce</h6>
-<!-- /wp:heading -->
-
-<!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
-<p class="aligncenter has-text-align-center aligncenter">Additional support for WooCommerce templates, colors and spacing to ensure consistent styling for your store</p>
+<p class="aligncenter has-text-align-center aligncenter">Easily connect your account to social media platforms and share your content with a wider audience</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>

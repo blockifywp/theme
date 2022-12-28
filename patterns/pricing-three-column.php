@@ -7,13 +7,15 @@
  */
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","bottom":"var:preset|spacing|lg"}}},"className":"is-style-default","layout":{"inherit":true,"type":"constrained"}} -->
-<div class="wp-block-group alignfull is-style-default" id="pricing" style="padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--lg)"><!-- wp:heading {"textAlign":"center"} -->
+<div class="wp-block-group alignfull is-style-default" id="pricing" style="padding-top:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--lg)"><!-- wp:group {"layout":{"type":"constrained","contentSize":"600px"}} -->
+<div class="wp-block-group"><!-- wp:heading {"textAlign":"center"} -->
 <h2 class="has-text-align-center">Simple pricing plans</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
-<p class="aligncenter has-text-align-center aligncenter">50% off all  memberships for a limited time</p>
-<!-- /wp:paragraph -->
+<p class="aligncenter has-text-align-center aligncenter">Choose the right pricing plan for your business, whether you're just starting out or looking to upgrade.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
 
 <!-- wp:columns {"verticalAlignment":"center","align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|md","left":"var:preset|spacing|sm"},"padding":{"top":"var:preset|spacing|sm"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:var(--wp--preset--spacing--sm)"><!-- wp:column {"verticalAlignment":"center","style":{"spacing":{"padding":{"top":"var:preset|spacing|md","right":"var:preset|spacing|md","bottom":"var:preset|spacing|md","left":"var:preset|spacing|md"}}},"className":"is-style-surface","layout":{"contentSize":"240px"}} -->
@@ -22,32 +24,36 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$97.00</s></p>
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$199.00</s></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":6,"fontSize":"x-large"} -->
-<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>47</h6>
+<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>99</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-small-font-size aligncenter">Single active site</p>
+<p class="aligncenter has-text-align-center has-small-font-size aligncenter">Single site license</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
 <ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><!-- wp:list-item -->
-<li>Pro blocks &amp; patterns </li>
+<li>Feature one</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>WooCommerce </li>
+<li>Feature two</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Developer tools</li>
+<li>Feature three</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>White label</li>
+<li>Feature four</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Feature five</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -68,32 +74,36 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$297.00</s></p>
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$399.00</s></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":6,"fontSize":"x-large"} -->
-<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>147</h6>
+<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>199</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-small-font-size aligncenter">Up to 10 active sites</p>
+<p class="aligncenter has-text-align-center has-small-font-size aligncenter">10 site licenses</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
 <ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><!-- wp:list-item -->
-<li>Pro blocks &amp; patterns</li>
+<li>Feature one</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>WooCommerce</li>
+<li>Feature two</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Developer tools</li>
+<li>Feature three</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>White label</li>
+<li>Feature four</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Feature five</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -114,32 +124,36 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"neutral-400","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$497.00</s></p>
+<p class="aligncenter has-text-align-center has-neutral-400-color has-text-color has-small-font-size aligncenter">Save 50% - <s>$699.00</s></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":6,"fontSize":"x-large"} -->
-<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>247</h6>
+<h6 class="has-text-align-center has-x-large-font-size"><sup>$</sup>299</h6>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","fontSize":"small"} -->
-<p class="aligncenter has-text-align-center has-small-font-size aligncenter">Unlimited active sites</p>
+<p class="aligncenter has-text-align-center has-small-font-size aligncenter">Unlimited licenses</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list {"style":{"spacing":{"blockGap":"0.5em","margin":{"top":"1em"}}},"className":"is-style-checklist","fontSize":"18","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"}} -->
 <ul class="is-style-checklist has-18-font-size" style="margin-top:1em"><!-- wp:list-item -->
-<li>Pro blocks &amp; patterns</li>
+<li>Feature one</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>WooCommerce</li>
+<li>Feature two</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Developer tools</li>
+<li>Feature three</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>White label</li>
+<li>Feature four</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Feature five</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

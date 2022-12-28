@@ -28,8 +28,22 @@
   },
   "require": {
     "php": "^7.4 || ^8.0",
-    "tgmpa/tgm-plugin-activation": "dev-master"
+    "tgmpa/tgm-plugin-activation": "*"
   },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "tgm/plugin-activation",
+        "version": "2.6.1",
+        "source": {
+          "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
+          "type": "git",
+          "reference": "master"
+        }
+      }
+    }
+  ],
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
     "php-parallel-lint/php-parallel-lint": "^1.3",

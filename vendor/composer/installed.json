@@ -2,23 +2,29 @@
     "packages": [
         {
             "name": "tgmpa/tgm-plugin-activation",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "dev-develop",
+            "version_normalized": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac"
+                "reference": "2d34264f4fdcfcc60261d490ff2e689f0c33730c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
-                "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
+                "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/2d34264f4fdcfcc60261d490ff2e689f0c33730c",
+                "reference": "2d34264f4fdcfcc60261d490ff2e689f0c33730c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2"
             },
-            "time": "2016-05-19T15:46:51+00:00",
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.6",
+                "phpcompatibility/phpcompatibility-wp": "^2.0",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "time": "2020-01-22T04:31:23+00:00",
+            "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -28,7 +34,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {

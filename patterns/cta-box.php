@@ -13,7 +13,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->
-<p class="aligncenter has-text-align-center aligncenter">Supercharge your business with modern web design and development tools designed for performance and conversion.</p>
+<p class="aligncenter has-text-align-center aligncenter">Click the button below to sign up for our advanced SaaS platform. Get started now and see the benefits for yourself.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->

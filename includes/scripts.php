@@ -12,6 +12,7 @@ use function filemtime;
 use function function_exists;
 use function get_current_screen;
 use function home_url;
+use function remove_action;
 use function trailingslashit;
 use function wp_add_inline_script;
 use function wp_enqueue_script;

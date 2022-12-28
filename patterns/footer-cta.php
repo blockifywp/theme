@@ -14,7 +14,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"spacing":{"margin":{"top":"var:preset|spacing|xs","right":"0","bottom":"0","left":"0"}}}} -->
-<p style="margin-top:var(--wp--preset--spacing--xs);margin-right:0;margin-bottom:0;margin-left:0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<p style="margin-top:var(--wp--preset--spacing--xs);margin-right:0;margin-bottom:0;margin-left:0">Enter your email address to receive weekly updates</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -204,7 +204,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right","orientation":"horizontal"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"right","fontSize":"small"} -->
-<p class="alignright has-text-align-right has-small-font-size alignright">Copyright [year] Blockify. All rights reserved. </p>
+<p class="alignright has-text-align-right has-small-font-size alignright">Copyright [year][site_title]. All rights reserved. </p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"body","iconColorValue":"#3f4c7c","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-logos-only","layout":{"type":"flex"}} -->

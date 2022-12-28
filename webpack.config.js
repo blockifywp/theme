@@ -14,6 +14,7 @@ module.exports = env => {
 			accordion: './src/public/accordion.tsx',
 			animation: './src/public/animation.tsx',
 			counter: './src/public/counter.tsx',
+			clickToCopy: './src/public/click-to-copy.tsx',
 		},
 
 		plugins: [

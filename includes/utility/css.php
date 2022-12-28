@@ -33,7 +33,7 @@ function css_array_to_string( array $styles, bool $trim = false ): string {
 		}
 
 		$semicolon = $trim && $property === array_key_last( $styles ) ? '' : ';';
-		$css       .= $property . ':' . $value . $semicolon;
+		$css      .= $property . ':' . $value . $semicolon;
 	}
 
 	return $css;

@@ -78,9 +78,7 @@ function auto_register_pattern_categories(): void {
 
 add_action( 'init', NS . 'register_child_theme_patterns' );
 /**
- * Registers child theme block patterns.
- *
- * Fixes Gutenberg 14.7.3 issue.
+ * Registers child theme block patterns. Fixes Gutenberg 14.7.3 issue.
  *
  * @since 0.9.32
  *
@@ -88,10 +86,6 @@ add_action( 'init', NS . 'register_child_theme_patterns' );
  */
 function register_child_theme_patterns(): void {
 	$files = glob( get_stylesheet_directory() . '/patterns/*.php' );
-
-	if ( ! $files ) {
-		return;
-	}
 
 	foreach ( $files as $file ) {
 		register_block_pattern_from_file( $file );
@@ -156,9 +150,9 @@ function register_block_pattern_from_file( string $file ): void {
 	$pattern = [
 		'title'         => $headers['title'],
 		'content'       => str_replace(
-			str_between( '<?php', '?>', $content ?? '' ) ?? '',
+			str_between( '<?php', '?>', $content ),
 			'',
-			$content ?? ''
+			$content
 		),
 		'categories'    => [ ...$categories ],
 		'description'   => $headers['description'] ?? '',
@@ -178,4 +172,3 @@ function register_block_pattern_from_file( string $file ): void {
 	// @phpstan-ignore-next-line.
 	register_block_pattern( $headers['slug'], $pattern );
 }
-

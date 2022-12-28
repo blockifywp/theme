@@ -241,6 +241,7 @@ function register_block_supports( array $config = [] ): array {
 				],
 			],
 			'blockifyPosition'     => true,
+			'blockifyShadow'       => true,
 		],
 		'core/list-item'           => [
 			'color'                => [
@@ -392,6 +393,10 @@ function register_block_supports( array $config = [] ): array {
 			'color'             => [
 				'background' => true,
 			],
+			'spacing'           => [
+				'margin'  => true,
+				'padding' => true,
+			],
 			'blockifyBoxShadow' => true,
 		],
 		'core/post-terms'          => [
@@ -410,9 +415,19 @@ function register_block_supports( array $config = [] ): array {
 			],
 		],
 		'core/post-title'          => [
-			'spacing' => [
+			'spacing'              => [
 				'padding' => true,
 				'margin'  => true,
+			],
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width' => true,
+					'color' => true,
+				],
 			],
 		],
 		'core/pullquote'           => [
