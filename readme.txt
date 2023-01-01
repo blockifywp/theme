@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 0.9.34
+Stable tag: 0.9.35
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -31,11 +31,7 @@ the Free Software Foundation, either version 2 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details,
-
-TGMPA
-License: GPL-2.0-or-later
-License URI: https://packagist.org/packages/tgmpa/tgm-plugin-activation
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details
 
 Composer
 License: MIT
@@ -52,6 +48,27 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.35 =
+
+* Add: Dynamic search results title
+* Add: CPT archive search results
+* Add: Badge styles
+* Add: Block gap support to table of contents
+* Add: Position support to query block
+* Add: Default links for empty TOC
+* Add: Default related articles for empty query block
+* Add: all-terms support to post terms block
+* Add: Block gap support to heading block
+* Add: Search results heading string
+* Add: CSS for Ninja Forms error messages
+* Add: Gradient support to post title and query title blocks
+* Update: Remove empty separator span elements from post terms block
+* Update: WooCommerce CSS spacing
+* Remove: Ninja Forms display CSS
+* Remove: Composer and TGMPA (plugin no longer needed)
+* Remove: Click to copy
+* Remove: Unused font files
 
 = 0.9.34 - 20 December 2022 =
 

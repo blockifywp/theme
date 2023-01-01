@@ -1,12 +1,11 @@
-
+$spacing: var(--wp--style--block-gap, 1em);
 
 .cart-collaterals {
-	margin-top: 1em;
+	margin-top: $spacing;
 }
 
-
 .checkout-button {
-	margin-top: 1em;
+	margin-top: $spacing;
 	white-space: nowrap !important;
 }
 
@@ -33,13 +32,13 @@
 
 	a {
 		display: flex;
-		padding: 1em;
+		padding: $spacing;
 		text-decoration: none;
 	}
 }
 
 .woocommerce-breadcrumb {
-	padding: 0 0 1em;
+	padding: 0 0 $spacing;
 }
 
 .woocommerce-placeholder,
@@ -59,10 +58,14 @@
 		flex-direction: column;
 		text-decoration: none;
 	}
+
+	a {
+		max-width: 100%;
+	}
 }
 
 .add_to_cart_button {
-	margin-top: 1em;
+	margin-top: $spacing;
 	text-align: center;
 }
 
@@ -85,7 +88,7 @@
 
 .stars {
 	a {
-		letter-spacing: -1em;
+		letter-spacing: -$spacing;
 		text-decoration: none;
 		overflow: hidden;
 		font-size: 0;
@@ -93,7 +96,7 @@
 		&:before {
 			content: '★';
 			display: inline-flex;
-			width: 1em;
+			width: $spacing;
 			font-size: 1rem;
 			letter-spacing: normal;
 		}
@@ -103,13 +106,13 @@
 @import "../abstracts/notice";
 
 .woocommerce-message {
-	margin-bottom: 1em;
+	margin-bottom: $spacing;
 	@include notice;
 
 
 	.button {
 		position: absolute;
-		right: 1em;
+		right: $spacing;
 		top: 0;
 		bottom: 0;
 		margin: auto;

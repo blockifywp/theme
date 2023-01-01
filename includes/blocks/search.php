@@ -7,7 +7,11 @@ namespace Blockify\Theme;
 use function add_filter;
 use function apply_filters;
 use function explode;
+use function get_post_type;
+use function is_post_type_archive;
 use function str_contains;
+use function str_replace;
+use function trim;
 
 add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
 /**
@@ -15,15 +19,14 @@ add_filter( 'render_block_core/search', NS . 'render_search_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
 function render_search_block( string $html, array $block ): string {
-	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
-	$dom     = dom( $html );
-	$form    = get_dom_element( 'form', $dom );
+	$dom  = dom( $html );
+	$form = get_dom_element( 'form', $dom );
 
 	if ( ! $form ) {
 		return $html;
@@ -35,9 +38,10 @@ function render_search_block( string $html, array $block ): string {
 		return $html;
 	}
 
-	$input = get_dom_element( 'input', $div );
+	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
+	$input   = get_dom_element( 'input', $div );
 
-	if ( ( $block['attrs']['style']['spacing']['padding'] ?? false ) && $input ) {
+	if ( $padding && $input ) {
 		$input->setAttribute(
 			'style',
 			implode(
@@ -80,8 +84,8 @@ function render_search_block( string $html, array $block ): string {
 
 		$wrap->setAttribute(
 			'class',
-			\trim(
-				\str_replace(
+			trim(
+				str_replace(
 					[ 'wp-block-search__button', 'has-icon', 'wp-element-button' ],
 					'',
 					$button->getAttribute( 'class' ) . ' ' . $wrap->getAttribute( 'class' )
@@ -122,6 +126,23 @@ function render_search_block( string $html, array $block ): string {
 		$html = $dom->saveHTML();
 	}
 
+	$post_type = get_post_type();
+
+	if ( $post_type && is_post_type_archive() ) {
+		$dom  = dom( $html );
+		$form = get_dom_element( 'form', $dom );
+
+		if ( $form ) {
+			$post_type_field = $dom->createElement( 'input' );
+			$post_type_field->setAttribute( 'type', 'hidden' );
+			$post_type_field->setAttribute( 'name', 'post_type' );
+			$post_type_field->setAttribute( 'value', $post_type );
+
+			$form->insertBefore( $post_type_field, $form->firstChild );
+
+			$html = $dom->saveHTML();
+		}
+	}
+
 	return $html;
 }
-

@@ -104,6 +104,7 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyTransform'      => true,
 			'blockifyNegativeMargin' => true,
 			'blockifyFilter'         => true,
+			'blockifyOnclick'        => true,
 		],
 		'core/cover'               => [
 			'__experimentalBorder' => [
@@ -162,8 +163,9 @@ function register_block_supports( array $config = [] ): array {
 				'text'       => true, // For SVG currentColor.
 			],
 			'spacing'                => [
-				'margin'  => true,
-				'padding' => true,
+				'margin'   => true,
+				'padding'  => true,
+				'blockGap' => true,
 			],
 			'blockifyNegativeMargin' => true,
 			'blockifyAnimation'      => true,
@@ -398,6 +400,7 @@ function register_block_supports( array $config = [] ): array {
 				'padding' => true,
 			],
 			'blockifyBoxShadow' => true,
+			'blockifyPosition'  => true,
 		],
 		'core/post-terms'          => [
 			'align'     => [
@@ -448,10 +451,11 @@ function register_block_supports( array $config = [] ): array {
 			],
 		],
 		'core/query'               => [
-			'spacing' => [
+			'spacing'          => [
 				'padding'  => true,
 				'blockGap' => true,
 			],
+			'blockifyPosition' => true,
 		],
 		'core/query-pagination'    => [
 			'spacing' => [
@@ -606,6 +610,13 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyPosition'     => true,
 			'blockifyFilter'       => true,
 			'blockifyTransform'    => true,
+		],
+		'core/table-of-contents'   => [
+			'spacing' => [
+				'margin'   => true,
+				'padding'  => true,
+				'blockGap' => true,
+			],
 		],
 		'core/tag-cloud'           => [
 			'typography' => [

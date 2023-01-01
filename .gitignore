@@ -4,14 +4,7 @@ wp-content/
 build/
 src/
 assets/js/blocks/
-vendor/bin
-vendor/tgmpa/tgm-plugin-activation/languages
-vendor/tgmpa/tgm-plugin-activation/plugins
-vendor/tgmpa/tgm-plugin-activation/.*
-vendor/tgmpa/tgm-plugin-activation/*.json
-vendor/tgmpa/tgm-plugin-activation/*.md
-vendor/tgmpa/tgm-plugin-activation/*.xml
-vendor/tgmpa/tgm-plugin-activation/example*
+vendor/
 *.zip
 *.lock
 *cache

@@ -103,7 +103,6 @@ function get_editor_data() {
 			'adminUrl'   => trailingslashit( admin_url() ),
 			'nonce'      => wp_create_nonce( SLUG ),
 			'icon'       => get_icon( 'social', SLUG ),
-			'isPlugin'   => is_plugin(),
 			'siteEditor' => $current_screen && $current_screen->base === 'site-editor',
 		]
 	);

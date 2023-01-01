@@ -6,7 +6,6 @@ namespace Blockify\Theme;
 
 use const DIRECTORY_SEPARATOR;
 use function add_action;
-use function function_exists;
 use function glob;
 use function is_readable;
 
@@ -27,10 +26,9 @@ add_action( 'after_setup_theme', NS . 'setup', 8 );
  */
 function setup(): void {
 	$files = [
-		DIR . '/vendor/autoload.php',
 		...glob( DIR . 'includes/utility/*.php' ),
 		...glob( DIR . 'includes/config/*.php' ),
-		...glob( DIR . 'includes/*.php' ),
+		...glob( DIR . 'includes/general/*.php' ),
 		...glob( DIR . 'includes/blocks/*.php' ),
 		...glob( DIR . 'includes/extensions/*.php' ),
 		...glob( DIR . 'includes/plugins/*.php' ),
@@ -40,17 +38,5 @@ function setup(): void {
 		if ( is_readable( $file ) ) {
 			require_once $file;
 		}
-	}
-
-	if ( function_exists( 'tgmpa' ) ) {
-		\tgmpa(
-			[
-				[
-					'name'     => __( 'Blockify', 'blockify' ),
-					'slug'     => 'blockify',
-					'required' => false,
-				],
-			]
-		);
 	}
 }

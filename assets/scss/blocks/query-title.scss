@@ -1,0 +1,11 @@
+@import "../abstracts/text-gradient";
+
+.wp-block-query-title {
+	word-break: break-word;
+}
+
+.wp-block-query-title[class*="-gradient-background"]:not(.has-text-color),
+.wp-block-query-title[style*="-gradient("]:not(.has-text-color) {
+
+	@include text-gradient;
+}

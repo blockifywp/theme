@@ -35,6 +35,12 @@ function render_heading_block( string $html, array $block ): string {
 
 	$styles = css_string_to_array( $heading->getAttribute( 'style' ) );
 
+	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+
+	if ( $gap ) {
+		$styles['gap'] = format_custom_property( $gap );
+	}
+
 	$heading->setAttribute(
 		'class',
 		implode( ' ', $classes )
@@ -60,6 +66,16 @@ function render_heading_block( string $html, array $block ): string {
 
 	if ( ! $heading->getAttribute( 'style' ) ) {
 		$heading->removeAttribute( 'style' );
+	}
+
+	$level        = $block['attrs']['level'] ?? null;
+	$search_query = get_search_query();
+
+	if ( $level === 1 && $search_query && $heading->textContent === __( 'Search Results', 'blockify' ) ) {
+		$heading->textContent = sprintf(
+			__( 'Search results for: ', 'blockify' ) . '%s',
+			$search_query
+		);
 	}
 
 	return $dom->saveHTML();

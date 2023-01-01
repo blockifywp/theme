@@ -37,8 +37,26 @@
 	white-space: nowrap !important; // !important for editor.
 }
 
+.wrap {
+	white-space: normal;
+	flex-wrap: wrap;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
 [style*="border-"] {
 	border-color: var(--wp--custom--border--color);
+}
+
+// TODO: clean up.
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.align-content-center {
+	align-content: center;
 }
 
 header,

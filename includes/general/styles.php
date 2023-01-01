@@ -22,6 +22,7 @@ use function implode;
 use function is_a;
 use function is_admin;
 use function is_admin_bar_showing;
+use function is_archive;
 use function is_array;
 use function str_contains;
 use function str_replace;
@@ -262,12 +263,13 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'border'             => str_contains( $content, 'border-width:' ),
 		'drop-cap'           => str_contains( $content, 'has-drop-cap' ),
 		'inline-image'       => str_contains( $content, 'wp-image-' ),
-		'placeholder-image'  => str_contains( $content, 'is-placeholder' ),
+		'placeholder-image'  => str_contains( $content, 'is-placeholder' ) || is_archive(),
 		'screen-reader-text' => true,
 		'site-blocks'        => true,
 	];
 
 	$conditions['block-styles'] = [
+		'badge'            => str_contains( $content, 'is-style-badge' ),
 		'button-outline'   => str_contains( $content, 'is-style-outline' ),
 		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
 		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),

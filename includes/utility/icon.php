@@ -25,7 +25,6 @@ use WP_REST_Request;
  * @return array
  */
 function get_icon_sets(): array {
-
 	$options = get_option( SLUG )['iconSets'] ?? [
 		[
 			'label' => 'WordPress',
@@ -40,12 +39,13 @@ function get_icon_sets(): array {
 	$icon_sets = [];
 
 	foreach ( $options as $option ) {
-
 		if ( ! isset( $option['value'] ) ) {
 			continue;
 		}
 
-		$icon_sets[ $option['value'] ] = DIR . 'assets/svg/' . $option['value'];
+		if ( in_array( $option['value'], [ 'wordpress', 'social' ], true ) ) {
+			$icon_sets[ $option['value'] ] = DIR . 'assets/svg/' . $option['value'];
+		}
 	}
 
 	return apply_filters( 'blockify_icon_sets', $icon_sets );

@@ -8,6 +8,7 @@ use function add_filter;
 use function get_option;
 use function get_post;
 use function is_home;
+use function sanitize_title_with_dashes;
 use function str_contains;
 use function str_replace;
 use function wp_strip_all_tags;
@@ -18,8 +19,8 @@ add_filter( 'render_block_core/post-title', NS . 'render_post_title_block', 10, 
  *
  * @since 0.0.1
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -65,6 +66,14 @@ function render_post_title_block( string $html, array $block ): string {
 		$html = $dom->saveHTML();
 	}
 
-	return $html;
+	$dom     = dom( $html );
+	$heading = get_dom_element( '*', $dom );
+
+	$heading->setAttribute(
+		'id',
+		$block['attrs']['anchor'] ?? sanitize_title_with_dashes( $heading->textContent )
+	);
+
+	return $dom->saveHTML();
 }
 

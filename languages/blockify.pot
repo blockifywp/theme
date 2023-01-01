@@ -1,22 +1,21 @@
-# Copyright (C) 2022 Blockify
+# Copyright (C) 2023 Blockify
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 0.9.34\n"
+"Project-Id-Version: Blockify 0.9.35\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-12-28T04:51:56+00:00\n"
+"POT-Creation-Date: 2023-01-01T15:24:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
 
 #. Theme Name of the theme
 #. Author of the theme
-#: functions.php:49
 msgid "Blockify"
 msgstr ""
 
@@ -36,20 +35,33 @@ msgstr ""
 msgid "Search results"
 msgstr ""
 
-#: includes/blocks/code.php:24
-msgid "Copy"
+#: includes/blocks/heading.php:74
+msgid "Search Results"
 msgstr ""
 
-#: includes/blocks/code.php:25
-msgid "Copied"
+#: includes/blocks/heading.php:76
+msgid "Search results for: "
 msgstr ""
 
-#: includes/blocks/post-title.php:34
+#: includes/blocks/post-title.php:35
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/blocks/search.php:72
+#: includes/blocks/search.php:76
 msgid "Search this website"
+msgstr ""
+
+#: includes/blocks/table-of-contents.php:35
+msgid "Table of Contents"
+msgstr ""
+
+#: includes/blocks/table-of-contents.php:36
+#: includes/config/block-extras.php:107
+msgid "Contents"
+msgstr ""
+
+#: includes/blocks/table-of-contents.php:37
+msgid "Table of contents"
 msgstr ""
 
 #: includes/config/block-extras.php:18
@@ -131,10 +143,6 @@ msgstr ""
 
 #: includes/config/block-extras.php:103
 msgid "Inline Grid"
-msgstr ""
-
-#: includes/config/block-extras.php:107
-msgid "Contents"
 msgstr ""
 
 #: includes/config/block-extras.php:114
@@ -221,26 +229,30 @@ msgid "Notice"
 msgstr ""
 
 #: includes/config/block-styles.php:131
-msgid "Angle"
+msgid "Badges"
 msgstr ""
 
 #: includes/config/block-styles.php:136
-msgid "Curve"
+msgid "Angle"
 msgstr ""
 
 #: includes/config/block-styles.php:141
-msgid "Round"
+msgid "Curve"
 msgstr ""
 
 #: includes/config/block-styles.php:146
-msgid "Wave"
+msgid "Round"
 msgstr ""
 
 #: includes/config/block-styles.php:151
+msgid "Wave"
+msgstr ""
+
+#: includes/config/block-styles.php:156
 msgid "Fade"
 msgstr ""
 
-#: includes/config/block-styles.php:177
+#: includes/config/block-styles.php:182
 msgid "Secondary"
 msgstr ""
 

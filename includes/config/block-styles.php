@@ -126,6 +126,11 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Notice', 'blockify' ),
 			],
 			[
+				'type'  => 'core/post-terms',
+				'name'  => 'badges',
+				'label' => __( 'Badges', 'blockify' ),
+			],
+			[
 				'type'  => 'core/spacer',
 				'name'  => 'angle',
 				'label' => __( 'Angle', 'blockify' ),
