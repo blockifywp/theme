@@ -23,6 +23,10 @@
 	&:focus {
 		opacity: var(--wp--custom--button--hover-opacity, .82);
 	}
+
+	.nowrap & {
+		flex-wrap: nowrap;
+	}
 }
 
 // Commonly used class. (wp.org, woocommerce, etc.). !important for EDD.

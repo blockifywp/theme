@@ -1,11 +1,11 @@
 {
   "name": "blockify/theme",
-  "description": "Blockify Plugin for WordPress",
+  "description": "Blockify WordPress Theme",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
       "name": "Blockify",
-      "email": "info@blockify.com"
+      "email": "info@blockifytheme.com"
     }
   ],
   "type": "wordpress-theme",

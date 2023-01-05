@@ -8,6 +8,9 @@
 
 	li {
 		width: 100%;
+		display: inline-flex;
+		align-items: center;
+		flex-wrap: wrap;
 
 		&:last-of-type {
 			margin-bottom: 0;

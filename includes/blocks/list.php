@@ -35,8 +35,7 @@ function render_list_block( string $html, array $block ): string {
 		return $html;
 	}
 
-	$list = $ul ?? $ol;
-
+	$list   = $ul ?? $ol;
 	$styles = css_string_to_array( $list->getAttribute( 'style' ) );
 
 	if ( $block_gap === '0' || $block_gap ) {

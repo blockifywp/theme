@@ -6,7 +6,7 @@
 	grid-template-rows: auto 1fr auto;
 	grid-template-columns: 1fr;
 	min-height: var(--wp--custom--site-blocks--min-height, 100vh);
-	overflow-x: hidden;
+	overflow-x: var(--wp--custom--site-blocks--overflow-x,hidden);
 }
 
 .wp-site-blocks > * + * {

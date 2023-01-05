@@ -96,4 +96,3 @@ function render_animation_attributes( string $html, array $block ): string {
 
 	return $dom->saveHTML();
 }
-

@@ -69,6 +69,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 .wp-block-navigation__responsive-container.is-menu-open {
 	padding: var(--wp--preset--spacing--md);
+	min-height: 100vh;
 }
 
 .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open {

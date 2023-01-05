@@ -2,7 +2,6 @@ node_modules/
 wp/
 wp-content/
 build/
-src/
 assets/js/blocks/
 vendor/
 *.zip

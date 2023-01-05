@@ -1,5 +1,4 @@
 @mixin text-gradient {
-	background: var(--wp--custom--text-gradient,currentColor);
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent;
 	-webkit-box-decoration-break: clone;

@@ -3,3 +3,15 @@
 	text-decoration: inherit;
 	white-space: nowrap !important;
 }
+
+@import "../abstracts/text-gradient";
+
+.wp-block-site-title {
+	word-break: break-word;
+}
+
+.wp-block-site-title[class*="-gradient-background"]:not(.has-text-color),
+.wp-block-site-title[style*="-gradient("]:not(.has-text-color) {
+
+	@include text-gradient;
+}

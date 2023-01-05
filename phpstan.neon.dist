@@ -9,7 +9,6 @@ parameters:
 		- includes/general
 		- includes/blocks
 		- includes/extensions
-		- includes/plugins
 	excludePaths:
 		- includes/blocks/query.php
 	#ignoreErrors:

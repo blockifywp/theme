@@ -49,7 +49,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
 == Changelog ==
 
-= 0.9.35 =
+= 0.9.35 - 5 January 2023 =
 
 * Add: Dynamic search results title
 * Add: CPT archive search results
@@ -61,16 +61,22 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Add: all-terms support to post terms block
 * Add: Block gap support to heading block
 * Add: Search results heading string
-* Add: CSS for Ninja Forms error messages
 * Add: Gradient support to post title and query title blocks
+* Add: .wp-site-blocks overflow custom property
+* Add: Text gradient support to Site Title block
+* Add: 100vh min height to navigation responsive container
+* Fix: Center alignment for checklist icon
 * Update: Remove empty separator span elements from post terms block
-* Update: WooCommerce CSS spacing
+* Remove: Custom fields functionality
+* Remove: Plugin styles
+* Remove: Excerpt length filter
+* Remove: Dark mode filters
 * Remove: Ninja Forms display CSS
 * Remove: Composer and TGMPA (plugin no longer needed)
 * Remove: Click to copy
 * Remove: Unused font files
 
-= 0.9.34 - 20 December 2022 =
+= 0.9.34 - 28 December 2022 =
 
 * Add: Code block improvements
 * Add: Border and box shadow support to List block
@@ -749,3 +755,68 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
 = 0.0.1 - March 23, 2022 =
 * Initial release
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A  +    0.9.35
+M  +    0.9.35/assets/css/block-styles/checklist-circle.css
+M  +    0.9.35/assets/css/blocks/code.css
+M  +    0.9.35/assets/css/blocks/heading.css
+M  +    0.9.35/assets/css/blocks/navigation.css
+M  +    0.9.35/assets/css/blocks/paragraph.css
+M  +    0.9.35/assets/css/blocks/post-title.css
+M  +    0.9.35/assets/css/blocks/query.css
+M  +    0.9.35/assets/css/blocks/site-title.css
+M  +    0.9.35/assets/css/components/site-blocks.css
+M  +    0.9.35/assets/css/elements/button.css
+M  +    0.9.35/assets/css/elements/svg.css
+M  +    0.9.35/assets/css/extensions/icon.css
+M  +    0.9.35/assets/css/formats/gradient.css
+M  +    0.9.35/assets/js/editor.asset.php
+M  +    0.9.35/assets/js/editor.js
+M  +    0.9.35/functions.php
+M  +    0.9.35/includes/blocks/heading.php
+M  +    0.9.35/includes/blocks/list.php
+M  +    0.9.35/includes/blocks/post-excerpt.php
+M  +    0.9.35/includes/blocks/post-terms.php
+M  +    0.9.35/includes/blocks/post-title.php
+M  +    0.9.35/includes/blocks/query.php
+M  +    0.9.35/includes/blocks/search.php
+M  +    0.9.35/includes/config/block-styles.php
+M  +    0.9.35/includes/config/block-supports.php
+M  +    0.9.35/includes/extensions/animation.php
+M  +    0.9.35/includes/extensions/onclick.php
+M  +    0.9.35/includes/utility/icon.php
+M  +    0.9.35/languages/blockify.pot
+M  +    0.9.35/patterns/footer-default.php
+M  +    0.9.35/readme.txt
+M  +    0.9.35/style.css
+M  +    0.9.35/vendor/autoload.php
+M  +    0.9.35/vendor/composer/autoload_classmap.php
+M  +    0.9.35/vendor/composer/autoload_files.php
+M  +    0.9.35/vendor/composer/autoload_namespaces.php
+M  +    0.9.35/vendor/composer/autoload_psr4.php
+M  +    0.9.35/vendor/composer/autoload_real.php
+M  +    0.9.35/vendor/composer/autoload_static.php
+M  +    0.9.35/vendor/composer/installed.json
+M  +    0.9.35/vendor/composer/installed.php
+
+
+
+
+
+
+
+svn add 0.9.35/assets/css/block-styles/badge.css && svn add 0.9.35/assets/css/blocks/query-title.css && svn add 0.9.35/assets/css/blocks/table-of-contents.css && svn add 0.9.35/includes/blocks/table-of-contents.php && svn add 0.9.35/includes/general && svn add 0.9.35/includes/utility/image.php && svn add 0.9.35/vendor/composer/installers
+
