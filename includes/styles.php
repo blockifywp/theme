@@ -17,6 +17,7 @@ use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function filemtime;
+use function get_stylesheet_directory;
 use function glob;
 use function implode;
 use function is_a;
@@ -45,7 +46,7 @@ use function wp_register_style;
  * @return string
  */
 function get_inline_styles( string $content, bool $is_editor ): string {
-	return apply_filters(
+	$css = apply_filters(
 		'blockify_inline_css',
 		implode(
 			'',
@@ -59,6 +60,15 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 		),
 		$content,
 		$is_editor
+	);
+
+	return str_replace(
+		[
+			"\r",
+			"\n",
+		],
+		'',
+		$css
 	);
 }
 
@@ -122,6 +132,7 @@ function get_dynamic_custom_properties(): string {
 	$heading_font_family = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
 
 	$all = [
+		'--scroll'                             => '0',
 		'--breakpoint'                         => '782px', // Only used by JS.
 		'--scrollbar-width'                    => '15px',
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
@@ -151,12 +162,12 @@ function get_dynamic_custom_properties(): string {
 	$all = array_merge(
 		$all,
 		[
-			'--wp--custom--box-shadow-inset'  => ' ',
-			'--wp--custom--box-shadow-x'      => '0px',
-			'--wp--custom--box-shadow-y'      => '0px',
-			'--wp--custom--box-shadow-blur'   => '0px',
-			'--wp--custom--box-shadow-spread' => '0px',
-			'--wp--custom--box-shadow-color'  => 'rgba(0,0,0,0)',
+			'--wp--custom--box-shadow--inset'  => ' ',
+			'--wp--custom--box-shadow--x'      => '0px',
+			'--wp--custom--box-shadow--y'      => '0px',
+			'--wp--custom--box-shadow--blur'   => '0px',
+			'--wp--custom--box-shadow--spread' => '0px',
+			'--wp--custom--box-shadow--color'  => 'rgba(0,0,0,0)',
 		]
 	);
 
@@ -246,7 +257,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 			'nf-form'
 		),
 		'html'       => true,
-		'link'       => str_contains( $content, '<a' ),
+		'anchor'     => str_contains( $content, '<a' ),
 		'list'       => str_contains( $content, '<list' ),
 		'mark'       => str_contains( $content, '<mark' ),
 		'pre'        => str_contains( $content, '<pre' ),
@@ -272,6 +283,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'badge'            => str_contains( $content, 'is-style-badge' ),
 		'button-outline'   => str_contains( $content, 'is-style-outline' ),
 		'button-secondary' => str_contains( $content, 'is-style-secondary' ),
+		'button-ghost'     => str_contains( $content, 'is-style-ghost' ),
 		'checklist-circle' => str_contains( $content, 'is-style-checklist-circle' ),
 		'checklist'        => str_contains( $content, 'is-style-checklist' ),
 		'curved-text'      => str_contains( $content, 'is-style-curved-text' ),
@@ -302,15 +314,17 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	];
 
 	$conditions['extensions'] = [
-		'animation'  => str_contains_any( $content, 'has-animation', 'will-animate' ),
-		'accordion'  => str_contains( $content, 'is-style-accordion' ),
-		'box-shadow' => str_contains( $content, 'has-box-shadow' ),
-		'counter'    => str_contains( $content, 'is-style-counter' ),
-		'dark-mode'  => str_contains( $content, 'toggle-switch' ),
-		'filter'     => str_contains( $content, 'has-filter' ),
-		'icon'       => str_contains( $content, 'is-style-icon' ),
-		'marquee'    => str_contains( $content, 'is-marquee' ),
-		'transform'  => str_contains( $content, 'has-transform' ),
+		'animation'     => str_contains_any( $content, 'has-animation', 'will-animate' ),
+		'animations'    => false,
+		'accordion'     => str_contains( $content, 'is-style-accordion' ),
+		'box-shadow'    => str_contains( $content, 'has-box-shadow' ),
+		'counter'       => str_contains( $content, 'is-style-counter' ),
+		'dark-mode'     => str_contains( $content, 'toggle-switch' ),
+		'filter'        => str_contains( $content, 'has-filter' ),
+		'gradient-mask' => str_contains( $content, '-gradient-background' ),
+		'grid-pattern'  => str_contains( $content, 'has-grid-gradient-' ),
+		'icon'          => str_contains( $content, 'is-style-icon' ),
+		'marquee'       => str_contains( $content, 'is-marquee' ),
 	];
 
 	$conditions['plugins'] = [
@@ -479,4 +493,122 @@ function generate_dynamic_styles( $response, array $parsed_args, string $url ) {
 	}
 
 	return $response;
+}
+
+add_filter( 'blockify_inline_css', NS . 'add_child_theme_style_css' );
+/**
+ * Adds child theme style.css to inline styles.
+ *
+ * @since 0.9.23
+ *
+ * @param string $css CSS.
+ *
+ * @return string
+ */
+function add_child_theme_style_css( string $css ): string {
+	$child = get_stylesheet_directory() . '/style.css';
+
+	if ( file_exists( $child ) ) {
+		$content = file_get_contents( $child );
+		$css    .= str_replace(
+			str_between( '/**', '*/', $content ),
+			'',
+			$content
+		);
+	}
+
+	return $css;
+}
+
+/**
+ * Conditionally adds CSS for utility classes
+ *
+ * @since 0.9.19
+ *
+ * @param string $content   Page Content.
+ * @param bool   $is_editor Is editor page.
+ *
+ * @return string
+ */
+function get_position_styles( string $content, bool $is_editor ): string {
+	$options = get_block_extra_options();
+	$all     = '';
+	$mobile  = '';
+	$desktop = '';
+
+	foreach ( $options as $key => $args ) {
+		$property       = _wp_to_kebab_case( $key );
+		$select_options = $args['options'] ?? [];
+
+		foreach ( $select_options as $option ) {
+			if ( ! $option['value'] ) {
+				continue;
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}" ) ) {
+				$all .= sprintf(
+					'.has-%1$s-%2$s{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-mobile" ) ) {
+				$mobile .= sprintf(
+					'.has-%1$s-%2$s-mobile{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, " has-{$property}-{$option['value']}-desktop" ) ) {
+				$desktop .= sprintf(
+					'.has-%1$s-%2$s-desktop{%1$s:%2$s !important}',
+					$property,
+					$option['value'] ?? '',
+				);
+			}
+		}
+
+		// Has custom value.
+		if ( ! $select_options ) {
+
+			if ( $is_editor || str_contains( $content, " has-$property" ) ) {
+				$all .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s)}',
+					$property
+				);
+			}
+
+			if ( $is_editor || \str_contains( $content, "--$property-mobile" ) ) {
+				$mobile .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
+					$property
+				);
+			}
+
+			if ( $is_editor || str_contains( $content, "--$property-desktop" ) ) {
+				$desktop .= sprintf(
+					'.has-%1$s{%1$s:var(--%1$s-desktop,var(--%1$s))}',
+					$property
+				);
+			}
+		}
+	}
+
+	$css = '';
+
+	if ( $all ) {
+		$css .= $all;
+	}
+
+	if ( $mobile ) {
+		$css .= sprintf( '@media(max-width:781px){%s}', $mobile );
+	}
+
+	if ( $desktop ) {
+		$css .= sprintf( '@media(min-width:782px){%s}', $desktop );
+	}
+
+	return $css;
 }

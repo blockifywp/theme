@@ -1,7 +1,9 @@
 a {
 	transition: var(--wp--custom--transition, inherit);
+	cursor: var(--wp--custom--anchor--cursor, pointer);
 }
 
+// Allow user to remove text decoration.
 [style*="text-decoration:"] a {
 	text-decoration: inherit;
 }

@@ -49,7 +49,7 @@
 	&:after,
 	&:before {
 		content: '';
-		width: var(--wp--custom--accordion-toggle-icon--width,1em);
+		width: var(--wp--custom--accordion-toggle-icon--width, 1em);
 		height: 2px;
 		display: inline-block !important;
 		background: currentColor;

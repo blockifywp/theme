@@ -11,7 +11,7 @@ use WP_REST_Server;
 
 add_action( 'rest_api_init', NS . 'register_icons_rest_route' );
 /**
- * Registers endpoint for icon data.
+ * Registers icon REST endpoint.
  *
  * @since 0.0.1
  *

@@ -95,15 +95,16 @@ function get_editor_data() {
 	return apply_filters(
 		'blockify_editor_data',
 		[
-			'url'        => get_uri(),
-			'siteUrl'    => trailingslashit(
+			'url'           => get_uri(),
+			'siteUrl'       => trailingslashit(
 				home_url()
 			),
-			'ajaxUrl'    => admin_url( 'admin-ajax.php' ),
-			'adminUrl'   => trailingslashit( admin_url() ),
-			'nonce'      => wp_create_nonce( SLUG ),
-			'icon'       => get_icon( 'social', SLUG ),
-			'siteEditor' => $current_screen && $current_screen->base === 'site-editor',
+			'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+			'adminUrl'      => trailingslashit( admin_url() ),
+			'nonce'         => wp_create_nonce( SLUG ),
+			'icon'          => get_icon( 'social', SLUG ),
+			'siteEditor'    => $current_screen && $current_screen->base === 'site-editor',
+			'excerptLength' => apply_filters( 'excerpt_length', 55 ),
 		]
 	);
 }
@@ -124,7 +125,13 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );
 function enqueue_scripts(): void {
 	$content = get_page_content();
 
-	wp_register_script( SLUG, '', [], wp_get_theme()->get( 'version' ), true );
+	wp_register_script(
+		SLUG,
+		'',
+		[],
+		wp_get_theme()->get( 'version' ),
+		true
+	);
 
 	wp_add_inline_script(
 		SLUG,

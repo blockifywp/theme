@@ -1,9 +1,3 @@
-.wp-block-query {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-}
-
 @media (min-width: 600px) {
 	.wp-block-post-template.is-flex-container.is-flex-container.columns-2 > li,
 	.wp-block-query-loop.is-flex-container.is-flex-container.columns-2 > li {

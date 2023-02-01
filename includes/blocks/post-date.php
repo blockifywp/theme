@@ -24,6 +24,10 @@ function render_post_date( string $html, array $block ): string {
 		$dom = dom( $html );
 		$div = get_dom_element( 'div', $dom );
 
+		if ( ! $div ) {
+			return $html;
+		}
+
 		$styles = [
 			'margin-top'    => $margin['top'] ?? null,
 			'margin-right'  => $margin['right'] ?? null,

@@ -1,6 +1,7 @@
 // Overrides.
 html .editor-styles-wrapper {
 	--scrollbar-width: 15px;
+	--wp--custom--html--width: auto;
 
 	.wp-site-blocks {
 		display: flow-root;
@@ -443,16 +444,6 @@ div .wp-block-navigation__responsive-close {
 	overflow: inherit;
 }
 
-.blockify-view-style-variations {
-	width: 100%;
-	padding: 13px 5px 5px 13px;
-
-	svg {
-		order: 1;
-		margin-left: auto;
-	}
-}
-
 .blockify-width-control {
 
 	.components-flex-item {
@@ -521,6 +512,10 @@ div .wp-block-navigation__responsive-close {
 	gap: 4px;
 	margin: 8px 0 !important;
 	padding: 0;
+
+	+ .components-button-group {
+		display: flex;
+	}
 }
 
 .blockify-animate-controls {
@@ -541,7 +536,6 @@ div .wp-block-navigation__responsive-close {
 		}
 	}
 }
-
 
 .is-selected,
 .has-child-selected {
@@ -576,7 +570,6 @@ img[style*="toggle-switch"] {
 .is-layout-constrained > .alignwide {
 	max-width: 100%;
 }
-
 
 .is-style-accordion {
 	list-style: none;
@@ -619,11 +612,6 @@ img[style*="toggle-switch"] {
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 16px 8px;
 }
-
-.blockify-transform-settings {
-
-}
-
 
 .blockify-flex-controls {
 	margin-bottom: 16px !important;

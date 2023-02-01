@@ -9,31 +9,8 @@
 		border-radius: inherit;
 		color: inherit;
 	}
-}
 
-.click-to-copy {
-	display: flex;
-	align-items: center;
-	gap: 0.5em;
-	position: absolute;
-	top: 1em;
-	right: 1em;
-	overflow: hidden;
-
-	button {
-		padding: 0;
-		border: 0;
-		background: transparent;
-		cursor: pointer;
-		color: inherit;
-	}
-
-	span {
-		opacity: 0;
-		font-size: small;
-	}
-
-	textarea {
-		display: none;
+	&.show-line-numbers {
+		padding: 0.5em 0;
 	}
 }

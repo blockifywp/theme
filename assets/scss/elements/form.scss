@@ -1,5 +1,9 @@
 @import "../abstracts/input";
 
+form {
+	margin-block-end: 0; // Remove user agent style.
+}
+
 label {
 	display: block;
 	font-size: var(--wp--custom--label--font-size, var(--wp--preset--font-size--18, smaller));
@@ -41,7 +45,7 @@ input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
 }
 
 // Match .wp-element-button workaround. Line height doesn't work.
-input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
+input:not([type=checkbox],[type=submit],[type=button],[type=radio],[type=file]) {
 	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
 }
 

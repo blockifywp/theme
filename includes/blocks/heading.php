@@ -6,8 +6,10 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function explode;
+use function get_search_query;
 use function implode;
 use function sanitize_title_with_dashes;
+use function sprintf;
 
 add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
 /**

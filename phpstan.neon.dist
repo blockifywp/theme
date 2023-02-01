@@ -4,11 +4,7 @@ parameters:
 	level: 5
 	paths:
 		- functions.php
-		- includes/utility
-		- includes/config
-		- includes/general
-		- includes/blocks
-		- includes/extensions
-	excludePaths:
-		- includes/blocks/query.php
+		- includes/
+	#excludePaths:
+		#- includes/blocks/
 	#ignoreErrors:

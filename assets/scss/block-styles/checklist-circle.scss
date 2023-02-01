@@ -23,7 +23,6 @@
 			height: 1em;
 			display: inline-block !important;
 			background: var(--wp--custom--checklist--background, var(--wp--preset--color--primary, currentColor));
-			position: absolute;
 
 			// Mask (color doesn't work in content: url() or background-image).
 			mask-position: center;

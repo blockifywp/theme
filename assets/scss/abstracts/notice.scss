@@ -1,7 +1,7 @@
 @mixin notice {
 	position: relative;
 	padding: var(--wp--custom--notice--padding, 1em);
-	color: var(--wp--custom--notice--color,var(--wp--preset--color--primary));
+	color: var(--wp--custom--notice--color, var(--wp--preset--color--primary));
 	border: var(--wp--custom--border--width) solid currentColor;
 	border-radius: var(--wp--custom--border--radius);
 	font-size: var(--wp--custom--notice--font-size, var(--wp--preset--font-size--small));
@@ -12,7 +12,7 @@
 		inset: 0;
 		background: currentColor;
 		border-radius: inherit;
-		opacity: var(--wp--custom--notice--opacity,0.1);
+		opacity: var(--wp--custom--notice--opacity, 0.1);
 		pointer-events: none;
 	}
 }

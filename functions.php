@@ -28,7 +28,7 @@ function setup(): void {
 	$files = [
 		...glob( DIR . 'includes/utility/*.php' ),
 		...glob( DIR . 'includes/config/*.php' ),
-		...glob( DIR . 'includes/general/*.php' ),
+		...glob( DIR . 'includes/*.php' ),
 		...glob( DIR . 'includes/blocks/*.php' ),
 		...glob( DIR . 'includes/extensions/*.php' ),
 		...glob( DIR . 'includes/plugins/*.php' ),

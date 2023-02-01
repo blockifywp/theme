@@ -69,12 +69,13 @@ function render_post_terms_block( string $html, array $block ): string {
 			]
 		);
 
-		foreach ( $div->childNodes as $child ) {
-			$div->removeChild( $child );
+		$links = get_elements_by_class_name( $div, 'wp-block-post-terms__link' );
+
+		foreach ( $links as $link ) {
+			$link->parentNode->removeChild( $link );
 		}
 
 		foreach ( $terms as $term ) {
-
 			$link = $dom->createElement( 'a' );
 
 			$link->setAttribute( 'href', get_term_link( $term ) );
@@ -89,6 +90,25 @@ function render_post_terms_block( string $html, array $block ): string {
 		}
 
 		$html = $dom->saveHTML();
+	}
+
+	$margin = $block['attrs']['style']['spacing']['margin'] ?? [];
+
+	if ( $margin ) {
+		$dom = dom( $html );
+		$div = get_dom_element( 'div', $dom );
+
+		if ( $div ) {
+			$styles = css_string_to_array( $div->getAttribute( 'style' ) );
+
+			foreach ( $margin as $key => $value ) {
+				$styles[ 'margin-' . $key ] = format_custom_property( $value );
+			}
+
+			$div->setAttribute( 'style', css_array_to_string( $styles ) );
+
+			$html = $dom->saveHTML();
+		}
 	}
 
 	return $html;

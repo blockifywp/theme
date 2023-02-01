@@ -3,7 +3,7 @@ $padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--
 @mixin input {
 	font: inherit;
 	transition: var(--wp--custom--transition, inherit);
-	border: var(--wp--custom--border, 0);
+	border: var(--wp--custom--input--border, var(--wp--custom--border, 0));
 	border-radius: var(--wp--custom--button--border-radius, inherit);
 	background: var(--wp--custom--input--background, transparent);
 	outline: none;

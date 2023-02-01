@@ -541,7 +541,10 @@
       },
       "core/post-template": {
         "spacing": {
-          "blockGap": "inherit"
+          "blockGap": "inherit",
+          "margin": {
+            "top": "0 !important"
+          }
         }
       },
       "core/post-terms": {

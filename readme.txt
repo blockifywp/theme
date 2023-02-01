@@ -1,8 +1,8 @@
 === Blockify ===
 Contributors: blockify
 Requires at least: 6.1
-Tested up to: 6.1
-Stable tag: 0.9.35
+Tested up to: 6.1.1
+Stable tag: 0.9.36
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,41 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2022, Blockify.
 
 == Changelog ==
+
+= 0.9.36 - 1 February 2023 =
+
+* Add: Scroll position custom property for animations
+* Add: Slack block variation for social icons
+* Add: Support for non-stacking query loop columns
+* Add: Plugin compatibility back to theme
+* Add: Default syntax highlighting color scheme
+* Add: Margin support to query block
+* Add: Positioning support to slider block
+* Add: Badge and badges block styles
+* Add: Ghost block style to button block
+* Add: Button block style to read more block
+* Add: Surface block style to quote block
+* Add: Spacing support for query title and post terms block
+* Add: Filter for post comments form title
+* Add: Grid gradient background pattern support
+* Add: Input border custom property
+* Add: Border support to post comments form
+* Add: Support for gradient mask to sub-heading block style
+* Update: Improved PHP 8.2+ support
+* Update: Split up block extensions for faster access
+* Update: Only show OnClick setting for admin users
+* Fix: Box shadow support for featured image block
+* Fix: Curved text editor iframe
+* Fix: Box shadow rendering
+* Fix: Paragraph block always add wp-block-paragraph class
+* Fix: Cover block padding and z-index
+* Fix: Icon block variation background color issue
+* Fix: File input height
+* Fix: Navigation styling
+* Fix: Circle checklist positioning
+* Remove: Form element margin
+* Remove: Default margin from post template block
+* Remove: Click to copy CSS (moved to plugin)
 
 = 0.9.35 - 5 January 2023 =
 

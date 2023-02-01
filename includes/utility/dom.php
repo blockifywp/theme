@@ -4,13 +4,18 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function defined;
+use DOMDocument;
+use DOMElement;
+use function bin2hex;
+use function current;
+use function iconv;
 use function is_a;
 use function libxml_clear_errors;
 use function libxml_use_internal_errors;
-use function mb_convert_encoding;
-use DOMDocument;
-use DOMElement;
+use function ltrim;
+use function preg_replace_callback;
+use function sprintf;
+use function strtoupper;
 
 /**
  * Returns a formatted DOMDocument object from a given string.
@@ -28,8 +33,7 @@ function dom( string $html ): DOMDocument {
 		return $dom;
 	}
 
-	$libxml_previous_state = libxml_use_internal_errors( true );
-
+	$libxml_previous_state   = libxml_use_internal_errors( true );
 	$dom->preserveWhiteSpace = true;
 
 	if ( defined( 'LIBXML_HTML_NOIMPLIED' ) && defined( 'LIBXML_HTML_NODEFDTD' ) ) {
@@ -42,8 +46,28 @@ function dom( string $html ): DOMDocument {
 		$options = 0;
 	}
 
-	$dom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' ), $options );
+	// @see https://stackoverflow.com/questions/13280200/convert-unicode-to-html-entities-hex.
+	$html = preg_replace_callback(
+		'/[\x{80}-\x{10FFFF}]/u',
+		static fn( array $matches ): string => sprintf(
+			'&#x%s;',
+			ltrim(
+				strtoupper(
+					bin2hex(
+						iconv(
+							'UTF-8',
+							'UCS-4',
+							current( $matches )
+						)
+					)
+				),
+				'0'
+			)
+		),
+		$html
+	);
 
+	$dom->loadHTML( $html, $options );
 	$dom->formatOutput = true;
 
 	libxml_clear_errors();

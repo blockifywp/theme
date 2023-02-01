@@ -13,7 +13,8 @@ module.exports = env => {
 			editor: './src/editor.tsx',
 			accordion: './src/public/accordion.tsx',
 			animation: './src/public/animation.tsx',
-			counter: './src/public/counter.tsx'
+			counter: './src/public/counter.tsx',
+			scroll: './src/public/scroll.tsx',
 		},
 
 		plugins: [
@@ -22,7 +23,7 @@ module.exports = env => {
 			new BrowserSyncPlugin( {
 				host: 'localhost',
 				port: 8887,
-				proxy: 'https://blockify.local/'
+				proxy: 'https://blockifywp.test/'
 			} ),
 		]
 	};

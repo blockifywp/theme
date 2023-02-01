@@ -12,7 +12,7 @@
 	position: relative;
 
 	.is-style-surface {
-		background: var(--wp--custom--surface-surface--background, var(--wp--preset--color--background));
+		background: var(--wp--custom--surface--surface--background, var(--wp--custom--surface--background, var(--wp--preset--color--surface)));
 	}
 
 	// Overlay.

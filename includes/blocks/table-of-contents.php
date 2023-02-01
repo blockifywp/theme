@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function __;
 use function add_filter;
 use function do_blocks;
 use function get_the_content;

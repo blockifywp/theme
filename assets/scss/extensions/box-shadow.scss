@@ -1,6 +1,6 @@
 $shadow: var(--wp--custom--box-shadow--inset,) var(--wp--custom--box-shadow--x) var(--wp--custom--box-shadow--y) var(--wp--custom--box-shadow--blur) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color);
 
-$shadowHover: var(--wp--custom--box-shadow--hover--inset,var(--wp--custom--box-shadow--inset, )) var(--wp--custom--box-shadow--hover--x,var(--wp--custom--box-shadow--x)) var(--wp--custom--box-shadow--hover--y,var(--wp--custom--box-shadow--y)) var(--wp--custom--box-shadow--hover--blur,var(--wp--custom--box-shadow--blur)) var(--wp--custom--box-shadow--hover--spread,var(--wp--custom--box-shadow--spread)) var(--wp--custom--box-shadow--hover--color,var(--wp--custom--box-shadow--color));
+$shadowHover: var(--wp--custom--box-shadow--hover--inset, var(--wp--custom--box-shadow--inset,)) var(--wp--custom--box-shadow--hover--x, var(--wp--custom--box-shadow--x)) var(--wp--custom--box-shadow--hover--y, var(--wp--custom--box-shadow--y)) var(--wp--custom--box-shadow--hover--blur, var(--wp--custom--box-shadow--blur)) var(--wp--custom--box-shadow--hover--spread, var(--wp--custom--box-shadow--spread)) var(--wp--custom--box-shadow--hover--color, var(--wp--custom--box-shadow--color));
 
 
 .has-box-shadow,

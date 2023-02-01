@@ -2,5 +2,5 @@
 
 .is-style-wave {
 
-	@include divider(url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 80q200 80 500-20 270-100 500-20v80H0Z"/></svg>') );
+	@include divider(url('data:image/svg+xml;utf8,<svg fill="currentColor" preserveAspectRatio="none" viewBox="0 0 1000 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 80q200 80 500-20 270-100 500-20v80H0Z"/></svg>'));
 }

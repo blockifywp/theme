@@ -113,7 +113,8 @@ function render_inline_svg( string $html, array $block ): string {
 			continue;
 		}
 
-		$svg_string  = str_replace( [ "url('data:image/svg+xml;utf8,", "')" ], [ '', '' ], urldecode( $mask ) );
+		$svg_string  = str_replace( [ "url('data:image/svg+xml;utf8,", "')" ], [ '', '' ], $mask );
+		$svg_string  = urldecode( $svg_string );
 		$svg_dom     = dom( $svg_string );
 		$svg_element = get_dom_element( 'svg', $svg_dom );
 

@@ -26,6 +26,9 @@ function register_block_supports( array $config = [] ): array {
 		'blockify/tabs'            => [
 			'blockifyBoxShadow' => true,
 		],
+		'blockify/slider'          => [
+			'blockifyPosition' => true,
+		],
 		'core/buttons'             => [
 			'__experimentalBorder' => [
 				'radius'                        => true,
@@ -402,6 +405,9 @@ function register_block_supports( array $config = [] ): array {
 			'blockifyBoxShadow' => true,
 			'blockifyPosition'  => true,
 		],
+		'core/post-template'       => [
+			'spacing' => [],
+		],
 		'core/post-terms'          => [
 			'align'     => [
 				'full',
@@ -453,6 +459,7 @@ function register_block_supports( array $config = [] ): array {
 		'core/query'               => [
 			'spacing'          => [
 				'padding'  => true,
+				'margin'   => true,
 				'blockGap' => true,
 			],
 			'blockifyPosition' => true,

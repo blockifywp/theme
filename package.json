@@ -5,11 +5,13 @@
   "license": "GPL-2.0-or-later",
   "main": "assets/js/index.js",
   "scripts": {
+    "start": "wp-scripts start",
     "build": "npm run js && npm run css",
     "js": "wp-scripts build --output-path=assets/js",
     "css": "rm -Rf assets/css && node-sass --output-style compressed --recursive -o assets/css assets/scss && rm -Rf assets/css/abstracts",
     "pot": "wp i18n make-pot ./ languages/blockify.pot --exclude='wp,wp-content,vendor,tests,node_modules,build,assets,src' && echo 'Check nav menu refs'",
     "test": "jest --verbose ./tests/js/*.js",
+    "lint:css": "wp-scripts lint-style 'assets/scss/**/*.scss'",
     "zip": "rm -Rf ../../blockify.zip && zip -r ../../blockify.zip assets/css/ assets/fonts/ assets/js/ assets/svg includes/ languages/ parts/ patterns/ styles/ templates/ functions.php index.php readme.txt screenshot.png style.css theme.json",
     "svn": "func() { npm run pot && npm run zip && cp ../../blockify.zip /Users/seothemes/Documents/Blockify/svn/blockify && cd /Users/seothemes/Documents/Blockify/svn/blockify && svn up && svn cp $1 $2 && cd $2 && rm -Rf ./* && cd .. && unzip blockify.zip -d $2 && rm blockify.zip && open -a Terminal .; }; func"
   },

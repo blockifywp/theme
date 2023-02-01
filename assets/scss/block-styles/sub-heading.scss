@@ -1,8 +1,19 @@
+@import "../abstracts/text-gradient";
+
 .is-style-sub-heading {
 	font-size: var(--wp--custom--sub-heading--font-size, small);
 	line-height: var(--wp--custom--sub-heading--line-height);
 	font-weight: var(--wp--custom--sub-heading--font-weight, bold);
 	text-transform: var(--wp--custom--sub-heading--text-transform, uppercase);
 	letter-spacing: var(--wp--custom--sub-heading--letter-spacing, 0.33em);
+	background: var(--wp--custom--sub-heading--background, currentColor);
+	word-break: break-word;
+
+	@include text-gradient;
+}
+
+// Override instead of important.
+p.is-style-sub-heading {
 	margin: var(--wp--custom--sub-heading--margin-top, auto) var(--wp--custom--sub-heading--margin-right, auto) var(--wp--custom--sub-heading--margin-bottom, auto) var(--wp--custom--sub-heading--margin-left, auto);
 }
+

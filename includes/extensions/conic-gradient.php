@@ -13,7 +13,7 @@ use function wp_strip_all_tags;
 
 add_action( 'wp_enqueue_scripts', NS . 'add_conic_gradient' );
 /**
- * Description of expected behavior.
+ * Converts custom linear or radial gradient into conic gradient.
  *
  * @since 0.9.10
  *

@@ -21,7 +21,14 @@ add_filter( 'render_block', NS . 'render_block_onclick_attribute', 11, 2 );
  * @return string
  */
 function render_block_onclick_attribute( string $html, array $block ): string {
-	$on_click = $block['attrs']['onclick'] ?? '';
+
+	// Force casting to string in case of incorrect html.
+	if ( isset( $block['attrs']['onclick'] ) ) {
+		$on_click = (string) $block['attrs']['onclick'];
+	} else {
+		return $html;
+	}
+
 	$on_click = str_replace( '"', "'", $on_click );
 	$on_click = trim( rtrim( $on_click, ';' ) );
 	$on_click = reduce_whitespace( $on_click );

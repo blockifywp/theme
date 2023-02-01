@@ -10,18 +10,17 @@ use function explode;
 use function in_array;
 use function str_contains;
 
-add_filter( 'render_block', NS . 'render_inline_color', 10, 2 );
+add_filter( 'render_block', NS . 'render_inline_color' );
 /**
  * Renders custom properties for inline colors.
  *
  * @since 0.9.25
  *
- * @param string $html  Block HTML content.
- * @param array  $block Block data.
+ * @param string $html Block HTML content.
  *
  * @return string
  */
-function render_inline_color( string $html, array $block ): string {
+function render_inline_color( string $html ): string {
 	if ( ! str_contains( $html, 'has-inline-color' ) ) {
 		return $html;
 	}

@@ -16,8 +16,8 @@ add_filter( 'render_block_core/button', NS . 'render_button_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -25,21 +25,23 @@ function render_button_block( string $html, array $block ): string {
 	if ( str_contains( $html, 'is-style-outline' ) ) {
 		$dom    = dom( $html );
 		$button = get_dom_element( 'div', $dom );
-		$link   = get_dom_element( 'a', $button );
+		$anchor = get_dom_element( 'a', $button );
 
-		$classes = explode( ' ', $link->getAttribute( 'class' ) );
-		$link->setAttribute(
-			'class',
-			implode(
-				' ',
-				[
-					...$classes,
-					'wp-element-button',
-				]
-			)
-		);
+		if ( $anchor ) {
+			$classes = explode( ' ', $anchor->getAttribute( 'class' ) );
+			$anchor->setAttribute(
+				'class',
+				implode(
+					' ',
+					[
+						...$classes,
+						'wp-element-button',
+					]
+				)
+			);
 
-		$html = $dom->saveHTML();
+			$html = $dom->saveHTML();
+		}
 	}
 
 	if ( str_contains( $html, '-border-' ) ) {
@@ -47,10 +49,15 @@ function render_button_block( string $html, array $block ): string {
 		$dom             = dom( $html );
 		$button          = get_dom_element( 'div', $dom );
 		$link            = get_dom_element( 'a', $dom );
-		$classes         = explode( ' ', $button->getAttribute( 'class' ) );
-		$styles          = explode( ';', $button->getAttribute( 'style' ) );
-		$new_classes     = [];
-		$new_styles      = [];
+
+		if ( ! $button || ! $link ) {
+			return $html;
+		}
+
+		$classes     = explode( ' ', $button->getAttribute( 'class' ) );
+		$styles      = explode( ';', $button->getAttribute( 'style' ) );
+		$new_classes = [];
+		$new_styles  = [];
 
 		foreach ( $classes as $class ) {
 			if ( ! str_contains( $class, '-border-' ) ) {

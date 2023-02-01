@@ -5,6 +5,8 @@
 	border-radius: var(--wp--custom--border--radius, 0.5em);
 	text-decoration: none;
 	line-height: 1;
+	font-size: var(--wp--custom--badge--font-size, inherit);
+	font-weight: var(--wp--custom--badge--font-weight, bolder);
 
 	&:before {
 		content: '';
@@ -20,4 +22,13 @@
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5em;
+
+	.wp-block-post-terms__separator,
+	.justify-center__separator {
+		display: none;
+	}
+
+	&.has-text-align-right {
+		justify-content: flex-end;
+	}
 }

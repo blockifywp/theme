@@ -27,7 +27,7 @@
 		content: '';
 		display: inline-block;
 		position: relative;
-		background: var(--wp--custom--icon--color, currentColor);
+		background: var(--wp--custom--icon--color);
 		height: var(--wp--custom--icon--size, 30px);
 		width: var(--wp--custom--icon--size, 30px);
 		vertical-align: text-bottom;
@@ -42,7 +42,7 @@
 	}
 
 	&.has-background:not(.has-text-color) {
-		background-color: transparent !important;
+		background: transparent !important;
 	}
 }
 

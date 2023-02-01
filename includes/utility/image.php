@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function array_merge;
 use function explode;
 use function implode;
 use function in_array;
@@ -34,8 +35,13 @@ function render_image_placeholder( string $html, array $block ): string {
 	$svg         = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" preserveAspectRatio="none" class="wp-block-image__placeholder" style="' . $styles . '"><path vector-effect="non-scaling-stroke" d="M60 60 0 0"></path></svg>';
 	$svg_dom     = dom( $svg );
 	$svg_element = get_dom_element( 'svg', $svg_dom );
-	$result      = $dom->importNode( $svg_element, true );
-	$figure      = get_dom_element( 'figure', $dom );
+
+	if ( ! $svg_element ) {
+		return $html;
+	}
+
+	$result = $dom->importNode( $svg_element, true );
+	$figure = get_dom_element( 'figure', $dom );
 
 	if ( ! $figure ) {
 		return $html;
@@ -77,7 +83,7 @@ function render_image_placeholder( string $html, array $block ): string {
 	$figure->setAttribute(
 		'style',
 		css_array_to_string(
-			\array_merge(
+			array_merge(
 				css_string_to_array( $figure->getAttribute( 'style' ) ),
 				$styles,
 			)

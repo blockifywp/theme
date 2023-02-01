@@ -26,6 +26,11 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Surface', 'blockify' ),
 			],
 			[
+				'type'  => 'core/button',
+				'name'  => 'ghost',
+				'label' => __( 'Ghost', 'blockify' ),
+			],
+			[
 				'type'  => 'core/code',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),
@@ -131,6 +136,11 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Badges', 'blockify' ),
 			],
 			[
+				'type'  => 'core/read-more',
+				'name'  => 'button',
+				'label' => __( 'Button', 'blockify' ),
+			],
+			[
 				'type'  => 'core/spacer',
 				'name'  => 'angle',
 				'label' => __( 'Angle', 'blockify' ),
@@ -154,6 +164,11 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/spacer',
 				'name'  => 'fade',
 				'label' => __( 'Fade', 'blockify' ),
+			],
+			[
+				'type'  => 'core/quote',
+				'name'  => 'surface',
+				'label' => __( 'Surface', 'blockify' ),
 			],
 		],
 

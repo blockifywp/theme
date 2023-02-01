@@ -19,6 +19,7 @@
 
 	&__input {
 		margin-bottom: 0 !important;
+		border: var(--wp--custom--input--border, var(--wp--custom--border, 0));
 	}
 
 	&__label {
@@ -43,7 +44,7 @@
 		max-width: 100%;
 		padding: var(--wp--custom--input--padding, 0.5em 1em);
 		padding-right: var(--wp--preset--spacing--md, 3em);
-		border: var(--wp--custom--border);
+		border: var(--wp--custom--input--border, var(--wp--custom--border, 0));
 		border-radius: var(--wp--custom--border--radius);
 	}
 
