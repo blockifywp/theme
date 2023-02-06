@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMElement;
 use function add_filter;
 use function trim;
 use function wp_get_global_settings;
@@ -31,6 +32,10 @@ function render_social_links_block( string $html, array $block ): string {
 	$color_palette   = $global_settings['color']['palette']['theme'] ?? [];
 
 	foreach ( $ul->childNodes as $child ) {
+		if ( ! $child instanceof DOMElement ) {
+			continue;
+		}
+
 		if ( $child->nodeName === 'li' ) {
 			$styles = css_string_to_array( $child->getAttribute( 'style' ) );
 

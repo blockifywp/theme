@@ -134,7 +134,6 @@ function get_dynamic_custom_properties(): string {
 	$all = [
 		'--scroll'                             => '0',
 		'--breakpoint'                         => '782px', // Only used by JS.
-		'--scrollbar-width'                    => '15px',
 		'--wp--custom--border'                 => "$border_width $border_style $border_color",
 		'--wp--custom--body--background'       => $bodyBackground,
 		'--wp--custom--body--color'            => $body_color,
@@ -328,10 +327,11 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	];
 
 	$conditions['plugins'] = [
-		'ninja-forms'                    => str_contains( $content, 'nf-form' ),
-		'syntax-highlighting-code-block' => defined( 'Syntax_Highlighting_Code_Block\\PLUGIN_VERSION' ),
 		'edd'                            => class_exists( 'EDD_Requirements_Check' ),
 		'gravity-forms'                  => class_exists( 'GFForms' ),
+		'lifterlms'                      => class_exists( 'LifterLMS' ),
+		'ninja-forms'                    => str_contains( $content, 'nf-form' ),
+		'syntax-highlighting-code-block' => defined( 'Syntax_Highlighting_Code_Block\\PLUGIN_VERSION' ),
 		'woocommerce'                    => class_exists( 'WooCommerce' ),
 	];
 
@@ -400,12 +400,12 @@ add_filter( 'wp_theme_json_data_theme', NS . 'fix_editor_layout_sizes' );
 function fix_editor_layout_sizes( $theme_json ) {
 	$default      = $theme_json->get_data();
 	$new          = [];
-	$content_size = $default['settings']['layout']['contentSize'] ?? 'min(calc(100vw - 3rem), 800px)';
-	$wide_size    = $default['settings']['layout']['wideSize'] ?? 'min(calc(100vw - 3rem), 1200px)';
+	$content_size = $default['settings']['layout']['contentSize'] ?? 'min(calc(100dvw - 3rem), 800px)';
+	$wide_size    = $default['settings']['layout']['wideSize'] ?? 'min(calc(100dvw - 3rem), 1200px)';
 
 	if ( is_admin() ) {
-		$content_size = str_replace( 'vw', '%', $content_size );
-		$wide_size    = str_replace( 'vw', '%', $wide_size );
+		$content_size = str_replace( 'dvw', '%', $content_size );
+		$wide_size    = str_replace( 'dvw', '%', $wide_size );
 	}
 
 	$new['settings']['layout']['contentSize'] = $content_size;

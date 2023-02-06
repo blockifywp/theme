@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1.1
-Stable tag: 0.9.36
+Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,7 +22,7 @@ Lightweight full site editing block theme framework. Blockify provides useful fe
 
 == Copyright ==
 
-Copyright © 2022, Blockify.
+Copyright © 2023, Blockify.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -45,9 +45,19 @@ Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
-© Copyright Blockify 2022, Blockify.
+© Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.0.0 - 6 February 2023 =
+
+* Add: Basic support for LifterLMS plugin
+* Add: Surface block style mixin
+* Update: Copyright year
+* Update: Ignore generated files in editorconfig
+* Fix: Empty post title error
+* Fix: EDD update profile button styling to match other buttons
+* Remove: Scrollbar width custom property in favor of dvw
 
 = 0.9.36 - 1 February 2023 =
 

@@ -36,6 +36,7 @@
 // Commonly used class. (wp.org, woocommerce, etc.). !important for EDD.
 .button,
 .is-style-button,
+[type="submit"],
 [type="button"]:not(.wp-block-social-link-anchor,.components-button) {
 
 	@include button;

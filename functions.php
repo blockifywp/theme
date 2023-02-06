@@ -20,7 +20,7 @@ add_action( 'after_setup_theme', NS . 'setup', 8 );
 /**
  * Setup theme.
  *
- * @since 1.0.0
+ * @since 0.0.1
  *
  * @return void
  */

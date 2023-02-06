@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMElement;
 use function add_filter;
 use function get_option;
 use function get_post;
@@ -38,41 +39,16 @@ function render_post_title_block( string $html, array $block ): string {
 		$html = str_replace( $text, $title, $html );
 	}
 
-	$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
-
-	if ( $padding ) {
-		$styles = [];
-
-		foreach ( $padding as $key => $value ) {
-			$styles[ 'padding-' . $key ] = $value;
-		}
-
-		$dom = dom( $html );
-
-		// No way of knowing tag.
-		$heading = get_dom_element( 'h1', $dom ) ?? get_dom_element( 'h2', $dom ) ?? get_dom_element( 'h3', $dom ) ?? get_dom_element( 'h4', $dom ) ?? get_dom_element( 'h5', $dom ) ?? get_dom_element( 'h6', $dom );
-
-		$class = $heading->getAttribute( 'class' );
-
-		if ( ! $class ) {
-			return $html;
-		}
-
-		$heading->setAttribute(
-			'style',
-			css_array_to_string( $styles ) . ';' . $heading->getAttribute( 'style' )
-		);
-
-		$html = $dom->saveHTML();
-	}
-
+	$tag     = 'h' . ( $block['attrs']['level'] ?? 2 );
 	$dom     = dom( $html );
-	$heading = get_dom_element( '*', $dom );
+	$heading = get_dom_element( $tag, $dom );
 
-	$heading->setAttribute(
-		'id',
-		$block['attrs']['anchor'] ?? sanitize_title_with_dashes( $heading->textContent )
-	);
+	if ( $heading instanceof DOMElement ) {
+		$heading->setAttribute(
+			'id',
+			$block['attrs']['anchor'] ?? sanitize_title_with_dashes( $heading->textContent )
+		);
+	}
 
 	return $dom->saveHTML();
 }

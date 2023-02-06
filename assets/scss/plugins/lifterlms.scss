@@ -1,0 +1,48 @@
+@import '../block-styles/surface';
+
+$double_spacing: calc(var(--wp--style--block-gap) * 2);
+
+.single-course {
+
+	.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: var(--wp--style--global--wide-size);
+	}
+
+	.wp-block-cover:not([style*=margin]) {
+		margin-top: $double_spacing;
+		margin-bottom: $double_spacing;
+	}
+}
+
+.llms-syllabus-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.llms-section-title {
+		margin-top: $double_spacing;
+		margin-bottom: $double_spacing;
+	}
+}
+
+.llms-lesson-preview {
+	width: 100%;
+	max-width: var(--wp--style--global--content-size);
+}
+
+.llms-lesson-preview .llms-lesson-link {
+	color: currentColor;
+	transition: var(--wp--custom--transition);
+
+	@include surface;
+
+	&:hover {
+		--wp--custom--surface-overlay--opacity: .1;
+		--wp--custom--surface-overlay--background: currentColor;
+		background: var(--wp--preset--color--surface);
+	}
+
+	&:visited {
+		color: currentColor;
+	}
+}

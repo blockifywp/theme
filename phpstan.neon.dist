@@ -4,7 +4,8 @@ parameters:
 	level: 5
 	paths:
 		- functions.php
-		- includes/
+		- includes/utility
+		- includes/blocks
 	#excludePaths:
 		#- includes/blocks/
 	#ignoreErrors:
