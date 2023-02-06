@@ -1,0 +1,1 @@
+.screen-reader-text:not(:focus){opacity:0;transition:var(--wp--custom--transition, all 0.2s ease-in-out)}

@@ -5,7 +5,6 @@ name: "Integrate"
 on:
   push:
     branches:
-      - "main"
       - "develop"
   pull_request: null
   # Add [skip ci] to commit message to skip CI.
@@ -172,6 +171,6 @@ jobs:
         run: |
           EXPECTED="functions.php,index.php,readme.txt,screenshot.png,style.css,theme.json"
           CURRENT="$(git archive HEAD | tar --list --exclude="assets" --exclude="assets/*" --exclude="includes" --exclude="includes/*" --exclude="languages" --exclude="languages/*" --exclude="parts" --exclude="parts/*" --exclude="patterns" --exclude="patterns/*" --exclude="styles" --exclude="styles/*" --exclude="templates" --exclude="templates/*" --exclude="vendor" --exclude="vendor/*" | paste --serial --delimiters=",")"
-          echo "CURRENT =${CURRENT}"
+          echo "CURRENT=${CURRENT}"
           echo "EXPECTED=${EXPECTED}"
           test "${CURRENT}" = "${EXPECTED}"
