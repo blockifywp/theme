@@ -1,0 +1,1 @@
+.is-style-fade:before{mask-image:linear-gradient(to bottom, rgba(0,0,0,0), #000);-webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0), #000)}.is-style-fade:before:before{content:'';display:block;position:absolute;background:currentColor;width:100%;height:calc(100% + 1px);mask:"";-webkit-mask:""}
