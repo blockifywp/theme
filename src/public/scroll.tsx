@@ -3,6 +3,6 @@ window.addEventListener( 'scroll', () => {
 
 	document.body.style.setProperty(
 		'--scroll',
-		scroll.toFixed(2).toString()
+		scroll.toFixed( 2 ).toString()
 	);
 }, false );

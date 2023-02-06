@@ -43,7 +43,7 @@ const curvedTextVariation: BlockVariation = {
 		className: 'is-style-curved-text',
 	},
 	isActive: ( blockAttributes ) => {
-		return blockAttributes?.className?.includes('is-style-curved-text');
+		return blockAttributes?.className?.includes( 'is-style-curved-text' );
 	}
 };
 
@@ -123,14 +123,14 @@ addFilter(
 				return <BlockEdit { ...props } />;
 			}
 
-			const iframe = document.getElementsByClassName( 'edit-site-visual-editor__editor-canvas' )?.item(0) as HTMLIFrameElement;
-			const editorCanvas = document.getElementsByName( 'editor-canvas' )?.item(0) as HTMLIFrameElement;
+			const iframe       = document.getElementsByClassName( 'edit-site-visual-editor__editor-canvas' )?.item( 0 ) as HTMLIFrameElement;
+			const editorCanvas = document.getElementsByName( 'editor-canvas' )?.item( 0 ) as HTMLIFrameElement;
 
-			let editorDocument : HTMLDocument;
+			let editorDocument: HTMLDocument;
 
 			if ( iframe ) {
 				editorDocument = iframe.contentDocument as HTMLDocument;
-			} else if (editorCanvas) {
+			} else if ( editorCanvas ) {
 				editorDocument = editorCanvas.contentDocument as HTMLDocument;
 			} else {
 				editorDocument = document;
@@ -150,7 +150,7 @@ addFilter(
 				} ) );
 			}
 
-			const {curvedText = defaults} = attributes;
+			const { curvedText = defaults } = attributes;
 
 			const applyChanges = ( newAttributes: { [key: string]: any } ) => {
 				const merged = {

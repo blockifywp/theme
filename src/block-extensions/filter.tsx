@@ -7,7 +7,7 @@ import {
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { toKebabCase, ucWords} from "../utility/string";
+import { toKebabCase, ucWords } from "../utility/string";
 import { Label } from "../components/label";
 import { trash } from "@wordpress/icons";
 import { InspectorControls } from "@wordpress/block-editor";

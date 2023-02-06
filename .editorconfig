@@ -24,32 +24,35 @@ indent_size = 2
 [*.md]
 trim_trailing_whitespace = false
 
+[*.tsx]
+indent_style = unset
+
 [LICENSE]
 indent_style = unset
 
 # Ignore generated files
 
-[assets/css/*]
+[assets/css/**]
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 
-[assets/fonts/*]
+[assets/fonts/**]
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 
-[assets/js/*]
+[assets/js/**]
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 
-[assets/svg/*]
+[assets/svg/**]
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 
-[patterns/*]
+[patterns/**]
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 
-[vendor/*]
+[vendor/**]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
