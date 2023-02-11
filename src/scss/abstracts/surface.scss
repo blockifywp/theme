@@ -1,0 +1,33 @@
+@import "../abstracts/border";
+
+@mixin surface {
+	background: var(--wp--custom--surface--background, var(--wp--preset--color--surface));
+	border-width: var(--wp--custom--surface--border-width, $border-width);
+	border-style: var(--wp--custom--surface--border-style, $border-style);
+	border-color: var(--wp--custom--surface--border-color, $border-color);
+	border-radius: var(--wp--custom--surface--border-radius, $border-radius);
+	padding: var(--wp--custom--surface--padding, var(--wp--preset--spacing--sm));
+	box-shadow: var(--wp--custom--surface--box-shadow);
+	backdrop-filter: var(--wp--custom--surface--backdrop-filter, none);
+	position: relative;
+
+	.is-style-surface {
+		background: var(--wp--custom--surface--surface--background, var(--wp--custom--surface--background, var(--wp--preset--color--surface)));
+	}
+
+	// Overlay.
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		inset: 0;
+		background: var(--wp--custom--surface-overlay--background, transparent);
+		opacity: var(--wp--custom--surface-overlay--opacity, 0);
+		border-radius: inherit;
+		pointer-events: none;
+	}
+
+	> * {
+		position: relative;
+	}
+}

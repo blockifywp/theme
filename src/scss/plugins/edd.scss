@@ -1,3 +1,7 @@
+@import "../abstracts/border";
+@import "../abstracts/button";
+@import "../abstracts/notice";
+
 $padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
 
 .edd-stripe-card-element {
@@ -72,12 +76,153 @@ div#edd_secure_site_wrapper {
 	border-radius: var(--wp--custom--border--radius);
 }
 
-.edd-blocks-form__cart .edd-blocks-cart__items, .edd-blocks-form__cart .edd-blocks-cart__row-header {
+.edd-blocks-form__cart .edd-blocks-cart__items,
+.edd-blocks-form__cart .edd-blocks-cart__row-header {
 	border-bottom: var(--wp--custom--border);
+}
+
+.edd-blocks-form__cart .edd-blocks-cart__row {
+	align-items: flex-start;
+	gap: var(--wp--style--block-gap, 1em);
+	flex-wrap: nowrap;
 }
 
 .wp-block-edd-checkout #edd-payment-mode-wrap label.edd-gateway-option.edd-gateway-option-selected,
 .wp-block-edd-checkout #edd-payment-mode-wrap label.edd-gateway-option:hover {
 	background-color: currentColor;
 	-webkit-text-fill-color: var(--wp--preset--color--background);
+}
+
+.wp-block-edd-checkout #edd-payment-mode-wrap {
+	gap: calc(var(--wp--style--block-gap, 1em) / 2);
+}
+
+.edd_price_options {
+
+	ul {
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		margin-bottom: calc(var(--wp--style--block-gap, 1em) / 2);
+	}
+
+	input {
+		margin-left: 0;
+	}
+}
+
+.edd-blocks__download-header {
+
+	h3 {
+		margin-bottom: 0;
+	}
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.edd-blocks__download-footer {
+	margin-top: var(--wp--style--block-gap, 1em);
+}
+
+.edd-payment-icons {
+	display: flex;
+	gap: calc(var(--wp--style--block-gap, 1em) / 2);
+	margin: calc(var(--wp--style--block-gap, 1em) * 2) 0;
+
+	svg {
+		border-radius: 3px;
+		width: 50px;
+	}
+}
+
+.icon-americanexpress {
+	background-color: #026fcf;
+}
+
+.edd_cart_item .edd_cart_item_name {
+	display: flex;
+	gap: var(--wp--style--block-gap, 1em);
+}
+
+.edd-gateway-option {
+	display: inline-block;
+	margin-right: var(--wp--style--block-gap, 1em);
+	width: calc(50% - (var(--wp--style--block-gap, 1em) / 4));
+	transform: none !important;
+}
+
+.edd-gateway {
+	margin-left: 0;
+	margin-right: calc(var(--wp--style--block-gap, 1em) / 2);
+}
+
+.edd-blocks-form {
+
+	@include border;
+
+	.description {
+
+		@include notice;
+
+		color: currentColor;
+	}
+}
+
+.wp-block-edd-register #pass-strength-result {
+	border-radius: var(--wp--custom--border--radius);
+	color: currentColor;
+	font-size: smaller;
+}
+
+.edd-blocks-form__group-remember .edd-blocks-form__control {
+	display: flex;
+	gap: calc(var(--wp--style--block-gap, 1em) / 2);
+	margin-bottom: calc(var(--wp--style--block-gap, 1em) / 2);
+
+	input,
+	label {
+		margin: 0;
+	}
+}
+
+.edd-blocks-orders__order {
+	border: var(--wp--custom--border);
+	border-radius: var(--wp--custom--border--radius);
+	padding: var(--wp--style--block-gap, 1em);
+	margin-bottom: var(--wp--style--block-gap, 1em);
+}
+
+.edd_purchase_submit_wrapper {
+	align-items: center;
+}
+
+.edd-cart-added-alert {
+	font-size: smaller;
+	margin: 0;
+}
+
+.wp-block-edd-checkout #edd_purchase_form .edd-button-secondary,
+.edd-button-secondary {
+
+	@include button;
+
+	&:active,
+	&:hover,
+	&:focus {
+		transform: none;
+		opacity: var(--wp--custom--button--hover-opacity, .82);
+	}
+}
+
+@media (min-width: 600px) {
+
+	.edd-blocks__checkout-forms {
+		position: relative;
+		right: auto;
+		z-index: auto;
+	}
 }

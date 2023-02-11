@@ -34,3 +34,37 @@ function render_receipt_block( string $html, array $block ): string {
 
 	return $html;
 }
+
+add_filter( 'edd_checkout_button_purchase', NS . 'purchase_button_class' );
+/**
+ * Add wp-element-button class to the checkout page purchase button.
+ *
+ * @since 1.0.1
+ *
+ * @param string $input The button HTML.
+ *
+ * @return string
+ */
+function purchase_button_class( string $input ) : string {
+	return str_replace(
+		'class="edd-submit',
+		'class="edd-submit wp-element-button',
+		$input
+	);
+}
+
+add_filter( 'edd_purchase_link_args', NS . 'add_class_to_edd_purchase_link', 11 );
+/**
+ * Add wp-element-button class to the EDD purchase link.
+ *
+ * @since 1.0.1
+ *
+ * @param array $args The arguments.
+ *
+ * @return array
+ */
+function add_class_to_edd_purchase_link( array $args ): array {
+	$args['class'] = 'wp-element-button';
+
+	return $args;
+}
