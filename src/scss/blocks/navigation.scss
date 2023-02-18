@@ -82,6 +82,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 	}
 
 	.wp-block-navigation-item {
+		padding: 0;
 		flex-wrap: wrap;
 		margin-bottom: var(--wp--style--block-gap, 1em);
 	}
@@ -239,6 +240,10 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 .wp-block-navigation__submenu-icon {
 	background: transparent !important;
+}
+
+.wp-block-navigation .wp-block-navigation-item__content.wp-block-navigation-submenu__toggle {
+	padding-right: .75em;
 }
 
 .wp-block-navigation-submenu__toggle {

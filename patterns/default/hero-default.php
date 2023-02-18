@@ -8,7 +8,7 @@
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|xxl","top":"var:preset|spacing|xxl","right":"var:preset|spacing|sm","left":"var:preset|spacing|sm"}}},"className":"is-style-default","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull is-style-default" style="padding-top:var(--wp--preset--spacing--xxl);padding-right:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--xxl);padding-left:var(--wp--preset--spacing--sm)"><!-- wp:heading {"textAlign":"center","level":1,"style":{"spacing":{"margin":{"top":"var:preset|spacing|lg"}}}} -->
-<h1 class="wp-block-heading has-text-align-center" style="margin-top:var(--wp--preset--spacing--lg)">Simple design system for your business</h1>
+<h1 class="wp-block-heading has-text-align-center" style="margin-top:var(--wp--preset--spacing--lg)">Simple design system for your website</h1>
 <!-- /wp:heading -->
 
 <!-- wp:group {"layout":{"type":"constrained","contentSize":"640px"}} -->
