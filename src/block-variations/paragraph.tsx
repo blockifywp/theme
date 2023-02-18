@@ -1,6 +1,6 @@
-import { BlockVariation, registerBlockVariation } from "@wordpress/blocks";
-import { __ } from "@wordpress/i18n";
-import { paragraph } from "@wordpress/icons";
+import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { paragraph } from '@wordpress/icons';
 
 const defaultParagraph: BlockVariation = {
 	name: 'paragraph',
@@ -11,11 +11,11 @@ const defaultParagraph: BlockVariation = {
 	scope: [ 'inserter', 'transform', 'block' ],
 	description: __( 'Insert an image to make a visual statement.', 'blockify' ),
 	attributes: {
-		className: "",
+		className: '',
 	},
 	isActive: ( blockAttributes ) => {
 		return ! blockAttributes?.className?.includes( 'is-style-curved-text' ) && ! blockAttributes?.className?.includes( 'is-style-counter' );
-	}
-}
+	},
+};
 
 registerBlockVariation( 'core/paragraph', defaultParagraph );

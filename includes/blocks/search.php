@@ -42,15 +42,15 @@ function render_search_block( string $html, array $block ): string {
 	$input   = get_dom_element( 'input', $div );
 
 	if ( $padding && $input ) {
-		$input->setAttribute(
+		$form->setAttribute(
 			'style',
 			implode(
 				';',
 				[
-					'padding-top:' . ( $padding['top'] ?? '' ),
-					'padding-right:' . ( $padding['right'] ?? '' ),
-					'padding-bottom:' . ( $padding['bottom'] ?? '' ),
-					'padding-left:' . ( $padding['left'] ?? '' ),
+					'padding-top:' . format_custom_property( $padding['top'] ?? '' ),
+					'padding-right:' . format_custom_property( $padding['right'] ?? '' ),
+					'padding-bottom:' . format_custom_property( $padding['bottom'] ?? '' ),
+					'padding-left:' . format_custom_property( $padding['left'] ?? '' ),
 				]
 			)
 		);

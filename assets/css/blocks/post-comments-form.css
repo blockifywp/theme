@@ -1,1 +1,1 @@
-.wp-block-post-comments-form input:not([type=submit]),.wp-block-post-comments-form textarea{border:var(--wp--custom--border)}
+.wp-block-post-comments-form input:not([type="submit"]),.wp-block-post-comments-form textarea{border:var(--wp--custom--border)}

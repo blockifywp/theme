@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1.1
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,18 +49,36 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
 == Changelog ==
 
-= 1.0.1 - 11 February 2023 =
+= 1.1.0 - 18 February 2023 =
 
 * Add: Core button classes to EDD buttons
 * Add: Improved EDD styles
 * Add: Surface scss mixin
+* Add: Block pattern templates
+* Add: remove_line_breaks function
+* Add: Size option to get_icon function
+* Add: Composer autoloading support for functions.php
+* Update: Conditionally add light/dark block styles if dark mode enabled
+* Update: Font sizes
+* Update: Color palette
 * Update: Don't load default patterns for child themes
+* Update: Default sub heading font size from small to smaller
+* Update: Use important for transparent ghost button background
+* Update: PHPStan memory limit to 1GB
 * Remove: Wireframe and blueprint style variations
 * Remove: SVN npm script
+* Remove: All frontend references to blockify
+* Remove: DIR and FILE path constants
+* Remove: Use of glob for php files
+* Fix: Icon classes now applied to figure
 * Fix: SVG block variation improvements
 * Fix: Remove unused arg from border mixin
 * Fix: EDD download archive template title
 * Fix: TinyMCE button styles in editor
+* Fix: Cover block padding error
+* Fix: Empty block option styles
+* Fix: ESLint improvements
+* Fix: Search block padding formatted values
 
 = 1.0.0 - 6 February 2023 =
 

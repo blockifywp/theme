@@ -70,6 +70,7 @@ html .editor-styles-wrapper {
 
 // Template parts.
 .blockify-template-parts {
+
 	.components-base-control {
 		width: 100%;
 	}
@@ -282,8 +283,8 @@ header.wp-block-template-part {
 		box-shadow: none;
 		background-color: var(--wp--custom--icon--background, transparent) !important;
 
-		&:after {
-			content: '';
+		&::after {
+			content: "";
 			display: inline-block;
 			position: relative;
 			background: var(--wp--custom--icon--color, currentColor);
@@ -348,6 +349,7 @@ header.wp-block-template-part {
 }
 
 .is-layout-constrained {
+
 	> .wp-block-video:not([class*="align"]) {
 		max-width: 100%;
 	}
@@ -415,7 +417,7 @@ div .wp-block-navigation__responsive-close {
 }
 
 .is-dark-theme .components-placeholder.has-illustration,
-.components-placeholder.has-illustration:before {
+.components-placeholder.has-illustration::before {
 	opacity: 1;
 	background: transparent;
 
@@ -496,6 +498,7 @@ div .wp-block-navigation__responsive-close {
 }
 
 .is-style-svg {
+
 	> div {
 		display: flex;
 	}
@@ -528,6 +531,7 @@ div .wp-block-navigation__responsive-close {
 }
 
 .blockify-controls {
+
 	hr {
 
 		+ .components-panel__row {
@@ -586,20 +590,20 @@ img[style*="toggle-switch"] {
 		div {
 			position: relative;
 
-			&:after,
-			&:before {
-				content: '';
+			&::after,
+			&::before {
+				content: "";
 				margin: 1em 0.5em 1em -1.5em;
 				width: 16px;
 				height: 2px;
 				display: inline-block !important;
-				background: currentColor;
+				background: currentcolor;
 				position: absolute;
 				right: 0;
 				top: 0;
 			}
 
-			&:after {
+			&::after {
 				transform: rotate(90deg);
 			}
 		}
@@ -640,6 +644,7 @@ img[style*="toggle-switch"] {
 }
 
 .blockify-filter-settings {
+
 	.components-flex-item {
 		max-width: 100%;
 
@@ -650,12 +655,13 @@ img[style*="toggle-switch"] {
 }
 
 .blockify-tools-panel {
+
 	.components-button-group {
 		display: flex;
 	}
 
-	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
 		opacity: 1;
 	}
 
@@ -668,8 +674,8 @@ img[style*="toggle-switch"] {
 		margin-top: 8px;
 		position: relative;
 
-		&:before {
-			content: '';
+		&::before {
+			content: "";
 			display: block;
 			position: absolute;
 			top: 0;
@@ -678,7 +684,7 @@ img[style*="toggle-switch"] {
 			border-top: 1px solid #e0e0e0;
 		}
 
-		&:first-of-type:before {
+		&:first-of-type::before {
 			display: none;
 		}
 	}
@@ -687,7 +693,7 @@ img[style*="toggle-switch"] {
 		padding-top: 0;
 		margin-top: 0;
 
-		&:before {
+		&::before {
 			display: none;
 		}
 	}

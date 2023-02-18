@@ -19,7 +19,8 @@ footer.wp-block-template-part {
 
 // TODO: Check this.
 @media (min-width: 600px) {
+
 	.wp-block-post-template.is-flex-container.is-flex-container.columns-2 > li {
-		width: calc(50% - (var(--wp--custom--spacing--gap) * .5));
+		width: calc(50% - (var(--wp--custom--spacing--gap) * 0.5));
 	}
 }

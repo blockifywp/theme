@@ -2,7 +2,7 @@
 	--wp--custom--icon-container--width: auto;
 }
 
-.blockify-icon {
+.wp-block-image__icon {
 	display: flex;
 	width: var(--wp--custom--icon-container--width, auto);
 	text-align: center;
@@ -23,8 +23,8 @@
 		justify-content: flex-end;
 	}
 
-	&:after {
-		content: '';
+	&::after {
+		content: "";
 		display: inline-block;
 		position: relative;
 		background: var(--wp--custom--icon--color);

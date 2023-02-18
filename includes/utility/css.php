@@ -105,7 +105,7 @@ function format_custom_property( string $custom_property ): string {
  * @return array
  */
 function get_animations(): array {
-	$file = DIR . 'assets/css/extensions/animations.css';
+	$file = get_dir() . 'assets/css/extensions/animations.css';
 
 	if ( ! file_exists( $file ) ) {
 		return [];

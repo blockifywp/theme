@@ -1,15 +1,15 @@
 import { __ } from '@wordpress/i18n';
-import { code } from "@wordpress/icons";
+import { code } from '@wordpress/icons';
 import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
-import { addFilter } from "@wordpress/hooks";
-import { createHigherOrderComponent } from "@wordpress/compose";
-import { InspectorControls } from "@wordpress/block-editor";
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { InspectorControls } from '@wordpress/block-editor';
 import {
 	TextareaControl,
 	PanelBody,
-	PanelRow, ExternalLink, ToggleControl
-} from "@wordpress/components";
-import domReady from "@wordpress/dom-ready";
+	PanelRow, ExternalLink, ToggleControl,
+} from '@wordpress/components';
+import domReady from '@wordpress/dom-ready';
 
 const svgVariation: BlockVariation = {
 	name: 'svg',
@@ -28,8 +28,8 @@ const svgVariation: BlockVariation = {
 		}
 
 		return blockAttributes?.className && blockAttributes?.className?.includes( 'is-style-svg' );
-	}
-}
+	},
+};
 
 domReady( () => {
 	registerBlockVariation( 'core/image', svgVariation );
@@ -40,14 +40,13 @@ const formatUrl = ( value: string ): string => {
 };
 
 const formatSrc = ( value: string ): string => {
-	return "data:image/svg+xml;utf8," + encodeURIComponent( value );
-}
+	return 'data:image/svg+xml;utf8,' + encodeURIComponent( value );
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/with-svg-controls',
 	createHigherOrderComponent( ( BlockEdit ) => ( props: blockProps ) => {
-
 		const { attributes, setAttributes } = props;
 
 		if ( ! attributes?.className?.includes( 'is-style-svg' ) ) {
@@ -56,7 +55,7 @@ addFilter(
 
 		const { style } = attributes;
 		const svgString = style?.svgString ?? '';
-		const maskSvg   = style?.maskSvg ?? false;
+		const maskSvg = style?.maskSvg ?? false;
 
 		if ( ! attributes?.url ) {
 			setAttributes( {
@@ -76,7 +75,7 @@ addFilter(
 			} );
 		}
 
-		let width  = 'var(--width,1em)';
+		let width = 'var(--width,1em)';
 		let height = '';
 
 		if ( attributes?.width ) {
@@ -90,8 +89,8 @@ addFilter(
 		height = height === '' ? width : height;
 
 		const styleObject = {
-			width: width,
-			height: height,
+			width,
+			height,
 			display: 'inline-flex',
 			background: 'currentColor',
 			overflow: 'hidden',
@@ -132,14 +131,14 @@ addFilter(
 									const newAttributes: attributes = {
 										style: {
 											...style,
-											svgString: value
-										}
+											svgString: value,
+										},
 									};
 
 									if ( maskSvg ) {
 										newAttributes.url = '#';
 									} else {
-										newAttributes.url = formatSrc( value )
+										newAttributes.url = formatSrc( value );
 									}
 
 									setAttributes( newAttributes );
@@ -165,14 +164,14 @@ addFilter(
 										const newAttributes: attributes = {
 											style: {
 												...style,
-												maskSvg: value
-											}
+												maskSvg: value,
+											},
 										};
 
 										if ( maskSvg ) {
 											newAttributes.url = '#';
 										} else {
-											newAttributes.url = formatSrc( svgString )
+											newAttributes.url = formatSrc( svgString );
 										}
 
 										setAttributes( newAttributes );

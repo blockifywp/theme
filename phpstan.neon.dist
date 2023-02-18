@@ -5,6 +5,4 @@ parameters:
 	paths:
 		- functions.php
 		- includes/
-	excludePaths:
-		- includes/blocks/
 	#ignoreErrors:

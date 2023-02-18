@@ -1,7 +1,7 @@
-import { __ } from "@wordpress/i18n";
+import { __ } from '@wordpress/i18n';
 import {
 	ButtonGroup,
-	Button
+	Button,
 } from '@wordpress/components';
 import {
 	PanelRow,
@@ -17,35 +17,35 @@ export const CustomButtonGroup = (
 		onClick = ( key: string ) => console.log( key ),
 	} ) =>
 	<PanelRow>
-		<ButtonGroup aria-label={ label }>
-			{ widths.map( key => <Button
+			<ButtonGroup aria-label={ label }>
+			{ widths.map( ( key ) => <Button
 					key={ key }
 					isSmall={ isSmall }
 					variant={
-						key === width ? 'primary' : undefined
-					}
+					key === width ? 'primary' : undefined
+				}
 					value={ key }
 					onClick={ () => {
-						if ( key === width ) {
-							setWidth( 'auto' );
-						} else {
-							setWidth( key );
-						}
+					if ( key === width ) {
+						setWidth( 'auto' );
+					} else {
+						setWidth( key );
+					}
 
-						if ( key === 'default' ) {
-							setWidth( '' );
-						}
+					if ( key === 'default' ) {
+						setWidth( '' );
+					}
 
-						if ( typeof onClick === 'function' ) {
-							onClick( key );
-						}
-					} }
-				>
+					if ( typeof onClick === 'function' ) {
+						onClick( key );
+					}
+				} }
+			>
 					{ key === 'auto' ? __( 'Auto', 'blockify' ) : key }
 				</Button>
 			) }
 		</ButtonGroup>
 
-	</PanelRow>;
+		</PanelRow>;
 
 export default CustomButtonGroup;

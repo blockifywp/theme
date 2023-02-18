@@ -1,7 +1,7 @@
 @import "../abstracts/text-gradient";
 
 .is-style-sub-heading {
-	font-size: var(--wp--custom--sub-heading--font-size, small);
+	font-size: var(--wp--custom--sub-heading--font-size, smaller);
 	line-height: var(--wp--custom--sub-heading--line-height);
 	font-weight: var(--wp--custom--sub-heading--font-weight, bold);
 	text-transform: var(--wp--custom--sub-heading--text-transform, uppercase);

@@ -1,7 +1,8 @@
 import { addFilter } from '@wordpress/hooks';
-import { createHigherOrderComponent } from "@wordpress/compose";
+import { createHigherOrderComponent } from '@wordpress/compose';
 
-const blockSupports: { [name: string]: any } = window?.blockify?.blockSupports ?? {};
+const blockSupports: { [name: string]: any } =
+	window?.blockify?.blockSupports ?? {};
 
 addFilter(
 	'blocks.registerBlockType',
@@ -10,7 +11,7 @@ addFilter(
 		if ( Object.keys( blockSupports ).includes( name ) ) {
 			settings.supports = {
 				...settings.supports,
-				...blockSupports[name]
+				...blockSupports[ name ],
 			};
 		}
 
@@ -23,7 +24,11 @@ addFilter(
 	'blocks.getSaveContent.extraProps',
 	'blockify/alignment-class',
 	( extraProps, blockType, attributes ) => {
-		if ( Object.keys( blockSupports ).includes( blockType.name ) && attributes?.align && ! extraProps.className.includes( ' align' ) ) {
+		if (
+			Object.keys( blockSupports ).includes( blockType.name ) &&
+			attributes?.align &&
+			! extraProps.className.includes( ' align' )
+		) {
 			extraProps.className += ' align' + attributes.align;
 		}
 
@@ -35,7 +40,6 @@ addFilter(
 	'blocks.registerBlockType',
 	'blockify/block-attributes-search',
 	( settings, name ) => {
-
 		if ( name === 'core/search' ) {
 			settings.attributes.style = {
 				...settings.attributes?.style,
@@ -45,9 +49,9 @@ addFilter(
 						top: '1em',
 						right: '1em',
 						bottom: '1em',
-						left: '2em'
-					}
-				}
+						left: '2em',
+					},
+				},
 			};
 		}
 
@@ -56,29 +60,31 @@ addFilter(
 	0
 );
 
-const withSearchPaddingCss = createHigherOrderComponent( BlockEdit => {
-	return props => {
+const withSearchPaddingCss = createHigherOrderComponent( ( BlockEdit ) => {
+	return ( props ) => {
 		if ( 'core/search' !== props.name ) {
 			return <BlockEdit { ...props } />;
 		}
 
-		const searchInputs = document.getElementsByClassName( 'wp-block-search__input' ) as HTMLCollectionOf<HTMLElement>;
-		const padding      = props?.attributes?.style?.spacing?.padding;
+		const searchInputs = document.getElementsByClassName(
+			'wp-block-search__input'
+		) as HTMLCollectionOf<HTMLElement>;
+		const padding = props?.attributes?.style?.spacing?.padding;
 
-		if ( searchInputs[0] && padding ) {
+		if ( searchInputs[ 0 ] && padding ) {
 			if ( padding.top ) {
-				searchInputs[0].style.paddingTop = padding?.top;
+				searchInputs[ 0 ].style.paddingTop = padding?.top;
 			}
 
 			if ( padding.right ) {
-				searchInputs[0].style.paddingRight = padding?.right;
+				searchInputs[ 0 ].style.paddingRight = padding?.right;
 			}
 
 			if ( padding.bottom ) {
-				searchInputs[0].style.paddingBottom = padding?.bottom;
+				searchInputs[ 0 ].style.paddingBottom = padding?.bottom;
 			}
 			if ( padding.left ) {
-				searchInputs[0].style.paddingLeft = padding?.left;
+				searchInputs[ 0 ].style.paddingLeft = padding?.left;
 			}
 		}
 

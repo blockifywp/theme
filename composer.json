@@ -15,7 +15,7 @@
     "install:cs": "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run",
     "phpcs": "phpcs -s",
     "phpcbf": "phpcbf",
-    "phpstan": "phpstan",
+    "phpstan": "phpstan --memory-limit=1G",
     "pest": "pest"
   },
   "minimum-stability": "dev",
@@ -38,5 +38,10 @@
     "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "dev-master",
     "szepeviktor/phpstan-wordpress": "^1.1",
     "wp-coding-standards/wpcs": "^2.3"
+  },
+  "autoload": {
+    "files": [
+      "functions.php"
+    ]
   }
 }

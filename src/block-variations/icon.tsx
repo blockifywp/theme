@@ -9,14 +9,14 @@ import {
 	__experimentalUnitControl as UnitControl,
 	CustomSelectControl, Flex, FlexItem,
 	PanelBody, PanelRow,
-	SelectControl
+	SelectControl,
 } from '@wordpress/components';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import SelectOption = SelectControl.Option;
 import CustomSelectOption = CustomSelectControl.Option;
 import { starFilled } from '@wordpress/icons';
-import { BlockVariation, registerBlockStyle, registerBlockVariation } from '@wordpress/blocks';
+import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
 import { defaultState } from '../api/icon-store';
 import domReady from '@wordpress/dom-ready';
 
@@ -25,17 +25,17 @@ const supportsIcon = ( name: string ): boolean => name === 'core/image';
 const iconAttributes = {
 	iconSet: {
 		type: 'string',
-		default: 'wordpress'
+		default: 'wordpress',
 	},
 	iconName: {
 		type: 'string',
-		default: 'star-empty'
+		default: 'star-empty',
 	},
 	iconColor: {
-		type: 'string'
+		type: 'string',
 	},
 	iconGradient: {
-		type: 'string'
+		type: 'string',
 	},
 	iconSize: {
 		type: 'string',
@@ -45,8 +45,8 @@ const iconAttributes = {
 	},
 	iconSvgString: {
 		type: 'string',
-		default: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path fill-rule=\"evenodd\" d=\"M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z\" clip-rule=\"evenodd\"> </path></svg>"
-	}
+		default: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z" clip-rule="evenodd"> </path></svg>',
+	},
 };
 
 const blockVariation: BlockVariation = {
@@ -58,14 +58,14 @@ const blockVariation: BlockVariation = {
 	scope: [ 'inserter', 'transform', 'block' ],
 	description: __( 'Insert a customizable SVG icon.', 'blockify' ),
 	attributes: {
-		className: "is-style-icon",
-		iconSet: "wordpress",
-		iconName: "star-empty",
-		iconSvgString: "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path fill-rule=\"evenodd\" d=\"M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z\" clip-rule=\"evenodd\"> </path></svg>"
+		className: 'is-style-icon',
+		iconSet: 'wordpress',
+		iconName: 'star-empty',
+		iconSvgString: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z" clip-rule="evenodd"> </path></svg>',
 	},
 	isActive: ( blockAttributes ) => {
 		return blockAttributes && blockAttributes?.className?.includes( 'is-style-icon' );
-	}
+	},
 };
 
 domReady( () => {
@@ -77,17 +77,16 @@ addFilter(
 	'blockify/add-icon-attributes',
 	( props, name ): object => {
 		if ( supportsIcon( name ) ) {
-
 			for ( const [ key, value ] of Object.entries( iconAttributes ) ) {
-				props.attributes[key] = {
-					type: value.type
+				props.attributes[ key ] = {
+					type: value.type,
 				};
 			}
 
 			props.attributes = {
 				...props.attributes,
-				...iconAttributes
-			}
+				...iconAttributes,
+			};
 		}
 
 		return props;
@@ -107,19 +106,18 @@ const addProLink = () => {
 	if ( ! existingLink ) {
 		description.innerHTML = description.innerHTML + __( ' Get more icons with ', 'blockify' ) + '<a href="https://blockifywp.com/pro/" class="blockify-pro-icon-link" target="_blank">Blockify Pro ↗</a>';
 	}
-}
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/with-icon',
-	createHigherOrderComponent( BlockEdit => {
-
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const {
 					  name,
 					  attributes,
 					  setAttributes,
-					  isSelected
+					  isSelected,
 				  } = props;
 
 			const { className }: { [className: string]: string } = attributes;
@@ -166,7 +164,7 @@ addFilter(
 
 			const setOptions: SelectOption[] = [];
 
-			let { icons } = useSelect( select => {
+			const { icons } = useSelect( ( select ) => {
 				return {
 					icons: select( 'blockify/icons' ).getIcons(),
 				};
@@ -175,11 +173,11 @@ addFilter(
 			const allIconOptions: {
 				[set: string]: CustomSelectOption[]
 			} = {
-				'wordpress': [
+				wordpress: [
 					{
 						name: iconAttributes?.iconSvgString?.default,
 						key: iconAttributes?.iconName?.default,
-					}
+					},
 				],
 			};
 
@@ -189,18 +187,18 @@ addFilter(
 				label = 'wordpress' === label ? 'WordPress' : label;
 
 				setOptions.push( {
-					label: label,
+					label,
 					value: iconSet,
 				} );
 
-				allIconOptions[iconSet] = [];
+				allIconOptions[ iconSet ] = [];
 
-				Object.keys( icons[iconSet] ).forEach( ( iconName: string ) => {
+				Object.keys( icons[ iconSet ] ).forEach( ( iconName: string ) => {
 					if ( iconName !== attributes?.iconName ) {
-						allIconOptions[iconSet].push(
+						allIconOptions[ iconSet ].push(
 							{
 								// @ts-ignore Intentionally use JSX Element instead of string.
-								name: parse( icons?.[iconSet]?.[iconName] ),
+								name: parse( icons?.[ iconSet ]?.[ iconName ] ),
 								key: iconName,
 							}
 						);
@@ -208,19 +206,19 @@ addFilter(
 				} );
 
 				// Moves current icon to start of array.
-				if ( icons?.[iconSet]?.[attributes?.iconName] ) {
-					allIconOptions[iconSet].unshift( {
+				if ( icons?.[ iconSet ]?.[ attributes?.iconName ] ) {
+					allIconOptions[ iconSet ].unshift( {
 						// @ts-ignore Intentionally use JSX Element instead of string.
-						name: parse( icons?.[iconSet]?.[attributes?.iconName] ),
+						name: parse( icons?.[ iconSet ]?.[ attributes?.iconName ] ),
 						key: attributes?.iconName,
 					} );
 				}
 			} );
 
 			const IconPreview = () => {
-				const currentIconSvg: string = allIconOptions[attributes?.iconSet]?.filter( ( option: CustomSelectOption ) => {
+				const currentIconSvg: string = allIconOptions[ attributes?.iconSet ]?.filter( ( option: CustomSelectOption ) => {
 					return option?.key === attributes?.iconName;
-				} )?.[0]?.name;
+				} )?.[ 0 ]?.name;
 
 				return (
 					<div className={ 'blockify-icon-preview' }>
@@ -232,7 +230,7 @@ addFilter(
 						) }
 					</div>
 				);
-			}
+			};
 
 			return (
 				<>
@@ -248,7 +246,7 @@ addFilter(
 								  { __( 'More icons available with the Blockify Pro add-on! ', 'blockify' ) }
 								  <a
 									  href="https://blockifywp.com/pro"
-									  target={ '_blank' }
+									  target={ '_blank' } rel="noreferrer"
 								  >
 									  { __( 'Learn more ↗', 'blockify' ) }
 								  </a>
@@ -262,11 +260,11 @@ addFilter(
 									iconSet: value,
 								} ) }
 							/>
-							<IconPreview/>
+							<IconPreview />
 
 							<CustomSelectControl
 								label={ __( 'Select Icon', 'blockify' ) }
-								options={ allIconOptions?.[attributes?.iconSet] ?? allIconOptions?.wordpress }
+								options={ allIconOptions?.[ attributes?.iconSet ] ?? allIconOptions?.wordpress }
 								value={ attributes?.iconSvgString ?? iconAttributes?.iconSvgString?.default }
 								className={ 'blockify-icon-setting' }
 								onChange={ ( { selectedItem } ) => {
@@ -277,11 +275,11 @@ addFilter(
 									} );
 
 									setAttributes( {
-										iconSvgString: icons?.[attributes?.iconSet]?.[key]
+										iconSvgString: icons?.[ attributes?.iconSet ]?.[ key ],
 									} );
 								} }
 							/>
-							<br/>
+							<br />
 							<PanelRow>
 								<Flex>
 									<FlexItem>
@@ -289,7 +287,7 @@ addFilter(
 											label={ __( 'Icon Width', 'blockify' ) }
 											value={ attributes?.iconSize ?? '' }
 											onChange={ ( value: string ) => setAttributes( {
-												iconSize: value
+												iconSize: value,
 											} ) }
 										/>
 									</FlexItem>
@@ -305,8 +303,8 @@ addFilter(
 );
 
 const getStyles = ( attributes: attributes ) => {
-	let styles: style = {};
-	let background    = '';
+	const styles: style = {};
+	let background = '';
 
 	if ( attributes?.style?.color?.background ) {
 		background = attributes.style.color.background;
@@ -337,17 +335,17 @@ const getStyles = ( attributes: attributes ) => {
 	}
 
 	if ( background !== '' ) {
-		styles['--wp--custom--icon--background'] = background;
+		styles[ '--wp--custom--icon--background' ] = background;
 	}
 
 	if ( text ) {
-		styles['--wp--custom--icon--color'] = text;
+		styles[ '--wp--custom--icon--color' ] = text;
 
 		if ( gradient ) {
-			styles['--wp--custom--icon--background'] = gradient;
+			styles[ '--wp--custom--icon--background' ] = gradient;
 		}
 	} else if ( gradient ) {
-		styles['--wp--custom--icon--color'] = gradient;
+		styles[ '--wp--custom--icon--color' ] = gradient;
 	}
 
 	if ( attributes?.style?.spacing?.padding ) {
@@ -362,14 +360,14 @@ const getStyles = ( attributes: attributes ) => {
 
 		// Support spacing scale.
 		Object.keys( paddingObject ).forEach( ( side: string ) => {
-			const value: string = paddingObject?.[side] ?? '';
+			const value: string = paddingObject?.[ side ] ?? '';
 
 			if ( value && value?.includes( 'var:preset' ) ) {
-				paddingObject[side] = 'var(--wp--preset--spacing--' + value.replace( 'var:preset|spacing|', '' ) + ')';
+				paddingObject[ side ] = 'var(--wp--preset--spacing--' + value.replace( 'var:preset|spacing|', '' ) + ')';
 			}
 		} );
 
-		styles['--wp--custom--icon--padding'] = Object.values( paddingObject ).join( ' ' );
+		styles[ '--wp--custom--icon--padding' ] = Object.values( paddingObject ).join( ' ' );
 	}
 
 	if ( attributes?.style?.spacing?.margin ) {
@@ -384,14 +382,14 @@ const getStyles = ( attributes: attributes ) => {
 
 		// Support spacing scale.
 		Object.keys( marginObject ).forEach( ( side: string ) => {
-			const value: string = marginObject?.[side] ?? '';
+			const value: string = marginObject?.[ side ] ?? '';
 
 			if ( value?.includes( 'var:preset' ) ) {
-				marginObject[side] = 'var(--wp--preset--spacing--' + value?.replace( 'var:preset|spacing|', '' ) + ')';
+				marginObject[ side ] = 'var(--wp--preset--spacing--' + value?.replace( 'var:preset|spacing|', '' ) + ')';
 			}
 		} );
 
-		styles['--wp--custom--icon--margin'] = Object.values( marginObject ).join( ' ' );
+		styles[ '--wp--custom--icon--margin' ] = Object.values( marginObject ).join( ' ' );
 	}
 
 	let borderColor = '';
@@ -401,31 +399,31 @@ const getStyles = ( attributes: attributes ) => {
 	}
 
 	if ( attributes?.style?.border?.width ) {
-		styles['--wp--custom--icon--border-width'] = attributes.style.border.width;
-		styles['--wp--custom--icon--border-style'] = attributes.style.border?.style ?? 'solid';
-		styles['--wp--custom--icon--border-color'] = attributes.style.border?.color ?? borderColor;
+		styles[ '--wp--custom--icon--border-width' ] = attributes.style.border.width;
+		styles[ '--wp--custom--icon--border-style' ] = attributes.style.border?.style ?? 'solid';
+		styles[ '--wp--custom--icon--border-color' ] = attributes.style.border?.color ?? borderColor;
 	}
 
-	let size = attributes?.iconSize ?? '';
+	const size = attributes?.iconSize ?? '';
 
 	if ( size !== '' ) {
-		styles['--wp--custom--icon--size'] = size;
+		styles[ '--wp--custom--icon--size' ] = size;
 	}
 
 	const custom: string = ( attributes?.iconCustomSVG ?? '' )?.replace( '"', "'" );
-	const svg: string    = custom && custom?.includes( '<svg' ) ? custom : attributes?.iconSvgString ?? '';
+	const svg: string = custom && custom?.includes( '<svg' ) ? custom : attributes?.iconSvgString ?? '';
 
 	if ( svg ) {
-		styles['--wp--custom--icon--url'] = "url(\'data:image/svg+xml;utf8," + svg + "\')";
+		styles[ '--wp--custom--icon--url' ] = "url(\'data:image/svg+xml;utf8," + svg + "\')";
 	}
 
 	return styles;
-}
+};
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/edit-icon-styles',
-	createHigherOrderComponent( BlockListBlock => {
+	createHigherOrderComponent( ( BlockListBlock ) => {
 		return ( props: blockProps ) => {
 			let { attributes, wrapperProps, name } = props;
 
@@ -443,18 +441,17 @@ addFilter(
 
 			if ( ! wrapperProps ) {
 				wrapperProps = {
-					style: {}
+					style: {},
 				};
 			}
 
 			wrapperProps.style = {
 				...wrapperProps?.style,
-				...getStyles( attributes )
+				...getStyles( attributes ),
 			};
 
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 		};
-
 	}, 'withIcon' )
 );
 
@@ -462,7 +459,6 @@ addFilter(
 	'blocks.getSaveContent.extraProps',
 	'blockify/save-icon-styles',
 	( props, block, attributes ): object => {
-
 		if ( ! attributes?.className ) {
 			return props;
 		}
@@ -479,7 +475,7 @@ addFilter(
 
 		props.style = {
 			...props?.style,
-			...getStyles( attributes )
+			...getStyles( attributes ),
 		};
 
 		return props;

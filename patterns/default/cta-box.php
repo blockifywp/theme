@@ -6,10 +6,10 @@
  * 
  */
 ?>
-<!-- wp:group {"align":"full","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|xxs","top":"var:preset|spacing|xxs"}}},"layout":{"inherit":true,"type":"constrained"}} -->
-<div class="wp-block-group alignfull" style="margin-top:var(--wp--preset--spacing--xxs);margin-bottom:var(--wp--preset--spacing--xxs)"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|lg","right":"var:preset|spacing|md","bottom":"var:preset|spacing|lg","left":"var:preset|spacing|md"},"margin":{"top":"0","bottom":"var:preset|spacing|sm"}}},"className":"is-style-surface","layout":{"contentSize":"720px","type":"constrained"}} -->
-<div class="wp-block-group alignwide is-style-surface" style="margin-top:0;margin-bottom:var(--wp--preset--spacing--sm);padding-top:var(--wp--preset--spacing--lg);padding-right:var(--wp--preset--spacing--md);padding-bottom:var(--wp--preset--spacing--lg);padding-left:var(--wp--preset--spacing--md)"><!-- wp:heading {"textAlign":"center"} -->
-<h2 class="has-text-align-center">Ready to get started?</h2>
+<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|sm","top":"var:preset|spacing|sm"}}},"layout":{"inherit":true,"type":"constrained"}} -->
+<div class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"var:preset|spacing|lg","bottom":"var:preset|spacing|lg"}}},"className":"is-style-surface","layout":{"contentSize":"720px","type":"constrained"}} -->
+<div class="wp-block-group alignwide is-style-surface" style="margin-top:0;padding-top:var(--wp--preset--spacing--lg);padding-bottom:var(--wp--preset--spacing--lg)"><!-- wp:heading {"textAlign":"center"} -->
+<h2 class="wp-block-heading has-text-align-center">Ready to get started?</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center"} -->

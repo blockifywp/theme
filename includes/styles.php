@@ -62,14 +62,7 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 		$is_editor
 	);
 
-	return str_replace(
-		[
-			"\r",
-			"\n",
-		],
-		'',
-		$css
-	);
+	return remove_line_breaks( $css );
 }
 
 add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
@@ -81,19 +74,15 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
  * @return void
  */
 function enqueue_styles(): void {
-	wp_dequeue_style( 'wp-block-library-theme' );
-
-	// @phpcs:disable WordPress.WP.EnqueuedResourceParameters.MissingVersion
-	wp_register_style( SLUG, '' );
-
+	$handle  = 'global-styles';
 	$content = get_page_content();
 
 	wp_add_inline_style(
-		SLUG,
+		$handle,
 		get_inline_styles( $content, false )
 	);
 
-	wp_enqueue_style( SLUG );
+	wp_dequeue_style( 'wp-block-library-theme' );
 }
 
 /**
@@ -219,18 +208,18 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		return '';
 	}
 
+	$dir         = get_dir();
 	$stylesheets = [
-		...glob( DIR . 'assets/css/elements/*.css' ),
-		...glob( DIR . 'assets/css/components/*.css' ),
-		...glob( DIR . 'assets/css/block-styles/*.css' ),
-		...glob( DIR . 'assets/css/formats/*.css' ),
-		...glob( DIR . 'assets/css/extensions/*.css' ),
-		...glob( DIR . 'assets/css/plugins/*.css' ),
+		...glob( $dir . 'assets/css/elements/*.css' ),
+		...glob( $dir . 'assets/css/components/*.css' ),
+		...glob( $dir . 'assets/css/block-styles/*.css' ),
+		...glob( $dir . 'assets/css/formats/*.css' ),
+		...glob( $dir . 'assets/css/extensions/*.css' ),
+		...glob( $dir . 'assets/css/plugins/*.css' ),
 	];
 
 	$conditions = [];
-
-	$css = '';
+	$css        = '';
 
 	$conditions['elements'] = [
 		'all'        => true,
@@ -370,7 +359,7 @@ function add_block_styles(): void {
 		}
 
 		$slug = str_replace( 'wp-block-', '', $handle );
-		$file = DIR . 'assets/css/blocks/' . $slug . '.css';
+		$file = get_dir() . 'assets/css/blocks/' . $slug . '.css';
 
 		if ( ! file_exists( $file ) ) {
 			continue;
@@ -427,14 +416,17 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_only_styles' );
 function enqueue_editor_only_styles(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
 
+	$file   = 'assets/css/editor.css';
+	$handle = 'blockify-editor';
+
 	wp_register_style(
-		'blockify-editor',
-		get_uri() . 'assets/css/editor.css',
+		$handle,
+		get_uri() . $file,
 		[],
-		filemtime( DIR . 'assets/css/editor.css' )
+		filemtime( get_dir() . $file )
 	);
 
-	wp_enqueue_style( 'blockify-editor' );
+	wp_enqueue_style( $handle );
 }
 
 add_action( 'admin_init', NS . 'add_editor_stylesheets' );
@@ -446,7 +438,7 @@ add_action( 'admin_init', NS . 'add_editor_stylesheets' );
  * @return void
  */
 function add_editor_stylesheets() {
-	$dirs = glob( DIR . 'assets/css/*', GLOB_ONLYDIR );
+	$dirs = glob( get_dir() . 'assets/css/*', GLOB_ONLYDIR );
 	$path = get_editor_stylesheet_path();
 
 	foreach ( $dirs as $dir ) {

@@ -56,7 +56,7 @@ add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
  */
 function add_counter_js( string $js, string $html ): string {
 	if ( str_contains( $html, 'is-style-counter' ) ) {
-		$js .= file_get_contents( DIR . 'assets/js/counter.js' );
+		$js .= file_get_contents( get_dir() . 'assets/js/counter.js' );
 	}
 
 	return $js;

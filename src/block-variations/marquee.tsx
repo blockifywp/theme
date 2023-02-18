@@ -1,9 +1,9 @@
-import { BlockVariation, registerBlockVariation } from "@wordpress/blocks";
-import { __ } from "@wordpress/i18n";
-import { reusableBlock } from "@wordpress/icons";
-import { addFilter } from "@wordpress/hooks";
-import { createHigherOrderComponent } from "@wordpress/compose";
-import { CSSProperties } from "react";
+import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { reusableBlock } from '@wordpress/icons';
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { CSSProperties } from 'react';
 import {
 	InspectorControls,
 } from '@wordpress/block-editor';
@@ -12,7 +12,7 @@ import {
 	PanelRow,
 	ToggleControl,
 	// @ts-ignore
-	__experimentalNumberControl as NumberControl, Flex, FlexItem, FlexBlock, RangeControl
+	__experimentalNumberControl as NumberControl, Flex, FlexItem, FlexBlock, RangeControl,
 } from '@wordpress/components';
 
 const blockVariation: BlockVariation = {
@@ -28,17 +28,17 @@ const blockVariation: BlockVariation = {
 			'core/group',
 			{
 				layout: {
-					type: "flex",
-					flexWrap: "nowrap",
-					orientation: "horizontal",
-					justifyContent: "center",
-				}
+					type: 'flex',
+					flexWrap: 'nowrap',
+					orientation: 'horizontal',
+					justifyContent: 'center',
+				},
 			},
 			[
 				[
 					'core/paragraph',
-				]
-			]
+				],
+			],
 		],
 	],
 	attributes: {
@@ -50,20 +50,20 @@ const blockVariation: BlockVariation = {
 		reverse: false,
 		spacing: {
 			padding: {
-				right: "0",
-				left: "0"
-			}
+				right: '0',
+				left: '0',
+			},
 		},
 		layout: {
-			type: "flex",
-			flexWrap: "nowrap",
-			orientation: "marquee",
-			justifyContent: "center",
-		}
+			type: 'flex',
+			flexWrap: 'nowrap',
+			orientation: 'marquee',
+			justifyContent: 'center',
+		},
 	},
 	isActive: ( blockAttributes, variationAttributes ) => {
 		return blockAttributes.layout?.orientation === variationAttributes.layout?.orientation;
-	}
+	},
 };
 
 registerBlockVariation( 'core/group', blockVariation );
@@ -87,22 +87,22 @@ addFilter(
 				attributes: {
 					...props.attributes,
 					speedMobile: {
-						type: "string"
+						type: 'string',
 					},
 					speedDesktop: {
-						type: "string"
+						type: 'string',
 					},
 					reverse: {
-						type: "boolean"
+						type: 'boolean',
 					},
 					pauseOnHover: {
-						type: "boolean"
+						type: 'boolean',
 					},
 					repeatItems: {
-						type: "number"
-					}
+						type: 'number',
+					},
 				},
-			}
+			};
 		}
 
 		return props;
@@ -114,7 +114,6 @@ addFilter(
 	'editor.BlockEdit',
 	'blockify/with-marquee-controls',
 	createHigherOrderComponent( ( BlockEdit: any ) => ( props: blockProps ) => {
-
 		const { attributes, setAttributes } = props;
 
 		if ( attributes?.layout?.orientation !== 'marquee' ) {
@@ -130,7 +129,7 @@ addFilter(
 					>
 						<p>{ __( 'Scroll Speed (seconds)', 'blockify' ) }</p>
 						<PanelRow>
-							<br/>
+							<br />
 							<Flex>
 								<FlexItem style={ { width: '50%' } }>
 									<NumberControl
@@ -148,7 +147,7 @@ addFilter(
 										label={ __( 'Desktop', 'blockify-pro' ) }
 										onChange={ ( value: string ) => {
 											setAttributes( {
-												speedDesktop: value
+												speedDesktop: value,
 											} );
 										} }
 										value={ attributes?.speedDesktop }
@@ -156,7 +155,7 @@ addFilter(
 								</FlexBlock>
 							</Flex>
 						</PanelRow>
-						<br/>
+						<br />
 						<PanelRow>
 							<RangeControl
 								label={ __( 'Repeat Items', 'blockify' ) }
@@ -164,7 +163,7 @@ addFilter(
 								value={ attributes?.repeatItems ?? 2 }
 								onChange={ ( value: number ) => {
 									setAttributes( {
-										repeatItems: value
+										repeatItems: value,
 									} );
 								} }
 								min={ 0 }
@@ -178,7 +177,7 @@ addFilter(
 								label={ __( 'Pause on hover', 'blockify-pro' ) }
 								checked={ attributes?.pauseOnHover }
 								onChange={ () => setAttributes( {
-									pauseOnHover: ! attributes?.pauseOnHover
+									pauseOnHover: ! attributes?.pauseOnHover,
 								} ) }
 							/>
 						</PanelRow>
@@ -187,7 +186,7 @@ addFilter(
 								label={ __( 'Reverse direction', 'blockify-pro' ) }
 								checked={ attributes?.reverse }
 								onChange={ () => setAttributes( {
-									reverse: ! attributes?.reverse
+									reverse: ! attributes?.reverse,
 								} ) }
 							/>
 						</PanelRow>
@@ -200,13 +199,11 @@ addFilter(
 	9
 );
 
-
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-marquee',
 	createHigherOrderComponent(
-		BlockListBlock => ( props: blockProps ) => {
-
+		( BlockListBlock ) => ( props: blockProps ) => {
 			const { attributes } = props;
 
 			if ( attributes?.layout?.orientation !== 'marquee' ) {
@@ -215,18 +212,18 @@ addFilter(
 
 			props.attributes.style = {
 				...attributes.style ?? {},
-				...getStyles( attributes )
+				...getStyles( attributes ),
 			};
 
 			const wrapperProps = {
 				...props.wrapperProps,
 				style: {
 					...props.wrapperProps?.style ?? {},
-					...getStyles( attributes )
-				}
-			}
+					...getStyles( attributes ),
+				},
+			};
 
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>;
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 		},
 		'withMarquee'
 	)
@@ -236,14 +233,13 @@ addFilter(
 	'blocks.getSaveContent.extraProps',
 	'blockify/save-marquee-styles',
 	( props, block, attributes ): object => {
-
 		if ( attributes?.layout?.orientation !== 'marquee' ) {
 			return props;
 		}
 
 		props.style = {
 			...props?.style,
-			...getStyles( attributes )
+			...getStyles( attributes ),
 		};
 
 		return props;

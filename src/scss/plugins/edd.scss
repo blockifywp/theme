@@ -1,6 +1,7 @@
 @import "../abstracts/border";
 @import "../abstracts/button";
 @import "../abstracts/notice";
+@import "../abstracts/surface";
 
 $padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
 
@@ -13,25 +14,25 @@ div#edd_secure_site_wrapper {
 	display: flex;
 	align-items: center;
 	line-height: 1;
-	gap: .5em;
+	gap: 0.5em;
 	color: forestgreen;
-	padding: .5em;
+	padding: 0.5em;
 	font-size: var(--wp--preset--font-size--small);
 	margin: 0 0 var(--wp--style--block-gap, 1em);
-	border: var(--wp--custom--border--width, 1px) var(--wp--custom--border--style, solid) currentColor;
+	border: var(--wp--custom--border--width, 1px) var(--wp--custom--border--style, solid) currentcolor;
 	border-radius: var(--wp--custom--border--radius);
 
-	&:before {
+	&::before {
 		content: "";
 		display: block;
 		position: absolute;
 		inset: 0;
-		background: currentColor;
+		background: currentcolor;
 		opacity: 0.1;
 	}
 
 	svg {
-		fill: currentColor;
+		fill: currentcolor;
 	}
 
 	span {
@@ -63,7 +64,7 @@ div#edd_secure_site_wrapper {
 	margin-left: 0.5em;
 
 	svg {
-		fill: currentColor;
+		fill: currentcolor;
 		height: 1em;
 		width: 1em;
 		margin-right: 0.25em;
@@ -89,7 +90,7 @@ div#edd_secure_site_wrapper {
 
 .wp-block-edd-checkout #edd-payment-mode-wrap label.edd-gateway-option.edd-gateway-option-selected,
 .wp-block-edd-checkout #edd-payment-mode-wrap label.edd-gateway-option:hover {
-	background-color: currentColor;
+	background-color: currentcolor;
 	-webkit-text-fill-color: var(--wp--preset--color--background);
 }
 
@@ -114,9 +115,12 @@ div#edd_secure_site_wrapper {
 }
 
 .edd-blocks__download-header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--style--block-gap, 1em);
 
 	h3 {
-		margin-bottom: 0;
+		margin: 0;
 	}
 
 	a {
@@ -126,6 +130,10 @@ div#edd_secure_site_wrapper {
 
 .edd-blocks__download-footer {
 	margin-top: var(--wp--style--block-gap, 1em);
+}
+
+.edd-blocks__download-image {
+	border-radius: var(--wp--custom--border--radius);
 }
 
 .edd-payment-icons {
@@ -168,13 +176,13 @@ div#edd_secure_site_wrapper {
 
 		@include notice;
 
-		color: currentColor;
+		color: currentcolor;
 	}
 }
 
 .wp-block-edd-register #pass-strength-result {
 	border-radius: var(--wp--custom--border--radius);
-	color: currentColor;
+	color: currentcolor;
 	font-size: smaller;
 }
 
@@ -214,7 +222,33 @@ div#edd_secure_site_wrapper {
 	&:hover,
 	&:focus {
 		transform: none;
-		opacity: var(--wp--custom--button--hover-opacity, .82);
+		opacity: var(--wp--custom--button--hover-opacity, 0.82);
+	}
+}
+
+.edd-blocks__download-content {
+	font-size: var(--wp--preset--font-size--18);
+}
+
+.wp-block-edd-terms {
+	gap: var(--wp--style--block-gap, 1em);
+}
+
+.edd-blocks__term-title {
+
+	h3 {
+		font-size: inherit;
+	}
+}
+
+.edd-blocks__term {
+	display: flex;
+	justify-content: center;
+
+	@include surface;
+
+	a {
+		text-decoration: none;
 	}
 }
 

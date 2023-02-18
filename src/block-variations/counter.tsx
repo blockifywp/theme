@@ -4,7 +4,7 @@ import {
 	PanelRow,
 	TextControl,
 	//@ts-ignore
-	__experimentalNumberControl as NumberControl, Flex, FlexItem
+	__experimentalNumberControl as NumberControl, Flex, FlexItem,
 } from '@wordpress/components';
 import { backup } from '@wordpress/icons';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -45,7 +45,7 @@ const counterVariation: BlockVariation = {
 	},
 	isActive: ( blockAttributes ) => {
 		return blockAttributes && blockAttributes?.className?.includes( 'is-style-counter' );
-	}
+	},
 };
 
 domReady( () => {
@@ -56,7 +56,6 @@ addFilter(
 	'editor.BlockEdit',
 	'blockify/with-counter-controls',
 	createHigherOrderComponent( ( BlockEdit: any ) => ( props: blockProps ) => {
-
 		const { attributes, setAttributes } = props;
 
 		const defaultReturn = <BlockEdit { ...props } />;
@@ -74,7 +73,7 @@ addFilter(
 				style: {
 					...style,
 					counter: defaults,
-				}
+				},
 			} );
 		} else {
 			counter = style.counter;
@@ -121,8 +120,8 @@ addFilter(
 													counter: {
 														...counter,
 														start: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 										step={ 1 }
@@ -142,8 +141,8 @@ addFilter(
 													counter: {
 														...counter,
 														end: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 										step={ 1 }
@@ -153,7 +152,6 @@ addFilter(
 									/>
 								</FlexItem>
 							</Flex>
-
 
 						</PanelRow>
 						<PanelRow>
@@ -171,8 +169,8 @@ addFilter(
 													counter: {
 														...counter,
 														duration: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 										step={ .1 }
@@ -192,8 +190,8 @@ addFilter(
 													counter: {
 														...counter,
 														delay: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 										step={ .1 }
@@ -220,8 +218,8 @@ addFilter(
 													counter: {
 														...counter,
 														prefix: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 									/>
@@ -237,8 +235,8 @@ addFilter(
 													counter: {
 														...counter,
 														suffix: value,
-													}
-												}
+													},
+												},
 											} );
 										} }
 									/>

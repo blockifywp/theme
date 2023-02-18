@@ -9,15 +9,15 @@ import {
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { Label } from "../components/label";
-import { trash } from "@wordpress/icons";
-import { CSSProperties } from "react";
-import { InspectorControls } from "@wordpress/block-editor";
+import { Label } from '../components/label';
+import { trash } from '@wordpress/icons';
+import { CSSProperties } from 'react';
+import { InspectorControls } from '@wordpress/block-editor';
 
-export const supportsTransform = ( name: string ): boolean => window?.blockify?.blockSupports?.[name]?.blockifyTransform ?? false;
+export const supportsTransform = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyTransform ?? false;
 
 interface transformTypes {
-	[name: string]: string
+    [name: string]: string
 }
 
 const transformTypes: transformTypes = {
@@ -49,9 +49,9 @@ addFilter(
 				...( props?.attributes?.style ?? {} ),
 				transform: {
 					type: 'string',
-				}
-			}
-		}
+				},
+			},
+		};
 
 		return props;
 	}
@@ -61,9 +61,9 @@ const getStyles = ( transform: { [name: string]: string } ): CSSProperties => {
 	let styles = '';
 
 	Object.keys( transformTypes ).forEach( ( type: string ) => {
-		if ( transform?.[type] ) {
-			const amount = transform[type];
-			const unit   = transformTypes[type];
+		if ( transform?.[ type ] ) {
+			const amount = transform[ type ];
+			const unit = transformTypes[ type ];
 			styles += ` ${ type }(${ amount }${ unit })`;
 		}
 	} );
@@ -71,51 +71,51 @@ const getStyles = ( transform: { [name: string]: string } ): CSSProperties => {
 	return styles ? {
 		transform: styles.trim(),
 	} : {};
-}
+};
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-css-transform',
-	createHigherOrderComponent( BlockListBlock => {
-			return ( props: blockProps ) => {
-				const { attributes, name } = props;
+	createHigherOrderComponent( ( BlockListBlock ) => {
+		return ( props: blockProps ) => {
+			const { attributes, name } = props;
 
-				const defaultReturn = <BlockListBlock { ...props } />;
+			const defaultReturn = <BlockListBlock { ...props } />;
 
-				if ( ! supportsTransform( name ) ) {
-					return defaultReturn;
-				}
+			if ( ! supportsTransform( name ) ) {
+				return defaultReturn;
+			}
 
-				const { style } = attributes;
-				const transform = style?.transform ?? {};
+			const { style } = attributes;
+			const transform = style?.transform ?? {};
 
-				if ( ! transform ) {
-					return defaultReturn;
-				}
+			if ( ! transform ) {
+				return defaultReturn;
+			}
 
-				const styles: CSSProperties = getStyles( transform );
+			const styles: CSSProperties = getStyles( transform );
 
-				if ( ! Object.keys( styles ).length ) {
-					return defaultReturn;
-				}
+			if ( ! Object.keys( styles ).length ) {
+				return defaultReturn;
+			}
 
-				props.style = {
-					...props?.style,
-					...styles
-				};
-
-				const wrapperProps = {
-					...props.wrapperProps,
-					style: {
-						...props.wrapperProps?.style,
-						...styles,
-					},
-				}
-
-				return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>
+			props.style = {
+				...props?.style,
+				...styles,
 			};
-		},
-		'withCssTransform'
+
+			const wrapperProps = {
+				...props.wrapperProps,
+				style: {
+					...props.wrapperProps?.style,
+					...styles,
+				},
+			};
+
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+		};
+	},
+	'withCssTransform'
 	)
 );
 
@@ -147,15 +147,15 @@ addFilter(
 			style: {
 				...props?.style,
 				...styles,
-			}
-		}
+			},
+		};
 	}
 );
 
 export const Transform = ( props: blockProps ): JSX.Element => {
 	const { attributes, setAttributes } = props;
-	const { style }                     = attributes;
-	const transform                     = style?.transform ?? {};
+	const { style } = attributes;
+	const transform = style?.transform ?? {};
 
 	return (
 		<>
@@ -171,8 +171,8 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 								setAttributes( {
 									style: {
 										...attributes?.style,
-										transform: ''
-									}
+										transform: '',
+									},
 								} );
 							} }
 							icon={ trash }
@@ -194,9 +194,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										rotate: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -215,9 +215,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										rotateX: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -235,9 +235,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										rotateY: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -246,7 +246,6 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 				</FlexItem>
 
 			</Flex>
-
 
 			<Flex className={ 'blockify-flex-controls' }>
 				<FlexItem>
@@ -260,9 +259,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										scale: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ 0 }
 						max={ 10 }
@@ -280,9 +279,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										scaleX: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ 0 }
 						max={ 10 }
@@ -300,9 +299,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										scaleY: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ 0 }
 						max={ 10 }
@@ -325,9 +324,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										skew: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -346,9 +345,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										skewX: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -367,9 +366,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										skewY: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 						min={ -360 }
 						max={ 360 }
@@ -392,9 +391,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										translateX: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 					/>
 				</FlexItem>
@@ -410,9 +409,9 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										translateY: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 					/>
 				</FlexItem>
@@ -428,14 +427,14 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 									transform: {
 										...transform,
 										translateZ: value,
-									}
-								}
-							} )
+									},
+								},
+							} );
 						} }
 					/>
 				</FlexItem>
 			</Flex>
-			<br/>
+			<br />
 		</>
 	);
 };
@@ -443,7 +442,7 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 addFilter(
 	'editor.BlockEdit',
 	'blockify/transform-controls',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, isSelected, name } = props;
 
@@ -455,17 +454,17 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-					  <InspectorControls>
-						  <PanelBody
-							  initialOpen={ attributes?.transform ?? false }
-							  title={ __( 'Transform', 'blockify' ) }
-						  >
-							  <Transform { ...props }/>
-						  </PanelBody>
-					  </InspectorControls>
+					<InspectorControls>
+						<PanelBody
+							initialOpen={ attributes?.transform ?? false }
+							title={ __( 'Transform', 'blockify' ) }
+                      	>
+							<Transform { ...props } />
+						</PanelBody>
+					</InspectorControls>
 					}
 				</>
 			);
-		}
+		};
 	}, 'withTransform' )
 );

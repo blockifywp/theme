@@ -1,12 +1,12 @@
-import { toKebabCase } from "./string";
+import { toKebabCase } from './string';
 
 export const cssObjectToString = ( css: style ): string => {
 	return Object.keys( css ).map( ( key ) => {
 		const property = key?.includes( '-' ) ? key : toKebabCase( key );
 
-		return `${ property }:${ css[key] };`;
+		return `${ property }:${ css[ key ] };`;
 	} ).join( ' ' );
-}
+};
 
 export const cssStringToObject = ( css: string ): style => {
 	const cssObject: style = {};
@@ -15,9 +15,11 @@ export const cssStringToObject = ( css: string ): style => {
 		const [ key, value ] = rule.split( ':' );
 
 		if ( key ) {
-			cssObject[key] = value;
+			cssObject[ key ] = value;
 		}
+
+		return null;
 	} );
 
 	return cssObject;
-}
+};

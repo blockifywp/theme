@@ -55,7 +55,7 @@ function render_social_link_block( string $html, array $block ): string {
 			return $html;
 		}
 
-		$svg_dom = dom( file_get_contents( DIR . 'assets/svg/social/slack.svg' ) );
+		$svg_dom = dom( file_get_contents( get_dir() . 'assets/svg/social/slack.svg' ) );
 		$svg     = get_dom_element( 'svg', $svg_dom );
 
 		$svg->setAttribute( 'fill', 'currentColor' );

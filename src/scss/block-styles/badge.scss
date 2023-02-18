@@ -8,9 +8,9 @@
 	font-size: var(--wp--custom--badge--font-size, inherit);
 	font-weight: var(--wp--custom--badge--font-weight, bolder);
 
-	&:before {
-		content: '';
-		background: currentColor;
+	&::before {
+		content: "";
+		background: currentcolor;
 		position: absolute;
 		inset: 0;
 		opacity: var(--wp--custom--badge--opacity, 0.1);

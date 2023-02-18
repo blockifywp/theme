@@ -1,1 +1,1 @@
-.has-drop-cap:not(:focus):first-letter{font-size:var(--wp--custom--drop-cap--font-size, 5.5em)}
+.has-drop-cap:not(:focus)::first-letter{font-size:var(--wp--custom--drop-cap--font-size, 5.5em)}

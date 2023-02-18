@@ -1,13 +1,13 @@
-import { __ } from "@wordpress/i18n";
-import { addFilter } from "@wordpress/hooks";
-import { createHigherOrderComponent } from "@wordpress/compose";
+import { __ } from '@wordpress/i18n';
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
 import {
-	InspectorAdvancedControls
-} from "@wordpress/block-editor";
-import { TextareaControl } from "@wordpress/components";
-import { useSelect } from "@wordpress/data";
+	InspectorAdvancedControls,
+} from '@wordpress/block-editor';
+import { TextareaControl } from '@wordpress/components';
+import { SelectorMap, useSelect } from '@wordpress/data';
 
-const supportsOnclick = ( name: string ): boolean => window?.blockify?.blockSupports?.[name]?.blockifyOnclick ?? false;
+const supportsOnclick = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyOnclick ?? false;
 
 addFilter(
 	'blocks.registerBlockType',
@@ -21,8 +21,8 @@ addFilter(
 			...props.attributes,
 			onclick: {
 				type: 'string',
-			}
-		}
+			},
+		};
 
 		return props;
 	},
@@ -32,23 +32,23 @@ addFilter(
 addFilter(
 	'editor.BlockEdit',
 	'blockify/with-onclick-attribute',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, setAttributes, name } = props;
 
 			if ( ! supportsOnclick( name ) ) {
-				return <BlockEdit { ...props } />
+				return <BlockEdit { ...props } />;
 			}
 
-			const userRoles = useSelect( select => {
-				const currentUser: { id: number } = select( 'core' ).getCurrentUser();
-				const user: { roles: string[] }   = select( 'core' ).getUser( currentUser?.id );
+			const userRoles = useSelect<any>( ( select : SelectorMap ) => {
+				const currentUser: { id: number } = select( 'core' )?.getCurrentUser();
+				const user: { roles: string[] } = select( 'core' )?.getUser( currentUser?.id );
 
 				return user?.roles;
-			} );
+			}, [] );
 
 			if ( ! userRoles?.includes( 'administrator' ) ) {
-				return <BlockEdit { ...props } />
+				return <BlockEdit { ...props } />;
 			}
 
 			return (
@@ -61,13 +61,13 @@ addFilter(
 							rows={ 4 }
 							value={ attributes?.onclick?.replace( '"', "'" ) }
 							onChange={ ( value: string ) => setAttributes( {
-								onclick: value?.replace( '"', "'" )
+								onclick: value?.replace( '"', "'" ),
 							} ) }
 							style={ {
 								fontFamily: 'ui-monospace,Menlo,Monaco,Cascadia Code,Segoe UI Mono,Roboto Mono,Oxygen Mono,Ubuntu Monospace,Source Code Pro,Fira Code,Droid Sans Mono,DejaVu Sans Mono,Courier New,monospace',
 								fontSize: '14px',
 								tabSize: '1em',
-								lineHeight: '1.5'
+								lineHeight: '1.5',
 							} }
 						/>
 

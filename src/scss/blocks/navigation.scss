@@ -8,6 +8,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 	// 782px hardcoded in core.
 	@media (max-width: 782px) {
+
 		& {
 			font-size: 1em;
 		}
@@ -35,7 +36,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 .wp-block-navigation__responsive-container-close,
 .wp-block-navigation__responsive-container-open {
 	background: transparent !important;
-	color: currentColor !important;
+	color: currentcolor !important;
 
 	svg {
 		width: 30px;
@@ -50,7 +51,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 .wp-block-navigation:not(.has-background) .wp-block-navigation__responsive-container.is-menu-open {
 	background: var(--wp--custom--body--background, #fff);
-	color: currentColor; // #000 hardcoded in core.
+	color: currentcolor; // #000 hardcoded in core.
 }
 
 // TODO: Remove when merged into core or Gutenberg active.
@@ -75,6 +76,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
  */
 
 .wp-block-navigation.is-vertical {
+
 	.wp-block-navigation__submenu-icon {
 		display: none;
 	}
@@ -106,6 +108,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 }
 
 .wp-block-navigation__responsive-container .wp-block-navigation-link a {
+
 	&:hover,
 	&:focus {
 		color: var(--wp--preset--color--primary);
@@ -118,6 +121,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 }
 
 @media (max-width: 782px) {
+
 	.wp-block-navigation .wp-block-navigation-item.has-child {
 		padding-bottom: 0;
 	}
@@ -135,6 +139,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 // Reset needed as default is too low (600px).
 @media (min-width: 600px) {
+
 	.wp-block-navigation__responsive-container-open:not(.always-shown) {
 		display: flex;
 	}
@@ -191,7 +196,7 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 
 	.wp-block-navigation__submenu-container {
 
-		&:before {
+		&::before {
 			content: "";
 			position: absolute;
 			backdrop-filter: var(--wp--custom--surface--backdrop-filter, none);

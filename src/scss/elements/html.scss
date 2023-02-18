@@ -3,7 +3,7 @@ html {
 	padding: 0 !important;
 	box-sizing: border-box;
 	overflow-x: hidden;
-	text-rendering: optimizeLegibility;
+	text-rendering: optimizelegibility;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	-webkit-animation: fade-in var(--wp--custom--transition);
@@ -12,6 +12,7 @@ html {
 	animation: fade-in var(--wp--custom--transition);
 
 	@media (prefers-reduced-motion: no-preference) {
+
 		& {
 			scroll-behavior: smooth;
 		}

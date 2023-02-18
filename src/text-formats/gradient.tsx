@@ -1,38 +1,33 @@
 import { __ } from '@wordpress/i18n';
-import { RichTextToolbarButton } from '@wordpress/block-editor';
-import { Format, FormatProps, registerFormatType } from '@wordpress/rich-text';
-import { applyFormat } from '@wordpress/rich-text';
-import { RichTextShortcut } from '@wordpress/block-editor';
-import { BlockControls } from '@wordpress/block-editor';
-// @ts-ignore GradientPicker does exist.
+import { Format, FormatProps, registerFormatType, applyFormat } from '@wordpress/rich-text';
+import { RichTextShortcut, BlockControls, RichTextToolbarButton } from '@wordpress/block-editor';
 import { Toolbar, Popover, GradientPicker } from '@wordpress/components';
-import { useState } from "@wordpress/element";
-import { useSelect } from "@wordpress/data";
-import { styles } from "@wordpress/icons";
-import { ComponentType } from "react";
+import { useState } from '@wordpress/element';
+import { SelectorMap, useSelect } from '@wordpress/data';
+import { styles } from '@wordpress/icons';
 
 const name = 'blockify/gradient';
 
-const Edit: ComponentType<FormatProps> = ( { isActive, value, onChange } ) => {
+const Edit = ( { isActive, value, onChange }: FormatProps ) => {
 	const [ gradient, setGradient ] = useState( '' );
-	const [ isOpen, setIsOpen ]     = useState( false );
+	const [ isOpen, setIsOpen ] = useState( false );
 
-	const { gradients } = useSelect( select => {
+	const { gradients } = useSelect<any>( ( select: SelectorMap ) => {
 		return {
-			// @ts-ignore gradients does exist.
-			gradients: select( 'core/block-editor' ).getSettings()?.gradients
+			gradients: select( 'core/block-editor' ).getSettings()?.gradients,
 		};
-	} );
+	}, [] );
 
 	let existingStyle = '';
 	let existingClass = '';
 
 	if ( value?.formats ) {
-		// @ts-ignore Format is not array.
-		value.formats.map( ( value: Format | undefined ): void => {
-			if ( value?.type === name ) {
-				existingStyle += ';' + value?.attributes?.style;
-				existingClass += value?.attributes?.class;
+		value.formats.forEach( ( format: Format[] | undefined ): void => {
+			const currentFormat = format?.find( ( f: Format ) => f?.type === name );
+
+			if ( currentFormat?.type === name ) {
+				existingStyle += ';' + currentFormat?.attributes?.style;
+				existingClass += currentFormat?.attributes?.class;
 			}
 		} );
 	}
@@ -42,8 +37,7 @@ const Edit: ComponentType<FormatProps> = ( { isActive, value, onChange } ) => {
 			<RichTextShortcut
 				type={ 'primary' }
 				character={ 'g' }
-				onUse={ () => {
-				} }
+				onUse={ () => setIsOpen( ! isOpen ) }
 			/>
 			<RichTextToolbarButton
 				icon={ styles }
@@ -54,47 +48,47 @@ const Edit: ComponentType<FormatProps> = ( { isActive, value, onChange } ) => {
 				onClick={ () => setIsOpen( ! isOpen ) }
 			/>
 			{ isOpen &&
-			  <Toolbar className={ 'blockify-components-toolbar' }>
-				  <Popover
-					  position={ 'bottom center' }
-					  className={ 'blockify-gradient-text-control' }
-					  focusOnMount={ 'container' }
-					  onFocusOutside={ () => setIsOpen( false ) }
-				  >
-					  <GradientPicker
-						  value={ gradient ?? '' }
-						  gradients={ gradients }
-						  onChange={ ( newGradient: string ) => {
-							  setGradient( newGradient );
+			<Toolbar className={ 'blockify-components-toolbar' }>
+				<Popover
+					position={ 'bottom center' }
+					className={ 'blockify-gradient-text-control' }
+					focusOnMount={ 'container' }
+					onFocusOutside={ () => setIsOpen( false ) }
+				>
+					<GradientPicker
+						value={ gradient ?? '' }
+						gradients={ gradients }
+						onChange={ ( newGradient: string ) => {
+							setGradient( newGradient );
 
-							  let style     = existingStyle;
-							  let className = existingClass;
+							let style = existingStyle;
+							let className = existingClass;
 
-							  gradients.forEach( ( gradient: { slug: string; gradient: string } ) => {
-								  if ( gradient.gradient === newGradient ) {
-									  className += ( className ? ' ' : '' ) + 'has-' + gradient.slug + '-gradient-background';
-								  }
-							  } );
+							gradients.forEach( ( gradientItem: { slug: string; gradient: string } ) => {
+								if ( gradientItem.gradient === newGradient ) {
+									className += ( className ? ' ' : '' ) + 'has-' + gradientItem.slug + '-gradient-background';
+								}
+							} );
 
-							  if ( newGradient && ! className.includes( '-gradient-background' ) ) {
-								  style += ( style ? style + ';' : '' ) + 'background:' + newGradient;
-							  }
+							if ( newGradient && ! className.includes( '-gradient-background' ) ) {
+								style += ( style ? style + ';' : '' ) + 'background:' + newGradient;
+							}
 
-							  if ( className?.includes( 'has-text-gradient' ) ) {
-								  className = className?.replace( 'has-text-gradient', '' )?.trim() + ' has-text-gradient'
-							  }
+							if ( className?.includes( 'has-text-gradient' ) ) {
+								className = className?.replace( 'has-text-gradient', '' )?.trim() + ' has-text-gradient';
+							}
 
-							  onChange( applyFormat( value, {
-								  type: name,
-								  attributes: {
-									  style: style,
-									  class: className
-								  }
-							  } ) )
-						  } }
-					  />
-				  </Popover>
-			  </Toolbar>
+							onChange( applyFormat( value, {
+								type: name,
+								attributes: {
+									style,
+									class: className,
+								},
+							} ) );
+						} }
+					/>
+				</Popover>
+			</Toolbar>
 			}
 		</BlockControls>
 
@@ -109,7 +103,6 @@ registerFormatType( name, {
 		style: 'style',
 		class: 'class',
 	},
-	edit: Edit
+	edit: Edit,
 } );
-
 

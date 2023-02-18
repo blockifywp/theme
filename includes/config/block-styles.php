@@ -36,36 +36,6 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Surface', 'blockify' ),
 			],
 			[
-				'type'  => 'core/code',
-				'name'  => 'light',
-				'label' => __( 'Light', 'blockify' ),
-			],
-			[
-				'type'  => 'core/code',
-				'name'  => 'dark',
-				'label' => __( 'Dark', 'blockify' ),
-			],
-			[
-				'type'  => 'core/column',
-				'name'  => 'dark',
-				'label' => __( 'Dark', 'blockify' ),
-			],
-			[
-				'type'  => 'core/column',
-				'name'  => 'light',
-				'label' => __( 'Light', 'blockify' ),
-			],
-			[
-				'type'  => 'core/columns',
-				'name'  => 'dark',
-				'label' => __( 'Dark', 'blockify' ),
-			],
-			[
-				'type'  => 'core/columns',
-				'name'  => 'light',
-				'label' => __( 'Light', 'blockify' ),
-			],
-			[
 				'type'  => 'core/columns',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),
@@ -74,16 +44,6 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/column',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),
-			],
-			[
-				'type'  => 'core/group',
-				'name'  => 'light',
-				'label' => __( 'Light', 'blockify' ),
-			],
-			[
-				'type'  => 'core/group',
-				'name'  => 'dark',
-				'label' => __( 'Dark', 'blockify' ),
 			],
 			[
 				'type'  => 'core/group',
@@ -195,6 +155,54 @@ function register_block_styles( array $config ): array {
 			'type'  => 'core/button',
 			'name'  => 'secondary',
 			'label' => __( 'Secondary', 'blockify' ),
+		];
+	}
+
+	$dark_mode = wp_get_global_settings()['custom']['darkMode'] ?? null;
+
+	if ( $dark_mode ) {
+		$config['blockStyles']['register'] = [
+			...$config['blockStyles']['register'],
+			[
+				'type'  => 'core/code',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/code',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
+			[
+				'type'  => 'core/column',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
+			[
+				'type'  => 'core/column',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/columns',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
+			[
+				'type'  => 'core/columns',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/group',
+				'name'  => 'light',
+				'label' => __( 'Light', 'blockify' ),
+			],
+			[
+				'type'  => 'core/group',
+				'name'  => 'dark',
+				'label' => __( 'Dark', 'blockify' ),
+			],
 		];
 	}
 

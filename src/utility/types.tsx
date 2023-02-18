@@ -1,16 +1,10 @@
-import { CustomSelectControl } from "@wordpress/components";
+import { CustomSelectControl } from '@wordpress/components';
 import Option = CustomSelectControl.Option;
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export {};
 
 declare global {
-
-	namespace JSX {
-		interface IntrinsicElements {
-			marquee?: any;
-		}
-	}
 
 	interface blockify {
 
@@ -101,16 +95,20 @@ declare global {
 		[name: string]: any;
 	}
 
+	interface wrapperProps {
+		style?: CSSProperties;
+		'data-id'?: string;
+		className?: string;
+	}
+
 	interface blockProps {
 		name: string;
 		clientId: string;
 		className: string;
 		style: style | CSSProperties;
 		attributes: attributes,
-		setAttributes: ( attributes: any ) => void;
-		wrapperProps?: {
-			[name: string]: any;
-		},
+		setAttributes: ( newAttributes: attributes ) => void;
+		wrapperProps?: wrapperProps,
 		isSelected?: boolean;
 		value?: any,
 		children?: any,

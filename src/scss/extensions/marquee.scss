@@ -58,21 +58,25 @@
 }
 
 @media (prefers-reduced-motion) {
+
 	.is-marquee > * {
 		animation-play-state: paused;
 	}
 }
 
 @media (min-width: 782px) {
+
 	.is-marquee > * {
-		animation-duration: var(--marquee-speed-desktop)
+		animation-duration: var(--marquee-speed-desktop);
 	}
 }
 
 @keyframes marquee {
+
 	0% {
 		transform: translateX(0);
 	}
+
 	100% {
 		transform: translateX(calc(-100% - var(--wp--style--block-gap, 1em)));
 	}

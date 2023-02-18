@@ -1,5 +1,4 @@
 .wp-block-search {
-	display: flex;
 	flex-wrap: wrap;
 	line-height: 1;
 
@@ -28,10 +27,6 @@
 }
 
 .wp-block-search__button-inside {
-
-	.wp-block-search__inside-wrapper .wp-block-search__input {
-
-	}
 
 	.wp-block-search__inside-wrapper {
 		gap: 0;

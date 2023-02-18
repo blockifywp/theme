@@ -17,7 +17,7 @@ const blockVariation: BlockVariation = {
 		layout: {
 			type: 'flex',
 			orientation: 'grid',
-		}
+		},
 	},
 	isActive: ( blockAttributes ) => blockAttributes?.layout?.orientation === 'grid',
 };
@@ -36,10 +36,10 @@ addFilter(
 				attributes: {
 					...props.attributes,
 					grid: {
-						type: 'object'
+						type: 'object',
 					},
-				}
-			}
+				},
+			};
 		}
 
 		return props;
@@ -51,7 +51,7 @@ addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-grid',
 	createHigherOrderComponent(
-		BlockListBlock => ( props: blockProps ) => {
+		( BlockListBlock ) => ( props: blockProps ) => {
 			if ( props?.name !== 'core/group' ) {
 				return <BlockListBlock { ...props } />;
 			}

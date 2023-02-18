@@ -1,1 +1,1 @@
-window.addEventListener("scroll",(()=>{const e=window.pageYOffset/(document.body.offsetHeight-window.innerHeight);document.body.style.setProperty("--scroll",e.toFixed(2).toString())}),!1);
+window.addEventListener("scroll",(()=>{const o=window.scrollY/(document.body.offsetHeight-window.innerHeight);document.body.style.setProperty("--scroll",o.toFixed(2).toString())}),!1);

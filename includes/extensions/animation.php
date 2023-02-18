@@ -42,7 +42,7 @@ add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 2 );
  */
 function add_animation_js( string $js, string $content ): string {
 	if ( str_contains( $content, ' has-animation' ) ) {
-		$js .= file_get_contents( DIR . 'assets/js/animation.js' );
+		$js .= file_get_contents( get_dir() . 'assets/js/animation.js' );
 	}
 
 	return $js;
@@ -125,7 +125,7 @@ add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 2 );
  */
 function add_scroll_js( string $js, string $content ): string {
 	if ( str_contains( $content, 'animation-event:scroll' ) ) {
-		$js .= file_get_contents( DIR . 'assets/js/scroll.js' );
+		$js .= file_get_contents( get_dir() . 'assets/js/scroll.js' );
 	}
 
 	return $js;

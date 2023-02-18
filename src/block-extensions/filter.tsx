@@ -7,12 +7,12 @@ import {
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
-import { toKebabCase, ucWords } from "../utility/string";
-import { Label } from "../components/label";
-import { trash } from "@wordpress/icons";
-import { InspectorControls } from "@wordpress/block-editor";
+import { toKebabCase, ucWords } from '../utility/string';
+import { Label } from '../components/label';
+import { trash } from '@wordpress/icons';
+import { InspectorControls } from '@wordpress/block-editor';
 
-const supportsFilter = ( name: string ): boolean => window?.blockify?.blockSupports?.[name]?.blockifyFilter ?? false;
+const supportsFilter = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyFilter ?? false;
 
 const config: {
 	[name: string]: {
@@ -61,14 +61,14 @@ const config: {
 		unit: '',
 		min: 0,
 		max: 100,
-		step: 0.1
+		step: 0.1,
 	},
 	sepia: {
 		unit: '%',
 		min: 0,
 		max: 100,
 	},
-}
+};
 
 addFilter(
 	'blocks.registerBlockType',
@@ -84,20 +84,20 @@ addFilter(
 				...( props?.attributes?.style ?? {} ),
 				filter: {
 					type: 'string',
-				}
-			}
-		}
+				},
+			},
+		};
 
 		return props;
 	}
 );
 
-const getStyles = ( filter: cssFilters ): {} => {
+const getStyles = ( filter: cssFilters ): object => {
 	let styles = '';
 
 	Object.keys( config ).forEach( ( key ) => {
-		if ( filter?.hasOwnProperty( key ) && typeof filter[key] !== 'undefined' ) {
-			styles += ' ' + toKebabCase( key ) + '(' + filter[key] + config?.[key]?.unit + ')';
+		if ( Object.prototype.hasOwnProperty.call( filter, key ) && typeof filter[ key ] !== 'undefined' ) {
+			styles += ' ' + toKebabCase( key ) + '(' + filter[ key ] + config?.[ key ]?.unit + ')';
 		}
 	} );
 
@@ -106,9 +106,9 @@ const getStyles = ( filter: cssFilters ): {} => {
 	}
 
 	return {
-		[filter?.backdrop ? 'backdrop-filter' : 'filter']: styles.trim()
+		[ filter?.backdrop ? 'backdrop-filter' : 'filter' ]: styles.trim(),
 	};
-}
+};
 
 addFilter(
 	'editor.BlockListBlock',
@@ -116,10 +116,10 @@ addFilter(
 	createHigherOrderComponent(
 		( BlockListBlock ) => {
 			return ( props: blockProps ) => {
-				const filter        = props?.attributes?.style?.filter ?? {};
-				const defaultReturn = <BlockListBlock { ...props } />
+				const filter = props?.attributes?.style?.filter ?? {};
+				const defaultReturn = <BlockListBlock { ...props } />;
 
-				if ( ! filter || filter === {} ) {
+				if ( Object.getOwnPropertyNames( filter ).length === 0 ) {
 					return defaultReturn;
 				}
 
@@ -132,17 +132,17 @@ addFilter(
 				props.style = {
 					...props.style ?? {},
 					...styles,
-				}
+				};
 
 				const wrapperProps = {
 					...props.wrapperProps,
 					style: {
 						...props.wrapperProps?.style,
 						...styles,
-					}
-				}
+					},
+				};
 
-				return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>
+				return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 			};
 		},
 		'withCssFilter'
@@ -155,7 +155,7 @@ addFilter(
 	( props, block, attributes ) => {
 		const filter = attributes?.style?.filter ?? {};
 
-		if ( ! filter || filter === {} ) {
+		if ( Object.getOwnPropertyNames( filter ).length === 0 ) {
 			return props;
 		}
 
@@ -170,14 +170,14 @@ addFilter(
 			style: {
 				...props?.style,
 				...styles,
-			}
-		}
+			},
+		};
 	}
 );
 
 const Filter = ( props: blockProps ) => {
 	const { attributes, setAttributes } = props;
-	const { style }                     = attributes;
+	const { style } = attributes;
 
 	return (
 		<>
@@ -193,7 +193,7 @@ const Filter = ( props: blockProps ) => {
 								style: {
 									...attributes?.style,
 									filter: {},
-								}
+								},
 							} );
 						} }
 						icon={ trash }
@@ -208,24 +208,25 @@ const Filter = ( props: blockProps ) => {
 			>
 				{ Object.keys( config ).map( ( key: string ) => {
 					return <NumberControl
+						key={ key }
 						label={ ( 'hueRotate' === key ? __( 'Hue Rotate', 'blockify' ) : ucWords( key ) ) }
-						value={ style?.filter?.[key] }
+						value={ style?.filter?.[ key ] }
 						onChange={ ( value: number ) => {
 							setAttributes( {
 								style: {
 									...style,
 									filter: {
 										...style?.filter ?? {},
-										[key]: value,
-									}
-								}
-							} )
+										[ key ]: value,
+									},
+								},
+							} );
 						} }
-						min={ config?.[key]?.min ?? 0 }
-						max={ config?.[key]?.max }
-						step={ config?.[key]?.step ?? 1 }
+						min={ config?.[ key ]?.min ?? 0 }
+						max={ config?.[ key ]?.max }
+						step={ config?.[ key ]?.step ?? 1 }
 						allowReset={ true }
-					/>
+					/>;
 				} ) }
 			</PanelRow>
 
@@ -233,28 +234,27 @@ const Filter = ( props: blockProps ) => {
 				<ToggleControl
 					label={ __( 'Use as backdrop filter', 'blockify' ) }
 					checked={ style?.filter?.backdrop }
-					onChange={ value => {
+					onChange={ ( value ) => {
 						setAttributes( {
 							style: {
 								...style,
 								filter: {
 									...style?.filter,
 									backdrop: value,
-								}
-							}
-						} )
+								},
+							},
+						} );
 					} }
 				/>
 			</PanelRow>
 		</>
-	)
+	);
 };
-
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/filter-controls',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, isSelected, name } = props;
 
@@ -266,17 +266,17 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-					  <InspectorControls>
-						  <PanelBody
-							  initialOpen={ attributes?.filter ?? false }
-							  title={ __( 'Filter', 'blockify' ) }
-						  >
-							  <Filter { ...props }/>
-						  </PanelBody>
-					  </InspectorControls>
+					<InspectorControls>
+						<PanelBody
+							initialOpen={ attributes?.filter ?? false }
+							title={ __( 'Filter', 'blockify' ) }
+						>
+							<Filter { ...props } />
+						</PanelBody>
+					</InspectorControls>
 					}
 				</>
 			);
-		}
+		};
 	}, 'withFilter' )
 );

@@ -14,5 +14,5 @@ registerBlockVariation( 'core/list', {
 	isDefault: false,
 	isActive: ( blockAttributes, variationAttributes ) => {
 		return blockAttributes && blockAttributes?.className?.includes( variationAttributes.className );
-	}
-} )
+	},
+} );

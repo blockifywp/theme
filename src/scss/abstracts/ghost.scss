@@ -1,0 +1,17 @@
+@mixin ghost {
+	background: transparent !important;
+	color: inherit;
+	position: relative;
+	z-index: 0;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: currentcolor;
+		opacity: var(--wp--custom--ghost--opacity, 0.1);
+		transition: var(--wp--custom--transition);
+		border-radius: inherit;
+		z-index: -1;
+	}
+}

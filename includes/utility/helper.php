@@ -4,51 +4,61 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function defined;
 use function do_blocks;
 use function function_exists;
+use function get_template;
 use function get_template_directory_uri;
 use function get_the_block_template_html;
 use function get_the_content;
 use function is_admin;
 use function is_child_theme;
-use function plugin_dir_url;
-use function str_contains;
-use function trailingslashit;
+use function is_null;
 
 /**
- * Checks if installed as plugin or composer package.
- *
- * @since 0.4.0
- *
- * @return bool
- */
-function is_plugin(): bool {
-	return defined( 'Blockify\\Plugin\\SLUG' );
-}
-
-/**
- * Description of expected behavior.
+ * Checks if Blockify is installed as framework.
  *
  * @since 1.0.0
  *
  * @return bool
  */
-function is_plugin_only(): bool {
-	return ! str_contains( DIR, 'wp-content/themes' );
+function is_framework(): bool {
+	return get_template() !== 'blockify';
 }
 
 /**
- * Description of expected behavior.
+ * Returns path to theme directory.
  *
  * @since 1.0.0
- *
- * @param string $path Optional path.
  *
  * @return string
  */
-function get_uri( string $path = '' ): string {
-	return trailingslashit( is_plugin_only() ? plugin_dir_url( FILE ) : get_template_directory_uri() . DS ) . $path;
+function get_dir(): string {
+	static $dir = null;
+
+	if ( is_null( $dir ) ) {
+		$vendor = is_framework() ? '/vendor/blockify/theme/' : DS;
+		$dir    = get_template_directory() . $vendor;
+	}
+
+	return $dir;
+}
+
+/**
+ * Returns URI to theme directory.
+ *
+ * @since 1.0.0
+ *
+ * @return string
+ */
+function get_uri(): string {
+	static $uri = null;
+
+	if ( is_null( $uri ) ) {
+		$vendor = is_framework() ? '/vendor/blockify/theme/' : DS;
+		$uri    = get_template_directory_uri() . $vendor;
+	}
+
+	return $uri;
 }
 
 /**
@@ -61,32 +71,21 @@ function get_uri( string $path = '' ): string {
  * @return string
  */
 function get_editor_stylesheet_path(): string {
-	if ( is_plugin() ) {
-		return '../../plugins/blockify/vendor/blockify/theme/';
+	$path = '';
+
+	if ( is_framework() ) {
+		$path = 'vendor/blockify/theme/';
 	}
 
 	if ( is_child_theme() ) {
-		return '../blockify/';
+		$path = '../blockify/';
 	}
 
-	return '';
+	return $path;
 }
 
 /**
- * Returns path to asset parent directory relative to theme root.
- *
- * Used for editor stylesheets and font src files.
- *
- * @since 1.0.0
- *
- * @return string
- */
-function get_asset_path(): string {
-	return is_plugin_only() ? DIR . 'vendor/blockify/theme/' : DIR;
-}
-
-/**
- * Get entire rendered page html.
+ * Returns available rendered page HTML content.
  *
  * @since 0.9.10
  *

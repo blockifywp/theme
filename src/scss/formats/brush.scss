@@ -6,8 +6,8 @@
 		position: static;
 	}
 
-	&:before {
-		content: '';
+	&::before {
+		content: "";
 		position: absolute;
 		top: 50%;
 		bottom: 0;

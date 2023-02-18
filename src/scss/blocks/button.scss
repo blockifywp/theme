@@ -6,7 +6,7 @@
 	&:active,
 	&:hover,
 	&:focus {
-		opacity: var(--wp--custom--button--hover-opacity, .82);
+		opacity: var(--wp--custom--button--hover-opacity, 0.82);
 	}
 
 	&__link {
@@ -29,5 +29,4 @@
 		--wp--custom--button--width: 100%;
 	}
 }
-
 

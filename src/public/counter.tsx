@@ -1,5 +1,5 @@
 document.addEventListener( 'DOMContentLoaded', () => {
-	const mediaQuery = window.matchMedia( "(prefers-reduced-motion)" );
+	const mediaQuery = window.matchMedia( '(prefers-reduced-motion)' );
 
 	if ( mediaQuery && mediaQuery.matches ) {
 		return;
@@ -10,15 +10,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			return;
 		}
 
-		let data: { [name: string]: number } = {
+		const data: { [name: string]: number } = {
 			start: parseFloat( element.getAttribute( 'data-start' ) ?? '0' ),
 			end: parseFloat( element.getAttribute( 'data-end' ) ?? '0' ),
 			delay: parseInt( element.getAttribute( 'data-delay' ) ?? '0' ) || 0,
-			duration: parseInt( element.getAttribute( 'data-duration' ) ?? '0' ) || 1
-		}
+			duration: parseInt( element.getAttribute( 'data-duration' ) ?? '0' ) || 1,
+		};
 
-		let counter      = data.start;
-		let intervalTime = Math.ceil( ( data.duration * 1000 ) / ( data.end - data.start ) )
+		let counter = data.start;
+		const intervalTime = Math.ceil( ( data.duration * 1000 ) / ( data.end - data.start ) );
 
 		element.innerHTML = counter.toString();
 
@@ -28,15 +28,15 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				element.innerHTML = counter.toString();
 
 				if ( interval && counter === data.end ) {
-					clearInterval( interval )
+					clearInterval( interval );
 				}
-			}
+			};
 
 			const interval = setInterval( intervalHandler, intervalTime );
-		}, data.delay * 1000 )
+		}, data.delay * 1000 );
 	};
 
-	const observer = new IntersectionObserver( entries => {
+	const observer = new IntersectionObserver( ( entries ) => {
 		entries.forEach( ( entry: IntersectionObserverEntry ) => {
 			const block = entry.target as HTMLElement;
 
@@ -45,12 +45,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			}
 		} );
 	}, {
-		rootMargin: window?.blockify?.animationOffset ?? '0px 0px 50px 0px'
+		rootMargin: window?.blockify?.animationOffset ?? '0px 0px 50px 0px',
 	} );
 
 	const blocks = document.querySelectorAll( '.is-style-counter' );
 
-	[ ...blocks ].forEach( block => {
+	[ ...blocks ].forEach( ( block ) => {
 		block.innerHTML = '0';
 		observer.observe( block );
 	} );

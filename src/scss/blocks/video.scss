@@ -1,4 +1,5 @@
 .wp-block-video {
+
 	video {
 		display: block;
 		border-radius: inherit;
@@ -22,7 +23,7 @@ div.mejs-container {
 
 div.mejs-controls {
 	opacity: 0;
-	transition: opacity .1s ease;
+	transition: opacity 0.1s ease;
 	background: var(--wp--custom--video--background);
 
 	.mejs-container:hover & {
@@ -31,7 +32,7 @@ div.mejs-controls {
 }
 
 div.mejs-overlay-button {
-	background: currentColor;
+	background: currentcolor;
 	color: inherit;
 	width: 3.333em;
 	-webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 103 72" fill="currentColor"><path d="M101.2 15.8s-1-7-4-10c-3.8-4-8.1-4-10.1-4.3C73 .5 51.8.5 51.8.5s-21.2 0-35.3 1c-2 .2-6.3.3-10.1 4.3-3 3.1-4 10-4 10-.6 5.4-1 10.9-1 16.3v7.7c0 5.5.4 10.9 1 16.3 0 0 1 6.9 4 10 3.8 4 8.9 3.9 11.1 4.3 8.1.8 34.3 1 34.3 1s21.2 0 35.3-1.1c2-.2 6.3-.3 10.1-4.3 3-3.1 4-10 4-10 .6-5.4 1-10.9 1-16.3V32c0-5.4-.4-10.8-1-16.2zM41.4 49V20.7l27.2 14.2L41.4 49z"/></svg>');
@@ -40,7 +41,7 @@ div.mejs-overlay-button {
 }
 
 div.mejs-button > button {
-	background: currentColor !important;
+	background: currentcolor !important;
 	color: inherit !important;
 	font-size: 0 !important;
 	width: 20px !important;

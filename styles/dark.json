@@ -4,11 +4,10 @@
   "title": "Dark Mode",
   "settings": {
     "custom": {
-      "patternStyle": "default",
       "darkMode": {
         "palette": {
           "foreground": "#151929",
-          "heading": "#1d243c",
+          "heading": "#191f31",
           "body": "#3f4c7c",
           "outline": "#d0d4e3",
           "surface": "#f6f6f9",

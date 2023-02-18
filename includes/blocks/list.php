@@ -136,7 +136,7 @@ function render_list_block_accordion( string $html, array $block ): string {
 
 		$li_style = $li->getAttribute( 'style' );
 
-		$has_border = str_contains_any( $li_style, 'border-width', 'border-style', 'border-color' );
+		$has_border = str_contains_any( $li_style, 'border-width', 'border-style', 'border-color' ) && ! str_contains( $li_style, 'border-width:0' );
 
 		if ( $has_border ) {
 			$details->appendChild( $dom->createElement( 'hr' ) );
@@ -223,7 +223,7 @@ add_filter( 'blockify_inline_js', NS . 'add_accordion_js', 10, 2 );
  */
 function add_accordion_js( string $js, string $content ): string {
 	if ( str_contains( $content, 'is-style-accordion' ) ) {
-		$js .= file_get_contents( DIR . 'assets/js/accordion.js' );
+		$js .= file_get_contents( get_dir() . 'assets/js/accordion.js' );
 	}
 
 	return $js;

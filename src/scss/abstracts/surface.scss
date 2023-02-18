@@ -16,7 +16,7 @@
 	}
 
 	// Overlay.
-	&:before {
+	&::before {
 		content: "";
 		display: block;
 		position: absolute;

@@ -19,13 +19,13 @@
 
 	br + span {
 		width: 100%;
-		margin-top: .5em;
+		margin-top: 0.5em;
 	}
 
 	&:active,
 	&:hover,
 	&:focus {
-		opacity: var(--wp--custom--button--hover-opacity, .82);
+		opacity: var(--wp--custom--button--hover-opacity, 0.82);
 	}
 
 	.nowrap & {
@@ -42,7 +42,7 @@
 	@include button;
 }
 
-[type=reset] {
+[type="reset"] {
 	background: var(--wp--preset--color--surface);
 	color: inherit;
 	margin-bottom: 1em;

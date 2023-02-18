@@ -4,6 +4,8 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMException;
+use WP_REST_Request;
 use function __;
 use function apply_filters;
 use function array_keys;
@@ -16,7 +18,8 @@ use function in_array;
 use function preg_replace;
 use function str_replace;
 use function trim;
-use WP_REST_Request;
+use function ucwords;
+use function uniqid;
 
 /**
  * Returns array of all icon sets and their directory path.
@@ -26,7 +29,7 @@ use WP_REST_Request;
  * @return array
  */
 function get_icon_sets(): array {
-	$options = get_option( SLUG )['iconSets'] ?? [
+	$options = get_option( 'blockify' )['iconSets'] ?? [
 		[
 			'label' => 'WordPress',
 			'value' => 'wordpress',
@@ -45,7 +48,7 @@ function get_icon_sets(): array {
 		}
 
 		if ( in_array( $option['value'], [ 'wordpress', 'social' ], true ) ) {
-			$icon_sets[ $option['value'] ] = DIR . 'assets/svg/' . $option['value'];
+			$icon_sets[ $option['value'] ] = get_dir() . 'assets/svg/' . $option['value'];
 		}
 	}
 
@@ -133,13 +136,42 @@ function get_icons(): array {
  *
  * @since 0.9.10
  *
- * @param string $set  Icon set.
- * @param string $name Icon name.
+ * @param string   $set  Icon set.
+ * @param string   $name Icon name.
+ * @param int|null $size Icon size.
  *
+ * @throws DOMException If DOM can't create element.
  * @return string
  */
-function get_icon( string $set, string $name ): string {
-	return get_icons()[ $set ][ $name ] ?? '';
+function get_icon( string $set, string $name, int $size = null ): string {
+	$icon = get_icons()[ $set ][ $name ] ?? '';
+	$dom  = dom( $icon );
+	$svg  = get_dom_element( 'svg', $dom );
+
+	if ( ! $svg ) {
+		return '';
+	}
+
+	$unique_id = 'icon-' . uniqid();
+
+	$svg->setAttribute( 'role', 'img' );
+	$svg->setAttribute( 'aria-labelledby', $unique_id );
+	$svg->setAttribute( 'data-icon', $set . '-' . $name );
+
+	$label = ucwords( str_replace( '-', ' ', $name ) ) . __( ' Icon', 'blockify' );
+	$title = $dom->createElement( 'title' );
+
+	$title->appendChild( $dom->createTextNode( $label ) );
+	$title->setAttribute( 'id', $unique_id );
+
+	$svg->insertBefore( $title, $svg->firstChild );
+
+	if ( $size ) {
+		$svg->setAttribute( 'width', (string) $size );
+		$svg->setAttribute( 'height', (string) $size );
+	}
+
+	return $dom->saveHTML();
 }
 
 /**
@@ -162,36 +194,17 @@ function get_icon_html( string $content, array $block ): string {
 		return $content;
 	}
 
-	$link    = get_dom_element( 'a', $figure );
-	$span    = change_tag_name( $img, 'span' );
-	$classes = explode( ' ', $figure->getAttribute( 'class' ) );
-	$styles  = css_string_to_array( $figure->getAttribute( 'style' ) );
-	$classes = array_diff( $classes, [ 'wp-block-image', 'is-style-icon' ] );
-
-	// phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled
-	$icon_set  = $block['attrs']['iconSet'] ?? 'wordpress';
+	$link      = get_dom_element( 'a', $figure );
+	$span      = change_tag_name( $img, 'span' );
 	$icon_name = $block['attrs']['iconName'] ?? 'star-empty';
 
 	$classes = [
 		'wp-block-image__icon',
-		'blockify-icon',
-		'blockify-icon-' . $icon_set . '-' . $icon_name,
-		...$classes,
 	];
-
-	$color = $styles['----wp--custom--icon--color'] ?? 'currentColor';
-
-	if ( $color && $color !== 'currentColor' ) {
-		$styles['--wp--custom--icon--color'] = $color;
-	}
 
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
 	$span->setAttribute( 'class', implode( ' ', $classes ) );
-
-	if ( $styles ) {
-		$span->setAttribute( 'style', css_array_to_string( $styles ) );
-	}
 
 	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label );
 
@@ -202,23 +215,6 @@ function get_icon_html( string $content, array $block ): string {
 
 	$span->removeAttribute( 'src' );
 	$span->removeAttribute( 'alt' );
-
-	$figure_classes = [
-		'wp-block-image',
-		'is-style-icon',
-	];
-
-	$figure_styles = [];
-
-	$position = $block['attrs']['style']['position'] ?? [];
-
-	if ( $position && in_array( 'absolute', array_values( $position ), true ) ) {
-		$figure_styles['display'] = 'contents';
-	}
-
-	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
-
-	$figure->setAttribute( 'style', css_array_to_string( $figure_styles, true ) );
 
 	if ( ! $figure->getAttribute( 'style' ) ) {
 		$figure->removeAttribute( 'style' );

@@ -11,8 +11,6 @@ use function add_action;
 use function explode;
 use function file_exists;
 use function get_file_data;
-use function get_stylesheet_directory;
-use function get_template_directory;
 use function glob;
 use function in_array;
 use function is_child_theme;
@@ -87,11 +85,11 @@ add_action( 'init', NS . 'register_child_theme_patterns' );
  * @return void
  */
 function register_child_theme_patterns(): void {
-	if ( is_child_theme() ) {
+	if ( is_child_theme() || is_framework() ) {
 		return;
 	}
 
-	$files = glob( DIR . 'patterns/default/*.php' );
+	$files = glob( get_dir() . 'patterns/default/*.php' );
 
 	foreach ( $files as $file ) {
 		register_block_pattern_from_file( $file );

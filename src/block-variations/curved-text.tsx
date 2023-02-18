@@ -5,7 +5,7 @@ import {
 	// @ts-ignore
 	__experimentalNumberControl as NumberControl,
 	FlexItem,
-	FlexBlock, Flex
+	FlexBlock, Flex,
 } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -15,7 +15,7 @@ import { renderToString } from '@wordpress/element';
 import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
 import { rotateRight } from '@wordpress/icons';
 import domReady from '@wordpress/dom-ready';
-import { getBlock } from "@wordpress/block-editor/store/selectors";
+import { getBlock } from '@wordpress/block-editor/store/selectors';
 
 const isStyleCurvedText = ( attributes: attributes ) => {
 	if ( ! attributes?.className || typeof attributes?.className !== 'string' ) {
@@ -29,7 +29,7 @@ const defaults = {
 	content: __( 'Add your text here. Add your text here.', 'blockify' ),
 	containerSize: '150',
 	pathSize: '100',
-}
+};
 
 const curvedTextVariation: BlockVariation = {
 	name: 'curved-text',
@@ -44,7 +44,7 @@ const curvedTextVariation: BlockVariation = {
 	},
 	isActive: ( blockAttributes ) => {
 		return blockAttributes?.className?.includes( 'is-style-curved-text' );
-	}
+	},
 };
 
 domReady( () => {
@@ -62,9 +62,9 @@ addFilter(
 					...props?.attributes,
 					curvedText: {
 						type: 'object',
-					}
-				}
-			}
+					},
+				},
+			};
 		}
 
 		return props;
@@ -74,11 +74,11 @@ addFilter(
 const CurvedText = ( attributes: attributes = {} ) => {
 	const { curvedText = defaults } = attributes;
 
-	const text: string          = curvedText?.content ?? defaults.content;
-	const container: string     = curvedText?.containerSize ?? defaults.containerSize;
-	const path: string          = curvedText?.pathSize ?? defaults.pathSize;
+	const text: string = curvedText?.content ?? defaults.content;
+	const container: string = curvedText?.containerSize ?? defaults.containerSize;
+	const path: string = curvedText?.pathSize ?? defaults.pathSize;
 	const halfContainer: number = parseInt( container ) / 2;
-	const halfPath: number      = parseInt( path ) / 2;
+	const halfPath: number = parseInt( path ) / 2;
 
 	const svgProps = {
 		viewBox: `0 0 ${ container } ${ container }`,
@@ -89,7 +89,7 @@ const CurvedText = ( attributes: attributes = {} ) => {
 		height: container,
 		contentEditable: false,
 		x: 0,
-		y: 0
+		y: 0,
 	};
 
 	const circleId = Date.now() + Math.random();
@@ -98,7 +98,7 @@ const CurvedText = ( attributes: attributes = {} ) => {
 		id: 'circle-' + circleId,
 		d: `M ${ halfContainer }, ${ halfContainer } m -${ halfPath }, 0 a ${ halfPath },${ halfPath } 0 0,1 ${ path },0 a ${ halfPath },${ halfPath } 0 0,1 -${ path },0`,
 		fill: 'transparent',
-	}
+	};
 
 	return (
 		<svg { ...svgProps }>
@@ -109,13 +109,13 @@ const CurvedText = ( attributes: attributes = {} ) => {
 				</textPath>
 			</text>
 		</svg>
-	)
-}
+	);
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/with-curved-text-css',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, setAttributes } = props;
 
@@ -123,7 +123,7 @@ addFilter(
 				return <BlockEdit { ...props } />;
 			}
 
-			const iframe       = document.getElementsByClassName( 'edit-site-visual-editor__editor-canvas' )?.item( 0 ) as HTMLIFrameElement;
+			const iframe = document.getElementsByClassName( 'edit-site-visual-editor__editor-canvas' )?.item( 0 ) as HTMLIFrameElement;
 			const editorCanvas = document.getElementsByName( 'editor-canvas' )?.item( 0 ) as HTMLIFrameElement;
 
 			let editorDocument: HTMLDocument;
@@ -146,7 +146,7 @@ addFilter(
 				// Force update content.
 				p.innerHTML = renderToString( CurvedText( {
 					...attributes,
-					clientId: props.clientId
+					clientId: props.clientId,
 				} ) );
 			}
 
@@ -158,17 +158,17 @@ addFilter(
 					svgString: renderToString( <CurvedText { ...{
 						...attributes,
 						...newAttributes,
-						clientId: props.clientId ?? '1'
-					} } /> )
+						clientId: props.clientId ?? '1',
+					} } /> ),
 				};
 
 				setAttributes( {
 					curvedText: {
 						...curvedText,
-						...merged
-					}
+						...merged,
+					},
 				} );
-			}
+			};
 
 			return (
 				<>
@@ -183,13 +183,13 @@ addFilter(
 								value={ curvedText?.content ?? defaults.content }
 								onChange={ ( value: string ) => {
 									applyChanges( {
-										content: value
+										content: value,
 									} );
 								} }
 							/>
 							<p>{ __( 'Size', 'blockify' ) }</p>
 							<PanelRow>
-								<br/>
+								<br />
 								<Flex>
 									<FlexItem style={ { width: '50%' } }>
 										<NumberControl
@@ -197,7 +197,7 @@ addFilter(
 											value={ curvedText?.containerSize ?? defaults.containerSize }
 											onChange={ ( value: string ) => {
 												applyChanges( {
-													containerSize: value
+													containerSize: value,
 												} );
 											} }
 										/>
@@ -208,7 +208,7 @@ addFilter(
 											value={ curvedText?.pathSize ?? defaults.pathSize }
 											onChange={ ( value: string ) => {
 												applyChanges( {
-													pathSize: value
+													pathSize: value,
 												} );
 											} }
 										/>
