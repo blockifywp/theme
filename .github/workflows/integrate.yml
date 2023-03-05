@@ -169,7 +169,7 @@ jobs:
       - name: "Check exported files"
         # @FIXME Fix vendor/ distribution
         run: |
-          EXPECTED="composer.json,functions.php,index.php,LICENSE,package.json,readme.txt,screenshot.png,style.css,theme.json"
+          EXPECTED="LICENSE,composer.json,functions.php,index.php,package.json,readme.txt,screenshot.png,style.css,theme.json"
           CURRENT="$(git archive HEAD | tar --list --exclude="assets" --exclude="assets/*" --exclude="includes" --exclude="includes/*" --exclude="languages" --exclude="languages/*" --exclude="parts" --exclude="parts/*" --exclude="patterns" --exclude="patterns/*" --exclude="styles" --exclude="styles/*" --exclude="templates" --exclude="templates/*" | paste --serial --delimiters=",")"
           echo "CURRENT=${CURRENT}"
           echo "EXPECTED=${EXPECTED}"
