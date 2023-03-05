@@ -34,7 +34,6 @@ function setup(): void {
 		'utility/dom',
 		'utility/helper',
 		'utility/icon',
-		'utility/image',
 		'utility/string',
 
 		// Config.
@@ -47,6 +46,18 @@ function setup(): void {
 		'patterns',
 		'scripts',
 		'styles',
+
+		// Extensions.
+		'extensions/animation',
+		'extensions/box-shadow',
+		'extensions/conic-gradient',
+		'extensions/counter',
+		'extensions/icon',
+		'extensions/inline-color',
+		'extensions/onclick',
+		'extensions/placeholder',
+		'extensions/position',
+		'extensions/svg',
 
 		// Blocks.
 		'blocks/button',
@@ -78,17 +89,6 @@ function setup(): void {
 		'blocks/tag-cloud',
 		'blocks/template-part',
 		'blocks/video',
-
-		// Extensions.
-		'extensions/animation',
-		'extensions/box-shadow',
-		'extensions/conic-gradient',
-		'extensions/counter',
-		'extensions/icon',
-		'extensions/inline-color',
-		'extensions/onclick',
-		'extensions/position',
-		'extensions/svg',
 
 		// Plugins.
 		'plugins/edd',

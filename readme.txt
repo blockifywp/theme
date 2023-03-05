@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1.1
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,16 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.0 - 5 March 2023 =
+
+* Add: Heading block style for paragraph and site title
+* Update: Change load priority of extension files
+* Fix: Icon block variation background color issue
+* Fix: Button white space wrapping
+* Fix: Accordion surface style improvements
+* Fix: Change brush underline display to inline-block
+* Remove: Keyboard shortcuts for text formats
 
 = 1.1.1 - 18 February 2023 =
 

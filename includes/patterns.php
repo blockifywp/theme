@@ -13,6 +13,7 @@ use function file_exists;
 use function get_file_data;
 use function glob;
 use function in_array;
+use function is_array;
 use function is_child_theme;
 use function is_readable;
 use function ob_get_clean;

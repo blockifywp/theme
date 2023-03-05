@@ -34,11 +34,6 @@ const Edit = ( { isActive, value, onChange }: FormatProps ) => {
 
 	return (
 		<BlockControls>
-			<RichTextShortcut
-				type={ 'primary' }
-				character={ 'g' }
-				onUse={ () => setIsOpen( ! isOpen ) }
-			/>
 			<RichTextToolbarButton
 				icon={ styles }
 				title={ __( 'Gradient', 'blockify' ) }

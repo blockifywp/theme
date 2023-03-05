@@ -13,8 +13,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M11.25 5h1.5v15h-1.5V5zM6 10h1.5v10H6V10zm12 4h-1.5v6H18v-6z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">Analytics</h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">Analytics</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -27,8 +27,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;m20.8 10.7-4.3-4.3-1.1 1.1 4.3 4.3c.1.1.1.3 0 .4l-4.3 4.3 1.1 1.1 4.3-4.3c.7-.8.7-1.9 0-2.6zM4.2 11.8l4.3-4.3-1-1-4.3 4.3c-.7.7-.7 1.8 0 2.5l4.3 4.3 1.1-1.1-4.3-4.3c-.2-.1-.2-.3-.1-.4z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">Less Code</h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">Less Code</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -41,8 +41,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M15.5 9.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 1.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-2.25 6v-2a2.75 2.75 0 0 0-2.75-2.75h-4A2.75 2.75 0 0 0 3.75 15v2h1.5v-2c0-.69.56-1.25 1.25-1.25h4c.69 0 1.25.56 1.25 1.25v2h1.5zm7-2v2h-1.5v-2c0-.69-.56-1.25-1.25-1.25H15v-1.5h2.5A2.75 2.75 0 0 1 20.25 15zM9.5 8.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm1.5 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">Collaboration </h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">Collaboration </h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -57,8 +57,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path fill-rule=&quot;evenodd&quot; d=&quot;M7.25 16.437a6.5 6.5 0 1 1 9.5 0V16A2.75 2.75 0 0 0 14 13.25h-4A2.75 2.75 0 0 0 7.25 16v.437Zm1.5 1.193a6.47 6.47 0 0 0 3.25.87 6.47 6.47 0 0 0 3.25-.87V16c0-.69-.56-1.25-1.25-1.25h-4c-.69 0-1.25.56-1.25 1.25v1.63ZM4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">User Friendly</h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">User Friendly</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -71,8 +71,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;m12 3.176 6.75 3.068v4.574c0 3.9-2.504 7.59-6.035 8.755a2.283 2.283 0 0 1-1.43 0c-3.53-1.164-6.035-4.856-6.035-8.755V6.244L12 3.176zM6.75 7.21v3.608c0 3.313 2.145 6.388 5.005 7.33a.775.775 0 0 0 .49 0c2.86-.942 5.005-4.017 5.005-7.33V7.21L12 4.824 6.75 7.21z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">Secure Payments</h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">Secure Payments</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -85,8 +85,8 @@
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg viewBox=&quot;0 0 24 24&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<path d=&quot;m9 11.8 6.1-4.5c.1.4.4.7.9.7h2c.6 0 1-.4 1-1V5c0-.6-.4-1-1-1h-2c-.6 0-1 .4-1 1v.4l-6.4 4.8c-.2-.1-.4-.2-.6-.2H6c-.6 0-1 .4-1 1v2c0 .6.4 1 1 1h2c.2 0 .4-.1.6-.2l6.4 4.8v.4c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-2c0-.6-.4-1-1-1h-2c-.5 0-.8.3-.9.7L9 12.2v-.4z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
-<!-- wp:heading {"textAlign":"center","level":6} -->
-<h6 class="wp-block-heading has-text-align-center">Social Media</h6>
+<!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
+<h2 class="has-text-align-center wp-block-heading has-22-font-size">Social Media</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->

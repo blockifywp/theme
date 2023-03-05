@@ -6,7 +6,10 @@
 
 .is-style-accordion details {
 	width: 100%;
-	padding: 0;
+
+	&:not(.is-style-surface) {
+		padding: 0;
+	}
 
 	[data-stack="true"] & {
 
@@ -32,6 +35,10 @@
 
 	&::-webkit-details-marker {
 		display: none;
+	}
+
+	strong {
+		color: var(--wp--preset--color--heading, inherit);
 	}
 }
 
@@ -71,6 +78,7 @@
 
 .is-style-accordion section {
 	display: block;
+	padding-top: var(--wp--style--block-gap);
 }
 
 .is-style-accordion hr {

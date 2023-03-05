@@ -9,13 +9,14 @@ use WP_REST_Request;
 use function __;
 use function apply_filters;
 use function array_keys;
-use function array_values;
 use function basename;
+use function explode;
 use function file_get_contents;
 use function glob;
 use function implode;
 use function in_array;
 use function preg_replace;
+use function str_contains;
 use function str_replace;
 use function trim;
 use function ucwords;
@@ -198,19 +199,28 @@ function get_icon_html( string $content, array $block ): string {
 	$span      = change_tag_name( $img, 'span' );
 	$icon_name = $block['attrs']['iconName'] ?? 'star-empty';
 
-	$classes = [
+	$span_classes = [
 		'wp-block-image__icon',
 	];
 
+	$figure_classes = explode( ' ', $figure->getAttribute( 'class' ) );
+
+	foreach ( $figure_classes as $index => $class ) {
+		if ( str_contains( $class, '-background' ) ) {
+			$span_classes[] = $class;
+			unset( $figure_classes[ $index ] );
+		}
+	}
+
+	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
+
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
-	$span->setAttribute( 'class', implode( ' ', $classes ) );
-
+	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
 	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label );
 
 	if ( ! ( $block['attrs']['title'] ?? null ) || ! $aria_label ) {
-		$span->setAttribute( 'aria-label', $aria_label );
-		$span->setAttribute( 'role', 'presentation' );
+		$span->setAttribute( 'role', 'img' );
 	}
 
 	$span->removeAttribute( 'src' );

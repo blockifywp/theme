@@ -177,11 +177,6 @@ const Edit = ( props: formatProps ) => {
 
 	return (
 		<BlockControls>
-			<RichTextShortcut
-				type={ 'primary' }
-				character={ 'g' }
-				onUse={ () => setIsOpen( ! isOpen ) }
-			/>
 			<RichTextToolbarButton
 				icon={ typography }
 				title={ __( 'Typography', 'blockify' ) }

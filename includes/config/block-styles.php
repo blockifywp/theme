@@ -91,6 +91,11 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Notice', 'blockify' ),
 			],
 			[
+				'type'  => 'core/paragraph',
+				'name'  => 'heading',
+				'label' => __( 'Heading', 'blockify' ),
+			],
+			[
 				'type'  => 'core/post-terms',
 				'name'  => 'badges',
 				'label' => __( 'Badges', 'blockify' ),
@@ -99,6 +104,11 @@ function register_block_styles( array $config ): array {
 				'type'  => 'core/read-more',
 				'name'  => 'button',
 				'label' => __( 'Button', 'blockify' ),
+			],
+			[
+				'type'  => 'core/site-title',
+				'name'  => 'heading',
+				'label' => __( 'Heading', 'blockify' ),
 			],
 			[
 				'type'  => 'core/spacer',

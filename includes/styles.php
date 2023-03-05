@@ -10,6 +10,7 @@ use function add_editor_style;
 use function add_filter;
 use function apply_filters;
 use function array_flip;
+use function array_map;
 use function array_merge;
 use function basename;
 use function class_exists;
@@ -25,6 +26,7 @@ use function is_admin;
 use function is_admin_bar_showing;
 use function is_archive;
 use function is_array;
+use function preg_split;
 use function str_contains;
 use function str_replace;
 use function trim;
@@ -56,6 +58,7 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 				get_conditional_stylesheets( $content, $is_editor ),
 				get_position_styles( $content, $is_editor ),
 				get_animation_styles( $content, $is_editor ),
+				get_block_style_heading_styles( $content, $is_editor ),
 			]
 		),
 		$content,
@@ -572,7 +575,7 @@ function get_position_styles( string $content, bool $is_editor ): string {
 				);
 			}
 
-			if ( $is_editor || \str_contains( $content, "--$property-mobile" ) ) {
+			if ( $is_editor || str_contains( $content, "--$property-mobile" ) ) {
 				$mobile .= sprintf(
 					'.has-%1$s{%1$s:var(--%1$s-mobile,var(--%1$s))}',
 					$property
@@ -603,4 +606,44 @@ function get_position_styles( string $content, bool $is_editor ): string {
 	}
 
 	return $css;
+}
+
+/**
+ * Get block style heading styles.
+ *
+ * @since 1.1.2
+ *
+ * @param string $content   Page Content.
+ * @param bool   $is_editor Is editor page.
+ *
+ * @return string
+ */
+function get_block_style_heading_styles( string $content, bool $is_editor ): string {
+	$global_styles = wp_get_global_styles();
+
+	if ( ! str_contains( $content, 'is-style-heading' ) && ! $is_editor ) {
+		return '';
+	}
+
+	$typography = $global_styles['elements']['heading']['typography'] ?? [];
+	$color      = $global_styles['elements']['heading']['color'] ?? [];
+
+	if ( ! $typography && ! $color ) {
+		return '';
+	}
+
+	$styles = [];
+
+	foreach ( $typography as $key => $value ) {
+		$pieces   = preg_split( '/(?=[A-Z])/', $key );
+		$property = implode( '-', array_map( 'strtolower', $pieces ) );
+
+		$styles[ $property ] = $value;
+	}
+
+	if ( $color['text'] ?? null ) {
+		$styles['color'] = $color['text'];
+	}
+
+	return '.is-style-heading{' . css_array_to_string( $styles ) . '}';
 }
