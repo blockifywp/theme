@@ -11,9 +11,10 @@ use function add_action;
 use function explode;
 use function file_exists;
 use function get_file_data;
-use function get_stylesheet_directory;
 use function glob;
 use function in_array;
+use function is_array;
+use function is_child_theme;
 use function is_readable;
 use function ob_get_clean;
 use function ob_start;
@@ -78,14 +79,18 @@ function auto_register_pattern_categories(): void {
 
 add_action( 'init', NS . 'register_child_theme_patterns' );
 /**
- * Registers child theme block patterns. Fixes Gutenberg 14.7.3 issue.
+ * Manually registers default patterns to avoid loading in child themes.
  *
- * @since 0.9.32
+ * @since 1.0.1
  *
  * @return void
  */
 function register_child_theme_patterns(): void {
-	$files = glob( get_stylesheet_directory() . '/patterns/*.php' );
+	if ( is_child_theme() || is_framework() ) {
+		return;
+	}
+
+	$files = glob( get_dir() . 'patterns/default/*.php' );
 
 	foreach ( $files as $file ) {
 		register_block_pattern_from_file( $file );

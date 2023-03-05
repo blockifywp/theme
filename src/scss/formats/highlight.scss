@@ -1,7 +1,7 @@
 // Allows emoji highlights (and future gradients).
 .has-inline-color {
 	padding: 0;
-	background: currentColor !important;
+	background: currentcolor !important;
 	-webkit-background-clip: text !important;
 	-webkit-text-fill-color: transparent;
 	-webkit-box-decoration-break: clone;

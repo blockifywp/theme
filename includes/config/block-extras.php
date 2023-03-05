@@ -159,4 +159,3 @@ function get_block_extra_options(): array {
 		],
 	];
 }
-

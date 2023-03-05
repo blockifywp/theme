@@ -89,14 +89,15 @@ $spacing: var(--wp--style--block-gap, 1em);
 }
 
 .stars {
+
 	a {
 		letter-spacing: -$spacing;
 		text-decoration: none;
 		overflow: hidden;
 		font-size: 0;
 
-		&:before {
-			content: '★';
+		&::before {
+			content: "★";
 			display: inline-flex;
 			width: $spacing;
 			font-size: 1rem;
@@ -107,8 +108,8 @@ $spacing: var(--wp--style--block-gap, 1em);
 
 .woocommerce-message {
 	margin-bottom: $spacing;
-	@include notice;
 
+	@include notice;
 
 	.button {
 		position: absolute;

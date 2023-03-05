@@ -1,19 +1,20 @@
-import domReady from "@wordpress/dom-ready";
-import { registerBlockStyle } from '@wordpress/blocks';
-import { unregisterBlockStyle } from '@wordpress/blocks';
+import domReady from '@wordpress/dom-ready';
+import { registerBlockStyle, unregisterBlockStyle } from '@wordpress/blocks';
 
 domReady( () => {
-
 	const blockStyles: blockStyles = window?.blockify?.blockStyles ?? {
 		unregister: [],
-		register: []
+		register: [],
 	};
 
-	[ ...blockStyles?.unregister ].forEach( ( blockStyle: blockStyle ) => {
+	const register = blockStyles?.register ?? [];
+	const unregister = blockStyles?.unregister ?? [];
+
+	unregister.forEach( ( blockStyle: blockStyle ) => {
 		unregisterBlockStyle( blockStyle?.type, blockStyle?.name );
 	} );
 
-	[ ...blockStyles?.register ].forEach( ( blockStyle: blockStyle ) => {
+	register.forEach( ( blockStyle: blockStyle ) => {
 		registerBlockStyle( blockStyle?.type, blockStyle );
 	} );
 } );

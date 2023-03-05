@@ -1,6 +1,6 @@
-import { BlockVariation, registerBlockVariation } from "@wordpress/blocks";
-import { __ } from "@wordpress/i18n";
-import { image } from "@wordpress/icons";
+import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
+import { __ } from '@wordpress/i18n';
+import { image } from '@wordpress/icons';
 
 const defaultImage: BlockVariation = {
 	name: 'image',
@@ -11,7 +11,7 @@ const defaultImage: BlockVariation = {
 	scope: [ 'inserter', 'transform', 'block' ],
 	description: __( 'Insert an image to make a visual statement.', 'blockify' ),
 	attributes: {
-		className: "",
+		className: '',
 	},
 	isActive: ( blockAttributes ) => {
 		if ( ! blockAttributes?.className ) {
@@ -19,7 +19,7 @@ const defaultImage: BlockVariation = {
 		}
 
 		return ! blockAttributes?.className?.includes( 'is-style-icon' ) && ! blockAttributes?.className?.includes( 'is-style-svg' );
-	}
-}
+	},
+};
 
 registerBlockVariation( 'core/image', defaultImage );

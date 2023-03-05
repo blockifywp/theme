@@ -169,8 +169,8 @@ jobs:
       - name: "Check exported files"
         # @FIXME Fix vendor/ distribution
         run: |
-          EXPECTED="functions.php,index.php,readme.txt,screenshot.png,style.css,theme.json"
-          CURRENT="$(git archive HEAD | tar --list --exclude="assets" --exclude="assets/*" --exclude="includes" --exclude="includes/*" --exclude="languages" --exclude="languages/*" --exclude="parts" --exclude="parts/*" --exclude="patterns" --exclude="patterns/*" --exclude="styles" --exclude="styles/*" --exclude="templates" --exclude="templates/*" --exclude="vendor" --exclude="vendor/*" | paste --serial --delimiters=",")"
+          EXPECTED="LICENSE,composer.json,functions.php,index.php,package.json,readme.txt,screenshot.png,style.css,theme.json"
+          CURRENT="$(git archive HEAD | tar --list --exclude="assets" --exclude="assets/*" --exclude="includes" --exclude="includes/*" --exclude="languages" --exclude="languages/*" --exclude="parts" --exclude="parts/*" --exclude="patterns" --exclude="patterns/*" --exclude="styles" --exclude="styles/*" --exclude="templates" --exclude="templates/*" | paste --serial --delimiters=",")"
           echo "CURRENT=${CURRENT}"
           echo "EXPECTED=${EXPECTED}"
           test "${CURRENT}" = "${EXPECTED}"

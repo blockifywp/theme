@@ -8,7 +8,7 @@
 .is-underline-none {
 	text-decoration: none;
 
-	&:before {
+	&::before {
 		display: none;
 	}
 }

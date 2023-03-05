@@ -39,6 +39,7 @@
 
 	// 600px core default breakpoint for .wp-block-post-template columns.
 	@media (max-width: 599px) {
+
 		[class*="columns-"] {
 			display: grid;
 			grid-template-columns: repeat(var(--columns), 1fr);
@@ -63,6 +64,10 @@
 	border-color: var(--wp--custom--border--color);
 }
 
+[onclick] {
+	cursor: pointer;
+}
+
 // TODO: clean up.
 .cursor-pointer {
 	cursor: pointer;
@@ -77,6 +82,7 @@ footer,
 main {
 
 	> .alignfull {
+
 		@include alignfull;
 	}
 }

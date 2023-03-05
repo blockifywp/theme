@@ -1,9 +1,10 @@
 @mixin divider($mask: "") {
-	&:before {
-		content: '';
+
+	&::before {
+		content: "";
 		display: block;
 		position: absolute;
-		background: currentColor;
+		background: currentcolor;
 		width: 100%;
 		height: calc(100% + 1px);
 

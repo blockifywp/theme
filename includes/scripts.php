@@ -55,29 +55,30 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_scripts' );
  * @return void
  */
 function enqueue_editor_scripts(): void {
-	$asset_file = DIR . 'assets/js/editor.asset.php';
+	$dir   = get_dir();
+	$asset = $dir . 'assets/js/editor.asset.php';
 
-	// Installed as framework.
-	if ( ! file_exists( $asset_file ) ) {
+	if ( ! file_exists( $asset ) ) {
 		return;
 	}
 
-	$asset = require DIR . 'assets/js/editor.asset.php';
-	$deps  = $asset['dependencies'];
+	$asset  = require $asset;
+	$handle = 'blockify-editor';
+	$file   = 'assets/js/editor.js';
 
 	wp_register_script(
-		'blockify-editor',
-		get_uri() . 'assets/js/editor.js',
-		$deps,
-		filemtime( DIR . 'assets/js/editor.js' ),
+		$handle,
+		get_uri() . $file,
+		$asset['dependencies'] ?? [],
+		filemtime( $dir . $file ),
 		true
 	);
 
-	wp_enqueue_script( SLUG . '-editor' );
+	wp_enqueue_script( $handle );
 
 	wp_localize_script(
-		'blockify-editor',
-		SLUG,
+		$handle,
+		'blockify',
 		get_editor_data()
 	);
 }
@@ -96,13 +97,11 @@ function get_editor_data() {
 		'blockify_editor_data',
 		[
 			'url'           => get_uri(),
-			'siteUrl'       => trailingslashit(
-				home_url()
-			),
+			'siteUrl'       => trailingslashit( home_url() ),
 			'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
 			'adminUrl'      => trailingslashit( admin_url() ),
-			'nonce'         => wp_create_nonce( SLUG ),
-			'icon'          => get_icon( 'social', SLUG ),
+			'nonce'         => wp_create_nonce( 'blockify' ),
+			'icon'          => get_icon( 'social', 'blockify' ),
 			'siteEditor'    => $current_screen && $current_screen->base === 'site-editor',
 			'excerptLength' => apply_filters( 'excerpt_length', 55 ),
 		]
@@ -124,9 +123,10 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );
  */
 function enqueue_scripts(): void {
 	$content = get_page_content();
+	$handle  = 'theme-inline';
 
 	wp_register_script(
-		SLUG,
+		$handle,
 		'',
 		[],
 		wp_get_theme()->get( 'version' ),
@@ -134,7 +134,7 @@ function enqueue_scripts(): void {
 	);
 
 	wp_add_inline_script(
-		SLUG,
+		$handle,
 		reduce_whitespace(
 			trim(
 				apply_filters(
@@ -146,5 +146,5 @@ function enqueue_scripts(): void {
 		)
 	);
 
-	wp_enqueue_script( SLUG );
+	wp_enqueue_script( $handle );
 }

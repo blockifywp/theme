@@ -2,14 +2,14 @@
 @import "../abstracts/input";
 
 .nf-form-content button,
-.nf-form-content input[type=button],
-.nf-form-content input[type=submit] {
+.nf-form-content input[type="button"],
+.nf-form-content input[type="submit"] {
 
 	@include button;
 }
 
 .nf-form-content .list-select-wrap .nf-field-element > div,
-.nf-form-content input:not([type=button],[type=submit]),
+.nf-form-content input:not([type="button"],[type="submit"]),
 .nf-form-content textarea {
 
 	@include input;

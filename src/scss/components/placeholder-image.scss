@@ -2,26 +2,11 @@
 	position: relative;
 	width: 100%;
 	height: auto;
-	display: block;
-	border-width: var(--wp--custom--border--width, inherit);
-	border-style: var(--wp--custom--placeholder--border-style, dashed);
-	border-color: var(--wp--custom--border--color, currentColor);
-	border-radius: var(--wp--custom--border--radius);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--wp--custom--placeholder--background, var(--wp--preset--color--surface));
+	border: var(--wp--custom--placeholder--border, 0);
+	border-radius: var(--wp--custom--placeholder--border-radius, var(--wp--custom--border--radius));
 	aspect-ratio: var(--wp--custom--placeholder--aspect-ratio, 16/9);
-}
-
-// Used by image, post-featured-image, and site-logo.
-.wp-block-image__placeholder {
-	display: block;
-	clear: both;
-	stroke: var(--wp--custom--border--color, currentColor);
-	stroke-width: var(--wp--custom--border--width, inherit);
-	stroke-dasharray: 3;
-	box-sizing: initial;
-	height: 100%;
-	left: 50%;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 100%;
 }

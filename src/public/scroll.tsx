@@ -1,5 +1,5 @@
 window.addEventListener( 'scroll', () => {
-	const scroll = window.pageYOffset / ( document.body.offsetHeight - window.innerHeight );
+	const scroll = window.scrollY / ( document.body.offsetHeight - window.innerHeight );
 
 	document.body.style.setProperty(
 		'--scroll',

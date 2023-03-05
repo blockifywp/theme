@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 1.0.0\n"
+"Project-Id-Version: Blockify 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-02-06T03:23:35+00:00\n"
+"POT-Creation-Date: 2023-03-05T07:40:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -175,11 +175,11 @@ msgstr ""
 
 #: includes/config/block-styles.php:26
 #: includes/config/block-styles.php:36
-#: includes/config/block-styles.php:71
+#: includes/config/block-styles.php:41
+#: includes/config/block-styles.php:46
+#: includes/config/block-styles.php:51
 #: includes/config/block-styles.php:76
-#: includes/config/block-styles.php:91
-#: includes/config/block-styles.php:116
-#: includes/config/block-styles.php:171
+#: includes/config/block-styles.php:141
 msgid "Surface"
 msgstr ""
 
@@ -187,107 +187,176 @@ msgstr ""
 msgid "Ghost"
 msgstr ""
 
-#: includes/config/block-styles.php:41
 #: includes/config/block-styles.php:56
-#: includes/config/block-styles.php:66
-#: includes/config/block-styles.php:81
-msgid "Light"
-msgstr ""
-
-#: includes/config/block-styles.php:46
-#: includes/config/block-styles.php:51
-#: includes/config/block-styles.php:61
-#: includes/config/block-styles.php:86
-msgid "Dark"
-msgstr ""
-
-#: includes/config/block-styles.php:96
 msgid "Checklist"
 msgstr ""
 
-#: includes/config/block-styles.php:101
+#: includes/config/block-styles.php:61
 msgid "Checklist Circle"
 msgstr ""
 
-#: includes/config/block-styles.php:106
+#: includes/config/block-styles.php:66
 msgid "Square"
 msgstr ""
 
-#: includes/config/block-styles.php:111
+#: includes/config/block-styles.php:71
 msgid "Accordion"
 msgstr ""
 
-#: includes/config/block-styles.php:121
+#: includes/config/block-styles.php:81
 msgid "Mega Menu"
 msgstr ""
 
-#: includes/config/block-styles.php:126
+#: includes/config/block-styles.php:86
 msgid "Sub Heading"
 msgstr ""
 
-#: includes/config/block-styles.php:131
+#: includes/config/block-styles.php:91
 msgid "Notice"
 msgstr ""
 
-#: includes/config/block-styles.php:136
+#: includes/config/block-styles.php:96
+#: includes/config/block-styles.php:111
+msgid "Heading"
+msgstr ""
+
+#: includes/config/block-styles.php:101
 msgid "Badges"
 msgstr ""
 
-#: includes/config/block-styles.php:141
+#: includes/config/block-styles.php:106
 msgid "Button"
 msgstr ""
 
-#: includes/config/block-styles.php:146
+#: includes/config/block-styles.php:116
 msgid "Angle"
 msgstr ""
 
-#: includes/config/block-styles.php:151
+#: includes/config/block-styles.php:121
 msgid "Curve"
 msgstr ""
 
-#: includes/config/block-styles.php:156
+#: includes/config/block-styles.php:126
 msgid "Round"
 msgstr ""
 
-#: includes/config/block-styles.php:161
+#: includes/config/block-styles.php:131
 msgid "Wave"
 msgstr ""
 
-#: includes/config/block-styles.php:166
+#: includes/config/block-styles.php:136
 msgid "Fade"
 msgstr ""
 
-#: includes/config/block-styles.php:197
+#: includes/config/block-styles.php:167
 msgid "Secondary"
 msgstr ""
 
-#: includes/utility/icon.php:188
+#: includes/config/block-styles.php:179
+#: includes/config/block-styles.php:194
+#: includes/config/block-styles.php:204
+#: includes/config/block-styles.php:209
+msgid "Light"
+msgstr ""
+
+#: includes/config/block-styles.php:184
+#: includes/config/block-styles.php:189
+#: includes/config/block-styles.php:199
+#: includes/config/block-styles.php:214
+msgid "Dark"
+msgstr ""
+
+#: includes/utility/icon.php:162
+msgid " Icon"
+msgstr ""
+
+#: includes/utility/icon.php:217
 msgid " icon"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "S"
+msgid "100px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "M"
+msgid "90px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "L"
+msgid "81px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "XL"
+msgid "72px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "XXL"
+msgid "60px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "54px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "48px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "42px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "36px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "30px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "24px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "22px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "20px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "18px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "16px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "14px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Inherit"
 msgstr ""
 
 #: theme.json
@@ -337,7 +406,7 @@ msgstr ""
 
 #: theme.json
 msgctxt "Color name"
-msgid "Background"
+msgid "Base"
 msgstr ""
 
 #: theme.json
@@ -357,7 +426,7 @@ msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "Primary Dark"
+msgid "Primary Foreground"
 msgstr ""
 
 #: theme.json
@@ -372,52 +441,47 @@ msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "Conic Light"
+msgid "Base/Transparent"
 msgstr ""
 
 #: theme.json
 msgctxt "Gradient name"
-msgid "Conic Dark"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Background/Transparent"
+msgid "Transparent/Base"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XX Small"
+msgid "XXS"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "X Small"
+msgid "XS"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "Small"
+msgid "S"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "Medium"
+msgid "M"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "Large"
+msgid "L"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "X Large"
+msgid "XL"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XX Large"
+msgid "XXL"
 msgstr ""
 
 #: theme.json

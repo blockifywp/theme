@@ -46,7 +46,7 @@ function add_position_classes( string $html, array $block ): string {
 	$options = get_block_extra_options();
 
 	foreach ( $options as $key => $args ) {
-		if ( ! isset( $style[ $key ] ) ) {
+		if ( ! isset( $style[ $key ] ) || $style[ $key ] === '' ) {
 			continue;
 		}
 

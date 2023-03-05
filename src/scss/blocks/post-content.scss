@@ -4,6 +4,7 @@
 .wp-block-post-content:not(.is-root-container) {
 
 	> .alignfull {
+
 		@include alignfull;
 	}
 }

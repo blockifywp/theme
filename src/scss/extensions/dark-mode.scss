@@ -1,8 +1,8 @@
 .toggle-switch {
 	position: relative;
 
-	&:before {
-		content: '';
+	&::before {
+		content: "";
 		display: block;
 		position: absolute;
 		left: 0.2em;
@@ -11,7 +11,7 @@
 		pointer-events: none;
 		height: 1em;
 		width: 1em;
-		background: currentColor;
+		background: currentcolor;
 		border-radius: 99px;
 
 		body.is-style-dark & {

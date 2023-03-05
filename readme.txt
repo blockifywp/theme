@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1.1
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,53 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.0 - 5 March 2023 =
+
+* Add: Heading block style for paragraph and site title
+* Update: Change load priority of extension files
+* Fix: Icon block variation background color issue
+* Fix: Button white space wrapping
+* Fix: Accordion surface style improvements
+* Fix: Change brush underline display to inline-block
+* Remove: Keyboard shortcuts for text formats
+
+= 1.1.1 - 18 February 2023 =
+
+* Add: Submenu background color
+* Fix: Submenu open on click button icon
+* Update: Hero text
+
+= 1.1.0 - 18 February 2023 =
+
+* Add: Core button classes to EDD buttons
+* Add: Improved EDD styles
+* Add: Surface scss mixin
+* Add: Block pattern templates
+* Add: remove_line_breaks function
+* Add: Size option to get_icon function
+* Add: Composer autoloading support for functions.php
+* Update: Conditionally add light/dark block styles if dark mode enabled
+* Update: Font sizes
+* Update: Color palette
+* Update: Don't load default patterns for child themes
+* Update: Default sub heading font size from small to smaller
+* Update: Use important for transparent ghost button background
+* Update: PHPStan memory limit to 1GB
+* Remove: Wireframe and blueprint style variations
+* Remove: SVN npm script
+* Remove: All frontend references to blockify
+* Remove: DIR and FILE path constants
+* Remove: Use of glob for php files
+* Fix: Icon classes now applied to figure
+* Fix: SVG block variation improvements
+* Fix: Remove unused arg from border mixin
+* Fix: EDD download archive template title
+* Fix: TinyMCE button styles in editor
+* Fix: Cover block padding error
+* Fix: Empty block option styles
+* Fix: ESLint improvements
+* Fix: Search block padding formatted values
 
 = 1.0.0 - 6 February 2023 =
 

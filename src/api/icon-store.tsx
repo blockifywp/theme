@@ -1,27 +1,27 @@
-import { Reducer } from "redux";
-import apiFetch from "@wordpress/api-fetch";
-import { createReduxStore, register } from "@wordpress/data";
+import { Reducer } from 'redux';
+import apiFetch from '@wordpress/api-fetch';
+import { createReduxStore, register } from '@wordpress/data';
 
-interface icons {
+interface Icons {
 	[set: string]: {
 		[icon: string]: object;
-	},
+	};
 }
 
-interface action {
-	type: string,
-	path: string,
-	icons: icons,
+interface Action {
+	type: string;
+	path: string;
+	icons: Icons;
 }
 
-interface state {
-	icons: icons
+interface State {
+	icons: Icons;
 }
 
-export const defaultState: state = {
+export const defaultState: State = {
 	icons: {
 		social: {},
-		wordpress: {}
+		wordpress: {},
 	},
 };
 
@@ -40,7 +40,10 @@ const actions = {
 	},
 };
 
-const reducer: Reducer<state, any> = ( state: state = defaultState, action: action ) => {
+const reducer: Reducer<State, any> = (
+	state: State = defaultState,
+	action: Action
+) => {
 	switch ( action.type ) {
 		case 'SET_ICONS': {
 			return {
@@ -55,30 +58,32 @@ const reducer: Reducer<state, any> = ( state: state = defaultState, action: acti
 };
 
 const selectors = {
-	getIcons( state: state ) {
+	getIcons( state: State ) {
 		const { icons } = state;
 		return icons;
 	},
 };
 
 const controls: { [key: string]: ( action: any ) => any } = {
-	GET_ICONS( action: action ) {
+	GET_ICONS( action: Action ) {
 		return apiFetch( { path: action.path } );
 	},
 };
 
 const resolvers = {
-	* getIcons(): Generator<{ type: string; path: string; }> {
+	*getIcons(): Generator<{ type: string; path: string }> {
 		const icons = yield actions.getIcons( '/blockify/v1/icons/' );
 
 		return actions.setIcons( icons );
 	},
 };
 
-register( createReduxStore( 'blockify/icons', {
-	reducer,
-	actions,
-	selectors,
-	controls,
-	resolvers,
-} ) );
+register(
+	createReduxStore( 'blockify/icons', {
+		reducer,
+		actions,
+		selectors,
+		controls,
+		resolvers,
+	} )
+);

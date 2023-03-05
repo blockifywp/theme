@@ -16,8 +16,8 @@
 			margin-bottom: 0;
 		}
 
-		&:before {
-			content: '';
+		&::before {
+			content: "";
 			margin: 0.5em 0.5em 0.5em -1.5em;
 			width: 1em;
 			height: 1em;

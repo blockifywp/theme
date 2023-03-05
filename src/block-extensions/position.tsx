@@ -6,22 +6,22 @@ import {
 	PanelRow,
 	Flex,
 	FlexItem,
-	// @ts-ignore
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalBoxControl as BoxControl,
-	// @ts-ignore
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalNumberControl as NumberControl,
 	ButtonGroup,
 	Button, PanelBody,
 } from '@wordpress/components';
-import { Label } from "../components/label";
-import { useState } from "@wordpress/element";
-import { desktop, mobile, trash } from "@wordpress/icons";
-import { toKebabCase } from "../utility/string";
-import { InspectorControls } from "@wordpress/block-editor";
+import { Label } from '../components/label';
+import { useState } from '@wordpress/element';
+import { desktop, mobile, trash } from '@wordpress/icons';
+import { toKebabCase } from '../utility/string';
+import { InspectorControls } from '@wordpress/block-editor';
 
 const blockSupports = window?.blockify?.blockSupports ?? {};
 
-export const supportsPosition = ( name: string ): boolean => blockSupports?.[name]?.blockifyPosition ?? false;
+export const supportsPosition = ( name: string ): boolean => blockSupports?.[ name ]?.blockifyPosition ?? false;
 
 const config: positionOptions = window?.blockify?.positionOptions ?? {};
 
@@ -30,11 +30,10 @@ addFilter(
 	'blockify/add-position-attributes',
 	( props, name ): object => {
 		if ( supportsPosition( name ) ) {
-
-			let newAttributes: { [key: string]: {} } = {}
+			const newAttributes: { [key: string]: object } = {};
 
 			Object.keys( config ).forEach( ( key ) => {
-				newAttributes[key] = {
+				newAttributes[ key ] = {
 					type: 'object',
 				};
 			} );
@@ -43,9 +42,9 @@ addFilter(
 				...props.attributes,
 				style: {
 					...newAttributes,
-					...( props?.attributes?.style ?? {} )
-				}
-			}
+					...( props?.attributes?.style ?? {} ),
+				},
+			};
 		}
 
 		return props;
@@ -54,69 +53,64 @@ addFilter(
 );
 
 const getClasses = ( attributes: attributes ): string[] => {
-	let classes: string[] = [];
-
+	const classes: string[] = [];
 	const style = attributes?.style ?? {};
 
 	Object.keys( config ).forEach( ( key: string ) => {
 		const property = toKebabCase( key );
 
-		if ( config?.[key]?.options ) {
-			if ( style?.[key]?.all ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[key]?.all ) }` );
+		if ( config?.[ key ]?.options ) {
+			if ( style?.[ key ]?.all ?? null ) {
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.all ) }` );
 			}
 
-			if ( style?.[key]?.mobile ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[key]?.mobile ) }-mobile` );
+			if ( style?.[ key ]?.mobile ?? null ) {
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.mobile ) }-mobile` );
 			}
 
-			if ( style?.[key]?.desktop ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[key]?.desktop ) }-desktop` );
+			if ( style?.[ key ]?.desktop ?? null ) {
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.desktop ) }-desktop` );
 			}
-
-		} else {
-			if ( style?.[key] ) {
-				classes.push( `has-${ property }` );
-			}
+		} else if ( style?.[ key ] ) {
+			classes.push( `has-${ property }` );
 		}
-
 	} );
 
 	return classes;
-}
+};
 
 const getStyles = ( attributes: attributes ): object => {
-	let styles: { [name: string]: string } = {};
+	const styles: { [name: string]: string } = {};
 
 	const style = attributes?.style ?? {};
 
 	Object.keys( config ).forEach( ( key: string ) => {
-		if ( config?.[key]?.options ) {
+		if ( config?.[ key ]?.options ) {
 			return;
 		}
 
 		const property = toKebabCase( key );
 
-		if ( style?.[key]?.all ?? null ) {
-			styles[`--${ property }`] = style?.[key]?.all;
+		if ( style?.[ key ]?.all ?? null ) {
+			styles[ `--${ property }` ] = style?.[ key ]?.all;
 		}
 
-		if ( style?.[key]?.mobile ?? null ) {
-			styles[`--${ property }-mobile`] = style?.[key]?.mobile;
+		if ( style?.[ key ]?.mobile ?? null ) {
+			styles[ `--${ property }-mobile` ] = style?.[ key ]?.mobile;
 		}
 
-		if ( style?.[key]?.desktop ?? null ) {
-			styles[`--${ property }-desktop`] = style?.[key]?.desktop;
+		if ( style?.[ key ]?.desktop ?? null ) {
+			styles[ `--${ property }-desktop` ] = style?.[ key ]?.desktop;
 		}
 	} );
 
 	return styles;
-}
+};
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-position-style',
-	createHigherOrderComponent( BlockListBlock => {
+	createHigherOrderComponent( ( BlockListBlock ) => {
 		return ( props: blockProps ) => {
 			const { name, attributes } = props;
 
@@ -124,13 +118,13 @@ addFilter(
 				return <BlockListBlock { ...props } />;
 			}
 
-			const classes    = getClasses( attributes );
-			const styles     = getStyles( attributes );
-			let wrapperProps = props?.wrapperProps ?? {};
-			props.style      = { ...props?.style, ...styles };
+			const classes = getClasses( attributes );
+			const styles = getStyles( attributes );
+			const wrapperProps = props?.wrapperProps ?? {};
+			props.style = { ...props?.style, ...styles };
 
 			if ( wrapperProps ) {
-				wrapperProps.style = { ...wrapperProps?.style, ...styles }
+				wrapperProps.style = { ...wrapperProps?.style, ...styles };
 			}
 
 			classes.forEach( ( className: string ) => {
@@ -152,12 +146,12 @@ addFilter(
 	( props: blockProps ) => {
 		const { name, attributes } = props;
 
-		if ( ! blockSupports?.[name]?.blockifyPosition ) {
+		if ( ! blockSupports?.[ name ]?.blockifyPosition ) {
 			return props;
 		}
 
 		const classes = getClasses( attributes );
-		const styles  = getStyles( attributes );
+		const styles = getStyles( attributes );
 
 		classes.forEach( ( className: string ) => {
 			if ( ! props?.className?.includes( className ) ) {
@@ -178,21 +172,21 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 	const style = attributes?.style ?? {};
 
 	const setPosition = ( values: { [property: string]: string } ) => {
-		let properties: { [property: string]: string } = {};
+		const properties: { [property: string]: string } = {};
 
 		Object.keys( values ).forEach( ( property: string ) => {
-			properties[property] = {
-				...style?.[property],
-				[screen]: values[property]
+			properties[ property ] = {
+				...style?.[ property ],
+				[ screen ]: values[ property ],
 			};
 		} );
 
 		setAttributes( {
 			style: {
 				...style,
-				...properties
-			}
-		} )
+				...properties,
+			},
+		} );
 	};
 
 	return (
@@ -202,9 +196,9 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 					<FlexItem>
 						<SelectControl
 							label={ __( 'Position', 'blockify' ) }
-							value={ style?.position?.[screen] ?? '' }
+							value={ style?.position?.[ screen ] ?? '' }
 							options={ config?.position?.options }
-							onChange={ value => {
+							onChange={ ( value ) => {
 								setPosition( { position: value } );
 							} }
 						/>
@@ -212,7 +206,7 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 					<FlexItem>
 						<NumberControl
 							label={ config?.zIndex?.label }
-							value={ style?.zIndex?.[screen] }
+							value={ style?.zIndex?.[ screen ] }
 							onChange={ ( value: string ) => {
 								setPosition( { zIndex: value } );
 							} }
@@ -226,40 +220,40 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 			</PanelRow>
 
 			{ style?.position &&
-			  <PanelRow>
-				  <Flex className={ 'blockify-flex-controls' }>
-					  <FlexItem>
-						  <SelectControl
-							  label={ __( 'Overflow', 'blockify' ) }
-							  value={ style?.overflow?.[screen] ?? '' }
-							  options={ config?.overflow?.options }
-							  onChange={ value => {
-								  setPosition( { overflow: value } );
-							  } }
-						  />
-					  </FlexItem>
-					  <FlexItem>
-						  <SelectControl
-							  label={ __( 'Pointer Events', 'blockify' ) }
-							  value={ style?.pointerEvents?.[screen] ?? '' }
-							  options={ config?.pointerEvents?.options }
-							  onChange={ value => {
-								  setPosition( { pointerEvents: value } );
-							  } }
-						  />
-					  </FlexItem>
-				  </Flex>
-			  </PanelRow> }
+			<PanelRow>
+				<Flex className={ 'blockify-flex-controls' }>
+					<FlexItem>
+						<SelectControl
+							label={ __( 'Overflow', 'blockify' ) }
+							value={ style?.overflow?.[ screen ] ?? '' }
+							options={ config?.overflow?.options }
+							onChange={ ( value ) => {
+								setPosition( { overflow: value } );
+							} }
+						/>
+					</FlexItem>
+					<FlexItem>
+						<SelectControl
+							label={ __( 'Pointer Events', 'blockify' ) }
+							value={ style?.pointerEvents?.[ screen ] ?? '' }
+							options={ config?.pointerEvents?.options }
+							onChange={ ( value ) => {
+								setPosition( { pointerEvents: value } );
+							} }
+						/>
+					</FlexItem>
+				</Flex>
+			</PanelRow> }
 
 			<PanelRow>
 				<BoxControl
 					className={ 'blockify-box-control' }
 					label={ __( 'Inset', 'blockify' ) }
 					values={ {
-						top: style?.top?.[screen] ?? '',
-						right: style?.right?.[screen] ?? '',
-						bottom: style?.bottom?.[screen] ?? '',
-						left: style?.left?.[screen] ?? '',
+						top: style?.top?.[ screen ] ?? '',
+						right: style?.right?.[ screen ] ?? '',
+						bottom: style?.bottom?.[ screen ] ?? '',
+						left: style?.left?.[ screen ] ?? '',
 					} }
 					onChange={ ( value: {
 						top: string,
@@ -275,17 +269,17 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 						} );
 					} }
 					inputProps={ {
-						min: -999
+						min: -999,
 					} }
 				/>
 			</PanelRow>
 		</>
-	)
-}
+	);
+};
 
 export const Position = ( props: blockProps ): JSX.Element => {
 	const { attributes, setAttributes } = props;
-	const [ screen, setScreen ]         = useState( 'all' );
+	const [ screen, setScreen ] = useState( 'all' );
 
 	return (
 		<>
@@ -307,7 +301,7 @@ export const Position = ( props: blockProps ): JSX.Element => {
 										right: '',
 										bottom: '',
 										left: '',
-									}
+									},
 								} );
 							} }
 							icon={ trash }
@@ -343,12 +337,12 @@ export const Position = ( props: blockProps ): JSX.Element => {
 			{ screen === 'desktop' && PositionControl( props, screen ) }
 		</>
 	);
-}
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/position-controls',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, isSelected, name } = props;
 
@@ -360,17 +354,17 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-					  <InspectorControls>
-						  <PanelBody
-							  initialOpen={ attributes?.position ?? false }
-							  title={ __( 'Position', 'blockify' ) }
-						  >
-							  <Position { ...props }/>
-						  </PanelBody>
-					  </InspectorControls>
+					<InspectorControls>
+						<PanelBody
+							initialOpen={ attributes?.position ?? false }
+							title={ __( 'Position', 'blockify' ) }
+						>
+							<Position { ...props } />
+						</PanelBody>
+					</InspectorControls>
 					}
 				</>
 			);
-		}
+		};
 	}, 'withPosition' )
 );

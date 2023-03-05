@@ -2,7 +2,7 @@
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;
 
-	&:after {
+	&::after {
 		content: attr(data-text);
 	}
 }

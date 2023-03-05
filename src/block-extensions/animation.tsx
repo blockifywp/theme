@@ -1,32 +1,33 @@
 import {
-	// @ts-ignore
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalNumberControl as NumberControl,
 	Button,
 	Flex,
-	FlexItem, PanelBody,
+	FlexItem,
+	PanelBody,
 	PanelRow,
 	SelectControl,
-} from "@wordpress/components";
-import { __ } from "@wordpress/i18n";
-import { addFilter } from "@wordpress/hooks";
-import { createHigherOrderComponent } from "@wordpress/compose";
-import { CSSProperties } from "react";
-import { trash } from "@wordpress/icons";
-import { ucWords } from "../utility/string";
-import { PauseIcon } from "../components/pause-icon";
-import { Label } from "../components/label";
-import { InspectorControls } from "@wordpress/block-editor";
+} from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { addFilter } from '@wordpress/hooks';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { CSSProperties } from '@wordpress/element';
+import { trash } from '@wordpress/icons';
+import { ucWords } from '../utility/string';
+import { PauseIcon } from '../components/pause-icon';
+import { Label } from '../components/label';
+import { InspectorControls } from '@wordpress/block-editor';
 
 interface cssAnimation {
-	name?: string | null,
-	timingFunction?: string | null,
-	event?: string | null,
-	duration?: string | null,
-	delay?: string | null,
-	iterationCount?: string | null,
-	direction?: string | null,
-	fillMode?: string | null,
-	playState?: string | null,
+	name?: string | null;
+	timingFunction?: string | null;
+	event?: string | null;
+	duration?: string | null;
+	delay?: string | null;
+	iterationCount?: string | null;
+	direction?: string | null;
+	fillMode?: string | null;
+	playState?: string | null;
 }
 
 const timingFunctionOptions = [
@@ -37,17 +38,17 @@ const timingFunctionOptions = [
 	{ value: 'linear', label: __( 'Linear', 'blockify' ) },
 ];
 
-const effectOptions: { value: string, label: string }[] = [
+const effectOptions: { value: string; label: string }[] = [
 	{
 		value: '',
 		label: '',
-	}
+	},
 ];
 
 window?.blockify?.animations?.forEach( ( animation ) => {
 	effectOptions.push( {
 		value: animation,
-		label: ucWords( animation?.replace( /-/g, ' ' ) )
+		label: ucWords( animation?.replace( /-/g, ' ' ) ),
 	} );
 } );
 
@@ -56,9 +57,10 @@ const eventOptions = [
 	{ value: 'exit', label: __( 'Exit', 'blockify' ) },
 	{ value: 'infinite', label: __( 'Infinite', 'blockify' ) },
 	{ value: 'scroll', label: __( 'Scroll', 'blockify' ) },
-]
+];
 
-const supportsAnimation = ( name: string ): boolean => window?.blockify?.blockSupports?.[name]?.blockifyAnimation ?? false;
+const supportsAnimation = ( name: string ): boolean =>
+	window?.blockify?.blockSupports?.[ name ]?.blockifyAnimation ?? false;
 
 addFilter(
 	'blocks.registerBlockType',
@@ -70,7 +72,7 @@ addFilter(
 				animation: {
 					type: 'object',
 				},
-			}
+			};
 		}
 
 		return props;
@@ -80,19 +82,19 @@ addFilter(
 
 const getStyles = ( animation: style ): CSSProperties => {
 	const styles: {
-		'--animation-event'?: string,
-		animationName?: string,
-		animationTimingFunction?: string,
-		animationDuration?: string,
-		animationDelay?: string,
-		animationIterationCount?: string,
-		animationDirection?: string,
-		animationFillMode?: string,
-		animationPlayState?: string,
+		'--animation-event'?: string;
+		animationName?: string;
+		animationTimingFunction?: string;
+		animationDuration?: string;
+		animationDelay?: string;
+		animationIterationCount?: string;
+		animationDirection?: string;
+		animationFillMode?: string;
+		animationPlayState?: string;
 	} = {};
 
 	if ( animation?.event ) {
-		styles['--animation-event'] = animation.event ?? 'enter';
+		styles[ '--animation-event' ] = animation.event ?? 'enter';
 
 		if ( animation.event === 'infinite' ) {
 			styles.animationIterationCount = 'infinite';
@@ -112,7 +114,8 @@ const getStyles = ( animation: style ): CSSProperties => {
 	}
 
 	if ( animation?.timingFunction ) {
-		styles.animationTimingFunction = animation?.timingFunction ?? 'ease-in-out';
+		styles.animationTimingFunction =
+			animation?.timingFunction ?? 'ease-in-out';
 	}
 
 	if ( ! styles?.animationIterationCount ) {
@@ -124,39 +127,38 @@ const getStyles = ( animation: style ): CSSProperties => {
 	}
 
 	return styles as CSSProperties;
-}
+};
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-animation-props',
-	createHigherOrderComponent( BlockListBlock => {
-			return ( props: blockProps ) => {
-				const { attributes }   = props;
-				const animation: style = attributes?.animation ?? {};
+	createHigherOrderComponent( ( BlockListBlock ) => {
+		return ( props: blockProps ) => {
+			const { attributes } = props;
+			const animation: style = attributes?.animation ?? {};
 
-				if ( ! animation || ! Object?.keys( animation )?.length ) {
-					return <BlockListBlock { ...props } />
-				}
+			if ( ! animation || ! Object?.keys( animation )?.length ) {
+				return <BlockListBlock { ...props } />;
+			}
 
-				const styles = getStyles( animation );
+			const styles = getStyles( animation );
 
-				const wrapperProps = {
-					...props?.wrapperProps,
-					className: props?.wrapperProps?.className ?? '',
-					style: {
-						...props?.wrapperProps?.style,
-						...styles
-					}
-				}
-
-				props.className        = props?.className?.trim() + ' has-animation';
-				wrapperProps.className = wrapperProps?.className?.trim() + ' has-animation';
-
-				return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>
+			const wrapperProps = {
+				...props?.wrapperProps,
+				className: props?.wrapperProps?.className ?? '',
+				style: {
+					...props?.wrapperProps?.style,
+					...styles,
+				},
 			};
-		},
-		'withAnimation'
-	)
+
+			props.className = props?.className?.trim() + ' has-animation';
+			wrapperProps.className =
+				wrapperProps?.className?.trim() + ' has-animation';
+
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+		};
+	}, 'withAnimation' )
 );
 
 addFilter(
@@ -177,9 +179,9 @@ addFilter(
 			...props,
 			style: {
 				...props?.style,
-				...styles
-			}
-		}
+				...styles,
+			},
+		};
 	}
 );
 
@@ -203,42 +205,46 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 						/>
 					</>
 				</Label>
-				<Flex
-					justify={ 'flex-end' }
-				>
+				<Flex justify={ 'flex-end' }>
 					<FlexItem>
 						<Button
 							isSecondary
 							isSmall
-							icon={ animation?.playState === 'running' ? PauseIcon :
-								   <svg
-									   xmlns={ 'http://www.w3.org/2000/svg' }
-									   version={ '1.1' }
-									   fill={ 'currentColor' }
-								   >
-									   <polygon points="10,5 0,10 0,0"/>
-								   </svg>
+							icon={
+								animation?.playState === 'running' ? (
+									PauseIcon
+								) : (
+									<svg
+										xmlns={ 'http://www.w3.org/2000/svg' }
+										version={ '1.1' }
+										fill={ 'currentColor' }
+									>
+										<polygon points="10,5 0,10 0,0" />
+									</svg>
+								)
 							}
 							iconSize={ 10 }
 							onClick={ () => {
 								setAttributes( {
 									animation: {
 										...animation,
-										playState: animation?.playState === 'running' ? 'paused' : 'running'
-									}
-								} )
+										playState:
+											animation?.playState === 'running'
+												? 'paused'
+												: 'running',
+									},
+								} );
 							} }
 						>
-							{ animation?.playState === 'running' ? __( 'Pause', 'blockify' ) : __( 'Run', 'blockify' ) }
+							{ animation?.playState === 'running'
+								? __( 'Pause', 'blockify' )
+								: __( 'Run', 'blockify' ) }
 						</Button>
 					</FlexItem>
 				</Flex>
-
 			</PanelRow>
 
-			<PanelRow
-				className={ 'blockify-animate-controls' }
-			>
+			<PanelRow className={ 'blockify-animate-controls' }>
 				<Flex className={ 'blockify-flex-controls' }>
 					<FlexItem>
 						<FlexItem>
@@ -252,8 +258,8 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 											...animation,
 											name: value,
 											duration: animation?.duration ?? 1,
-										}
-									} )
+										},
+									} );
 								} }
 							/>
 						</FlexItem>
@@ -268,9 +274,9 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 									setAttributes( {
 										animation: {
 											...animation,
-											timingFunction: value
-										}
-									} )
+											timingFunction: value,
+										},
+									} );
 								} }
 							/>
 						</FlexItem>
@@ -286,9 +292,9 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 										animation: {
 											...animation,
 											event: value,
-											iterationCount: value === 'infinite' ? '-1' : ( animation?.iterationCount === '-1' ) ? '1' : animation?.iterationCount
-										}
-									} )
+											iterationCount: value === 'infinite' ? '-1' : animation?.iterationCount === '-1' ? '1' : animation?.iterationCount,
+										},
+									} );
 								} }
 							/>
 						</FlexItem>
@@ -298,15 +304,18 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 					<FlexItem>
 						<NumberControl
 							label={ __( 'Duration', 'blockify' ) }
-							help={ __( 'The duration of the animation in milliseconds. Leave empty or 0 for infinite.', 'blockify' ) }
+							help={ __(
+								'The duration of the animation in milliseconds. Leave empty or 0 for infinite.',
+								'blockify'
+							) }
 							value={ animation?.duration ?? 1 }
 							onChange={ ( value: number ) => {
 								setAttributes( {
 									animation: {
 										...animation,
-										duration: value
-									}
-								} )
+										duration: value,
+									},
+								} );
 							} }
 							min={ 0 }
 							max={ 100 }
@@ -318,15 +327,18 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 					<FlexItem>
 						<NumberControl
 							label={ __( 'Delay', 'blockify' ) }
-							help={ __( 'The delay for the animation when block enters viewport.', 'blockify' ) }
+							help={ __(
+								'The delay for the animation when block enters viewport.',
+								'blockify'
+							) }
 							value={ animation?.delay ?? 0 }
 							onChange={ ( value: number ) => {
 								setAttributes( {
 									animation: {
 										...animation,
-										delay: value
-									}
-								} )
+										delay: value,
+									},
+								} );
 							} }
 							min={ 0 }
 							max={ 100 }
@@ -336,36 +348,43 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 						/>
 					</FlexItem>
 					<FlexItem>
-						{ animation?.event !== 'infinite' &&
-						  <NumberControl
-							  label={ __( 'Repeat', 'blockify' ) }
-							  help={ __( 'The number of times the animation should be performed.', 'blockify' ) }
-							  value={ animation?.event === 'infinite' ? -1 : animation?.iterationCount ?? 1 }
-							  onChange={ ( value: number ) => {
-								  setAttributes( {
-									  animation: {
-										  ...animation,
-										  iterationCount: value
-									  }
-								  } )
-							  } }
-							  min={ -1 }
-							  max={ 100 }
-							  step={ 1 }
-							  allowReset={ true }
-						  />
-						}
+						{ animation?.event !== 'infinite' && (
+							<NumberControl
+								label={ __( 'Repeat', 'blockify' ) }
+								help={ __(
+									'The number of times the animation should be performed.',
+									'blockify'
+								) }
+								value={
+									animation?.event === 'infinite'
+										? -1
+										: animation?.iterationCount ?? 1
+								}
+								onChange={ ( value: number ) => {
+									setAttributes( {
+										animation: {
+											...animation,
+											iterationCount: value,
+										},
+									} );
+								} }
+								min={ -1 }
+								max={ 100 }
+								step={ 1 }
+								allowReset={ true }
+							/>
+						) }
 					</FlexItem>
 				</Flex>
 			</PanelRow>
 		</>
-	)
-}
+	);
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/animation-controls',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, isSelected, name } = props;
 
@@ -376,18 +395,18 @@ addFilter(
 			return (
 				<>
 					<BlockEdit { ...props } />
-					{ isSelected &&
-					  <InspectorControls>
-						  <PanelBody
-							  initialOpen={ attributes?.animation ?? false }
-							  title={ __( 'Animation', 'blockify' ) }
-						  >
-							  <Animation { ...props }/>
-						  </PanelBody>
-					  </InspectorControls>
-					}
+					{ isSelected && (
+						<InspectorControls>
+							<PanelBody
+								initialOpen={ attributes?.animation ?? false }
+								title={ __( 'Animation', 'blockify' ) }
+							>
+								<Animation { ...props } />
+							</PanelBody>
+						</InspectorControls>
+					) }
 				</>
 			);
-		}
+		};
 	}, 'withAnimation' )
 );

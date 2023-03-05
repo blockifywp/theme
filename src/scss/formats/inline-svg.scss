@@ -26,12 +26,12 @@
 		height: var(--width-desktop, var(--width, 1em));
 	}
 
-	[alt]:after {
+	[alt]::after {
 		opacity: 0;
 	}
 
 	// For older versions using src attribute.
 	&:not([src*="svg"]) {
-		background: currentColor;
+		background: currentcolor;
 	}
 }

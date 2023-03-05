@@ -6,20 +6,25 @@ import {
 	Flex,
 	FlexItem,
 	ToggleControl,
-	// @ts-ignore
-	__experimentalNumberControl as NumberControl, ButtonGroup, Button, PanelBody,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
+	__experimentalNumberControl as NumberControl,
+	ButtonGroup,
+	Button,
+	PanelBody,
 } from '@wordpress/components';
 
 import {
-	// @ts-ignore
-	__experimentalPanelColorGradientSettings as PanelColorGradientSettings, InspectorControls,
+	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
+	InspectorControls,
 } from '@wordpress/block-editor';
-import { ucWords } from "../utility/string";
-import { Label } from "../components/label";
-import { useState } from "@wordpress/element";
-import { trash } from "@wordpress/icons";
+import { ucWords } from '../utility/string';
+import { Label } from '../components/label';
+import { useState } from '@wordpress/element';
+import { trash } from '@wordpress/icons';
 
-export const supportsShadow = ( name: string ): boolean => window?.blockify?.blockSupports?.[name]?.blockifyBoxShadow ?? false;
+export const supportsShadow = ( name: string ): boolean =>
+	window?.blockify?.blockSupports?.[ name ]?.blockifyBoxShadow ?? false;
 
 addFilter(
 	'blocks.registerBlockType',
@@ -32,9 +37,9 @@ addFilter(
 					...( props?.attributes?.style ?? {} ),
 					boxShadow: {
 						type: 'object',
-					}
-				}
-			}
+					},
+				},
+			};
 		}
 
 		return props;
@@ -45,7 +50,7 @@ addFilter(
 const getStyles = ( attributes: attributes ): style => {
 	const boxShadow = attributes?.style?.boxShadow ?? {};
 
-	let style: { [key: string]: string } = {};
+	const style: { [key: string]: string } = {};
 
 	const units: { [property: string]: string } = {
 		inset: '',
@@ -53,25 +58,32 @@ const getStyles = ( attributes: attributes ): style => {
 		y: 'px',
 		blur: 'px',
 		spread: 'px',
-		color: ''
+		color: '',
 	};
 
 	Object.keys( units ).map( ( key: string ) => {
-		if ( boxShadow?.[key] || boxShadow?.[key]?.toString() === '0' ) {
-			style['--wp--custom--box-shadow--' + key] = boxShadow?.[key] + units?.[key];
+		if ( boxShadow?.[ key ] || boxShadow?.[ key ]?.toString() === '0' ) {
+			style[ '--wp--custom--box-shadow--' + key ] =
+				boxShadow?.[ key ] + units?.[ key ];
 		}
 
-		if ( boxShadow?.hover?.[key] || boxShadow?.hover?.[key]?.toString() === '0' ) {
-			style['--wp--custom--box-shadow--hover--' + key] = boxShadow?.hover?.[key] + units?.[key];
+		if (
+			boxShadow?.hover?.[ key ] ||
+			boxShadow?.hover?.[ key ]?.toString() === '0'
+		) {
+			style[ '--wp--custom--box-shadow--hover--' + key ] =
+				boxShadow?.hover?.[ key ] + units?.[ key ];
 		}
+
+		return true;
 	} );
 
 	return style;
-}
+};
 
 const BoxShadowControl = ( props: blockProps, tab: string ): JSX.Element => {
 	const { attributes, setAttributes } = props;
-	const { style }                     = attributes;
+	const { style } = attributes;
 
 	const boxShadow = style?.boxShadow ?? {};
 
@@ -80,15 +92,15 @@ const BoxShadowControl = ( props: blockProps, tab: string ): JSX.Element => {
 
 		if ( tab === 'default' ) {
 			newAttributes = {
-				...values
+				...values,
 			};
 		} else {
 			newAttributes = {
 				hover: {
 					...boxShadow?.hover,
-					...values
-				}
-			}
+					...values,
+				},
+			};
 		}
 
 		setAttributes( {
@@ -96,115 +108,127 @@ const BoxShadowControl = ( props: blockProps, tab: string ): JSX.Element => {
 				...style,
 				boxShadow: {
 					...boxShadow,
-					...newAttributes
-				}
-			}
-		} )
+					...newAttributes,
+				},
+			},
+		} );
 	};
 
-	return <>
-		<PanelRow>
-			<Flex>
-				{ [ 'x', 'y', 'blur', 'spread' ].map( key => (
-					<FlexItem>
-						<NumberControl
-							label={ ucWords( key ) }
-							value={ tab === 'default' ? boxShadow[key] : boxShadow?.hover?.[key] }
-							step={ 1 }
-							shiftStep={ 10 }
-							onChange={ ( value: string ) => {
-								setBoxShadow( {
-									[key]: value
-								} );
-							} }
-						/>
-					</FlexItem>
-				) ) }
-			</Flex>
-		</PanelRow>
+	return (
+		<>
+			<PanelRow>
+				<Flex>
+					{ [ 'x', 'y', 'blur', 'spread' ].map( ( key ) => (
+						<FlexItem key={ key }>
+							<NumberControl
+								label={ ucWords( key ) }
+								value={
+									tab === 'default'
+										? boxShadow[ key ]
+										: boxShadow?.hover?.[ key ]
+								}
+								step={ 1 }
+								shiftStep={ 10 }
+								onChange={ ( value: string ) => {
+									setBoxShadow( {
+										[ key ]: value,
+									} );
+								} }
+							/>
+						</FlexItem>
+					) ) }
+				</Flex>
+			</PanelRow>
 
-		<br/>
-		<PanelRow>
-			<Flex
-				className={ 'blockify-flex-controls' }
-			>
-				<FlexItem
-					style={ {
-						flex: 1.5,
-					} }
-				>
-					<PanelColorGradientSettings
-						title={ __( 'Color', 'blockify' ) }
-						showTitle={ false }
-						enableAlpha={ true }
-						settings={
-							[
+			<br />
+			<PanelRow>
+				<Flex className={ 'blockify-flex-controls' }>
+					<FlexItem
+						style={ {
+							flex: 1.5,
+						} }
+					>
+						<PanelColorGradientSettings
+							title={ __( 'Color', 'blockify' ) }
+							showTitle={ false }
+							enableAlpha={ true }
+							settings={ [
 								{
 									enableAlpha: true,
-									colorValue: tab === 'default' ? boxShadow?.color : boxShadow?.[tab]?.color,
-									label: __( 'Color ', 'blockify' ) + ( tab === 'hover' ? __( ' Hover', 'blockify' ) : '' ),
+									colorValue:
+										tab === 'default'
+											? boxShadow?.color
+											: boxShadow?.[ tab ]?.color,
+									label:
+										__( 'Color ', 'blockify' ) +
+										( tab === 'hover'
+											? __( ' Hover', 'blockify' )
+											: '' ),
 									onColorChange: ( value: string ) => {
 										setBoxShadow( {
 											color: value,
 										} );
-									}
+									},
 								},
-							]
-						}
-					/>
-				</FlexItem>
-				<FlexItem>
-					<ToggleControl
-						label={ __( 'Inset', 'blockify' ) }
-						checked={ tab === 'default' ? boxShadow?.inset : boxShadow?.[tab]?.inset }
-						onChange={ value => {
-							setBoxShadow( {
-								inset: value ? 'inset' : '',
-							} )
-						} }
-					/>
-				</FlexItem>
-			</Flex>
-		</PanelRow>
-	</>
-}
+							] }
+						/>
+					</FlexItem>
+					<FlexItem>
+						<ToggleControl
+							label={ __( 'Inset', 'blockify' ) }
+							checked={
+								tab === 'default'
+									? boxShadow?.inset
+									: boxShadow?.[ tab ]?.inset
+							}
+							onChange={ ( value ) => {
+								setBoxShadow( {
+									inset: value ? 'inset' : '',
+								} );
+							} }
+						/>
+					</FlexItem>
+				</Flex>
+			</PanelRow>
+		</>
+	);
+};
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/edit-box-shadow-styles',
-	createHigherOrderComponent( BlockListBlock => {
-			return ( props: blockProps ) => {
-				const { attributes, name } = props;
+	createHigherOrderComponent( ( BlockListBlock ) => {
+		return ( props: blockProps ) => {
+			const { attributes, name } = props;
 
-				if ( ! supportsShadow( name ) ) {
-					return <BlockListBlock { ...props } />;
-				}
+			if ( ! supportsShadow( name ) ) {
+				return <BlockListBlock { ...props } />;
+			}
 
-				const styles = getStyles( attributes );
+			const styles = getStyles( attributes );
 
-				if ( ! Object.keys( styles ).length ) {
-					return <BlockListBlock { ...props } />;
-				}
+			if ( ! Object.keys( styles ).length ) {
+				return <BlockListBlock { ...props } />;
+			}
 
-				let wrapperProps = { ...props.wrapperProps };
+			const wrapperProps = { ...props.wrapperProps };
 
-				props.className += ' has-box-shadow';
-				wrapperProps.className += ' has-box-shadow';
+			props.className += ' has-box-shadow';
+			wrapperProps.className += ' has-box-shadow';
 
-				props.style = {
-					...props.style,
-					...styles,
-				};
-
-				wrapperProps.style = {
-					...wrapperProps.style,
-					...styles,
-				};
-
-				return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>
+			props.style = {
+				...props.style,
+				...styles,
 			};
-		}
-		, 'withBoxShadow' )
+
+			wrapperProps.style = {
+				...wrapperProps.style,
+				...styles,
+			};
+
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+		};
+	}, 'withBoxShadow' )
 );
 
 addFilter(
@@ -227,7 +251,7 @@ addFilter(
 
 		props.style = {
 			...props.style,
-			...styles
+			...styles,
 		};
 
 		return props;
@@ -236,7 +260,7 @@ addFilter(
 
 export const Shadow = ( props: blockProps ): JSX.Element => {
 	const { attributes, setAttributes } = props;
-	const [ tab, setTab ]               = useState( 'default' );
+	const [ tab, setTab ] = useState( 'default' );
 
 	return (
 		<>
@@ -252,8 +276,8 @@ export const Shadow = ( props: blockProps ): JSX.Element => {
 								setAttributes( {
 									style: {
 										...attributes?.style,
-										boxShadow: ''
-									}
+										boxShadow: '',
+									},
 								} );
 							} }
 							icon={ trash }
@@ -283,12 +307,12 @@ export const Shadow = ( props: blockProps ): JSX.Element => {
 			{ tab === 'hover' && BoxShadowControl( props, tab ) }
 		</>
 	);
-}
+};
 
 addFilter(
 	'editor.BlockEdit',
 	'blockify/shadow-controls',
-	createHigherOrderComponent( BlockEdit => {
+	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const { attributes, isSelected, name } = props;
 
@@ -299,18 +323,18 @@ addFilter(
 			return (
 				<>
 					<BlockEdit { ...props } />
-					{ isSelected &&
-					  <InspectorControls>
-						  <PanelBody
-							  initialOpen={ attributes?.shadow ?? false }
-							  title={ __( 'Shadow', 'blockify' ) }
-						  >
-							  <Shadow { ...props }/>
-						  </PanelBody>
-					  </InspectorControls>
-					}
+					{ isSelected && (
+						<InspectorControls>
+							<PanelBody
+								initialOpen={ attributes?.shadow ?? false }
+								title={ __( 'Shadow', 'blockify' ) }
+							>
+								<Shadow { ...props } />
+							</PanelBody>
+						</InspectorControls>
+					) }
 				</>
 			);
-		}
+		};
 	}, 'withShadow' )
 );

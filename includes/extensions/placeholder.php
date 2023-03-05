@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMException;
 use function array_merge;
 use function explode;
 use function implode;
@@ -17,6 +18,8 @@ use function in_array;
  * @param string $html  Block content.
  * @param array  $block Block attributes.
  *
+ * @throws DOMException If the HTML is invalid.
+ *
  * @return string
  */
 function render_image_placeholder( string $html, array $block ): string {
@@ -28,17 +31,25 @@ function render_image_placeholder( string $html, array $block ): string {
 		return $html;
 	}
 
-	$attributes  = $block['attrs'] ?? [];
-	$html        = ! $html ? '<figure class="wp-block-image"><img src="" alt=""/></figure>' : $html;
-	$dom         = dom( $html );
-	$styles      = css_array_to_string( add_block_support_color( [], $attributes ) );
-	$svg         = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" preserveAspectRatio="none" class="wp-block-image__placeholder" style="' . $styles . '"><path vector-effect="non-scaling-stroke" d="M60 60 0 0"></path></svg>';
+	$html = ! $html ? '<figure class="wp-block-image"><img src="" alt=""/></figure>' : $html;
+	$dom  = dom( $html );
+
+	// @phpcs:disable WordPress.WP.CapitalPDangit.Misspelled
+	$svg         = get_icon( 'wordpress', 'image', 30 );
 	$svg_dom     = dom( $svg );
 	$svg_element = get_dom_element( 'svg', $svg_dom );
 
 	if ( ! $svg_element ) {
 		return $html;
 	}
+
+	$svg_classes = explode( ' ', $svg_element->getAttribute( 'class' ) );
+
+	$svg_classes[] = 'wp-block-image__placeholder-icon';
+
+	$svg_element->setAttribute( 'class', implode( ' ', $svg_classes ) );
+
+	$svg_element->setAttribute( 'fill', 'currentColor' );
 
 	$result = $dom->importNode( $svg_element, true );
 	$figure = get_dom_element( 'figure', $dom );
@@ -71,7 +82,7 @@ function render_image_placeholder( string $html, array $block ): string {
 		'height'                     => $block['height'] ?? null,
 		'margin-top'                 => $block['style']['spacing']['margin']['top'] ?? null,
 		'margin-right'               => $block['style']['spacing']['margin']['right'] ?? null,
-		'margin-bottom'              => $block['style']['spacing']['margin']['bottom'] ?? 'var(--wp--preset--spacing--sm)',
+		'margin-bottom'              => $block['style']['spacing']['margin']['bottom'] ?? null,
 		// TODO: Get from theme.json.
 		'margin-left'                => $block['style']['spacing']['margin']['left'] ?? null,
 		'border-top-left-radius'     => $block['style']['border']['radius']['topLeft'] ?? null,

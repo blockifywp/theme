@@ -29,32 +29,25 @@ function render_cover_block( string $html, array $block ): string {
 	$dom = dom( $html );
 	$div = get_dom_element( 'div', $dom );
 
-	if ( $div ) {
-		$styles = css_string_to_array( $div->getAttribute( 'style' ) );
-
-		if ( isset( $padding['top'] ) ) {
-			$styles['padding-top'] = format_custom_property( $padding['top'] );
-		}
-
-		if ( isset( $padding['right'] ) ) {
-			$styles['padding-right'] = format_custom_property( $padding['right'] );
-		}
-
-		if ( isset( $padding['bottom'] ) ) {
-			$styles['padding-bottom'] = format_custom_property( $padding['bottom'] );
-		}
-
-		if ( isset( $padding['left'] ) ) {
-			$styles['padding-left'] = format_custom_property( $padding['left'] );
-		}
-
-		if ( ! is_null( $zIndex ) ) {
-			$styles['--z-index'] = format_custom_property( $zIndex );
-		}
-
-		$div->setAttribute( 'style', css_array_to_string( $styles ) );
+	if ( ! $div ) {
+		return $html;
 	}
+
+	$styles = css_string_to_array( $div->getAttribute( 'style' ) );
+
+	foreach ( [ 'top', 'right', 'bottom', 'left' ] as $side ) {
+		if ( ! isset( $padding[ $side ] ) ) {
+			continue;
+		}
+
+		$styles[ "padding-{$side}" ] = format_custom_property( (string) $padding[ $side ] );
+	}
+
+	if ( ! is_null( $zIndex ) ) {
+		$styles['--z-index'] = format_custom_property( $zIndex );
+	}
+
+	$div->setAttribute( 'style', css_array_to_string( $styles ) );
 
 	return $dom->saveHTML();
 }
-

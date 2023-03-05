@@ -9,7 +9,7 @@ body {
 	// For gradients.
 	background: var(--wp--custom--body--background, var(--wp--preset--color--white, #fff));
 
-	&:before {
+	&::before {
 		display: block;
 		position: absolute;
 		inset: 0;

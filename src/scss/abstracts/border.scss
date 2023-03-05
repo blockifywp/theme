@@ -3,7 +3,7 @@ $border-style: var(--wp--custom--border--style, solid);
 $border-color: var(--wp--custom--border--color, transparent);
 $border-radius: var(--wp--custom--border--radius, 0);
 
-@mixin border($border) {
+@mixin border() {
 	border-width: $border-width;
 	border-style: $border-style;
 	border-color: $border-color;

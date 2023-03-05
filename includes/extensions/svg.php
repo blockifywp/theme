@@ -5,8 +5,10 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function rawurlencode;
 use function str_contains;
 use function str_replace;
+use function trim;
 use function urldecode;
 
 add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 9, 2 );
@@ -37,6 +39,33 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$img    = get_dom_element( 'img', $link ?? $figure );
 	$svg    = get_dom_element( 'svg', $link ?? $figure );
 
+	$mask   = (bool) ( $block['attrs']['style']['maskSvg'] ?? false );
+	$width  = $block['attrs']['width'] ?? '';
+	$height = $block['attrs']['height'] ?? '';
+
+	if ( $mask ) {
+		$styles  = css_string_to_array( $img->getAttribute( 'style' ) );
+		$encoded = rawurlencode(
+			str_replace(
+				'"',
+				"'",
+				trim( $svg_string )
+			)
+		);
+
+		$styles['background']            = 'currentColor';
+		$styles['-webkit-mask-image']    = 'url("data:image/svg+xml;utf8,' . $encoded . '")';
+		$styles['-webkit-mask-repeat']   = 'no-repeat';
+		$styles['-webkit-mask-size']     = 'contain';
+		$styles['-webkit-mask-position'] = 'center';
+		$styles['max-width']             = $width ? $width . 'px' : 'none';
+
+		$img->setAttribute( 'style', css_array_to_string( $styles ) );
+		$img->removeAttribute( 'src' );
+
+		return $dom->saveHTML();
+	}
+
 	if ( $svg ) {
 		return $html;
 	}
@@ -54,8 +83,6 @@ function render_svg_block_variation( string $html, array $block ): string {
 
 	$imported = $dom->importNode( $svg_element, true );
 	$imported = dom_element( $imported );
-	$width    = $block['attrs']['width'] ?? '';
-	$height   = $block['attrs']['height'] ?? '';
 
 	if ( $width ) {
 		$imported->setAttribute( 'width', (string) $width );

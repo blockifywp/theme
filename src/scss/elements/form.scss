@@ -36,7 +36,7 @@ textarea {
 
 select,
 textarea,
-input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
+input:not([type="checkbox"],[type="submit"],[type="button"],[type="radio"]) {
 	margin: var(--wp--custom--input--margin, 0 0 var(--wp--style--block-gap, 1em));
 	padding: $padding;
 	font-size: var(--wp--custom--button--font-size);
@@ -45,7 +45,7 @@ input:not([type=checkbox],[type=submit],[type=button],[type=radio]) {
 }
 
 // Match .wp-element-button workaround. Line height doesn't work.
-input:not([type=checkbox],[type=submit],[type=button],[type=radio],[type=file]) {
+input:not([type="checkbox"],[type="submit"],[type="button"],[type="radio"],[type="file"]) {
 	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
 }
 

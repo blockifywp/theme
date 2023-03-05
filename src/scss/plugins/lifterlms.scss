@@ -1,4 +1,4 @@
-@import '../block-styles/surface';
+@import "../block-styles/surface";
 
 $double_spacing: calc(var(--wp--style--block-gap) * 2);
 
@@ -8,7 +8,7 @@ $double_spacing: calc(var(--wp--style--block-gap) * 2);
 		max-width: var(--wp--style--global--wide-size);
 	}
 
-	.wp-block-cover:not([style*=margin]) {
+	.wp-block-cover:not([style*="margin"]) {
 		margin-top: $double_spacing;
 		margin-bottom: $double_spacing;
 	}
@@ -31,18 +31,18 @@ $double_spacing: calc(var(--wp--style--block-gap) * 2);
 }
 
 .llms-lesson-preview .llms-lesson-link {
-	color: currentColor;
+	color: currentcolor;
 	transition: var(--wp--custom--transition);
 
 	@include surface;
 
 	&:hover {
-		--wp--custom--surface-overlay--opacity: .1;
-		--wp--custom--surface-overlay--background: currentColor;
+		--wp--custom--surface-overlay--opacity: 0.1;
+		--wp--custom--surface-overlay--background: currentcolor;
 		background: var(--wp--preset--color--surface);
 	}
 
 	&:visited {
-		color: currentColor;
+		color: currentcolor;
 	}
 }

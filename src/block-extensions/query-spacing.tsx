@@ -1,11 +1,12 @@
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
+import { CSSProperties } from '@wordpress/element';
 
 addFilter(
 	'editor.BlockListBlock',
 	'blockify/with-block-gap',
 	createHigherOrderComponent(
-		BlockListBlock => ( props: blockProps ) => {
+		( BlockListBlock ) => ( props: blockProps ) => {
 			if ( props?.name !== 'core/query' ) {
 				return <BlockListBlock { ...props } />;
 			}
@@ -18,10 +19,10 @@ addFilter(
 
 			wrapperProps.style = {
 				...wrapperProps.style,
-				'--wp--style--block-gap': props.attributes.style.spacing.blockGap
-			};
+				'--wp--style--block-gap': props.attributes.style.spacing.blockGap,
+			} as CSSProperties;
 
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps }/>;
+			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 		},
 		'withBlockGap'
 	)
@@ -34,7 +35,7 @@ addFilter(
 		if ( blockType === 'core/query' && attributes?.style?.spacing?.blockGap ) {
 			props.style = {
 				...props.style,
-				'--wp--style--block-gap': attributes.style.spacing.blockGap
+				'--wp--style--block-gap': attributes.style.spacing.blockGap,
 			};
 		}
 

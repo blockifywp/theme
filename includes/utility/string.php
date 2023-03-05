@@ -45,6 +45,26 @@ function reduce_whitespace( string $string ): string {
 }
 
 /**
+ * Removes line breaks from a string.
+ *
+ * @since 1.0.1
+ *
+ * @param string $string The string to search.
+ *
+ * @return string
+ */
+function remove_line_breaks( string $string ): string {
+	return str_replace(
+		[
+			"\r",
+			"\n",
+		],
+		'',
+		trim( $string )
+	);
+}
+
+/**
  * Returns part of string between two strings.
  *
  * @since 0.0.2
