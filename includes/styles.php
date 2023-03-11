@@ -19,6 +19,7 @@ use function file_exists;
 use function file_get_contents;
 use function filemtime;
 use function get_stylesheet_directory;
+use function get_template;
 use function glob;
 use function implode;
 use function is_a;
@@ -35,6 +36,7 @@ use function wp_dequeue_style;
 use function wp_enqueue_style;
 use function wp_get_global_settings;
 use function wp_get_global_styles;
+use function wp_get_theme;
 use function wp_register_style;
 
 /**
@@ -77,8 +79,19 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
  * @return void
  */
 function enqueue_styles(): void {
-	$handle  = 'global-styles';
-	$content = get_page_content();
+	global $template_html;
+
+	$content = is_admin() ? '' : $template_html;
+	$handle  = get_template();
+
+	wp_register_style(
+		$handle,
+		'',
+		[],
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style( $handle );
 
 	wp_add_inline_style(
 		$handle,

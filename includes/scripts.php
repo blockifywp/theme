@@ -122,7 +122,9 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );
  * @return void
  */
 function enqueue_scripts(): void {
-	$content = get_page_content();
+	global $template_html;
+
+	$content = is_admin() ? '' : $template_html;
 	$handle  = 'theme-inline';
 
 	wp_register_script(

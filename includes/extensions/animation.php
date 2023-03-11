@@ -13,7 +13,7 @@ use function str_contains;
 
 add_filter( 'blockify_editor_data', NS . 'add_animation_names' );
 /**
- * Adds animation names to editor so they are available for options.
+ * Adds animation names to editor, so they are available for options.
  *
  * @since 0.9.19
  *
