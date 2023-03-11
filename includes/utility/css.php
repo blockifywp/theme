@@ -140,7 +140,7 @@ function get_animation_styles( string $content, bool $is_editor ): string {
 	$css        = '';
 
 	foreach ( $animations as $name => $animation ) {
-		if ( $is_editor || str_contains( $content, "--animation-name:{$name}" ) ) {
+		if ( $is_editor || str_contains( $content, "animation-name:{$name}" ) ) {
 			$css .= "@keyframes $name" . trim( $animation );
 		}
 	}
