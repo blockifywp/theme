@@ -1,4 +1,3 @@
-*.lock export-ignore
 .editorconfig export-ignore
 .eslintrc export-ignore
 .eslintrc.cjs export-ignore
@@ -7,14 +6,9 @@
 .gitignore export-ignore
 .wordpress-org/ export-ignore
 README.md export-ignore
-node_modules/ export-ignore
-package-lock.json export-ignore
 phpcs.xml export-ignore
 phpstan.neon.dist export-ignore
 src/ export-ignore
 tests/ export-ignore
 tsconfig.json export-ignore
-vendor/ export-ignore
 webpack.config.js export-ignore
-wp-content/ export-ignore
-wp/ export-ignore
