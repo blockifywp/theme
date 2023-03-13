@@ -39,6 +39,37 @@ use function wp_get_global_styles;
 use function wp_get_theme;
 use function wp_register_style;
 
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
+/**
+ * Enqueues styles.
+ *
+ * @since 0.4.0
+ *
+ * @return void
+ */
+function enqueue_styles(): void {
+	$handle = get_template();
+
+	wp_register_style(
+		$handle,
+		'',
+		[],
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style( $handle );
+
+	wp_add_inline_style(
+		$handle,
+		get_inline_styles(
+			(string) ( $GLOBALS['template_html'] ?? '' ),
+			false
+		)
+	);
+
+	wp_dequeue_style( 'wp-block-library-theme' );
+}
+
 /**
  * Returns filtered inline styles.
  *
@@ -68,37 +99,6 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 	);
 
 	return remove_line_breaks( $css );
-}
-
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
-/**
- * Enqueues styles.
- *
- * @since 0.4.0
- *
- * @return void
- */
-function enqueue_styles(): void {
-	global $template_html;
-
-	$content = is_admin() ? '' : $template_html;
-	$handle  = get_template();
-
-	wp_register_style(
-		$handle,
-		'',
-		[],
-		wp_get_theme()->get( 'Version' )
-	);
-
-	wp_enqueue_style( $handle );
-
-	wp_add_inline_style(
-		$handle,
-		get_inline_styles( $content, false )
-	);
-
-	wp_dequeue_style( 'wp-block-library-theme' );
 }
 
 /**

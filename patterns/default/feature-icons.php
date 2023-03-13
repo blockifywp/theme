@@ -8,13 +8,13 @@
 ?>
 <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|sm","top":"var:preset|spacing|xxs"},"blockGap":"var:preset|spacing|lg","margin":{"top":"0"}}},"layout":{"type":"constrained"},"fontSize":"18"} -->
 <div class="wp-block-group alignfull has-18-font-size" style="margin-top:0;padding-top:var(--wp--preset--spacing--xxs);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|lg","left":"var:preset|spacing|lg"},"padding":{"top":"var:preset|spacing|sm","bottom":"var:preset|spacing|sm"},"margin":{"top":"0","bottom":"0"}}}} -->
-<div class="wp-block-columns alignwide" id="features" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:column -->
+<div class="wp-block-columns alignwide" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--sm);padding-bottom:var(--wp--preset--spacing--sm)"><!-- wp:column -->
 <div class="wp-block-column"><!-- wp:image {"className":"is-resized is-style-icon","textColor":"primary","iconName":"chart-bar","iconSize":"2em","iconSvgString":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 viewBox=\u00220 0 24 24\u0022\u003e\u003cpath d=\u0022M11.25 5h1.5v15h-1.5V5zM6 10h1.5v10H6V10zm12 4h-1.5v6H18v-6z\u0022/\u003e\u003c/svg\u003e"} -->
 <figure class="wp-block-image is-resized is-style-icon has-primary-color has-text-color" style="--wp--custom--icon--color:var(--wp--preset--color--primary,currentColor);--wp--custom--icon--size:2em;--wp--custom--icon--url:url('data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot;&gt;<path d=&quot;M11.25 5h1.5v15h-1.5V5zM6 10h1.5v10H6V10zm12 4h-1.5v6H18v-6z&quot;/&gt;</svg&gt;')"><img src="#" alt=""/></figure>
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">Analytics</h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">Analytics</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -28,7 +28,7 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">Less Code</h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">Less Code</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -42,7 +42,7 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">Collaboration </h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">Collaboration </h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -58,7 +58,7 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">User Friendly</h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">User Friendly</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -72,7 +72,7 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">Secure Payments</h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">Secure Payments</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
@@ -86,7 +86,7 @@
 <!-- /wp:image -->
 
 <!-- wp:heading {"textAlign":"center","className":"wp-block-heading","fontSize":"22"} -->
-<h2 class="has-text-align-center wp-block-heading has-22-font-size">Social Media</h2>
+<h2 class="wp-block-heading has-text-align-center has-22-font-size">Social Media</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"aligncenter"} -->
