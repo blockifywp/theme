@@ -11,7 +11,7 @@ Lightweight full site editing block theme framework. Blockify provides useful fe
 
 ## Installation
 
-1. In your site's admin panel, go to Appearance > Themes and click `Add New`.
+1. In your site's admin dashboard, go to Appearance > Themes and click `Add New`.
 2. Type "Blockify" in the search field.
 3. Click `Install` and then `Activate` to start using the theme.
 4. Navigate to Appearance > Customize in your admin panel and customize to your needs.
