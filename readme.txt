@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1.1
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,15 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.3 - 13 March 2023 =
+
+* Add: is_plugin function to check if installed as plugin
+* Update: Default curved text placeholder and size
+* Remove: Animation settings help text
+* Remove: SLUG constant
+* Fix: Editor settings CSS
+* Fix: Check editor.css file exists before getting filemtime
 
 = 1.2.2 - 13 March 2023 =
 

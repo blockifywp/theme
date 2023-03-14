@@ -73,10 +73,10 @@ function enqueue_styles(): void {
 /**
  * Returns filtered inline styles.
  *
- * @since 0.9.22
- *
  * @param string $content   Page content.
  * @param bool   $is_editor Is Editor.
+ *
+ * @since 0.9.22
  *
  * @return string
  */
@@ -212,10 +212,10 @@ function get_dynamic_custom_properties(): string {
 /**
  * Adds conditional stylesheets inline.
  *
- * @since 0.0.27
- *
  * @param string $content   Page content.
  * @param bool   $is_editor Is editor.
+ *
+ * @since 0.0.27
  *
  * @return string
  */
@@ -396,9 +396,9 @@ add_filter( 'wp_theme_json_data_theme', NS . 'fix_editor_layout_sizes' );
  *
  * @todo  Move layout settings to separate file.
  *
- * @since 0.4.2
- *
  * @param mixed $theme_json WP_Theme_JSON_Data | WP_Theme_JSON_Data_Gutenberg.
+ *
+ * @since 0.4.2
  *
  * @return mixed
  */
@@ -432,14 +432,15 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_only_styles' );
 function enqueue_editor_only_styles(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
 
-	$file   = 'assets/css/editor.css';
-	$handle = 'blockify-editor';
+	$file    = 'assets/css/editor.css';
+	$handle  = 'blockify-editor';
+	$version = file_exists( get_dir() . $file ) ? filemtime( get_dir() . $file ) : wp_get_theme()->get( 'Version' );
 
 	wp_register_style(
 		$handle,
 		get_uri() . $file,
 		[],
-		filemtime( get_dir() . $file )
+		$version
 	);
 
 	wp_enqueue_style( $handle );
@@ -478,11 +479,11 @@ add_filter( 'pre_http_request', NS . 'generate_dynamic_styles', 10, 3 );
 /**
  * Generates dynamic editor styles.
  *
- * @since 0.9.23
- *
  * @param array|bool $response    HTTP response.
  * @param array      $parsed_args Response args.
  * @param string     $url         Response URL.
+ *
+ * @since 0.9.23
  *
  * @return array|bool
  */
@@ -507,9 +508,9 @@ add_filter( 'blockify_inline_css', NS . 'add_child_theme_style_css' );
 /**
  * Adds child theme style.css to inline styles.
  *
- * @since 0.9.23
- *
  * @param string $css CSS.
+ *
+ * @since 0.9.23
  *
  * @return string
  */
@@ -518,7 +519,7 @@ function add_child_theme_style_css( string $css ): string {
 
 	if ( file_exists( $child ) ) {
 		$content = file_get_contents( $child );
-		$css    .= str_replace(
+		$css     .= str_replace(
 			str_between( '/**', '*/', $content ),
 			'',
 			$content
@@ -531,10 +532,10 @@ function add_child_theme_style_css( string $css ): string {
 /**
  * Conditionally adds CSS for utility classes
  *
- * @since 0.9.19
- *
  * @param string $content   Page Content.
  * @param bool   $is_editor Is editor page.
+ *
+ * @since 0.9.19
  *
  * @return string
  */
@@ -624,10 +625,10 @@ function get_position_styles( string $content, bool $is_editor ): string {
 /**
  * Get block style heading styles.
  *
- * @since 1.1.2
- *
  * @param string $content   Page Content.
  * @param bool   $is_editor Is editor page.
+ *
+ * @since 1.1.2
  *
  * @return string
  */
