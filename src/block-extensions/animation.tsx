@@ -304,10 +304,6 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 					<FlexItem>
 						<NumberControl
 							label={ __( 'Duration', 'blockify' ) }
-							help={ __(
-								'The duration of the animation in milliseconds. Leave empty or 0 for infinite.',
-								'blockify'
-							) }
 							value={ animation?.duration ?? 1 }
 							onChange={ ( value: number ) => {
 								setAttributes( {
@@ -327,10 +323,6 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 					<FlexItem>
 						<NumberControl
 							label={ __( 'Delay', 'blockify' ) }
-							help={ __(
-								'The delay for the animation when block enters viewport.',
-								'blockify'
-							) }
 							value={ animation?.delay ?? 0 }
 							onChange={ ( value: number ) => {
 								setAttributes( {
@@ -351,10 +343,6 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 						{ animation?.event !== 'infinite' && (
 							<NumberControl
 								label={ __( 'Repeat', 'blockify' ) }
-								help={ __(
-									'The number of times the animation should be performed.',
-									'blockify'
-								) }
 								value={
 									animation?.event === 'infinite'
 										? -1

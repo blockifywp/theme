@@ -1,10 +1,13 @@
 @import "../abstracts/border";
 
+$border: var(--wp--custom--surface--border-width, $border-width) var(--wp--custom--surface--border-style, $border-style) var(--wp--custom--surface--border-color, $border-color);
+
 @mixin surface {
 	background: var(--wp--custom--surface--background, var(--wp--preset--color--surface));
-	border-width: var(--wp--custom--surface--border-width, $border-width);
-	border-style: var(--wp--custom--surface--border-style, $border-style);
-	border-color: var(--wp--custom--surface--border-color, $border-color);
+	border-top: var(--wp--custom--surface--border--top, $border);
+	border-right: var(--wp--custom--surface--border--right, $border);
+	border-bottom: var(--wp--custom--surface--border--bottom, $border);
+	border-left: var(--wp--custom--surface--border--left, $border);
 	border-radius: var(--wp--custom--surface--border-radius, $border-radius);
 	padding: var(--wp--custom--surface--padding, var(--wp--preset--spacing--sm));
 	box-shadow: var(--wp--custom--surface--box-shadow);
@@ -12,7 +15,7 @@
 	position: relative;
 
 	.is-style-surface {
-		background: var(--wp--custom--surface--surface--background, var(--wp--custom--surface--background, var(--wp--preset--color--surface)));
+		background: var(--wp--custom--surface--surface--background, inherit);
 	}
 
 	// Overlay.

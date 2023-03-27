@@ -12,10 +12,10 @@ use function wp_get_global_styles;
 /**
  * Applies block color attributes.
  *
- * @since 0.9.10
- *
  * @param array $styles Array of styles.
  * @param array $attrs  Array of attributes.
+ *
+ * @since 0.9.10
  *
  * @return array
  */
@@ -57,9 +57,19 @@ function add_block_support_color( array $styles, array $attrs ): array {
  * @return string
  */
 function get_dark_mode_custom_properties(): string {
-	$global_settings     = wp_get_global_settings();
-	$dark_mode_colors    = $global_settings['custom']['darkMode']['palette'] ?? [];
-	$dark_mode_gradients = $global_settings['custom']['darkMode']['gradients'] ?? [];
+	$global_settings = wp_get_global_settings();
+
+	$dark_mode  = $global_settings['custom']['darkMode'] ?? [];
+	$light_mode = $global_settings['custom']['lightMode'] ?? [];
+
+	if ( ! $dark_mode && ! $light_mode ) {
+		return '';
+	}
+
+	$mode = ( $light_mode && ! $dark_mode ) ? 'lightMode' : 'darkMode';
+
+	$dark_mode_colors    = $global_settings['custom'][ $mode ]['palette'] ?? [];
+	$dark_mode_gradients = $global_settings['custom'][ $mode ]['gradients'] ?? [];
 	$css                 = '';
 
 	if ( ! $dark_mode_colors && ! $dark_mode_gradients ) {
@@ -132,5 +142,9 @@ function get_dark_mode_custom_properties(): string {
 		}
 	}
 
-	return $css . '.is-style-dark{' . css_array_to_string( $styles ) . '}.is-style-light{' . css_array_to_string( $light ) . '}';
+	if ( $mode === 'lightMode' ) {
+		return '.is-style-light{' . css_array_to_string( $styles ) . '}.is-style-dark{' . css_array_to_string( $light ) . '}';
+	}
+
+	return '.is-style-dark{' . css_array_to_string( $styles ) . '}.is-style-light{' . css_array_to_string( $light ) . '}';
 }

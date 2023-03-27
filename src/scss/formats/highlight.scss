@@ -1,5 +1,5 @@
-// Allows emoji highlights (and future gradients).
-.has-inline-color {
+// Allows emoji highlights and gradients.
+.has-inline-color:not([style*=background]) {
 	padding: 0;
 	background: currentcolor !important;
 	-webkit-background-clip: text !important;

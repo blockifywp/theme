@@ -6,10 +6,7 @@
 
 .is-style-accordion details {
 	width: 100%;
-
-	&:not(.is-style-surface) {
-		padding: 0;
-	}
+	padding: 0;
 
 	[data-stack="true"] & {
 

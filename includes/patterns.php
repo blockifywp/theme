@@ -13,7 +13,6 @@ use function file_exists;
 use function get_file_data;
 use function glob;
 use function in_array;
-use function is_array;
 use function is_child_theme;
 use function is_readable;
 use function ob_get_clean;
@@ -77,7 +76,7 @@ function auto_register_pattern_categories(): void {
 	}
 }
 
-add_action( 'init', NS . 'register_child_theme_patterns' );
+add_action( 'init', NS . 'register_default_patterns' );
 /**
  * Manually registers default patterns to avoid loading in child themes.
  *
@@ -85,7 +84,7 @@ add_action( 'init', NS . 'register_child_theme_patterns' );
  *
  * @return void
  */
-function register_child_theme_patterns(): void {
+function register_default_patterns(): void {
 	if ( is_child_theme() || is_framework() ) {
 		return;
 	}

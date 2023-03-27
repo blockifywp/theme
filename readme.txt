@@ -1,8 +1,8 @@
 === Blockify ===
 Contributors: blockify
 Requires at least: 6.1
-Tested up to: 6.1.1
-Stable tag: 1.2.1
+Tested up to: 6.1
+Stable tag: 1.2.4
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,46 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.4 - 27 March 2023 =
+
+* Add: Support for light mode (default dark mode themes)
+* Add: Descriptive screen reader text to read more links
+* Add: Video button background custom property
+* Add: List style none block style
+* Add: Support for separate border styles for surfaces
+* Add: Blockify position support to social links block
+* Add: Site title template tag
+* Add: Support for mega menus
+* Update: Inline code styling
+* Update: Move front page template to patterns
+* Update: Mark element padding
+* Fix: Social link hash URLs
+* Fix: Icon block variation classes and inline styles
+* Fix: Divider widths
+* Fix: Checklist circle alignment
+* Fix: Video button style inheritance
+* Fix: Marquee offscreen in editor when reverse and no animation set
+* Fix: Text highlight background color
+* Fix: Outline button text gradient specificity
+* Remove: Important rule for ghost button color
+* Remove: Unused button width CSS
+
+= 1.2.3 - 14 March 2023 =
+
+* Add: is_plugin function to check if installed as plugin
+* Update: Default curved text placeholder and size
+* Remove: Animation settings help text
+* Remove: SLUG constant
+* Fix: Editor settings CSS
+* Fix: Check editor.css file exists before getting filemtime
+
+= 1.2.2 - 13 March 2023 =
+
+* Fix: Error when template html returning null
+* Fix: YouTube block button height
+* Update: Feature icons patterns for Gutenberg compat
+* Update: Rename register patterns function
 
 = 1.2.1 - 11 March 2023 =
 

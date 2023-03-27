@@ -8,7 +8,7 @@ span.has-text-gradient {
 
 	@include text-gradient;
 
-	.wp-element-button & {
+	.is-style-outline .wp-element-button & {
 		line-height: normal;
 		margin-top: calc(-2px - var(--wp--custom--border--width));
 		margin-bottom: calc(-2px - var(--wp--custom--border--width));

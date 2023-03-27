@@ -12,9 +12,9 @@ add_filter( 'blockify_editor_data', NS . 'register_block_supports' );
  *
  * @todo  Move to rest settings.
  *
- * @since 0.9.10
- *
  * @param array $config Blockify editor config.
+ *
+ * @since 0.9.10
  *
  * @return array
  */
@@ -578,6 +578,7 @@ function register_block_supports( array $config = [] ): array {
 					'orientation'    => 'horizontal',
 				],
 			],
+			'blockifyPosition'     => true,
 		],
 		'core/social-link'         => [
 			'color' => [

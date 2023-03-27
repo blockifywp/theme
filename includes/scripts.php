@@ -11,12 +11,14 @@ use function do_action;
 use function filemtime;
 use function function_exists;
 use function get_current_screen;
+use function get_template;
 use function home_url;
 use function remove_action;
 use function trailingslashit;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_get_theme;
+use function wp_localize_script;
 use function wp_register_script;
 
 add_action( 'current_screen', NS . 'add_editor_scripts_hook', 10, 1 );
@@ -122,10 +124,7 @@ add_action( 'wp_enqueue_scripts', NS . 'enqueue_scripts', 10 );
  * @return void
  */
 function enqueue_scripts(): void {
-	global $template_html;
-
-	$content = is_admin() ? '' : $template_html;
-	$handle  = 'theme-inline';
+	$handle = get_template();
 
 	wp_register_script(
 		$handle,
@@ -142,7 +141,7 @@ function enqueue_scripts(): void {
 				apply_filters(
 					'blockify_inline_js',
 					'',
-					$content
+					(string) ( $GLOBALS['template_html'] ?? '' )
 				)
 			)
 		)

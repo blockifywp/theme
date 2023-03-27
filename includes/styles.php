@@ -39,13 +39,44 @@ use function wp_get_global_styles;
 use function wp_get_theme;
 use function wp_register_style;
 
+add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
+/**
+ * Enqueues styles.
+ *
+ * @since 0.4.0
+ *
+ * @return void
+ */
+function enqueue_styles(): void {
+	$handle = get_template();
+
+	wp_register_style(
+		$handle,
+		'',
+		[],
+		wp_get_theme()->get( 'Version' )
+	);
+
+	wp_enqueue_style( $handle );
+
+	wp_add_inline_style(
+		$handle,
+		get_inline_styles(
+			(string) ( $GLOBALS['template_html'] ?? '' ),
+			false
+		)
+	);
+
+	wp_dequeue_style( 'wp-block-library-theme' );
+}
+
 /**
  * Returns filtered inline styles.
  *
- * @since 0.9.22
- *
  * @param string $content   Page content.
  * @param bool   $is_editor Is Editor.
+ *
+ * @since 0.9.22
  *
  * @return string
  */
@@ -68,37 +99,6 @@ function get_inline_styles( string $content, bool $is_editor ): string {
 	);
 
 	return remove_line_breaks( $css );
-}
-
-add_action( 'wp_enqueue_scripts', NS . 'enqueue_styles', 99 );
-/**
- * Enqueues styles.
- *
- * @since 0.4.0
- *
- * @return void
- */
-function enqueue_styles(): void {
-	global $template_html;
-
-	$content = is_admin() ? '' : $template_html;
-	$handle  = get_template();
-
-	wp_register_style(
-		$handle,
-		'',
-		[],
-		wp_get_theme()->get( 'Version' )
-	);
-
-	wp_enqueue_style( $handle );
-
-	wp_add_inline_style(
-		$handle,
-		get_inline_styles( $content, false )
-	);
-
-	wp_dequeue_style( 'wp-block-library-theme' );
 }
 
 /**
@@ -212,10 +212,10 @@ function get_dynamic_custom_properties(): string {
 /**
  * Adds conditional stylesheets inline.
  *
- * @since 0.0.27
- *
  * @param string $content   Page content.
  * @param bool   $is_editor Is editor.
+ *
+ * @since 0.0.27
  *
  * @return string
  */
@@ -229,6 +229,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		...glob( $dir . 'assets/css/elements/*.css' ),
 		...glob( $dir . 'assets/css/components/*.css' ),
 		...glob( $dir . 'assets/css/block-styles/*.css' ),
+		...glob( $dir . 'assets/css/block-variations/*.css' ),
 		...glob( $dir . 'assets/css/formats/*.css' ),
 		...glob( $dir . 'assets/css/extensions/*.css' ),
 		...glob( $dir . 'assets/css/plugins/*.css' ),
@@ -248,7 +249,8 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 			'type="button"',
 			'type="submit"',
 			'type="reset"',
-			'nf-form'
+			'nf-form',
+			'wp-element-button'
 		),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
@@ -297,12 +299,20 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'divider-round'    => str_contains( $content, 'is-style-round' ),
 		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
 		'mega-menu'        => str_contains( $content, 'is-style-mega-menu' ),
+		'none'             => str_contains( $content, 'is-style-none' ),
 		'notice'           => str_contains( $content, 'is-style-notice' ),
 		'numbered-list'    => str_contains( $content, 'is-style-numbered' ),
 		'search-toggle'    => str_contains( $content, 'is-style-toggle' ),
 		'square-list'      => str_contains( $content, 'is-style-square' ),
 		'sub-heading'      => str_contains( $content, 'is-style-sub-heading' ),
 		'surface'          => str_contains( $content, 'is-style-surface' ),
+	];
+
+	$conditions['block-variations'] = [
+		'accordion' => str_contains( $content, 'is-style-accordion' ),
+		'counter'   => str_contains( $content, 'is-style-counter' ),
+		'icon'      => str_contains( $content, 'is-style-icon' ),
+		'marquee'   => str_contains( $content, 'is-marquee' ),
 	];
 
 	$conditions['formats'] = [
@@ -320,15 +330,11 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	$conditions['extensions'] = [
 		'animation'     => str_contains_any( $content, 'has-animation', 'will-animate' ),
 		'animations'    => false,
-		'accordion'     => str_contains( $content, 'is-style-accordion' ),
 		'box-shadow'    => str_contains( $content, 'has-box-shadow' ),
-		'counter'       => str_contains( $content, 'is-style-counter' ),
 		'dark-mode'     => str_contains( $content, 'toggle-switch' ),
 		'filter'        => str_contains( $content, 'has-filter' ),
 		'gradient-mask' => str_contains( $content, '-gradient-background' ),
 		'grid-pattern'  => str_contains( $content, 'has-grid-gradient-' ),
-		'icon'          => str_contains( $content, 'is-style-icon' ),
-		'marquee'       => str_contains( $content, 'is-marquee' ),
 	];
 
 	$conditions['plugins'] = [
@@ -396,9 +402,9 @@ add_filter( 'wp_theme_json_data_theme', NS . 'fix_editor_layout_sizes' );
  *
  * @todo  Move layout settings to separate file.
  *
- * @since 0.4.2
- *
  * @param mixed $theme_json WP_Theme_JSON_Data | WP_Theme_JSON_Data_Gutenberg.
+ *
+ * @since 0.4.2
  *
  * @return mixed
  */
@@ -432,14 +438,15 @@ add_action( 'blockify_editor_scripts', NS . 'enqueue_editor_only_styles' );
 function enqueue_editor_only_styles(): void {
 	wp_dequeue_style( 'wp-block-library-theme' );
 
-	$file   = 'assets/css/editor.css';
-	$handle = 'blockify-editor';
+	$file    = 'assets/css/editor.css';
+	$handle  = 'blockify-editor';
+	$version = file_exists( get_dir() . $file ) ? filemtime( get_dir() . $file ) : wp_get_theme()->get( 'Version' );
 
 	wp_register_style(
 		$handle,
 		get_uri() . $file,
 		[],
-		filemtime( get_dir() . $file )
+		$version
 	);
 
 	wp_enqueue_style( $handle );
@@ -478,11 +485,11 @@ add_filter( 'pre_http_request', NS . 'generate_dynamic_styles', 10, 3 );
 /**
  * Generates dynamic editor styles.
  *
- * @since 0.9.23
- *
  * @param array|bool $response    HTTP response.
  * @param array      $parsed_args Response args.
  * @param string     $url         Response URL.
+ *
+ * @since 0.9.23
  *
  * @return array|bool
  */
@@ -507,9 +514,9 @@ add_filter( 'blockify_inline_css', NS . 'add_child_theme_style_css' );
 /**
  * Adds child theme style.css to inline styles.
  *
- * @since 0.9.23
- *
  * @param string $css CSS.
+ *
+ * @since 0.9.23
  *
  * @return string
  */
@@ -531,10 +538,10 @@ function add_child_theme_style_css( string $css ): string {
 /**
  * Conditionally adds CSS for utility classes
  *
- * @since 0.9.19
- *
  * @param string $content   Page Content.
  * @param bool   $is_editor Is editor page.
+ *
+ * @since 0.9.19
  *
  * @return string
  */
@@ -624,10 +631,10 @@ function get_position_styles( string $content, bool $is_editor ): string {
 /**
  * Get block style heading styles.
  *
- * @since 1.1.2
- *
  * @param string $content   Page Content.
  * @param bool   $is_editor Is editor page.
+ *
+ * @since 1.1.2
  *
  * @return string
  */

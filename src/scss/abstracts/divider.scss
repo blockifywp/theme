@@ -5,7 +5,7 @@
 		display: block;
 		position: absolute;
 		background: currentcolor;
-		width: 100%;
+		width: calc(100% + 1px);
 		height: calc(100% + 1px);
 
 		@if ($mask) {

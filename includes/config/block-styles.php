@@ -71,6 +71,11 @@ function register_block_styles( array $config ): array {
 				'label' => __( 'Accordion', 'blockify' ),
 			],
 			[
+				'type'  => 'core/list',
+				'name'  => 'none',
+				'label' => __( 'None', 'blockify' ),
+			],
+			[
 				'type'  => 'core/list-item',
 				'name'  => 'surface',
 				'label' => __( 'Surface', 'blockify' ),

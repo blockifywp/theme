@@ -26,9 +26,9 @@ const isStyleCurvedText = ( attributes: attributes ) => {
 };
 
 const defaults = {
-	content: __( 'Add your text here. Add your text here.', 'blockify' ),
-	containerSize: '150',
-	pathSize: '100',
+	content: __( 'Curved text. Curved text. Curved text.', 'blockify' ),
+	containerSize: '160',
+	pathSize: '120',
 };
 
 const curvedTextVariation: BlockVariation = {
@@ -221,5 +221,5 @@ addFilter(
 			);
 		};
 	}, 'withCurvedTextSettings' ),
-	9
+	1
 );

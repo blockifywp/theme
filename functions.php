@@ -9,9 +9,8 @@ use function add_action;
 use function function_exists;
 use function is_readable;
 
-const SLUG = 'blockify';
-const NS   = __NAMESPACE__ . '\\';
-const DS   = DIRECTORY_SEPARATOR;
+const NS = __NAMESPACE__ . '\\';
+const DS = DIRECTORY_SEPARATOR;
 
 // Allow file to be autoloaded without affecting phpcs and phpstan.
 if ( function_exists( 'add_action' ) ) {
@@ -27,39 +26,30 @@ if ( function_exists( 'add_action' ) ) {
  */
 function setup(): void {
 	$files = [
-
-		// Utility.
 		'utility/color',
 		'utility/css',
 		'utility/dom',
 		'utility/helper',
 		'utility/icon',
 		'utility/string',
-
-		// Config.
 		'config/block-extras',
 		'config/block-styles',
 		'config/block-supports',
-
-		// General.
 		'fonts',
 		'patterns',
 		'scripts',
 		'styles',
-
-		// Extensions.
 		'extensions/animation',
 		'extensions/box-shadow',
 		'extensions/conic-gradient',
 		'extensions/counter',
+		'extensions/dark-mode',
 		'extensions/icon',
 		'extensions/inline-color',
 		'extensions/onclick',
 		'extensions/placeholder',
 		'extensions/position',
 		'extensions/svg',
-
-		// Blocks.
 		'blocks/button',
 		'blocks/columns',
 		'blocks/cover',
@@ -89,13 +79,10 @@ function setup(): void {
 		'blocks/tag-cloud',
 		'blocks/template-part',
 		'blocks/video',
-
-		// Plugins.
 		'plugins/edd',
 		'plugins/lifterlms',
 		'plugins/ninja-forms',
 		'plugins/syntax-highlighting-code-block',
-		'plugins/woocommerce',
 	];
 
 	foreach ( $files as $file ) {
