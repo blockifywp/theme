@@ -34,7 +34,7 @@ add_filter( 'render_block_core/post-excerpt', NS . 'render_post_excerpt', 10, 3 
  * @param WP_Block $object        The block object.
  *
  * @throws DOMException If the DOM element is not created.
- * @since 0.0.1
+ * @since 1.2.4
  *
  * @return string
  */
@@ -51,7 +51,11 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 			$screen_reader->setAttribute( 'class', 'screen-reader-text' );
 
 			$post_id    = $object->context['postId'] ?? '';
-			$post_title = get_the_title( $post_id ) ?? __( 'this post', 'blockify' );
+			$post_title = get_the_title( $post_id );
+
+			if ( ! $post_title ) {
+				$post_title = __( 'this post', 'blockify' );
+			}
 
 			$screen_reader->textContent = __( ' about ', 'blockify' ) . ( $post_title );
 

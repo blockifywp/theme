@@ -13,7 +13,7 @@ add_filter( 'body_class', NS . 'add_default_mode_body_class' );
  *
  * @param array $classes Array of body classes.
  *
- * @since 0.0.24
+ * @since 1.2.4
  *
  * @return array
  */

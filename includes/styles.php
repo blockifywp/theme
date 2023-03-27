@@ -525,7 +525,7 @@ function add_child_theme_style_css( string $css ): string {
 
 	if ( file_exists( $child ) ) {
 		$content = file_get_contents( $child );
-		$css     .= str_replace(
+		$css    .= str_replace(
 			str_between( '/**', '*/', $content ),
 			'',
 			$content

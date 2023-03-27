@@ -58,6 +58,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Add: Support for separate border styles for surfaces
 * Add: Blockify position support to social links block
 * Add: Site title template tag
+* Add: Support for mega menus
 * Update: Inline code styling
 * Update: Move front page template to patterns
 * Update: Mark element padding
