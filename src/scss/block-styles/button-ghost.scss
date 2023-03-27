@@ -3,9 +3,10 @@
 .wp-block-button__link {
 
 	.is-style-ghost & {
-		color: var(--wp--custom--button-ghost--color, inherit) !important;
-
 		@include ghost;
+
+		color: var(--wp--custom--button-ghost--color, inherit);
+
 	}
 }
 

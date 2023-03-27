@@ -10,7 +10,6 @@
 	transition: var(--wp--custom--transition, inherit);
 	background-clip: padding-box !important; // Semi transparent borders.
 	cursor: pointer;
-	width: var(--wp--custom--button--width, auto); // Not generated.
 
 	&:not(.has-background) {
 		background: var(--wp--custom--button--background);
@@ -36,7 +35,7 @@
 .button,
 .is-style-button,
 [type="submit"],
-[type="button"]:not(.wp-block-social-link-anchor,.components-button,[id*="mce"]) {
+[type="button"]:not(.wp-block-social-link-anchor,.components-button,[id*="mce"],[aria-controls]) {
 
 	@include button;
 }

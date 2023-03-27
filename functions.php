@@ -43,6 +43,7 @@ function setup(): void {
 		'extensions/box-shadow',
 		'extensions/conic-gradient',
 		'extensions/counter',
+		'extensions/dark-mode',
 		'extensions/icon',
 		'extensions/inline-color',
 		'extensions/onclick',

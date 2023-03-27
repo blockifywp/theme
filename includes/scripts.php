@@ -13,12 +13,12 @@ use function function_exists;
 use function get_current_screen;
 use function get_template;
 use function home_url;
-use function is_admin;
 use function remove_action;
 use function trailingslashit;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_get_theme;
+use function wp_localize_script;
 use function wp_register_script;
 
 add_action( 'current_screen', NS . 'add_editor_scripts_hook', 10, 1 );

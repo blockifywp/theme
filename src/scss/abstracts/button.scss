@@ -1,7 +1,6 @@
 $padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
 
 @mixin button {
-	width: var(--wp--custom--button--width, auto); // Not generated.
 	height: auto; // Editor component button styles.
 	color: var(--wp--custom--button--color, inherit);
 	background: var(--wp--custom--button--background, inherit);

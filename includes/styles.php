@@ -229,6 +229,7 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		...glob( $dir . 'assets/css/elements/*.css' ),
 		...glob( $dir . 'assets/css/components/*.css' ),
 		...glob( $dir . 'assets/css/block-styles/*.css' ),
+		...glob( $dir . 'assets/css/block-variations/*.css' ),
 		...glob( $dir . 'assets/css/formats/*.css' ),
 		...glob( $dir . 'assets/css/extensions/*.css' ),
 		...glob( $dir . 'assets/css/plugins/*.css' ),
@@ -248,7 +249,8 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 			'type="button"',
 			'type="submit"',
 			'type="reset"',
-			'nf-form'
+			'nf-form',
+			'wp-element-button'
 		),
 		'cite'       => str_contains( $content, '<cite' ),
 		'code'       => str_contains( $content, '<code' ),
@@ -297,12 +299,20 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 		'divider-round'    => str_contains( $content, 'is-style-round' ),
 		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
 		'mega-menu'        => str_contains( $content, 'is-style-mega-menu' ),
+		'none'             => str_contains( $content, 'is-style-none' ),
 		'notice'           => str_contains( $content, 'is-style-notice' ),
 		'numbered-list'    => str_contains( $content, 'is-style-numbered' ),
 		'search-toggle'    => str_contains( $content, 'is-style-toggle' ),
 		'square-list'      => str_contains( $content, 'is-style-square' ),
 		'sub-heading'      => str_contains( $content, 'is-style-sub-heading' ),
 		'surface'          => str_contains( $content, 'is-style-surface' ),
+	];
+
+	$conditions['block-variations'] = [
+		'accordion' => str_contains( $content, 'is-style-accordion' ),
+		'counter'   => str_contains( $content, 'is-style-counter' ),
+		'icon'      => str_contains( $content, 'is-style-icon' ),
+		'marquee'   => str_contains( $content, 'is-marquee' ),
 	];
 
 	$conditions['formats'] = [
@@ -320,15 +330,11 @@ function get_conditional_stylesheets( string $content, bool $is_editor ): string
 	$conditions['extensions'] = [
 		'animation'     => str_contains_any( $content, 'has-animation', 'will-animate' ),
 		'animations'    => false,
-		'accordion'     => str_contains( $content, 'is-style-accordion' ),
 		'box-shadow'    => str_contains( $content, 'has-box-shadow' ),
-		'counter'       => str_contains( $content, 'is-style-counter' ),
 		'dark-mode'     => str_contains( $content, 'toggle-switch' ),
 		'filter'        => str_contains( $content, 'has-filter' ),
 		'gradient-mask' => str_contains( $content, '-gradient-background' ),
 		'grid-pattern'  => str_contains( $content, 'has-grid-gradient-' ),
-		'icon'          => str_contains( $content, 'is-style-icon' ),
-		'marquee'       => str_contains( $content, 'is-marquee' ),
 	];
 
 	$conditions['plugins'] = [

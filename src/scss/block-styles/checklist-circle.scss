@@ -9,8 +9,8 @@
 	li {
 		width: 100%;
 		display: inline-flex;
-		align-items: center;
-		flex-wrap: wrap;
+		align-items: flex-start;
+		flex-wrap: nowrap;
 
 		&:last-of-type {
 			margin-bottom: 0;
@@ -18,7 +18,7 @@
 
 		&::before {
 			content: "";
-			margin: 0.5em 0.5em 0.5em -1.5em;
+			margin: 0.3em 0.5em 0.3em -1.5em;
 			width: 1em;
 			height: 1em;
 			display: inline-block !important;

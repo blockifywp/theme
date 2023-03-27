@@ -5,7 +5,6 @@
 		content: "";
 		display: block;
 		position: absolute;
-		left: 0.2em;
 		transition: var(--wp--custom--transition, left 0.2s ease-in-out);
 		z-index: 1;
 		pointer-events: none;
@@ -13,9 +12,11 @@
 		width: 1em;
 		background: currentcolor;
 		border-radius: 99px;
+		left: var(--wp--custom--toggle-switch--inset, 0.2em);
 
-		body.is-style-dark & {
-			left: calc(100% - 1.2em);
+		body.is-style-dark &,
+		body.is-style-light & {
+			left: calc(100% - (1em + var(--wp--custom--toggle-switch--inset, 0.2em)));
 		}
 	}
 }

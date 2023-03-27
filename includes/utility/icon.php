@@ -206,7 +206,7 @@ function get_icon_html( string $content, array $block ): string {
 	$figure_classes = explode( ' ', $figure->getAttribute( 'class' ) );
 
 	foreach ( $figure_classes as $index => $class ) {
-		if ( str_contains( $class, '-background' ) ) {
+		if ( str_contains( $class, 'has-' ) ) {
 			$span_classes[] = $class;
 			unset( $figure_classes[ $index ] );
 		}
@@ -226,9 +226,11 @@ function get_icon_html( string $content, array $block ): string {
 	$span->removeAttribute( 'src' );
 	$span->removeAttribute( 'alt' );
 
-	if ( ! $figure->getAttribute( 'style' ) ) {
-		$figure->removeAttribute( 'style' );
+	if ( $figure->getAttribute( 'style' ) ) {
+		$span->setAttribute( 'style', $figure->getAttribute( 'style' ) );
 	}
+
+	$figure->removeAttribute( 'style' );
 
 	if ( $link ) {
 		$link->appendChild( $span );

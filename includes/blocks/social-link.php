@@ -11,10 +11,10 @@ add_filter( 'render_block_core/social-link', NS . 'render_social_link_block', 10
 /**
  * Modifies front end HTML output of block.
  *
- * @since 0.0.24
- *
  * @param string $html  Block HTML.
  * @param array  $block Block data.
+ *
+ * @since 0.0.24
  *
  * @return string
  */
@@ -69,6 +69,18 @@ function render_social_link_block( string $html, array $block ): string {
 
 		$a->appendChild( $imported );
 		$a->removeChild( $default_svg );
+
+		$html = $dom->saveHTML( $li );
+	}
+
+	$url = $block['attrs']['url'] ?? null;
+
+	if ( $url === '#' ) {
+		$dom = dom( $html );
+		$li  = get_dom_element( 'li', $dom );
+		$a   = get_dom_element( 'a', $li );
+
+		$a->setAttribute( 'href', '#' );
 
 		$html = $dom->saveHTML( $li );
 	}

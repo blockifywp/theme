@@ -550,6 +550,19 @@ div .wp-block-navigation__responsive-close {
 	}
 }
 
+.is-marquee.wp-block {
+	flex-direction: row !important;
+
+	@media (prefers-reduced-motion) {
+
+		&:not(.is-selected,.has-child-selected) {
+			> * {
+				animation-direction: normal !important;
+			}
+		}
+	}
+}
+
 .is-marquee.is-selected,
 .is-marquee.has-child-selected {
 	animation: 0 !important;
