@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.1
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,10 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.5 - 3 April 2023 =
+
+* Fix: Broken image link in SVG block variation
 
 = 1.2.4 - 27 March 2023 =
 
