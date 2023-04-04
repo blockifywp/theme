@@ -9,6 +9,7 @@ use WP_REST_Request;
 use function __;
 use function apply_filters;
 use function array_keys;
+use function array_values;
 use function basename;
 use function explode;
 use function file_get_contents;
@@ -21,6 +22,7 @@ use function str_replace;
 use function trim;
 use function ucwords;
 use function uniqid;
+use function wp_list_pluck;
 
 /**
  * Returns array of all icon sets and their directory path.
@@ -59,9 +61,9 @@ function get_icon_sets(): array {
 /**
  * Returns icon data for rest endpoint
  *
- * @since 0.4.8
- *
  * @param WP_REST_Request $request Request object.
+ *
+ * @since 0.4.8
  *
  * @return mixed array|string
  */
@@ -135,13 +137,13 @@ function get_icons(): array {
 /**
  * Returns svg string for given icon.
  *
- * @since 0.9.10
- *
  * @param string   $set  Icon set.
  * @param string   $name Icon name.
  * @param int|null $size Icon size.
  *
  * @throws DOMException If DOM can't create element.
+ * @since 0.9.10
+ *
  * @return string
  */
 function get_icon( string $set, string $name, int $size = null ): string {
@@ -178,10 +180,10 @@ function get_icon( string $set, string $name, int $size = null ): string {
 /**
  * Renders image icon styles on front end.
  *
- * @since 0.2.0
- *
  * @param string $content Block HTML.
  * @param array  $block   Block data.
+ *
+ * @since 0.2.0
  *
  * @return string
  */
@@ -205,18 +207,39 @@ function get_icon_html( string $content, array $block ): string {
 
 	$figure_classes = explode( ' ', $figure->getAttribute( 'class' ) );
 
-	foreach ( $figure_classes as $index => $class ) {
-		if ( str_contains( $class, 'has-' ) ) {
-			$span_classes[] = $class;
-			unset( $figure_classes[ $index ] );
+	$block_extras        = get_block_extra_options();
+	$block_extra_classes = [];
+
+	foreach ( $block_extras as $name => $args ) {
+		$block_extra_classes[] = 'has-' . $args['value'];
+
+		if ( ! isset( $args['options'] ) ) {
+			continue;
+		}
+
+		foreach ( $args['options'] as $option ) {
+			$block_extra_classes[] = 'has-' . $args['value'] . '-' . $option['value'];
 		}
 	}
 
+	foreach ( $figure_classes as $index => $class ) {
+		if ( ! str_contains( $class, 'has-' ) ) {
+			continue;
+		}
+
+		if ( in_array( $class, $block_extra_classes, true ) ) {
+			continue;
+		}
+
+		$span_classes[] = $class;
+		unset( $figure_classes[ $index ] );
+	}
+
 	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
+	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
 
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
-	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
 	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label );
 
 	if ( ! ( $block['attrs']['title'] ?? null ) || ! $aria_label ) {
@@ -226,11 +249,32 @@ function get_icon_html( string $content, array $block ): string {
 	$span->removeAttribute( 'src' );
 	$span->removeAttribute( 'alt' );
 
-	if ( $figure->getAttribute( 'style' ) ) {
-		$span->setAttribute( 'style', $figure->getAttribute( 'style' ) );
+	$figure_styles = css_string_to_array( $figure->getAttribute( 'style' ) );
+	$span_styles   = css_string_to_array( $span->getAttribute( 'style' ) );
+
+	$block_extra_values = wp_list_pluck(
+		array_values( $block_extras ),
+		'value'
+	);
+
+	$block_extra_custom_props = \array_map( fn( $prop ) => '--' . $prop, $block_extra_values );
+
+	foreach ( $figure_styles as $key => $value ) {
+
+		if ( in_array( $key, $block_extra_values, true ) ) {
+			continue;
+		}
+
+		if ( in_array( $key, $block_extra_custom_props, true ) ) {
+			continue;
+		}
+
+		$span_styles[ $key ] = $value;
+		unset( $figure_styles[ $key ] );
 	}
 
-	$figure->removeAttribute( 'style' );
+	$figure->setAttribute( 'style', css_array_to_string( $figure_styles ) );
+	$span->setAttribute( 'style', css_array_to_string( $span_styles ) );
 
 	if ( $link ) {
 		$link->appendChild( $span );
