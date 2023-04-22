@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function __;
 use function add_filter;
 use function array_map;
 use function implode;

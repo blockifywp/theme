@@ -6,24 +6,9 @@ namespace Blockify\Theme;
 
 use DOMException;
 use WP_Block;
-use function __;
 use function add_filter;
 use function get_the_title;
 use function str_replace;
-
-add_filter( 'excerpt_more', NS . 'remove_brackets_from_excerpt' );
-/**
- * Removes brackets from excerpt more string.
- *
- * @param string $more Read more text.
- *
- * @since 0.0.1
- *
- * @return string
- */
-function remove_brackets_from_excerpt( string $more ): string {
-	return str_replace( [ '[', ']' ], '', $more );
-}
 
 add_filter( 'render_block_core/post-excerpt', NS . 'render_post_excerpt', 10, 3 );
 /**
@@ -66,4 +51,18 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 	}
 
 	return $block_content;
+}
+
+add_filter( 'excerpt_more', NS . 'remove_brackets_from_excerpt' );
+/**
+ * Removes brackets from excerpt more string.
+ *
+ * @param string $more Read more text.
+ *
+ * @since 0.0.1
+ *
+ * @return string
+ */
+function remove_brackets_from_excerpt( string $more ): string {
+	return str_replace( [ '[', ']' ], '', $more );
 }
