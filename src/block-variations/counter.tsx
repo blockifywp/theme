@@ -3,7 +3,6 @@ import {
 	PanelBody,
 	PanelRow,
 	TextControl,
-	//@ts-ignore
 	__experimentalNumberControl as NumberControl, Flex, FlexItem,
 } from '@wordpress/components';
 import { backup } from '@wordpress/icons';
@@ -12,8 +11,9 @@ import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import domReady from '@wordpress/dom-ready';
+import { useEffect } from '@wordpress/element';
 
-interface counter {
+interface Counter {
 	start: string,
 	end: string,
 	duration: string,
@@ -22,7 +22,7 @@ interface counter {
 	suffix: string,
 }
 
-const defaults: counter = {
+const defaults: Counter = {
 	start: '0',
 	end: '100',
 	duration: '2',
@@ -66,7 +66,7 @@ addFilter(
 
 		const { style } = attributes;
 
-		let counter: counter = defaults;
+		let counter: Counter = defaults;
 
 		if ( ! style?.counter ) {
 			setAttributes( {
@@ -79,7 +79,11 @@ addFilter(
 			counter = style.counter;
 		}
 
-		if ( counter?.prefix || counter?.end || counter?.suffix ) {
+		useEffect( () => {
+			if ( ! counter?.prefix && ! counter?.end && ! counter?.suffix ) {
+				return;
+			}
+
 			let newContent = counter?.end;
 
 			if ( typeof counter?.prefix === 'string' ) {
@@ -93,7 +97,7 @@ addFilter(
 			setAttributes( {
 				content: newContent,
 			} );
-		}
+		}, [ counter?.prefix, counter?.end, counter?.suffix, setAttributes ] );
 
 		return (
 			<>

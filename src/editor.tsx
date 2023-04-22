@@ -5,7 +5,6 @@ import './api/icon-store.tsx';
 import './block-extensions/animation.tsx';
 import './block-extensions/display.tsx';
 import './block-extensions/filter.tsx';
-import './block-extensions/mega-menu.tsx';
 import './block-extensions/negative-margin.tsx';
 import './block-extensions/onclick.tsx';
 import './block-extensions/position.tsx';

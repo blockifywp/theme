@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use Exception;
 use function __;
 use function add_filter;
 use function do_blocks;
@@ -18,10 +19,12 @@ if ( ! is_admin() ) {
 }
 
 /**
- * Render the Table of Contents block.
+ * Render Table of Contents block.
  *
  * @param string $html  The block content.
  * @param array  $block The block.
+ *
+ * @throws Exception If the DOMDocument fails to load the HTML.
  *
  * @return string
  */

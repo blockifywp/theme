@@ -143,18 +143,21 @@ addFilter(
 
 			const styles = getStyles( animation );
 
+			const className = props?.className?.trim() + ' has-animation';
+
+			props = {
+				...props,
+				className,
+			};
+
 			const wrapperProps = {
 				...props?.wrapperProps,
-				className: props?.wrapperProps?.className ?? '',
+				className,
 				style: {
 					...props?.wrapperProps?.style,
 					...styles,
 				},
 			};
-
-			props.className = props?.className?.trim() + ' has-animation';
-			wrapperProps.className =
-				wrapperProps?.className?.trim() + ' has-animation';
 
 			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
 		};

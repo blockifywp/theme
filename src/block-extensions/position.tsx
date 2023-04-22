@@ -30,7 +30,7 @@ addFilter(
 	'blockify/add-position-attributes',
 	( props, name ): object => {
 		if ( supportsPosition( name ) ) {
-			const newAttributes: { [key: string]: object } = {};
+			const newAttributes: { [ key: string ]: object } = {};
 
 			Object.keys( config ).forEach( ( key ) => {
 				newAttributes[ key ] = {
@@ -80,7 +80,7 @@ const getClasses = ( attributes: attributes ): string[] => {
 };
 
 const getStyles = ( attributes: attributes ): object => {
-	const styles: { [name: string]: string } = {};
+	const styles: { [ name: string ]: string } = {};
 
 	const style = attributes?.style ?? {};
 
@@ -121,7 +121,11 @@ addFilter(
 			const classes = getClasses( attributes );
 			const styles = getStyles( attributes );
 			const wrapperProps = props?.wrapperProps ?? {};
-			props.style = { ...props?.style, ...styles };
+
+			props = {
+				...props,
+				style: { ...props?.style, ...styles },
+			};
 
 			if ( wrapperProps ) {
 				wrapperProps.style = { ...wrapperProps?.style, ...styles };
@@ -171,8 +175,8 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 
 	const style = attributes?.style ?? {};
 
-	const setPosition = ( values: { [property: string]: string } ) => {
-		const properties: { [property: string]: string } = {};
+	const setPosition = ( values: { [ property: string ]: string } ) => {
+		const properties: { [ property: string ]: string } = {};
 
 		Object.keys( values ).forEach( ( property: string ) => {
 			properties[ property ] = {

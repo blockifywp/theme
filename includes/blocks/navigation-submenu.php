@@ -97,37 +97,3 @@ function render_navigation_submenu_block( string $html, array $block ): string {
 
 	return $dom->saveHTML();
 }
-
-/**
- * Add support for mega menus.
- *
- * @param string $block_content The block content.
- * @param array  $block         The block data.
- *
- * @since 1.2.4
- *
- * @return string
- */
-function mega_menu( string $block_content, array $block ) : string {
-	$rel = $block['attrs']['rel'] ?? '';
-
-	if ( $rel !== 'mega-menu' ) {
-		return $block_content;
-	}
-
-	$template_part = get_block_template( get_stylesheet() . '//mega-menu', 'wp_template_part' );
-
-	if ( ! $template_part || empty( $template_part->content ) ) {
-		return $block_content;
-	}
-
-	$mega_menu = do_blocks( $template_part->content );
-
-	$container = '<ul class="wp-block-navigation__submenu-container">' . $mega_menu . '</ul>';
-
-	$block_content = str_replace( 'wp-block-navigation-submenu', 'wp-block-navigation-submenu mega-menu', $block_content );
-
-	$block_content = str_replace( '</li>', $container . '</li>', $block_content );
-
-	return $block_content;
-}

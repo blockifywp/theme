@@ -10,8 +10,8 @@
 <div class="wp-block-group alignfull"><!-- wp:columns {"align":"wide"} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"fontSize":"small"} -->
-<p class="has-small-font-size" style="letter-spacing:0.5em"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">⭐️⭐️⭐️⭐️⭐️</mark></p>
+<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"textColor":"primary","fontSize":"14"} -->
+<p class="has-primary-color has-text-color has-14-font-size" style="letter-spacing:0.5em">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -22,8 +22,8 @@
 
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"fontSize":"small"} -->
-<p class="has-small-font-size" style="letter-spacing:0.5em"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">⭐️⭐️⭐️⭐️⭐️</mark></p>
+<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"textColor":"primary","fontSize":"14"} -->
+<p class="has-primary-color has-text-color has-14-font-size" style="letter-spacing:0.5em">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

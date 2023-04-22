@@ -106,7 +106,7 @@ const getStyles = ( filter: cssFilters ): object => {
 	}
 
 	return {
-		[ filter?.backdrop ? 'backdrop-filter' : 'filter' ]: styles.trim(),
+		[ filter?.backdrop ? 'backdropFilter' : 'filter' ]: styles.trim(),
 	};
 };
 
@@ -129,9 +129,12 @@ addFilter(
 					return defaultReturn;
 				}
 
-				props.style = {
-					...props.style ?? {},
-					...styles,
+				props = {
+					...props,
+					style: {
+						...props?.style ?? {},
+						...styles,
+					},
 				};
 
 				const wrapperProps = {

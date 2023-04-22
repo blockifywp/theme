@@ -15,11 +15,15 @@
 	justify-content: center;
 	align-items: center;
 
-	&.aligncenter {
+	.alignleft & {
+		justify-content: flex-start;
+	}
+
+	.aligncenter & {
 		justify-content: center;
 	}
 
-	&.alignright {
+	.alignright & {
 		justify-content: flex-end;
 	}
 
@@ -52,4 +56,9 @@
 	> *:first-of-type {
 		box-shadow: var(--wp--custom--box-shadow--inset) var(--wp--custom--box-shadow--x) var(--wp--custom--box-shadow--y) var(--wp--custom--box-shadow--blur) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color);
 	}
+}
+
+.wp-block-image.is-style-icon.alignleft,
+.wp-block-image.is-style-icon.alignright {
+	float: none;
 }

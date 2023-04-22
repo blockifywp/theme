@@ -9,8 +9,8 @@
 <!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|md","left":"var:preset|spacing|md"}}}} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"fontSize":"small"} -->
-<p class="has-small-font-size" style="letter-spacing:0.5em"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">⭐️⭐️⭐️⭐️⭐️</mark></p>
+<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"textColor":"primary","fontSize":"14"} -->
+<p class="has-primary-color has-text-color has-14-font-size" style="letter-spacing:0.5em">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -21,8 +21,8 @@
 
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"fontSize":"small"} -->
-<p class="has-small-font-size" style="letter-spacing:0.5em"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">⭐️⭐️⭐️⭐️⭐️</mark></p>
+<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"textColor":"primary","fontSize":"14"} -->
+<p class="has-primary-color has-text-color has-14-font-size" style="letter-spacing:0.5em">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -33,12 +33,12 @@
 
 <!-- wp:column {"style":{"spacing":{"padding":{"bottom":"1em","top":"1em"}}}} -->
 <div class="wp-block-column" style="padding-top:1em;padding-bottom:1em"><!-- wp:quote {"align":"center","className":"is-style-plain","fontSize":"18"} -->
-<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"fontSize":"small"} -->
-<p class="has-small-font-size" style="letter-spacing:0.5em"><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-primary-color">⭐️⭐️⭐️⭐️⭐️</mark></p>
+<blockquote class="wp-block-quote has-text-align-center is-style-plain has-18-font-size aligncenter"><!-- wp:paragraph {"style":{"typography":{"letterSpacing":"0.5em"}},"textColor":"primary","fontSize":"14"} -->
+<p class="has-primary-color has-text-color has-14-font-size" style="letter-spacing:0.5em">★★★★★</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>I don't know what else to say. I don't always clop, but when I do, it's because of this product. This is simply unbelievable!</p>
+<p>I don't know what else to say. This is simply unbelievable! Nice work on this product. You've really saved our business!</p>
 <!-- /wp:paragraph --><cite>Sam Jones </cite></blockquote>
 <!-- /wp:quote --></div>
 <!-- /wp:column --></div>

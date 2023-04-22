@@ -5,7 +5,6 @@ import {
 } from '@wordpress/block-editor';
 import { useSelect } from '@wordpress/data';
 import {
-	// @ts-ignore - This is a Gutenberg component.
 	__experimentalUnitControl as UnitControl,
 	CustomSelectControl, Flex, FlexItem,
 	PanelBody, PanelRow,
@@ -114,11 +113,11 @@ addFilter(
 	createHigherOrderComponent( ( BlockEdit ) => {
 		return ( props: blockProps ) => {
 			const {
-					  name,
-					  attributes,
-					  setAttributes,
-					  isSelected,
-				  } = props;
+				name,
+				attributes,
+				setAttributes,
+				isSelected,
+			} = props;
 
 			const { className }: { [className: string]: string } = attributes;
 
@@ -166,7 +165,7 @@ addFilter(
 
 			const { icons } = useSelect( ( select ) => {
 				return {
-					icons: select( 'blockify/icons' ).getIcons(),
+					icons: select( 'blockify/icons' )?.getIcons(),
 				};
 			}, [] ) ?? defaultState;
 
@@ -197,7 +196,6 @@ addFilter(
 					if ( iconName !== attributes?.iconName ) {
 						allIconOptions[ iconSet ].push(
 							{
-								// @ts-ignore Intentionally use JSX Element instead of string.
 								name: parse( icons?.[ iconSet ]?.[ iconName ] ),
 								key: iconName,
 							}
@@ -208,7 +206,6 @@ addFilter(
 				// Moves current icon to start of array.
 				if ( icons?.[ iconSet ]?.[ attributes?.iconName ] ) {
 					allIconOptions[ iconSet ].unshift( {
-						// @ts-ignore Intentionally use JSX Element instead of string.
 						name: parse( icons?.[ iconSet ]?.[ attributes?.iconName ] ),
 						key: attributes?.iconName,
 					} );
@@ -242,15 +239,15 @@ addFilter(
 							className={ 'blockify-icon-settings' }
 						>
 							{ ! 1 &&
-							  <p>
-								  { __( 'More icons available with the Blockify Pro add-on! ', 'blockify' ) }
-								  <a
-									  href="https://blockifywp.com/pro"
-									  target={ '_blank' } rel="noreferrer"
-								  >
-									  { __( 'Learn more ↗', 'blockify' ) }
-								  </a>
-							  </p>
+							<p>
+								{ __( 'More icons available with the Blockify Pro add-on! ', 'blockify' ) }
+								<a
+									href="https://blockifywp.com/pro"
+									target={ '_blank' } rel="noreferrer"
+								>
+									{ __( 'Learn more ↗', 'blockify' ) }
+								</a>
+							</p>
 							}
 							<SelectControl
 								label={ __( 'Select Icon Set', 'blockify' ) }
@@ -414,7 +411,7 @@ const getStyles = ( attributes: attributes ) => {
 	const svg: string = custom && custom?.includes( '<svg' ) ? custom : attributes?.iconSvgString ?? '';
 
 	if ( svg ) {
-		styles[ '--wp--custom--icon--url' ] = "url(\'data:image/svg+xml;utf8," + svg + "\')";
+		styles[ '--wp--custom--icon--url' ] = "url('data:image/svg+xml;utf8," + svg + "')";
 	}
 
 	return styles;

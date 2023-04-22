@@ -34,7 +34,7 @@ add_action( 'current_screen', NS . 'add_editor_scripts_hook', 10, 1 );
 function add_editor_scripts_hook( WP_Screen $screen ): void {
 	$site_editor = $screen->base === 'site-editor';
 
-	if ( ! $site_editor && function_exists( 'is_gutenberg_page' ) && ! is_gutenberg_page() ) {
+	if ( ! $site_editor && function_exists( 'is_gutenberg_page' ) && ! \is_gutenberg_page() ) {
 		return;
 	}
 
