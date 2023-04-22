@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-13T04:29:19+00:00\n"
+"POT-Creation-Date: 2023-04-22T04:53:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -60,7 +60,7 @@ msgid "Table of Contents"
 msgstr ""
 
 #: includes/blocks/table-of-contents.php:42
-#: includes/extensions/block-extras.php:114
+#: includes/utility/css.php:199
 msgid "Contents"
 msgstr ""
 
@@ -68,211 +68,117 @@ msgstr ""
 msgid "Table of contents"
 msgstr ""
 
-#: includes/extensions/block-extras.php:25
+#: includes/utility/css.php:110
 msgid "Position"
 msgstr ""
 
-#: includes/extensions/block-extras.php:32
+#: includes/utility/css.php:117
 msgid "Relative"
 msgstr ""
 
-#: includes/extensions/block-extras.php:36
+#: includes/utility/css.php:121
 msgid "Absolute"
 msgstr ""
 
-#: includes/extensions/block-extras.php:40
+#: includes/utility/css.php:125
 msgid "Sticky"
 msgstr ""
 
-#: includes/extensions/block-extras.php:44
+#: includes/utility/css.php:129
 msgid "Fixed"
 msgstr ""
 
-#: includes/extensions/block-extras.php:48
+#: includes/utility/css.php:133
 msgid "Static"
 msgstr ""
 
-#: includes/extensions/block-extras.php:55
+#: includes/utility/css.php:140
 msgid "Top"
 msgstr ""
 
-#: includes/extensions/block-extras.php:59
+#: includes/utility/css.php:144
 msgid "Right"
 msgstr ""
 
-#: includes/extensions/block-extras.php:63
+#: includes/utility/css.php:148
 msgid "Bottom"
 msgstr ""
 
-#: includes/extensions/block-extras.php:67
+#: includes/utility/css.php:152
 msgid "Left"
 msgstr ""
 
-#: includes/extensions/block-extras.php:71
+#: includes/utility/css.php:156
 msgid "Z-Index"
 msgstr ""
 
-#: includes/extensions/block-extras.php:75
+#: includes/utility/css.php:160
 msgid "Display"
 msgstr ""
 
-#: includes/extensions/block-extras.php:82
-#: includes/extensions/block-extras.php:150
-#: includes/extensions/block-styles.php:81
+#: includes/utility/css.php:167
+#: includes/utility/css.php:235
 msgid "None"
 msgstr ""
 
-#: includes/extensions/block-extras.php:86
+#: includes/utility/css.php:171
 msgid "Flex"
 msgstr ""
 
-#: includes/extensions/block-extras.php:90
+#: includes/utility/css.php:175
 msgid "Inline Flex"
 msgstr ""
 
-#: includes/extensions/block-extras.php:94
+#: includes/utility/css.php:179
 msgid "Block"
 msgstr ""
 
-#: includes/extensions/block-extras.php:98
+#: includes/utility/css.php:183
 msgid "Inline Block"
 msgstr ""
 
-#: includes/extensions/block-extras.php:102
+#: includes/utility/css.php:187
 msgid "Inline"
 msgstr ""
 
-#: includes/extensions/block-extras.php:106
+#: includes/utility/css.php:191
 msgid "Grid"
 msgstr ""
 
-#: includes/extensions/block-extras.php:110
+#: includes/utility/css.php:195
 msgid "Inline Grid"
 msgstr ""
 
-#: includes/extensions/block-extras.php:121
+#: includes/utility/css.php:206
 msgid "Order"
 msgstr ""
 
-#: includes/extensions/block-extras.php:125
+#: includes/utility/css.php:210
 msgid "Overflow"
 msgstr ""
 
-#: includes/extensions/block-extras.php:132
+#: includes/utility/css.php:217
 msgid "Hidden"
 msgstr ""
 
-#: includes/extensions/block-extras.php:136
+#: includes/utility/css.php:221
 msgid "Visible"
 msgstr ""
 
-#: includes/extensions/block-extras.php:143
+#: includes/utility/css.php:228
 msgid "Pointer Events"
 msgstr ""
 
-#: includes/extensions/block-extras.php:154
+#: includes/utility/css.php:239
 msgid "All"
 msgstr ""
 
-#: includes/extensions/block-extras.php:161
+#: includes/utility/css.php:246
 msgid "Width"
 msgstr ""
 
-#: includes/extensions/block-extras.php:165
+#: includes/utility/css.php:250
 msgid "Max Width"
-msgstr ""
-
-#: includes/extensions/block-styles.php:31
-#: includes/extensions/block-styles.php:41
-#: includes/extensions/block-styles.php:46
-#: includes/extensions/block-styles.php:51
-#: includes/extensions/block-styles.php:56
-#: includes/extensions/block-styles.php:86
-#: includes/extensions/block-styles.php:151
-msgid "Surface"
-msgstr ""
-
-#: includes/extensions/block-styles.php:36
-msgid "Ghost"
-msgstr ""
-
-#: includes/extensions/block-styles.php:61
-msgid "Checklist"
-msgstr ""
-
-#: includes/extensions/block-styles.php:66
-msgid "Checklist Circle"
-msgstr ""
-
-#: includes/extensions/block-styles.php:71
-msgid "Square"
-msgstr ""
-
-#: includes/extensions/block-styles.php:76
-msgid "Accordion"
-msgstr ""
-
-#: includes/extensions/block-styles.php:91
-msgid "Mega Menu"
-msgstr ""
-
-#: includes/extensions/block-styles.php:96
-msgid "Sub Heading"
-msgstr ""
-
-#: includes/extensions/block-styles.php:101
-msgid "Notice"
-msgstr ""
-
-#: includes/extensions/block-styles.php:106
-#: includes/extensions/block-styles.php:121
-msgid "Heading"
-msgstr ""
-
-#: includes/extensions/block-styles.php:111
-msgid "Badges"
-msgstr ""
-
-#: includes/extensions/block-styles.php:116
-msgid "Button"
-msgstr ""
-
-#: includes/extensions/block-styles.php:126
-msgid "Angle"
-msgstr ""
-
-#: includes/extensions/block-styles.php:131
-msgid "Curve"
-msgstr ""
-
-#: includes/extensions/block-styles.php:136
-msgid "Round"
-msgstr ""
-
-#: includes/extensions/block-styles.php:141
-msgid "Wave"
-msgstr ""
-
-#: includes/extensions/block-styles.php:146
-msgid "Fade"
-msgstr ""
-
-#: includes/extensions/block-styles.php:177
-msgid "Secondary"
-msgstr ""
-
-#: includes/extensions/block-styles.php:189
-#: includes/extensions/block-styles.php:204
-#: includes/extensions/block-styles.php:214
-#: includes/extensions/block-styles.php:219
-msgid "Light"
-msgstr ""
-
-#: includes/extensions/block-styles.php:194
-#: includes/extensions/block-styles.php:199
-#: includes/extensions/block-styles.php:209
-#: includes/extensions/block-styles.php:224
-msgid "Dark"
 msgstr ""
 
 #: includes/utility/icon.php:164
