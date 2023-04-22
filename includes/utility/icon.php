@@ -6,7 +6,6 @@ namespace Blockify\Theme;
 
 use DOMException;
 use WP_REST_Request;
-use function __;
 use function apply_filters;
 use function array_keys;
 use function array_values;

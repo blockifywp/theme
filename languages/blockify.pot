@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-22T04:53:12+00:00\n"
+"POT-Creation-Date: 2023-04-22T05:15:41+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: blockify\n"
@@ -39,11 +39,11 @@ msgstr ""
 msgid "Search results for: "
 msgstr ""
 
-#: includes/blocks/post-excerpt.php:57
+#: includes/blocks/post-excerpt.php:42
 msgid "this post"
 msgstr ""
 
-#: includes/blocks/post-excerpt.php:60
+#: includes/blocks/post-excerpt.php:45
 msgid " about "
 msgstr ""
 
@@ -55,137 +55,137 @@ msgstr ""
 msgid "Search this website"
 msgstr ""
 
-#: includes/blocks/table-of-contents.php:41
+#: includes/blocks/table-of-contents.php:40
 msgid "Table of Contents"
 msgstr ""
 
-#: includes/blocks/table-of-contents.php:42
-#: includes/utility/css.php:199
+#: includes/blocks/table-of-contents.php:41
+#: includes/utility/css.php:198
 msgid "Contents"
 msgstr ""
 
-#: includes/blocks/table-of-contents.php:43
+#: includes/blocks/table-of-contents.php:42
 msgid "Table of contents"
 msgstr ""
 
-#: includes/utility/css.php:110
+#: includes/utility/css.php:109
 msgid "Position"
 msgstr ""
 
-#: includes/utility/css.php:117
+#: includes/utility/css.php:116
 msgid "Relative"
 msgstr ""
 
-#: includes/utility/css.php:121
+#: includes/utility/css.php:120
 msgid "Absolute"
 msgstr ""
 
-#: includes/utility/css.php:125
+#: includes/utility/css.php:124
 msgid "Sticky"
 msgstr ""
 
-#: includes/utility/css.php:129
+#: includes/utility/css.php:128
 msgid "Fixed"
 msgstr ""
 
-#: includes/utility/css.php:133
+#: includes/utility/css.php:132
 msgid "Static"
 msgstr ""
 
-#: includes/utility/css.php:140
+#: includes/utility/css.php:139
 msgid "Top"
 msgstr ""
 
-#: includes/utility/css.php:144
+#: includes/utility/css.php:143
 msgid "Right"
 msgstr ""
 
-#: includes/utility/css.php:148
+#: includes/utility/css.php:147
 msgid "Bottom"
 msgstr ""
 
-#: includes/utility/css.php:152
+#: includes/utility/css.php:151
 msgid "Left"
 msgstr ""
 
-#: includes/utility/css.php:156
+#: includes/utility/css.php:155
 msgid "Z-Index"
 msgstr ""
 
-#: includes/utility/css.php:160
+#: includes/utility/css.php:159
 msgid "Display"
 msgstr ""
 
-#: includes/utility/css.php:167
-#: includes/utility/css.php:235
+#: includes/utility/css.php:166
+#: includes/utility/css.php:234
 msgid "None"
 msgstr ""
 
-#: includes/utility/css.php:171
+#: includes/utility/css.php:170
 msgid "Flex"
 msgstr ""
 
-#: includes/utility/css.php:175
+#: includes/utility/css.php:174
 msgid "Inline Flex"
 msgstr ""
 
-#: includes/utility/css.php:179
+#: includes/utility/css.php:178
 msgid "Block"
 msgstr ""
 
-#: includes/utility/css.php:183
+#: includes/utility/css.php:182
 msgid "Inline Block"
 msgstr ""
 
-#: includes/utility/css.php:187
+#: includes/utility/css.php:186
 msgid "Inline"
 msgstr ""
 
-#: includes/utility/css.php:191
+#: includes/utility/css.php:190
 msgid "Grid"
 msgstr ""
 
-#: includes/utility/css.php:195
+#: includes/utility/css.php:194
 msgid "Inline Grid"
 msgstr ""
 
-#: includes/utility/css.php:206
+#: includes/utility/css.php:205
 msgid "Order"
 msgstr ""
 
-#: includes/utility/css.php:210
+#: includes/utility/css.php:209
 msgid "Overflow"
 msgstr ""
 
-#: includes/utility/css.php:217
+#: includes/utility/css.php:216
 msgid "Hidden"
 msgstr ""
 
-#: includes/utility/css.php:221
+#: includes/utility/css.php:220
 msgid "Visible"
 msgstr ""
 
-#: includes/utility/css.php:228
+#: includes/utility/css.php:227
 msgid "Pointer Events"
 msgstr ""
 
-#: includes/utility/css.php:239
+#: includes/utility/css.php:238
 msgid "All"
 msgstr ""
 
-#: includes/utility/css.php:246
+#: includes/utility/css.php:245
 msgid "Width"
 msgstr ""
 
-#: includes/utility/css.php:250
+#: includes/utility/css.php:249
 msgid "Max Width"
 msgstr ""
 
-#: includes/utility/icon.php:164
+#: includes/utility/icon.php:163
 msgid " Icon"
 msgstr ""
 
-#: includes/utility/icon.php:241
+#: includes/utility/icon.php:240
 msgid " icon"
 msgstr ""
 

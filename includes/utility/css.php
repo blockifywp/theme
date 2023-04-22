@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function __;
 use function array_key_last;
 use function explode;
 use function is_null;
