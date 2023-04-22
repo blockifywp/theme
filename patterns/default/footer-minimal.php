@@ -14,7 +14,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right","orientation":"horizontal"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"align":"right","fontSize":"small"} -->
-<p class="alignright has-text-align-right has-small-font-size alignright">Copyright [year] Blockify. All rights reserved. </p>
+<p class="alignright has-text-align-right has-small-font-size alignright">Copyright {year} Blockify. All rights reserved. </p>
 <!-- /wp:paragraph -->
 
 <!-- wp:social-links {"iconColor":"inherit","iconColorValue":"inherit","openInNewTab":true,"size":"has-small-icon-size","className":"is-style-logos-only","layout":{"type":"flex"}} -->

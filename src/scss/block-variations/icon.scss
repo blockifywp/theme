@@ -62,3 +62,15 @@
 .wp-block-image.is-style-icon.alignright {
 	float: none;
 }
+
+.wp-block-image {
+
+	&.is-style-icon {
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			height: auto;
+		}
+	}
+}

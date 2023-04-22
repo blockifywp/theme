@@ -137,7 +137,7 @@
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"blockGap":"0.2em","padding":{"bottom":"var:preset|spacing|lg"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
 <div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0;padding-bottom:var(--wp--preset--spacing--lg)"><!-- wp:paragraph {"align":"center","fontSize":"16"} -->
-<p class="aligncenter has-text-align-center has-16-font-size aligncenter">© Copyright [year]</p>
+<p class="aligncenter has-text-align-center has-16-font-size aligncenter">© Copyright {year}</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:site-title {"level":0} /-->

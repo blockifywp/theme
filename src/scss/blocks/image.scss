@@ -21,37 +21,8 @@
 		}
 	}
 
-	&.is-style-icon {
-
-		svg {
-			height: auto;
-		}
-	}
-
 	a {
 		display: inherit;
-	}
-
-	&.is-style-svg {
-		margin: 0;
-
-		img[src="#"],
-		figcaption {
-			display: none;
-		}
-
-		svg {
-			display: block;
-		}
-	}
-
-	&__svg {
-		display: block;
-		max-width: none;
-		background: currentColor;
-		-webkit-mask-repeat: no-repeat;
-		-webkit-mask-size: contain;
-		-webkit-mask-position: center;
 	}
 }
 
@@ -59,7 +30,7 @@ figure.wp-block-image {
 	text-align: center;
 
 	&.aligncenter {
-		display: block !important;
+		display: block;
 	}
 
 	img {

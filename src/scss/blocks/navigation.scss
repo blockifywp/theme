@@ -27,6 +27,10 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 			padding-right: 0;
 		}
 	}
+
+	.wp-block-pages-list__item {
+		width: auto;
+	}
 }
 
 .wp-block-navigation:not(.is-responsive) {
@@ -210,7 +214,6 @@ $navigation_padding: calc(var(--wp--style--block-gap, 1em) / 2);
 		}
 	}
 }
-
 
 /**
  * Submenu

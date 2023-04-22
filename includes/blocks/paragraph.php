@@ -24,9 +24,8 @@ add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 11, 2 
  */
 function render_paragraph_block( string $html, array $block ): string {
 	$tags = [
-		'[year]'         => gmdate( 'Y' ),
-		'{current_year}' => gmdate( 'Y' ),
-		'{site_title}'   => get_bloginfo( 'name' ),
+		'{year}'       => gmdate( 'Y' ),
+		'{site_title}' => get_bloginfo( 'name' ),
 	];
 
 	foreach ( $tags as $tag => $value ) {

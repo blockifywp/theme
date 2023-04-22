@@ -1,0 +1,32 @@
+.wp-block-image {
+
+	&.is-style-svg {
+		margin: 0;
+
+		img[src="#"],
+		figcaption {
+			display: none;
+		}
+
+		svg {
+			display: block;
+		}
+	}
+
+	&__svg {
+		display: block;
+		max-width: none;
+		background: currentColor;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: contain;
+		-webkit-mask-position: center;
+	}
+}
+
+.aligncenter {
+
+	> .wp-block-image__svg {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}

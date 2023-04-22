@@ -2,7 +2,7 @@
 Contributors: blockify
 Requires at least: 6.1
 Tested up to: 6.2
-Stable tag: 1.2.7
+Stable tag: 1.2.8
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -48,6 +48,13 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.2.8 - 22 April 2023 =
+
+* Fix: Pages list menu item width
+* Fix: Icon alignment for centered images
+* Update: Year template tag
+* Update: Page template main padding bottom
 
 = 1.2.7 - 22 April 2023 =
 

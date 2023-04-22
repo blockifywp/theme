@@ -261,6 +261,7 @@ function get_conditional_stylesheets( string $css, string $content, bool $is_edi
 		'counter'   => str_contains( $content, 'is-style-counter' ),
 		'icon'      => str_contains( $content, 'is-style-icon' ),
 		'marquee'   => str_contains( $content, 'is-marquee' ),
+		'svg'       => str_contains( $content, 'is-style-svg' ),
 	];
 
 	$styles['formats'] = [
