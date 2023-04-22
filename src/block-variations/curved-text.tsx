@@ -2,7 +2,6 @@ import {
 	PanelBody,
 	PanelRow,
 	TextareaControl,
-	// @ts-ignore
 	__experimentalNumberControl as NumberControl,
 	FlexItem,
 	FlexBlock, Flex,
@@ -15,7 +14,6 @@ import { renderToString } from '@wordpress/element';
 import { BlockVariation, registerBlockVariation } from '@wordpress/blocks';
 import { rotateRight } from '@wordpress/icons';
 import domReady from '@wordpress/dom-ready';
-import { getBlock } from '@wordpress/block-editor/store/selectors';
 
 const isStyleCurvedText = ( attributes: attributes ) => {
 	if ( ! attributes?.className || typeof attributes?.className !== 'string' ) {

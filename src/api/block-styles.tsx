@@ -1,20 +1,28 @@
 import domReady from '@wordpress/dom-ready';
 import { registerBlockStyle, unregisterBlockStyle } from '@wordpress/blocks';
+import { replaceAll, ucWords } from '../utility/string';
 
 domReady( () => {
-	const blockStyles: blockStyles = window?.blockify?.blockStyles ?? {
-		unregister: [],
-		register: [],
+	const blockStyles: BlockStyles = window?.blockify?.blockStyles ?? {
+		unregister: {},
+		register: {},
 	};
 
-	const register = blockStyles?.register ?? [];
-	const unregister = blockStyles?.unregister ?? [];
+	const unregister = blockStyles?.unregister ?? {};
+	const register = blockStyles?.register ?? {};
 
-	unregister.forEach( ( blockStyle: blockStyle ) => {
-		unregisterBlockStyle( blockStyle?.type, blockStyle?.name );
+	Object.keys( unregister ).forEach( ( blockName ) => {
+		unregister[ blockName ].forEach( ( style ) => {
+			unregisterBlockStyle( blockName, style );
+		} );
 	} );
 
-	register.forEach( ( blockStyle: blockStyle ) => {
-		registerBlockStyle( blockStyle?.type, blockStyle );
+	Object.keys( register ).forEach( ( blockName ) => {
+		register[ blockName ].forEach( ( style ) => {
+			registerBlockStyle( blockName, {
+				name: style,
+				label: ucWords( replaceAll( style, '-', ' ' ) ),
+			} );
+		} );
 	} );
 } );

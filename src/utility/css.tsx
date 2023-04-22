@@ -1,4 +1,4 @@
-import { toKebabCase } from './string';
+import { toKebabCase, replaceAll } from './string';
 
 export const cssObjectToString = ( css: style ): string => {
 	return Object.keys( css ).map( ( key ) => {
@@ -22,4 +22,15 @@ export const cssStringToObject = ( css: string ): style => {
 	} );
 
 	return cssObject;
+};
+
+export const formatCustomProperty = ( property: string ): string => {
+	if ( ! property.includes( 'var:' ) ) {
+		return property;
+	}
+
+	property = property.replace( 'var:', 'var(--wp--' );
+	property = replaceAll( property, '|', '--' );
+
+	return property + ')';
 };

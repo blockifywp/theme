@@ -5,6 +5,8 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function explode;
+use function implode;
 use function rawurlencode;
 use function str_contains;
 use function str_replace;
@@ -15,10 +17,10 @@ add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 9, 2 )
 /**
  * Render SVG block variation.
  *
- * @since 0.9.10
- *
  * @param string $html  Block html content.
  * @param array  $block Block data.
+ *
+ * @since 0.9.10
  *
  * @return string
  */
@@ -44,7 +46,8 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$height = $block['attrs']['height'] ?? '';
 
 	if ( $mask ) {
-		$styles  = css_string_to_array( $img->getAttribute( 'style' ) );
+		$span    = change_tag_name( $img, 'span' );
+		$styles  = css_string_to_array( $span->getAttribute( 'style' ) );
 		$encoded = rawurlencode(
 			str_replace(
 				'"',
@@ -53,15 +56,36 @@ function render_svg_block_variation( string $html, array $block ): string {
 			)
 		);
 
-		$styles['background']            = 'currentColor';
-		$styles['-webkit-mask-image']    = 'url("data:image/svg+xml;utf8,' . $encoded . '")';
-		$styles['-webkit-mask-repeat']   = 'no-repeat';
-		$styles['-webkit-mask-size']     = 'contain';
-		$styles['-webkit-mask-position'] = 'center';
-		$styles['max-width']             = $width ? $width . 'px' : 'none';
+		$styles['-webkit-mask-image'] = 'url("data:image/svg+xml;utf8,' . $encoded . '")';
 
-		$img->setAttribute( 'style', css_array_to_string( $styles ) );
-		$img->removeAttribute( 'src' );
+		if ( $width ) {
+			$styles['width'] = $width . 'px';
+
+			$span->removeAttribute( 'width' );
+		}
+
+		if ( $height ) {
+			$styles['height'] = $height . 'px';
+
+			$span->removeAttribute( 'height' );
+		}
+
+		$alt = $img->getAttribute( 'alt' );
+
+		if ( $alt ) {
+			$span->setAttribute( 'aria-label', $alt );
+			$span->removeAttribute( 'alt' );
+		}
+
+		$classes = explode( ' ', $span->getAttribute( 'class' ) );
+
+		$classes[] = 'wp-block-image__svg';
+
+		$span->setAttribute( 'class', implode( ' ', $classes ) );
+		$span->setAttribute( 'role', 'img' );
+		$span->removeAttribute( 'style' );
+		$span->setAttribute( 'style', css_array_to_string( $styles ) );
+		$span->removeAttribute( 'src' );
 
 		return $dom->saveHTML();
 	}
@@ -107,10 +131,10 @@ add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
 /**
  * Renders inline SVGs in rich text content.
  *
- * @since 0.9.10
- *
  * @param string $html  Block html content.
  * @param array  $block Block data.
+ *
+ * @since 0.9.10
  *
  * @return string
  */

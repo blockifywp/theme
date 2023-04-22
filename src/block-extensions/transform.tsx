@@ -17,7 +17,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 export const supportsTransform = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyTransform ?? false;
 
 interface transformTypes {
-    [name: string]: string
+	[name: string]: string
 }
 
 const transformTypes: transformTypes = {
@@ -99,9 +99,12 @@ addFilter(
 				return defaultReturn;
 			}
 
-			props.style = {
-				...props?.style,
-				...styles,
+			props = {
+				...props,
+				style: {
+					...props?.style,
+					...styles,
+				},
 			};
 
 			const wrapperProps = {

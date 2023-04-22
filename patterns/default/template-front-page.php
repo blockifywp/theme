@@ -13,6 +13,6 @@
 	<!-- wp:pattern {"slug":"pricing-three-column"} /-->
 	<!-- wp:pattern {"slug":"testimonial-three-column"} /-->
 	<!-- wp:pattern {"slug":"blog-three-column"} /-->
-	<!-- wp:pattern {"slug":"cta-center"} /-->
+	<!-- wp:pattern {"slug":"cta-box"} /-->
 </main>
 <!-- /wp:group -->

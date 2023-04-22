@@ -44,6 +44,15 @@
 			display: block;
 		}
 	}
+
+	&__svg {
+		display: block;
+		max-width: none;
+		background: currentColor;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-size: contain;
+		-webkit-mask-position: center;
+	}
 }
 
 figure.wp-block-image {

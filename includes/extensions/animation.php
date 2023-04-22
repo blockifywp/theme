@@ -11,20 +11,70 @@ use function explode;
 use function file_get_contents;
 use function str_contains;
 
+/**
+ * Gets animations from stylesheet.
+ *
+ * @since 0.9.18
+ *
+ * @return array
+ */
+function get_animations(): array {
+	$file = get_dir() . 'assets/css/extensions/animations.css';
+
+	if ( ! file_exists( $file ) ) {
+		return [];
+	}
+
+	$parts      = explode( '@keyframes', file_get_contents( $file ) );
+	$animations = [];
+
+	unset( $parts[0] );
+
+	foreach ( $parts as $animation ) {
+		$name = trim( explode( '{', $animation )[0] ?? '' );
+
+		$animations[ $name ] = str_replace( $name, '', $animation );
+	}
+
+	return $animations;
+}
+
+add_filter( 'blockify_inline_css', NS . 'get_animation_styles', 10, 3 );
+/**
+ * Returns inline styles for animations.
+ *
+ * @param string $css       Inline CSS.
+ * @param string $content   Page content.
+ * @param bool   $is_editor Is admin.
+ *
+ * @since 0.9.19
+ *
+ * @return string
+ */
+function get_animation_styles( string $css, string $content, bool $is_editor ): string {
+	$animations = get_animations();
+
+	foreach ( $animations as $name => $animation ) {
+		if ( $is_editor || str_contains( $content, "animation-name:{$name}" ) ) {
+			$css .= "@keyframes $name" . trim( $animation );
+		}
+	}
+
+	return $css;
+}
+
 add_filter( 'blockify_editor_data', NS . 'add_animation_names' );
 /**
  * Adds animation names to editor, so they are available for options.
  *
- * @since 0.9.19
- *
  * @param array $data Editor data.
+ *
+ * @since 0.9.19
  *
  * @return array
  */
 function add_animation_names( array $data ): array {
-	$animations = get_animations();
-
-	$data['animations'] = array_keys( $animations );
+	$data['animations'] = array_keys( get_animations() );
 
 	return $data;
 }
@@ -33,10 +83,10 @@ add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 2 );
 /**
  * Conditionally add animation JS.
  *
- * @since 0.9.10
- *
  * @param string $js      The inline JS.
  * @param string $content The block content.
+ *
+ * @since 0.9.10
  *
  * @return string
  */
@@ -52,10 +102,10 @@ add_filter( 'render_block', NS . 'render_animation_attributes', 10, 2 );
 /**
  * Adds animation attributes to block.
  *
- * @since 0.9.10
- *
  * @param string $html  The block content.
  * @param array  $block The block.
+ *
+ * @since 0.9.10
  *
  * @return string
  */
@@ -116,10 +166,10 @@ add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 2 );
 /**
  * Adds scroll JS to the inline JS.
  *
- * @since 0.0.14
- *
  * @param string $js      Inline JS.
  * @param string $content Page content.
+ *
+ * @since 0.0.14
  *
  * @return string
  */

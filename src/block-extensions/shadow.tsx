@@ -213,13 +213,18 @@ addFilter(
 
 			const wrapperProps = { ...props.wrapperProps };
 
-			props.className += ' has-box-shadow';
-			wrapperProps.className += ' has-box-shadow';
+			const className = ( props?.className ?? '' ) + ' has-box-shadow';
 
-			props.style = {
-				...props.style,
-				...styles,
+			props = {
+				...props,
+				className,
+				style: {
+					...props.style,
+					...styles,
+				},
 			};
+
+			wrapperProps.className += ' has-box-shadow';
 
 			wrapperProps.style = {
 				...wrapperProps.style,

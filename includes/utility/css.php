@@ -4,10 +4,9 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function __;
 use function array_key_last;
 use function explode;
-use function file_exists;
-use function file_get_contents;
 use function is_null;
 use function str_contains;
 use function str_replace;
@@ -98,52 +97,157 @@ function format_custom_property( string $custom_property ): string {
 }
 
 /**
- * Gets animations from stylesheet.
+ * Returns responsive settings config.
  *
- * @since 0.9.18
+ * @since 0.9.10
  *
  * @return array
  */
-function get_animations(): array {
-	$file = get_dir() . 'assets/css/extensions/animations.css';
-
-	if ( ! file_exists( $file ) ) {
-		return [];
-	}
-
-	$parts      = explode( '@keyframes', file_get_contents( $file ) );
-	$animations = [];
-
-	unset( $parts[0] );
-
-	foreach ( $parts as $animation ) {
-		$name = trim( explode( '{', $animation )[0] ?? '' );
-
-		$animations[ $name ] = str_replace( $name, '', $animation );
-	}
-
-	return $animations;
-}
-
-/**
- * Returns inline styles for animations.
- *
- * @since 0.9.19
- *
- * @param string $content   Page content.
- * @param bool   $is_editor Is admin.
- *
- * @return string
- */
-function get_animation_styles( string $content, bool $is_editor ): string {
-	$animations = get_animations();
-	$css        = '';
-
-	foreach ( $animations as $name => $animation ) {
-		if ( $is_editor || str_contains( $content, "animation-name:{$name}" ) ) {
-			$css .= "@keyframes $name" . trim( $animation );
-		}
-	}
-
-	return $css;
+function get_block_extra_options(): array {
+	return [
+		'position'      => [
+			'value'   => 'position',
+			'label'   => __( 'Position', 'blockify' ),
+			'options' => [
+				[
+					'label' => '',
+					'value' => '',
+				],
+				[
+					'label' => __( 'Relative', 'blockify' ),
+					'value' => 'relative',
+				],
+				[
+					'label' => __( 'Absolute', 'blockify' ),
+					'value' => 'absolute',
+				],
+				[
+					'label' => __( 'Sticky', 'blockify' ),
+					'value' => 'sticky',
+				],
+				[
+					'label' => __( 'Fixed', 'blockify' ),
+					'value' => 'fixed',
+				],
+				[
+					'label' => __( 'Static', 'blockify' ),
+					'value' => 'static',
+				],
+			],
+		],
+		'top'           => [
+			'value' => 'top',
+			'label' => __( 'Top', 'blockify' ),
+		],
+		'right'         => [
+			'value' => 'right',
+			'label' => __( 'Right', 'blockify' ),
+		],
+		'bottom'        => [
+			'value' => 'bottom',
+			'label' => __( 'Bottom', 'blockify' ),
+		],
+		'left'          => [
+			'value' => 'left',
+			'label' => __( 'Left', 'blockify' ),
+		],
+		'zIndex'        => [
+			'value' => 'z-index',
+			'label' => __( 'Z-Index', 'blockify' ),
+		],
+		'display'       => [
+			'value'   => 'display',
+			'label'   => __( 'Display', 'blockify' ),
+			'options' => [
+				[
+					'label' => '',
+					'value' => '',
+				],
+				[
+					'label' => __( 'None', 'blockify' ),
+					'value' => 'none',
+				],
+				[
+					'label' => __( 'Flex', 'blockify' ),
+					'value' => 'flex',
+				],
+				[
+					'label' => __( 'Inline Flex', 'blockify' ),
+					'value' => 'inline-flex',
+				],
+				[
+					'label' => __( 'Block', 'blockify' ),
+					'value' => 'block',
+				],
+				[
+					'label' => __( 'Inline Block', 'blockify' ),
+					'value' => 'inline-block',
+				],
+				[
+					'label' => __( 'Inline', 'blockify' ),
+					'value' => 'inline',
+				],
+				[
+					'label' => __( 'Grid', 'blockify' ),
+					'value' => 'grid',
+				],
+				[
+					'label' => __( 'Inline Grid', 'blockify' ),
+					'value' => 'inline-grid',
+				],
+				[
+					'label' => __( 'Contents', 'blockify' ),
+					'value' => 'contents',
+				],
+			],
+		],
+		'order'         => [
+			'value' => 'order',
+			'label' => __( 'Order', 'blockify' ),
+		],
+		'overflow'      => [
+			'value'   => 'overflow',
+			'label'   => __( 'Overflow', 'blockify' ),
+			'options' => [
+				[
+					'label' => '',
+					'value' => '',
+				],
+				[
+					'label' => __( 'Hidden', 'blockify' ),
+					'value' => 'hidden',
+				],
+				[
+					'label' => __( 'Visible', 'blockify' ),
+					'value' => 'visible',
+				],
+			],
+		],
+		'pointerEvents' => [
+			'value'   => 'pointer-events',
+			'label'   => __( 'Pointer Events', 'blockify' ),
+			'options' => [
+				[
+					'label' => '',
+					'value' => '',
+				],
+				[
+					'label' => __( 'None', 'blockify' ),
+					'value' => 'none',
+				],
+				[
+					'label' => __( 'All', 'blockify' ),
+					'value' => 'all',
+				],
+			],
+		],
+		'width'         => [
+			'value' => 'width',
+			'label' => __( 'Width', 'blockify' ),
+		],
+		'maxWidth'      => [
+			'value' => 'max-width',
+			'label' => __( 'Max Width', 'blockify' ),
+		],
+	];
 }

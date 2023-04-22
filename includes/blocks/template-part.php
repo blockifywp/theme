@@ -25,8 +25,34 @@ function render_block_template_part( string $html, array $block ): string {
 		return $html;
 	}
 
+	$attrs  = $block['attrs'] ?? [];
 	$styles = css_string_to_array( $first->getAttribute( 'style' ) );
-	$styles = add_block_support_color( $styles, $block['attrs'] );
+	$color  = $attrs['style']['color'] ?? [];
+
+	if ( isset( $color['background'] ) ) {
+		$styles['background'] = $color['background'];
+	}
+
+	if ( isset( $attrs['backgroundColor'] ) ) {
+		$styles['background'] = 'var(--wp--preset--color--' . $attrs['backgroundColor'] . ')';
+	}
+
+	if ( isset( $color['gradient'] ) ) {
+		$styles['background'] = $color['gradient'];
+	}
+
+	if ( isset( $attrs['gradient'] ) ) {
+		$styles['background'] = 'var(--wp--preset--gradient--' . $attrs['gradient'] . ')';
+	}
+
+	if ( isset( $color['text'] ) ) {
+		$styles['color'] = $color['text'];
+	}
+
+	if ( isset( $attrs['textColor'] ) ) {
+		$styles['color'] = 'var(--wp--preset--color--' . $attrs['textColor'] . ')';
+	}
+
 	$styles = css_array_to_string( $styles );
 
 	if ( $styles ) {

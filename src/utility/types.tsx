@@ -20,7 +20,7 @@ declare global {
 		removeEmojiScripts?: boolean;
 		excerptLength?: number;
 		blockSupports?: blockSupports;
-		blockStyles?: blockStyles;
+		blockStyles?: BlockStyles;
 		conicGradient?: string;
 		underlineTypes?: string[];
 		fontFamilies?: string[];
@@ -59,32 +59,24 @@ declare global {
 		}
 	}
 
-	interface blockStyle {
+	interface BlockStyle {
 		type: string
 		name: string,
 		label: string,
 		isDefault?: boolean
 	}
 
-	interface blockStyles {
-		unregister: [],
-		register: []
-	}
-
-	interface blockifyPatternEditor {
-		restUrl?: string;
-		nonce?: string;
-		currentUser?: string;
-		adminUrl?: string;
-		stylesheet?: string;
-		isChildTheme?: boolean;
-		patternDir?: string;
-		imgDir?: string;
+	interface BlockStyles {
+		unregister: {
+			[ blockName: string ]: string[];
+		},
+		register: {
+			[ blockName: string ]: string[]
+		}
 	}
 
 	interface Window {
 		blockify: blockify;
-		blockifyPatternEditor?: blockifyPatternEditor;
 	}
 
 	interface style {
@@ -201,4 +193,4 @@ declare global {
 	}
 }
 
-export { blockify, blockifyPatternEditor };
+export { blockify };
