@@ -319,7 +319,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 							min={ 0 }
 							max={ 100 }
 							step={ 0.1 }
-							shifStep={ 10 }
+							shiftStep={ 10 }
 							allowReset={ true }
 						/>
 					</FlexItem>
@@ -338,7 +338,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 							min={ 0 }
 							max={ 100 }
 							step={ 0.1 }
-							shifStep={ 10 }
+							shiftStep={ 10 }
 							allowReset={ true }
 						/>
 					</FlexItem>
