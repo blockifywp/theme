@@ -4,6 +4,7 @@
 .gitattributes export-ignore
 .github/ export-ignore
 .gitignore export-ignore
+.typos.toml export-ignore
 .wordpress-org/ export-ignore
 README.md export-ignore
 phpcs.xml export-ignore

@@ -362,7 +362,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Add: New settings UI
 * Remove: Child theme json fix
 * Fix: Placeholder border
-* Fix: Surface before psuedo element pointer events
+* Fix: Surface before pseudo element pointer events
 * Fix: Marquee block gap custom properties
 
 = 0.9.18 - 21 November 2022 =
@@ -530,7 +530,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Fix: Remove id from nav menu in patterns
 * Fix: Sub menu padding
 * Fix: Template part inline css
-* Fix: Icon psuedo element bug in Gutenberg 14.3
+* Fix: Icon pseudo element bug in Gutenberg 14.3
 * Fix: Horizontal submenu padding on mobile
 
 = 0.7.0 - 12 October 2022 =
