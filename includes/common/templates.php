@@ -15,7 +15,6 @@ use function get_stylesheet_directory;
 use function get_template_directory;
 use function is_post_type_archive;
 use function is_search;
-use function post_type_exists;
 use function str_contains;
 
 add_filter( 'get_block_templates', NS . 'remove_templates', 10, 3 );
@@ -51,11 +50,6 @@ function remove_templates( ?array $query_result, array $query, string $template_
 		}
 
 		if ( ! $edd && str_contains( $slug, '-download' ) ) {
-			unset( $query_result[ $index ] );
-			continue;
-		}
-
-		if ( ! post_type_exists( 'doc' ) && str_contains( $slug, '-doc' ) ) {
 			unset( $query_result[ $index ] );
 		}
 	}
