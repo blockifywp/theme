@@ -14,7 +14,7 @@ more. Designed for use with child themes and compatible with most popular
 plugins. Blockify is a great starting point and toolkit for building your own
 custom block theme.
 
-<img width="600" alt="Blockify full site editing theme screenshot" src="https://wp-themes.com/wp-content/themes/blockify/screenshot.png">
+<img width="600" alt="Blockify full site editing theme screenshot" src="https://github.com/blockifywp/theme/assets/24793388/5d548ffa-03f7-4103-98b6-b37ead143f4c">
 
 ## Installation
 
