@@ -1,8 +1,8 @@
 === Blockify ===
 Contributors: blockify
-Requires at least: 6.1
-Tested up to: 6.2
-Stable tag: 1.2.7
+Requires at least: 6.2
+Tested up to: 6.4
+Stable tag: 1.3.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -45,9 +45,40 @@ Google Fonts
 License: SIL Open Font License, 1.1
 License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 
+Images
+All images are licensed under the Creative Commons Zero (CC0) license.
+
+Avatars
+https://stocksnap.io/photo/young-man_CACAIXFZ2V.jpg
+https://stocksnap.io/photo/woman-urban_G4YYZSAXAT.jpg
+https://stocksnap.io/photo/woman-sunglasses_FRHAMZCZ2X.jpg
+https://stocksnap.io/photo/woman-business_X0XJR9QNN8.jpg
+https://stocksnap.io/photo/girl-portrait_LMKLOZE1TO.jpg
+
 © Copyright Blockify 2023, Blockify.
 
 == Changelog ==
+
+= 1.3.1 - * 8 November 2023 =
+
+* Remove: Use of `get_bloginfo( 'url' )` in favor of `home_url()`
+* Remove: #wpadminbar styling
+* Remove: Blog comments pattern
+
+= 1.3.0 - * 8 November 2023 =
+
+* Add: Complete rebuild. See https://blockifywp.com/changelog for full details.
+
+= 1.2.9 - 8 May 2023 =
+
+* Add: Support for links in placeholder images
+
+= 1.2.8 - 22 April 2023 =
+
+* Fix: Pages list menu item width
+* Fix: Icon alignment for centered images
+* Update: Year template tag
+* Update: Page template main padding bottom
 
 = 1.2.7 - 22 April 2023 =
 
@@ -362,7 +393,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Add: New settings UI
 * Remove: Child theme json fix
 * Fix: Placeholder border
-* Fix: Surface before pseudo element pointer events
+* Fix: Surface before pseudo-element pointer events
 * Fix: Marquee block gap custom properties
 
 = 0.9.18 - 21 November 2022 =
@@ -530,7 +561,7 @@ License URL: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 * Fix: Remove id from nav menu in patterns
 * Fix: Sub menu padding
 * Fix: Template part inline css
-* Fix: Icon pseudo element bug in Gutenberg 14.3
+* Fix: Icon pseudo-element bug in Gutenberg 14.3
 * Fix: Horizontal submenu padding on mobile
 
 = 0.7.0 - 12 October 2022 =

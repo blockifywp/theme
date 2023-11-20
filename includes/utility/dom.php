@@ -6,10 +6,14 @@ namespace Blockify\Theme;
 
 use DOMDocument;
 use DOMElement;
+use DOMXPath;
+use Exception;
+use WP_Error;
 use function bin2hex;
 use function current;
 use function iconv;
 use function is_a;
+use function is_null;
 use function libxml_clear_errors;
 use function libxml_use_internal_errors;
 use function ltrim;
@@ -24,7 +28,7 @@ use function strtoupper;
  *
  * @param string $html HTML string to convert to DOM.
  *
- * @return \DOMDocument
+ * @return DOMDocument
  */
 function dom( string $html ): DOMDocument {
 	$dom = new DOMDocument();
@@ -34,16 +38,20 @@ function dom( string $html ): DOMDocument {
 	}
 
 	$libxml_previous_state   = libxml_use_internal_errors( true );
-	$dom->preserveWhiteSpace = true;
+	$dom->preserveWhiteSpace = false;
 
 	if ( defined( 'LIBXML_HTML_NOIMPLIED' ) && defined( 'LIBXML_HTML_NODEFDTD' ) ) {
 		$options = LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD;
-	} elseif ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
-		$options = LIBXML_HTML_NOIMPLIED;
-	} elseif ( defined( 'LIBXML_HTML_NODEFDTD' ) ) {
-		$options = LIBXML_HTML_NODEFDTD;
 	} else {
-		$options = 0;
+		if ( defined( 'LIBXML_HTML_NOIMPLIED' ) ) {
+			$options = LIBXML_HTML_NOIMPLIED;
+		} else {
+			if ( defined( 'LIBXML_HTML_NODEFDTD' ) ) {
+				$options = LIBXML_HTML_NODEFDTD;
+			} else {
+				$options = 0;
+			}
+		}
 	}
 
 	// @see https://stackoverflow.com/questions/13280200/convert-unicode-to-html-entities-hex.
@@ -85,9 +93,9 @@ function dom( string $html ): DOMDocument {
  * @param mixed  $dom_or_element DOMDocument or DOMElement.
  * @param int    $index          Index of element to return.
  *
- * @return \DOMElement|null
+ * @return ?DOMElement
  */
-function get_dom_element( string $tag, $dom_or_element, int $index = 0 ) {
+function get_dom_element( string $tag, $dom_or_element, int $index = 0 ): ?DOMElement {
 	if ( ! is_a( $dom_or_element, DOMDocument::class ) && ! is_a( $dom_or_element, DOMElement::class ) ) {
 		return null;
 	}
@@ -108,11 +116,11 @@ function get_dom_element( string $tag, $dom_or_element, int $index = 0 ) {
  *
  * @param mixed $node DOMNode to cast to DOMElement.
  *
- * @return \DOMElement|null
+ * @return ?DOMElement
  */
-function dom_element( $node ) {
+function dom_element( $node ): ?DOMElement {
 	if ( $node->nodeType === XML_ELEMENT_NODE ) {
-		/* @var \DOMElement $node DOM Element node */
+		/* @var DOMElement $node DOM Element node */
 		return $node;
 	}
 
@@ -124,14 +132,14 @@ function dom_element( $node ) {
  *
  * @since 0.0.20
  *
- * @param DOMElement $element DOM Element to change.
  * @param string     $name    Tag name, e.g: 'div'.
+ * @param DOMElement $element DOM Element to change.
  *
- * @return DOMElement
+ * @return ?DOMElement
  */
-function change_tag_name( DOMElement $element, string $name ): DOMElement {
+function change_tag_name( string $name, DOMElement $element ): ?DOMElement {
 	if ( ! $element->ownerDocument ) {
-		return new DOMElement( $name );
+		return null;
 	}
 
 	$child_nodes = [];
@@ -162,28 +170,55 @@ function change_tag_name( DOMElement $element, string $name ): DOMElement {
 }
 
 /**
- * Returns array of dom elements by class name.
+ * Returns an array of DOM elements by class name.
  *
  * @since 0.9.26
  *
- * @param DOMDocument|DOMElement $dom        DOM document or element.
- * @param string                 $class_name Element class name.
- * @param string                 $tag        Element tag name (optional).
+ * @param DOMDocument $dom        DOM document or element.
+ * @param string      $class_name Element class name.
+ * @param string      $tag        Element tag name (optional).
  *
  * @return array
  */
-function get_elements_by_class_name( $dom, string $class_name, string $tag = '*' ): array {
+function get_elements_by_class_name( string $class_name, DOMDocument $dom, string $tag = '*' ): array {
+	$xpath    = new DOMXPath( $dom );
+	$query    = sprintf( "//%s[contains(concat(' ', normalize-space(@class), ' '), ' %s ')]", $tag, $class_name );
+	$nodes    = $xpath->query( $query );
 	$elements = [];
 
-	foreach ( $dom->getElementsByTagName( $tag ) as $element ) {
-		if ( $element->hasAttribute( 'class' ) ) {
-			$classes = explode( ' ', $element->getAttribute( 'class' ) );
-
-			if ( in_array( $class_name, $classes, true ) ) {
-				$elements[] = $element;
+	if ( $nodes !== false ) {
+		foreach ( $nodes as $node ) {
+			if ( $node instanceof DOMElement ) {
+				$elements[] = $node;
 			}
 		}
 	}
 
 	return $elements;
+}
+
+/**
+ * Creates a DOMElement to avoid unhandled exceptions.
+ *
+ * @since 1.3.0
+ *
+ * @param string      $tag HTML tag.
+ * @param DOMDocument $dom DOM object.
+ *
+ * @return ?DOMElement
+ */
+function create_element( string $tag, DOMDocument $dom ): ?DOMElement {
+	$element = null;
+
+	try {
+		$element = $dom->createElement( $tag );
+	} catch ( Exception $e ) {
+		new WP_Error( 'invalid_dom_tag', $e->getMessage() );
+	}
+
+	if ( is_null( $element ) ) {
+		return null;
+	}
+
+	return dom_element( $element );
 }

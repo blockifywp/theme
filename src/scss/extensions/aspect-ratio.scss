@@ -1,0 +1,9 @@
+[class*="has-aspect-ratio-"] {
+
+	img,
+	a,
+	a img {
+		aspect-ratio: inherit;
+		object-fit: cover;
+	}
+}

@@ -1,0 +1,98 @@
+.wp-block-details {
+	width: 100%;
+	padding: 0;
+
+	[data-stack="true"] & {
+
+		&:not(:first-of-type) {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+
+		&:not(:last-of-type) {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+	}
+
+	summary {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+		cursor: pointer;
+		border-radius: inherit;
+		font-weight: var(--wp--custom--summary--font-weight, var(--wp--custom--font-weight--medium, 500));
+		padding-right: calc(var(--wp--style--block-gap, 1em) * 1.5);
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+
+		&::marker {
+			display: none;
+			content: "";
+		}
+
+		strong {
+			color: var(--wp--custom--heading--color, inherit);
+		}
+	}
+
+	section:not([hidden]) {
+		display: block;
+	}
+
+	hr {
+		margin: 0;
+	}
+
+	summary::after,
+	summary::before {
+		content: "";
+		height: var(--wp--custom--accordion--height, 2px);
+		width: var(--wp--custom--accordion--width, 1em);
+		display: inline-block;
+		background: currentcolor;
+		position: absolute;
+		inset: 0 0 0 auto;
+		margin: auto;
+		opacity: 1;
+		transition: transform var(--wp--custom--accordion--animation-duration, 0s) var(--wp--custom--transition--timing-function, ease-in);
+	}
+
+	summary::after {
+		transform: scaleY(1) rotate(90deg);
+	}
+
+	&[open] summary::after {
+		transform: scaleY(0) rotate(90deg);
+	}
+
+	&:not(.is-style-plus) {
+
+		summary::before {
+			display: none;
+		}
+
+		summary::after {
+			height: 1.5em;
+			width: 1.5em;
+			margin-right: -.333em;
+			transform: rotate(0deg);
+			mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 11.6 12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"/></svg>');
+			mask-size: contain;
+			mask-repeat: no-repeat;
+			mask-position: center;
+			-webkit-mask-size: contain;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			-webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.5 11.6 12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"/></svg>');
+			background: currentcolor;
+		}
+
+		&[open] summary::after {
+			transform: rotate(180deg);
+		}
+	}
+}

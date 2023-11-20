@@ -1,8 +1,9 @@
 import {
+	__experimentalNumberControl as NumberControl,
+	Button,
+	PanelBody,
 	PanelRow,
 	ToggleControl,
-	// @ts-ignore
-	__experimentalNumberControl as NumberControl, Button, PanelBody,
 } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
@@ -14,61 +15,7 @@ import { InspectorControls } from '@wordpress/block-editor';
 
 const supportsFilter = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyFilter ?? false;
 
-const config: {
-	[name: string]: {
-		unit: string,
-		max: number,
-		min?: number,
-		step?: number,
-	}
-} = {
-	blur: {
-		unit: 'px',
-		min: 0,
-		max: 500,
-	},
-	brightness: {
-		unit: '%',
-		min: 0,
-		max: 360,
-	},
-	contrast: {
-		unit: '%',
-		min: 0,
-		max: 200,
-	},
-	grayscale: {
-		unit: '%',
-		min: 0,
-		max: 100,
-	},
-	hueRotate: {
-		unit: 'deg',
-		min: -360,
-		max: 360,
-	},
-	invert: {
-		unit: '%',
-		min: 0,
-		max: 100,
-	},
-	opacity: {
-		unit: '%',
-		min: 0,
-		max: 100,
-	},
-	saturate: {
-		unit: '',
-		min: 0,
-		max: 100,
-		step: 0.1,
-	},
-	sepia: {
-		unit: '%',
-		min: 0,
-		max: 100,
-	},
-};
+const config: filterOptions | null = window?.blockify?.filterOptions ?? {};
 
 addFilter(
 	'blocks.registerBlockType',
@@ -94,6 +41,10 @@ addFilter(
 
 const getStyles = ( filter: cssFilters ): object => {
 	let styles = '';
+
+	if ( ! config?.blur ) {
+		return {};
+	}
 
 	Object.keys( config ).forEach( ( key ) => {
 		if ( Object.prototype.hasOwnProperty.call( filter, key ) && typeof filter[ key ] !== 'undefined' ) {
@@ -269,14 +220,14 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-					<InspectorControls>
-						<PanelBody
-							initialOpen={ attributes?.filter ?? false }
-							title={ __( 'Filter', 'blockify' ) }
-						>
-							<Filter { ...props } />
-						</PanelBody>
-					</InspectorControls>
+						<InspectorControls>
+							<PanelBody
+								initialOpen={ attributes?.filter ?? false }
+								title={ __( 'Filter', 'blockify' ) }
+							>
+								<Filter { ...props } />
+							</PanelBody>
+						</InspectorControls>
 					}
 				</>
 			);

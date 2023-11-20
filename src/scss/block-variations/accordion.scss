@@ -1,106 +1,83 @@
 .is-style-accordion {
-	display: flex;
-	flex-direction: column;
-	gap: var(--wp--style--block-gap, inherit);
+  display: flex;
+  flex-direction: column;
+  gap: var(--wp--style--block-gap, inherit);
 }
 
 .is-style-accordion details {
-	width: 100%;
-	padding: 0;
+  width: 100%;
+  padding: 0;
 
-	[data-stack="true"] & {
+  [data-stack="true"] & {
 
-		&:not(:first-of-type) {
-			border-top-left-radius: 0;
-			border-top-right-radius: 0;
-		}
+    &:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
 
-		&:not(:last-of-type) {
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
-		}
-	}
+    &:not(:last-of-type) {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
 }
 
 .is-style-accordion summary {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	position: relative;
-	cursor: pointer;
-	border-radius: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  border-radius: inherit;
 
-	&::-webkit-details-marker {
-		display: none;
-	}
+  &::-webkit-details-marker {
+    display: none;
+  }
 
-	strong {
-		color: var(--wp--preset--color--heading, inherit);
-	}
+  strong {
+    color: var(--wp--custom--heading--color, inherit);
+  }
 }
 
 .is-style-accordion summary::marker {
-	display: none;
-	content: "";
+  display: none;
+  content: "";
 }
 
-// Vertical.
 .accordion-toggle {
-	position: relative;
-	height: 0.1em;
-	width: 2em;
+  position: relative;
+  height: 1em;
+  width: 1em;
+  border: var(--wp--custom--accordion--border, 0);
+  border-radius: .5em;
 
-	&::after,
-	&::before {
-		content: "";
-		width: var(--wp--custom--accordion-toggle-icon--width, 1em);
-		height: 2px;
-		display: inline-block !important;
-		background: currentcolor;
-		position: absolute;
-		right: 0;
-		top: 0;
-		opacity: 1;
-		transition: var(--wp--custom--transition, opacity 1s ease-in-out);
-	}
+  &::after,
+  &::before {
+    content: "";
+    height: var(--wp--custom--accordion--height, 2px);
+    width: var(--wp--custom--accordion--width, 1em);
+    display: inline-block !important;
+    background: currentcolor;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    opacity: 1;
+    transition: transform var(--wp--custom--accordion--animation-duration, 0s) var(--wp--custom--transition--timing-function, ease-in);
+  }
 
-	&::after {
-		transform: rotate(90deg);
-	}
+  &::after {
+    transform: scaleY(1) rotate(90deg);
+  }
 }
 
 .is-style-accordion details[open] summary span::after {
-	opacity: 0;
+  transform: scaleY(0) rotate(90deg);
 }
 
 .is-style-accordion section {
-	display: block;
-	padding-top: var(--wp--style--block-gap);
+  display: block;
 }
 
 .is-style-accordion hr {
-	margin: 0;
-}
-
-details {
-	transition: var(--wp--custom--transition);
-}
-
-details > section {
-	transition: var(--wp--custom--transition);
-
-	&.is-open {
-		animation: accordion-open 0.2s ease-in-out;
-	}
-}
-
-@keyframes accordion-open {
-
-	0% {
-		height: 0;
-	}
-
-	100% {
-		height: var(--height);
-	}
+  margin: 0;
 }

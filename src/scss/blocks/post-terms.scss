@@ -1,0 +1,35 @@
+.wp-block-post-terms {
+
+	&.justify-center,
+	&.aligncenter {
+		text-align: center;
+		justify-content: center;
+	}
+
+	&.justify-right,
+	&.alignright {
+		text-align: right;
+		justify-content: flex-end;
+	}
+
+	&.has-font-size {
+
+		.wp-block-post-terms__link {
+			font-size: inherit;
+		}
+	}
+
+	&.is-style-list {
+		display: flex;
+		flex-direction: column;
+		list-style-type: none;
+		padding: 0;
+
+		a {
+			&:before {
+				content: "›";
+				margin-right: 0.5em;
+			}
+		}
+	}
+}

@@ -23,6 +23,7 @@ const underlineTypes = [
 	'double',
 	'brush',
 	'circle',
+	'scribble',
 ];
 
 const Edit = ( { isActive, value, onChange } : FormatProps ) => {

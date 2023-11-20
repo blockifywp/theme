@@ -124,8 +124,6 @@ const Edit = ( props: formatProps ) => {
 		onChange,
 	} = props;
 
-	const [ isOpen, setIsOpen ] = useState( false );
-
 	const { fontSizes } = useSelect<any>( ( select : SelectorMap ) => {
 		return {
 			fontSizes: select( 'core/block-editor' )?.getSettings()?.fontSizes,

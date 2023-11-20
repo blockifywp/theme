@@ -1,0 +1,39 @@
+$border_width: var(--wp--custom--border--width, 1px);
+$border_color: var(--wp--custom--border--color, currentColor);
+$size: 1.2em;
+
+input[type="radio"] {
+	appearance: none;
+	width: $size;
+	height: $size;
+	margin: 0 0.5em 0 0;
+	border: $border_width solid $border_color;
+	border-radius: calc(#{$size} / 2);
+	display: inline-grid;
+	place-content: center;
+	color: var(--wp--preset--color--primary, currentColor);
+	background: var(--wp--custom--body--background, currentColor);
+
+	&::before {
+		content: "";
+		width: $size;
+		height: $size;
+		border-radius: calc(#{$size} / 2);
+		transform: scale(0);
+		transition: var(--wp--custom--transition);
+		background: var(--wp--custom--body--background, currentColor);
+	}
+
+	&:checked {
+		background-color: currentColor;
+	}
+
+	&:checked::before {
+		transform: scale(.33);
+	}
+
+	&:focus {
+		outline: $border_width solid currentColor;
+		outline-offset: $border_width;
+	}
+}

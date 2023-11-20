@@ -29,9 +29,7 @@ function render_block_onclick_attribute( string $html, array $block ): string {
 		return $html;
 	}
 
-	$on_click = str_replace( '"', "'", $on_click );
-	$on_click = trim( rtrim( $on_click, ';' ) );
-	$on_click = reduce_whitespace( $on_click );
+	$on_click = format_inline_js( $on_click );
 	$link     = null;
 
 	// Groups and buttons.
@@ -65,4 +63,22 @@ function render_block_onclick_attribute( string $html, array $block ): string {
 	}
 
 	return $html;
+}
+
+/**
+ * Formats inline JS.
+ *
+ * @since 1.2.9
+ *
+ * @param string $js JS.
+ *
+ * @return string
+ */
+function format_inline_js( string $js ): string {
+	$js = str_replace( '"', "'", $js );
+	$js = trim( rtrim( $js, ';' ) );
+	$js = reduce_whitespace( $js );
+	$js = remove_line_breaks( $js );
+
+	return $js;
 }

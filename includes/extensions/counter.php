@@ -43,7 +43,7 @@ function render_counter_block_variation( string $html, array $block ): string {
 	return $dom->saveHTML();
 }
 
-add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
+add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 3 );
 /**
  * Conditionally add counter JS.
  *
@@ -51,11 +51,12 @@ add_filter( 'blockify_inline_js', NS . 'add_counter_js', 10, 2 );
  *
  * @param string $js   Inline js.
  * @param string $html Block html content.
+ * @param bool   $all  Whether to add all inline js.
  *
  * @return string
  */
-function add_counter_js( string $js, string $html ): string {
-	if ( str_contains( $html, 'is-style-counter' ) ) {
+function add_counter_js( string $js, string $html, bool $all ): string {
+	if ( $all || str_contains( $html, 'is-style-counter' ) ) {
 		$js .= file_get_contents( get_dir() . 'assets/js/counter.js' );
 	}
 

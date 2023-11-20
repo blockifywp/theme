@@ -4,36 +4,41 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use WP_Block;
 use function add_filter;
 use function explode;
 use function get_search_query;
 use function implode;
+use function in_array;
 use function sanitize_title_with_dashes;
 use function sprintf;
 
-add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 2 );
+add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 3 );
 /**
  * Modifies front end HTML output of block.
  *
  * @since 0.0.2
  *
- * @param string $html  Block HTML.
- * @param array  $block Block data.
+ * @param string   $html   Block HTML.
+ * @param array    $block  Block data.
+ * @param WP_Block $object Block object.
  *
  * @return string
  */
-function render_heading_block( string $html, array $block ): string {
-	$dom = dom( $html );
-
-	// No way of knowing tag.
-	$heading = get_dom_element( '*', $dom );
+function render_heading_block( string $html, array $block, WP_Block $object ): string {
+	$dom     = dom( $html );
+	$level   = $block['attrs']['level'] ?? 2;
+	$heading = get_dom_element( 'h' . $level, $dom );
 
 	if ( ! $heading ) {
 		return $html;
 	}
 
-	$classes   = explode( ' ', $heading->getAttribute( 'class' ) );
-	$classes[] = 'wp-block-heading';
+	$classes = explode( ' ', $heading->getAttribute( 'class' ) );
+
+	if ( ! in_array( 'wp-block-heading', $classes, true ) ) {
+		$classes[] = 'wp-block-heading';
+	}
 
 	$styles = css_string_to_array( $heading->getAttribute( 'style' ) );
 
@@ -42,6 +47,8 @@ function render_heading_block( string $html, array $block ): string {
 	if ( $gap ) {
 		$styles['gap'] = format_custom_property( $gap );
 	}
+
+	$styles = add_shorthand_property( $styles, 'margin', $block['attrs']['style']['spacing']['margin'] ?? [] );
 
 	$heading->setAttribute(
 		'class',
@@ -70,7 +77,6 @@ function render_heading_block( string $html, array $block ): string {
 		$heading->removeAttribute( 'style' );
 	}
 
-	$level        = $block['attrs']['level'] ?? null;
 	$search_query = get_search_query();
 
 	if ( $level === 1 && $search_query && $heading->textContent === __( 'Search Results', 'blockify' ) ) {

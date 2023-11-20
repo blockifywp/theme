@@ -1,81 +1,159 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
-  "title": "Dark Mode",
+  "title": "Dark",
   "settings": {
-    "custom": {
-      "darkMode": {
-        "palette": {
-          "foreground": "#151929",
-          "heading": "#191f31",
-          "body": "#3f4c7c",
-          "outline": "#d0d4e3",
-          "surface": "#f6f6f9",
-          "background": "#ffffff"
-        }
-      }
-    },
     "color": {
       "palette": [
         {
-          "color": "#3858e9",
-          "name": "Primary",
-          "slug": "primary"
+          "name": "Primary 900",
+          "slug": "primary-900",
+          "color": "#e0e7ff"
         },
         {
-          "color": "#33f078",
-          "name": "Secondary",
-          "slug": "secondary"
+          "name": "Primary 700",
+          "slug": "primary-700",
+          "color": "#9eafff"
         },
         {
-          "color": "#151929",
-          "name": "Background",
-          "slug": "background"
+          "name": "Primary 600",
+          "slug": "primary-600",
+          "color": "#4b4efc"
         },
         {
-          "color": "#1d243c",
-          "name": "Surface",
-          "slug": "surface"
+          "name": "Primary 500",
+          "slug": "primary-500",
+          "color": "#4539f2"
         },
         {
-          "color": "#3f4c7c",
-          "name": "Outline",
-          "slug": "outline"
+          "name": "Primary 300",
+          "slug": "primary-300",
+          "color": "#3a2cd6"
         },
         {
-          "color": "#7e87ad",
-          "name": "Neutral",
-          "slug": "neutral"
+          "name": "Primary 100",
+          "slug": "primary-100",
+          "color": "#1a1e50"
         },
         {
-          "color": "#d0d4e3",
-          "name": "Body",
-          "slug": "body"
+          "name": "Neutral 950",
+          "slug": "neutral-950",
+          "color": "#ffffff"
         },
         {
-          "color": "#f6f6f9",
-          "name": "Heading",
-          "slug": "heading"
+          "name": "Neutral 900",
+          "slug": "neutral-900",
+          "color": "#f9fafb"
         },
         {
-          "color": "#ffffff",
-          "name": "Foreground",
-          "slug": "foreground"
+          "name": "Neutral 800",
+          "slug": "neutral-800",
+          "color": "#f3f4f6"
         },
         {
-          "color": "currentColor",
-          "name": "Current Color",
-          "slug": "currentColor"
+          "name": "Neutral 700",
+          "slug": "neutral-700",
+          "color": "#e5e7eb"
         },
         {
-          "color": "inherit",
-          "name": "Inherit",
-          "slug": "inherit"
+          "name": "Neutral 600",
+          "slug": "neutral-600",
+          "color": "#a6b3cb"
         },
         {
-          "color": "transparent",
+          "name": "Neutral 500",
+          "slug": "neutral-500",
+          "color": "#9ca3af"
+        },
+        {
+          "name": "Neutral 400",
+          "slug": "neutral-400",
+          "color": "#6b7280"
+        },
+        {
+          "name": "Neutral 300",
+          "slug": "neutral-300",
+          "color": "#4b5563"
+        },
+        {
+          "name": "Neutral 200",
+          "slug": "neutral-200",
+          "color": "#374151"
+        },
+        {
+          "name": "Neutral 100",
+          "slug": "neutral-100",
+          "color": "#1f2937"
+        },
+        {
+          "name": "Neutral 50",
+          "slug": "neutral-50",
+          "color": "#141f2f"
+        },
+        {
+          "name": "Neutral 0",
+          "slug": "neutral-0",
+          "color": "#111827"
+        },
+        {
+          "name": "Success 600",
+          "slug": "success-600",
+          "color": "#34d399"
+        },
+        {
+          "name": "Success 500",
+          "slug": "success-500",
+          "color": "#10b981"
+        },
+        {
+          "name": "Success 100",
+          "slug": "success-100",
+          "color": "#022c22"
+        },
+        {
+          "name": "Warning 600",
+          "slug": "warning-600",
+          "color": "#facc15"
+        },
+        {
+          "name": "Warning 500",
+          "slug": "warning-500",
+          "color": "#eab308"
+        },
+        {
+          "name": "Warning 100",
+          "slug": "warning-100",
+          "color": "#451a03"
+        },
+        {
+          "name": "Error 600",
+          "slug": "error-600",
+          "color": "#fb7185"
+        },
+        {
+          "name": "Error 500",
+          "slug": "error-500",
+          "color": "#f43f5e"
+        },
+        {
+          "name": "Error 100",
+          "slug": "error-100",
+          "color": "#4c0519"
+        },
+        {
           "name": "Transparent",
-          "slug": "transparent"
+          "slug": "transparent",
+          "color": "transparent"
+        },
+        {
+          "name": "Current",
+          "slug": "current",
+          "color": "currentcolor"
+        },
+        {
+          "name": "Inherit",
+          "slug": "inherit",
+          "color": "inherit"
         }
       ]
     }

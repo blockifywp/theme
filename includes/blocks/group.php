@@ -5,46 +5,61 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function array_diff;
 use function explode;
 use function implode;
 use function method_exists;
 
-add_filter( 'render_block_core/group', NS . 'render_block_layout', 10, 2 );
+add_filter( 'render_block_core/group', NS . 'render_group_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
- * @since 0.0.20
+ * @since 1.3.0
  *
  * @param string $html  Block HTML.
  * @param array  $block Block data.
  *
  * @return string
  */
-function render_block_layout( string $html, array $block ): string {
-	$dom = dom( $html );
-	$div = get_dom_element( 'div', $dom );
-
-	if ( $div && $div->tagName === 'main' ) {
-		$div->setAttribute(
-			'class',
-			'wp-site-main ' . $div->getAttribute( 'class' )
-		);
-	}
-
-	if ( $block['attrs']['minHeight'] ?? null ) {
-		$div->setAttribute(
-			'style',
-			$div->getAttribute( 'style' ) . ';min-height:' . $block['attrs']['minHeight']
-		);
-	}
-
-	$html = $dom->saveHTML();
-
+function render_group_block( string $html, array $block ): string {
 	if ( ( $block['attrs']['layout']['orientation'] ?? null ) === 'marquee' ) {
 		$html = render_marquee_block_variation( $html, $block );
 	}
 
-	return $html;
+	$dom   = dom( $html );
+	$first = get_dom_element( '*', $dom );
+
+	if ( ! $first ) {
+		return $html;
+	}
+
+	if ( $block['attrs']['minHeight'] ?? null ) {
+		$first->setAttribute(
+			'style',
+			$first->getAttribute( 'style' ) . ';min-height:' . $block['attrs']['minHeight']
+		);
+	}
+
+	$margin  = $block['attrs']['style']['spacing']['margin'] ?? [];
+	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
+
+	$div_styles = css_string_to_array( $first->getAttribute( 'style' ) );
+
+	foreach ( [ 'top', 'right', 'bottom', 'left' ] as $side ) {
+		if ( ( $margin[ $side ] ?? null ) !== null ) {
+			$div_styles["margin-$side"] = format_custom_property( $margin[ $side ] );
+		}
+
+		if ( ( $padding[ $side ] ?? null ) !== null ) {
+			$div_styles["padding-$side"] = format_custom_property( $padding[ $side ] );
+		}
+	}
+
+	if ( $div_styles ) {
+		$first->setAttribute( 'style', css_array_to_string( $div_styles ) );
+	}
+
+	return $dom->saveHTML();
 }
 
 /**
@@ -58,19 +73,18 @@ function render_block_layout( string $html, array $block ): string {
  * @return string
  */
 function render_marquee_block_variation( string $html, array $block ): string {
-	$dom = dom( $html );
-	$div = get_dom_element( 'div', $dom );
+	$dom   = dom( $html );
+	$first = get_dom_element( '*', $dom );
 
-	if ( ! $div ) {
+	if ( ! $first ) {
 		return $html;
 	}
 
 	$repeat  = $block['attrs']['repeatItems'] ?? 2;
-	$wrap    = $dom->createElement( 'div' );
-	$styles  = css_string_to_array( $div->getAttribute( 'style' ) );
-	$classes = explode( ' ', $div->getAttribute( 'class' ) );
-
-	unset( $classes[ array_search( 'is-marquee', $classes, true ) ] );
+	$wrap    = create_element( 'div', $dom );
+	$styles  = css_string_to_array( $first->getAttribute( 'style' ) );
+	$classes = explode( ' ', $first->getAttribute( 'class' ) );
+	$classes = array_diff( $classes, [ 'is-marquee' ] );
 
 	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
 
@@ -78,15 +92,15 @@ function render_marquee_block_variation( string $html, array $block ): string {
 		$styles['--marquee-gap'] = format_custom_property( $gap );
 	}
 
-	$div->setAttribute( 'class', implode( ' ', $classes ) );
-	$div->setAttribute( 'style', css_array_to_string( $styles ) );
+	$first->setAttribute( 'class', implode( ' ', $classes ) );
+	$first->setAttribute( 'style', css_array_to_string( $styles ) );
 
 	$wrap->setAttribute( 'class', 'is-marquee' );
 
-	$count = $div->childNodes->count();
+	$count = $first->childNodes->count();
 
 	for ( $i = 0; $i < $count; $i++ ) {
-		$item = $div->childNodes->item( $i );
+		$item = $first->childNodes->item( $i );
 
 		if ( ! $item || ! method_exists( $item, 'setAttribute' ) ) {
 			continue;
@@ -109,7 +123,7 @@ function render_marquee_block_variation( string $html, array $block ): string {
 		}
 	}
 
-	$div->insertBefore( $wrap, $div->firstChild );
+	$first->insertBefore( $wrap, $first->firstChild );
 
 	return $dom->saveHTML();
 }

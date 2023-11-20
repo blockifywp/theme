@@ -1,29 +1,45 @@
-@import "../abstracts/input";
+@import "../abstracts/input.scss";
 
 form {
 	margin-block-end: 0; // Remove user agent style.
 }
 
 label {
-	display: block;
-	font-size: var(--wp--custom--label--font-size, var(--wp--preset--font-size--18, smaller));
+	display: flex;
+	align-items: center;
+	font-size: var(--wp--custom--label--font-size, inherit);
 	font-weight: var(--wp--custom--label--font-weight, var(--wp--custom--font-weight--medium, 500));
 	margin-bottom: var(--wp--custom--label--margin-bottom, 0.5em);
+	width: 100%;
+
+	input + & {
+		width: auto;
+	}
 }
 
 fieldset {
 	margin: var(--wp--style--block-gap, 1em) 0;
-	padding: var(--wp--style--block-gap, 0);
-	border: var(--wp--custom--border, 0);
+	padding: var(--wp--custom--fieldset--padding, 0);
+	border: var(--wp--custom--fieldset--border, 0);
 	border-radius: var(--wp--custom--border--radius);
+
+	p {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: calc(var(--wp--style--block-gap, 1em) / 2);
+		width: 100%;
+	}
 }
 
 legend {
 	width: 100%;
 	margin: 0 0 var(--wp--style--block-gap, 1em);
+	padding: 0;
 	float: left;
 	font-family: var(--wp--custom--heading--font-family);
 	font-weight: var(--wp--custom--heading--font-weight);
+	color: var(--wp--custom--heading--color);
 }
 
 input,
@@ -37,22 +53,29 @@ textarea {
 select,
 textarea,
 input:not([type="checkbox"],[type="submit"],[type="button"],[type="radio"]) {
-	margin: var(--wp--custom--input--margin, 0 0 var(--wp--style--block-gap, 1em));
+	margin: 0 0 var(--wp--style--block-gap, 1em);
 	padding: $padding;
 	font-size: var(--wp--custom--button--font-size);
 	width: var(--wp--custom--input--width, 100%);
 	color: inherit;
 }
 
-// Match .wp-element-button workaround. Line height doesn't work.
-input:not([type="checkbox"],[type="submit"],[type="button"],[type="radio"],[type="file"]) {
-	height: calc(1em + var(--wp--custom--button--padding-top, 1em) + var(--wp--custom--button--padding-bottom, 1em) + (var(--wp--custom--border--width, 1px) * 2));
+p input:not([type="checkbox"],[type="submit"],[type="button"],[type="radio"]) {
+	margin-bottom: 0;
 }
 
 // Override plugins.
 textarea {
 	min-width: 100%;
 	max-width: 100%;
+}
+
+select {
+	appearance: none;
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 0.5em center;
+	background-size: 1em;
 }
 
 ::placeholder {
@@ -65,3 +88,10 @@ textarea {
 	opacity: var(--wp--custom--placeholder--opacity, 0.5);
 }
 
+[disabled] {
+	opacity: var(--wp--custom--disabled--opacity, 0.5);
+	cursor: not-allowed;
+
+	--wp--custom--button--hover-opacity: 0.5;
+	--wp--custom--ghost--hover--opacity: 0.1;
+}

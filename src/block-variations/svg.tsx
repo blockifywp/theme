@@ -5,9 +5,11 @@ import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
-	TextareaControl,
+	ExternalLink,
 	PanelBody,
-	PanelRow, ExternalLink, ToggleControl,
+	PanelRow,
+	TextareaControl,
+	ToggleControl,
 } from '@wordpress/components';
 import domReady from '@wordpress/dom-ready';
 
@@ -17,7 +19,7 @@ const svgVariation: BlockVariation = {
 	icon: code,
 	isDefault: false,
 	category: window?.blockify?.isPlugin ? 'blockify' : 'media',
-	scope: [ 'inserter', 'transform', 'block' ],
+	scope: [],
 	description: __( 'Insert an inline SVG.', 'blockify' ),
 	attributes: {
 		className: 'is-style-svg',

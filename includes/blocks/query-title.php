@@ -38,7 +38,7 @@ function render_archive_title_block( string $html, array $block ): string {
 	$text_align = $block['attrs']['textAlign'] ?? null;
 
 	$dom = dom( $html );
-	$h1  = $dom->createElement( 'h1' );
+	$h1  = create_element( 'h1', $dom );
 
 	$classes = [
 		'wp-block-query-title',

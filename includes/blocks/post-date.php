@@ -12,8 +12,8 @@ add_filter( 'render_block_core/post-date', NS . 'render_post_date', 10, 2 );
  *
  * @since 0.0.1
  *
- * @param string $html The block content.
- * @param array  $block   The block.
+ * @param string $html  The block content.
+ * @param array  $block The block.
  *
  * @return string
  */
@@ -28,14 +28,10 @@ function render_post_date( string $html, array $block ): string {
 			return $html;
 		}
 
-		$styles = [
-			'margin-top'    => $margin['top'] ?? null,
-			'margin-right'  => $margin['right'] ?? null,
-			'margin-bottom' => $margin['bottom'] ?? null,
-			'margin-left'   => $margin['left'] ?? null,
-		];
+		$styles = css_string_to_array( $div->getAttribute( 'style' ) );
+		$styles = add_shorthand_property( $styles, 'margin', $margin );
 
-		$div->setAttribute( 'style', css_array_to_string( $styles ) . $div->getAttribute( 'style' ) );
+		$div->setAttribute( 'style', css_array_to_string( $styles ) );
 
 		$html = $dom->saveHTML();
 	}

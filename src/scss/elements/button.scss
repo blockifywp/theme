@@ -1,19 +1,9 @@
-@import "../abstracts/button";
+@import "../abstracts/button.scss";
+@import "../abstracts/ghost.scss";
 
-.wp-element-button {
-	position: relative;
-	display: inline-flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-	transition: var(--wp--custom--transition, inherit);
-	background-clip: padding-box !important; // Semi transparent borders.
-	cursor: pointer;
+#{$buttons} {
 
-	&:not(.has-background) {
-		background: var(--wp--custom--button--background);
-	}
+	@include button;
 
 	br + span {
 		width: 100%;
@@ -22,22 +12,55 @@
 
 	&:active,
 	&:hover,
-	&:focus {
+	&:focus,
+	&.is-focus {
 		opacity: var(--wp--custom--button--hover-opacity, 0.82);
 	}
 
 	.nowrap & {
 		flex-wrap: nowrap;
 	}
+
+	&:not(.has-background) {
+		background: var(--wp--custom--button--background);
+	}
+
+	&.is-style-ghost {
+
+		@include ghost;
+
+		color: var(--wp--custom--ghost--color, inherit);
+
+		.is-style-dark & {
+			color: var(--wp--custom--dark-mode--ghost--color, inherit);
+		}
+
+		@media(prefers-color-scheme: dark) {
+
+			.default-mode-auto:not(.is-style-light):not(.is-style-dark) & {
+				color: var(--wp--custom--dark-mode--ghost--color, inherit);
+			}
+		}
+	}
 }
 
-// Commonly used class. (wp.org, woocommerce, etc.). !important for EDD.
-.button,
-.is-style-button,
-[type="submit"],
-[type="button"]:not(.wp-block-social-link-anchor,.components-button,[id*="mce"],[aria-controls]) {
+.is-style-badges,
+.is-style-small {
+	--wp--custom--button--font-size: 12px;
+	--wp--custom--button--padding-top: 6px;
+	--wp--custom--button--padding-right: 12px;
+	--wp--custom--button--padding-bottom: 6px;
+	--wp--custom--button--padding-left: 12px;
+	--wp--custom--button--gap: 6px;
+}
 
-	@include button;
+.is-style-large {
+	--wp--custom--button--font-size: 16px;
+	--wp--custom--button--padding-top: 12px;
+	--wp--custom--button--padding-right: 20px;
+	--wp--custom--button--padding-bottom: 12px;
+	--wp--custom--button--padding-left: 20px;
+	--wp--custom--button--gap: 8px;
 }
 
 [type="reset"] {

@@ -1,17 +1,47 @@
-$padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-right, 1.5em) var(--wp--custom--button--padding-bottom, 1em) var(--wp--custom--button--padding-left, 1.5em);
+$buttons: (
+	'.wp-element-button',
+	'.is-style-button',
+	'.button:not(.components-button)',
+	'[type="submit"]'
+);
 
 @mixin button {
 	height: auto; // Editor component button styles.
 	color: var(--wp--custom--button--color, inherit);
-	background: var(--wp--custom--button--background, inherit);
-	padding: $padding;
+	padding: var(--wp--custom--button--padding-top, 8px) var(--wp--custom--button--padding-right, 16px) var(--wp--custom--button--padding-bottom, 8px) var(--wp--custom--button--padding-left, 16px);
 	border-radius: var(--wp--custom--button--border-radius, inherit);
 	border-width: var(--wp--custom--button--border-width);
 	font-size: var(--wp--custom--button--font-size);
 	font-weight: var(--wp--custom--button--font-weight);
-	line-height: 1; // Force line height (unknown parent).
-	display: inline-block;
+	font-variation-settings: var(--wp--custom--button--font-variation-settings);
 	text-decoration: none;
 	box-shadow: var(--wp--custom--button--box-shadow);
 	cursor: pointer;
+	-webkit-appearance: none;
+
+	// Layout.
+	display: inline-flex;
+	position: relative;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	transition: var(--wp--custom--transition, inherit);
+	background-clip: padding-box !important; // Semi transparent borders.
+
+	&:hover,
+	&:focus {
+		box-shadow: var(--wp--custom--button--box-shadow--hover);
+	}
+
+	.is-style-dark &:not(.has-background) {
+		background: var(--wp--custom--dark-mode--button--background, var(--wp--custom--button--background));
+	}
+
+	@media(prefers-color-scheme: dark) {
+
+		.default-mode-auto:not(.is-style-light):not(.is-style-dark) &:not(.has-background) {
+			background: var(--wp--custom--dark-mode--ghost--color, var(--wp--custom--button--background));
+		}
+	}
 }

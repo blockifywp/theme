@@ -1,3 +1,16 @@
-export const Label = ( { children }: { children: string | JSX.Element } ) => {
-	return <p className={ 'blockify-control-label' }>{ children }</p>;
+import { CSSProperties } from 'react';
+
+export const Label = ( { children, style }: {
+	children: string | JSX.Element,
+	style?: CSSProperties
+} ) => {
+	return <p
+		className={ 'blockify-control-label' }
+		style={ {
+			margin: '8px 0',
+			...style,
+		} }
+	>
+		{ children }
+	</p>;
 };

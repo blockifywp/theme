@@ -21,37 +21,16 @@
 		}
 	}
 
-	&.is-style-icon {
-
-		svg {
-			height: auto;
-		}
-	}
-
 	a {
 		display: inherit;
+		object-position: inherit;
 	}
 
-	&.is-style-svg {
-		margin: 0;
+	&[style*="-radius"] {
 
-		img[src="#"],
-		figcaption {
-			display: none;
+		img {
+			border-radius: inherit;
 		}
-
-		svg {
-			display: block;
-		}
-	}
-
-	&__svg {
-		display: block;
-		max-width: none;
-		background: currentColor;
-		-webkit-mask-repeat: no-repeat;
-		-webkit-mask-size: contain;
-		-webkit-mask-position: center;
 	}
 }
 
@@ -59,7 +38,7 @@ figure.wp-block-image {
 	text-align: center;
 
 	&.aligncenter {
-		display: block !important;
+		display: block;
 	}
 
 	img {
@@ -68,5 +47,6 @@ figure.wp-block-image {
 		max-width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+		object-position: inherit;
 	}
 }

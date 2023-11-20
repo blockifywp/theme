@@ -10,3 +10,4 @@ vendor/
 package-lock.json
 composer.lock
 bun.lockb
+*DS_Store

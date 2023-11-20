@@ -36,6 +36,12 @@ function render_post_author_block( string $html, array $block ): string {
 		$styles['border-radius'] = $block['attrs']['style']['border']['radius'] ?? null;
 	}
 
+	$gap = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+
+	if ( $gap ) {
+		$styles['--wp--style--block-gap'] = format_custom_property( $gap );
+	}
+
 	$div->setAttribute(
 		'style',
 		( $style ? $style . ';' : '' ) . css_array_to_string( $styles )

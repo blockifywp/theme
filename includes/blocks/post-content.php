@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use DOMXPath;
 use function add_filter;
 use function explode;
 use function implode;
@@ -54,6 +55,28 @@ function render_post_content_block( string $html, array $block ): string {
 		$html = $dom->saveHTML();
 	}
 
-	return $html;
-}
+	$limit = (int) ( $block['attrs']['contentLimit'] ?? 0 );
 
+	if ( ! $limit ) {
+		return $html;
+	}
+
+	$dom   = dom( $html );
+	$xpath = new DOMXPath( $dom );
+	$nodes = $xpath->query( '//text()' );
+	$index = 0;
+
+	foreach ( $nodes as $node ) {
+		if ( $index > $limit ) {
+			$node->parentNode->removeChild( $node );
+		}
+
+		if ( $node->parentNode && ! $node->textContent ) {
+			$node->parentNode->removeChild( $node );
+		}
+
+		$index++;
+	}
+
+	return $dom->saveHTML();
+}

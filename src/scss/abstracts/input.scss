@@ -1,14 +1,19 @@
-$padding: var(--wp--custom--button--padding-top, 1em) var(--wp--custom--button--padding-top, 1.2em) var(--wp--custom--button--padding-bottom, 1em);
+$padding: calc(var(--wp--custom--button--padding-top, 1em) - 1px) var(--wp--custom--button--padding-top, 1.2em) calc(var(--wp--custom--button--padding-bottom, 1em) - 1px);
 
 @mixin input {
 	font: inherit;
 	transition: var(--wp--custom--transition, inherit);
-	border: var(--wp--custom--input--border, var(--wp--custom--border, 0));
-	border-radius: var(--wp--custom--button--border-radius, inherit);
+	border-width: var(--wp--custom--border--width, 1px);
+	border-radius: var(--wp--custom--border--radius, inherit);
+	border-style: var(--wp--custom--border--style, solid);
+	border-color: var(--wp--custom--border--color, currentColor);
 	background: var(--wp--custom--input--background, transparent);
+	box-shadow: var(--wp--custom--input--box-shadow, none);
 	outline: none;
+	line-height: var(--wp--custom--button--line-height, inherit);
 
 	&:focus {
-		border-color: var(--wp--custom--input-focus--border-color, var(--wp--preset--color--primary, currentColor));
+		border-color: var(--wp--custom--input--focus--border-color, currentColor);
+		box-shadow: var(--wp--custom--input--focus--box-shadow, none);
 	}
 }

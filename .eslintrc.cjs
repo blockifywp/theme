@@ -9,6 +9,19 @@ module.exports = {
 	root: true,
 	rules: {
 		'@typescript-eslint/indent': [ 'error', 'tab' ],
+		'@typescript-eslint/member-delimiter-style': [
+			'warn',
+			{
+				'multiline': {
+					'delimiter': 'semi',
+					'requireLast': true
+				},
+				'singleline': {
+					'delimiter': 'semi',
+					'requireLast': false
+				}
+			}
+		]
 	},
 	settings: {
 		'import/resolver': {

@@ -6,10 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function explode;
-use function get_bloginfo;
-use function gmdate;
 use function implode;
-use function str_replace;
 
 add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 11, 2 );
 /**
@@ -23,16 +20,6 @@ add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 11, 2 
  * @return string
  */
 function render_paragraph_block( string $html, array $block ): string {
-	$tags = [
-		'[year]'         => gmdate( 'Y' ),
-		'{current_year}' => gmdate( 'Y' ),
-		'{site_title}'   => get_bloginfo( 'name' ),
-	];
-
-	foreach ( $tags as $tag => $value ) {
-		$html = str_replace( $tag, $value, $html );
-	}
-
 	$dom = dom( $html );
 	$p   = get_dom_element( 'p', $dom );
 

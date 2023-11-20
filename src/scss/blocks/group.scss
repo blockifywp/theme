@@ -3,6 +3,11 @@
 	.wp-block-column > & {
 		max-width: 100% !important;
 	}
+
+	&.is-vertical {
+		flex-direction: column;
+		gap: 1em;
+	}
 }
 
 // Gutenberg override.

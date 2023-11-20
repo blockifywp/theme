@@ -13,162 +13,14 @@ import {
 	ButtonGroup,
 	Button, PanelBody,
 } from '@wordpress/components';
-import { Label } from '../components/label';
+import { Label } from '../components';
 import { useState } from '@wordpress/element';
 import { desktop, mobile, trash } from '@wordpress/icons';
-import { toKebabCase } from '../utility/string';
 import { InspectorControls } from '@wordpress/block-editor';
 
 const blockSupports = window?.blockify?.blockSupports ?? {};
 
 export const supportsPosition = ( name: string ): boolean => blockSupports?.[ name ]?.blockifyPosition ?? false;
-
-const config: positionOptions = window?.blockify?.positionOptions ?? {};
-
-addFilter(
-	'blocks.registerBlockType',
-	'blockify/add-position-attributes',
-	( props, name ): object => {
-		if ( supportsPosition( name ) ) {
-			const newAttributes: { [ key: string ]: object } = {};
-
-			Object.keys( config ).forEach( ( key ) => {
-				newAttributes[ key ] = {
-					type: 'object',
-				};
-			} );
-
-			props.attributes = {
-				...props.attributes,
-				style: {
-					...newAttributes,
-					...( props?.attributes?.style ?? {} ),
-				},
-			};
-		}
-
-		return props;
-	},
-	0
-);
-
-const getClasses = ( attributes: attributes ): string[] => {
-	const classes: string[] = [];
-	const style = attributes?.style ?? {};
-
-	Object.keys( config ).forEach( ( key: string ) => {
-		const property = toKebabCase( key );
-
-		if ( config?.[ key ]?.options ) {
-			if ( style?.[ key ]?.all ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.all ) }` );
-			}
-
-			if ( style?.[ key ]?.mobile ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.mobile ) }-mobile` );
-			}
-
-			if ( style?.[ key ]?.desktop ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.desktop ) }-desktop` );
-			}
-		} else if ( style?.[ key ] ) {
-			classes.push( `has-${ property }` );
-		}
-	} );
-
-	return classes;
-};
-
-const getStyles = ( attributes: attributes ): object => {
-	const styles: { [ name: string ]: string } = {};
-
-	const style = attributes?.style ?? {};
-
-	Object.keys( config ).forEach( ( key: string ) => {
-		if ( config?.[ key ]?.options ) {
-			return;
-		}
-
-		const property = toKebabCase( key );
-
-		if ( style?.[ key ]?.all ?? null ) {
-			styles[ `--${ property }` ] = style?.[ key ]?.all;
-		}
-
-		if ( style?.[ key ]?.mobile ?? null ) {
-			styles[ `--${ property }-mobile` ] = style?.[ key ]?.mobile;
-		}
-
-		if ( style?.[ key ]?.desktop ?? null ) {
-			styles[ `--${ property }-desktop` ] = style?.[ key ]?.desktop;
-		}
-	} );
-
-	return styles;
-};
-
-addFilter(
-	'editor.BlockListBlock',
-	'blockify/with-position-style',
-	createHigherOrderComponent( ( BlockListBlock ) => {
-		return ( props: blockProps ) => {
-			const { name, attributes } = props;
-
-			if ( ! supportsPosition( name ) ) {
-				return <BlockListBlock { ...props } />;
-			}
-
-			const classes = getClasses( attributes );
-			const styles = getStyles( attributes );
-			const wrapperProps = props?.wrapperProps ?? {};
-
-			props = {
-				...props,
-				style: { ...props?.style, ...styles },
-			};
-
-			if ( wrapperProps ) {
-				wrapperProps.style = { ...wrapperProps?.style, ...styles };
-			}
-
-			classes.forEach( ( className: string ) => {
-				if ( ! props?.className?.includes( className ) ) {
-					props.className = props?.className + ' ' + className;
-				}
-			} );
-
-			props.wrapperProps = wrapperProps;
-
-			return <BlockListBlock { ...props } />;
-		};
-	}, 'withPositionStyle' )
-);
-
-addFilter(
-	'blocks.getSaveContent.extraProps',
-	'blockify/save-position-style',
-	( props: blockProps ) => {
-		const { name, attributes } = props;
-
-		if ( ! blockSupports?.[ name ]?.blockifyPosition ) {
-			return props;
-		}
-
-		const classes = getClasses( attributes );
-		const styles = getStyles( attributes );
-
-		classes.forEach( ( className: string ) => {
-			if ( ! props?.className?.includes( className ) ) {
-				props.className = props?.className + ' ' + className;
-			}
-		} );
-
-		props.style = { ...props?.style, ...styles };
-
-		return props;
-	},
-	11
-);
 
 export const PositionControl = ( props: blockProps, screen: string ) => {
 	const { attributes, setAttributes } = props;
@@ -201,7 +53,7 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 						<SelectControl
 							label={ __( 'Position', 'blockify' ) }
 							value={ style?.position?.[ screen ] ?? '' }
-							options={ config?.position?.options }
+							options={ window?.blockify?.extensionOptions?.position?.options }
 							onChange={ ( value ) => {
 								setPosition( { position: value } );
 							} }
@@ -209,7 +61,7 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 					</FlexItem>
 					<FlexItem>
 						<NumberControl
-							label={ config?.zIndex?.label }
+							label={ window?.blockify?.extensionOptions?.zIndex?.label }
 							value={ style?.zIndex?.[ screen ] }
 							onChange={ ( value: string ) => {
 								setPosition( { zIndex: value } );
@@ -223,14 +75,13 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 				</Flex>
 			</PanelRow>
 
-			{ style?.position &&
 			<PanelRow>
 				<Flex className={ 'blockify-flex-controls' }>
 					<FlexItem>
 						<SelectControl
 							label={ __( 'Overflow', 'blockify' ) }
 							value={ style?.overflow?.[ screen ] ?? '' }
-							options={ config?.overflow?.options }
+							options={ window?.blockify?.extensionOptions?.overflow?.options }
 							onChange={ ( value ) => {
 								setPosition( { overflow: value } );
 							} }
@@ -240,14 +91,14 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 						<SelectControl
 							label={ __( 'Pointer Events', 'blockify' ) }
 							value={ style?.pointerEvents?.[ screen ] ?? '' }
-							options={ config?.pointerEvents?.options }
+							options={ window?.blockify?.extensionOptions?.pointerEvents?.options }
 							onChange={ ( value ) => {
 								setPosition( { pointerEvents: value } );
 							} }
 						/>
 					</FlexItem>
 				</Flex>
-			</PanelRow> }
+			</PanelRow>
 
 			<PanelRow>
 				<BoxControl

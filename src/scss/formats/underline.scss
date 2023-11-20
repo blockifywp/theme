@@ -3,6 +3,7 @@
 	text-decoration-color: var(--wp--custom--underline--color, currentColor);
 	text-underline-offset: var(--wp--custom--underline--offset, 0.2em);
 	text-decoration-thickness: var(--wp--custom--underline--width);
+	-webkit-text-fill-color: currentColor;
 }
 
 .is-underline-none {

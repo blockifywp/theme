@@ -1,19 +1,79 @@
 import { CustomSelectControl } from '@wordpress/components';
-import Option = CustomSelectControl.Option;
 import { CSSProperties } from 'react';
-
-export {};
+import { BlockAttributes } from '@wordpress/blocks';
+import {
+	AlignmentToolbar,
+	BlockAlignmentToolbar,
+	BlockControls,
+} from '@wordpress/block-editor';
+import Option = CustomSelectControl.Option;
 
 declare global {
 
-	interface blockify {
+	interface genericStrings {
+		[key: string]: string;
+	}
 
-		// Editor.
+	interface CustomBlockAttribute {
+		control?: 'text' | 'textarea' | 'select' | 'number' | 'checkbox' | 'radio' | 'color' | 'range' | 'toggle';
+		default?: string | number | boolean | object | null | undefined;
+		name: string;
+		type: string;
+		label?: string;
+		value: string | number | boolean | object | null | undefined;
+		placeholder?: string;
+		help?: string;
+		min?: number;
+		max?: number;
+		step?: number;
+		options?: genericOption[];
+		multiple?: boolean;
+		labelPosition?: 'top' | 'side' | 'bottom';
+		inputType?: 'text' | 'number' | 'email' | 'url' | 'tel' | 'password';
+		withInputField?: boolean;
+		marks?: {
+			value: number;
+			label: string;
+		}[];
+		rows?: number;
+		toolbar?: 'AlignmentToolbar' | 'BlockAlignmentToolbar' | 'BlockVerticalAlignmentToolbar';
+		controls?: BlockAlignmentToolbar.Control[] | AlignmentToolbar.Props['alignmentControls'] | BlockControls.Props['controls'];
+		onChange?: ( newValue: string | number | boolean | object | null | undefined ) => void;
+		subfields?: CustomField[];
+	}
+
+	interface CustomBlock {
+		title?: string;
+		description?: string;
+		category?: string;
+		icon?: string | {
+			src: string;
+		};
+		attributes?: {
+			[key: string]: CustomBlockAttribute;
+		};
+		postTypes?: string[];
+	}
+
+	interface CustomField {
+		id: string;
+		type: string;
+		index?: number;
+		label?: string;
+		add?: string;
+		default?: string | number | boolean | object | null | undefined;
+		subfields?: CustomField[];
+		placeholder?: string;
+	}
+
+	interface blockify {
+		name?: string;
 		siteUrl?: string;
 		adminUrl?: string;
 		ajaxUrl?: string;
 		url?: string;
 		restUrl?: string;
+		previewLink?: string;
 		nonce?: string;
 		icon?: string;
 		darkMode?: string;
@@ -25,19 +85,40 @@ declare global {
 		underlineTypes?: string[];
 		fontFamilies?: string[];
 		selectedFonts?: string[];
-		positionOptions?: positionOptions;
+		extensionOptions?: extensionOptions;
+		filterOptions?: filterOptions;
+		imageOptions?: imageOptions;
 		animations?: string[];
 		animationOffset?: string;
 		breakpoint?: string; // Front end.
 		siteEditor?: boolean;
 		isPlugin?: boolean;
-		userRoles?: { [key: string]: string };
+		userRoles?: genericStrings;
 		loremIpsum?: string;
+		googleMaps?: string;
+		plugins?: string[];
+		blocks?: {
+			[key: string]: CustomBlock;
+		};
+		postMeta?: string[];
+		postType?: string;
+		defaultIcon?: {
+			set: string;
+			name: string;
+			string: string;
+		};
+		metaBoxes?: {
+			id: string;
+			fields: CustomField[];
+		}[];
+	}
 
-		// Public.
-		setCookie: ( name: string, value: string, days: number ) => void,
-		getCookie: ( name: string ) => string,
-		eraseCookie: ( name: string ) => void,
+	interface Window {
+		blockify: blockify;
+		Splide?: any;
+		splide?: {
+			Extensions?: any;
+		};
 	}
 
 	interface blockSupports {
@@ -47,44 +128,23 @@ declare global {
 				text?: boolean;
 				background?: boolean;
 				link?: boolean;
-			},
+			};
 			blockifyAnimation?: boolean;
 			blockifyBackground?: boolean;
 			blockifyBoxShadow?: boolean;
 			blockifyDisplay?: boolean;
 			blockifyFilter?: boolean;
+			blockifyInlineCss?: boolean;
 			blockifyOnclick?: boolean;
 			blockifyPosition?: boolean;
+			blockifySize?: boolean;
 			blockifyTransform?: boolean;
-		}
-	}
-
-	interface BlockStyle {
-		type: string
-		name: string,
-		label: string,
-		isDefault?: boolean
+		};
 	}
 
 	interface BlockStyles {
-		unregister: {
-			[ blockName: string ]: string[];
-		},
-		register: {
-			[ blockName: string ]: string[]
-		}
-	}
-
-	interface Window {
-		blockify: blockify;
-	}
-
-	interface style {
-		[name: string]: string | null;
-	}
-
-	interface attributes {
-		[name: string]: any;
+		unregister: genericStrings;
+		register: genericStrings;
 	}
 
 	interface wrapperProps {
@@ -93,104 +153,105 @@ declare global {
 		className?: string;
 	}
 
+	interface responsiveStyles {
+		all?: string;
+		mobile?: string;
+		desktop?: string;
+	}
+
+	interface attributes {
+		[name: string]: object | string | number | boolean | null | undefined;
+
+		style?: {
+			[key: string]: genericStrings | responsiveStyles;
+		};
+	}
+
 	interface blockProps {
 		name: string;
 		clientId: string;
 		className: string;
-		style: style | CSSProperties;
-		attributes: attributes,
+		style: genericStrings | CSSProperties;
+		attributes: BlockAttributes | attributes;
 		setAttributes: ( newAttributes: attributes ) => void;
-		wrapperProps?: wrapperProps,
+		wrapperProps?: wrapperProps;
 		isSelected?: boolean;
-		value?: any,
-		children?: any,
+		value?: any;
+		children?: any;
 	}
 
 	interface formatProps {
-		isActive?: boolean,
-		onChange: ( value: any ) => any,
-		formatTypes?: { name: string }[],
-		value?: any,
+		isActive?: boolean;
+		onChange: ( value: any ) => any;
+		formatTypes?: { name: string }[];
+		value?: any;
 	}
 
 	interface customSelectOptions extends Array<Option> {
-		[index: number]: Option
-	}
-
-	interface cssTransforms {
-		matrix?: string,
-		matrix3d?: string,
-		perspective?: string,
-		rotate?: string,
-		rotate3d?: string,
-		rotateX?: string,
-		rotateY?: string,
-		rotateZ?: string,
-		translate?: string,
-		translate3d?: string,
-		translateX?: string,
-		translateY?: string,
-		translateZ?: string,
-		scale?: string,
-		scale3d?: string,
-		scaleX?: string,
-		scaleY?: string,
-		scaleZ?: string,
-		skew?: string,
-		skewX?: string,
-		skewY?: string,
-		hover?: cssTransforms,
-		animate?: cssTransforms,
+		[index: number]: Option;
 	}
 
 	interface cssFilters {
-		[name: string]: string | undefined | boolean | cssFilters,
+		[name: string]: string | undefined | boolean | cssFilters;
 
-		blur?: string,
-		brightness?: string,
-		contrast?: string,
-		grayscale?: string,
-		hueRotate?: string,
-		invert?: string,
-		opacity?: string,
-		saturate?: string,
-		sepia?: string,
-		backdrop?: boolean,
-		hover?: cssFilters,
-		animate?: cssFilters,
+		blur?: string;
+		brightness?: string;
+		contrast?: string;
+		grayscale?: string;
+		hueRotate?: string;
+		invert?: string;
+		opacity?: string;
+		saturate?: string;
+		sepia?: string;
+		backdrop?: boolean;
+		hover?: cssFilters;
+		animate?: cssFilters;
 	}
 
 	interface gradient {
-		slug: string,
-		name: string,
-		gradient: string,
+		slug: string;
+		name: string;
+		gradient: string;
 	}
 
-	interface positionOptions {
-		[name: string]: responsiveSetting | undefined,
+	interface extensionOptions {
+		[name: string]: responsiveSetting | filterOptions | undefined;
 
-		position?: responsiveSetting,
-		inset?: responsiveSetting,
-		zIndex?: responsiveSetting,
-		overflow?: responsiveSetting,
-		pointerEvents?: responsiveSetting,
+		position?: responsiveSetting;
+		inset?: responsiveSetting;
+		zIndex?: responsiveSetting;
+		overflow?: responsiveSetting;
+		pointerEvents?: responsiveSetting;
+		aspectRatio?: responsiveSetting;
+		objectFit?: responsiveSetting;
+		objectPosition?: responsiveSetting;
 	}
 
-	interface displayOptions {
-		display?: responsiveSetting,
-		order?: responsiveSetting,
-		width?: responsiveSetting,
-		maxWidth?: responsiveSetting,
+	interface filterOptions {
+		[name: string]: {
+			unit?: string;
+			min?: number;
+			max?: number;
+			step?: number;
+		};
+	}
+
+	interface imageOptions {
+		aspectRatio?: responsiveSetting;
+		height?: responsiveSetting;
+		objectFit?: responsiveSetting;
+		objectPosition?: responsiveSetting;
+	}
+
+	interface genericOption {
+		value: string;
+		label: string;
+		disabled?: boolean;
 	}
 
 	interface responsiveSetting {
-		value: string,
-		label: string,
-		options?: Array<{
-			value: string,
-			label: string,
-		}>
+		value: string;
+		label: string;
+		options?: genericOption[];
 	}
 }
-
-export { blockify };

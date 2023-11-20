@@ -4,15 +4,16 @@ import { reusableBlock } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { CSSProperties } from 'react';
+import { InspectorControls } from '@wordpress/block-editor';
 import {
-	InspectorControls,
-} from '@wordpress/block-editor';
-import {
+	__experimentalNumberControl as NumberControl,
+	Flex,
+	FlexBlock,
+	FlexItem,
 	PanelBody,
 	PanelRow,
+	RangeControl,
 	ToggleControl,
-	// @ts-ignore
-	__experimentalNumberControl as NumberControl, Flex, FlexItem, FlexBlock, RangeControl,
 } from '@wordpress/components';
 
 const blockVariation: BlockVariation = {
@@ -21,7 +22,7 @@ const blockVariation: BlockVariation = {
 	title: __( 'Marquee', 'blockify' ),
 	isDefault: false,
 	category: window?.blockify?.isPlugin ? 'blockify' : 'design',
-	scope: [ 'inserter', 'transform', 'block' ],
+	scope: [ 'inserter' ],
 	description: __( 'Adds a horizontal infinite scrolling marquee banner.', 'blockify' ),
 	innerBlocks: [
 		[
@@ -125,7 +126,7 @@ addFilter(
 				<InspectorControls>
 					<PanelBody
 						title={ __( 'Marquee Settings', 'blockify-pro' ) }
-						className={ __( 'blockify-width-control', 'blockify-pro' ) }
+						className={ 'blockify-width-control' }
 					>
 						<p>{ __( 'Scroll Speed (seconds)', 'blockify' ) }</p>
 						<PanelRow>
@@ -237,9 +238,12 @@ addFilter(
 			return props;
 		}
 
-		props.style = {
-			...props?.style,
-			...getStyles( attributes ),
+		props = {
+			...props,
+			style: {
+				...props?.style,
+				...getStyles( attributes ),
+			},
 		};
 
 		return props;

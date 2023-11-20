@@ -7,4 +7,11 @@
 	&__more-text {
 		margin-bottom: inherit;
 	}
+
+	&__more-link {
+
+		.hide-read-more & {
+			display: none;
+		}
+	}
 }

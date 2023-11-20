@@ -1,6 +1,7 @@
 pre {
 	width: 100%;
 	font-family: var(--wp--preset--font-family--monospace);
+	overflow-x: scroll;
 
 	p {
 		white-space: normal;

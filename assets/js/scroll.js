@@ -1,1 +1,1 @@
-window.addEventListener("scroll",(()=>{const o=window.scrollY/(document.body.offsetHeight-window.innerHeight);document.body.style.setProperty("--scroll",o.toFixed(2).toString())}),!1);
+(()=>{let o=0,t=!1;window.addEventListener("scroll",(function(){o=window.scrollY,t||(window.requestAnimationFrame((function(){const n=o/(document.body.offsetHeight-window.innerHeight);document.body.style.setProperty("--scroll",n.toFixed(2).toString()),t=!1})),t=!0)}))})();

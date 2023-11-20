@@ -4,6 +4,7 @@
 
 header.wp-block-template-part {
 	z-index: 3;
+	position: var(--wp--custom--header--position, relative);
 }
 
 footer.wp-block-template-part {

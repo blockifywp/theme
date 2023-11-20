@@ -1,0 +1,11 @@
+.wp-block-post-featured-image {
+
+	&[style*="aspect-ratio:"] {
+
+		a,
+		img {
+			aspect-ratio: inherit;
+			object-fit: cover;
+		}
+	}
+}

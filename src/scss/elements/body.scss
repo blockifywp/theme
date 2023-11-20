@@ -8,4 +8,7 @@ body {
 
 	// For gradients.
 	background: var(--wp--custom--body--background, var(--wp--preset--color--white, #fff));
+
+	// Allow custom variable font settings.
+	font-variation-settings: var(--wp--custom--body--font-variation-settings);
 }

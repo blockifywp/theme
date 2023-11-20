@@ -1,1 +1,1 @@
-mark{border-radius:inherit;padding:0.2em 0.4em}
+mark{border-radius:inherit}mark:not(.has-inline-color){padding:0.2em 0.4em}

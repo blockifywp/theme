@@ -1,0 +1,4 @@
+// Core important override.
+.wp-block-columns:not(.are-vertically-aligned-top,.are-vertically-aligned-center,.are-vertically-aligned-bottom) {
+	align-items: flex-start !important;
+}

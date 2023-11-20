@@ -1,3 +1,13 @@
-.wp-block-social-link {
+.wp-social-link {
+	transition: var(--wp--custom--transition);
 	list-style-type: none;
+
+	&.has-text-color:hover {
+		transform: none;
+		opacity: var(--wp--custom--button--hover-opacity, 0.82);
+	}
+
+	.has-normal-icon-size & {
+		font-size: 20px;
+	}
 }

@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blockify 1.2.7\n"
+"Project-Id-Version: Blockify 1.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/blockify\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-22T05:15:41+00:00\n"
+"POT-Creation-Date: 2023-11-08T15:40:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.6.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: blockify\n"
 
 #. Theme Name of the theme
@@ -31,19 +31,229 @@ msgstr ""
 msgid "https://blockifywp.com/"
 msgstr ""
 
-#: includes/blocks/heading.php:76
+#: includes/api/block-extensions.php:26
+#: assets/js/editor.js:1
+msgid "Position"
+msgstr ""
+
+#: includes/api/block-extensions.php:33
+msgid "Relative"
+msgstr ""
+
+#: includes/api/block-extensions.php:37
+msgid "Absolute"
+msgstr ""
+
+#: includes/api/block-extensions.php:41
+msgid "Sticky"
+msgstr ""
+
+#: includes/api/block-extensions.php:45
+msgid "Fixed"
+msgstr ""
+
+#: includes/api/block-extensions.php:49
+msgid "Static"
+msgstr ""
+
+#: includes/api/block-extensions.php:56
+#: includes/api/block-extensions.php:371
+msgid "Top"
+msgstr ""
+
+#: includes/api/block-extensions.php:60
+#: includes/api/block-extensions.php:375
+msgid "Right"
+msgstr ""
+
+#: includes/api/block-extensions.php:64
+#: includes/api/block-extensions.php:379
+msgid "Bottom"
+msgstr ""
+
+#: includes/api/block-extensions.php:68
+#: includes/api/block-extensions.php:383
+msgid "Left"
+msgstr ""
+
+#: includes/api/block-extensions.php:72
+msgid "Z-Index"
+msgstr ""
+
+#: includes/api/block-extensions.php:76
+#: assets/js/editor.js:1
+msgid "Display"
+msgstr ""
+
+#: includes/api/block-extensions.php:83
+#: includes/api/block-extensions.php:175
+#: includes/api/block-extensions.php:353
+#: includes/api/block-extensions.php:391
+#: assets/js/editor.js:1
+msgid "None"
+msgstr ""
+
+#: includes/api/block-extensions.php:87
+msgid "Flex"
+msgstr ""
+
+#: includes/api/block-extensions.php:91
+msgid "Inline Flex"
+msgstr ""
+
+#: includes/api/block-extensions.php:95
+msgid "Block"
+msgstr ""
+
+#: includes/api/block-extensions.php:99
+msgid "Inline Block"
+msgstr ""
+
+#: includes/api/block-extensions.php:103
+msgid "Inline"
+msgstr ""
+
+#: includes/api/block-extensions.php:107
+#: assets/js/editor.js:1
+msgid "Grid"
+msgstr ""
+
+#: includes/api/block-extensions.php:111
+msgid "Inline Grid"
+msgstr ""
+
+#: includes/api/block-extensions.php:115
+#: includes/blocks/table-of-contents.php:38
+msgid "Contents"
+msgstr ""
+
+#: includes/api/block-extensions.php:122
+#: assets/js/editor.js:1
+msgid "Order"
+msgstr ""
+
+#: includes/api/block-extensions.php:126
+#: assets/js/editor.js:1
+msgid "Columns"
+msgstr ""
+
+#: includes/api/block-extensions.php:130
+#: assets/js/editor.js:1
+msgid "Rows"
+msgstr ""
+
+#: includes/api/block-extensions.php:134
+#: assets/js/editor.js:1
+msgid "Column Start"
+msgstr ""
+
+#: includes/api/block-extensions.php:138
+#: assets/js/editor.js:1
+msgid "Column End"
+msgstr ""
+
+#: includes/api/block-extensions.php:142
+#: assets/js/editor.js:1
+msgid "Row Start"
+msgstr ""
+
+#: includes/api/block-extensions.php:146
+#: assets/js/editor.js:1
+msgid "Row End"
+msgstr ""
+
+#: includes/api/block-extensions.php:150
+#: assets/js/editor.js:1
+msgid "Overflow"
+msgstr ""
+
+#: includes/api/block-extensions.php:157
+msgid "Hidden"
+msgstr ""
+
+#: includes/api/block-extensions.php:161
+msgid "Visible"
+msgstr ""
+
+#: includes/api/block-extensions.php:168
+#: assets/js/editor.js:1
+msgid "Pointer Events"
+msgstr ""
+
+#: includes/api/block-extensions.php:179
+#: includes/blocks/post-terms.php:122
+#: assets/js/editor.js:1
+msgid "All"
+msgstr ""
+
+#: includes/api/block-extensions.php:186
+#: assets/js/editor.js:1
+msgid "Width"
+msgstr ""
+
+#: includes/api/block-extensions.php:190
+#: assets/js/editor.js:1
+msgid "Min Width"
+msgstr ""
+
+#: includes/api/block-extensions.php:194
+#: assets/js/editor.js:1
+msgid "Max Width"
+msgstr ""
+
+#: includes/api/block-extensions.php:268
+#: assets/js/editor.js:1
+msgid "Aspect Ratio"
+msgstr ""
+
+#: includes/api/block-extensions.php:330
+#: assets/js/editor.js:1
+msgid "Height"
+msgstr ""
+
+#: includes/api/block-extensions.php:334
+#: assets/js/editor.js:1
+msgid "Object Fit"
+msgstr ""
+
+#: includes/api/block-extensions.php:341
+msgid "Fill"
+msgstr ""
+
+#: includes/api/block-extensions.php:345
+msgid "Contain"
+msgstr ""
+
+#: includes/api/block-extensions.php:349
+msgid "Cover"
+msgstr ""
+
+#: includes/api/block-extensions.php:357
+msgid "Scale Down"
+msgstr ""
+
+#: includes/api/block-extensions.php:364
+#: assets/js/editor.js:1
+msgid "Object Position"
+msgstr ""
+
+#: includes/api/block-extensions.php:387
+msgid "Center"
+msgstr ""
+
+#: includes/blocks/heading.php:82
 msgid "Search Results"
 msgstr ""
 
-#: includes/blocks/heading.php:78
+#: includes/blocks/heading.php:84
 msgid "Search results for: "
 msgstr ""
 
-#: includes/blocks/post-excerpt.php:42
+#: includes/blocks/post-excerpt.php:79
 msgid "this post"
 msgstr ""
 
-#: includes/blocks/post-excerpt.php:45
+#: includes/blocks/post-excerpt.php:82
 msgid " about "
 msgstr ""
 
@@ -51,157 +261,1180 @@ msgstr ""
 msgid "Latest Posts"
 msgstr ""
 
-#: includes/blocks/search.php:76
-msgid "Search this website"
-msgstr ""
-
-#: includes/blocks/table-of-contents.php:40
+#: includes/blocks/table-of-contents.php:37
 msgid "Table of Contents"
 msgstr ""
 
-#: includes/blocks/table-of-contents.php:41
-#: includes/utility/css.php:198
-msgid "Contents"
-msgstr ""
-
-#: includes/blocks/table-of-contents.php:42
+#: includes/blocks/table-of-contents.php:39
 msgid "Table of contents"
 msgstr ""
 
-#: includes/utility/css.php:109
-msgid "Position"
-msgstr ""
-
-#: includes/utility/css.php:116
-msgid "Relative"
-msgstr ""
-
-#: includes/utility/css.php:120
-msgid "Absolute"
-msgstr ""
-
-#: includes/utility/css.php:124
-msgid "Sticky"
-msgstr ""
-
-#: includes/utility/css.php:128
-msgid "Fixed"
-msgstr ""
-
-#: includes/utility/css.php:132
-msgid "Static"
-msgstr ""
-
-#: includes/utility/css.php:139
-msgid "Top"
-msgstr ""
-
-#: includes/utility/css.php:143
-msgid "Right"
-msgstr ""
-
-#: includes/utility/css.php:147
-msgid "Bottom"
-msgstr ""
-
-#: includes/utility/css.php:151
-msgid "Left"
-msgstr ""
-
-#: includes/utility/css.php:155
-msgid "Z-Index"
-msgstr ""
-
-#: includes/utility/css.php:159
-msgid "Display"
-msgstr ""
-
-#: includes/utility/css.php:166
-#: includes/utility/css.php:234
-msgid "None"
-msgstr ""
-
-#: includes/utility/css.php:170
-msgid "Flex"
-msgstr ""
-
-#: includes/utility/css.php:174
-msgid "Inline Flex"
-msgstr ""
-
-#: includes/utility/css.php:178
-msgid "Block"
-msgstr ""
-
-#: includes/utility/css.php:182
-msgid "Inline Block"
-msgstr ""
-
-#: includes/utility/css.php:186
-msgid "Inline"
-msgstr ""
-
-#: includes/utility/css.php:190
-msgid "Grid"
-msgstr ""
-
-#: includes/utility/css.php:194
-msgid "Inline Grid"
-msgstr ""
-
-#: includes/utility/css.php:205
-msgid "Order"
-msgstr ""
-
-#: includes/utility/css.php:209
-msgid "Overflow"
-msgstr ""
-
-#: includes/utility/css.php:216
-msgid "Hidden"
-msgstr ""
-
-#: includes/utility/css.php:220
-msgid "Visible"
-msgstr ""
-
-#: includes/utility/css.php:227
-msgid "Pointer Events"
-msgstr ""
-
-#: includes/utility/css.php:238
-msgid "All"
-msgstr ""
-
-#: includes/utility/css.php:245
-msgid "Width"
-msgstr ""
-
-#: includes/utility/css.php:249
-msgid "Max Width"
-msgstr ""
-
-#: includes/utility/icon.php:163
-msgid " Icon"
-msgstr ""
-
-#: includes/utility/icon.php:240
+#: includes/extensions/icon.php:124
 msgid " icon"
 msgstr ""
 
+#: includes/extensions/icon.php:236
+msgid "This is a preview of all icons in the set."
+msgstr ""
+
+#: includes/extensions/placeholder.php:222
+msgid "Image placeholder"
+msgstr ""
+
+#: includes/utility/icon.php:190
+msgid " Icon"
+msgstr ""
+
+#: patterns/blog/featured-post.php
+msgctxt "Pattern title"
+msgid "Featured Post"
+msgstr ""
+
+#: patterns/blog/grid-boxed.php
+msgctxt "Pattern title"
+msgid "Grid Boxed"
+msgstr ""
+
+#: patterns/blog/single-column.php
+msgctxt "Pattern title"
+msgid "Single Column"
+msgstr ""
+
+#: patterns/blog/three-column.php
+#: patterns/pricing/three-column.php
+#: patterns/testimonial/three-column.php
+msgctxt "Pattern title"
+msgid "Three Column"
+msgstr ""
+
+#: patterns/contact/form-boxed.php
+msgctxt "Pattern title"
+msgid "Form Boxed"
+msgstr ""
+
+#: patterns/contact/form-map.php
+msgctxt "Pattern title"
+msgid "Form Map"
+msgstr ""
+
+#: patterns/contact/form.php
+msgctxt "Pattern title"
+msgid "Form"
+msgstr ""
+
+#: patterns/contact/icons.php
+#: patterns/feature/icons.php
+msgctxt "Pattern title"
+msgid "Icons"
+msgstr ""
+
+#: patterns/contact/map.php
+msgctxt "Pattern title"
+msgid "Map"
+msgstr ""
+
+#: patterns/contact/two-column.php
+#: patterns/pricing/two-column.php
+#: patterns/testimonial/two-column.php
+msgctxt "Pattern title"
+msgid "Two Column"
+msgstr ""
+
+#: patterns/cta/box.php
+msgctxt "Pattern title"
+msgid "Box"
+msgstr ""
+
+#: patterns/cta/center.php
+msgctxt "Pattern title"
+msgid "Center"
+msgstr ""
+
+#: patterns/cta/horizontal.php
+msgctxt "Pattern title"
+msgid "Horizontal"
+msgstr ""
+
+#: patterns/cta/right.php
+msgctxt "Pattern title"
+msgid "Right"
+msgstr ""
+
+#: patterns/faq/accordion-wide.php
+msgctxt "Pattern title"
+msgid "Accordion Wide"
+msgstr ""
+
+#: patterns/faq/accordion.php
+msgctxt "Pattern title"
+msgid "Accordion"
+msgstr ""
+
+#: patterns/faq/columns.php
+msgctxt "Pattern title"
+msgid "Columns"
+msgstr ""
+
+#: patterns/faq/default.php
+#: patterns/footer/default.php
+#: patterns/header/default.php
+msgctxt "Pattern title"
+msgid "Default"
+msgstr ""
+
+#: patterns/feature/banner.php
+msgctxt "Pattern title"
+msgid "Banner"
+msgstr ""
+
+#: patterns/feature/icon-boxes.php
+msgctxt "Pattern title"
+msgid "Icon Boxes"
+msgstr ""
+
+#: patterns/feature/icons-centered.php
+msgctxt "Pattern title"
+msgid "Icons Centered"
+msgstr ""
+
+#: patterns/feature/images.php
+msgctxt "Pattern title"
+msgid "Images"
+msgstr ""
+
+#: patterns/footer/centered.php
+#: patterns/header/centered.php
+msgctxt "Pattern title"
+msgid "Centered"
+msgstr ""
+
+#: patterns/footer/cta.php
+msgctxt "Pattern title"
+msgid "CTA"
+msgstr ""
+
+#: patterns/footer/minimal.php
+#: patterns/header/minimal.php
+msgctxt "Pattern title"
+msgid "Minimal"
+msgstr ""
+
+#: patterns/gallery/grid-alt.php
+msgctxt "Pattern title"
+msgid "Grid Alt"
+msgstr ""
+
+#: patterns/gallery/grid.php
+msgctxt "Pattern title"
+msgid "Grid"
+msgstr ""
+
+#: patterns/header/center-logo.php
+msgctxt "Pattern title"
+msgid "Center Logo"
+msgstr ""
+
+#: patterns/header/center-menu.php
+msgctxt "Pattern title"
+msgid "Center Menu"
+msgstr ""
+
+#: patterns/header/menu-left.php
+msgctxt "Pattern title"
+msgid "Menu Left"
+msgstr ""
+
+#: patterns/hero/cover.php
+msgctxt "Pattern title"
+msgid "Cover"
+msgstr ""
+
+#: patterns/hero/image-below.php
+msgctxt "Pattern title"
+msgid "Image Below"
+msgstr ""
+
+#: patterns/hero/image.php
+msgctxt "Pattern title"
+msgid "Image"
+msgstr ""
+
+#: patterns/hero/left.php
+msgctxt "Pattern title"
+msgid "Left"
+msgstr ""
+
+#: patterns/page/about.php
+msgctxt "Pattern title"
+msgid "About"
+msgstr ""
+
+#: patterns/page/blog.php
+msgctxt "Pattern title"
+msgid "Blog"
+msgstr ""
+
+#: patterns/page/contact.php
+msgctxt "Pattern title"
+msgid "Contact"
+msgstr ""
+
+#: patterns/page/landing.php
+msgctxt "Pattern title"
+msgid "Landing"
+msgstr ""
+
+#: patterns/page/pricing.php
+msgctxt "Pattern title"
+msgid "Pricing"
+msgstr ""
+
+#: patterns/page/style-guide.php
+msgctxt "Pattern title"
+msgid "Style Guide"
+msgstr ""
+
+#: patterns/pricing/two-rows.php
+msgctxt "Pattern title"
+msgid "Two Rows"
+msgstr ""
+
+#: patterns/stats/four-columns.php
+msgctxt "Pattern title"
+msgid "Four Columns"
+msgstr ""
+
+#: patterns/stats/with-image.php
+msgctxt "Pattern title"
+msgid "With Image"
+msgstr ""
+
+#: patterns/team/members.php
+msgctxt "Pattern title"
+msgid "Members"
+msgstr ""
+
+#: patterns/template/404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr ""
+
+#: patterns/template/archive.php
+msgctxt "Pattern title"
+msgid "Archive"
+msgstr ""
+
+#: patterns/template/front-page.php
+msgctxt "Pattern title"
+msgid "Front Page"
+msgstr ""
+
+#: patterns/template/full-width.php
+msgctxt "Pattern title"
+msgid "Full Width"
+msgstr ""
+
+#: patterns/template/page.php
+msgctxt "Pattern title"
+msgid "Page"
+msgstr ""
+
+#: patterns/testimonial/brands.php
+msgctxt "Pattern title"
+msgid "Brands"
+msgstr ""
+
+#: patterns/testimonial/logo-cloud.php
+msgctxt "Pattern title"
+msgid "Logo Cloud"
+msgstr ""
+
+#: patterns/testimonial/single.php
+msgctxt "Pattern title"
+msgid "Single"
+msgstr ""
+
+#: patterns/utility/app-store.php
+msgctxt "Pattern title"
+msgid "App Store"
+msgstr ""
+
+#: patterns/utility/browser.php
+msgctxt "Pattern title"
+msgid "Browser"
+msgstr ""
+
+#: patterns/utility/dark-mode-toggle.php
+msgctxt "Pattern title"
+msgid "Dark Mode Toggle"
+msgstr ""
+
+#: patterns/utility/google-play.php
+msgctxt "Pattern title"
+msgid "Google Play"
+msgstr ""
+
+#: patterns/utility/icon-logo.php
+msgctxt "Pattern title"
+msgid "Icon Logo"
+msgstr ""
+
+#: patterns/utility/intro-notice.php
+msgctxt "Pattern title"
+msgid "Intro Notice"
+msgstr ""
+
+#: patterns/utility/search-toggle.php
+msgctxt "Pattern title"
+msgid "Search Toggle"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Please enter "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " code here…"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Custom box shadow"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Color"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Color "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " Hover"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Inset"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Shadow"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Shadow"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Default"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hover"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Ease"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Ease In"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Ease Out"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Ease In Out"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Linear"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Enter"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Exit"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Infinite"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scroll"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Animation"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Animation"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Pause"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Run"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Effect"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Easing"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Event"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Duration"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Delay"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Repeat"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Offset"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Arrange blocks in a grid."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Reset Grid"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Reset Display"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Content"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Default Content"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hide Read More Link"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Content Limit"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Limit content to specific number of words."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Filter"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Filters"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Hue Rotate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Use as backdrop filter"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Placeholder Image"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Image"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Reset Image"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Edit Inline CSS"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Add custom CSS to this block."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Edit On-Click Event"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Add custom JavaScript to the onclick event for this block."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Reset Position"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Large"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Medium"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Small"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Size"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Switch Size"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Transform"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Transforms"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Rotate"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Rotate X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Rotate Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scale Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Skew"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Skew X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Skew Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Translate X"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Translate Y"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Translate Z"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Accordion"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Add a collapsible accordion list."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Curved text. Curved text. Curved text."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Curved Text"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert curved text around circular SVG path."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Container"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Path"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Counter"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert counter animation."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Counter Settings"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Start"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "End"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Duration (seconds)"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Delay (seconds)"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Prefix"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Suffix"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert an image to make a visual statement."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert a customizable SVG icon."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon Position"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Select Icon Set"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Select Icon"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon Width"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid " Get more icons with "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Icon Settings"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "More icons available with Blockify Pro! "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Learn more ↗"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "SVG"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert an inline SVG."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "SVG String"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Paste your SVG string in the field above. It is recommended to format your SVG with an optimization tool "
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Mask with text color"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "If enabled, the SVG will be masked with the text color. (Renders inline SVG on front end)."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Marquee"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Adds a horizontal infinite scrolling marquee banner."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Scroll Speed (seconds)"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Repeat Items"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "How many times should the items be duplicated and cloned."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Paragraph"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Slack"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Clear Formatting"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Gradient"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Typography"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Select Font Family"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Appearance"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Inline SVG"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Paste your SVG string in the field above and then click the button below to insert your image."
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Paste your SVG string here"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Alt Text"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "SVG description"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Width Mobile"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Width Desktop"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Insert SVG"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Underline"
+msgstr ""
+
+#: assets/js/editor.js:1
+msgid "Underline style"
+msgstr ""
+
+#: styles/dark.json
+msgctxt "Style variation name"
+msgid "Dark"
+msgstr ""
+
+#: styles/dark.json
 #: theme.json
-msgctxt "Font size name"
-msgid "100px"
+msgctxt "Color name"
+msgid "Neutral 0"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 50"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 100"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 200"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 300"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 400"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 500"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 600"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 700"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 800"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 900"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Neutral 950"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 100"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 300"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 500"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 600"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 700"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Primary 900"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Success 100"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Success 500"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Success 600"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Warning 100"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Warning 500"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Warning 600"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Error 100"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Error 500"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Error 600"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Transparent"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Current"
+msgstr ""
+
+#: styles/dark.json
+#: theme.json
+msgctxt "Color name"
+msgid "Inherit"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive: Doc"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive: Download"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive: Product"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Blank"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Full Width"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Product Search Results"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single item: Doc"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single item: Download"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single item: Product"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Taxonomy Doc Category"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Taxonomy Download Category"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Taxonomy Download Tag"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Taxonomy Product Category"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Taxonomy Product Tag"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary 600/500"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary 500/300"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary Transparent"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Primary Foreground"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Body/Heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Surface/Border"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Background/Transparent"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Transparent/Background"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Fade Left"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Fade Right"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Checkerboard"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Grid"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "90px"
+msgid "96px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "81px"
+msgid "88px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "80px"
 msgstr ""
 
 #: theme.json
@@ -211,12 +1444,17 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
+msgid "64px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
 msgid "60px"
 msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "54px"
+msgid "52px"
 msgstr ""
 
 #: theme.json
@@ -226,7 +1464,12 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "42px"
+msgid "44px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "40px"
 msgstr ""
 
 #: theme.json
@@ -236,7 +1479,12 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
-msgid "30px"
+msgid "32px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "28px"
 msgstr ""
 
 #: theme.json
@@ -271,6 +1519,11 @@ msgstr ""
 
 #: theme.json
 msgctxt "Font size name"
+msgid "12px"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
 msgid "Inherit"
 msgstr ""
 
@@ -280,141 +1533,46 @@ msgid "Inter"
 msgstr ""
 
 #: theme.json
-msgctxt "Color name"
-msgid "Primary"
+msgctxt "Font family name"
+msgid "Inter Tight"
 msgstr ""
 
 #: theme.json
-msgctxt "Color name"
-msgid "Secondary"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Foreground"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Heading"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Body"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Neutral"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Outline"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Surface"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Base"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Current Color"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Inherit"
-msgstr ""
-
-#: theme.json
-msgctxt "Color name"
-msgid "Transparent"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Primary Foreground"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Body/Heading"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Surface/Border"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Base/Transparent"
-msgstr ""
-
-#: theme.json
-msgctxt "Gradient name"
-msgid "Transparent/Base"
+msgctxt "Font family name"
+msgid "JetBrains Mono"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XXS"
+msgid "XXS (8px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XS"
+msgid "XS (16px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "S"
+msgid "S (24px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "M"
+msgid "M (32px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "L"
+msgid "L (48px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XL"
+msgid "XL (64px)"
 msgstr ""
 
 #: theme.json
 msgctxt "Space size name"
-msgid "XXL"
-msgstr ""
-
-#: theme.json
-msgctxt "Custom template name"
-msgid "Blank"
-msgstr ""
-
-#: theme.json
-msgctxt "Custom template name"
-msgid "Full Width"
-msgstr ""
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Header"
-msgstr ""
-
-#: theme.json
-msgctxt "Template part name"
-msgid "Footer"
+msgid "XXL (96px)"
 msgstr ""

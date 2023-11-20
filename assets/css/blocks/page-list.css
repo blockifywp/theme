@@ -1,1 +1,1 @@
-.wp-block-pages-list__item{width:100%}
+.wp-block-navigation.is-vertical .wp-block-page-list .has-child .wp-block-pages-list__item__link,.wp-block-navigation.is-vertical .wp-block-page-list .wp-block-navigation-item{margin-bottom:0}.wp-block-navigation:not(.is-vertical) .wp-block-navigation__responsive-container:not(.is-menu-open) .wp-block-page-list{row-gap:0 !important}.wp-block-pages-list__item{width:100%}

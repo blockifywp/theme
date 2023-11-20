@@ -4,10 +4,10 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use const DIRECTORY_SEPARATOR;
 use function add_action;
 use function function_exists;
 use function is_readable;
+use const DIRECTORY_SEPARATOR;
 
 const NS = __NAMESPACE__ . '\\';
 const DS = DIRECTORY_SEPARATOR;
@@ -26,40 +26,48 @@ if ( function_exists( 'add_action' ) ) {
  */
 function setup(): void {
 	$files = [
+		'utility/array',
 		'utility/color',
 		'utility/css',
 		'utility/dom',
 		'utility/helper',
 		'utility/icon',
 		'utility/string',
+		'api/block-extensions',
+		'api/block-styles',
+		'api/block-supports',
 		'extensions/animation',
-		'extensions/block-extras',
-		'extensions/block-styles',
-		'extensions/block-supports',
-		'extensions/box-shadow',
-		'extensions/conic-gradient',
 		'extensions/counter',
+		'extensions/copy-to-clipboard',
 		'extensions/dark-mode',
+		'extensions/gradient',
+		'extensions/grid',
 		'extensions/icon',
 		'extensions/inline-color',
 		'extensions/onclick',
 		'extensions/placeholder',
+		'extensions/shadow',
 		'extensions/svg',
-		'fonts',
-		'patterns',
-		'scripts',
-		'styles',
+		'extensions/template-tags',
+		'common/fonts',
+		'common/patterns',
+		'common/scripts',
+		'common/styles',
+		'common/templates',
+		'blocks/avatar',
 		'blocks/button',
+		'blocks/buttons',
 		'blocks/columns',
 		'blocks/cover',
 		'blocks/group',
 		'blocks/heading',
 		'blocks/image',
 		'blocks/list',
-		'blocks/navigation-submenu',
 		'blocks/navigation',
 		'blocks/page-list',
+		'blocks/pagination',
 		'blocks/paragraph',
+		'blocks/pattern',
 		'blocks/post-author',
 		'blocks/post-comments-form',
 		'blocks/post-content',
@@ -72,9 +80,11 @@ function setup(): void {
 		'blocks/query-title',
 		'blocks/query',
 		'blocks/search',
+		'blocks/shortcode',
 		'blocks/site-logo',
 		'blocks/social-link',
 		'blocks/social-links',
+		'blocks/spacer',
 		'blocks/table-of-contents',
 		'blocks/tag-cloud',
 		'blocks/template-part',
@@ -88,4 +98,5 @@ function setup(): void {
 			require_once $path;
 		}
 	}
+
 }

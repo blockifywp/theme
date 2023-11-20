@@ -2,6 +2,10 @@
 	--wp--custom--icon-container--width: auto;
 }
 
+.is-style-icon {
+	line-height: 1;
+}
+
 .wp-block-image__icon {
 	display: flex;
 	width: var(--wp--custom--icon-container--width, auto);
@@ -14,6 +18,7 @@
 	color: var(--wp--custom--icon--color, currentColor);
 	justify-content: center;
 	align-items: center;
+	aspect-ratio: 1;
 
 	.alignleft & {
 		justify-content: flex-start;
@@ -27,13 +32,13 @@
 		justify-content: flex-end;
 	}
 
-	&::after {
+	&.has-gradient::after {
 		content: "";
 		display: inline-block;
 		position: relative;
 		background: var(--wp--custom--icon--color);
-		height: var(--wp--custom--icon--size, 30px);
-		width: var(--wp--custom--icon--size, 30px);
+		height: var(--wp--custom--icon--size, 1.5em);
+		width: var(--wp--custom--icon--size, 1.5em);
 		vertical-align: text-bottom;
 		-webkit-mask-image: var(--wp--custom--icon--url);
 		-webkit-mask-position: center;
@@ -45,8 +50,12 @@
 		display: none;
 	}
 
-	&.has-background:not(.has-text-color) {
-		background: transparent !important;
+	svg:not([width]) {
+		width: var(--wp--custom--icon--size, 1.5em);
+	}
+
+	svg:not([height]) {
+		height: var(--wp--custom--icon--size, 1.5em);
 	}
 }
 
@@ -61,4 +70,16 @@
 .wp-block-image.is-style-icon.alignleft,
 .wp-block-image.is-style-icon.alignright {
 	float: none;
+}
+
+.wp-block-image {
+
+	&.is-style-icon {
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			height: auto;
+		}
+	}
 }

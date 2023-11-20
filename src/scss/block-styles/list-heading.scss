@@ -1,0 +1,11 @@
+@import 'list-none';
+
+.is-style-list-heading {
+	@include is-style-none;
+
+	font-weight: var(--wp--custom--heading--font-weight, bolder);
+
+	ul {
+		font-weight: var(--wp--custom--body--font-weight, normal);
+	}
+}

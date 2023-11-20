@@ -1,1 +1,1 @@
-.wp-block-column>.wp-block-group{max-width:100% !important}:where(.wp-block-group.has-background){padding:0}
+.wp-block-column>.wp-block-group{max-width:100% !important}.wp-block-group.is-vertical{flex-direction:column;gap:1em}:where(.wp-block-group.has-background){padding:0}

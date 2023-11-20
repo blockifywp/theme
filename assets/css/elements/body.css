@@ -1,1 +1,1 @@
-body{margin:0 !important;padding:0 !important;position:relative;text-underline-offset:var(--wp--custom--text-underline-offset, 0.2em);background:var(--wp--custom--body--background, var(--wp--preset--color--white, #fff))}
+body{margin:0 !important;padding:0 !important;position:relative;text-underline-offset:var(--wp--custom--text-underline-offset, 0.2em);background:var(--wp--custom--body--background, var(--wp--preset--color--white, #fff));font-variation-settings:var(--wp--custom--body--font-variation-settings)}

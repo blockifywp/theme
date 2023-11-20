@@ -1,0 +1,22 @@
+.toggle-switch {
+	position: relative;
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		transition: var(--wp--custom--transition, left 0.2s ease-in-out);
+		z-index: 1;
+		pointer-events: none;
+		height: 1em;
+		width: 1em;
+		background: currentcolor;
+		border-radius: 99px;
+		left: var(--wp--custom--toggle-switch--inset, 0.2em);
+
+		.default-mode-light.is-style-dark &,
+		.default-mode-dark.is-style-light & {
+			left: calc(100% - (1em + var(--wp--custom--toggle-switch--inset, 0.2em)));
+		}
+	}
+}

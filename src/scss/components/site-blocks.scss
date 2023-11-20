@@ -2,11 +2,12 @@
 @import "../abstracts/align-full";
 
 .wp-site-blocks {
-	display: grid;
+	display: var(--wp--custom--site-blocks--display, grid);
 	grid-template-rows: auto 1fr auto;
 	grid-template-columns: 1fr;
+	width: 100%;
 	min-height: var(--wp--custom--site-blocks--min-height, 100vh);
-	overflow-x: var(--wp--custom--site-blocks--overflow-x, hidden);
+	overflow-x: var(--wp--custom--site-blocks--overflow-x);
 }
 
 .wp-site-blocks > * + * {
@@ -34,6 +35,10 @@
 	margin-bottom: auto !important;
 }
 
+.no-margin {
+	margin: 0 !important;
+}
+
 .nowrap {
 	white-space: nowrap !important; // !important for editor.
 
@@ -50,6 +55,10 @@
 .wrap {
 	white-space: normal;
 	flex-wrap: wrap;
+}
+
+.flex {
+	display: flex;
 }
 
 .justify-center {
@@ -75,6 +84,18 @@
 
 .align-content-center {
 	align-content: center;
+}
+
+.align-stretch {
+	align-items: stretch;
+	align-self: stretch;
+}
+
+.object-fit {
+	object-fit: cover;
+	object-position: center;
+	height: 100%;
+	width: 100%;
 }
 
 header,

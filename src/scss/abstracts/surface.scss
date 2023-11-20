@@ -2,15 +2,41 @@
 
 $border: var(--wp--custom--surface--border-width, $border-width) var(--wp--custom--surface--border-style, $border-style) var(--wp--custom--surface--border-color, $border-color);
 
+@mixin surface-overlay {
+
+	&::before {
+		content: "";
+		display: block;
+		position: absolute;
+		inset: 0;
+		background: var(--wp--custom--surface--overlay--background, transparent);
+		opacity: var(--wp--custom--surface--overlay--opacity, 1);
+		border-radius: inherit;
+		pointer-events: none;
+		width: 100% !important;
+		z-index: -1;
+	}
+
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		inset: 0;
+		backdrop-filter: var(--wp--custom--surface--backdrop-filter, none);
+		z-index: -1;
+		border-radius: inherit;
+	}
+}
+
 @mixin surface {
-	background: var(--wp--custom--surface--background, var(--wp--preset--color--surface));
 	border-top: var(--wp--custom--surface--border--top, $border);
 	border-right: var(--wp--custom--surface--border--right, $border);
 	border-bottom: var(--wp--custom--surface--border--bottom, $border);
 	border-left: var(--wp--custom--surface--border--left, $border);
 	border-radius: var(--wp--custom--surface--border-radius, $border-radius);
-	padding: var(--wp--custom--surface--padding, var(--wp--preset--spacing--sm));
+	padding: var(--wp--custom--surface--padding, var(--wp--preset--spacing--xs));
 	box-shadow: var(--wp--custom--surface--box-shadow);
+	-webkit-backdrop-filter: var(--wp--custom--surface--backdrop-filter, none);
 	backdrop-filter: var(--wp--custom--surface--backdrop-filter, none);
 	position: relative;
 
@@ -18,17 +44,16 @@ $border: var(--wp--custom--surface--border-width, $border-width) var(--wp--custo
 		background: var(--wp--custom--surface--surface--background, inherit);
 	}
 
-	// Overlay.
-	&::before {
-		content: "";
-		display: block;
-		position: absolute;
-		inset: 0;
-		background: var(--wp--custom--surface-overlay--background, transparent);
-		opacity: var(--wp--custom--surface-overlay--opacity, 0);
-		border-radius: inherit;
-		pointer-events: none;
+	&[style*="background-color:"] {
+		--wp--custom--surface--overlay--background: transparent;
 	}
+
+	&:not(.has-background) {
+		background: var(--wp--custom--surface--background, transparent);
+	}
+
+	// Overlay.
+	@include surface-overlay;
 
 	> * {
 		position: relative;

@@ -1,9 +1,14 @@
 import { __ } from '@wordpress/i18n';
-import { Format, FormatProps, registerFormatType, applyFormat } from '@wordpress/rich-text';
-import { RichTextShortcut, BlockControls, RichTextToolbarButton } from '@wordpress/block-editor';
-import { Toolbar, Popover, GradientPicker } from '@wordpress/components';
+import {
+	applyFormat,
+	Format,
+	FormatProps,
+	registerFormatType,
+} from '@wordpress/rich-text';
+import { BlockControls, RichTextToolbarButton } from '@wordpress/block-editor';
+import { GradientPicker, Popover, Toolbar } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { SelectorMap, useSelect } from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 import { styles } from '@wordpress/icons';
 
 const name = 'blockify/gradient';
@@ -12,7 +17,7 @@ const Edit = ( { isActive, value, onChange }: FormatProps ) => {
 	const [ gradient, setGradient ] = useState( '' );
 	const [ isOpen, setIsOpen ] = useState( false );
 
-	const { gradients } = useSelect<any>( ( select: SelectorMap ) => {
+	const { gradients } = useSelect<any>( ( select: any ) => {
 		return {
 			gradients: select( 'core/block-editor' ).getSettings()?.gradients,
 		};
@@ -43,47 +48,50 @@ const Edit = ( { isActive, value, onChange }: FormatProps ) => {
 				onClick={ () => setIsOpen( ! isOpen ) }
 			/>
 			{ isOpen &&
-			<Toolbar className={ 'blockify-components-toolbar' }>
-				<Popover
-					position={ 'bottom center' }
-					className={ 'blockify-gradient-text-control' }
-					focusOnMount={ 'container' }
-					onFocusOutside={ () => setIsOpen( false ) }
-				>
-					<GradientPicker
-						value={ gradient ?? '' }
-						gradients={ gradients }
-						onChange={ ( newGradient: string ) => {
-							setGradient( newGradient );
+				<Toolbar className={ 'blockify-components-toolbar' }>
+					<Popover
+						position={ 'bottom center' }
+						className={ 'blockify-gradient-text-control' }
+						focusOnMount={ 'container' }
+						onFocusOutside={ () => setIsOpen( false ) }
+					>
+						<GradientPicker
+							value={ gradient ?? '' }
+							gradients={ gradients }
+							onChange={ ( newGradient: string | undefined ): void => {
+								setGradient( newGradient );
 
-							let style = existingStyle;
-							let className = existingClass;
+								let style = existingStyle;
+								let className = existingClass;
 
-							gradients.forEach( ( gradientItem: { slug: string; gradient: string } ) => {
-								if ( gradientItem.gradient === newGradient ) {
-									className += ( className ? ' ' : '' ) + 'has-' + gradientItem.slug + '-gradient-background';
+								gradients.forEach( ( gradientItem: {
+									slug: string;
+									gradient: string
+								} ) => {
+									if ( gradientItem.gradient === newGradient ) {
+										className += ( className ? ' ' : '' ) + 'has-' + gradientItem.slug + '-gradient-background';
+									}
+								} );
+
+								if ( newGradient && ! className.includes( '-gradient-background' ) ) {
+									style += ( style ? style + ';' : '' ) + 'background:' + newGradient;
 								}
-							} );
 
-							if ( newGradient && ! className.includes( '-gradient-background' ) ) {
-								style += ( style ? style + ';' : '' ) + 'background:' + newGradient;
-							}
+								if ( className?.includes( 'has-text-gradient' ) ) {
+									className = className?.replace( 'has-text-gradient', '' )?.trim() + ' has-text-gradient';
+								}
 
-							if ( className?.includes( 'has-text-gradient' ) ) {
-								className = className?.replace( 'has-text-gradient', '' )?.trim() + ' has-text-gradient';
-							}
-
-							onChange( applyFormat( value, {
-								type: name,
-								attributes: {
-									style,
-									class: className,
-								},
-							} ) );
-						} }
-					/>
-				</Popover>
-			</Toolbar>
+								onChange( applyFormat( value, {
+									type: name,
+									attributes: {
+										style,
+										class: className,
+									},
+								} ) );
+							} }
+						/>
+					</Popover>
+				</Toolbar>
 			}
 		</BlockControls>
 

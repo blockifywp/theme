@@ -1,5 +1,4 @@
 import {
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
 	__experimentalNumberControl as NumberControl,
 	Button,
 	Flex,
@@ -11,11 +10,10 @@ import {
 import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { CSSProperties } from '@wordpress/element';
+import { CSSProperties } from 'react';
 import { trash } from '@wordpress/icons';
 import { ucWords } from '../utility/string';
-import { PauseIcon } from '../components/pause-icon';
-import { Label } from '../components/label';
+import { Label, PauseIcon } from '../components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 interface cssAnimation {
@@ -28,6 +26,7 @@ interface cssAnimation {
 	direction?: string | null;
 	fillMode?: string | null;
 	playState?: string | null;
+	offset?: string | null;
 }
 
 const timingFunctionOptions = [
@@ -295,7 +294,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 										animation: {
 											...animation,
 											event: value,
-											iterationCount: value === 'infinite' ? '-1' : animation?.iterationCount === '-1' ? '1' : animation?.iterationCount,
+											iterationCount: ( value === 'infinite' ? '-1' : animation?.iterationCount ) === '-1' ? '1' : animation?.iterationCount,
 										},
 									} );
 								} }
@@ -342,8 +341,8 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 							allowReset={ true }
 						/>
 					</FlexItem>
-					<FlexItem>
-						{ animation?.event !== 'infinite' && (
+					{ animation?.event !== 'infinite' && (
+						<FlexItem>
 							<NumberControl
 								label={ __( 'Repeat', 'blockify' ) }
 								value={
@@ -364,8 +363,28 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 								step={ 1 }
 								allowReset={ true }
 							/>
-						) }
-					</FlexItem>
+						</FlexItem>
+					) }
+					{ animation?.event === 'scroll' && (
+						<FlexItem>
+							<NumberControl
+								label={ __( 'Offset', 'blockify' ) }
+								value={ parseInt( animation?.offset ?? '50' ) }
+								onChange={ ( value: number ) => {
+									setAttributes( {
+										animation: {
+											...animation,
+											offset: value.toString(),
+										},
+									} );
+								} }
+								min={ -1 }
+								max={ 200 }
+								step={ 1 }
+								allowReset={ true }
+							/>
+						</FlexItem>
+					) }
 				</Flex>
 			</PanelRow>
 		</>

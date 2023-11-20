@@ -5,6 +5,11 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function array_unique;
+use function count;
+use function explode;
+use function implode;
+use function in_array;
 use function str_replace;
 
 add_filter( 'render_block_core/columns', NS . 'render_columns_block', 10, 2 );
@@ -13,8 +18,8 @@ add_filter( 'render_block_core/columns', NS . 'render_columns_block', 10, 2 );
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
@@ -27,7 +32,53 @@ function render_columns_block( string $html, array $block ): string {
 	}
 
 	if ( $class === 'is-stacked-on-mobile' ) {
-		$html = str_replace( 'wp-block-columns', 'wp-block-columns is-stacked-on-mobile', $html );
+		$html = str_replace( 'wp-block-columns ', 'wp-block-columns is-stacked-on-mobile ', $html );
+		$dom  = dom( $html );
+		$div  = get_dom_element( 'div', $dom );
+
+		if ( $div ) {
+			$div_classes = explode( ' ', $div->getAttribute( 'class' ) );
+
+			if ( ! in_array( $class, $div_classes ) ) {
+				$div_classes[] = $class;
+			}
+
+			$div_classes = array_unique( $div_classes );
+
+			$div->setAttribute( 'class', implode( ' ', $div_classes ) );
+		}
+
+		$html = $dom->saveHTML();
+	}
+
+	$margin = $block['attrs']['style']['spacing']['margin'] ?? null;
+
+	if ( $margin ) {
+		$dom   = dom( $html );
+		$first = get_dom_element( 'div', $dom );
+
+		if ( $first ) {
+			$styles = css_string_to_array( $first->getAttribute( 'style' ) );
+
+			foreach ( $margin as $key => $value ) {
+				$styles[ 'margin-' . $key ] = $value;
+			}
+
+			$first->setAttribute( 'style', css_array_to_string( $styles ) );
+		}
+
+		$html = $dom->saveHTML();
+	}
+
+	$dom = dom( $html );
+	$div = get_dom_element( 'div', $dom );
+
+	if ( $div ) {
+		$column_count = (string) count( $block['innerBlocks'] ?? 0 );
+
+		$div->setAttribute( 'data-columns', $column_count );
+
+		$html = $dom->saveHTML();
 	}
 
 	return $html;

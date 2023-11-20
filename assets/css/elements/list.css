@@ -1,1 +1,1 @@
-ol,ul{padding-left:1em}li{margin-bottom:var(--wp--style--block-gap, 1em)}
+ol:not(.wp-block-comment-template),ul{padding-left:1em}ol{display:flex;flex-direction:column;gap:1em}ol ol{margin-top:1em}li{margin:0}

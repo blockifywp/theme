@@ -1,5 +1,6 @@
 {
 	"extends": [
-		"plugin:@wordpress/eslint-plugin/recommended-with-formatting"
+		"plugin:@wordpress/eslint-plugin/recommended-with-formatting",
+		"plugin:@typescript-eslint/recommended"
 	]
 }

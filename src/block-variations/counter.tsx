@@ -1,9 +1,11 @@
 import { __ } from '@wordpress/i18n';
 import {
+	__experimentalNumberControl as NumberControl,
+	Flex,
+	FlexItem,
 	PanelBody,
 	PanelRow,
 	TextControl,
-	__experimentalNumberControl as NumberControl, Flex, FlexItem,
 } from '@wordpress/components';
 import { backup } from '@wordpress/icons';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -14,12 +16,12 @@ import domReady from '@wordpress/dom-ready';
 import { useEffect } from '@wordpress/element';
 
 interface Counter {
-	start: string,
-	end: string,
-	duration: string,
-	delay: string,
-	prefix: string,
-	suffix: string,
+	start: string;
+	end: string;
+	duration: string;
+	delay: string;
+	prefix: string;
+	suffix: string;
 }
 
 const defaults: Counter = {
@@ -38,7 +40,7 @@ const counterVariation: BlockVariation = {
 	icon: backup,
 	isDefault: false,
 	category: window?.blockify?.isPlugin ? 'blockify' : 'text',
-	scope: [ 'inserter', 'transform', 'block' ],
+	scope: [ 'inserter' ],
 	description: __( 'Insert counter animation.', 'blockify' ),
 	attributes: {
 		className: 'is-style-counter',

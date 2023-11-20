@@ -1,15 +1,28 @@
-@import "../abstracts/ghost";
+@import "../abstracts/button.scss";
+@import "../abstracts/ghost.scss";
 
-.wp-block-button__link {
+.is-style-ghost {
 
-	.is-style-ghost & {
+	&:not(.wp-block-button) {
+
+		@include ghost;
+	}
+
+	.wp-block-button__link {
 		@include ghost;
 
-		color: var(--wp--custom--button-ghost--color, inherit);
+		color: var(--wp--custom--ghost--color, inherit);
+
+		.is-style-dark & {
+			color: var(--wp--custom--dark-mode--ghost--color, inherit);
+		}
+
+		@media(prefers-color-scheme: dark) {
+
+			.default-mode-auto:not(.is-style-light):not(.is-style-dark) & {
+				color: var(--wp--custom--dark-mode--ghost--color, inherit);
+			}
+		}
 	}
 }
 
-.is-style-ghost:not(.wp-block-button) {
-
-	@include ghost;
-}

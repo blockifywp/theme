@@ -21,8 +21,6 @@ const Edit = ( props: formatProps ) => {
 		onChange,
 	} = props;
 
-	const [ isOpen, setIsOpen ] = useState( false );
-
 	let existingStyleString = '';
 	let existingClassString = '';
 

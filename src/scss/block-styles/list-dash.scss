@@ -1,0 +1,21 @@
+.is-style-dash {
+	list-style: none;
+	padding-left: 1.5em;
+
+	ul {
+		list-style: none;
+	}
+
+	li {
+		width: 100%;
+
+		&::before {
+			content: "-";
+			margin-left: -1.5em;
+			width: 1em;
+			height: 1em;
+			display: block;
+			float: left;
+		}
+	}
+}

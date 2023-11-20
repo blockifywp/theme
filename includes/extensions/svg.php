@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function array_diff;
 use function explode;
 use function implode;
 use function rawurlencode;
@@ -17,10 +18,11 @@ add_filter( 'render_block_core/image', NS . 'render_svg_block_variation', 9, 2 )
 /**
  * Render SVG block variation.
  *
- * @param string $html  Block html content.
+ * @since 0.9.10
+ *
  * @param array  $block Block data.
  *
- * @since 0.9.10
+ * @param string $html  Block html content.
  *
  * @return string
  */
@@ -42,11 +44,11 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$svg    = get_dom_element( 'svg', $link ?? $figure );
 
 	$mask   = (bool) ( $block['attrs']['style']['maskSvg'] ?? false );
-	$width  = $block['attrs']['width'] ?? '';
-	$height = $block['attrs']['height'] ?? '';
+	$width  = (string) ( $block['attrs']['width'] ?? '' );
+	$height = (string) ( $block['attrs']['height'] ?? '' );
 
 	if ( $mask ) {
-		$span    = change_tag_name( $img, 'span' );
+		$span    = change_tag_name( 'span', $img );
 		$styles  = css_string_to_array( $span->getAttribute( 'style' ) );
 		$encoded = rawurlencode(
 			str_replace(
@@ -59,13 +61,17 @@ function render_svg_block_variation( string $html, array $block ): string {
 		$styles['-webkit-mask-image'] = 'url("data:image/svg+xml;utf8,' . $encoded . '")';
 
 		if ( $width ) {
-			$styles['width'] = $width . 'px';
+			$unit = str_contains_any( $width, 'px', 'em', 'rem', 'vh', 'vw', '%' ) ? '' : 'px';
+
+			$styles['width'] = $width . $unit;
 
 			$span->removeAttribute( 'width' );
 		}
 
 		if ( $height ) {
-			$styles['height'] = $height . 'px';
+			$unit = str_contains_any( $height, 'px', 'em', 'rem', 'vh', 'vw', '%' ) ? '' : 'px';
+
+			$styles['height'] = $height . $unit;
 
 			$span->removeAttribute( 'height' );
 		}
@@ -131,10 +137,11 @@ add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
 /**
  * Renders inline SVGs in rich text content.
  *
- * @param string $html  Block html content.
+ * @since 0.9.10
+ *
  * @param array  $block Block data.
  *
- * @since 0.9.10
+ * @param string $html  Block html content.
  *
  * @return string
  */
@@ -192,8 +199,7 @@ function render_inline_svg( string $html, array $block ): string {
 		$imported->setAttribute( 'fill', 'currentColor' );
 
 		$classes = explode( ' ', $img->getAttribute( 'class' ) );
-
-		unset( $classes[ array_search( 'has-inline-svg', $classes, true ) ] );
+		$classes = array_diff( $classes, [ 'has-inline-svg' ] );
 
 		$classes[] = 'inline-svg';
 

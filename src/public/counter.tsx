@@ -1,4 +1,4 @@
-document.addEventListener( 'DOMContentLoaded', () => {
+const initCounter = () => {
 	const mediaQuery = window.matchMedia( '(prefers-reduced-motion)' );
 
 	if ( mediaQuery && mediaQuery.matches ) {
@@ -54,4 +54,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		block.innerHTML = '0';
 		observer.observe( block );
 	} );
-} );
+};
+
+document.addEventListener( 'DOMContentLoaded', initCounter );
+window.addEventListener( 'resize', initCounter );

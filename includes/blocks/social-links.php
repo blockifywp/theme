@@ -44,8 +44,16 @@ function render_social_links_block( string $html, array $block ): string {
 			}
 
 			foreach ( $color_palette as $color ) {
-				if ( trim( $styles['color'] ) === trim( $color['color'] ) ) {
-					$styles['color'] = "var(--wp--preset--color--{$color['slug']})";
+				$hex = $color['color'] ?? '';
+
+				if ( trim( $styles['color'] ) === trim( $hex ) ) {
+					$slug = $color['slug'] ?? '';
+
+					if ( ! $slug ) {
+						continue;
+					}
+
+					$styles['color'] = "var(--wp--preset--color--$slug)";
 					$child->setAttribute( 'style', css_array_to_string( $styles ) );
 
 					break;

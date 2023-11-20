@@ -4,8 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function add_filter;
-
 add_filter( 'render_block_core/template-part', NS . 'render_block_template_part', 10, 2 );
 /**
  * Modifies the template part block.
@@ -61,12 +59,15 @@ function render_block_template_part( string $html, array $block ): string {
 		$first->removeAttribute( 'style' );
 	}
 
-	if ( $first->tagName === 'header' ) {
+	if ( $block['attrs']['slug'] === 'header' ) {
 		$first->setAttribute( 'role', 'banner' );
-		$first->setAttribute( 'id', 'top' );
 	}
 
-	if ( $first->tagName === 'footer' ) {
+	if ( $block['attrs']['slug'] === 'main' ) {
+		$first->setAttribute( 'role', 'main' );
+	}
+
+	if ( $block['attrs']['slug'] === 'footer' ) {
 		$first->setAttribute( 'role', 'contentinfo' );
 	}
 

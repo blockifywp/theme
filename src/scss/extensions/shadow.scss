@@ -1,0 +1,36 @@
+@import "../abstracts/shadow";
+
+.has-shadow {
+	box-shadow: var(--wp--custom--box-shadow);
+	transition: var(--wp--custom--transition);
+}
+
+.has-none-shadow:not(.wp-block-button),
+.has-none-shadow-hover:not(.wp-block-button):hover,
+.has-none-shadow-hover:not(.wp-block-button):focus {
+	box-shadow: none;
+}
+
+@each $preset in $presets {
+
+	.has-#{$preset}-shadow {
+		box-shadow: var(--wp--preset--shadow--#{$preset});
+	}
+
+	.has-#{$preset}-shadow:not(.wp-block-button) {
+		box-shadow: var(--wp--preset--shadow--#{$preset});
+	}
+
+	.has-#{$preset}-shadow-hover:not(.wp-block-button):hover,
+	.has-#{$preset}-shadow-hover:not(.wp-block-button):focus {
+		box-shadow: var(--wp--preset--shadow--#{$preset}--hover) !important;
+	}
+
+	.has-#{$preset}-shadow.wp-block-button {
+		--wp--custom--button--box-shadow: var(--wp--preset--shadow--#{$preset});
+	}
+
+	.has-#{$preset}-shadow-hover.wp-block-button {
+		--wp--custom--button--box-shadow--hover: var(--wp--preset--shadow--#{$preset});
+	}
+}

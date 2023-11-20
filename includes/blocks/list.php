@@ -24,9 +24,6 @@ add_filter( 'render_block_core/list', NS . 'render_list_block', 11, 2 );
  * @return string
  */
 function render_list_block( string $html, array $block ): string {
-	$block_gap       = $block['attrs']['style']['spacing']['blockGap'] ?? null;
-	$justify_content = $block['attrs']['layout']['justifyContent'] ?? '';
-
 	$dom = dom( $html );
 	$ul  = get_dom_element( 'ul', $dom );
 	$ol  = get_dom_element( 'ol', $dom );
@@ -35,8 +32,11 @@ function render_list_block( string $html, array $block ): string {
 		return $html;
 	}
 
-	$list   = $ul ?? $ol;
-	$styles = css_string_to_array( $list->getAttribute( 'style' ) );
+	$block_gap       = $block['attrs']['style']['spacing']['blockGap'] ?? null;
+	$justify_content = $block['attrs']['layout']['justifyContent'] ?? '';
+	$margin          = $block['attrs']['style']['spacing']['margin'] ?? [];
+	$list            = $ul ?? $ol;
+	$styles          = css_string_to_array( $list->getAttribute( 'style' ) );
 
 	if ( $block_gap === '0' || $block_gap ) {
 		$styles['gap'] = format_custom_property( $block_gap );
@@ -48,7 +48,13 @@ function render_list_block( string $html, array $block ): string {
 		$styles['justify-content'] = $justify_content;
 	}
 
-	$list->setAttribute( 'style', css_array_to_string( $styles ) );
+	foreach ( $margin as $side => $value ) {
+		$styles["margin-$side"] = format_custom_property( $value );
+	}
+
+	if ( $styles ) {
+		$list->setAttribute( 'style', css_array_to_string( $styles ) );
+	}
 
 	$classes = explode( ' ', $list->getAttribute( 'class' ) );
 
@@ -59,7 +65,7 @@ function render_list_block( string $html, array $block ): string {
 	$html = $dom->saveHTML();
 
 	if ( str_contains( $html, 'is-style-accordion' ) ) {
-		$html = render_list_block_accordion( $html, $block );
+		$html = render_list_block_accordion( $html );
 	}
 
 	return $html;
@@ -70,12 +76,11 @@ function render_list_block( string $html, array $block ): string {
  *
  * @since 0.9.19
  *
- * @param string $html  Block html.
- * @param array  $block Block data.
+ * @param string $html Block html.
  *
  * @return string
  */
-function render_list_block_accordion( string $html, array $block ): string {
+function render_list_block_accordion( string $html ): string {
 	$dom = dom( $html );
 	$ul  = get_dom_element( 'ul', $dom );
 	$ol  = get_dom_element( 'ol', $dom );
@@ -110,14 +115,14 @@ function render_list_block_accordion( string $html, array $block ): string {
 			continue;
 		}
 
-		$details = $dom->createElement( 'details' );
+		$details = create_element( 'details', $dom );
 
 		foreach ( $li->attributes as $attribute ) {
 			$details->setAttribute( $attribute->name, $attribute->value );
 		}
 
-		$summary = $dom->createElement( 'summary' );
-		$section = $dom->createElement( 'section' );
+		$summary = create_element( 'summary', $dom );
+		$section = create_element( 'section', $dom );
 		$explode = explode( '<br>', $inner );
 
 		$details->textContent = '';
@@ -139,7 +144,7 @@ function render_list_block_accordion( string $html, array $block ): string {
 		$has_border = str_contains_any( $li_style, 'border-width', 'border-style', 'border-color' ) && ! str_contains( $li_style, 'border-width:0' );
 
 		if ( $has_border ) {
-			$details->appendChild( $dom->createElement( 'hr' ) );
+			$details->appendChild( create_element( 'hr', $dom ) );
 		}
 
 		$details->appendChild( $section );
@@ -186,7 +191,7 @@ function render_list_block_accordion( string $html, array $block ): string {
 			$details->removeAttribute( 'style' );
 		}
 
-		$icon = $dom->createElement( 'span' );
+		$icon = create_element( 'span', $dom );
 		$icon->setAttribute( 'class', 'accordion-toggle' );
 		$summary->appendChild( $icon );
 
@@ -208,23 +213,4 @@ function render_list_block_accordion( string $html, array $block ): string {
 	$dom->appendChild( $imported );
 
 	return $dom->saveHTML();
-}
-
-add_filter( 'blockify_inline_js', NS . 'add_accordion_js', 10, 2 );
-/**
- * Adds accordion js.
- *
- * @since 0.9.19
- *
- * @param string $js      Inline JS.
- * @param string $content Page HTML content.
- *
- * @return string
- */
-function add_accordion_js( string $js, string $content ): string {
-	if ( str_contains( $content, 'is-style-accordion' ) ) {
-		$js .= file_get_contents( get_dir() . 'assets/js/accordion.js' );
-	}
-
-	return $js;
 }

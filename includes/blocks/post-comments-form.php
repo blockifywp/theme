@@ -26,10 +26,28 @@ function render_post_comments_form_block( string $html, array $block ): string {
 	}
 
 	change_tag_name(
-		$h3,
-		apply_filters( 'blockify_comments_form_title_tag', 'h4' )
+		apply_filters( 'blockify_comments_form_title_tag', 'h4' ),
+		$h3
 	);
 
 	return $dom->saveHTML();
 }
 
+add_filter( 'register_block_type_args', NS . 'register_comments_args', 10, 2 );
+/**
+ * Registers the Post Comments Form block.
+ *
+ * @param array  $args       The block arguments.
+ * @param string $block_type The block handle.
+ *
+ * @return array
+ */
+function register_comments_args( array $args, string $block_type ): array {
+	if ( 'core/comments' === $block_type ) {
+		$args['available_context'] = [
+			'postId' => '',
+		];
+	}
+
+	return $args;
+}

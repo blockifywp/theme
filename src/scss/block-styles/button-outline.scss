@@ -1,43 +1,34 @@
-.wp-block-button__link {
+.is-style-outline {
 
-	.wp-block-button.is-style-outline & {
-		line-height: calc(1em - 4px);
+	&.wp-block-button {
+		padding: 0;
 	}
 
-	.is-style-outline & {
+	.wp-element-button,
+	&.wp-block-button > .wp-block-button__link {
+		padding-top: calc(var(--wp--custom--button--padding-top) - var(--wp--custom--border--width, 1px));
+		padding-right: var(--wp--custom--button--padding-right);
+		padding-bottom: calc(var(--wp--custom--button--padding-bottom) - var(--wp--custom--border--width, 1px));
+		padding-left: var(--wp--custom--button--padding-left);
+	}
+
+	.wp-element-button,
+	.button {
+		display: inline-flex;
 		border-color: currentcolor;
 		background: transparent;
 		color: var(--wp--custom--button-outline--color, var(--wp--custom--button--background, var(--wp--preset--color--primary)));
 
-		&.wp-element-button {
-			padding: var(--wp--custom--button--padding, 0.9em 1.2em);
+		&:not([style*="border-width"]) {
+			border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
+		}
+
+		&:not([style*="border-color"]) {
+			border-color: currentcolor;
+		}
+
+		&:not(.has-text-color) {
+			color: var(--wp--custom--button-outline--color, inherit) !important;
 		}
 	}
-
-	.is-style-outline &:not([style*="border-width"]) {
-		border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
-	}
-
-	// Core override
-	.wp-block-button.is-style-outline &:not(.has-text-color) {
-		color: var(--wp--custom--button-outline--color, inherit) !important;
-	}
 }
-
-// EDD  & WooCommerce.
-.button.is-style-outline {
-	display: inline-flex;
-	line-height: calc(1em - 4px);
-	border-color: currentcolor;
-	background: transparent;
-	color: var(--wp--preset--color--custom-button-outline, var(--wp--preset--color--primary));
-
-	&:not([style*="border-width"]) {
-		border-width: var(--wp--custom--button-outline--border-width, 2px) !important;
-	}
-
-	&:not([style*="border-color"]) {
-		border-color: currentcolor;
-	}
-}
-

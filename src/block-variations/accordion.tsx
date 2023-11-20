@@ -7,6 +7,7 @@ registerBlockVariation( 'core/list', {
 	title: __( 'Accordion', 'blockify' ),
 	description: __( 'Add a collapsible accordion list.', 'blockify' ),
 	category: window?.blockify?.isPlugin ? 'blockify' : 'text',
+	scope: [],
 	icon: plus,
 	attributes: {
 		className: 'is-style-accordion',

@@ -1,7 +1,7 @@
 @mixin notice {
 	position: relative;
 	padding: var(--wp--custom--notice--padding, 1em);
-	color: var(--wp--custom--notice--color, var(--wp--preset--color--primary));
+	color: var(--wp--custom--notice--color, currentColor);
 	border: var(--wp--custom--border--width) solid currentcolor;
 	border-radius: var(--wp--custom--border--radius);
 	font-size: var(--wp--custom--notice--font-size, var(--wp--preset--font-size--small));

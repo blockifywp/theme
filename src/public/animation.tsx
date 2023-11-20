@@ -1,4 +1,4 @@
-( () => {
+const initAnimation = () => {
 	const mediaQuery = window.matchMedia( '(prefers-reduced-motion: reduce)' );
 
 	if ( ! mediaQuery || mediaQuery.matches ) {
@@ -35,4 +35,7 @@
 	for ( const block of animatedBlocks ) {
 		observer.observe( block );
 	}
-} )();
+};
+
+document.addEventListener( 'DOMContentLoaded', initAnimation );
+window.addEventListener( 'resize', initAnimation );

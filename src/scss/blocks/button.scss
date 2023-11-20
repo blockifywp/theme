@@ -1,16 +1,24 @@
 .wp-block-button {
+	--wp--style--block-gap: var(--wp--custom--button--gap, 6px);
+
 	transition: var(--wp--custom--transition);
 	line-height: 1;
 	border-style: none;
+	padding: 0 !important;
 
 	&:active,
 	&:hover,
 	&:focus {
-		opacity: var(--wp--custom--button--hover-opacity, 0.82);
+		opacity: var(--wp--custom--button--hover-opacity, 1);
 	}
 
 	&__link {
 		display: inline-flex;
+		gap: var(--wp--style--block-gap);
+
+		.is-content-justification-left .wp-block-button__width-100 & {
+			justify-content: flex-start;
+		}
 	}
 }
 

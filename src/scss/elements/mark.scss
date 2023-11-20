@@ -1,4 +1,7 @@
 mark {
 	border-radius: inherit;
-	padding: 0.2em 0.4em;
+
+	&:not(.has-inline-color) {
+		padding: 0.2em 0.4em;
+	}
 }

@@ -1,0 +1,16 @@
+@mixin is-style-none {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0.5em;
+
+	ul {
+		list-style: none;
+		margin-top: 0.5em;
+		padding-left: 1em;
+	}
+}
+
+ul.is-style-none {
+
+	@include is-style-none;
+}

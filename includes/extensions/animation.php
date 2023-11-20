@@ -5,9 +5,10 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
-use function array_search;
+use function array_diff;
 use function array_unique;
 use function explode;
+use function file_exists;
 use function file_get_contents;
 use function str_contains;
 
@@ -43,21 +44,28 @@ add_filter( 'blockify_inline_css', NS . 'get_animation_styles', 10, 3 );
 /**
  * Returns inline styles for animations.
  *
- * @param string $css       Inline CSS.
- * @param string $content   Page content.
- * @param bool   $is_editor Is admin.
- *
  * @since 0.9.19
+ *
+ * @param string $css     Inline CSS.
+ * @param string $content Page content.
+ * @param bool   $all     Is admin.
+ *
  *
  * @return string
  */
-function get_animation_styles( string $css, string $content, bool $is_editor ): string {
+function get_animation_styles( string $css, string $content, bool $all ): string {
 	$animations = get_animations();
 
 	foreach ( $animations as $name => $animation ) {
-		if ( $is_editor || str_contains( $content, "animation-name:{$name}" ) ) {
+		if ( $all || str_contains( $content, "animation-name:{$name}" ) ) {
 			$css .= "@keyframes $name" . trim( $animation );
 		}
+	}
+
+	$file = get_dir() . 'assets/css/extensions/animation.css';
+
+	if ( file_exists( $file ) ) {
+		$css .= file_get_contents( $file );
 	}
 
 	return $css;
@@ -67,9 +75,9 @@ add_filter( 'blockify_editor_data', NS . 'add_animation_names' );
 /**
  * Adds animation names to editor, so they are available for options.
  *
- * @param array $data Editor data.
- *
  * @since 0.9.19
+ *
+ * @param array $data Editor data.
  *
  * @return array
  */
@@ -79,19 +87,21 @@ function add_animation_names( array $data ): array {
 	return $data;
 }
 
-add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 2 );
+add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 3 );
 /**
  * Conditionally add animation JS.
  *
+ * @since 0.9.10
+ *
  * @param string $js      The inline JS.
  * @param string $content The block content.
+ * @param bool   $all     Whether to add all JS.
  *
- * @since 0.9.10
  *
  * @return string
  */
-function add_animation_js( string $js, string $content ): string {
-	if ( str_contains( $content, ' has-animation' ) ) {
+function add_animation_js( string $js, string $content, bool $all ): string {
+	if ( $all || str_contains_any( $content, 'has-animation', 'has-scroll-animation' ) ) {
 		$js .= file_get_contents( get_dir() . 'assets/js/animation.js' );
 	}
 
@@ -102,10 +112,11 @@ add_filter( 'render_block', NS . 'render_animation_attributes', 10, 2 );
 /**
  * Adds animation attributes to block.
  *
- * @param string $html  The block content.
+ * @since 0.9.10
+ *
  * @param array  $block The block.
  *
- * @since 0.9.10
+ * @param string $html  The block content.
  *
  * @return string
  */
@@ -145,15 +156,27 @@ function render_animation_attributes( string $html, array $block ): string {
 	$event = $animation['event'] ?? '';
 
 	if ( $event === 'scroll' ) {
+		$classes[] = 'animate';
 		$classes[] = 'has-scroll-animation';
 
-		unset( $classes[ array_search( 'has-animation', $classes, true ) ] );
+		$classes = array_diff( $classes, [ 'has-animation' ] );
+
 		$styles['animation-delay']      = 'calc(var(--scroll) * -1s)';
 		$styles['animation-play-state'] = 'paused';
 		$styles['animation-duration']   = '1s';
 		$styles['animation-fill-mode']  = 'both';
 
 		unset( $styles['--animation-event'] );
+
+		$offset = $animation['offset'] ?? '0';
+
+		if ( $offset === '0' ) {
+			$offset = '0.01';
+		}
+
+		if ( $offset ) {
+			$first->setAttribute( 'data-offset', $offset );
+		}
 	}
 
 	$first->setAttribute( 'style', css_array_to_string( $styles ) );
@@ -162,19 +185,20 @@ function render_animation_attributes( string $html, array $block ): string {
 	return $dom->saveHTML();
 }
 
-add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 2 );
+add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 3 );
 /**
  * Adds scroll JS to the inline JS.
  *
+ * @since 0.0.14
+ *
  * @param string $js      Inline JS.
  * @param string $content Page content.
- *
- * @since 0.0.14
+ * @param bool   $all     Whether to add all JS.
  *
  * @return string
  */
-function add_scroll_js( string $js, string $content ): string {
-	if ( str_contains( $content, 'animation-event:scroll' ) ) {
+function add_scroll_js( string $js, string $content, bool $all ): string {
+	if ( $all || str_contains_any( $content, 'animation-event:scroll', 'has-scroll-animation' ) ) {
 		$js .= file_get_contents( get_dir() . 'assets/js/scroll.js' );
 	}
 

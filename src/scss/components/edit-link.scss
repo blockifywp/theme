@@ -1,0 +1,12 @@
+@import "../abstracts/ghost.scss";
+
+.comment-edit-link {
+	padding: 4px 8px;
+	border-radius: var(--wp--custom--border--radius);
+	margin-left: 0.5em;
+	font-size: smaller;
+	font-weight: var(--wp--custom--font-weight--semi-bold);
+	color: inherit;
+
+	@include ghost;
+}
