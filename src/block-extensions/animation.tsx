@@ -79,7 +79,7 @@ addFilter(
 	0
 );
 
-const getStyles = ( animation: style ): CSSProperties => {
+const getStyles = ( animation: cssAnimation ): CSSProperties => {
 	const styles: {
 		'--animation-event'?: string;
 		animationName?: string;
@@ -114,7 +114,7 @@ const getStyles = ( animation: style ): CSSProperties => {
 
 	if ( animation?.timingFunction ) {
 		styles.animationTimingFunction =
-			animation?.timingFunction ?? 'ease-in-out';
+            animation?.timingFunction ?? 'ease-in-out';
 	}
 
 	if ( ! styles?.animationIterationCount ) {
@@ -134,7 +134,7 @@ addFilter(
 	createHigherOrderComponent( ( BlockListBlock ) => {
 		return ( props: blockProps ) => {
 			const { attributes } = props;
-			const animation: style = attributes?.animation ?? {};
+			const animation: cssAnimation = attributes?.animation ?? {};
 
 			if ( ! animation || ! Object?.keys( animation )?.length ) {
 				return <BlockListBlock { ...props } />;
@@ -167,7 +167,7 @@ addFilter(
 	'blocks.getSaveContent.extraProps',
 	'blockify/apply-animation-styles',
 	( props, block, attributes ) => {
-		const animation: style = attributes?.animation ?? {};
+		const animation: cssAnimation = attributes?.animation ?? {};
 
 		if ( ! animation || ! Object?.keys( animation )?.length ) {
 			return props;
@@ -210,7 +210,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 				<Flex justify={ 'flex-end' }>
 					<FlexItem>
 						<Button
-							isSecondary
+							variant={ 'secondary' }
 							isSmall
 							icon={
 								animation?.playState === 'running' ? (
@@ -231,9 +231,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 									animation: {
 										...animation,
 										playState:
-											animation?.playState === 'running'
-												? 'paused'
-												: 'running',
+                                            animation?.playState === 'running' ? 'paused' : 'running',
 									},
 								} );
 							} }

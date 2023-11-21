@@ -230,34 +230,3 @@ function get_icon( string $set, string $name, $size = null ): string {
 
 	return trim( $dom->saveHTML() );
 }
-
-/**
- * Renders all icon SVGs on front end.
- *
- * @since 1.2.9
- *
- * @param int    $size Icon size.
- * @param string $set  Icon set.
- *
- * @return string
- */
-function get_icons_html( string $set = '', int $size = 20 ): string {
-	$icon_sets = get_icons();
-
-	if ( $set ) {
-		$icon_sets = [
-			$set => $icon_sets[ $set ] ?? [],
-		];
-	}
-
-	$html = '';
-
-	foreach ( $icon_sets as $set => $icons ) {
-		foreach ( $icons as $name => $icon ) {
-			$html .= get_icon( $set, $name, $size );
-		}
-	}
-
-	return $html;
-}
-

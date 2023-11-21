@@ -40,6 +40,7 @@ declare global {
 		controls?: BlockAlignmentToolbar.Control[] | AlignmentToolbar.Props['alignmentControls'] | BlockControls.Props['controls'];
 		onChange?: ( newValue: string | number | boolean | object | null | undefined ) => void;
 		subfields?: CustomField[];
+		allowReset?: boolean;
 	}
 
 	interface CustomBlock {
