@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import apiFetch from '@wordpress/api-fetch';
-import { createReduxStore, register } from '@wordpress/data';
+import { createReduxStore, register, select } from '@wordpress/data';
 
 export interface Icons {
 	[set: string]: {
@@ -80,15 +80,18 @@ const resolvers = {
 
 export const iconStoreName = 'blockify/icons';
 
-register(
-	createReduxStore(
-		iconStoreName,
-		{
-			reducer,
-			actions,
-			selectors,
-			controls,
-			resolvers,
-		}
-	)
-);
+if ( ! select( 'blockify/icons' )?.getIcons() ) {
+	register(
+		createReduxStore(
+			iconStoreName,
+			{
+				reducer,
+				actions,
+				selectors,
+				controls,
+				resolvers,
+			}
+		)
+	);
+}
+

@@ -88,12 +88,12 @@
         {
           "name": "Neutral 50",
           "slug": "neutral-50",
-          "color": "#141f2f"
+          "color": "#111827"
         },
         {
           "name": "Neutral 0",
           "slug": "neutral-0",
-          "color": "#111827"
+          "color": "#030712"
         },
         {
           "name": "Success 600",

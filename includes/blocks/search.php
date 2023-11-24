@@ -37,6 +37,7 @@ function render_search_block( string $html, array $block ): string {
 	$margin              = $block['attrs']['style']['spacing']['margin'] ?? [];
 	$background_color    = $block['attrs']['backgroundColor'] ?? '';
 	$background_custom   = $block['attrs']['style']['color']['background'] ?? '';
+	$input_background    = $block['attrs']['inputBackgroundColor'] ?? '';
 	$border              = $block['attrs']['style']['border'] ?? [];
 	$border_color        = $block['attrs']['style']['border']['color'] ?? $block['attrs']['borderColor'] ?? '';
 	$box_shadow          = $block['attrs']['style']['boxShadow'] ?? [];
@@ -112,6 +113,10 @@ function render_search_block( string $html, array $block ): string {
 
 	if ( $border['radius'] ?? '' ) {
 		$input_styles['border-radius'] = format_custom_property( $border['radius'] ?? '' );
+	}
+
+	if ( $input_background ) {
+		$input_styles['background-color'] = format_custom_property( $input_background );
 	}
 
 	if ( $input_styles ) {

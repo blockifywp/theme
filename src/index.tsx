@@ -13,6 +13,7 @@ import './block-extensions/negative-margin.tsx';
 import './block-extensions/onclick.tsx';
 import './block-extensions/position.tsx';
 import './block-extensions/query-spacing.tsx';
+import './block-extensions/search-input.tsx';
 import './block-extensions/shadow.tsx';
 import './block-extensions/size.tsx';
 import './block-extensions/transform.tsx';
