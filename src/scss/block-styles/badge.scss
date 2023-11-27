@@ -4,7 +4,7 @@
 .is-style-badges > *:not(.wp-block-query-pagination-numbers),
 .is-style-badges .page-numbers {
 	position: relative;
-	padding: 0.5em 0.75em;
+	padding: var(--wp--custom--badge--padding, 0.5em 0.75em);
 	margin-left: 0;
 	margin-right: 0;
 	border-radius: var(--wp--custom--border--radius, 4px);

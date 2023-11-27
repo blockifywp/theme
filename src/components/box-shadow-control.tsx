@@ -96,11 +96,11 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 							onClick={ () => {
 								if ( tab === 'hover' ) {
 									setAttributes( {
-										shadowPresetHover: preset.slug,
+										shadowPresetHover: preset.slug === 'none' ? '' : preset.slug,
 									} );
 								} else {
 									setAttributes( {
-										shadowPreset: preset.slug,
+										shadowPreset: preset.slug === 'none' ? '' : preset.slug,
 									} );
 								}
 							} }
@@ -170,14 +170,14 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 								{
 									enableAlpha: true,
 									colorValue:
-										tab === 'default'
-											? boxShadow?.color
-											: boxShadow?.[ tab ]?.color,
+                                        tab === 'default'
+                                        	? boxShadow?.color
+                                        	: boxShadow?.[ tab ]?.color,
 									label:
-										__( 'Color ', 'blockify' ) +
-										( tab === 'hover'
-											? __( ' Hover', 'blockify' )
-											: '' ),
+                                        __( 'Color ', 'blockify' ) +
+                                        ( tab === 'hover'
+                                        	? __( ' Hover', 'blockify' )
+                                        	: '' ),
 									onColorChange: changeColor,
 								},
 							] }

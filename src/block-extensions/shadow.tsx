@@ -66,7 +66,7 @@ const getStyles = ( attributes: {
 
 	const colorPalette: EditorColor[] = select( 'core/block-editor' ).getSettings().colors ?? [];
 
-	const units: { [property: string]: string } = {
+	const properties: { [property: string]: string } = {
 		inset: '',
 		x: 'px',
 		y: 'px',
@@ -75,16 +75,16 @@ const getStyles = ( attributes: {
 		color: '',
 	};
 
-	Object.keys( units ).map( ( key: string ) => {
-		if ( boxShadow?.[ key ] || boxShadow?.[ key ]?.toString() === '0' ) {
-			style[ '--wp--custom--box-shadow--' + key ] = boxShadow?.[ key ] + units?.[ key ];
+	Object.keys( properties ).map( ( property: string ) => {
+		if ( boxShadow?.[ property ] || boxShadow?.[ property ]?.toString() === '0' ) {
+			style[ '--wp--custom--box-shadow--' + property ] = boxShadow?.[ property ] + properties?.[ property ];
 		}
 
 		if (
-			boxShadow?.hover?.[ key ] ||
-			boxShadow?.hover?.[ key ]?.toString() === '0'
+			boxShadow?.hover?.[ property ] ||
+            boxShadow?.hover?.[ property ]?.toString() === '0'
 		) {
-			style[ '--wp--custom--box-shadow--hover--' + key ] = boxShadow?.hover?.[ key ] + units?.[ key ];
+			style[ '--wp--custom--box-shadow--hover--' + property ] = boxShadow?.hover?.[ property ] + properties?.[ property ];
 		}
 
 		return true;

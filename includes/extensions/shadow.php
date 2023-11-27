@@ -25,20 +25,21 @@ function render_box_shadow( string $html, array $block ): string {
 	];
 
 	$shadow_preset = $block['attrs']['shadowPreset'] ?? null;
+	$hover_preset  = $block['attrs']['shadowPresetHover'] ?? null;
 
 	if ( $shadow_preset ) {
 
 		if ( in_array( $block['blockName'], $nested_element_blocks, true ) ) {
 			$dom    = dom( $html );
 			$first  = get_dom_element( '*', $dom );
-			$second = get_dom_element( '*', $first );
+			$nested = get_dom_element( '*', $first );
 
-			if ( ! $first || ! $second ) {
+			if ( ! $first || ! $nested ) {
 				return $html;
 			}
 
 			$first_classes  = explode( ' ', $first->getAttribute( 'class' ) );
-			$second_classes = explode( ' ', $second->getAttribute( 'class' ) );
+			$nested_classes = explode( ' ', $nested->getAttribute( 'class' ) );
 
 			foreach ( $first_classes as $index => $class ) {
 				$exploded = explode( '-', $class );
@@ -47,18 +48,16 @@ function render_box_shadow( string $html, array $block ): string {
 
 				if ( $has && $shadow ) {
 					unset( $first_classes[ $index ] );
-					$second_classes[] = $class;
+					$nested_classes[] = $class;
 				}
 			}
 
 			$first->setAttribute( 'class', implode( ' ', $first_classes ) );
-			$second->setAttribute( 'class', implode( ' ', $second_classes ) );
+			$nested->setAttribute( 'class', implode( ' ', $nested_classes ) );
 
 			$html = $dom->saveHTML();
 		}
 	}
-
-	$hover_preset = $block['attrs']['shadowPresetHover'] ?? null;
 
 	if ( $hover_preset && ! $shadow_preset ) {
 		$dom       = dom( $html );
@@ -85,8 +84,11 @@ function render_box_shadow( string $html, array $block ): string {
 		return $html;
 	}
 
-	$first_classes   = explode( ' ', $first->getAttribute( 'class' ) );
-	$first_classes[] = 'has-box-shadow';
+	$first_classes = explode( ' ', $first->getAttribute( 'class' ) );
+
+	if ( ! in_array( 'has-box-shadow', $first_classes, true ) ) {
+		$first_classes[] = 'has-box-shadow';
+	}
 
 	$first->setAttribute( 'class', implode( ' ', $first_classes ) );
 

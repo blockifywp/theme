@@ -13,7 +13,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { CSSProperties } from 'react';
 import { trash } from '@wordpress/icons';
 import { ucWords } from '../utility/string';
-import { Label, PauseIcon } from '../components';
+import { Label, PauseIcon, PlayIcon } from '../components';
 import { InspectorControls } from '@wordpress/block-editor';
 
 interface cssAnimation {
@@ -213,17 +213,7 @@ const Animation = ( { attributes, setAttributes }: blockProps ): JSX.Element => 
 							variant={ 'secondary' }
 							isSmall
 							icon={
-								animation?.playState === 'running' ? (
-									PauseIcon
-								) : (
-									<svg
-										xmlns={ 'http://www.w3.org/2000/svg' }
-										version={ '1.1' }
-										fill={ 'currentColor' }
-									>
-										<polygon points="10,5 0,10 0,0" />
-									</svg>
-								)
+								animation?.playState === 'running' ? PauseIcon : PlayIcon
 							}
 							iconSize={ 10 }
 							onClick={ () => {

@@ -3,8 +3,14 @@
 }
 
 header.wp-block-template-part {
-	z-index: 3;
-	position: var(--wp--custom--header--position, relative);
+
+	&:not(.has-z-index) {
+		z-index: 3;
+	}
+
+	&:not([class*="has-position-"]) {
+		position: var(--wp--custom--header--position, relative);
+	}
 }
 
 footer.wp-block-template-part {

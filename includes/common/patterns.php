@@ -259,10 +259,6 @@ function register_block_pattern_from_file( string $file ): void {
 		);
 	}
 
-	if ( in_array( 'template', $categories, true ) ) {
-		$pattern['content'] = get_template_wrapper( $pattern['content'], str_contains( $pattern['slug'], 'blank' ) );
-	}
-
 	register_block_pattern( $pattern['slug'], $pattern );
 }
 
@@ -317,40 +313,4 @@ function get_block_html( array $block, bool $render = false ): string {
 	$parsed_block = parse_blocks( $serialized )[0];
 
 	return $render ? render_block( $parsed_block ) : $serialized;
-}
-
-/**
- * Renders template pattern header wrapper.
- *
- * @since 1.0.0
- *
- * @param string $content The content.
- * @param bool   $blank   Whether to render a blank template.
- *
- * @return void
- */
-function get_template_wrapper( string $content = '', bool $blank = false ): string {
-	$html = '';
-
-	if ( ! $blank ) {
-		$html .= <<<HTML
-<!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
-HTML;
-	}
-
-	$html .= <<<HTML
-<!-- wp:group {"tagName":"main","className":"site-main","metadata":{"name":"Main"},"layout":{"type":"constrained"}} -->
-<main class="site-main wp-block-group" role="main" id="main">
-	{$content}
-</main>
-<!-- /wp:group -->
-HTML;
-
-	if ( ! $blank ) {
-		$html .= <<<HTML
-<!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->
-HTML;
-	}
-
-	return apply_filters( 'blockify_template_wrapper', $html, $content, $blank );
 }

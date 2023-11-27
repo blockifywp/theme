@@ -1,10 +1,11 @@
 import {
+	__experimentalNumberControl as NumberControl,
+	Flex,
+	FlexBlock,
+	FlexItem,
 	PanelBody,
 	PanelRow,
 	TextareaControl,
-	__experimentalNumberControl as NumberControl,
-	FlexItem,
-	FlexBlock, Flex,
 } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
@@ -35,7 +36,7 @@ const curvedTextVariation: BlockVariation = {
 	icon: rotateRight,
 	isDefault: false,
 	category: window?.blockify?.isPlugin ? 'blockify' : 'text',
-	scope: [ 'inserter', 'transform', 'block' ],
+	scope: [ 'inserter' ],
 	description: __( 'Insert curved text around circular SVG path.', 'blockify' ),
 	attributes: {
 		className: 'is-style-curved-text',

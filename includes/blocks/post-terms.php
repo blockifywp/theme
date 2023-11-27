@@ -237,5 +237,20 @@ function render_post_terms_block( string $html, array $block ): string {
 		$first->setAttribute( 'style', css_array_to_string( $styles ) );
 	}
 
+	$class_names = explode( ' ', $block['attrs']['className'] ?? '' );
+
+	if ( in_array( 'is-style-badges', $class_names, true ) ) {
+		$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
+
+		if ( $padding ) {
+			$styles = css_string_to_array( $first->getAttribute( 'style' ) );
+			unset( $styles['padding'] );
+
+			$styles = add_shorthand_property( $styles, '--wp--custom--badge--padding', $padding );
+
+			$first->setAttribute( 'style', css_array_to_string( $styles ) );
+		}
+	}
+
 	return $dom->saveHTML();
 }

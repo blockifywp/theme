@@ -229,6 +229,11 @@ div:has(> .blockify-icon-settings) {
 	select {
 		text-transform: capitalize;
 	}
+
+	div[role="listbox"] {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
 }
 
 .blockify-icon-setting {

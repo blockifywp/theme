@@ -22,11 +22,9 @@ import './block-variations/accordion.tsx';
 import './block-variations/curved-text.tsx';
 import './block-variations/counter.tsx';
 import './block-variations/grid.tsx';
-import './block-variations/image.tsx';
 import './block-variations/icon.tsx';
 import './block-variations/svg.tsx';
 import './block-variations/marquee.tsx';
-import './block-variations/paragraph.tsx';
 import './block-variations/social-link-slack.tsx';
 
 import './text-formats/clear-formatting.tsx';

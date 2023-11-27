@@ -3,7 +3,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { formatCustomProperty } from '../utility';
 
 const blockSupports: { [name: string]: any } =
-	window?.blockify?.blockSupports ?? {};
+    window?.blockify?.blockSupports ?? {};
 
 addFilter(
 	'blocks.registerBlockType',
@@ -27,8 +27,8 @@ addFilter(
 	( extraProps, blockType, attributes ) => {
 		if (
 			Object.keys( blockSupports ).includes( blockType.name ) &&
-			attributes?.align &&
-			! extraProps.className.includes( ' align' )
+            attributes?.align &&
+            ! extraProps.className.includes( ' align' )
 		) {
 			extraProps.className += ' align' + attributes.align;
 		}
@@ -78,3 +78,23 @@ addFilter(
 	)
 );
 
+addFilter(
+	'blocks.getSaveContent.extraProps',
+	'blockify/with-no-spacer-height',
+	( extraProps, blockType, attributes ) => {
+		if ( blockType.name !== 'core/spacer' ) {
+			return extraProps;
+		}
+
+		const height = attributes?.height ?? '';
+
+		if ( ! height ) {
+			extraProps.style = {
+				...extraProps.style,
+				height: '',
+			};
+		}
+
+		return extraProps;
+	}
+);

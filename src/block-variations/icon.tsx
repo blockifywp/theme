@@ -23,18 +23,19 @@ import { defaultIconState, Icons, iconStoreName } from '../api/icon-store';
 import domReady from '@wordpress/dom-ready';
 import { Label } from '../components';
 import React from 'react';
-import { getIconStyles, IconAttributes } from '../utility/icon';
+import { defaultIcon, getIconStyles, IconAttributes } from '../utility/icon';
 import { useSelect } from '@wordpress/data';
-import parse from 'html-react-parser';
+import HTMLReactParser from 'html-react-parser';
+import Select, { components, SingleValue } from 'react-select';
+import {
+	OptionProps,
+} from 'react-select/dist/declarations/src/components/Option';
+import { toTitleCase } from '../utility';
 import CustomSelectOption = CustomSelectControl.Option;
 
-const supportsIcon = ( name: string ): boolean => [ 'core/image', 'core/button', 'blockify/tab' ].includes( name );
+const { Option } = components;
 
-export const defaultIcon = window?.blockify?.defaultIcon ?? {
-	set: 'wordpress',
-	name: 'star-empty',
-	string: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z" clip-rule="evenodd"> </path></svg>',
-};
+const supportsIcon = ( name: string ): boolean => [ 'core/image', 'core/button', 'blockify/tab' ].includes( name );
 
 const iconAttributes: { [key: string]: { [key: string]: any } } = {
 	iconSet: {
@@ -72,7 +73,7 @@ const blockVariation: BlockVariation = {
 	title: __( 'Icon', 'blockify' ),
 	isDefault: false,
 	category: window?.blockify?.isPlugin ? 'blockify' : 'media',
-	scope: [ 'inserter', 'transform', 'block' ],
+	scope: [ 'inserter' ],
 	description: __( 'Insert a customizable SVG icon.', 'blockify' ),
 	attributes: {
 		className: 'is-style-icon',
@@ -144,6 +145,12 @@ interface IconEditProps {
 	isButton: boolean;
 }
 
+interface IconSelectOption {
+	value: string;
+	label: string;
+	icon: JSX.Element | JSX.Element[] | string;
+}
+
 const IconSettings = ( props: IconEditProps ) => {
 	const {
 		attributes,
@@ -164,12 +171,13 @@ const IconSettings = ( props: IconEditProps ) => {
 	) ?? defaultIconState;
 
 	const allIconOptions: {
-		[set: string]: CustomSelectOption[];
+		[set: string]: IconSelectOption[];
 	} = {
 		wordpress: [
 			{
-				name: iconAttributes?.iconSvgString?.default,
-				key: iconAttributes?.iconName?.default,
+				value: iconAttributes?.iconName?.default,
+				label: toTitleCase( iconAttributes?.iconName?.default ?? '' ),
+				icon: HTMLReactParser( iconAttributes?.iconSvgString?.default ?? '' ),
 			},
 		],
 	};
@@ -190,8 +198,9 @@ const IconSettings = ( props: IconEditProps ) => {
 			if ( iconName !== attributes?.iconName ) {
 				allIconOptions[ iconSet ].push(
 					{
-						name: parse( icons?.[ iconSet ]?.[ iconName ] ),
-						key: iconName,
+						icon: HTMLReactParser( icons?.[ iconSet ]?.[ iconName ] ),
+						value: iconName,
+						label: toTitleCase( iconName ?? '' ),
 					}
 				);
 			}
@@ -200,28 +209,12 @@ const IconSettings = ( props: IconEditProps ) => {
 		// Moves current icon to start of array.
 		if ( icons?.[ iconSet ]?.[ attributes?.iconName ?? '' ] ) {
 			allIconOptions[ iconSet ].unshift( {
-				name: parse( icons?.[ iconSet ]?.[ attributes?.iconName ?? '' ] ),
-				key: attributes?.iconName,
+				icon: HTMLReactParser( icons?.[ iconSet ]?.[ attributes?.iconName ?? '' ] ),
+				value: attributes?.iconName ?? '',
+				label: toTitleCase( attributes?.iconName ?? '' ),
 			} );
 		}
 	} );
-
-	const IconPreview = () => {
-		const currentIconSvg: string = allIconOptions[ attributes?.iconSet ?? '' ]?.filter( ( option: CustomSelectOption ) => {
-			return option?.key === attributes?.iconName;
-		} )?.[ 0 ]?.name;
-
-		return (
-			<div className={ 'blockify-icon-preview' }>
-				{ currentIconSvg && (
-					<>
-						{ currentIconSvg }
-						<span>{ attributes?.iconName?.replace( '-', ' ' ) }</span>
-					</>
-				) }
-			</div>
-		);
-	};
 
 	const PositionControls = () => {
 		const buttonStyle = {
@@ -267,29 +260,52 @@ const IconSettings = ( props: IconEditProps ) => {
 		</FlexItem>;
 	};
 
-	const Settings = () => <>
-		<IconPreview />
-		<CustomSelectControl
-			label={ __( 'Select Icon', 'blockify' ) }
-			options={ allIconOptions?.[ attributes?.iconSet ?? '' ] ?? allIconOptions?.wordpress }
-			value={ attributes?.iconSvgString ?? ( isButton ? '' : iconAttributes?.iconSvgString?.default ) }
-			className={ 'blockify-icon-setting' }
-			onChange={ ( { selectedItem }: {
-				selectedItem: {
-					key: string;
-				};
-			} ) => {
-				const key: string = selectedItem?.key ?? '';
+	const IconOption = ( optionProps: OptionProps ) => {
+		return <Option
+			{ ...optionProps }
+			key={ optionProps.data?.value }
+			label={ optionProps.data?.label }
+		>
+			{ optionProps.data?.icon ?? '' }
+			<span className={ 'screen-reader-text' }>
+				{ optionProps.data?.value ?? '' }
+			</span>
+		</Option>;
+	};
 
+	const Settings = () => <>
+		<Label
+			style={ {
+				marginTop: 0,
+			} }
+		>
+			{ __( 'Select Icon', 'blockify' ) }
+		</Label>
+		<Select
+			isMulti={ false }
+			isSearchable
+			placeholder={ __( 'Select icon', 'blockify-pro' ) }
+			options={ allIconOptions?.[ attributes?.iconSet ?? '' ] ?? allIconOptions?.wordpress }
+			value={ {
+				value: attributes?.iconName,
+				label: toTitleCase( attributes?.iconName ?? '' ),
+				icon: attributes?.iconSvgString ?? '',
+			} }
+			onChange={ ( value: SingleValue<IconSelectOption> ) => {
 				setAttributes( {
-					iconName: key,
+					iconName: value?.value,
 				} );
 
 				setAttributes( {
-					iconSvgString: icons?.[ attributes?.iconSet ?? '' ]?.[ key ]?.toString(),
+					iconSvgString: icons?.[ attributes?.iconSet ?? '' ]?.[ value?.value ?? '' ] ?? '',
 				} );
 			} }
+			components={ {
+				Option: IconOption,
+			} }
+			isClearable={ true }
 		/>
+
 		<br />
 		<PanelRow>
 			<Flex
@@ -319,7 +335,7 @@ const IconSettings = ( props: IconEditProps ) => {
 					/>
 				</FlexItem>
 				{ isButton &&
-					<PositionControls />
+				<PositionControls />
 				}
 			</Flex>
 		</PanelRow>
@@ -335,7 +351,7 @@ const IconSettings = ( props: IconEditProps ) => {
 			} ) }
 		/>
 		{ attributes?.iconSet &&
-			<Settings />
+		<Settings />
 		}
 	</>;
 };
@@ -379,16 +395,16 @@ addFilter(
 							className={ 'blockify-icon-settings' }
 						>
 							{ ! window?.blockify?.isPlugin &&
-								<p>
-									{ __( 'More icons available with Blockify Pro! ', 'blockify' ) }
-									<a
-										href="https://blockifywp.com/pro"
-										target={ '_blank' }
-										rel="noreferrer"
-									>
-										{ __( 'Learn more ↗', 'blockify' ) }
-									</a>
-								</p>
+							<p>
+								{ __( 'More icons available with Blockify Pro! ', 'blockify' ) }
+								<a
+									href="https://blockifywp.com/pro"
+									target={ '_blank' }
+									rel={ 'noreferrer' }
+                                	>
+									{ __( 'Learn more ↗', 'blockify' ) }
+								</a>
+							</p>
 							}
 
 							<IconSettings

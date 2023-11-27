@@ -8,6 +8,7 @@ use function add_filter;
 use function array_diff;
 use function explode;
 use function implode;
+use function in_array;
 use function method_exists;
 
 add_filter( 'render_block_core/group', NS . 'render_group_block', 10, 2 );
@@ -57,6 +58,23 @@ function render_group_block( string $html, array $block ): string {
 
 	if ( $div_styles ) {
 		$first->setAttribute( 'style', css_array_to_string( $div_styles ) );
+	}
+
+	$tag = $block['attrs']['tagName'] ?? 'div';
+
+	if ( $tag === 'main' ) {
+		$first->setAttribute( 'role', 'main' );
+
+		$classes = explode( ' ', $first->getAttribute( 'class' ) );
+
+		if ( in_array( 'site-main', $classes, true ) ) {
+			$classes = [
+				'site-main',
+				...( array_diff( $classes, [ 'site-main' ] ) ),
+			];
+		}
+
+		$first->setAttribute( 'class', implode( ' ', $classes ) );
 	}
 
 	return $dom->saveHTML();

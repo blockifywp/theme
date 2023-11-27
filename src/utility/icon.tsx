@@ -11,6 +11,22 @@ export interface IconAttributes extends BlockAttributes {
 	iconSvgString?: string;
 }
 
+export const blockifyIcon = <svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 2000 2000"
+>
+	<path
+		fill="currentColor"
+		d="m1729.66 534.39-691.26-399.1a76.814 76.814 0 0 0-76.81 0l-691.26 399.1a76.818 76.818 0 0 0-38.4 66.52v798.19c0 27.44 14.64 52.8 38.4 66.52l691.26 399.1c11.88 6.86 25.14 10.29 38.4 10.29s26.52-3.43 38.4-10.29l691.26-399.1a76.818 76.818 0 0 0 38.4-66.52V600.9c.01-27.44-14.63-52.79-38.39-66.51zm-115.21 820.36-539.18 311.3V998.46c0-27.45-14.65-52.81-38.43-66.53l-574.18-331.2L1000 290.49l614.45 354.75v709.51z"
+	/>
+</svg>;
+
+export const defaultIcon = window?.blockify?.defaultIcon ?? {
+	set: 'wordpress',
+	name: 'star-empty',
+	string: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.706 8.646a.25.25 0 01-.188.137l-4.626.672a.25.25 0 00-.139.427l3.348 3.262a.25.25 0 01.072.222l-.79 4.607a.25.25 0 00.362.264l4.138-2.176a.25.25 0 01.233 0l4.137 2.175a.25.25 0 00.363-.263l-.79-4.607a.25.25 0 01.072-.222l3.347-3.262a.25.25 0 00-.139-.427l-4.626-.672a.25.25 0 01-.188-.137l-2.069-4.192a.25.25 0 00-.448 0L9.706 8.646zM12 7.39l-.948 1.921a1.75 1.75 0 01-1.317.957l-2.12.308 1.534 1.495c.412.402.6.982.503 1.55l-.362 2.11 1.896-.997a1.75 1.75 0 011.629 0l1.895.997-.362-2.11a1.75 1.75 0 01.504-1.55l1.533-1.495-2.12-.308a1.75 1.75 0 01-1.317-.957L12 7.39z" clip-rule="evenodd"> </path></svg>',
+};
+
 export const getIconStyles = ( attributes: IconAttributes ) => {
 	const styles: genericStrings = {};
 	let background = '';
