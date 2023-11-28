@@ -59,10 +59,7 @@ function render_columns_block( string $html, array $block ): string {
 
 		if ( $first ) {
 			$styles = css_string_to_array( $first->getAttribute( 'style' ) );
-
-			foreach ( $margin as $key => $value ) {
-				$styles[ 'margin-' . $key ] = $value;
-			}
+			$styles = add_shorthand_property( $styles, 'margin', $margin );
 
 			$first->setAttribute( 'style', css_array_to_string( $styles ) );
 		}

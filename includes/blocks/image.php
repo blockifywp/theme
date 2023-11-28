@@ -29,23 +29,23 @@ function render_image_block( string $html, array $block, WP_Block $object ): str
 
 	$attrs           = $block['attrs'] ?? [];
 	$id              = $attrs['id'] ?? '';
-	$icon            = ( $attrs['iconSet'] ?? '' ) && ( $attrs['iconName'] ?? '' ) || ( $attrs['iconSvgString'] ?? '' );
+	$has_icon        = ( $attrs['iconSet'] ?? '' ) && ( $attrs['iconName'] ?? '' ) || ( $attrs['iconSvgString'] ?? '' );
 	$style           = $attrs['style'] ?? [];
-	$svg             = $style['svgString'] ?? '';
+	$has_svg         = $style['svgString'] ?? '';
 	$use_placeholder = $attrs['usePlaceholder'] ?? true;
 
 	// Placeholder.
-	if ( $use_placeholder && ! $id && ! $icon && ! $svg ) {
+	if ( $use_placeholder && ! $id && ! $has_icon && ! $has_svg ) {
 		$html = render_image_placeholder( $html, $block, $object );
 	}
 
 	// Icon.
-	if ( $icon ) {
+	if ( $has_icon ) {
 		$html = get_icon_html( $html, $block );
 	}
 
 	// Image options.
-	if ( ! $icon && ! $svg ) {
+	if ( ! $has_icon && ! $has_svg ) {
 
 		if ( $name === 'core/image' ) {
 			$html = add_responsive_classes( $html, $block, get_image_options(), (bool) $id );

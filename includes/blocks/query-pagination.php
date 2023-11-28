@@ -30,26 +30,15 @@ function render_query_pagination_block( string $html, array $block ): string {
 
 	$margin  = $block['attrs']['style']['spacing']['margin'] ?? null;
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
-
-	if ( $margin ) {
-		$styles['margin-top']    = $margin['top'] ?? null;
-		$styles['margin-right']  = $margin['right'] ?? null;
-		$styles['margin-bottom'] = $margin['bottom'] ?? null;
-		$styles['margin-left']   = $margin['left'] ?? null;
-	}
-
-	if ( $padding ) {
-		$styles['padding-top']    = $padding['top'] ?? null;
-		$styles['padding-right']  = $padding['right'] ?? null;
-		$styles['padding-bottom'] = $padding['bottom'] ?? null;
-		$styles['padding-left']   = $padding['left'] ?? null;
-	}
+	$styles  = add_shorthand_property( $styles, 'margin', $margin );
+	$styles  = add_shorthand_property( $styles, 'padding', $padding );
 
 	foreach ( $styles as $key => $value ) {
 		if ( ! $value ) {
 			continue;
 		}
 
+		// TODO: Which properties need formatting?
 		if ( str_contains( $value, 'var:' ) ) {
 			$styles[ $key ] = format_custom_property( $value );
 		}

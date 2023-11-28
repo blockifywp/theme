@@ -5,6 +5,8 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function esc_attr;
+use function esc_html;
 use function file_get_contents;
 use function str_contains;
 use function trim;
@@ -35,10 +37,10 @@ function render_counter_block_variation( string $html, array $block ): string {
 	}
 
 	foreach ( $counter as $attribute => $value ) {
-		$p->setAttribute( "data-$attribute", (string) $value );
+		$p->setAttribute( "data-$attribute", esc_attr( $value ) );
 	}
 
-	$p->textContent = trim( $p->textContent );
+	$p->textContent = esc_html( trim( $p->textContent ) );
 
 	return $dom->saveHTML();
 }

@@ -11,6 +11,7 @@ use function explode;
 use function file_exists;
 use function get_template_directory;
 use function is_null;
+use function is_string;
 use function rtrim;
 use function str_contains;
 use function str_replace;
@@ -133,14 +134,20 @@ function format_custom_property( string $custom_property ): string {
 /**
  * Adds shorthand CSS properties.
  *
- * @param array  $styles   Existing CSS array.
- * @param string $property CSS property to add. E.g. 'margin'.
- * @param array  $values   CSS values to add.
+ * @param array        $styles   Existing CSS array.
+ * @param string       $property CSS property to add. E.g. 'margin'.
+ * @param array|string $values   CSS values to add.
  *
  * @return array
  */
-function add_shorthand_property( array $styles, string $property, array $values ): array {
+function add_shorthand_property( array $styles, string $property, $values ): array {
 	if ( empty( $values ) || isset( $styles[ $property ] ) ) {
+		return $styles;
+	}
+
+	if ( is_string( $values ) ) {
+		$styles[ $property ] = format_custom_property( $values );
+
 		return $styles;
 	}
 
@@ -152,7 +159,6 @@ function add_shorthand_property( array $styles, string $property, array $values 
 	$has_right  = isset( $values['right'] );
 	$has_bottom = isset( $values['bottom'] );
 	$has_left   = isset( $values['left'] );
-	$has_all    = $has_top && $has_right && $has_bottom && $has_left;
 
 	if ( ! $has_top && ! $has_right && ! $has_bottom && ! $has_left ) {
 		return $styles;

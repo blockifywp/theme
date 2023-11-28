@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_action;
 use function add_filter;
 use function add_theme_support;
+use function esc_attr;
 use function wp_add_inline_script;
 use function wp_enqueue_script;
 use function wp_enqueue_style;
@@ -35,9 +36,7 @@ add_filter( 'render_block_core/video', NS . 'render_video_block', 11, 2 );
  * @return string
  */
 function render_video_block( string $html, array $block ): string {
-
-	$dom = dom( $html );
-
+	$dom    = dom( $html );
 	$figure = get_dom_element( 'figure', $dom );
 
 	if ( ! $figure ) {
@@ -48,7 +47,7 @@ function render_video_block( string $html, array $block ): string {
 	$background = $styles['background'] ?? $styles['background-color'] ?? '';
 
 	if ( $background ) {
-		$styles['--wp--custom--video--background'] = $background;
+		$styles['--wp--custom--video--background'] = esc_attr( $background );
 
 		unset( $styles['background'], $styles['background-color'] );
 	}
@@ -57,7 +56,13 @@ function render_video_block( string $html, array $block ): string {
 
 	$html = $dom->saveHTML();
 
-	add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
+	static $is_enqueued = false;
+
+	if ( ! $is_enqueued ) {
+		add_action( 'wp_enqueue_scripts', NS . 'video_scripts_styles' );
+	}
+
+	$is_enqueued = true;
 
 	return $html;
 }

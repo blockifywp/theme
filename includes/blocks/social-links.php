@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
+use function esc_attr;
 use function trim;
 use function wp_get_global_settings;
 
@@ -47,7 +48,7 @@ function render_social_links_block( string $html, array $block ): string {
 				$hex = $color['color'] ?? '';
 
 				if ( trim( $styles['color'] ) === trim( $hex ) ) {
-					$slug = $color['slug'] ?? '';
+					$slug = esc_attr( $color['slug'] ?? '' );
 
 					if ( ! $slug ) {
 						continue;

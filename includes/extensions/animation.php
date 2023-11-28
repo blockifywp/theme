@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function array_diff;
 use function array_unique;
+use function esc_attr;
 use function explode;
 use function file_exists;
 use function file_get_contents;
@@ -150,7 +151,7 @@ function render_animation_attributes( string $html, array $block ): string {
 	} else {
 		unset( $styles['animation-name'] );
 
-		$styles['--animation-name'] = $animation['name'] ?? '';
+		$styles['--animation-name'] = esc_attr( $animation['name'] ?? '' );
 	}
 
 	$event = $animation['event'] ?? '';
@@ -175,11 +176,14 @@ function render_animation_attributes( string $html, array $block ): string {
 		}
 
 		if ( $offset ) {
-			$first->setAttribute( 'data-offset', $offset );
+			$first->setAttribute( 'data-offset', esc_attr( $offset ) );
 		}
 	}
 
-	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	if ( $styles ) {
+		$first->setAttribute( 'style', css_array_to_string( $styles ) );
+	}
+
 	$first->setAttribute( 'class', implode( ' ', $classes ) );
 
 	return $dom->saveHTML();

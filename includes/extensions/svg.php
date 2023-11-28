@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_diff;
+use function esc_attr;
 use function explode;
 use function implode;
 use function rawurlencode;
@@ -44,8 +45,8 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$svg    = get_dom_element( 'svg', $link ?? $figure );
 
 	$mask   = (bool) ( $block['attrs']['style']['maskSvg'] ?? false );
-	$width  = (string) ( $block['attrs']['width'] ?? '' );
-	$height = (string) ( $block['attrs']['height'] ?? '' );
+	$width  = esc_attr( $block['attrs']['width'] ?? '' );
+	$height = esc_attr( $block['attrs']['height'] ?? '' );
 
 	if ( $mask ) {
 		$span    = change_tag_name( 'span', $img );
@@ -79,7 +80,7 @@ function render_svg_block_variation( string $html, array $block ): string {
 		$alt = $img->getAttribute( 'alt' );
 
 		if ( $alt ) {
-			$span->setAttribute( 'aria-label', $alt );
+			$span->setAttribute( 'aria-label', esc_attr( $alt ) );
 			$span->removeAttribute( 'alt' );
 		}
 
@@ -115,11 +116,11 @@ function render_svg_block_variation( string $html, array $block ): string {
 	$imported = dom_element( $imported );
 
 	if ( $width ) {
-		$imported->setAttribute( 'width', (string) $width );
+		$imported->setAttribute( 'width', $width );
 	}
 
 	if ( $height ) {
-		$imported->setAttribute( 'height', (string) $height );
+		$imported->setAttribute( 'height', $height );
 	}
 
 	( $link ?? $figure )->appendChild( $imported );
@@ -157,13 +158,13 @@ function render_inline_svg( string $html, array $block ): string {
 		return $html;
 	}
 
-	$imgs = $dom->getElementsByTagName( 'img' );
+	$images = $dom->getElementsByTagName( 'img' );
 
-	if ( ! $imgs->length ) {
+	if ( ! $images->length ) {
 		return $html;
 	}
 
-	foreach ( $imgs as $index => $img ) {
+	foreach ( $images as $index => $img ) {
 		$style = css_string_to_array( $img->getAttribute( 'style' ) );
 		$mask  = $style['-webkit-mask-image'] ?? '';
 
@@ -193,7 +194,10 @@ function render_inline_svg( string $html, array $block ): string {
 				continue;
 			}
 
-			$imported->setAttribute( $attribute->name, $attribute->value );
+			$imported->setAttribute(
+				esc_attr( $attribute->name ),
+				esc_attr( $attribute->value )
+			);
 		}
 
 		$imported->setAttribute( 'fill', 'currentColor' );

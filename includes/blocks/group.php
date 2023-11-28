@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_diff;
+use function esc_attr;
 use function explode;
 use function implode;
 use function in_array;
@@ -23,7 +24,7 @@ add_filter( 'render_block_core/group', NS . 'render_group_block', 10, 2 );
  * @return string
  */
 function render_group_block( string $html, array $block ): string {
-	if ( ( $block['attrs']['layout']['orientation'] ?? null ) === 'marquee' ) {
+	if ( ( $block['attrs']['layout']['orientation'] ?? '' ) === 'marquee' ) {
 		$html = render_marquee_block_variation( $html, $block );
 	}
 
@@ -45,28 +46,21 @@ function render_group_block( string $html, array $block ): string {
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
 
 	$div_styles = css_string_to_array( $first->getAttribute( 'style' ) );
-
-	foreach ( [ 'top', 'right', 'bottom', 'left' ] as $side ) {
-		if ( ( $margin[ $side ] ?? null ) !== null ) {
-			$div_styles["margin-$side"] = format_custom_property( $margin[ $side ] );
-		}
-
-		if ( ( $padding[ $side ] ?? null ) !== null ) {
-			$div_styles["padding-$side"] = format_custom_property( $padding[ $side ] );
-		}
-	}
+	$div_styles = add_shorthand_property( $div_styles, 'margin', $margin );
+	$div_styles = add_shorthand_property( $div_styles, 'padding', $padding );
 
 	if ( $div_styles ) {
 		$first->setAttribute( 'style', css_array_to_string( $div_styles ) );
 	}
 
-	$tag = $block['attrs']['tagName'] ?? 'div';
+	$tag = esc_attr( $block['attrs']['tagName'] ?? 'div' );
 
 	if ( $tag === 'main' ) {
-		$first->setAttribute( 'role', 'main' );
+		$first->setAttribute( 'role', $tag );
 
 		$classes = explode( ' ', $first->getAttribute( 'class' ) );
 
+		// Move `site-main` class to the start of the array.
 		if ( in_array( 'site-main', $classes, true ) ) {
 			$classes = [
 				'site-main',
@@ -112,7 +106,6 @@ function render_marquee_block_variation( string $html, array $block ): string {
 
 	$first->setAttribute( 'class', implode( ' ', $classes ) );
 	$first->setAttribute( 'style', css_array_to_string( $styles ) );
-
 	$wrap->setAttribute( 'class', 'is-marquee' );
 
 	$count = $first->childNodes->count();

@@ -7,12 +7,15 @@ namespace Blockify\Theme;
 use function add_filter;
 use function array_key_last;
 use function array_unique;
+use function esc_attr;
+use function esc_html;
+use function esc_html__;
+use function esc_url;
 use function explode;
 use function get_post_type;
 use function get_term_link;
 use function get_terms;
 use function in_array;
-use function is_array;
 use function is_front_page;
 use function is_singular;
 use function is_string;
@@ -38,7 +41,7 @@ function render_post_terms_block( string $html, array $block ): string {
 			'wp-block-post-terms',
 			'flex',
 			'wrap',
-			'justify-' . ( $block['attrs']['align'] ?? 'left' ),
+			'justify-' . esc_attr( $block['attrs']['align'] ?? 'left' ),
 			...( explode( ' ', $div->getAttribute( 'class' ) ) ),
 		] );
 
@@ -84,14 +87,14 @@ function render_post_terms_block( string $html, array $block ): string {
 			'taxonomy-' . $term,
 		];
 
-		$text_align = $block['attrs']['textAlign'] ?? null;
+		$text_align = esc_attr( $block['attrs']['textAlign'] ?? '' );
 
 		if ( $text_align ) {
 			$div_classes[] = 'has-text-align-' . $text_align;
 			$div_classes[] = 'justify-' . $text_align;
 		}
 
-		$text_color = $block['attrs']['textColor'] ?? null;
+		$text_color = esc_attr( $block['attrs']['textColor'] ?? '' );
 
 		if ( $text_color ) {
 			$div_classes[] = 'has-' . $text_color . '-color';
@@ -102,7 +105,7 @@ function render_post_terms_block( string $html, array $block ): string {
 
 		if ( ( is_singular() && ! is_front_page() ) || ! $show_all ) {
 			$p            = create_element( 'p', $dom );
-			$p->nodeValue = $taxonomy->labels->not_found ?? '';
+			$p->nodeValue = esc_html( $taxonomy->labels->not_found ?? '' );
 
 			$p->setAttribute( 'class', 'margin-top-auto margin-bottom-auto' );
 
@@ -116,10 +119,10 @@ function render_post_terms_block( string $html, array $block ): string {
 				return '';
 			}
 
-			$a->setAttribute( 'href', $archive_link );
+			$a->setAttribute( 'href', esc_url( $archive_link ) );
 			$a->setAttribute( 'class', 'wp-block-post-terms__link' );
 			$a->setAttribute( 'rel', 'tag' );
-			$a->nodeValue = __( 'All', 'blockify' );
+			$a->nodeValue = esc_html__( 'All', 'blockify' );
 
 			$div->appendChild( $a );
 
@@ -144,10 +147,10 @@ function render_post_terms_block( string $html, array $block ): string {
 					continue;
 				}
 
-				$a->setAttribute( 'href', $term_link );
+				$a->setAttribute( 'href', esc_url( $term_link ) );
 				$a->setAttribute( 'class', 'wp-block-post-terms__link' );
 				$a->setAttribute( 'rel', 'tag' );
-				$a->nodeValue = $term_object->name;
+				$a->nodeValue = esc_html( $term_object->name ?? '' );
 
 				$div->appendChild( $a );
 
@@ -160,44 +163,33 @@ function render_post_terms_block( string $html, array $block ): string {
 		}
 
 		$styles = [];
+
+		// TODO: Is 0 intentional?
 		$margin = $block['attrs']['style']['spacing']['margin'] ?? 0;
+		$styles = add_shorthand_property( $styles, 'margin', $margin );
 
-		if ( $margin ) {
-			if ( is_array( $margin ) ) {
-				$styles = add_shorthand_property( $styles, 'margin', $margin );
-			} else {
-				$styles['margin'] = format_custom_property( $margin );
-			}
-		}
-
-		$text_decoration = $block['attrs']['style']['typography']['textDecoration'] ?? null;
+		$text_decoration = esc_attr( $block['attrs']['style']['typography']['textDecoration'] ?? '' );
 
 		if ( $text_decoration ) {
 			$styles['text-decoration'] = $text_decoration;
 		}
 
-		$font_size = $block['attrs']['fontSize'] ?? null;
+		$font_size = esc_attr( $block['attrs']['fontSize'] ?? '' );
 
 		if ( $font_size ) {
 			$div_classes[] = 'has-font-size';
 			$div_classes[] = 'has-' . $font_size . '-font-size';
 		}
 
-		$font_size_custom = $block['attrs']['style']['typography']['fontSize'] ?? null;
+		$font_size_custom = esc_attr( $block['attrs']['style']['typography']['fontSize'] ?? '' );
 
 		if ( $font_size_custom ) {
 			$styles['font-size'] = format_custom_property( $font_size_custom );
-		}
-
-		if ( $font_size_custom ) {
-			$div_classes[] = 'has-font-size';
+			$div_classes[]       = 'has-font-size';
 		}
 
 		$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
-
-		if ( $padding ) {
-			$styles = add_shorthand_property( $styles, 'padding', $padding );
-		}
+		$styles  = add_shorthand_property( $styles, 'padding', $padding );
 
 		$div->setAttribute( 'class', implode( ' ', $div_classes ) );
 
@@ -222,19 +214,22 @@ function render_post_terms_block( string $html, array $block ): string {
 			$styles['gap'] = format_custom_property( $gap );
 		}
 
-		$font_weight = $block['attrs']['style']['typography']['fontWeight'] ?? null;
+		$font_weight = esc_attr( $block['attrs']['style']['typography']['fontWeight'] ?? '' );
 
 		if ( $font_weight ) {
 			$styles['font-weight'] = $font_weight;
 		}
 
 		$border = $block['attrs']['style']['border'] ?? null;
+		$radius = $border['radius'] ?? null;
 
-		if ( $border['radius'] ?? '' ) {
-			$styles['--wp--custom--border--radius'] = $border['radius'];
+		if ( $radius ) {
+			$styles['--wp--custom--border--radius'] = esc_attr( $radius );
 		}
 
-		$first->setAttribute( 'style', css_array_to_string( $styles ) );
+		if ( $styles ) {
+			$first->setAttribute( 'style', css_array_to_string( $styles ) );
+		}
 	}
 
 	$class_names = explode( ' ', $block['attrs']['className'] ?? '' );

@@ -9,6 +9,8 @@ use function add_action;
 use function add_filter;
 use function add_post_type_support;
 use function apply_filters;
+use function esc_html;
+use function esc_html__;
 use function explode;
 use function get_post_field;
 use function get_the_excerpt;
@@ -16,7 +18,6 @@ use function get_the_ID;
 use function get_the_title;
 use function implode;
 use function in_array;
-use function is_array;
 use function str_replace;
 use function trim;
 use function wp_trim_words;
@@ -76,10 +77,10 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 			$post_title = get_the_title( $post_id );
 
 			if ( ! $post_title ) {
-				$post_title = __( 'this post', 'blockify' );
+				$post_title = esc_html__( 'this post', 'blockify' );
 			}
 
-			$screen_reader->textContent = __( ' about ', 'blockify' ) . ( $post_title );
+			$screen_reader->textContent = esc_html__( ' about ', 'blockify' ) . ( $post_title );
 
 			$more_link->appendChild( $screen_reader );
 
@@ -104,13 +105,13 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 		$div = $div ?? create_element( 'div', $dom );
 		$p   = create_element( 'p', $dom );
 
-		$p->textContent = $excerpt;
+		$p->textContent = esc_html( $excerpt );
 		$p->setAttribute( 'class', 'wp-block-post-excerpt__excerpt' );
 
 		$div->appendChild( $p );
 	}
 
-	$p->textContent = $excerpt;
+	$p->textContent = esc_html( $excerpt );
 	$div_classes    = explode( ' ', $div->getAttribute( 'class' ) );
 	$styles         = [];
 	$text_color     = $block['attrs']['textColor'] ?? null;
@@ -125,21 +126,10 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 		$div_classes[] = 'has-text-align-' . $block['attrs']['textAlign'];
 	}
 
-	$margin = $block['attrs']['style']['spacing']['margin'] ?? '';
-
-	if ( is_array( $margin ) ) {
-		foreach ( $margin as $side => $value ) {
-			$styles[ 'margin-' . $side ] = $value;
-		}
-	}
-
+	$margin  = $block['attrs']['style']['spacing']['margin'] ?? '';
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? '';
-
-	if ( is_array( $padding ) ) {
-		foreach ( $padding as $side => $value ) {
-			$styles[ 'padding-' . $side ] = $value;
-		}
-	}
+	$styles  = add_shorthand_property( $styles, 'margin', $margin );
+	$styles  = add_shorthand_property( $styles, 'padding', $padding );
 
 	if ( $styles ) {
 		$div->setAttribute( 'style', css_array_to_string( $styles ) );

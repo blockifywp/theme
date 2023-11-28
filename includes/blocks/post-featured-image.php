@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function esc_attr;
 use function explode;
 use function implode;
 
@@ -30,8 +31,8 @@ function render_post_featured_image_block( string $html, array $block ): string 
 	$figure_classes = explode( ' ', $figure->getAttribute( 'class' ) );
 
 	$attrs         = $block['attrs'] ?? [];
-	$shadow_preset = $attrs['shadowPreset'] ?? null;
-	$hover_preset  = $attrs['shadowPresetHover'] ?? null;
+	$shadow_preset = esc_attr( $attrs['shadowPreset'] ?? '' );
+	$hover_preset  = esc_attr( $attrs['shadowPresetHover'] ?? '' );
 	$use_custom    = $attrs['useCustomBoxShadow'] ?? null;
 	$shadow_custom = $attrs['style']['boxShadow'] ?? null;
 	$hover_custom  = $attrs['style']['boxShadow']['hover'] ?? null;
@@ -69,7 +70,5 @@ function render_post_featured_image_block( string $html, array $block ): string 
 		$figure->setAttribute( 'style', css_array_to_string( $figure_styles ) );
 	}
 
-	$html = $dom->saveHTML();
-
-	return $html;
+	return $dom->saveHTML();
 }

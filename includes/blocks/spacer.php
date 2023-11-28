@@ -27,11 +27,8 @@ function render_spacer_block( string $html, array $block ): string {
 
 	$div_styles = css_string_to_array( $div->getAttribute( 'style' ) );
 
-	$margin = $block['attrs']['style']['spacing']['margin'] ?? '';
-
-	if ( $margin ) {
-		$div_styles = add_shorthand_property( $div_styles, 'margin', $margin );
-	}
+	$margin     = $block['attrs']['style']['spacing']['margin'] ?? '';
+	$div_styles = add_shorthand_property( $div_styles, 'margin', $margin );
 
 	$width            = $block['attrs']['width'] ?? '';
 	$responsive_width = $block['attrs']['style']['width']['all'] ?? '';

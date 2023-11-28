@@ -44,10 +44,27 @@ function render_paragraph_block( string $html, array $block ): string {
 	$html       = $dom->saveHTML();
 	$svg_string = $block['attrs']['curvedText']['svgString'] ?? '';
 
-	if ( ! $svg_string ) {
-		return $html;
+	if ( $svg_string ) {
+		$html = render_curved_text( $html, $block, $svg_string );
 	}
 
+	return $html;
+}
+
+/**
+ * Renders curved text.
+ *
+ * @since 1.3.2
+ *
+ * @param string $html       Block HTML.
+ * @param array  $block      Block data.
+ * @param string $svg_string SVG string.
+ *
+ * @return string
+ */
+function render_curved_text( string $html, array $block, string $svg_string ): string {
+	$dom            = dom( $html );
+	$p              = get_dom_element( 'p', $dom );
 	$p->textContent = '';
 
 	$svg_dom     = dom( $svg_string );

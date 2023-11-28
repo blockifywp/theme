@@ -18,7 +18,6 @@ add_filter( 'render_block_core/details', NS . 'render_details_block', 10, 2 );
  * @return string
  */
 function render_details_block( string $html, array $block ): string {
-
 	$dom     = dom( $html );
 	$details = get_dom_element( 'details', $dom );
 
@@ -33,5 +32,4 @@ function render_details_block( string $html, array $block ): string {
 	$summary->appendChild( $icon );
 
 	return $dom->saveHTML();
-
 }

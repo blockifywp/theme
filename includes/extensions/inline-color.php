@@ -25,8 +25,7 @@ function render_inline_color( string $html ): string {
 		return $html;
 	}
 
-	$dom = dom( $html );
-
+	$dom   = dom( $html );
 	$first = get_dom_element( '*', $dom );
 
 	if ( ! $first ) {

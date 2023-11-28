@@ -4,6 +4,8 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use function esc_attr;
+
 add_filter( 'render_block_core/template-part', NS . 'render_block_template_part', 10, 2 );
 /**
  * Modifies the template part block.
@@ -28,27 +30,27 @@ function render_block_template_part( string $html, array $block ): string {
 	$color  = $attrs['style']['color'] ?? [];
 
 	if ( isset( $color['background'] ) ) {
-		$styles['background'] = $color['background'];
+		$styles['background'] = esc_attr( $color['background'] );
 	}
 
 	if ( isset( $attrs['backgroundColor'] ) ) {
-		$styles['background'] = 'var(--wp--preset--color--' . $attrs['backgroundColor'] . ')';
+		$styles['background'] = 'var(--wp--preset--color--' . esc_attr( $attrs['backgroundColor'] ) . ')';
 	}
 
 	if ( isset( $color['gradient'] ) ) {
-		$styles['background'] = $color['gradient'];
+		$styles['background'] = esc_attr( $color['gradient'] );
 	}
 
 	if ( isset( $attrs['gradient'] ) ) {
-		$styles['background'] = 'var(--wp--preset--gradient--' . $attrs['gradient'] . ')';
+		$styles['background'] = 'var(--wp--preset--gradient--' . esc_attr( $attrs['gradient'] ) . ')';
 	}
 
 	if ( isset( $color['text'] ) ) {
-		$styles['color'] = $color['text'];
+		$styles['color'] = esc_attr( $color['text'] );
 	}
 
 	if ( isset( $attrs['textColor'] ) ) {
-		$styles['color'] = 'var(--wp--preset--color--' . $attrs['textColor'] . ')';
+		$styles['color'] = 'var(--wp--preset--color--' . esc_attr( $attrs['textColor'] ) . ')';
 	}
 
 	$styles = css_array_to_string( $styles );

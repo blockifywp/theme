@@ -7,8 +7,8 @@ namespace Blockify\Theme;
 use DOMElement;
 use function add_filter;
 use function array_unshift;
+use function esc_attr;
 use function explode;
-use function in_array;
 use function method_exists;
 use function str_contains;
 
@@ -45,12 +45,10 @@ function render_list_block( string $html, array $block ): string {
 	if ( $justify_content ) {
 		$styles['display']         = 'flex';
 		$styles['flex-wrap']       = 'wrap';
-		$styles['justify-content'] = $justify_content;
+		$styles['justify-content'] = esc_attr( $justify_content );
 	}
 
-	foreach ( $margin as $side => $value ) {
-		$styles["margin-$side"] = format_custom_property( $value );
-	}
+	$styles = add_shorthand_property( $styles, 'margin', $margin );
 
 	if ( $styles ) {
 		$list->setAttribute( 'style', css_array_to_string( $styles ) );
@@ -93,12 +91,11 @@ function render_list_block_accordion( string $html ): string {
 
 	$classes = explode( ' ', $list->getAttribute( 'class' ) );
 
-	if ( ! in_array( 'wp-block-list', $classes, true ) ) {
-		$classes = [
-			'wp-block-list',
-			...$classes,
-		];
-	}
+	// Move `wp-block-list` class to the start of the array.
+	$classes = [
+		'wp-block-list',
+		...( array_diff( $classes, [ 'wp-block-list' ] ) ),
+	];
 
 	$list->setAttribute( 'class', implode( ' ', $classes ) );
 
@@ -118,7 +115,10 @@ function render_list_block_accordion( string $html ): string {
 		$details = create_element( 'details', $dom );
 
 		foreach ( $li->attributes as $attribute ) {
-			$details->setAttribute( $attribute->name, $attribute->value );
+			$details->setAttribute(
+				esc_attr( $attribute->name ),
+				esc_attr( $attribute->value )
+			);
 		}
 
 		$summary = create_element( 'summary', $dom );

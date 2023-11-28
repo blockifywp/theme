@@ -6,10 +6,13 @@ namespace Blockify\Theme;
 
 use WP_Block;
 use function add_filter;
+use function esc_html;
+use function esc_html__;
 use function explode;
 use function get_search_query;
 use function implode;
 use function in_array;
+use function intval;
 use function sanitize_title_with_dashes;
 use function sprintf;
 
@@ -27,7 +30,7 @@ add_filter( 'render_block_core/heading', NS . 'render_heading_block', 10, 3 );
  */
 function render_heading_block( string $html, array $block, WP_Block $object ): string {
 	$dom     = dom( $html );
-	$level   = $block['attrs']['level'] ?? 2;
+	$level   = intval( $block['attrs']['level'] ?? 2 );
 	$heading = get_dom_element( 'h' . $level, $dom );
 
 	if ( ! $heading ) {
@@ -55,10 +58,12 @@ function render_heading_block( string $html, array $block, WP_Block $object ): s
 		implode( ' ', $classes )
 	);
 
-	$heading->setAttribute(
-		'style',
-		css_array_to_string( $styles )
-	);
+	if ( $styles ) {
+		$heading->setAttribute(
+			'style',
+			css_array_to_string( $styles )
+		);
+	}
 
 	$id = $heading->getAttribute( 'id' );
 
@@ -78,11 +83,12 @@ function render_heading_block( string $html, array $block, WP_Block $object ): s
 	}
 
 	$search_query = get_search_query();
+	$default      = esc_html__( 'Search Results', 'blockify' );
 
-	if ( $level === 1 && $search_query && $heading->textContent === __( 'Search Results', 'blockify' ) ) {
+	if ( $level === 1 && $search_query && $heading->textContent === $default ) {
 		$heading->textContent = sprintf(
-			__( 'Search results for: ', 'blockify' ) . '%s',
-			$search_query
+			esc_html__( 'Search results for: ', 'blockify' ) . '%s',
+			esc_html( $search_query )
 		);
 	}
 

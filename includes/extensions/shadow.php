@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_diff;
+use function esc_attr;
 use function in_array;
 use function str_contains;
 use function wp_get_global_settings;
@@ -108,11 +109,11 @@ function render_box_shadow( string $html, array $block ): string {
 	foreach ( [ 'x', 'y', 'blur', 'spread' ] as $property ) {
 
 		if ( $custom_shadow[ $property ] ?? '' ) {
-			$styles[ '--wp--custom--box-shadow--' . $property ] = $custom_shadow[ $property ] . 'px';
+			$styles[ '--wp--custom--box-shadow--' . $property ] = esc_attr( $custom_shadow[ $property ] ) . 'px';
 		}
 
 		if ( $custom_shadow['hover'][ $property ] ?? '' ) {
-			$styles[ '--wp--custom--box-shadow--hover--' . $property ] = $custom_shadow['hover'][ $property ] . 'px';
+			$styles[ '--wp--custom--box-shadow--hover--' . $property ] = esc_attr( $custom_shadow['hover'][ $property ] ) . 'px';
 		}
 
 	}
@@ -164,7 +165,7 @@ function add_shadow_custom_properties( array $styles, array $global_styles ): ar
 			continue;
 		}
 
-		$styles[ '--wp--preset--shadow--' . $slug . '--hover' ] = $preset['shadow'];
+		$styles[ '--wp--preset--shadow--' . $slug . '--hover' ] = esc_attr( $preset['shadow'] );
 	}
 
 	return $styles;

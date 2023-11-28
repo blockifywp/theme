@@ -6,6 +6,8 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_unique;
+use function esc_attr;
+use function esc_url;
 use function explode;
 use function implode;
 use function in_array;
@@ -88,15 +90,15 @@ function render_button_block( string $html, array $block ): string {
 		$border_width = $block['attrs']['style']['border']['width'] ?? null;
 		$border_color = $block['attrs']['style']['border']['color'] ?? null;
 
-		$link_styles = explode( ';', $link->getAttribute( 'style' ) );
+		$link_styles = css_string_to_array( $link->getAttribute( 'style' ) );
 
 		if ( $border_width || $border_color ) {
-			$border_width  = $border_width ?? $global_settings['custom']['border']['width'];
-			$link_styles[] = "line-height:calc(1em - $border_width)";
+			$border_width = $border_width ?? $global_settings['custom']['border']['width'];
+
+			$link_styles['line-height'] = "calc(1em - $border_width)";
 		}
 
-		$link->setAttribute( 'style', implode( ';', $link_styles ) );
-
+		$link->setAttribute( 'style', css_array_to_string( $link_styles ) );
 		$div->setAttribute( 'class', implode( ' ', $div_classes ) );
 		$div->setAttribute( 'style', implode( ';', $div_styles ) );
 
@@ -118,7 +120,7 @@ function render_button_block( string $html, array $block ): string {
 		if ( ! $div ) {
 			$div   = create_element( 'div', $dom );
 			$div   = dom_element( $dom->appendChild( $div ) );
-			$class = $block['attrs']['className'] ?? null;
+			$class = esc_attr( $block['attrs']['className'] ?? '' );
 
 			$div->setAttribute( 'class', 'wp-block-button ' . $class );
 		}
@@ -155,10 +157,7 @@ function render_button_block( string $html, array $block ): string {
 		}
 
 		$padding = $block['attrs']['style']['spacing']['padding'] ?? [];
-
-		foreach ( $padding as $side => $value ) {
-			$styles["padding-$side"] = format_custom_property( $value );
-		}
+		$styles  = add_shorthand_property( $styles, 'padding', $padding );
 
 		$text_color = $block['attrs']['textColor'] ?? null;
 
@@ -211,7 +210,7 @@ function render_button_block( string $html, array $block ): string {
 			}
 		}
 
-		$size = ( $block['attrs']['iconSize'] ?? null ) ?: '20';
+		$size = esc_attr( $block['attrs']['iconSize'] ?? null ) ?: '20';
 
 		if ( str_contains( $size, 'var' ) ) {
 			$svg_styles = css_string_to_array( $svg->getAttribute( 'style' ) );
@@ -254,7 +253,7 @@ function render_button_block( string $html, array $block ): string {
 		$html = add_position_classes( $dom->saveHTML(), $block );
 	}
 
-	$url = $block['attrs']['url'] ?? null;
+	$url = esc_url( $block['attrs']['url'] ?? '' );
 
 	if ( ! $url ) {
 		$dom = dom( $html );
@@ -281,7 +280,7 @@ function render_button_block( string $html, array $block ): string {
 		$html = $dom->saveHTML();
 	}
 
-	$size = $block['attrs']['size'] ?? 'medium';
+	$size = esc_attr( $block['attrs']['size'] ?? 'medium' );
 
 	if ( in_array( $size, [ 'small', 'large' ] ) ) {
 		$dom = dom( $html );

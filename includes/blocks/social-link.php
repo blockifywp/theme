@@ -5,21 +5,23 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function esc_attr;
 use function file_get_contents;
 
 add_filter( 'render_block_core/social-link', NS . 'render_social_link_block', 10, 2 );
 /**
  * Modifies front end HTML output of block.
  *
- * @param string $html  Block HTML.
+ * @since 0.0.24
+ *
  * @param array  $block Block data.
  *
- * @since 0.0.24
+ * @param string $html  Block HTML.
  *
  * @return string
  */
 function render_social_link_block( string $html, array $block ): string {
-	$textColor = $block['attrs']['textColor'] ?? null;
+	$textColor = esc_attr( $block['attrs']['textColor'] ?? '' );
 
 	if ( $textColor ) {
 		$dom       = dom( $html );

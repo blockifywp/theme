@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function esc_attr;
 use function explode;
 use function trim;
 
@@ -41,8 +42,8 @@ function render_search_block( string $html, array $block ): string {
 	$border              = $block['attrs']['style']['border'] ?? [];
 	$border_color        = $block['attrs']['style']['border']['color'] ?? $block['attrs']['borderColor'] ?? '';
 	$box_shadow          = $block['attrs']['style']['boxShadow'] ?? [];
-	$shadow_preset       = $block['attrs']['shadowPreset'] ?? '';
-	$shadow_preset_hover = $block['attrs']['shadowPresetHover'] ?? '';
+	$shadow_preset       = esc_attr( $block['attrs']['shadowPreset'] ?? '' );
+	$shadow_preset_hover = esc_attr( $block['attrs']['shadowPresetHover'] ?? '' );
 
 	$input_styles  = css_string_to_array( $input->getAttribute( 'style' ) );
 	$input_classes = explode( ' ', $input->getAttribute( 'class' ) );
@@ -141,22 +142,7 @@ function render_search_block( string $html, array $block ): string {
 	}
 
 	$form_styles = css_string_to_array( $form->getAttribute( 'style' ) );
-
-	if ( $margin['top'] ?? '' ) {
-		$form_styles['margin-top'] = format_custom_property( $margin['top'] ?? '' );
-	}
-
-	if ( $margin['right'] ?? '' ) {
-		$form_styles['margin-right'] = format_custom_property( $margin['right'] ?? '' );
-	}
-
-	if ( $margin['bottom'] ?? '' ) {
-		$form_styles['margin-bottom'] = format_custom_property( $margin['bottom'] ?? '' );
-	}
-
-	if ( $margin['left'] ?? '' ) {
-		$form_styles['margin-left'] = format_custom_property( $margin['left'] ?? '' );
-	}
+	$form_styles = add_shorthand_property( $form_styles, 'margin', $margin );
 
 	if ( $form_styles ) {
 		$form->setAttribute(
@@ -198,13 +184,16 @@ function render_search_block( string $html, array $block ): string {
 		}
 
 		$svg->setAttribute( 'class', trim( implode( ' ', $svg_classes ) ) );
-		$svg->setAttribute( 'style', css_array_to_string( $svg_styles ) );
+
+		if ( $svg_styles ) {
+			$svg->setAttribute( 'style', css_array_to_string( $svg_styles ) );
+		}
 
 		$imported_svg = $dom->importNode( $svg, true );
 		$wrap->insertBefore( $imported_svg, $input );
 	}
 
-	$post_type = $block['attrs']['postType'] ?? '';
+	$post_type = esc_attr( $block['attrs']['postType'] ?? '' );
 
 	if ( $post_type ) {
 		$form = get_dom_element( 'form', $dom );

@@ -26,6 +26,8 @@ add_filter( 'render_block_core/site-logo', NS . 'render_site_logo_block', 10, 2 
  * @return string
  */
 function render_site_logo_block( string $html, array $block ): string {
+
+	// Render svg logo inline.
 	if ( str_contains( $html, '.svg' ) ) {
 		$dom  = dom( $html );
 		$div  = get_dom_element( 'div', $dom );
@@ -38,7 +40,7 @@ function render_site_logo_block( string $html, array $block ): string {
 
 		$file = str_replace(
 			content_url(),
-			dirname( dirname( get_template_directory() ) ),
+			dirname( get_template_directory(), 2 ),
 			$img->getAttribute( 'src' )
 		);
 

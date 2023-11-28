@@ -10,6 +10,9 @@ use WP_Block;
 use function apply_filters;
 use function array_merge;
 use function count;
+use function esc_attr;
+use function esc_html__;
+use function esc_url;
 use function explode;
 use function glob;
 use function implode;
@@ -90,7 +93,7 @@ function render_image_placeholder( string $html, array $block, WP_Block $object 
 			$href    = get_permalink( $post_id );
 
 			if ( $href ) {
-				$link->setAttribute( 'href', $href );
+				$link->setAttribute( 'href', esc_url( $href ) );
 			}
 		}
 
@@ -100,7 +103,7 @@ function render_image_placeholder( string $html, array $block, WP_Block $object 
 			$link->setAttribute( 'target', $link_target );
 		}
 
-		$rel = $block['rel'] ?? '';
+		$rel = esc_attr( $block['rel'] ?? '' );
 
 		if ( $rel ) {
 			$link->setAttribute( 'rel', $rel );
@@ -138,14 +141,6 @@ function render_image_placeholder( string $html, array $block, WP_Block $object 
 	$styles = [
 		'width'                      => $block['width'] ?? null,
 		'height'                     => $block['height'] ?? null,
-		'margin-top'                 => $margin['top'] ?? null,
-		'margin-right'               => $margin['right'] ?? null,
-		'margin-bottom'              => $margin['bottom'] ?? null,
-		'margin-left'                => $margin['left'] ?? null,
-		'padding-top'                => $padding['top'] ?? null,
-		'padding-right'              => $padding['right'] ?? null,
-		'padding-bottom'             => $padding['bottom'] ?? null,
-		'padding-left'               => $padding['left'] ?? null,
 		'border-width'               => $border['width'] ?? null,
 		'border-style'               => $border['style'] ?? ( ( $border['width'] ?? null ) ? 'solid' : null ),
 		'border-color'               => $border['color'] ?? null,
@@ -160,6 +155,9 @@ function render_image_placeholder( string $html, array $block, WP_Block $object 
 		'left'                       => $style['left']['all'] ?? null,
 		'z-index'                    => $style['zIndex']['all'] ?? null,
 	];
+
+	$styles = add_shorthand_property( $styles, 'margin', $margin );
+	$styles = add_shorthand_property( $styles, 'padding', $padding );
 
 	if ( $aspect_ratio && $aspect_ratio !== 'auto' ) {
 		$styles['aspect-ratio'] = $aspect_ratio;
@@ -212,14 +210,14 @@ function get_placeholder_image( DOMDocument $dom ): ?DOMElement {
 
 	if ( $count > 0 ) {
 		$img = create_element( 'img', $dom );
-		$img->setAttribute( 'src', get_uri() . 'assets/img/' . basename( $image_paths[ $last_index ] ) );
+		$img->setAttribute( 'src', esc_url( get_uri() . 'assets/img/' . basename( $image_paths[ $last_index ] ) ) );
 		$img->setAttribute( 'alt', '' );
 
 		$result = dom_element( $img );
 
 		$last_index++;
 	} else {
-		$svg_title = __( 'Image placeholder', 'blockify' );
+		$svg_title = esc_html__( 'Image placeholder', 'blockify' );
 		$svg_icon  = <<<HTML
 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 64 64" width="32" height="32">
 	<title>$svg_title</title>

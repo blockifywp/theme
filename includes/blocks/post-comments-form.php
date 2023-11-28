@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function apply_filters;
+use function esc_attr;
 
 add_filter( 'render_block_core/post-comments-form', NS . 'render_post_comments_form_block', 10, 2 );
 /**
@@ -26,7 +27,7 @@ function render_post_comments_form_block( string $html, array $block ): string {
 	}
 
 	change_tag_name(
-		apply_filters( 'blockify_comments_form_title_tag', 'h4' ),
+		esc_attr( apply_filters( 'blockify_comments_form_title_tag', 'h4' ) ),
 		$h3
 	);
 

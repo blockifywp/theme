@@ -6,8 +6,11 @@ namespace Blockify\Theme;
 
 use DOMElement;
 use function add_filter;
+use function esc_html;
+use function esc_html__;
 use function get_option;
 use function get_post;
+use function intval;
 use function is_home;
 use function sanitize_title_with_dashes;
 use function str_contains;
@@ -31,22 +34,22 @@ function render_post_title_block( string $html, array $block ): string {
 		$page_for_posts = get_post( get_option( 'page_for_posts' ) );
 
 		if ( $page_for_posts->post_type === 'page' ) {
-			$title = $page_for_posts->post_title;
+			$title = esc_html( $page_for_posts->post_title );
 		} else {
-			$title = __( 'Latest Posts', 'blockify' );
+			$title = esc_html__( 'Latest Posts', 'blockify' );
 		}
 
 		$html = str_replace( $text, $title, $html );
 	}
 
-	$tag     = 'h' . ( $block['attrs']['level'] ?? 2 );
+	$tag     = 'h' . intval( $block['attrs']['level'] ?? 2 );
 	$dom     = dom( $html );
 	$heading = get_dom_element( $tag, $dom );
 
 	if ( $heading instanceof DOMElement ) {
 		$heading->setAttribute(
 			'id',
-			$block['attrs']['anchor'] ?? sanitize_title_with_dashes( $heading->textContent )
+			sanitize_title_with_dashes( $block['attrs']['anchor'] ?? $heading->textContent )
 		);
 	}
 

@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Blockify\Theme;
 
 use function add_filter;
+use function esc_attr;
 use function implode;
 
 add_filter( 'render_block_core/tag-cloud', NS . 'render_tag_cloud_block', 10, 2 );
@@ -13,14 +14,14 @@ add_filter( 'render_block_core/tag-cloud', NS . 'render_tag_cloud_block', 10, 2 
  *
  * @since 0.0.2
  *
- * @param string $html Block HTML.
- * @param array  $block   Block data.
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
  *
  * @return string
  */
 function render_tag_cloud_block( string $html, array $block ): string {
-	$smallest  = $block['attrs']['smallestFontSize'] ?? '1em';
-	$largest   = $block['attrs']['largestFontSize'] ?? '1em';
+	$smallest  = esc_attr( $block['attrs']['smallestFontSize'] ?? '1em' );
+	$largest   = esc_attr( $block['attrs']['largestFontSize'] ?? '1em' );
 	$dom       = dom( $html );
 	$paragraph = get_dom_element( 'p', $dom );
 

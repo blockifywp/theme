@@ -46,7 +46,6 @@ function render_navigation_block( string $html, array $block ): string {
 	$filter       = $block['attrs']['style']['filter'] ?? null;
 
 	if ( $overlay_menu && $filter ) {
-
 		$filter_value = '';
 
 		foreach ( $filter as $property => $value ) {
@@ -109,13 +108,7 @@ function render_navigation_block( string $html, array $block ): string {
 		}
 	}
 
-	if ( $padding ) {
-		if ( is_array( $padding ) ) {
-			$styles['--wp--custom--nav--padding'] = format_custom_property( $padding['top'] ?? 0 );
-		} else {
-			$styles['--wp--custom--nav--padding'] = format_custom_property( $padding );
-		}
-	}
+	$styles = add_shorthand_property( $styles, '--wp--custom--nav--padding', $padding );
 
 	if ( $styles ) {
 		$nav->setAttribute( 'style', css_array_to_string( $styles ) );

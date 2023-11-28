@@ -6,6 +6,7 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function do_blocks;
+use function esc_html__;
 use function get_the_content;
 use function get_the_title;
 use function in_array;
@@ -34,9 +35,9 @@ function render_table_of_contents( string $html, array $block ): string {
 		if ( in_array(
 			$content,
 			[
-				__( 'Table of Contents', 'blockify' ),
-				__( 'Contents', 'blockify' ),
-				__( 'Table of contents', 'blockify' ),
+				esc_html__( 'Table of Contents', 'blockify' ),
+				esc_html__( 'Contents', 'blockify' ),
+				esc_html__( 'Table of contents', 'blockify' ),
 			],
 			true
 		) ) {

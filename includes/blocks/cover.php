@@ -19,15 +19,14 @@ add_filter( 'render_block_core/cover', NS . 'render_cover_block', 10, 2 );
  * @return string
  */
 function render_cover_block( string $html, array $block ): string {
-	$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
-	$zIndex  = $block['attrs']['style']['zIndex']['all'] ?? null;
-	$url     = $block['attrs']['url'] ?? null;
-	$dom     = dom( $html );
-	$div     = get_dom_element( 'div', $dom );
+	$dom = dom( $html );
+	$div = get_dom_element( 'div', $dom );
 
 	if ( ! $div ) {
 		return $html;
 	}
+
+	$url = $block['attrs']['url'] ?? null;
 
 	if ( ! $url ) {
 		$imported = $dom->importNode( get_placeholder_image( $dom ), true );
@@ -39,15 +38,11 @@ function render_cover_block( string $html, array $block ): string {
 		$svg->setAttribute( 'class', implode( ' ', $classes ) );
 	}
 
+	$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
+	$zIndex  = $block['attrs']['style']['zIndex']['all'] ?? null;
+
 	$styles = css_string_to_array( $div->getAttribute( 'style' ) );
-
-	foreach ( [ 'top', 'right', 'bottom', 'left' ] as $side ) {
-		if ( ! isset( $padding[ $side ] ) ) {
-			continue;
-		}
-
-		$styles["padding-{$side}"] = format_custom_property( (string) $padding[ $side ] );
-	}
+	$styles = add_shorthand_property( $styles, 'padding', $padding );
 
 	if ( ! is_null( $zIndex ) ) {
 		$styles['--z-index'] = format_custom_property( $zIndex );
