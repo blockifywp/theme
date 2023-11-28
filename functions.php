@@ -74,6 +74,7 @@ function setup(): void {
 		'blocks/post-date',
 		'blocks/post-excerpt',
 		'blocks/post-featured-image',
+		'blocks/post-template',
 		'blocks/post-terms',
 		'blocks/post-title',
 		'blocks/query-pagination',

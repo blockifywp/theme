@@ -8,9 +8,9 @@
  */
 ?>
 <!-- wp:template-part {"slug":"header","tagName":"header","className":"site-header"} /-->
-<!-- wp:group {"tagName":"main","className":"site-main","metadata":{"name":"Main"},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group site-main">
-	<!-- wp:post-content {"align":"full","layout":{"type":"default"}} /-->
+<!-- wp:group {"tagName":"main","align":"full","className":"site-main","layout":{"type":"constrained"},"metadata":{"name":"Main"}} -->
+<main class="wp-block-group alignfull site-main">
+	<!-- wp:post-content {"align":"wide","layout":{"type":"default"}} /-->
 </main>
 <!-- /wp:group -->
 <!-- wp:template-part {"slug":"footer","tagName":"footer","className":"site-footer"} /-->

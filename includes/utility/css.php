@@ -105,7 +105,7 @@ function format_custom_property( string $custom_property ): string {
 		}
 
 		$colors = array_merge(
-			(array) $global_settings['color']['palette']['theme'],
+			(array) ( $global_settings['color']['palette']['theme'] ?? [] ),
 			(array) $theme_json->settings->color->palette
 		);
 

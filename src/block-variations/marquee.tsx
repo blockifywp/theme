@@ -3,10 +3,13 @@ import { __ } from '@wordpress/i18n';
 import { reusableBlock } from '@wordpress/icons';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { CSSProperties } from 'react';
+import { CSSProperties, SyntheticEvent } from 'react';
 import { InspectorControls } from '@wordpress/block-editor';
 import {
 	__experimentalNumberControl as NumberControl,
+	__experimentalVStack as VStack,
+	Button,
+	ButtonGroup,
 	Flex,
 	FlexBlock,
 	FlexItem,
@@ -15,6 +18,10 @@ import {
 	RangeControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { Label } from '../components';
+
+const defaultMobileSpeed = '60';
+const defaultDesktopSpeed = '90';
 
 const blockVariation: BlockVariation = {
 	name: 'marquee',
@@ -45,10 +52,11 @@ const blockVariation: BlockVariation = {
 	attributes: {
 		marquee: {},
 		align: 'full',
-		speedMobile: 60,
-		speedDesktop: 90,
+		speedMobile: defaultMobileSpeed,
+		speedDesktop: defaultDesktopSpeed,
 		pauseOnHover: true,
 		reverse: false,
+		direction: 'horizontal',
 		spacing: {
 			padding: {
 				right: '0',
@@ -71,8 +79,8 @@ registerBlockVariation( 'core/group', blockVariation );
 
 const getStyles = ( attributes: attributes ): CSSProperties => {
 	return {
-		'--marquee-speed-mobile': ( attributes?.speedMobile ?? 20 ) + 's',
-		'--marquee-speed-desktop': ( attributes?.speedDesktop ?? 30 ) + 's',
+		'--marquee-speed-mobile': ( attributes?.speedMobile ?? defaultMobileSpeed ) + 's',
+		'--marquee-speed-desktop': ( attributes?.speedDesktop ?? defaultDesktopSpeed ) + 's',
 		'--marquee-direction': attributes?.reverse ? 'reverse' : 'forwards',
 		'--marquee-pause': attributes?.pauseOnHover ? 'paused' : 'running',
 	} as CSSProperties;
@@ -121,81 +129,109 @@ addFilter(
 			return <BlockEdit { ...props } />;
 		}
 
-		return (
-			<>
-				<InspectorControls>
-					<PanelBody
-						title={ __( 'Marquee Settings', 'blockify-pro' ) }
-						className={ 'blockify-width-control' }
-					>
-						<p>{ __( 'Scroll Speed (seconds)', 'blockify' ) }</p>
-						<PanelRow>
-							<br />
-							<Flex>
-								<FlexItem style={ { width: '50%' } }>
-									<NumberControl
-										isShiftStepEnabled={ true }
-										label={ __( 'Mobile', 'blockify' ) }
-										onChange={ ( value: string ) => {
-											setAttributes( { speedMobile: value } );
-										} }
-										value={ attributes?.speedMobile }
-									/>
-								</FlexItem>
-								<FlexBlock>
-									<NumberControl
-										isShiftStepEnabled={ true }
-										label={ __( 'Desktop', 'blockify-pro' ) }
-										onChange={ ( value: string ) => {
-											setAttributes( {
-												speedDesktop: value,
-											} );
-										} }
-										value={ attributes?.speedDesktop }
-									/>
-								</FlexBlock>
-							</Flex>
-						</PanelRow>
-						<br />
-						<PanelRow>
-							<RangeControl
-								label={ __( 'Repeat Items', 'blockify' ) }
-								help={ __( 'How many times should the items be duplicated and cloned.', 'blockify' ) }
-								value={ attributes?.repeatItems ?? 2 }
-								onChange={ ( value: number ) => {
+		const Settings = () => <>
+			<PanelRow>
+				<Label>
+					{ __( 'Direction', 'blockify' ) }
+				</Label>
+				<ButtonGroup>
+					<Button
+
+					/>
+				</ButtonGroup>
+			</PanelRow>
+			<PanelRow>
+				<VStack>
+					<Label>
+						{ __( 'Scroll Speed (seconds)', 'blockify' ) }
+					</Label>
+					<Flex>
+						<FlexItem style={ { width: '50%' } }>
+							<NumberControl
+								isShiftStepEnabled={ true }
+								label={ __( 'Mobile', 'blockify' ) }
+								onChange={ ( value: string | undefined, extra: {
+									event: SyntheticEvent;
+								} ) => {
+									if ( ! extra?.event?.target?.validity?.valid ) {
+										return;
+									}
+
 									setAttributes( {
-										repeatItems: value,
+										speedMobile: value,
 									} );
 								} }
-								min={ 0 }
-								max={ 10 }
-								step={ 1 }
-								allowReset={ true }
+								value={ attributes?.speedMobile ?? defaultMobileSpeed }
 							/>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl
-								label={ __( 'Pause on hover', 'blockify-pro' ) }
-								checked={ attributes?.pauseOnHover }
-								onChange={ () => setAttributes( {
-									pauseOnHover: ! attributes?.pauseOnHover,
-								} ) }
+						</FlexItem>
+						<FlexBlock>
+							<NumberControl
+								isShiftStepEnabled={ true }
+								label={ __( 'Desktop', 'blockify-pro' ) }
+								onChange={ ( value: string | undefined, extra: {
+									event: SyntheticEvent;
+								} ) => {
+									if ( ! extra?.event?.target?.validity?.valid ) {
+										return;
+									}
+
+									setAttributes( {
+										speedDesktop: value,
+									} );
+								} }
+								value={ attributes?.speedDesktop ?? defaultDesktopSpeed }
 							/>
-						</PanelRow>
-						<PanelRow>
-							<ToggleControl
-								label={ __( 'Reverse direction', 'blockify-pro' ) }
-								checked={ attributes?.reverse }
-								onChange={ () => setAttributes( {
-									reverse: ! attributes?.reverse,
-								} ) }
-							/>
-						</PanelRow>
-					</PanelBody>
-				</InspectorControls>
-				<BlockEdit { ...props } />
-			</>
-		);
+						</FlexBlock>
+					</Flex>
+				</VStack>
+			</PanelRow>
+			<PanelRow>
+				<RangeControl
+					label={ __( 'Repeat Items', 'blockify' ) }
+					help={ __( 'How many times should the items be duplicated/cloned.', 'blockify' ) }
+					value={ attributes?.repeatItems ?? 2 }
+					onChange={ ( value: number ) => {
+						setAttributes( {
+							repeatItems: value,
+						} );
+					} }
+					min={ 0 }
+					max={ 10 }
+					step={ 1 }
+					allowReset={ true }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<ToggleControl
+					label={ __( 'Pause on hover', 'blockify-pro' ) }
+					checked={ attributes?.pauseOnHover }
+					onChange={ () => setAttributes( {
+						pauseOnHover: ! attributes?.pauseOnHover,
+					} ) }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<ToggleControl
+					label={ __( 'Reverse direction', 'blockify-pro' ) }
+					checked={ attributes?.reverse }
+					onChange={ () => setAttributes( {
+						reverse: ! attributes?.reverse,
+					} ) }
+				/>
+			</PanelRow>
+		</>;
+
+		return <>
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Marquee Settings', 'blockify-pro' ) }
+					className={ 'blockify-width-control' }
+				>
+					<Settings />
+				</PanelBody>
+			</InspectorControls>
+			<BlockEdit { ...props } />
+		</>;
 	}, 'withInspectorControl' ),
 	9
 );

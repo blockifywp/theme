@@ -1,11 +1,11 @@
-.is-style-dark {
+body.is-style-dark {
 
 	.hide-dark-mode {
 		display: none;
 	}
 }
 
-.is-style-light:not(.is-style-dark) {
+body.is-style-light:not(.is-style-dark) {
 
 	.hide-light-mode {
 		display: none;

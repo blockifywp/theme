@@ -4,8 +4,10 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use stdClass;
 use function _wp_to_kebab_case;
 use function array_replace;
+use function file_exists;
 use function get_stylesheet_directory;
 use function get_template_directory;
 use function wp_get_global_settings;
@@ -183,8 +185,10 @@ function get_replacement_colors( array $settings = [] ): array {
  * @return array
  */
 function get_deprecated_colors(): array {
-	$child_theme_json  = wp_json_file_decode( get_stylesheet_directory() . '/theme.json' );
-	$parent_theme_json = wp_json_file_decode( get_template_directory() . '/theme.json' );
+	$child_theme_file  = get_stylesheet_directory() . '/theme.json';
+	$parent_theme_file = get_template_directory() . '/theme.json';
+	$child_theme_json  = file_exists( $child_theme_file ) ? wp_json_file_decode( $child_theme_file ) : new stdClass();
+	$parent_theme_json = file_exists( $parent_theme_file ) ? wp_json_file_decode( $parent_theme_file ) : new stdClass();
 	$parent_colors     = get_color_values( $parent_theme_json->settings->color->palette ?? [] );
 	$child_colors      = get_color_values( $child_theme_json->settings->color->palette ?? [] );
 	$settings          = wp_get_global_settings();
