@@ -65,8 +65,20 @@
 	justify-content: center;
 }
 
+.justify-space-between {
+	justify-content: space-between;
+}
+
 .height-100 {
-	height: 100%;
+	height: 100% !important
+}
+
+.height-auto {
+	height: auto !important;
+}
+
+.isolate {
+	isolation: isolate;
 }
 
 [style*="border-"] {
@@ -77,17 +89,12 @@
 	cursor: pointer;
 }
 
-// TODO: clean up.
-.cursor-pointer {
-	cursor: pointer;
-}
-
 .align-content-center {
 	align-content: center;
 }
 
 .align-stretch {
-	align-items: stretch;
+	align-items: stretch !important;
 	align-self: stretch;
 }
 
@@ -106,4 +113,10 @@ main {
 
 		@include alignfull;
 	}
+}
+
+
+// TODO: clean up.
+.cursor-pointer {
+	cursor: pointer;
 }

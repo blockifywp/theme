@@ -4,32 +4,37 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
+use WP_Block;
 use function add_filter;
+use function apply_filters;
 use function rtrim;
 use function str_contains;
 use function strval;
 use function trim;
 
-add_filter( 'render_block', NS . 'render_block_onclick_attribute', 11, 2 );
+add_filter( 'render_block', NS . 'render_block_onclick_attribute', 11, 3 );
 /**
  * Modifies front end HTML output of block.
  *
  * @since 0.0.2
  *
- * @param string $html  Block HTML.
- * @param array  $block Block data.
+ * @param string   $html   Block HTML.
+ * @param array    $block  Block data.
+ * @param WP_Block $object Block args.
  *
  * @return string
  */
-function render_block_onclick_attribute( string $html, array $block ): string {
+function render_block_onclick_attribute( string $html, array $block, WP_Block $object ): string {
 	$js = strval( $block['attrs']['onclick'] ?? '' );
 
 	if ( ! $js ) {
 		return $html;
 	}
 
+	$js       = render_template_tags( $js, $block, $object );
 	$on_click = format_inline_js( $js );
 	$link     = null;
+	$name     = $block['blockName'] ?? '';
 
 	// Groups and buttons.
 	if ( $on_click && $html ) {
@@ -37,11 +42,9 @@ function render_block_onclick_attribute( string $html, array $block ): string {
 		$div  = get_dom_element( 'div', $dom );
 		$link = get_dom_element( 'a', $div );
 
-		if ( $link ) {
+		if ( $link && $name === 'core/button' ) {
 			$link->setAttribute( 'onclick', $on_click );
-		}
-
-		if ( ! $link && $div ) {
+		} else if ( $div ) {
 			$div->setAttribute( 'onclick', $on_click );
 		}
 
@@ -79,5 +82,5 @@ function format_inline_js( string $js ): string {
 	$js = reduce_whitespace( $js );
 	$js = remove_line_breaks( $js );
 
-	return $js;
+	return apply_filters( 'blockify_format_inline_js', $js );
 }

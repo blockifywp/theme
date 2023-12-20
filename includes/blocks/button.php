@@ -335,5 +335,9 @@ function render_button_block( string $html, array $block ): string {
 		);
 	}
 
+	if ( str_contains( $html, 'http://http' ) ) {
+		$html = str_replace( 'http://http', 'http', $html );
+	}
+
 	return $html;
 }

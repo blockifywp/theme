@@ -188,10 +188,10 @@ const DisplayControls = ( props: DisplayProps ): JSX.Element => {
 							setAttributes( {
 								style: {
 									...attributes?.style,
-									display: {},
-									order: {},
-									width: {},
-									maxWidth: {},
+									display: undefined,
+									order: undefined,
+									width: undefined,
+									maxWidth: undefined,
 								},
 							} );
 						} }
@@ -244,14 +244,14 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-						<InspectorControls>
-							<PanelBody
-								initialOpen={ ( attributes?.style?.display?.all?.length ?? {} ) > 0 ?? false }
-								title={ __( 'Display', 'blockify' ) }
-							>
-								<DisplayControls { ...props } />
-							</PanelBody>
-						</InspectorControls>
+					<InspectorControls>
+						<PanelBody
+							initialOpen={ ( attributes?.style?.display?.all?.length ?? {} ) > 0 ?? false }
+							title={ __( 'Display', 'blockify' ) }
+                        	>
+							<DisplayControls { ...props } />
+						</PanelBody>
+					</InspectorControls>
 					}
 				</>
 			);

@@ -110,7 +110,7 @@ $gap: var(--wp--custom--navigation--padding, var(--wp--preset--spacing--xs, 1em)
 }
 
 .wp-block-navigation:not(.is-vertical) .wp-block-navigation__responsive-container-content {
-	row-gap: 0;
+	row-gap: inherit;
 }
 
 .has-modal-open .admin-bar .wp-block-navigation__responsive-dialog {

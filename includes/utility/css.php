@@ -151,7 +151,17 @@ function add_shorthand_property( array $styles, string $property, $values ): arr
 		return $styles;
 	}
 
+	$sides = [ 'top', 'right', 'bottom', 'left' ];
+
 	if ( count( $values ) === 1 ) {
+		foreach ( $values as $side => $value ) {
+			if ( ! in_array( $side, $sides, true ) ) {
+				continue;
+			}
+
+			$styles[ $property . '-' . $side ] = format_custom_property( $value );
+		}
+
 		return $styles;
 	}
 

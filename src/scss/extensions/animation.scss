@@ -1,11 +1,18 @@
 .animate {
 	animation-name: var(--animation-name);
+	-webkit-transform: translate3d(0, 0, 0);
+}
+
+.has-animation,
+.has-scroll-animation {
+	will-change: transform;
 }
 
 @media (prefers-reduced-motion) {
 
 	.has-animation,
 	.has-scroll-animation {
+		will-change: transform;
 		animation: none !important;
 	}
 }

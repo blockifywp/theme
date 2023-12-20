@@ -29,13 +29,12 @@ function render_post_featured_image_block( string $html, array $block ): string 
 	}
 
 	$figure_classes = explode( ' ', $figure->getAttribute( 'class' ) );
-
-	$attrs         = $block['attrs'] ?? [];
-	$shadow_preset = esc_attr( $attrs['shadowPreset'] ?? '' );
-	$hover_preset  = esc_attr( $attrs['shadowPresetHover'] ?? '' );
-	$use_custom    = $attrs['useCustomBoxShadow'] ?? null;
-	$shadow_custom = $attrs['style']['boxShadow'] ?? null;
-	$hover_custom  = $attrs['style']['boxShadow']['hover'] ?? null;
+	$attrs          = $block['attrs'] ?? [];
+	$shadow_preset  = esc_attr( $attrs['shadowPreset'] ?? '' );
+	$hover_preset   = esc_attr( $attrs['shadowPresetHover'] ?? '' );
+	$use_custom     = $attrs['useCustomBoxShadow'] ?? null;
+	$shadow_custom  = $attrs['style']['boxShadow'] ?? null;
+	$hover_custom   = $attrs['style']['boxShadow']['hover'] ?? null;
 
 	if ( $shadow_preset ) {
 		$figure_classes[] = 'has-shadow';

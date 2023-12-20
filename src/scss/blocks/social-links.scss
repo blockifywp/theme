@@ -7,7 +7,12 @@
 		opacity: var(--wp--custom--button--hover-opacity, 0.82);
 	}
 
-	.has-normal-icon-size & {
-		font-size: 20px;
+	.has-normal-icon-size {
+		font-size: inherit;
+	}
+
+	.wp-block-social-links.has-normal-icon-size & svg {
+		width: 1em;
+		height: 1em;
 	}
 }

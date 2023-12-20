@@ -9,6 +9,8 @@ use WP_REST_Server;
 use function add_action;
 use function current_user_can;
 use function do_blocks;
+use function in_array;
+use function is_array;
 use function str_contains;
 use function str_replace;
 
@@ -55,8 +57,9 @@ function register_icons_rest_route(): void {
  * @return string
  */
 function get_icon_html( string $content, array $block ): string {
-	$classes  = $block['attrs']['className'] ?? '';
-	$icon_set = $block['attrs']['iconSet'] ?? strtolower( 'WordPress' );
+	$attrs    = $block['attrs'] ?? [];
+	$classes  = $attrs['className'] ?? '';
+	$icon_set = $attrs['iconSet'] ?? strtolower( 'WordPress' );
 
 	if ( str_contains( $classes, 'all-icons' ) ) {
 		return render_all_icons( $icon_set );
@@ -72,11 +75,11 @@ function get_icon_html( string $content, array $block ): string {
 	}
 
 	$span         = change_tag_name( 'span', $img );
-	$icon_name    = $block['attrs']['iconName'] ?? 'star-empty';
-	$has_gradient = $block['attrs']['gradient'] ?? null;
+	$icon_name    = $attrs['iconName'] ?? 'star-empty';
+	$gradient     = $attrs['gradient'] ?? null;
 	$span_classes = [ 'wp-block-image__icon' ];
 
-	if ( $has_gradient ) {
+	if ( $gradient ) {
 		$span_classes[] = 'has-gradient';
 	}
 
@@ -118,14 +121,20 @@ function get_icon_html( string $content, array $block ): string {
 		unset( $figure_classes[ $index ] );
 	}
 
+	$text_color = $attrs['textColor'] ?? null;
+
+	if ( $text_color ) {
+		$figure_classes[] = "has-{$text_color}-color";
+	}
+
 	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
 	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
 
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
-	$span->setAttribute( 'title', $block['attrs']['title'] ?? $aria_label );
+	$span->setAttribute( 'title', $attrs['title'] ?? $aria_label );
 
-	if ( ! ( $block['attrs']['title'] ?? null ) || ! $aria_label ) {
+	if ( ! ( $attrs['title'] ?? null ) || ! $aria_label ) {
 		$span->setAttribute( 'role', 'img' );
 	}
 
@@ -158,20 +167,51 @@ function get_icon_html( string $content, array $block ): string {
 		unset( $figure_styles[ $key ] );
 	}
 
-	$svg_string = $block['attrs']['iconSvgString'] ?? get_icon( $icon_set, $icon_name );
+	$svg_string = $attrs['iconSvgString'] ?? get_icon( $icon_set, $icon_name );
 
-	if ( $has_gradient && $svg_string ) {
+	if ( $gradient && $svg_string ) {
 		$span_styles['--wp--custom--icon--url'] = 'url(\'data:image/svg+xml;utf8,' . $svg_string . '\')';
 	} else {
 		unset( $span_styles['--wp--custom--icon--url'] );
 	}
 
-	$size = $block['attrs']['iconSize'] ?? null;
+	$size = $attrs['iconSize'] ?? null;
 
-	if ( $has_gradient && $size ) {
+	if ( $gradient && $size ) {
 		$span_styles['--wp--custom--icon--size'] = $size;
 	} else {
 		unset( $span_styles['--wp--custom--icon--size'] );
+	}
+
+	$custom_text_color = $attrs['style']['color']['text'] ?? null;
+
+	if ( $custom_text_color ) {
+		$figure_styles['--wp--custom--icon--color'] = $custom_text_color;
+	}
+
+	if ( $gradient ) {
+		$figure_styles['--wp--custom--icon--color'] = "var(--wp--preset--gradient--{$gradient})";
+	}
+
+	$transform       = $attrs['style']['transform'] ?? [];
+	$transform_units = [
+		'rotate'    => 'deg',
+		'skew'      => 'deg',
+		'scale'     => '',
+		'translate' => '',
+	];
+
+	if ( ! empty( $transform ) && is_array( $transform ) ) {
+		$transform_value = '';
+
+		foreach ( $transform as $key => $value ) {
+			$unit            = $transform_units[ $key ] ?? '';
+			$transform_value .= "{$key}({$value}{$unit}) ";
+		}
+
+		if ( ! in_array( 'has-transform', $span_classes, true ) ) {
+			$figure_styles['transform'] = $transform_value;
+		}
 	}
 
 	$figure->setAttribute( 'style', css_array_to_string( $figure_styles ) );
@@ -185,7 +225,7 @@ function get_icon_html( string $content, array $block ): string {
 		$figure->appendChild( $span );
 	}
 
-	if ( ! $has_gradient ) {
+	if ( ! $gradient ) {
 		$icon = get_icon( $icon_set, $icon_name, $size );
 
 		if ( $icon ) {

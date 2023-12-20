@@ -1,13 +1,23 @@
 import { __ } from '@wordpress/i18n';
-import { applyFormat, Format, FormatProps, registerFormatType, removeFormat, toggleFormat } from '@wordpress/rich-text';
-import { formatUnderline } from '@wordpress/icons';
-import { BlockControls, RichTextShortcut, RichTextToolbarButton } from '@wordpress/block-editor';
 import {
-	Toolbar,
+	applyFormat,
+	Format,
+	FormatProps,
+	registerFormatType,
+	removeFormat,
+	toggleFormat,
+} from '@wordpress/rich-text';
+import { formatUnderline } from '@wordpress/icons';
+import {
+	BlockControls,
+	RichTextShortcut,
+	RichTextToolbarButton,
+} from '@wordpress/block-editor';
+import {
+	__experimentalText as Text,
 	Popover,
 	SelectControl,
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalText as Text,
+	Toolbar,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { ucFirst } from '../utility/string';
@@ -26,7 +36,7 @@ const underlineTypes = [
 	'scribble',
 ];
 
-const Edit = ( { isActive, value, onChange } : FormatProps ) => {
+const Edit = ( { isActive, value, onChange }: FormatProps ) => {
 	const [ underline, setUnderline ] = useState( '' );
 	const [ isOpen, setIsOpen ] = useState( false );
 
@@ -81,52 +91,52 @@ const Edit = ( { isActive, value, onChange } : FormatProps ) => {
 					className={ 'blockify-underline-format' }
 					focusOnMount={ 'container' }
 					onFocusOutside={ () => setIsOpen( false ) }
-				>
+                	>
 					<Text>{ __( 'Underline style', 'blockify' ) }</Text>
 					<br />
 					<SelectControl
 						onChange={ ( newUnderlineType: string ): void => {
-							if ( newUnderlineType === 'none' ) {
-								onChange( removeFormat( value, name ) );
-							}
+                				if ( newUnderlineType === 'none' ) {
+                					onChange( removeFormat( value, name ) );
+                				}
 
-							setUnderline( newUnderlineType );
+                				setUnderline( newUnderlineType );
 
-							const existingClasses = classes ?? [];
+                				const existingClasses = classes ?? [];
 
-							existingClasses.forEach( ( existingClass: string, index: number ): void => {
-								if ( existingClass.includes( 'is-underline-' ) ) {
-									delete newAttributes.classes[ index ];
-								}
-							} );
+                				existingClasses.forEach( ( existingClass: string, index: number ): void => {
+                					if ( existingClass.includes( 'is-underline-' ) ) {
+                						delete newAttributes.classes[ index ];
+                					}
+                				} );
 
-							const newAttributes = {
-								classes: [
-									...existingClasses,
-									'is-underline-' + newUnderlineType,
-								],
-								styles: [
-									...styles ?? [],
-									'--wp--custom--underline--style:' + newUnderlineType,
-								],
-							};
+                				const newAttributes = {
+                					classes: [
+                						...existingClasses,
+                						'is-underline-' + newUnderlineType,
+                					],
+                					styles: [
+                						...styles ?? [],
+                						'--wp--custom--underline--style:' + newUnderlineType,
+                					],
+                				};
 
-							onChange( applyFormat( ( value ), {
-								type: name,
-								attributes: {
-									class: newAttributes.classes.join( ' ' ),
-									style: newAttributes.styles.join( ';' ),
-								},
-							} ) );
-						} }
+                				onChange( applyFormat( ( value ), {
+                					type: name,
+                					attributes: {
+                						class: newAttributes.classes.join( ' ' ),
+                						style: newAttributes.styles.join( ';' ),
+                					},
+                				} ) );
+                			} }
 						value={ underline }
 						options={ underlineTypes.map( ( underlineType ) => {
-							return {
-								label: ucFirst( underlineType ),
-								value: underlineType,
-							};
-						} ) }
-					>
+                				return {
+                					label: ucFirst( underlineType ),
+                					value: underlineType,
+                				};
+                			} ) }
+                		>
 					</SelectControl>
 				</Popover>
 			</Toolbar>

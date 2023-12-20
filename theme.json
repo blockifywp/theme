@@ -993,11 +993,6 @@
           "fontSize": "var(--wp--preset--font-size--16)"
         }
       },
-      "core/post-title": {
-        "color": {
-          "text": "var(--wp--preset--color--neutral-800)"
-        }
-      },
       "core/preformatted": {
         "border": {
           "radius": "var(--wp--custom--border--radius)"

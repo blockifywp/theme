@@ -44,17 +44,17 @@ const getClasses = ( attributes: attributes ): string[] => {
 
 		if ( config?.[ key ]?.options ) {
 			if ( style?.[ key ]?.all ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.all ) }` );
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.all ?? '' ) }` );
 			}
 
 			if ( style?.[ key ]?.mobile ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.mobile ) }-mobile` );
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.mobile ?? '' ) }-mobile` );
 			}
 
 			if ( style?.[ key ]?.desktop ?? null ) {
-				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.desktop ) }-desktop` );
+				classes.push( `has-${ property }-${ toKebabCase( style?.[ key ]?.desktop ?? '' ) }-desktop` );
 			}
-		} else if ( style?.[ key ] ) {
+		} else if ( style?.[ key ] ?? null ) {
 			classes.push( `has-${ property }` );
 		}
 	} );

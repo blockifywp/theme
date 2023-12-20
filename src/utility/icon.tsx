@@ -148,8 +148,7 @@ export const getIconStyles = ( attributes: IconAttributes ) => {
 		styles[ '--wp--custom--icon--size' ] = size;
 	}
 
-	const custom: string = ( attributes?.iconCustomSVG ?? '' )?.replace( '"', "'" );
-	const svg: string = custom && custom?.includes( '<svg' ) ? custom : attributes?.iconSvgString ?? '';
+	const svg: string = attributes?.iconSvgString ?? '';
 
 	if ( svg ) {
 		styles[ '--wp--custom--icon--url' ] = "url('data:image/svg+xml;utf8," + svg + "')";

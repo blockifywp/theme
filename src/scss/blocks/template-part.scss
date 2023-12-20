@@ -8,8 +8,13 @@ header.wp-block-template-part {
 		z-index: 3;
 	}
 
+	&:not([class*="has-display-"]) {
+		display: initial; // Required for nested sticky elements to work.
+	}
+
 	&:not([class*="has-position-"]) {
 		position: var(--wp--custom--header--position, relative);
+		top: var(--wp--custom--header--top, 0);
 	}
 }
 

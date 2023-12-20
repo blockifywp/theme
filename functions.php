@@ -32,6 +32,7 @@ function setup(): void {
 		'utility/dom',
 		'utility/helper',
 		'utility/icon',
+		'utility/image',
 		'utility/string',
 		'api/block-extensions',
 		'api/block-styles',
@@ -57,8 +58,10 @@ function setup(): void {
 		'blocks/avatar',
 		'blocks/button',
 		'blocks/buttons',
+		'blocks/code',
 		'blocks/columns',
 		'blocks/cover',
+		'blocks/details',
 		'blocks/group',
 		'blocks/heading',
 		'blocks/image',
@@ -82,7 +85,6 @@ function setup(): void {
 		'blocks/query',
 		'blocks/search',
 		'blocks/shortcode',
-		'blocks/site-logo',
 		'blocks/social-link',
 		'blocks/social-links',
 		'blocks/spacer',
@@ -98,6 +100,70 @@ function setup(): void {
 		if ( is_readable( $path ) ) {
 			require_once $path;
 		}
+	}
+
+	$icons = \glob( __DIR__ . '/assets/svg/devicon/*.svg' );
+
+	foreach ( $icons as $icon ) {
+		$contents = \file_get_contents( $icon );
+		$dom      = dom( $contents );
+		$svg      = get_dom_element( 'svg', $dom );
+
+		if ( ! $svg ) {
+			continue;
+		}
+
+		$fill = $svg->getAttribute( 'fill' );
+
+		if ( $fill ) {
+			$svg->removeAttribute( 'fill' );
+			$svg->setAttribute( 'fill', 'currentColor' );
+		}
+
+		$paths = $svg->getElementsByTagName( 'path' );
+
+		foreach ( $paths as $path ) {
+			$fill = $path->getAttribute( 'fill' );
+
+			if ( $fill ) {
+				$path->removeAttribute( 'fill' );
+				$path->setAttribute( 'fill', 'currentColor' );
+			}
+		}
+
+		$gs = $svg->getElementsByTagName( 'g' );
+
+		foreach ( $gs as $g ) {
+			$fill = $g->getAttribute( 'fill' );
+
+			if ( $fill ) {
+				$g->removeAttribute( 'fill' );
+				$g->setAttribute( 'fill', 'currentColor' );
+			}
+		}
+
+		$circles = $svg->getElementsByTagName( 'circle' );
+
+		foreach ( $circles as $circle ) {
+			$fill = $circle->getAttribute( 'fill' );
+
+			if ( $fill ) {
+				$circle->removeAttribute( 'fill' );
+				$circle->setAttribute( 'fill', 'currentColor' );
+			}
+		}
+
+		\file_put_contents(
+			$icon,
+			\str_replace(
+				'viewbox',
+				'viewBox',
+				$dom->saveHTML()
+			)
+		);
+
+		break;
+
 	}
 
 }

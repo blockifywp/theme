@@ -6,6 +6,7 @@ import {
 	BlockAlignmentToolbar,
 	BlockControls,
 } from '@wordpress/block-editor';
+import { Value } from '@wordpress/rich-text';
 import Option = CustomSelectControl.Option;
 
 declare global {
@@ -29,7 +30,7 @@ declare global {
 		options?: genericOption[];
 		multiple?: boolean;
 		labelPosition?: 'top' | 'side' | 'bottom';
-		inputType?: 'text' | 'number' | 'email' | 'url' | 'tel' | 'password';
+		inputType?: 'text' | 'number' | 'email' | 'url' | 'tel' | 'password' | 'hidden';
 		withInputField?: boolean;
 		marks?: {
 			value: number;
@@ -41,6 +42,8 @@ declare global {
 		onChange?: ( newValue: string | number | boolean | object | null | undefined ) => void;
 		subfields?: CustomField[];
 		allowReset?: boolean;
+		searchable?: boolean;
+		creatable?: boolean;
 	}
 
 	interface CustomBlock {
@@ -53,7 +56,9 @@ declare global {
 		attributes?: {
 			[key: string]: CustomBlockAttribute;
 		};
-		postTypes?: string[];
+		post_types?: string[];
+		uses_context?: string[];
+		enabled?: boolean;
 	}
 
 	interface CustomField {
@@ -144,8 +149,14 @@ declare global {
 	}
 
 	interface BlockStyles {
-		unregister: genericStrings;
-		register: genericStrings;
+		unregister: {
+			[blockName: string]: string[];
+		};
+		register: {
+			[blockName: string]: string[] | {
+				[blockNameWithLabel: string]: string;
+			}[];
+		};
 	}
 
 	interface wrapperProps {
@@ -179,13 +190,14 @@ declare global {
 		isSelected?: boolean;
 		value?: any;
 		children?: any;
+		context?: any;
 	}
 
 	interface formatProps {
 		isActive?: boolean;
 		onChange: ( value: any ) => any;
 		formatTypes?: { name: string }[];
-		value?: any;
+		value?: Value;
 	}
 
 	interface customSelectOptions extends Array<Option> {

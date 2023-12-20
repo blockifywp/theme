@@ -35,19 +35,22 @@ add_filter( 'render_block_core/post-terms', NS . 'render_post_terms_block', 10, 
 function render_post_terms_block( string $html, array $block ): string {
 
 	if ( $block['attrs']['align'] ?? null ) {
-		$html    = dom( $html );
-		$div     = get_dom_element( 'div', $html );
-		$classes = array_unique( [
-			'wp-block-post-terms',
-			'flex',
-			'wrap',
-			'justify-' . esc_attr( $block['attrs']['align'] ?? 'left' ),
-			...( explode( ' ', $div->getAttribute( 'class' ) ) ),
-		] );
+		$dom = dom( $html );
+		$div = get_dom_element( 'div', $dom );
 
-		$div->setAttribute( 'class', implode( ' ', $classes ) );
+		if ( $div ) {
+			$classes = array_unique( [
+				'wp-block-post-terms',
+				'flex',
+				'wrap',
+				'justify-' . esc_attr( $block['attrs']['align'] ?? 'left' ),
+				...( explode( ' ', $div->getAttribute( 'class' ) ) ),
+			] );
 
-		$html = $html->saveHTML();
+			$div->setAttribute( 'class', implode( ' ', $classes ) );
+		}
+
+		$html = $dom->saveHTML();
 	}
 
 	$term = $block['attrs']['term'] ?? '';
@@ -203,7 +206,7 @@ function render_post_terms_block( string $html, array $block ): string {
 	$dom = dom( $html );
 
 	// First child either div or ul.
-	$first = dom_element( $dom->firstChild );
+	$first = get_dom_element( '*', $dom );
 
 	if ( $first ) {
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
@@ -237,7 +240,7 @@ function render_post_terms_block( string $html, array $block ): string {
 	if ( in_array( 'is-style-badges', $class_names, true ) ) {
 		$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
 
-		if ( $padding ) {
+		if ( $padding && $first ) {
 			$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 			unset( $styles['padding'] );
 

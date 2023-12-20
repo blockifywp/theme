@@ -4,7 +4,6 @@ declare( strict_types=1 );
 
 namespace Blockify\Theme;
 
-use function add_filter;
 use function array_diff;
 use function esc_attr;
 use function explode;

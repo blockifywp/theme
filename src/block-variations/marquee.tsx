@@ -8,8 +8,6 @@ import { InspectorControls } from '@wordpress/block-editor';
 import {
 	__experimentalNumberControl as NumberControl,
 	__experimentalVStack as VStack,
-	Button,
-	ButtonGroup,
 	Flex,
 	FlexBlock,
 	FlexItem,
@@ -19,6 +17,7 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 import { Label } from '../components';
+import { addClassName } from '../utility/css.tsx';
 
 const defaultMobileSpeed = '60';
 const defaultDesktopSpeed = '90';
@@ -56,6 +55,7 @@ const blockVariation: BlockVariation = {
 		speedDesktop: defaultDesktopSpeed,
 		pauseOnHover: true,
 		reverse: false,
+		fadeEdges: false,
 		direction: 'horizontal',
 		spacing: {
 			padding: {
@@ -110,6 +110,9 @@ addFilter(
 					repeatItems: {
 						type: 'number',
 					},
+					fadeEdges: {
+						type: 'boolean',
+					},
 				},
 			};
 		}
@@ -130,16 +133,6 @@ addFilter(
 		}
 
 		const Settings = () => <>
-			<PanelRow>
-				<Label>
-					{ __( 'Direction', 'blockify' ) }
-				</Label>
-				<ButtonGroup>
-					<Button
-
-					/>
-				</ButtonGroup>
-			</PanelRow>
 			<PanelRow>
 				<VStack>
 					<Label>
@@ -190,7 +183,7 @@ addFilter(
 					label={ __( 'Repeat Items', 'blockify' ) }
 					help={ __( 'How many times should the items be duplicated/cloned.', 'blockify' ) }
 					value={ attributes?.repeatItems ?? 2 }
-					onChange={ ( value: number ) => {
+					onChange={ ( value: number | undefined ) => {
 						setAttributes( {
 							repeatItems: value,
 						} );
@@ -216,6 +209,15 @@ addFilter(
 					checked={ attributes?.reverse }
 					onChange={ () => setAttributes( {
 						reverse: ! attributes?.reverse,
+					} ) }
+				/>
+			</PanelRow>
+			<PanelRow>
+				<ToggleControl
+					label={ __( 'Fade Edges', 'blockify-pro' ) }
+					checked={ attributes?.fadeEdges }
+					onChange={ () => setAttributes( {
+						fadeEdges: ! attributes?.fadeEdges,
 					} ) }
 				/>
 			</PanelRow>
@@ -260,7 +262,18 @@ addFilter(
 				},
 			};
 
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+			let className = props.className;
+
+			if ( attributes?.fadeEdges ) {
+				className = addClassName( className, 'fade-edges' );
+
+				wrapperProps.className = className;
+			}
+
+			return <BlockListBlock { ...{
+				...props,
+				className,
+			} } wrapperProps={ wrapperProps } />;
 		},
 		'withMarquee'
 	)
@@ -281,6 +294,10 @@ addFilter(
 				...getStyles( attributes ),
 			},
 		};
+
+		if ( attributes?.fadeEdges ) {
+			props.className = addClassName( props.className, 'fade-edges' );
+		}
 
 		return props;
 	}

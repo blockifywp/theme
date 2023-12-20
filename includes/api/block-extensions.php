@@ -312,6 +312,10 @@ function get_image_options(): array {
 					'value' => '4/5',
 				],
 				[
+					'label' => '5/2',
+					'value' => '5/2',
+				],
+				[
 					'label' => '5/4',
 					'value' => '5/4',
 				],
@@ -372,16 +376,32 @@ function get_image_options(): array {
 					'value' => 'top',
 				],
 				[
+					'label' => __( 'Top Right', 'blockify' ),
+					'value' => 'top right',
+				],
+				[
 					'label' => __( 'Right', 'blockify' ),
 					'value' => 'right',
+				],
+				[
+					'label' => __( 'Bottom Right', 'blockify' ),
+					'value' => 'bottom right',
 				],
 				[
 					'label' => __( 'Bottom', 'blockify' ),
 					'value' => 'bottom',
 				],
 				[
+					'label' => __( 'Bottom Left', 'blockify' ),
+					'value' => 'bottom left',
+				],
+				[
 					'label' => __( 'Left', 'blockify' ),
 					'value' => 'left',
+				],
+				[
+					'label' => __( 'Top Left', 'blockify' ),
+					'value' => 'top left',
 				],
 				[
 					'label' => __( 'Center', 'blockify' ),

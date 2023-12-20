@@ -13,7 +13,10 @@ module.exports = ( env ) => {
 			editor: './src/index.tsx',
 			animation: './src/public/animation.tsx',
 			counter: './src/public/counter.tsx',
+			details: './src/public/details.tsx',
+			packery: './src/public/packery.tsx',
 			scroll: './src/public/scroll.tsx',
+			typewriter: './src/public/typewriter.tsx',
 		},
 
 		plugins: [

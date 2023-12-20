@@ -1,9 +1,12 @@
 @import 'list-none';
+@import '../abstracts/heading';
 
 .is-style-list-heading {
-	@include is-style-none;
 
-	font-weight: var(--wp--custom--heading--font-weight, bolder);
+	@include is-style-none;
+	@include heading;
+
+	color: inherit;
 
 	ul {
 		font-weight: var(--wp--custom--body--font-weight, normal);

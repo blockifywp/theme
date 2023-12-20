@@ -1,6 +1,6 @@
-import { toKebabCase, replaceAll } from './string';
+import { replaceAll, toKebabCase } from './string';
 
-export const cssObjectToString = ( css: style ): string => {
+export const cssObjectToString = ( css: genericStrings ): string => {
 	return Object.keys( css ).map( ( key ) => {
 		const property = key?.includes( '-' ) ? key : toKebabCase( key );
 
@@ -8,8 +8,8 @@ export const cssObjectToString = ( css: style ): string => {
 	} ).join( ' ' );
 };
 
-export const cssStringToObject = ( css: string ): style => {
-	const cssObject: style = {};
+export const cssStringToObject = ( css: string ): genericStrings => {
+	const cssObject: genericStrings = {};
 
 	css.split( ';' ).map( ( rule: string ) => {
 		const [ key, value ] = rule.split( ':' );
@@ -40,8 +40,8 @@ export const addClassName = ( classes = '', newClasses = '' ): string => {
 		return classes;
 	}
 
-	const classList = classes.split( ' ' );
-	const newClassList = newClasses.split( ' ' );
+	const classList = classes.trim().split( ' ' );
+	const newClassList = newClasses.trim().split( ' ' );
 
 	newClassList.forEach( ( className ) => {
 		if ( ! classList.includes( className ) ) {

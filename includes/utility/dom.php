@@ -119,7 +119,7 @@ function get_dom_element( string $tag, $dom_or_element, int $index = 0 ): ?DOMEl
  * @return ?DOMElement
  */
 function dom_element( $node ): ?DOMElement {
-	if ( $node->nodeType === XML_ELEMENT_NODE ) {
+	if ( $node && $node->nodeType === XML_ELEMENT_NODE ) {
 		/* @var DOMElement $node DOM Element node */
 		return $node;
 	}

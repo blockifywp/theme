@@ -88,27 +88,6 @@ function add_animation_names( array $data ): array {
 	return $data;
 }
 
-add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 3 );
-/**
- * Conditionally add animation JS.
- *
- * @since 0.9.10
- *
- * @param string $js      The inline JS.
- * @param string $content The block content.
- * @param bool   $all     Whether to add all JS.
- *
- *
- * @return string
- */
-function add_animation_js( string $js, string $content, bool $all ): string {
-	if ( $all || str_contains_any( $content, 'has-animation', 'has-scroll-animation' ) ) {
-		$js .= file_get_contents( get_dir() . 'assets/js/animation.js' );
-	}
-
-	return $js;
-}
-
 add_filter( 'render_block', NS . 'render_animation_attributes', 10, 2 );
 /**
  * Adds animation attributes to block.
@@ -189,6 +168,31 @@ function render_animation_attributes( string $html, array $block ): string {
 	return $dom->saveHTML();
 }
 
+add_filter( 'blockify_inline_js', NS . 'add_animation_js', 10, 3 );
+/**
+ * Conditionally add animation JS.
+ *
+ * @since 0.9.10
+ *
+ * @param string $js      The inline JS.
+ * @param string $content The block content.
+ * @param bool   $all     Whether to add all JS.
+ *
+ *
+ * @return string
+ */
+function add_animation_js( string $js, string $content, bool $all ): string {
+	if ( $all || str_contains_any( $content, 'has-animation', 'has-scroll-animation' ) ) {
+		$file = get_dir() . 'assets/js/animation.js';
+
+		if ( file_exists( $file ) ) {
+			$js .= file_get_contents( $file );
+		}
+	}
+
+	return $js;
+}
+
 add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 3 );
 /**
  * Adds scroll JS to the inline JS.
@@ -203,7 +207,59 @@ add_filter( 'blockify_inline_js', NS . 'add_scroll_js', 10, 3 );
  */
 function add_scroll_js( string $js, string $content, bool $all ): string {
 	if ( $all || str_contains_any( $content, 'animation-event:scroll', 'has-scroll-animation' ) ) {
-		$js .= file_get_contents( get_dir() . 'assets/js/scroll.js' );
+		$file = get_dir() . 'assets/js/scroll.js';
+
+		if ( file_exists( $file ) ) {
+			$js .= file_get_contents( $file );
+		}
+	}
+
+	return $js;
+}
+
+add_filter( 'blockify_inline_js', NS . 'add_typewriter_js', 10, 3 );
+/**
+ * Adds scroll JS to the inline JS.
+ *
+ * @since 0.0.14
+ *
+ * @param string $js      Inline JS.
+ * @param string $content Page content.
+ * @param bool   $all     Whether to add all JS.
+ *
+ * @return string
+ */
+function add_typewriter_js( string $js, string $content, bool $all ): string {
+	if ( $all || str_contains_any( $content, 'hljs', 'typewriter' ) ) {
+		$file = get_dir() . 'assets/js/typewriter.js';
+
+		if ( file_exists( $file ) ) {
+			$js .= file_get_contents( $file );
+		}
+	}
+
+	return $js;
+}
+
+add_filter( 'blockify_inline_js', NS . 'add_packery_js', 10, 3 );
+/**
+ * Adds packery JS to the inline JS.
+ *
+ * @since 0.0.14
+ *
+ * @param string $js      Inline JS.
+ * @param string $content Page content.
+ * @param bool   $all     Whether to add all JS.
+ *
+ * @return string
+ */
+function add_packery_js( string $js, string $content, bool $all ): string {
+	if ( $all || str_contains_any( $content, 'packery' ) ) {
+		$file = get_dir() . 'assets/js/packery.js';
+
+		if ( file_exists( $file ) ) {
+			$js .= file_get_contents( $file );
+		}
 	}
 
 	return $js;

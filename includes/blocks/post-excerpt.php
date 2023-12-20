@@ -18,6 +18,7 @@ use function get_the_ID;
 use function get_the_title;
 use function implode;
 use function in_array;
+use function is_singular;
 use function str_replace;
 use function trim;
 use function wp_trim_words;
@@ -35,6 +36,13 @@ add_filter( 'render_block_core/post-excerpt', NS . 'render_post_excerpt', 10, 3 
  * @return string
  */
 function render_post_excerpt( string $block_content, array $block, WP_Block $object ): string {
+	$query_post_id  = $object->context['postId'] ?? false;
+	$custom_excerpt = get_post_field( 'post_excerpt', $query_post_id ?? get_the_ID() );
+
+	if ( is_singular() && ! $custom_excerpt && ! $query_post_id ) {
+		return '';
+	}
+
 	$hide_read_more = $block['attrs']['hideReadMore'] ?? false;
 
 	if ( $hide_read_more ) {
@@ -90,7 +98,6 @@ function render_post_excerpt( string $block_content, array $block, WP_Block $obj
 
 	$excerpt_length  = $block['attrs']['excerptLength'] ?? apply_filters( 'excerpt_length', 55 );
 	$default_excerpt = $block['attrs']['defaultExcerpt'] ?? '';
-	$custom_excerpt  = get_post_field( 'post_excerpt', $object->context['postId'] ?? get_the_ID() );
 	$excerpt         = $custom_excerpt ?: $default_excerpt;
 
 	if ( ! $excerpt ) {

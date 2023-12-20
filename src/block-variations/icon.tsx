@@ -30,7 +30,7 @@ import Select, { components, SingleValue } from 'react-select';
 import {
 	OptionProps,
 } from 'react-select/dist/declarations/src/components/Option';
-import { toTitleCase } from '../utility';
+import { cssObjectToString, toTitleCase } from '../utility';
 import CustomSelectOption = CustomSelectControl.Option;
 
 const { Option } = components;
@@ -56,9 +56,6 @@ const iconAttributes: { [key: string]: { [key: string]: any } } = {
 		type: 'string',
 	},
 	iconPosition: {
-		type: 'string',
-	},
-	iconCustomSVG: {
 		type: 'string',
 	},
 	iconSvgString: {
@@ -273,7 +270,15 @@ const IconSettings = ( props: IconEditProps ) => {
 		</Option>;
 	};
 
-	const Settings = () => <>
+	return <>
+		<SelectControl
+			label={ __( 'Select Icon Set', 'blockify' ) }
+			value={ attributes?.iconSet ?? iconAttributes?.iconSet.default }
+			options={ iconSetOptions }
+			onChange={ ( value: string ) => setAttributes( {
+				iconSet: value,
+			} ) }
+		/>
 		<Label
 			style={ {
 				marginTop: 0,
@@ -289,14 +294,11 @@ const IconSettings = ( props: IconEditProps ) => {
 			value={ {
 				value: attributes?.iconName,
 				label: toTitleCase( attributes?.iconName ?? '' ),
-				icon: attributes?.iconSvgString ?? '',
+				icon: attributes.iconSvgString ?? '',
 			} }
 			onChange={ ( value: SingleValue<IconSelectOption> ) => {
 				setAttributes( {
 					iconName: value?.value,
-				} );
-
-				setAttributes( {
 					iconSvgString: icons?.[ attributes?.iconSet ?? '' ]?.[ value?.value ?? '' ] ?? '',
 				} );
 			} }
@@ -326,11 +328,9 @@ const IconSettings = ( props: IconEditProps ) => {
 						label={ __( 'Icon Width', 'blockify' ) }
 						value={ attributes?.iconSize }
 						onChange={ ( value: string | undefined ) => {
-							if ( value ) {
-								setAttributes( {
-									iconSize: value,
-								} );
-							}
+							setAttributes( {
+								iconSize: value,
+							} );
 						} }
 					/>
 				</FlexItem>
@@ -339,20 +339,6 @@ const IconSettings = ( props: IconEditProps ) => {
 				}
 			</Flex>
 		</PanelRow>
-	</>;
-
-	return <>
-		<SelectControl
-			label={ __( 'Select Icon Set', 'blockify' ) }
-			value={ attributes?.iconSet ?? iconAttributes?.iconSet.default }
-			options={ iconSetOptions }
-			onChange={ ( value: string ) => setAttributes( {
-				iconSet: value,
-			} ) }
-		/>
-		{ attributes?.iconSet &&
-		<Settings />
-		}
 	</>;
 };
 
@@ -423,7 +409,12 @@ addFilter(
 	'blockify/edit-icon-styles',
 	createHigherOrderComponent( ( BlockListBlock ) => {
 		return ( props: blockProps ) => {
-			let { attributes, wrapperProps, name } = props;
+			let {
+				attributes,
+				wrapperProps,
+				name,
+				clientId,
+			} = props;
 
 			const isButton = [ 'core/button' ].includes( name );
 
@@ -450,7 +441,16 @@ addFilter(
 				...getIconStyles( attributes ),
 			};
 
-			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
+			const styles: genericStrings = {};
+
+			if ( attributes.iconSvgString ) {
+				styles[ '--wp--custom--icon--url' ] = "url('data:image/svg+xml;utf8," + attributes.iconSvgString + "')";
+			}
+
+			return <>
+				<style>{ '#block-' + clientId + '{' + cssObjectToString( styles ) + '}' }</style>
+				<BlockListBlock { ...props } wrapperProps={ wrapperProps } />
+			</>;
 		};
 	}, 'withIcon' )
 );

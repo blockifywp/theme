@@ -49,6 +49,25 @@ function remove_core_patterns(): void {
 	remove_theme_support( 'core-block-patterns' );
 }
 
+/**
+ * Returns array of pattern directories.
+ *
+ * @since 0.0.2
+ *
+ * @return array
+ */
+function get_pattern_dirs(): array {
+	$default    = get_dir() . '/patterns/*';
+	$template   = get_template_directory() . '/patterns/*';
+	$stylesheet = get_stylesheet_directory() . '/patterns/*';
+
+	return apply_filters( 'blockify_pattern_dirs', [
+		...glob( $default, GLOB_ONLYDIR ),
+		...glob( $template, GLOB_ONLYDIR ),
+		...glob( $stylesheet, GLOB_ONLYDIR ),
+	] );
+}
+
 add_action( 'init', NS . 'register_default_patterns' );
 /**
  * Manually registers default patterns to avoid loading in child themes.
@@ -58,16 +77,8 @@ add_action( 'init', NS . 'register_default_patterns' );
  * @return void
  */
 function register_default_patterns(): void {
-	$default    = get_dir() . '/patterns/*';
-	$template   = get_template_directory() . '/patterns/*';
-	$stylesheet = get_stylesheet_directory() . '/patterns/*';
+	$all_dirs   = get_pattern_dirs();
 	$categories = [];
-
-	$all_dirs = apply_filters( 'blockify_pattern_dirs', [
-		...glob( $default, GLOB_ONLYDIR ),
-		...glob( $template, GLOB_ONLYDIR ),
-		...glob( $stylesheet, GLOB_ONLYDIR ),
-	] );
 
 	foreach ( $all_dirs as $dir ) {
 		$files    = glob( $dir . '/*.php' );

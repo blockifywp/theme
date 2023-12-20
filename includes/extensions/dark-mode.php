@@ -12,6 +12,7 @@ use function array_replace_recursive;
 use function file_exists;
 use function filter_input;
 use function get_template_directory;
+use function in_array;
 use function strlen;
 use function wp_json_file_decode;
 use const FILTER_SANITIZE_FULL_SPECIAL_CHARS;
@@ -107,6 +108,11 @@ function add_dark_mode_styles( string $css ): string {
 		$mode = _wp_to_kebab_case( $variation['title'] ?? '' );
 
 		if ( ! $mode || in_array( $mode, $modes, true ) ) {
+			continue;
+		}
+
+		if ( ! in_array( $mode, [ 'light', 'dark' ], true ) ) {
+			unset( $variations[0] );
 			continue;
 		}
 

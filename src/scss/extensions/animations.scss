@@ -102,6 +102,22 @@
 
 }
 
+@keyframes up-and-down {
+
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-30px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+
+}
+
 @keyframes fade-in {
 
 	0% {
@@ -465,5 +481,18 @@
 	100% {
 		opacity: 0;
 		transform: translate3d(0, 2000px, 0);
+	}
+}
+
+@keyframes scale-down {
+
+	0% {
+		transform: scaleY(0);
+		transform-origin: top;
+	}
+
+	100% {
+		transform: scaleY(1);
+		transform-origin: top;
 	}
 }

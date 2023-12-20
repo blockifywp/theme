@@ -158,6 +158,10 @@ function render_search_block( string $html, array $block ): string {
 		$wrap_styles['gap'] = format_custom_property( $gap );
 	}
 
+	if ( $border['radius'] ?? '' ) {
+		$wrap_styles['border-radius'] = format_custom_property( $border['radius'] ?? '' );
+	}
+
 	if ( $wrap_styles ) {
 		$wrap->setAttribute(
 			'style',

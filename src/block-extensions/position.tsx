@@ -2,16 +2,15 @@ import { __ } from '@wordpress/i18n';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import {
-	SelectControl,
-	PanelRow,
+	__experimentalBoxControl as BoxControl,
+	__experimentalNumberControl as NumberControl,
+	Button,
+	ButtonGroup,
 	Flex,
 	FlexItem,
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalBoxControl as BoxControl,
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalNumberControl as NumberControl,
-	ButtonGroup,
-	Button, PanelBody,
+	PanelBody,
+	PanelRow,
+	SelectControl,
 } from '@wordpress/components';
 import { Label } from '../components';
 import { useState } from '@wordpress/element';
@@ -27,8 +26,8 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 
 	const style = attributes?.style ?? {};
 
-	const setPosition = ( values: { [ property: string ]: string } ) => {
-		const properties: { [ property: string ]: string } = {};
+	const setPosition = ( values: { [property: string]: string } ) => {
+		const properties: { [property: string]: string } = {};
 
 		Object.keys( values ).forEach( ( property: string ) => {
 			properties[ property ] = {
@@ -111,10 +110,10 @@ export const PositionControl = ( props: blockProps, screen: string ) => {
 						left: style?.left?.[ screen ] ?? '',
 					} }
 					onChange={ ( value: {
-						top: string,
-						right: string,
-						bottom: string,
-						left: string,
+						top: string;
+						right: string;
+						bottom: string;
+						left: string;
 					} ) => {
 						setPosition( {
 							top: value?.top ?? '',
@@ -150,12 +149,13 @@ export const Position = ( props: blockProps ): JSX.Element => {
 								setAttributes( {
 									style: {
 										...attributes?.style,
-										position: '',
-										zIndex: '',
-										top: '',
-										right: '',
-										bottom: '',
-										left: '',
+										position: undefined,
+										zIndex: undefined,
+										top: undefined,
+										right: undefined,
+										bottom: undefined,
+										left: undefined,
+										overflow: undefined,
 									},
 								} );
 							} }
@@ -213,7 +213,7 @@ addFilter(
 						<PanelBody
 							initialOpen={ attributes?.position ?? false }
 							title={ __( 'Position', 'blockify' ) }
-						>
+                        	>
 							<Position { ...props } />
 						</PanelBody>
 					</InspectorControls>

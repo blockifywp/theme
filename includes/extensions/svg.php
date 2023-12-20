@@ -6,9 +6,16 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_diff;
+use function content_url;
+use function dirname;
 use function esc_attr;
 use function explode;
+use function file_exists;
+use function file_get_contents;
+use function get_template_directory;
 use function implode;
+use function in_array;
+use function method_exists;
 use function rawurlencode;
 use function str_contains;
 use function str_replace;
@@ -134,7 +141,7 @@ function render_svg_block_variation( string $html, array $block ): string {
 	return $dom->saveHTML();
 }
 
-add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
+add_filter( 'render_block', NS . 'render_inline_svg_mask', 10, 2 );
 /**
  * Renders inline SVGs in rich text content.
  *
@@ -146,7 +153,7 @@ add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
  *
  * @return string
  */
-function render_inline_svg( string $html, array $block ): string {
+function render_inline_svg_mask( string $html, array $block ): string {
 	if ( ! str_contains( $html, 'has-inline-svg' ) ) {
 		return $html;
 	}
@@ -217,4 +224,90 @@ function render_inline_svg( string $html, array $block ): string {
 	}
 
 	return $html;
+}
+
+add_filter( 'render_block', NS . 'render_inline_svg', 10, 2 );
+/**
+ * Converts image asset to inline SVG.
+ *
+ * @since 1.5.0
+ *
+ * @param string $html  Block HTML.
+ * @param array  $block Block data.
+ *
+ * @return string
+ */
+function render_inline_svg( string $html, array $block ): string {
+	$blocks = [
+		'core/image',
+		'core/site-logo',
+		'core/post-featured-image',
+	];
+
+	$name = $block['blockName'] ?? '';
+
+	if ( ! in_array( $name, $blocks, true ) ) {
+		return $html;
+	}
+
+	if ( ! str_contains( $html, '.svg' ) ) {
+		return $html;
+	}
+
+	$attrs  = $block['attrs'] ?? [];
+	$dom    = dom( $html );
+	$div    = get_dom_element( 'div', $dom );
+	$figure = get_dom_element( 'figure', $dom );
+	$first  = $div ?? $figure ?? null;
+	$link   = get_dom_element( 'a', $first );
+	$img    = get_dom_element( 'img', $link ?? $first );
+
+	if ( ! $img ) {
+		return $html;
+	}
+
+	$file = str_replace(
+		content_url(),
+		dirname( get_template_directory(), 2 ),
+		$img->getAttribute( 'src' )
+	);
+
+	if ( ! file_exists( $file ) ) {
+		return $html;
+	}
+
+	$svg = $dom->importNode( dom( file_get_contents( $file ) )->documentElement, true );
+
+	if ( ! method_exists( $svg, 'setAttribute' ) ) {
+		return $html;
+	}
+
+	$width  = $attrs['width'] ?? $img->getAttribute( 'width' );
+	$height = $attrs['height'] ?? $img->getAttribute( 'height' );
+	$alt    = $attrs['alt'] ?? $img->getAttribute( 'alt' );
+
+	if ( $width ) {
+		$svg->setAttribute( 'width', str_replace( 'px', '', $width ) );
+	}
+
+	if ( $height ) {
+		$svg->setAttribute( 'height', str_replace( 'px', '', $height ) );
+	}
+
+	if ( $alt ) {
+		$svg->setAttribute( 'aria-label', $alt );
+	}
+	
+	$svg->setAttribute( 'class', $img->getAttribute( 'class' ) );
+
+	( $link ?? $first )->removeChild( $img );
+	( $link ?? $first )->appendChild( $svg );
+
+	$first_classes = explode( ' ', $first->getAttribute( 'class' ) );
+
+	$first_classes[] = 'has-inlined-svg';
+
+	$first->setAttribute( 'class', implode( ' ', $first_classes ) );
+
+	return $dom->saveHTML();
 }

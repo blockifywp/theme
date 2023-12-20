@@ -24,6 +24,96 @@ interface PresetProps {
 	shadow: string;
 }
 
+const CustomControls = ( props: {
+	boxShadow: { [property: string]: string | boolean };
+	setBoxShadow: ( values: { [property: string]: string | boolean } ) => void;
+	changeColor: ( value: string ) => void;
+	tab: string;
+} ) => {
+	const {
+		boxShadow,
+		setBoxShadow,
+		changeColor,
+		tab,
+	} = props;
+
+	return <>
+		<PanelRow>
+			<Flex>
+				{ [ 'x', 'y', 'blur', 'spread' ].map( ( key ) => (
+					<FlexItem
+						key={ key }
+					>
+						<NumberControl
+							label={ ucWords( key ) }
+							value={
+								tab === 'default'
+									? boxShadow[ key ]
+									: boxShadow?.hover?.[ key ]
+							}
+							onChange={ ( value: string | undefined ) => {
+								if ( ! value ) {
+									return;
+								}
+
+								setBoxShadow( {
+									[ key ]: value,
+								} );
+							} }
+						/>
+					</FlexItem>
+				) ) }
+			</Flex>
+		</PanelRow>
+		<br />
+		<PanelRow>
+			<Flex className={ 'blockify-flex-controls' }>
+				<FlexItem
+					style={ {
+						flex: 1.5,
+					} }
+				>
+					<PanelColorGradientSettings
+						title={ __( 'Color', 'blockify' ) }
+						showTitle={ false }
+						enableAlpha={ true }
+						settings={ [
+							{
+								enableAlpha: true,
+								colorValue:
+                                    tab === 'default'
+                                    	? boxShadow?.color
+                                    	: boxShadow?.[ tab ]?.color,
+								label:
+                                    __( 'Color ', 'blockify' ) +
+                                    ( tab === 'hover'
+                                    	? __( ' Hover', 'blockify' )
+                                    	: '' ),
+								onColorChange: changeColor,
+							},
+						] }
+					/>
+				</FlexItem>
+				<FlexItem>
+					<ToggleControl
+						label={ __( 'Inset', 'blockify' ) }
+						checked={
+							tab === 'default'
+								? boxShadow?.inset
+								: boxShadow?.[ tab ]?.inset
+						}
+						onChange={ ( value ) => {
+							setBoxShadow( {
+								inset: value ? 'inset' : '',
+							} );
+						} }
+					/>
+				</FlexItem>
+			</Flex>
+		</PanelRow>
+	</>;
+};
+
 const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 	const {
 		attributes,
@@ -125,87 +215,14 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 		</>;
 	};
 
-	const CustomControls = () => {
-		return <>
-			<PanelRow>
-				<Flex>
-					{ [ 'x', 'y', 'blur', 'spread' ].map( ( key ) => (
-						<FlexItem
-							key={ key }
-						>
-							<NumberControl
-								label={ ucWords( key ) }
-								value={
-									tab === 'default'
-										? boxShadow[ key ]
-										: boxShadow?.hover?.[ key ]
-								}
-								onChange={ ( value: string | undefined ) => {
-									if ( ! value ) {
-										return;
-									}
-
-									setBoxShadow( {
-										[ key ]: value,
-									} );
-								} }
-							/>
-						</FlexItem>
-					) ) }
-				</Flex>
-			</PanelRow>
-			<br />
-			<PanelRow>
-				<Flex className={ 'blockify-flex-controls' }>
-					<FlexItem
-						style={ {
-							flex: 1.5,
-						} }
-					>
-						<PanelColorGradientSettings
-							title={ __( 'Color', 'blockify' ) }
-							showTitle={ false }
-							enableAlpha={ true }
-							settings={ [
-								{
-									enableAlpha: true,
-									colorValue:
-                                        tab === 'default'
-                                        	? boxShadow?.color
-                                        	: boxShadow?.[ tab ]?.color,
-									label:
-                                        __( 'Color ', 'blockify' ) +
-                                        ( tab === 'hover'
-                                        	? __( ' Hover', 'blockify' )
-                                        	: '' ),
-									onColorChange: changeColor,
-								},
-							] }
-						/>
-					</FlexItem>
-					<FlexItem>
-						<ToggleControl
-							label={ __( 'Inset', 'blockify' ) }
-							checked={
-								tab === 'default'
-									? boxShadow?.inset
-									: boxShadow?.[ tab ]?.inset
-							}
-							onChange={ ( value ) => {
-								setBoxShadow( {
-									inset: value ? 'inset' : '',
-								} );
-							} }
-						/>
-					</FlexItem>
-				</Flex>
-			</PanelRow>
-		</>;
-	};
-
 	return <>
 		<PresetControls />
-		{ attributes?.useCustomBoxShadow && <CustomControls /> }
+		{ attributes?.useCustomBoxShadow && <CustomControls
+			boxShadow={ boxShadow }
+			setBoxShadow={ setBoxShadow }
+			changeColor={ changeColor }
+			tab={ tab }
+		/> }
 	</>;
 };
 
@@ -229,6 +246,7 @@ export const BoxShadowControl = (
 							setAttributes( {
 								shadowPreset: '',
 								shadowPresetHover: '',
+								useCustomBoxShadow: false,
 								style: {
 									...attributes?.style,
 									boxShadow: '',

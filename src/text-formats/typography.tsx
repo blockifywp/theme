@@ -1,20 +1,19 @@
-import { RichTextToolbarButton } from '@wordpress/block-editor';
+import { BlockControls, RichTextToolbarButton } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { applyFormat, Format, registerFormatType } from '@wordpress/rich-text';
-import { RichTextShortcut } from '@wordpress/block-editor';
 import { typography } from '@wordpress/icons';
-import { BlockControls } from '@wordpress/block-editor';
 import {
-	Toolbar,
+	CustomSelectControl,
+	FontSizePicker,
 	Popover,
 	SelectControl,
-	FontSizePicker,
-	CustomSelectControl,
+	Toolbar,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { ucWords } from '../utility/string';
 import { SelectorMap, useSelect } from '@wordpress/data';
 import { cssObjectToString, cssStringToObject } from '../utility/css';
+import { CSSProperties } from 'react';
 import Option = CustomSelectControl.Option;
 
 const typographyType = 'blockify/typography';
@@ -124,7 +123,7 @@ const Edit = ( props: formatProps ) => {
 		onChange,
 	} = props;
 
-	const { fontSizes } = useSelect<any>( ( select : SelectorMap ) => {
+	const { fontSizes } = useSelect<any>( ( select: SelectorMap ) => {
 		return {
 			fontSizes: select( 'core/block-editor' )?.getSettings()?.fontSizes,
 		};
@@ -156,12 +155,12 @@ const Edit = ( props: formatProps ) => {
 	}
 
 	interface Typography {
-		style: style,
-		class: string[],
-		fontSize: string,
-		fontFamily: string,
-		fontAppearance: Option
-		isOpen: boolean
+		style: CSSProperties;
+		class: string[];
+		fontSize: string;
+		fontFamily: string;
+		fontAppearance: Option;
+		isOpen: boolean;
 	}
 
 	const [ state, setState ] = useState<Typography>( {
@@ -193,35 +192,35 @@ const Edit = ( props: formatProps ) => {
 					className={ 'blockify-font-family-control' }
 					focusOnMount={ 'container' }
 					onFocusOutside={ () => setState( {
-						...state,
-						isOpen: false,
-					} ) }
-				>
+                			...state,
+                			isOpen: false,
+                		} ) }
+                	>
 					<SelectControl
 						label={ __( 'Select Font Family', 'blockify' ) }
 						value={ state?.fontFamily }
 						options={ fontFamilyOptions }
 						onChange={ ( newFontFamily ) => {
-							setState( {
-								...state,
-								fontFamily: newFontFamily,
-							} );
+                				setState( {
+                					...state,
+                					fontFamily: newFontFamily,
+                				} );
 
-							const newClass = 'has-' + newFontFamily + '-font-family';
+                				const newClass = 'has-' + newFontFamily + '-font-family';
 
-							if ( ! state?.class?.includes( newClass ) ) {
-								state?.class?.push( newClass );
-							}
+                				if ( ! state?.class?.includes( newClass ) ) {
+                					state?.class?.push( newClass );
+                				}
 
-							onChange( applyFormat( value, {
-								type: typographyType,
-								attributes: {
-									style: cssObjectToString( state?.style ),
-									class: state?.class?.join( ' ' ),
-								},
-							} ) );
-						} }
-					/>
+                				onChange( applyFormat( value, {
+                					type: typographyType,
+                					attributes: {
+                						style: cssObjectToString( state?.style ),
+                						class: state?.class?.join( ' ' ),
+                					},
+                				} ) );
+                			} }
+                		/>
 
 					<FontSizePicker
 						fontSizes={ fontSizes }
@@ -229,58 +228,58 @@ const Edit = ( props: formatProps ) => {
 						value={ parseInt( state?.fontSize ) }
 						withSlider={ true }
 						onChange={ ( newFontSize: number ) => {
-							setState( {
-								...state,
-								fontSize: newFontSize.toString(),
-							} );
+                				setState( {
+                					...state,
+                					fontSize: newFontSize.toString(),
+                				} );
 
-							if ( newFontSize ) {
-								state.style[ '--wp--custom--font-size' ] = newFontSize.toString();
-							}
+                				if ( newFontSize ) {
+                					state.style[ '--wp--custom--font-size' ] = newFontSize.toString();
+                				}
 
-							if ( ! state?.class?.includes( 'has-inline-font-size' ) ) {
-								state.class.push( 'has-inline-font-size' );
-							}
+                				if ( ! state?.class?.includes( 'has-inline-font-size' ) ) {
+                					state.class.push( 'has-inline-font-size' );
+                				}
 
-							onChange( applyFormat( value, {
-								type: typographyType,
-								attributes: {
-									style: cssObjectToString( state?.style ),
-									class: state?.class?.join( ' ' ),
-								},
-							} ) );
-						} }
-					/>
+                				onChange( applyFormat( value, {
+                					type: typographyType,
+                					attributes: {
+                						style: cssObjectToString( state?.style ),
+                						class: state?.class?.join( ' ' ),
+                					},
+                				} ) );
+                			} }
+                		/>
 
 					<CustomSelectControl
 						label={ __( 'Appearance', 'blockify' ) }
 						value={ appearanceOptions.find( ( option ) => option.key === state?.fontAppearance?.key ) }
 						options={ appearanceOptions ?? [] }
 						onChange={ ( { selectedItem } ) => {
-							if ( selectedItem ) {
-								setState( {
-									...state,
-									fontAppearance: selectedItem,
-								} );
-							}
+                				if ( selectedItem ) {
+                					setState( {
+                						...state,
+                						fontAppearance: selectedItem,
+                					} );
+                				}
 
-							if ( selectedItem?.style?.fontStyle ) {
-								state.style[ 'font-style' ] = selectedItem?.style?.fontStyle;
-							}
+                				if ( selectedItem?.style?.fontStyle ) {
+                					state.style[ 'font-style' ] = selectedItem?.style?.fontStyle;
+                				}
 
-							if ( selectedItem?.style?.fontWeight ) {
-								state.style[ 'font-weight' ] = selectedItem?.style?.fontWeight?.toString();
-							}
+                				if ( selectedItem?.style?.fontWeight ) {
+                					state.style[ 'font-weight' ] = selectedItem?.style?.fontWeight?.toString();
+                				}
 
-							onChange( applyFormat( value, {
-								type: typographyType,
-								attributes: {
-									style: cssObjectToString( state?.style ),
-									class: state?.class?.join( ' ' ),
-								},
-							} ) );
-						} }
-					/>
+                				onChange( applyFormat( value, {
+                					type: typographyType,
+                					attributes: {
+                						style: cssObjectToString( state?.style ),
+                						class: state?.class?.join( ' ' ),
+                					},
+                				} ) );
+                			} }
+                		/>
 				</Popover>
 			</Toolbar>
 			}

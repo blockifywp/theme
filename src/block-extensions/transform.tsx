@@ -1,23 +1,26 @@
 import {
-	// @ts-ignore
-	__experimentalUnitControl as UnitControl,
-	// @ts-ignore
 	__experimentalNumberControl as NumberControl,
+	__experimentalUnitControl as UnitControl,
+	Button,
+	ButtonGroup,
 	Flex,
-	FlexItem, PanelRow, Button, PanelBody,
+	FlexItem,
+	PanelBody,
+	PanelRow,
 } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 import { Label } from '../components/label';
 import { trash } from '@wordpress/icons';
-import { CSSProperties } from 'react';
 import { InspectorControls } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
+import { addClassName } from '../utility/css.tsx';
 
 export const supportsTransform = ( name: string ): boolean => window?.blockify?.blockSupports?.[ name ]?.blockifyTransform ?? false;
 
 interface transformTypes {
-	[name: string]: string
+	[name: string]: string;
 }
 
 const transformTypes: transformTypes = {
@@ -50,6 +53,9 @@ addFilter(
 				transform: {
 					type: 'string',
 				},
+				transformHover: {
+					type: 'string',
+				},
 			},
 		};
 
@@ -57,20 +63,45 @@ addFilter(
 	}
 );
 
-const getStyles = ( transform: { [name: string]: string } ): CSSProperties => {
-	let styles = '';
+const getStyles = (
+	transformDefault: {
+		[name: string]: string;
+	},
+	transformHover: {
+		[name: string]: string;
+	}
+): {
+	[name: string]: string;
+} => {
+	const styles: {
+		[name: string]: string;
+	} = {};
+	let defaultStyles = '';
+	let hoverStyles = '';
 
 	Object.keys( transformTypes ).forEach( ( type: string ) => {
-		if ( transform?.[ type ] ) {
-			const amount = transform[ type ];
+		if ( transformDefault?.[ type ] ) {
+			const amount = transformDefault[ type ];
 			const unit = transformTypes[ type ];
-			styles += ` ${ type }(${ amount }${ unit })`;
+			defaultStyles += ` ${ type }(${ amount }${ unit })`;
+		}
+
+		if ( transformHover?.[ type ] ) {
+			const amount = transformHover[ type ];
+			const unit = transformTypes[ type ];
+			hoverStyles += ` ${ type }(${ amount }${ unit })`;
 		}
 	} );
 
-	return styles ? {
-		transform: styles.trim(),
-	} : {};
+	if ( defaultStyles ) {
+		styles[ '--transform' ] = defaultStyles.trim();
+	}
+
+	if ( hoverStyles ) {
+		styles[ '--transform-hover' ] = hoverStyles.trim();
+	}
+
+	return styles ?? {};
 };
 
 addFilter(
@@ -87,13 +118,14 @@ addFilter(
 			}
 
 			const { style } = attributes;
-			const transform = style?.transform ?? {};
+			const transformDefault = style?.transform ?? {};
+			const transformHover = style?.transformHover ?? {};
 
-			if ( ! transform ) {
+			if ( ! transformDefault && ! transformHover ) {
 				return defaultReturn;
 			}
 
-			const styles: CSSProperties = getStyles( transform );
+			const styles = getStyles( transformDefault, transformHover );
 
 			if ( ! Object.keys( styles ).length ) {
 				return defaultReturn;
@@ -105,6 +137,7 @@ addFilter(
 					...props?.style,
 					...styles,
 				},
+				className: addClassName( props?.className, 'has-transform' ),
 			};
 
 			const wrapperProps = {
@@ -113,6 +146,7 @@ addFilter(
 					...props.wrapperProps?.style,
 					...styles,
 				},
+				className: addClassName( props?.wrapperProps?.className, 'has-transform' ),
 			};
 
 			return <BlockListBlock { ...props } wrapperProps={ wrapperProps } />;
@@ -133,13 +167,14 @@ addFilter(
 		}
 
 		const { style } = attributes;
-		const transform = style?.transform ?? {};
+		const transformDefault = style?.transform ?? {};
+		const transformHover = style?.transformHover ?? {};
 
-		if ( ! transform ) {
+		if ( ! transformDefault && ! transformHover ) {
 			return props;
 		}
 
-		const styles = getStyles( transform );
+		const styles = getStyles( transformDefault, transformHover );
 
 		if ( ! Object.keys( styles ).length ) {
 			return props;
@@ -151,6 +186,7 @@ addFilter(
 				...props?.style,
 				...styles,
 			},
+			className: addClassName( props?.className, 'has-transform' ),
 		};
 	}
 );
@@ -159,287 +195,250 @@ export const Transform = ( props: blockProps ): JSX.Element => {
 	const { attributes, setAttributes } = props;
 	const { style } = attributes;
 	const transform = style?.transform ?? {};
+	const transformHover = style?.transformHover ?? {};
 
-	return (
-		<>
-			<PanelRow>
-				<Label>
-					<>
-						{ __( 'Transform', 'blockify' ) }
-						<Button
-							isSmall
-							isDestructive
-							variant={ 'tertiary' }
-							onClick={ () => {
-								setAttributes( {
-									style: {
-										...attributes?.style,
-										transform: '',
-									},
-								} );
-							} }
-							icon={ trash }
-							iconSize={ 16 }
-							aria-label={ __( 'Clear Transforms', 'blockify' ) }
-						/>
-					</>
-				</Label>
-			</PanelRow>
-			<Flex className={ 'blockify-flex-controls' }>
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Rotate', 'blockify' ) }
-						value={ transform?.rotate }
-						onChange={ ( value: number ) => {
+	const [ tab, setTab ] = useState<string>( 'default' );
+
+	const activeTransform = tab === 'default' ? transform : transformHover;
+
+	const setTransform = ( value: { [name: string]: string | undefined } ) => {
+		const styleKey = tab === 'default' ? 'transform' : 'transformHover';
+
+		setAttributes( {
+			style: {
+				...style,
+				[ styleKey ]: {
+					...( activeTransform ),
+					...value,
+				},
+			},
+		} );
+	};
+
+	return <>
+		<PanelRow>
+			<Label>
+				<>
+					{ __( 'Transform', 'blockify' ) }
+					<Button
+						isSmall
+						isDestructive
+						variant={ 'tertiary' }
+						onClick={ () => {
 							setAttributes( {
 								style: {
-									...style,
-									transform: {
-										...transform,
-										rotate: value,
-									},
+									...attributes?.style,
+									transform: '',
+									transformHover: '',
 								},
 							} );
 						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
+						icon={ trash }
+						iconSize={ 16 }
+						aria-label={ __( 'Clear Transforms', 'blockify' ) }
 					/>
-				</FlexItem>
+				</>
+			</Label>
+			<ButtonGroup>
+				<Button
+					isSmall
+					variant={ tab === 'default' ? 'primary' : 'secondary' }
+					onClick={ () => setTab( 'default' ) }
+				>
+					{ __( 'Default', 'blockify' ) }
+				</Button>
+				<Button
+					isSmall
+					variant={ tab === 'hover' ? 'primary' : 'secondary' }
+					onClick={ () => setTab( 'hover' ) }
+				>
+					{ __( 'Hover', 'blockify' ) }
+				</Button>
+			</ButtonGroup>
+		</PanelRow>
+		<br />
+		<Flex className={ 'blockify-flex-controls' }>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Rotate', 'blockify' ) }
+					value={ activeTransform?.rotate }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							rotate: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
 
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Rotate X', 'blockify' ) }
-						value={ transform?.rotateX }
-						onChange={ ( value: number ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										rotateX: value,
-									},
-								},
-							} );
-						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
-					/>
-				</FlexItem>
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Rotate Y', 'blockify' ) }
-						value={ transform?.rotateY }
-						onChange={ ( value: number ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										rotateY: value,
-									},
-								},
-							} );
-						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Rotate X', 'blockify' ) }
+					value={ activeTransform?.rotateX }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							rotateX: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Rotate Y', 'blockify' ) }
+					value={ activeTransform?.rotateY }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							rotateY: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
 
-			</Flex>
+		</Flex>
 
-			<Flex className={ 'blockify-flex-controls' }>
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Scale', 'blockify' ) }
-						value={ transform?.scale }
-						onChange={ ( value: number ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										scale: value,
-									},
-								},
-							} );
-						} }
-						min={ 0 }
-						max={ 10 }
-						step={ 0.1 }
-					/>
-				</FlexItem>
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Scale X', 'blockify' ) }
-						value={ transform?.scaleX }
-						onChange={ ( value: number ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										scaleX: value,
-									},
-								},
-							} );
-						} }
-						min={ 0 }
-						max={ 10 }
-						step={ 0.1 }
-					/>
-				</FlexItem>
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Scale Y', 'blockify' ) }
-						value={ transform?.scaleY }
-						onChange={ ( value: number ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										scaleY: value,
-									},
-								},
-							} );
-						} }
-						min={ 0 }
-						max={ 10 }
-						step={ 0.1 }
-					/>
-				</FlexItem>
+		<Flex className={ 'blockify-flex-controls' }>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Scale', 'blockify' ) }
+					value={ activeTransform?.scale }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							scale: value,
+						} );
+					} }
+					min={ 0 }
+					max={ 10 }
+					step={ 0.01 }
+				/>
+			</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Scale X', 'blockify' ) }
+					value={ activeTransform?.scaleX }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							scaleX: value,
+						} );
+					} }
+					min={ 0 }
+					max={ 10 }
+					step={ 0.01 }
+				/>
+			</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Scale Y', 'blockify' ) }
+					value={ activeTransform?.scaleY }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							scaleY: value,
+						} );
+					} }
+					min={ 0 }
+					max={ 10 }
+					step={ 0.01 }
+				/>
+			</FlexItem>
 
-			</Flex>
+		</Flex>
 
-			<Flex className={ 'blockify-flex-controls' }>
+		<Flex className={ 'blockify-flex-controls' }>
 
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Skew', 'blockify' ) }
-						value={ transform?.skew }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										skew: value,
-									},
-								},
-							} );
-						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Skew', 'blockify' ) }
+					value={ activeTransform?.skew }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							skew: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
 
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Skew X', 'blockify' ) }
-						value={ transform?.skewX }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										skewX: value,
-									},
-								},
-							} );
-						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Skew X', 'blockify' ) }
+					value={ activeTransform?.skewX }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							skewX: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
 
-				<FlexItem>
-					<NumberControl
-						label={ __( 'Skew Y', 'blockify' ) }
-						value={ transform?.skewY }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										skewY: value,
-									},
-								},
-							} );
-						} }
-						min={ -360 }
-						max={ 360 }
-						step={ 1 }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<NumberControl
+					label={ __( 'Skew Y', 'blockify' ) }
+					value={ activeTransform?.skewY }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							skewY: value,
+						} );
+					} }
+					min={ -360 }
+					max={ 360 }
+					step={ 1 }
+				/>
+			</FlexItem>
 
-			</Flex>
+		</Flex>
 
-			<Flex className={ 'blockify-flex-controls' }>
+		<Flex className={ 'blockify-flex-controls' }>
 
-				<FlexItem>
-					<UnitControl
-						label={ __( 'Translate X', 'blockify' ) }
-						value={ transform?.translateX }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										translateX: value,
-									},
-								},
-							} );
-						} }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<UnitControl
+					label={ __( 'Translate X', 'blockify' ) }
+					value={ activeTransform?.translateX }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							translateX: value,
+						} );
+					} }
+				/>
+			</FlexItem>
 
-				<FlexItem>
-					<UnitControl
-						label={ __( 'Translate Y', 'blockify' ) }
-						value={ transform?.translateY }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										translateY: value,
-									},
-								},
-							} );
-						} }
-					/>
-				</FlexItem>
+			<FlexItem>
+				<UnitControl
+					label={ __( 'Translate Y', 'blockify' ) }
+					value={ activeTransform?.translateY }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							translateY: value,
+						} );
+					} }
+				/>
+			</FlexItem>
 
-				<FlexItem>
-					<UnitControl
-						label={ __( 'Translate Z', 'blockify' ) }
-						value={ transform?.translateZ }
-						onChange={ ( value: string ) => {
-							setAttributes( {
-								style: {
-									...style,
-									transform: {
-										...transform,
-										translateZ: value,
-									},
-								},
-							} );
-						} }
-					/>
-				</FlexItem>
-			</Flex>
-			<br />
-		</>
-	);
+			<FlexItem>
+				<UnitControl
+					label={ __( 'Translate Z', 'blockify' ) }
+					value={ activeTransform?.translateZ }
+					onChange={ ( value: string | undefined ) => {
+						setTransform( {
+							translateZ: value,
+						} );
+					} }
+				/>
+			</FlexItem>
+		</Flex>
+		<br />
+	</>;
 };
 
 addFilter(
@@ -461,7 +460,7 @@ addFilter(
 						<PanelBody
 							initialOpen={ attributes?.transform ?? false }
 							title={ __( 'Transform', 'blockify' ) }
-                      	>
+                        	>
 							<Transform { ...props } />
 						</PanelBody>
 					</InspectorControls>

@@ -1,0 +1,6 @@
+@import "../abstracts/heading";
+
+.is-style-heading {
+
+	@include heading;
+}

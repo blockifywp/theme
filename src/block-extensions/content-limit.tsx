@@ -57,51 +57,49 @@ addFilter(
 			return <BlockEdit { ...props } />;
 		}
 
-		return (
-			<>
-				<InspectorControls>
-					<PanelBody title={ __( 'Content', 'blockify' ) }>
-						{ name === 'core/post-excerpt' && ( <>
-							<PanelRow>
-								<TextareaControl
-									label={ __( 'Default Content', 'blockify' ) }
-									value={ attributes.defaultExcerpt }
-									onChange={ ( value: string ) => {
-										setAttributes( { defaultExcerpt: value } );
-									} }
-								/>
-							</PanelRow>
-							<PanelRow>
-								<ToggleControl
-									label={ __( 'Hide Read More Link', 'blockify' ) }
-									checked={ attributes.hideReadMore }
-									onChange={ ( value: boolean ) => {
-										setAttributes( { hideReadMore: value } );
-									} }
-								/>
-							</PanelRow>
-						</>
-						) }
-						{ name === 'core/post-content' && ( <>
-							<PanelRow>
-								<NumberControl
-									label={ __( 'Content Limit', 'blockify' ) }
-									help={ __( 'Limit content to specific number of words.', 'blockify' ) }
-									value={ attributes?.contentLimit }
-									onChange={ ( value: number ) => {
-										setAttributes( {
-											contentLimit: value,
-										} );
-									} }
-								/>
-							</PanelRow>
-						</>
-						) }
-					</PanelBody>
-				</InspectorControls>
-				<BlockEdit { ...props } />
-			</>
-		);
+		return <>
+			<InspectorControls>
+				<PanelBody title={ __( 'Content', 'blockify' ) }>
+					{ name === 'core/post-excerpt' && ( <>
+						<PanelRow>
+							<TextareaControl
+								label={ __( 'Default Content', 'blockify' ) }
+								value={ attributes.defaultExcerpt }
+								onChange={ ( value: string ) => {
+									setAttributes( { defaultExcerpt: value } );
+								} }
+							/>
+						</PanelRow>
+						<PanelRow>
+							<ToggleControl
+								label={ __( 'Hide Read More Link', 'blockify' ) }
+								checked={ attributes.hideReadMore }
+								onChange={ ( value: boolean ) => {
+									setAttributes( { hideReadMore: value } );
+								} }
+							/>
+						</PanelRow>
+					</>
+					) }
+					{ name === 'core/post-content' && ( <>
+						<PanelRow>
+							<NumberControl
+								label={ __( 'Content Limit', 'blockify' ) }
+								help={ __( 'Limit content to specific number of words.', 'blockify' ) }
+								value={ attributes?.contentLimit }
+								onChange={ ( value: number ) => {
+									setAttributes( {
+										contentLimit: value,
+									} );
+								} }
+							/>
+						</PanelRow>
+					</>
+					) }
+				</PanelBody>
+			</InspectorControls>
+			<BlockEdit { ...props } />
+		</>;
 	}, 'withContentLimitControls' )
 );
 

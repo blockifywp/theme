@@ -6,6 +6,8 @@
 	width: 100%;
 	max-width: 100dvw;
 	min-width: 100%;
+	will-change: transform;
+	border-radius: inherit;
 
 	&:hover,
 	&:focus,
@@ -51,6 +53,11 @@
 	display: block;
 	line-height: inherit;
 	margin: 0;
+}
+
+.fade-edges {
+	mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%);
+	-webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%);
 }
 
 @media (prefers-reduced-motion) {

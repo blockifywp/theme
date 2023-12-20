@@ -29,6 +29,13 @@ html .editor-styles-wrapper {
 		img {
 			max-width: 100% !important;
 		}
+
+		&[style*="--min-width:"] {
+
+			> div {
+				min-width: 100% !important;
+			}
+		}
 	}
 
 	[src*=".svg"] {
@@ -48,6 +55,8 @@ html .editor-styles-wrapper {
 .edit-post-visual-editor__post-title-wrapper {
 	text-align: center;
 	margin-bottom: calc(var(--wp--style--block-gap) * 2);
+	position: relative;
+	z-index: 99;
 }
 
 // Always hide title.
@@ -284,7 +293,8 @@ div:has(> .blockify-icon-settings) {
 
 
 // Hide site logo placeholder when icon is set.
-.is-style-icon .components-placeholder__illustration {
+.is-style-icon .components-placeholder__illustration,
+.is-style-icon .components-placeholder__instructions {
 	display: none !important;
 }
 
@@ -293,7 +303,7 @@ div:has(> .blockify-icon-settings) {
 	min-height: 0;
 }
 
-.editor-styles-wrapper div [style*="--wp--custom--icon--"] {
+.editor-styles-wrapper div .is-style-icon {
 	background: transparent !important;
 	float: none !important;
 	padding: 0 !important;
@@ -422,16 +432,20 @@ div:has(> .blockify-icon-settings) {
 	}
 }
 
-.blockify-underline-format > div {
-	padding: 1em;
-	display: flex;
-	flex-wrap: wrap;
-	width: 20em;
-	gap: 1em;
+.blockify-animation-format,
+.blockify-underline-format {
 
-	> div,
-	select {
-		width: 100%;
+	> div {
+		padding: 1em;
+		display: flex;
+		flex-wrap: wrap;
+		width: 20em;
+		gap: 1em;
+
+		> div,
+		select {
+			width: 100%;
+		}
 	}
 }
 

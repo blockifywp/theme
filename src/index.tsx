@@ -4,6 +4,7 @@ import './api/block-supports.tsx';
 import './api/icon-store.tsx';
 
 import './block-extensions/animation.tsx';
+import './block-extensions/details-icon.tsx';
 import './block-extensions/display.tsx';
 import './block-extensions/content-limit.tsx';
 import './block-extensions/filter.tsx';
@@ -27,6 +28,7 @@ import './block-variations/svg.tsx';
 import './block-variations/marquee.tsx';
 import './block-variations/social-link-slack.tsx';
 
+// import './text-formats/animation.tsx';
 import './text-formats/clear-formatting.tsx';
 import './text-formats/gradient.tsx';
 import './text-formats/typography.tsx';

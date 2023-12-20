@@ -26,6 +26,12 @@ function register_block_supports( array $data = [] ): array {
 		'blockify/edd-image-slider' => [
 			'blockifyPosition' => true,
 		],
+		'blockify/post-content'     => [
+			'blockifyPosition' => true,
+		],
+		'blockify/template-part'    => [
+			'blockifyPosition' => true,
+		],
 		'core/block'                => [
 			'className'       => true,
 			'customClassName' => true,
@@ -157,6 +163,8 @@ function register_block_supports( array $data = [] ): array {
 					'color' => true,
 				],
 			],
+			'blockifyBoxShadow'    => true,
+			'blockifyPosition'     => true,
 		],
 		'core/embed'                => [
 			'spacing'              => [
@@ -502,6 +510,7 @@ function register_block_supports( array $data = [] ): array {
 					'color' => true,
 				],
 			],
+			'blockifyPosition'     => true,
 		],
 		'core/pullquote'            => [
 			'spacing'              => [

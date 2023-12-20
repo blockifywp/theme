@@ -8,6 +8,9 @@
 
 	&:not(.is-style-icon) > div {
 		max-width: 100% !important;
+		aspect-ratio: inherit;
+		object-fit: inherit;
+		object-position: inherit;
 	}
 
 	svg {

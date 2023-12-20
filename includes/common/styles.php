@@ -113,9 +113,6 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 	$global_settings     = wp_get_global_settings();
 	$global_styles       = wp_get_global_styles();
 	$custom              = $global_settings['custom'] ?? [];
-	$border_width        = $custom['border']['width'] ?? '1px';
-	$border_style        = $custom['border']['style'] ?? 'solid';
-	$border_color        = $custom['border']['color'] ?? '#ddd';
 	$transition_property = $custom['transition']['property'] ?? 'all';
 	$transition_duration = $custom['transition']['duration'] ?? '0.3s';
 	$transition_timing   = $custom['transition']['timingFunction'] ?? 'ease-in';
@@ -140,8 +137,8 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 	$button_padding       = $button_element['spacing']['padding'] ?? $button_block['spacing']['padding'] ?? null;
 
 	// Also used by b, strong elements and legend element.
-	$heading_font_weight    = $global_styles['elements']['heading']['typography']['fontWeight'] ?? null;
 	$heading_font_family    = $global_styles['elements']['heading']['typography']['fontFamily'] ?? null;
+	$heading_font_weight    = $global_styles['elements']['heading']['typography']['fontWeight'] ?? null;
 	$heading_line_height    = $global_styles['elements']['heading']['typography']['lineHeight'] ?? null;
 	$heading_letter_spacing = $global_styles['elements']['heading']['typography']['letterSpacing'] ?? null;
 	$heading_color          = $global_styles['elements']['heading']['color']['text'] ?? null;
@@ -157,9 +154,6 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 	$styles = [
 		'--scroll'                              => '0',
 		'--breakpoint'                          => '782px', // Only used by JS.
-		'--wp--custom--border--width'           => $border_width,
-		'--wp--custom--border--style'           => $border_style,
-		'--wp--custom--border--color'           => $border_color,
 		'--wp--custom--border'                  => "var(--wp--custom--border--width,1px) var(--wp--custom--border--style,solid) var(--wp--custom--border--color,#ddd)",
 		'--wp--custom--transition'              => "$transition_property $transition_duration $transition_timing",
 		'--wp--custom--body--background'        => $body_background,
@@ -316,6 +310,7 @@ function get_conditional_stylesheets( string $css, string $content, bool $all ):
 		'divider-fade'     => str_contains( $content, 'is-style-fade' ),
 		'divider-round'    => str_contains( $content, 'is-style-round' ),
 		'divider-wave'     => str_contains( $content, 'is-style-wave' ),
+		'heading'          => str_contains_any( $content, 'is-style-heading', 'is-style-summary-heading', 'is-style-list-heading' ),
 		'list-dash'        => str_contains( $content, 'is-style-dash' ),
 		'list-heading'     => str_contains( $content, 'is-style-heading' ),
 		'list-none'        => str_contains( $content, 'is-style-none' ),
@@ -336,6 +331,7 @@ function get_conditional_stylesheets( string $css, string $content, bool $all ):
 	];
 
 	$styles['formats'] = [
+		'animation'  => str_contains_any( $content, 'has-text-animation', 'typewriter' ),
 		'arrow'      => str_contains( $content, 'is-underline-arrow' ),
 		'brush'      => str_contains( $content, 'is-underline-brush' ),
 		'circle'     => str_contains( $content, 'is-underline-circle' ),
@@ -356,7 +352,8 @@ function get_conditional_stylesheets( string $css, string $content, bool $all ):
 		'filter'           => str_contains( $content, 'has-filter' ),
 		'gradient-mask'    => str_contains( $content, '-gradient-background' ),
 		'grid-pattern'     => str_contains( $content, 'has-grid-gradient-' ),
-		'shadow'           => true,
+		'shadow'           => str_contains_any( $content, 'has-shadow', 'has-box-shadow' ),
+		'transform'        => str_contains( $content, 'has-transform' ),
 	];
 
 	foreach ( $styles as $group => $stylesheets ) {

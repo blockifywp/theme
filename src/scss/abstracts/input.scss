@@ -4,7 +4,7 @@ $padding: calc(var(--wp--custom--button--padding-top, 1em) - 1px) var(--wp--cust
 	font: inherit;
 	transition: var(--wp--custom--transition, inherit);
 	border-width: var(--wp--custom--border--width, 1px);
-	border-radius: var(--wp--custom--border--radius, inherit);
+	border-radius: var(--wp--custom--input--border-radius, var(--wp--custom--border--radius, inherit));
 	border-style: var(--wp--custom--border--style, solid);
 	border-color: var(--wp--custom--border--color, currentColor);
 	background: var(--wp--custom--input--background, transparent);

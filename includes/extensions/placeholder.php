@@ -41,6 +41,12 @@ function render_image_placeholder( string $html, array $block, WP_Block $object 
 	$dom    = dom( $html );
 	$figure = get_dom_element( 'figure', $dom );
 	$img    = get_dom_element( 'img', $figure );
+	$link   = get_dom_element( 'a', $figure );
+	$svg    = get_dom_element( 'svg', $link ?? $figure );
+
+	if ( $svg ) {
+		return $html;
+	}
 
 	if ( $img && $img->getAttribute( 'src' ) ) {
 		return $html;
