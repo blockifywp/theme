@@ -104,7 +104,7 @@ const initAccordion = ( el: HTMLElement ): void => {
 	} );
 };
 
-document.querySelectorAll( 'details' ).forEach( ( el ) => {
+document.querySelectorAll( 'details:not([open])' ).forEach( ( el ) => {
 	if ( el instanceof HTMLElement ) {
 		initAccordion( el );
 	}

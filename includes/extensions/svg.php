@@ -287,17 +287,17 @@ function render_inline_svg( string $html, array $block ): string {
 	$alt    = $attrs['alt'] ?? $img->getAttribute( 'alt' );
 
 	if ( $width ) {
-		$svg->setAttribute( 'width', str_replace( 'px', '', $width ) );
+		$svg->setAttribute( 'width', str_replace( 'px', '', (string) $width ) );
 	}
 
 	if ( $height ) {
-		$svg->setAttribute( 'height', str_replace( 'px', '', $height ) );
+		$svg->setAttribute( 'height', str_replace( 'px', '', (string) $height ) );
 	}
 
 	if ( $alt ) {
 		$svg->setAttribute( 'aria-label', $alt );
 	}
-	
+
 	$svg->setAttribute( 'class', $img->getAttribute( 'class' ) );
 
 	( $link ?? $first )->removeChild( $img );

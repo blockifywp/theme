@@ -16,6 +16,7 @@ use function get_post_meta;
 use function get_post_type;
 use function get_post_type_object;
 use function get_the_ID;
+use function get_the_title;
 use function gmdate;
 use function home_url;
 use function in_array;
@@ -53,7 +54,9 @@ function render_template_tags( string $html, array $block, WP_Block $object ): s
 
 	$category = $registered_blocks[ $block_name ]->category ?? '';
 
-	if ( 'text' !== $category && ! in_array( $block_name, [ 'core/button', 'core/navigation-link' ], true ) ) {
+	$other_blocks = [ 'core/button', 'core/navigation-link', 'core/image' ];
+
+	if ( 'text' !== $category && ! in_array( $block_name, $other_blocks, true ) ) {
 		return $html;
 	}
 
@@ -69,27 +72,29 @@ function render_template_tags( string $html, array $block, WP_Block $object ): s
 
 	preg_match_all( '#\{(.*?)}#', $html, $matches );
 
-	if ( empty( $matches[1] ) ) {
+	$without_brackets = $matches[1] ?? [];
+
+	if ( empty( $without_brackets ) ) {
 		return $html;
 	}
 
-	$id           = $object->context['postId'] ?? get_the_ID();
+	$post_id      = $object->context['postId'] ?? get_the_ID();
 	$replacements = [];
 
-	foreach ( $matches[1] as $tag ) {
+	foreach ( $without_brackets as $tag ) {
 		$replacement = '';
 
 		if ( shortcode_exists( $tag ) ) {
 			continue;
 		}
 
-		if ( ! is_null( $id ) ) {
-			$post_field = get_post_field( $tag, $id );
+		if ( ! is_null( $post_id ) ) {
+			$post_field = get_post_field( $tag, $post_id );
 
 			if ( $post_field ) {
 				$replacement = $post_field;
 			} else {
-				$post_meta = get_post_meta( $id, $tag, true );
+				$post_meta = get_post_meta( $post_id, $tag, true );
 
 				if ( $post_meta ) {
 					$replacement = $post_meta;
@@ -98,7 +103,7 @@ function render_template_tags( string $html, array $block, WP_Block $object ): s
 		}
 
 		if ( ! $replacement ) {
-			$tags = get_template_tags( $id );
+			$tags = get_template_tags( $post_id ?: null );
 
 			if ( isset( $tags[ $tag ] ) ) {
 				$replacement = is_callable( $tags[ $tag ] ) ? call_user_func( $tags[ $tag ] ) : $tags[ $tag ];
@@ -118,11 +123,11 @@ function render_template_tags( string $html, array $block, WP_Block $object ): s
  *
  * @since 0.9.34
  *
- * @param int $post_id Extra tags.
+ * @param ?int $post_id Extra tags.
  *
  * @return array
  */
-function get_template_tags( int $post_id ): array {
+function get_template_tags( ?int $post_id ): array {
 	static $tags = null;
 
 	if ( is_null( $tags ) ) {
@@ -159,11 +164,15 @@ add_filter( 'blockify_template_tags', NS . 'add_post_template_tags', 10, 2 );
  * @since 1.3.0
  *
  * @param array $tags    Template tags.
- * @param int   $post_id Post ID.
+ * @param ?int  $post_id Post ID.
  *
  * @return array
  */
-function add_post_template_tags( array $tags, int $post_id ): array {
+function add_post_template_tags( array $tags, ?int $post_id ): array {
+	if ( ! $post_id ) {
+		return $tags;
+	}
+
 	$post_type        = get_post_type( $post_id );
 	$post_type_object = get_post_type_object( $post_type );
 
@@ -181,11 +190,11 @@ add_filter( 'blockify_template_tags', NS . 'add_archive_template_tags', 10, 2 );
  * @since 1.3.0
  *
  * @param array $tags    Template tags.
- * @param int   $post_id Post ID.
+ * @param ?int  $post_id Post ID.
  *
  * @return array
  */
-function add_archive_template_tags( array $tags, int $post_id ): array {
+function add_archive_template_tags( array $tags, ?int $post_id ): array {
 	if ( is_archive() || is_home() ) {
 		$tags['archive_title'] = static function (): string {
 			add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
@@ -213,7 +222,7 @@ add_filter( 'get_the_archive_title', NS . 'get_the_archive_title_home', 10, 1 );
  */
 function get_the_archive_title_home( string $title ): string {
 	if ( is_home() ) {
-		$title = \get_the_title( get_option( 'page_for_posts', true ) );
+		$title = get_the_title( get_option( 'page_for_posts', true ) );
 	}
 
 	return $title;

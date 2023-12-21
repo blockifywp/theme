@@ -12,7 +12,9 @@ use function file_exists;
 use function file_get_contents;
 use function get_stylesheet_directory;
 use function glob;
+use function implode;
 use function is_array;
+use function is_null;
 use function is_string;
 use function preg_replace;
 use function str_replace;
@@ -26,7 +28,7 @@ use const GLOB_ONLYDIR;
  *
  * @since 0.9.10
  *
- * @return array
+ * @return array [ 'set' => 'path' ]
  */
 function get_icon_sets(): array {
 	$theme = [
@@ -147,24 +149,27 @@ function get_icon_data( WP_REST_Request $request ) {
  * @return array
  */
 function get_icons( string $set = '' ): array {
-	$icons     = [];
-	$icon_sets = get_icon_sets();
+	static $icons = null;
 
-	foreach ( $icon_sets as $icon_set => $dir ) {
-		if ( ! is_string( $dir ) ) {
-			continue;
-		}
+	if ( is_null( $icons ) ) {
+		$icon_sets = get_icon_sets();
 
-		$icons[ $icon_set ] = [];
+		foreach ( $icon_sets as $icon_set => $dir ) {
+			if ( ! is_string( $dir ) ) {
+				continue;
+			}
 
-		$files = glob( $dir . '/*.svg' );
+			$icons[ $icon_set ] = [];
 
-		if ( ! is_array( $files ) ) {
-			continue;
-		}
+			$files = glob( $dir . '/*.svg' );
 
-		foreach ( $files as $file ) {
-			$icons[ $icon_set ][ basename( $file, '.svg' ) ] = trim( file_get_contents( $file ) );
+			if ( ! is_array( $files ) ) {
+				continue;
+			}
+
+			foreach ( $files as $file ) {
+				$icons[ $icon_set ][ basename( $file, '.svg' ) ] = trim( file_get_contents( $file ) );
+			}
 		}
 	}
 
@@ -183,8 +188,30 @@ function get_icons( string $set = '' ): array {
  * @return string
  */
 function get_icon( string $set, string $name, $size = null ): string {
-	$set  = strtolower( $set );
-	$icon = get_icons()[ $set ][ $name ] ?? '';
+	$set = strtolower( $set );
+
+	static $cache = [];
+
+	$cache_key = implode( '-', [ $set, $name, $size ] );
+
+	if ( isset( $cache[ $cache_key ] ) ) {
+		return $cache[ $cache_key ];
+	}
+
+	$icon_sets = get_icon_sets();
+
+	if ( ! isset( $icon_sets[ $set ] ) ) {
+		return '';
+	}
+
+	$dir  = $icon_sets[ $set ];
+	$file = $dir . '/' . $name . '.svg';
+
+	if ( ! file_exists( $file ) ) {
+		return '';
+	}
+
+	$icon = file_get_contents( $file );
 	$dom  = dom( $icon );
 	$svg  = get_dom_element( 'svg', $dom );
 
@@ -228,5 +255,7 @@ function get_icon( string $set, string $name, $size = null ): string {
 		$svg->setAttribute( 'fill', 'currentColor' );
 	}
 
-	return trim( $dom->saveHTML() );
+	$cache[ $cache_key ] = trim( $dom->saveHTML() );
+
+	return $cache[ $cache_key ];
 }
