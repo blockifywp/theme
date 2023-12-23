@@ -193,7 +193,12 @@ function get_icon_html( string $content, array $block ): string {
 	}
 
 	if ( $gradient ) {
-		$figure_styles['--wp--custom--icon--color'] = "var(--wp--preset--gradient--{$gradient})";
+
+		if ( $text_color || $custom_text_color ) {
+			$figure_styles['--wp--custom--icon--background'] = "var(--wp--preset--gradient--{$gradient})";
+		} else {
+			$figure_styles['--wp--custom--icon--color'] = "var(--wp--preset--gradient--{$gradient})";
+		}
 	}
 
 	$border_radius = $attrs['style']['border']['radius'] ?? null;

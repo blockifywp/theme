@@ -1,0 +1,17 @@
+@import "../abstracts/text-gradient";
+
+.wp-block-comments-title {
+	word-break: break-word;
+
+	&[class*="-font-size"] {
+		line-height: var(--wp--custom--heading--line-height, 1.5);
+	}
+
+	&[class*="-gradient-background"]:not(.has-text-color),
+	&[style*="-gradient("]:not(.has-text-color) {
+
+		@include text-gradient;
+	}
+}
+
+
