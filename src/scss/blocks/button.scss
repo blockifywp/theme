@@ -20,5 +20,12 @@
 			justify-content: flex-start;
 		}
 	}
+
+	&[style*="font-weight:"] {
+
+		.wp-element-button {
+			font-weight: inherit;
+		}
+	}
 }
 

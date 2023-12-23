@@ -303,7 +303,7 @@ div:has(> .blockify-icon-settings) {
 	min-height: 0;
 }
 
-.editor-styles-wrapper div .is-style-icon {
+.editor-styles-wrapper div [style*="--wp--custom--icon--url:"] {
 	background: transparent !important;
 	float: none !important;
 	padding: 0 !important;

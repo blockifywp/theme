@@ -108,8 +108,11 @@ function format_custom_property( string $custom_property ): string {
 			(array) ( $global_settings['color']['palette']['theme'] ?? [] ),
 			(array) $theme_json->settings->color->palette
 		);
-
-		$color_slugs = wp_list_pluck( $colors, 'slug' );
+		
+		$color_slugs = array_diff(
+			wp_list_pluck( $colors, 'slug' ),
+			get_system_colors()
+		);
 
 		if ( in_array( $custom_property, $color_slugs, true ) ) {
 			return "var(--wp--preset--color--{$custom_property})";

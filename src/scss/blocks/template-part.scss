@@ -9,7 +9,7 @@ header.wp-block-template-part {
 	}
 
 	&:not([class*="has-display-"]) {
-		display: initial; // Required for nested sticky elements to work.
+		// display: initial; // Required for nested sticky elements to work.
 	}
 
 	&:not([class*="has-position-"]) {

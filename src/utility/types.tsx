@@ -1,10 +1,11 @@
 import { CustomSelectControl } from '@wordpress/components';
 import { CSSProperties } from 'react';
-import { BlockAttributes } from '@wordpress/blocks';
+import { BlockAttributes, TemplateArray } from '@wordpress/blocks';
 import {
 	AlignmentToolbar,
 	BlockAlignmentToolbar,
 	BlockControls,
+	EditorTemplateLock,
 } from '@wordpress/block-editor';
 import { Value } from '@wordpress/rich-text';
 import Option = CustomSelectControl.Option;
@@ -59,6 +60,8 @@ declare global {
 		post_types?: string[];
 		uses_context?: string[];
 		enabled?: boolean;
+		template?: TemplateArray | undefined;
+		template_lock?: EditorTemplateLock | undefined;
 	}
 
 	interface CustomField {
@@ -70,6 +73,9 @@ declare global {
 		default?: string | number | boolean | object | null | undefined;
 		subfields?: CustomField[];
 		placeholder?: string;
+		columns?: number;
+		control?: string; // Used by blocks.
+		onChange?: ( newValue: string | number | boolean | object | null | undefined ) => void; // Used by blocks.
 	}
 
 	interface blockify {

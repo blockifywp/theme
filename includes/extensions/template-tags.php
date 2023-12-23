@@ -28,6 +28,7 @@ use function preg_match_all;
 use function shortcode_exists;
 use function str_contains;
 use function str_replace;
+use function strtolower;
 
 add_filter( 'render_block', NS . 'render_template_tags', 8, 3 );
 /**
@@ -82,6 +83,7 @@ function render_template_tags( string $html, array $block, WP_Block $object ): s
 	$replacements = [];
 
 	foreach ( $without_brackets as $tag ) {
+		$tag         = strtolower( $tag );
 		$replacement = '';
 
 		if ( shortcode_exists( $tag ) ) {

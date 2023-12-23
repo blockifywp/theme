@@ -48,6 +48,10 @@ function render_paragraph_block( string $html, array $block ): string {
 		$html = render_curved_text( $html, $block, $svg_string );
 	}
 
+	if ( str_contains( $html, 'http://http' ) ) {
+		$html = str_replace( 'http://http', 'http', $html );
+	}
+
 	return $html;
 }
 

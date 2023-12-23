@@ -127,9 +127,6 @@ function get_icon_html( string $content, array $block ): string {
 		$figure_classes[] = "has-{$text_color}-color";
 	}
 
-	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
-	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
-
 	$aria_label = $img->getAttribute( 'alt' ) ? $img->getAttribute( 'alt' ) : str_replace( '-', ' ', $icon_name ) . __( ' icon', 'blockify' );
 
 	$span->setAttribute( 'title', $attrs['title'] ?? $aria_label );
@@ -189,8 +186,26 @@ function get_icon_html( string $content, array $block ): string {
 		$figure_styles['--wp--custom--icon--color'] = $custom_text_color;
 	}
 
+	$background_color = $attrs['backgroundColor'] ?? null;
+
+	if ( $background_color ) {
+		$figure_styles['--wp--custom--icon--background'] = "var(--wp--preset--color--{$background_color})";
+	}
+
 	if ( $gradient ) {
 		$figure_styles['--wp--custom--icon--color'] = "var(--wp--preset--gradient--{$gradient})";
+	}
+
+	$border_radius = $attrs['style']['border']['radius'] ?? null;
+
+	if ( $border_radius ) {
+		$span_styles['border-radius'] = $border_radius;
+	}
+
+	$padding = $attrs['style']['spacing']['padding'] ?? null;
+
+	if ( $padding ) {
+		$span_styles = add_shorthand_property( $span_styles, 'padding', $padding );
 	}
 
 	$transform       = $attrs['style']['transform'] ?? [];
@@ -214,6 +229,8 @@ function get_icon_html( string $content, array $block ): string {
 		}
 	}
 
+	$figure->setAttribute( 'class', implode( ' ', $figure_classes ) );
+	$span->setAttribute( 'class', implode( ' ', $span_classes ) );
 	$figure->setAttribute( 'style', css_array_to_string( $figure_styles ) );
 	$span->setAttribute( 'style', css_array_to_string( $span_styles ) );
 
@@ -236,7 +253,11 @@ function get_icon_html( string $content, array $block ): string {
 		}
 	}
 
-	return $dom->saveHTML();
+	$html = $dom->saveHTML();
+	$html = add_position_classes( $html, $block );
+	$html = add_position_styles( $html, $block );
+
+	return $html;
 }
 
 /**
