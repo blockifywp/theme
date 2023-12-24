@@ -7,6 +7,7 @@ namespace Blockify\Theme;
 use function add_filter;
 use function explode;
 use function implode;
+use function is_array;
 
 add_filter( 'render_block_core/paragraph', NS . 'render_paragraph_block', 11, 2 );
 /**
@@ -40,6 +41,20 @@ function render_paragraph_block( string $html, array $block ): string {
 			]
 		)
 	);
+
+	$p_styles = css_string_to_array( $p->getAttribute( 'style' ) );
+	$padding  = $block['attrs']['style']['spacing']['padding'] ?? '';
+	$margin   = $block['attrs']['style']['spacing']['margin'] ?? '';
+
+	if ( is_array( $padding ) && ! empty( $padding ) ) {
+		$p_styles = add_shorthand_property( $p_styles, 'padding', $padding );
+	}
+
+	if ( is_array( $margin ) && ! empty( $margin ) ) {
+		$p_styles = add_shorthand_property( $p_styles, 'margin', $margin );
+	}
+
+	$p->setAttribute( 'style', css_array_to_string( $p_styles ) );
 
 	$html       = $dom->saveHTML();
 	$svg_string = $block['attrs']['curvedText']['svgString'] ?? '';

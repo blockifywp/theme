@@ -36,10 +36,11 @@ add_filter( 'render_block_core/post-excerpt', NS . 'render_post_excerpt', 10, 3 
  * @return string
  */
 function render_post_excerpt( string $block_content, array $block, WP_Block $object ): string {
+	$query_id       = $object->context['queryId'] ?? false;
 	$query_post_id  = $object->context['postId'] ?? false;
 	$custom_excerpt = get_post_field( 'post_excerpt', $query_post_id ?? get_the_ID() );
 
-	if ( is_singular() && ! $custom_excerpt && ! $query_post_id ) {
+	if ( is_singular() && ! $custom_excerpt && ! $query_id ) {
 		return '';
 	}
 
