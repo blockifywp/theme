@@ -175,12 +175,15 @@ function add_post_template_tags( array $tags, ?int $post_id ): array {
 		return $tags;
 	}
 
+	$tags['post_id']   = $post_id;
+	$tags['permalink'] = get_permalink( $post_id );
+
 	$post_type        = get_post_type( $post_id );
 	$post_type_object = get_post_type_object( $post_type );
 
-	$tags['post_id']         = $post_id;
-	$tags['post_type_label'] = $post_type_object->label;
-	$tags['permalink']       = get_permalink( $post_id );
+	if ( $post_type_object ) {
+		$tags['post_type_label'] = $post_type_object->label;
+	}
 
 	return $tags;
 }

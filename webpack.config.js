@@ -16,7 +16,6 @@ module.exports = ( env ) => {
 			details: './src/public/details.tsx',
 			packery: './src/public/packery.tsx',
 			scroll: './src/public/scroll.tsx',
-			typewriter: './src/public/typewriter.tsx',
 		},
 
 		plugins: [

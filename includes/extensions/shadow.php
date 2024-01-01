@@ -6,12 +6,13 @@ namespace Blockify\Theme;
 
 use function add_filter;
 use function array_diff;
+use function array_unique;
 use function esc_attr;
 use function in_array;
 use function str_contains;
 use function wp_get_global_settings;
 
-add_filter( 'render_block', NS . 'render_box_shadow', 10, 2 );
+add_filter( 'render_block', NS . 'render_box_shadow', 13, 2 );
 /**
  * Adds box shadow to blocks.
  *
@@ -133,6 +134,74 @@ function render_box_shadow( string $html, array $block ): string {
 	}
 
 	$first->setAttribute( 'style', css_array_to_string( $styles ) );
+
+	return $dom->saveHTML();
+}
+
+add_filter( 'render_block', NS . 'render_text_shadow', 10, 2 );
+/**
+ * Adds text shadow to blocks.
+ *
+ * @param string $html  The block content.
+ * @param array  $block The block.
+ *
+ * @return string
+ */
+function render_text_shadow( string $html, array $block ): string {
+	$text_shadow = $block['attrs']['style']['textShadow'] ?? [];
+
+	if ( ! $text_shadow ) {
+		return $html;
+	}
+
+	$dom   = dom( $html );
+	$first = get_dom_element( '*', $dom );
+
+	if ( ! $first ) {
+		return $html;
+	}
+
+	$first_classes = explode( ' ', $first->getAttribute( 'class' ) );
+
+	$text_classes = array_unique( [
+		...$first_classes,
+		'has-text-shadow',
+	] );
+
+	$first->setAttribute( 'class', implode( ' ', $text_classes ) );
+
+	$first_styles = css_string_to_array( $first->getAttribute( 'style' ) );
+
+	$x     = $text_shadow['x'] ?? null;
+	$y     = $text_shadow['y'] ?? null;
+	$blur  = $text_shadow['blur'] ?? null;
+	$color = $text_shadow['color'] ?? null;
+
+	if ( $x ) {
+		$first_styles['--wp--custom--text-shadow--x'] = esc_attr( $x ) . 'px';
+	}
+
+	if ( $y ) {
+		$first_styles['--wp--custom--text-shadow--y'] = esc_attr( $y ) . 'px';
+	}
+
+	if ( $blur ) {
+		$first_styles['--wp--custom--text-shadow--blur'] = esc_attr( $blur ) . 'px';
+	}
+
+	if ( $color ) {
+		$palette = wp_get_global_settings()['color']['palette']['theme'] ?? [];
+
+		$first_styles['--wp--custom--text-shadow--color'] = esc_attr( $color );
+
+		foreach ( $palette as $theme_color ) {
+			if ( $theme_color['color'] === $color ) {
+				$first_styles['--wp--custom--text-shadow--color'] = "var(--wp--preset--color--{$theme_color['slug']})";
+			}
+		}
+	}
+
+	$first->setAttribute( 'style', css_array_to_string( $first_styles ) );
 
 	return $dom->saveHTML();
 }

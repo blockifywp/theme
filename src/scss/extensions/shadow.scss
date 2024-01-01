@@ -5,6 +5,10 @@
 	transition: var(--wp--custom--transition);
 }
 
+.has-text-shadow {
+	text-shadow: var(--wp--custom--text-shadow--x, 0) var(--wp--custom--text-shadow--y, 0) var(--wp--custom--text-shadow--blur, 0) var(--wp--custom--text-shadow--color, transparent);
+}
+
 .has-none-shadow:not(.wp-block-button),
 .has-none-shadow-hover:not(.wp-block-button):hover,
 .has-none-shadow-hover:not(.wp-block-button):focus {

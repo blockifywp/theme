@@ -60,7 +60,7 @@
 }
 
 .is-style-icon.has-box-shadow {
-	box-shadow: none;
+	box-shadow: none !important;
 
 	> *:first-of-type {
 		box-shadow: var(--wp--custom--box-shadow--inset) var(--wp--custom--box-shadow--x) var(--wp--custom--box-shadow--y) var(--wp--custom--box-shadow--blur) var(--wp--custom--box-shadow--spread) var(--wp--custom--box-shadow--color);

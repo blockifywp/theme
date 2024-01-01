@@ -99,17 +99,14 @@ function enqueue_styles(): void {
 	wp_enqueue_style( $handle );
 }
 
-add_filter( 'blockify_inline_css', NS . 'get_dynamic_custom_properties', 8 );
 /**
- * Add dynamic custom properties.
+ * Gets dynamic custom properties.
  *
  * @since 0.9.19
  *
- * @param string $css Inline CSS.
- *
- * @return string
+ * @return array
  */
-function get_dynamic_custom_properties( string $css = '' ): string {
+function get_dynamic_custom_properties(): array {
 	$global_settings     = wp_get_global_settings();
 	$global_styles       = wp_get_global_styles();
 	$custom              = $global_settings['custom'] ?? [];
@@ -150,6 +147,8 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 	$search_gap = $global_styles['blocks']['core/search']['spacing']['blockGap'] ?? null;
 
 	$link_hover_color = $global_styles['elements']['link'][':hover']['color']['text'] ?? null;
+
+	$calendar_background = $global_styles['blocks']['core/calendar']['color']['background'] ?? null;
 
 	$styles = [
 		'--scroll'                              => '0',
@@ -195,6 +194,10 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 		$styles['--wp--custom--list--gap'] = $list_gap;
 	}
 
+	if ( $calendar_background ) {
+		$styles['--wp--custom--calendar--background'] = $calendar_background;
+	}
+
 	$inset      = $box_shadow['inset'] ?? ' ';
 	$x          = $box_shadow['x'] ?? '0px';
 	$y          = $box_shadow['y'] ?? '0px';
@@ -224,9 +227,21 @@ function get_dynamic_custom_properties( string $css = '' ): string {
 	 * @param array $styles        Dynamic custom properties.
 	 * @param array $global_styles Global styles.
 	 */
-	$styles = apply_filters( 'blockify_dynamic_custom_properties', $styles, $global_styles );
+	return apply_filters( 'blockify_dynamic_custom_properties', $styles, $global_styles );
+}
 
-	return $css . 'body{' . css_array_to_string( $styles ) . '}';
+add_filter( 'blockify_inline_css', NS . 'add_dynamic_custom_properties', 8 );
+/**
+ * Adds dynamic custom properties.
+ *
+ * @since 0.9.19
+ *
+ * @param string $css Inline CSS.
+ *
+ * @return string
+ */
+function add_dynamic_custom_properties( string $css = '' ): string {
+	return $css . 'body{' . css_array_to_string( get_dynamic_custom_properties() ) . '}';
 }
 
 add_filter( 'blockify_inline_css', NS . 'get_conditional_stylesheets', 10, 3 );
@@ -348,11 +363,12 @@ function get_conditional_stylesheets( string $css, string $content, bool $all ):
 		'animation'        => str_contains_any( $content, 'has-animation', 'will-animate' ),
 		'aspect-ratio'     => str_contains( $content, 'has-aspect-ratio-' ),
 		'box-shadow'       => str_contains( $content, 'has-box-shadow' ),
+		'dark-mode'        => str_contains_any( $content, 'hide-dark-mode', 'hide-light-mode' ),
 		'dark-mode-toggle' => str_contains( $content, 'toggle-switch' ),
 		'filter'           => str_contains( $content, 'has-filter' ),
 		'gradient-mask'    => str_contains( $content, '-gradient-background' ),
 		'grid-pattern'     => str_contains( $content, 'has-grid-gradient-' ),
-		'shadow'           => str_contains_any( $content, 'has-shadow', 'has-box-shadow' ),
+		'shadow'           => str_contains_any( $content, 'has-shadow', 'has-box-shadow', 'has-text-shadow' ),
 		'transform'        => str_contains( $content, 'has-transform' ),
 	];
 
@@ -469,9 +485,11 @@ function enqueue_editor_only_styles(): void {
 
 	wp_enqueue_style( $handle );
 
+	$dark_mode_css = get_dark_mode_styles( '' );
+
 	wp_add_inline_style(
 		$handle,
-		add_dark_mode_styles( '' )
+		$dark_mode_css
 	);
 }
 

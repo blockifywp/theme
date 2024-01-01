@@ -59,13 +59,18 @@ https://stocksnap.io/photo/girl-portrait_LMKLOZE1TO.jpg
 
 == Changelog ==
 
-= 1.3.1 - * 8 November 2023 =
+= 1.3.2 - 27 December 2023 =
+
+* Add: Text shadow controls
+* Fix: Icon performance
+
+= 1.3.1 - 8 November 2023 =
 
 * Remove: Use of `get_bloginfo( 'url' )` in favor of `home_url()`
 * Remove: #wpadminbar styling
 * Remove: Blog comments pattern
 
-= 1.3.0 - * 8 November 2023 =
+= 1.3.0 - 8 November 2023 =
 
 * Add: Complete rebuild. See https://blockifywp.com/changelog for full details.
 

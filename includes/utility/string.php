@@ -139,3 +139,16 @@ function str_replace_first( string $needle, string $replacement, string $haystac
 function to_title_case( string $string, array $search = [ '-', '_' ] ): string {
 	return trim( ucwords( str_replace( $search, ' ', $string ) ) );
 }
+
+/**
+ * Converts a camelCase string to kebab case.
+ *
+ * @param string $string camelCase string to convert.
+ *
+ * @return string
+ */
+function camel_to_kebab( string $string ): string {
+	$strings = preg_split( '/(?=[A-Z])/', $string );
+
+	return strtolower( implode( '-', $strings ) );
+}

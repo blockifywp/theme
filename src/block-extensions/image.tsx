@@ -18,7 +18,7 @@ import { Label } from '../components';
 import { unitsWithAuto } from '../utility';
 
 export const supportsImage = ( name: string ): boolean => [ 'core/image', 'core/post-featured-image', [ 'blockify/image-compare' ] ].includes( name );
-export const supportsAspectRatio = ( name: string ): boolean => [ 'core/image', 'blockify/image-compare' ].includes( name );
+export const supportsAspectRatio = ( name: string ): boolean => [ 'core/image', 'core/post-featured-image', 'blockify/image-compare' ].includes( name );
 
 addFilter(
 	'blocks.registerBlockType',
@@ -147,7 +147,7 @@ const ImageControl = ( props: blockProps, screen: string ) => {
 		className={ 'blockify-image-controls blockify-display-controls' }
 	>
 		{ supportsAspectRatio( props?.name ) &&
-			<AspectRatio />
+		<AspectRatio />
 		}
 		<Label
 			style={ { marginTop: '0' } }
@@ -263,14 +263,14 @@ addFilter(
 				<>
 					<BlockEdit { ...props } />
 					{ isSelected &&
-						<InspectorControls>
-							<PanelBody
-								initialOpen={ attributes?.image ?? false }
-								title={ __( 'Image', 'blockify' ) }
-							>
-								<ImageControls { ...props } />
-							</PanelBody>
-						</InspectorControls>
+					<InspectorControls>
+						<PanelBody
+							initialOpen={ attributes?.image ?? false }
+							title={ __( 'Image', 'blockify' ) }
+                        	>
+							<ImageControls { ...props } />
+						</PanelBody>
+					</InspectorControls>
 					}
 				</>
 			);

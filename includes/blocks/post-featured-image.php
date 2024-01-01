@@ -23,6 +23,7 @@ add_filter( 'render_block_core/post-featured-image', NS . 'render_post_featured_
 function render_post_featured_image_block( string $html, array $block ): string {
 	$dom    = dom( $html );
 	$figure = get_dom_element( 'figure', $dom );
+	$img    = get_dom_element( 'img', $figure );
 
 	if ( ! $figure ) {
 		return $html;
@@ -35,6 +36,7 @@ function render_post_featured_image_block( string $html, array $block ): string 
 	$use_custom     = $attrs['useCustomBoxShadow'] ?? null;
 	$shadow_custom  = $attrs['style']['boxShadow'] ?? null;
 	$hover_custom   = $attrs['style']['boxShadow']['hover'] ?? null;
+	$border_radius  = $attrs['style']['border']['radius'] ?? null;
 
 	if ( $shadow_preset ) {
 		$figure_classes[] = 'has-shadow';
@@ -62,6 +64,49 @@ function render_post_featured_image_block( string $html, array $block ): string 
 
 		if ( $color ) {
 			$figure_styles['--wp--custom--box-shadow--hover--color'] = format_custom_property( $color );
+		}
+	}
+
+	if ( $border_radius ) {
+		$figure_styles['border-radius'] = $border_radius;
+	}
+
+	$img_classes = $img ? explode( ' ', $img->getAttribute( 'class' ) ) : [];
+
+	$transform       = $attrs['style']['transform'] ?? [];
+	$transform_units = [
+		'rotate'    => 'deg',
+		'skew'      => 'deg',
+		'scale'     => '',
+		'translate' => '',
+	];
+
+	if ( ! empty( $transform ) && is_array( $transform ) ) {
+		$transform_value = '';
+
+		foreach ( $transform as $key => $value ) {
+			$unit            = $transform_units[ $key ] ?? '';
+			$transform_value .= "{$key}({$value}{$unit}) ";
+		}
+
+		if ( ! in_array( 'has-transform', $img_classes, true ) ) {
+			$figure_styles['transform'] = $transform_value;
+		}
+	}
+
+	$filter = $attrs['style']['filter'] ?? [];
+
+	if ( ! empty( $filter ) && is_array( $filter ) ) {
+		$filter_options = get_filter_options();
+		$filter_value   = '';
+
+		foreach ( $filter as $key => $value ) {
+			$unit         = $filter_options[ $key ]['unit'] ?? '';
+			$filter_value .= "{$key}({$value}{$unit}) ";
+		}
+
+		if ( ! in_array( 'has-filter', $img_classes, true ) ) {
+			$figure_styles['filter'] = $filter_value;
 		}
 	}
 

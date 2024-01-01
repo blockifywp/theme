@@ -12,17 +12,6 @@
 		@include ghost;
 
 		color: var(--wp--custom--ghost--color, inherit);
-
-		.is-style-dark & {
-			color: var(--wp--custom--dark-mode--ghost--color, inherit);
-		}
-
-		@media(prefers-color-scheme: dark) {
-
-			.default-mode-auto:not(.is-style-light):not(.is-style-dark) & {
-				color: var(--wp--custom--dark-mode--ghost--color, inherit);
-			}
-		}
 	}
 }
 

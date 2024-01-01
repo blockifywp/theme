@@ -8,6 +8,7 @@ use WP_Block_Patterns_Registry;
 use function _cleanup_header_comment;
 use function add_action;
 use function apply_filters;
+use function array_unique;
 use function basename;
 use function explode;
 use function get_file_data;
@@ -61,11 +62,11 @@ function get_pattern_dirs(): array {
 	$template   = get_template_directory() . '/patterns/*';
 	$stylesheet = get_stylesheet_directory() . '/patterns/*';
 
-	return apply_filters( 'blockify_pattern_dirs', [
+	return array_unique( apply_filters( 'blockify_pattern_dirs', [
 		...glob( $default, GLOB_ONLYDIR ),
 		...glob( $template, GLOB_ONLYDIR ),
 		...glob( $stylesheet, GLOB_ONLYDIR ),
-	] );
+	] ) );
 }
 
 add_action( 'init', NS . 'register_default_patterns' );
@@ -219,19 +220,18 @@ function parse_pattern_file( string $file ): array {
 	}
 
 	$pattern = [
-		'slug'          => $categories[0] . '-' . $headers['slug'],
-		'title'         => $headers['title'],
-		'content'       => str_replace_first(
+		'slug'        => $categories[0] . '-' . $headers['slug'],
+		'title'       => $headers['title'],
+		'content'     => str_replace_first(
 			str_between( '<?php', '?>', $content ),
 			'',
 			$content
 		),
-		'categories'    => [ ...$categories ],
-		'description'   => $headers['description'] ?? '',
-		'viewportWidth' => $headers['viewport_width'] ?? null,
-		'blockTypes'    => $headers['block_types'] ?? [],
-		'ID'            => $headers['ID'] ?? null,
-		'theme'         => $theme,
+		'categories'  => [ ...$categories ],
+		'description' => $headers['description'] ?? '',
+		'blockTypes'  => explode( ',', $headers['block_types'] ?? [] ),
+		'ID'          => $headers['ID'] ?? null,
+		'theme'       => $theme,
 	];
 
 	if ( ( $headers['inserter'] ?? null ) === 'false' ) {

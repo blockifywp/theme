@@ -27,7 +27,8 @@ function register_block_supports( array $data = [] ): array {
 			'blockifyPosition' => true,
 		],
 		'blockify/post-content'     => [
-			'blockifyPosition' => true,
+			'blockifyPosition'  => true,
+			'blockifyBoxShadow' => true,
 		],
 		'blockify/template-part'    => [
 			'blockifyPosition' => true,
@@ -474,7 +475,9 @@ function register_block_supports( array $data = [] ): array {
 				'padding' => true,
 			],
 			'blockifyBoxShadow' => true,
+			'blockifyFilter'    => true,
 			'blockifyPosition'  => true,
+			'blockifyTransform' => true,
 		],
 		'core/post-terms'           => [
 			'align'                => [
@@ -537,9 +540,20 @@ function register_block_supports( array $data = [] ): array {
 			'blockifyPosition' => true,
 		],
 		'core/query-pagination'     => [
-			'spacing' => [
+			'spacing'              => [
 				'margin'  => true,
 				'padding' => true,
+			],
+			'__experimentalBorder' => [
+				'radius'                        => true,
+				'width'                         => true,
+				'color'                         => true,
+				'style'                         => true,
+				'__experimentalDefaultControls' => [
+					'width'  => true,
+					'color'  => true,
+					'radius' => true,
+				],
 			],
 		],
 		'core/quote'                => [

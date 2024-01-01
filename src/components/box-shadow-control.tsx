@@ -24,6 +24,88 @@ interface PresetProps {
 	shadow: string;
 }
 
+const TextControls = ( props: {
+	attributes: {
+		style: {
+			textShadow: {
+				x?: string | undefined;
+				y?: string | undefined;
+				blur?: string | undefined;
+				color?: string | undefined;
+			};
+		};
+	};
+	setAttributes: ( values: {
+		style: {
+			textShadow: {
+				[property: string]: string | undefined;
+			};
+		};
+	} ) => void;
+	colorPalette: EditorColor[];
+} ) => {
+	const { attributes, setAttributes, colorPalette } = props;
+	const { style } = attributes;
+	const { textShadow } = style;
+
+	return <>
+		<PanelRow>
+			<Flex>
+				{ [ 'x', 'y', 'blur' ].map( ( key ) => (
+					<FlexItem
+						key={ key }
+					>
+						<NumberControl
+							label={ ucWords( key ) }
+							value={ textShadow?.[ key ?? '' ] ?? '' }
+							onChange={ ( value: string | undefined ) => {
+								setAttributes( {
+									style: {
+										...style,
+										textShadow: {
+											...textShadow,
+											[ key ]: value,
+										},
+									},
+								} );
+							} }
+						/>
+					</FlexItem>
+				) ) }
+			</Flex>
+		</PanelRow>
+		<PanelColorGradientSettings
+			title={ __( 'Color', 'blockify' ) }
+			showTitle={ false }
+			enableAlpha={ true }
+			settings={ [
+				{
+					enableAlpha: true,
+					colorValue: textShadow?.color,
+					label: __( 'Color', 'blockify' ),
+					onColorChange: ( value: string ) => {
+						for ( const color of colorPalette ) {
+							if ( color.color === value ) {
+								value = 'var(--wp--preset--color--' + color.slug + ')';
+							}
+						}
+
+						setAttributes( {
+							style: {
+								...style,
+								textShadow: {
+									...textShadow,
+									color: value,
+								},
+							},
+						} );
+					},
+				},
+			] }
+		/>
+	</>;
+};
+
 const CustomControls = ( props: {
 	boxShadow: { [property: string]: string | boolean };
 	setBoxShadow: ( values: { [property: string]: string | boolean } ) => void;
@@ -63,6 +145,28 @@ const CustomControls = ( props: {
 						/>
 					</FlexItem>
 				) ) }
+				<FlexItem>
+					<PanelColorGradientSettings
+						title={ __( 'Color', 'blockify' ) }
+						showTitle={ false }
+						enableAlpha={ true }
+						settings={ [
+							{
+								enableAlpha: true,
+								colorValue:
+                                    tab === 'default'
+                                    	? boxShadow?.color
+                                    	: boxShadow?.[ tab ]?.color,
+								label:
+                                    __( 'Color ', 'blockify' ) +
+                                    ( tab === 'hover'
+                                    	? __( ' Hover', 'blockify' )
+                                    	: '' ),
+								onColorChange: changeColor,
+							},
+						] }
+					/>
+				</FlexItem>
 			</Flex>
 		</PanelRow>
 		<br />
@@ -122,6 +226,7 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 	const { style } = attributes;
 
 	const boxShadow = style?.boxShadow ?? {};
+	const textShadow = style?.textShadow ?? {};
 
 	const colorPalette: EditorColor[] = select( 'core/block-editor' ).getSettings().colors ?? [];
 
@@ -202,7 +307,7 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 			</PanelRow>
 			<br />
 			<PanelRow>
-				<ToggleControl
+				{ tab !== 'text' && <ToggleControl
 					label={ __( 'Custom box shadow', 'blockify' ) }
 					checked={ attributes?.useCustomBoxShadow }
 					onChange={ ( value: boolean ) => {
@@ -210,14 +315,19 @@ const BoxShadowSettings = ( props: blockProps, tab: string ): JSX.Element => {
 							useCustomBoxShadow: value,
 						} );
 					} }
-				/>
+				/> }
 			</PanelRow>
 		</>;
 	};
 
 	return <>
-		<PresetControls />
-		{ attributes?.useCustomBoxShadow && <CustomControls
+		{ tab === 'text' && <TextControls
+			attributes={ attributes }
+			setAttributes={ setAttributes }
+			colorPalette={ colorPalette }
+		/> }
+		{ tab !== 'text' && <PresetControls /> }
+		{ ( attributes?.useCustomBoxShadow && tab !== 'text' ) && <CustomControls
 			boxShadow={ boxShadow }
 			setBoxShadow={ setBoxShadow }
 			changeColor={ changeColor }
@@ -250,6 +360,7 @@ export const BoxShadowControl = (
 								style: {
 									...attributes?.style,
 									boxShadow: '',
+									textShadow: '',
 								},
 							} );
 						} }
@@ -274,9 +385,17 @@ export const BoxShadowControl = (
 				>
 					{ __( 'Hover', 'blockify' ) }
 				</Button>
+				<Button
+					isSmall
+					variant={ tab === 'text' ? 'primary' : 'secondary' }
+					onClick={ () => setTab( 'text' ) }
+				>
+					{ __( 'Text', 'blockify' ) }
+				</Button>
 			</ButtonGroup>
 		</PanelRow>
 		{ tab === 'default' && BoxShadowSettings( props, tab ) }
 		{ tab === 'hover' && BoxShadowSettings( props, tab ) }
+		{ tab === 'text' && BoxShadowSettings( props, tab ) }
 	</>;
 };

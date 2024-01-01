@@ -1,1 +1,1 @@
-.has-transform{transform:var(--transform);transition:transform var(--wp--custom--transition--duration) var(--wp--custom--transition--timing-function)}.has-transform:hover{transform:var(--transform-hover, var(--transform))}
+.has-transform{transform:var(--transform);transition:transform var(--wp--custom--transition--duration) var(--wp--custom--transition--timing-function)}@media (prefers-reduced-motion: no-preference){.has-transform:hover{transform:var(--transform-hover, var(--transform))}}

@@ -2,7 +2,10 @@
 	transform: var(--transform);
 	transition: transform var(--wp--custom--transition--duration) var(--wp--custom--transition--timing-function);
 
-	&:hover {
-		transform: var(--transform-hover, var(--transform));
+	@media (prefers-reduced-motion: no-preference) {
+
+		&:hover {
+			transform: var(--transform-hover, var(--transform));
+		}
 	}
 }

@@ -46,6 +46,9 @@ addFilter(
 					boxShadow: {
 						type: 'object',
 					},
+					textShadow: {
+						type: 'object',
+					},
 				},
 			};
 		}
@@ -58,9 +61,11 @@ addFilter(
 const getStyles = ( attributes: {
 	style?: {
 		boxShadow?: BoxShadow;
+		textShadow?: BoxShadow;
 	};
 } ): genericStrings => {
 	const boxShadow: BoxShadow = attributes?.style?.boxShadow ?? {};
+	const textShadow: BoxShadow = attributes?.style?.textShadow ?? {};
 
 	const style: genericStrings = {};
 
@@ -72,6 +77,13 @@ const getStyles = ( attributes: {
 		y: 'px',
 		blur: 'px',
 		spread: 'px',
+		color: '',
+	};
+
+	const textProperties: { [property: string]: string } = {
+		x: 'px',
+		y: 'px',
+		blur: 'px',
 		color: '',
 	};
 
@@ -90,6 +102,12 @@ const getStyles = ( attributes: {
 		return true;
 	} );
 
+	Object.keys( textProperties ).map( ( property: string ) => {
+		if ( textShadow?.[ property ] || textShadow?.[ property ]?.toString() === '0' ) {
+			style[ '--wp--custom--text-shadow--' + property ] = textShadow?.[ property ] + textProperties?.[ property ];
+		}
+	} );
+
 	return style;
 };
 
@@ -106,6 +124,7 @@ addFilter(
 
 			const styles = getStyles( attributes );
 			const hasPreset = attributes?.shadowPreset || attributes?.shadowPresetHover;
+			const hasTextShadow = Object.keys( attributes?.style?.textShadow ?? {} ).length > 0;
 
 			if ( ! hasPreset && ! Object.keys( styles ).length ) {
 				return <BlockListBlock { ...props } />;
@@ -121,6 +140,10 @@ addFilter(
 
 			if ( hasPreset ) {
 				className = addClassName( className, 'has-shadow' ).replace( 'has-box-shadow', '' );
+			}
+
+			if ( hasTextShadow ) {
+				className = addClassName( className, 'has-text-shadow' );
 			}
 
 			if ( attributes?.shadowPreset ) {
@@ -165,12 +188,17 @@ addFilter(
 		const styles = getStyles( attributes );
 
 		const hasPreset = attributes?.shadowPreset || attributes?.shadowPresetHover;
+		const hasTextShadow = Object.keys( attributes?.style?.textShadow ?? {} ).length > 0;
 
 		if ( ! hasPreset && ! Object.keys( styles ).length ) {
 			return props;
 		}
 
 		let className = addClassName( props?.className, 'has-box-shadow' );
+
+		if ( hasTextShadow ) {
+			className = addClassName( className, 'has-text-shadow' );
+		}
 
 		if ( hasPreset ) {
 			className = addClassName( className, 'has-shadow' ).replace( 'has-box-shadow', '' );

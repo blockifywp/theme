@@ -51,7 +51,7 @@ function render_image_block( string $html, array $block, WP_Block $object ): str
 			$html = add_responsive_classes( $html, $block, get_image_options(), (bool) $id );
 		}
 
-		if ( $name === 'core/post-featured-image' && ! $html ) {
+		if ( $name === 'core/post-featured-image' ) {
 			$html = add_responsive_classes( $html, $block, get_image_options(), (bool) $id );
 		}
 	}

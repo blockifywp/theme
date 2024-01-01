@@ -19,20 +19,5 @@
 		transition: var(--wp--custom--transition);
 		border-radius: inherit;
 		z-index: -1;
-
-		.is-style-dark & {
-			opacity: var(--wp--custom--dark-mode--ghost--opacity, 0.12);
-		}
-
-		@media(prefers-color-scheme: dark) {
-
-			.default-mode-auto:not(.is-style-light):not(.is-style-dark) & {
-				opacity: var(--wp--custom--dark-mode--ghost--opacity, 0.12);
-			}
-
-			.default-mode-light:not(.is-style-dark) & {
-				opacity: var(--wp--custom--ghost--opacity, 0.1);
-			}
-		}
 	}
 }

@@ -10,6 +10,7 @@ use function count;
 use function explode;
 use function file_exists;
 use function get_template_directory;
+use function is_array;
 use function is_null;
 use function is_string;
 use function rtrim;
@@ -31,7 +32,7 @@ function css_array_to_string( array $styles, bool $trim = false ): string {
 	$css = '';
 
 	foreach ( $styles as $property => $value ) {
-		if ( is_null( $value ) ) {
+		if ( is_null( $value ) || is_array( $value ) ) {
 			continue;
 		}
 
@@ -108,7 +109,7 @@ function format_custom_property( string $custom_property ): string {
 			(array) ( $global_settings['color']['palette']['theme'] ?? [] ),
 			(array) $theme_json->settings->color->palette
 		);
-		
+
 		$color_slugs = array_diff(
 			wp_list_pluck( $colors, 'slug' ),
 			get_system_colors()

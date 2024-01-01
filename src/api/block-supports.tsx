@@ -43,9 +43,17 @@ addFilter(
 	createHigherOrderComponent(
 		( BlockListBlock ) => {
 			return ( props: blockProps ) => {
+				const { name } = props;
+
+				const blocksWithBlockGap = [
+					'core/page-list',
+					'core/button',
+					'core/post-author',
+				];
+
 				const defaultReturn = <BlockListBlock { ...props } />;
 
-				if ( props.name !== 'core/page-list' && props.name !== 'core/button' ) {
+				if ( ! blocksWithBlockGap.includes( name ) ) {
 					return defaultReturn;
 				}
 

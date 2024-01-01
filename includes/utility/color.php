@@ -22,6 +22,7 @@ use function wp_json_file_decode;
  */
 function get_system_colors(): array {
 	return [
+		'current',
 		'currentcolor',
 		'currentColor',
 		'inherit',
@@ -57,6 +58,7 @@ function get_shade_scales( ?string $color = null ): array {
 			0   => 950,
 		],
 		'primary' => [
+			950 => 25,
 			900 => 100,
 			700 => 300,
 			600 => 500,
@@ -93,7 +95,7 @@ function get_shade_scales( ?string $color = null ): array {
 }
 
 /**
- * Gets color shades.
+ * Reverses color shade.
  *
  * @since 1.3.2
  *
@@ -101,7 +103,7 @@ function get_shade_scales( ?string $color = null ): array {
  *
  * @return string
  */
-function reverse_color_shade( string $slug ): string {
+function get_reverse_color_shade( string $slug ): string {
 	$explode = explode( '-', $slug );
 	$color   = $explode[0] ?? '';
 	$shade   = $explode[1] ?? '';

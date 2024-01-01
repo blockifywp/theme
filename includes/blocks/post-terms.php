@@ -33,8 +33,9 @@ add_filter( 'render_block_core/post-terms', NS . 'render_post_terms_block', 10, 
  * @return string
  */
 function render_post_terms_block( string $html, array $block ): string {
+	$attrs = $block['attrs'] ?? [];
 
-	if ( $block['attrs']['align'] ?? null ) {
+	if ( $attrs['align'] ?? null ) {
 		$dom = dom( $html );
 		$div = get_dom_element( 'div', $dom );
 
@@ -43,7 +44,7 @@ function render_post_terms_block( string $html, array $block ): string {
 				'wp-block-post-terms',
 				'flex',
 				'wrap',
-				'justify-' . esc_attr( $block['attrs']['align'] ?? 'left' ),
+				'justify-' . esc_attr( $attrs['align'] ?? 'left' ),
 				...( explode( ' ', $div->getAttribute( 'class' ) ) ),
 			] );
 
@@ -53,14 +54,14 @@ function render_post_terms_block( string $html, array $block ): string {
 		$html = $dom->saveHTML();
 	}
 
-	$term = $block['attrs']['term'] ?? '';
+	$term = $attrs['term'] ?? '';
 
 	if ( ! $term ) {
 		return $html;
 	}
 
 	// Remove empty separator elements.
-	$separator = $block['attrs']['separator'] ?? null;
+	$separator = $attrs['separator'] ?? null;
 
 	if ( $separator === '' ) {
 		$dom = dom( $html );
@@ -79,25 +80,25 @@ function render_post_terms_block( string $html, array $block ): string {
 		}
 	}
 
-	$show_all = $block['attrs']['showAll'] ?? false;
+	$show_all = $attrs['showAll'] ?? false;
 
 	if ( ! $html || $show_all ) {
 		$dom         = dom( '<div></div>' );
 		$div         = get_dom_element( 'div', $dom );
 		$div_classes = [
-			...( explode( ' ', $block['attrs']['className'] ?? '' ) ),
+			...( explode( ' ', $attrs['className'] ?? '' ) ),
 			'wp-block-post-terms',
 			'taxonomy-' . $term,
 		];
 
-		$text_align = esc_attr( $block['attrs']['textAlign'] ?? '' );
+		$text_align = esc_attr( $attrs['textAlign'] ?? '' );
 
 		if ( $text_align ) {
 			$div_classes[] = 'has-text-align-' . $text_align;
 			$div_classes[] = 'justify-' . $text_align;
 		}
 
-		$text_color = esc_attr( $block['attrs']['textColor'] ?? '' );
+		$text_color = esc_attr( $attrs['textColor'] ?? '' );
 
 		if ( $text_color ) {
 			$div_classes[] = 'has-' . $text_color . '-color';
@@ -106,7 +107,7 @@ function render_post_terms_block( string $html, array $block ): string {
 		$taxonomy  = get_taxonomy( $term );
 		$post_type = $taxonomy->object_type[0] ?? get_post_type();
 
-		if ( ( is_singular() && ! is_front_page() ) || ! $show_all ) {
+		if ( ( is_singular() && ! is_front_page() && ! $show_all ) || ! $show_all ) {
 			$p            = create_element( 'p', $dom );
 			$p->nodeValue = esc_html( $taxonomy->labels->not_found ?? '' );
 
@@ -166,32 +167,30 @@ function render_post_terms_block( string $html, array $block ): string {
 		}
 
 		$styles = [];
-
-		// TODO: Is 0 intentional?
-		$margin = $block['attrs']['style']['spacing']['margin'] ?? 0;
+		$margin = $attrs['style']['spacing']['margin'] ?? null;
 		$styles = add_shorthand_property( $styles, 'margin', $margin );
 
-		$text_decoration = esc_attr( $block['attrs']['style']['typography']['textDecoration'] ?? '' );
+		$text_decoration = esc_attr( $attrs['style']['typography']['textDecoration'] ?? '' );
 
 		if ( $text_decoration ) {
 			$styles['text-decoration'] = $text_decoration;
 		}
 
-		$font_size = esc_attr( $block['attrs']['fontSize'] ?? '' );
+		$font_size = esc_attr( $attrs['fontSize'] ?? '' );
 
 		if ( $font_size ) {
 			$div_classes[] = 'has-font-size';
 			$div_classes[] = 'has-' . $font_size . '-font-size';
 		}
 
-		$font_size_custom = esc_attr( $block['attrs']['style']['typography']['fontSize'] ?? '' );
+		$font_size_custom = esc_attr( $attrs['style']['typography']['fontSize'] ?? '' );
 
 		if ( $font_size_custom ) {
 			$styles['font-size'] = format_custom_property( $font_size_custom );
 			$div_classes[]       = 'has-font-size';
 		}
 
-		$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
+		$padding = $attrs['style']['spacing']['padding'] ?? null;
 		$styles  = add_shorthand_property( $styles, 'padding', $padding );
 
 		$div->setAttribute( 'class', implode( ' ', $div_classes ) );
@@ -211,19 +210,19 @@ function render_post_terms_block( string $html, array $block ): string {
 	if ( $first ) {
 		$styles = css_string_to_array( $first->getAttribute( 'style' ) );
 
-		$gap = $block['attrs']['style']['spacing']['blockGap'] ?? '';
+		$gap = $attrs['style']['spacing']['blockGap'] ?? '';
 
 		if ( $gap ) {
 			$styles['gap'] = format_custom_property( $gap );
 		}
 
-		$font_weight = esc_attr( $block['attrs']['style']['typography']['fontWeight'] ?? '' );
+		$font_weight = esc_attr( $attrs['style']['typography']['fontWeight'] ?? '' );
 
 		if ( $font_weight ) {
 			$styles['font-weight'] = $font_weight;
 		}
 
-		$border = $block['attrs']['style']['border'] ?? null;
+		$border = $attrs['style']['border'] ?? null;
 		$radius = $border['radius'] ?? null;
 
 		if ( $radius ) {
@@ -235,10 +234,10 @@ function render_post_terms_block( string $html, array $block ): string {
 		}
 	}
 
-	$class_names = explode( ' ', $block['attrs']['className'] ?? '' );
+	$class_names = explode( ' ', $attrs['className'] ?? '' );
 
 	if ( in_array( 'is-style-badges', $class_names, true ) ) {
-		$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
+		$padding = $attrs['style']['spacing']['padding'] ?? null;
 
 		if ( $padding && $first ) {
 			$styles = css_string_to_array( $first->getAttribute( 'style' ) );

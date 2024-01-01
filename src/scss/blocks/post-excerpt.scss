@@ -1,3 +1,5 @@
+@import "../abstracts/text-gradient";
+
 .wp-block-post-excerpt {
 
 	&__excerpt {
@@ -13,5 +15,11 @@
 		.hide-read-more & {
 			display: none;
 		}
+	}
+
+	&[class*="-gradient-background"]:not(.has-text-color),
+	&[style*="-gradient("]:not(.has-text-color) {
+
+		@include text-gradient;
 	}
 }

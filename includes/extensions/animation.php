@@ -217,30 +217,6 @@ function add_scroll_js( string $js, string $content, bool $all ): string {
 	return $js;
 }
 
-add_filter( 'blockify_inline_js', NS . 'add_typewriter_js', 10, 3 );
-/**
- * Adds scroll JS to the inline JS.
- *
- * @since 0.0.14
- *
- * @param string $js      Inline JS.
- * @param string $content Page content.
- * @param bool   $all     Whether to add all JS.
- *
- * @return string
- */
-function add_typewriter_js( string $js, string $content, bool $all ): string {
-	if ( $all || str_contains_any( $content, 'hljs', 'typewriter' ) ) {
-		$file = get_dir() . 'assets/js/typewriter.js';
-
-		if ( file_exists( $file ) ) {
-			$js .= file_get_contents( $file );
-		}
-	}
-
-	return $js;
-}
-
 add_filter( 'blockify_inline_js', NS . 'add_packery_js', 10, 3 );
 /**
  * Adds packery JS to the inline JS.

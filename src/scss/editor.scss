@@ -1,6 +1,7 @@
 @import "../../node_modules/prism-themes/themes/prism-material-oceanic";
 @import "abstracts/align-wide";
 @import "abstracts/shadow";
+@import "extensions/dark-mode";
 
 .edit-site-site-icon__image[src*=".svg"] {
 	transform: scale(0.55);
@@ -56,7 +57,7 @@ html .editor-styles-wrapper {
 	text-align: center;
 	margin-bottom: calc(var(--wp--style--block-gap) * 2);
 	position: relative;
-	z-index: 99;
+	z-index: 10;
 }
 
 // Always hide title.

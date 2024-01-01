@@ -1,1 +1,1 @@
-.wp-block-post-featured-image[style*="aspect-ratio:"] a,.wp-block-post-featured-image[style*="aspect-ratio:"] img{aspect-ratio:inherit;object-fit:cover}.wp-block-post-featured-image svg{max-width:100%;height:auto}
+.wp-block-post-featured-image[style*="aspect-ratio:"] a,.wp-block-post-featured-image[style*="aspect-ratio:"] img{aspect-ratio:inherit;object-fit:cover;object-position:inherit}.wp-block-post-featured-image svg{max-width:100%;height:auto}

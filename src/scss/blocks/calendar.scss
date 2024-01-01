@@ -1,0 +1,82 @@
+@import "../abstracts/ghost";
+
+.wp-block-calendar {
+	border: var(--wp--custom--border);
+	border-radius: var(--wp--custom--border--radius);
+	background: var(--wp--custom--calendar--background, var(--wp--custom--body--background));
+
+	caption {
+		padding: 1em 0;
+		font-weight: var(--wp--custom--font-weight--medium);
+	}
+
+	table {
+		border: 0;
+		line-height: 1;
+		text-align: center;
+		background: transparent;
+
+		&:where(:not(.has-text-color)) {
+			color: inherit;
+
+			td,
+			th {
+				border-color: var(--wp--custom--border--color);
+			}
+		}
+	}
+
+	td,
+	th {
+		padding: 1em 0;
+		text-align: center;
+		background: transparent;
+
+		a {
+			padding: .5em;
+			margin: -.5em;
+			border-radius: 99px;
+			background: var(--wp--preset--color--primary-500);
+			line-height: 1;
+			width: 2em;
+
+			@include ghost;
+		}
+	}
+
+	a {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+	}
+
+	thead {
+
+		th {
+
+			&:first-of-type {
+				border-top-left-radius: inherit;
+			}
+
+			&:last-of-type {
+				border-top-right-radius: inherit;
+			}
+		}
+	}
+
+	tbody {
+	}
+
+	nav {
+		padding: 1em 0;
+	}
+}
+
+:where(.wp-block-calendar table:not(.has-background) th) {
+	background: transparent;
+}
+
+.wp-calendar-table {
+
+}

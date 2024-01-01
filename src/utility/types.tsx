@@ -45,6 +45,21 @@ declare global {
 		allowReset?: boolean;
 		searchable?: boolean;
 		creatable?: boolean;
+		colors?: {
+			slug: string;
+			name: string;
+			color: string;
+		}[];
+		gradients?: {
+			slug: string;
+			name: string;
+			gradient: string;
+		}[];
+		enableAlpha?: boolean;
+		disableCustomColors?: boolean;
+		disableCustomGradients?: boolean;
+		showTitle?: boolean;
+		clearable?: boolean;
 	}
 
 	interface CustomBlock {

@@ -26,8 +26,7 @@ function render_query_pagination_block( string $html, array $block ): string {
 		return $html;
 	}
 
-	$styles = css_string_to_array( $nav->getAttribute( 'style' ) );
-
+	$styles  = css_string_to_array( $nav->getAttribute( 'style' ) );
 	$margin  = $block['attrs']['style']['spacing']['margin'] ?? null;
 	$padding = $block['attrs']['style']['spacing']['padding'] ?? null;
 	$styles  = add_shorthand_property( $styles, 'margin', $margin );
@@ -42,6 +41,12 @@ function render_query_pagination_block( string $html, array $block ): string {
 		if ( str_contains( $value, 'var:' ) ) {
 			$styles[ $key ] = format_custom_property( $value );
 		}
+	}
+
+	$border_radius = $block['attrs']['style']['border']['radius'] ?? null;
+
+	if ( $border_radius ) {
+		$styles['border-radius'] = $border_radius;
 	}
 
 	$nav->setAttribute( 'style', css_array_to_string( $styles ) );

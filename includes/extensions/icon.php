@@ -222,11 +222,24 @@ function get_icon_html( string $content, array $block ): string {
 	];
 
 	if ( ! empty( $transform ) && is_array( $transform ) ) {
-		$transform_value = '';
+		$figure_classes[] = 'has-transform';
+		$transform_value  = '';
 
 		foreach ( $transform as $key => $value ) {
-			$unit            = $transform_units[ $key ] ?? '';
-			$transform_value .= "{$key}({$value}{$unit}) ";
+			if ( $key === 'hover' ) {
+				$hover_transform = '';
+
+				foreach ( $value as $hover_key => $hover_value ) {
+					$unit            = $transform_units[ $hover_key ] ?? '';
+					$hover_transform .= "{$hover_key}({$hover_value}{$unit}) ";
+				}
+
+				$figure_styles['--transform-hover'] = $hover_transform;
+
+			} else {
+				$unit            = $transform_units[ $key ] ?? '';
+				$transform_value .= "{$key}({$value}{$unit}) ";
+			}
 		}
 
 		if ( ! in_array( 'has-transform', $span_classes, true ) ) {

@@ -5,7 +5,7 @@
 header.wp-block-template-part {
 
 	&:not(.has-z-index) {
-		z-index: 3;
+		z-index: var(--wp--custom--header--z-index, initial);
 	}
 
 	&:not([class*="has-display-"]) {
